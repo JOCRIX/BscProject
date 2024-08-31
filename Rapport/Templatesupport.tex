@@ -1,0 +1,138 @@
+\chapter{LaTex guide}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Til tabeller:
+https://www.tablesgenerator.com/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+PNG to PDF:
+https://png2pdf.com/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Referencer:
+Kapitel: \label{ch:__}
+Section: \label{sec:__}
+Subsection: \label{subsec:___}
+Subsubsection: \label{subsubsec:___}
+Equation: \label{eq:Chapter_name}
+Figure: \label{fig:Chapter_name}
+Tabel: \label{tab:Chapter_name}
+Appendix: \label{app:___}
+
+
+Referencer med flere ord skrives sådan:
+\label{ch:En_Stor_Ko}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Til kommentarer:
+\todo{Dette er en kommentar}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Enhed:
+\SI{}{}
+%Her skrives det de fulde ord, så eksempelvis \SI{30}{\centi\meter} eller \SI{12}{\milli\Ohm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+For at sætte en figur ind:
+%\begin{figure}[H]
+ %   \begin{adjustwidth}{}{}
+  %  \centering
+   % \includegraphics[trim = 0 0 0 0, clip, width=1\textwidth]{figures/Mappe/figur.pdf}
+ %   \end{adjustwidth}
+  %  \caption{SKriv noget text der forklarer figuren..}
+   % \label{fig:label_til_figur - Den her kan man \ref til}
+%\end{figure}
+Trim kan trimme billedet :)
+trim = left lower right upper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Til lister
+\begin{itemize}
+  \item List entries start with the \verb|\item| command.
+  \item Individual entries are indicated with a black dot, a so-called bullet.
+  \item The text in the entries may be of any length.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Til Ligninger
+\noindent\begin{minipage}{.5\linewidth}
+\begin{equation*}
+    \label{eq:Band_Pass}
+    H_{BandPass}(s)=a\cdot\frac{(s-z)}{(s-p_1)\cdot(s-p_2)}
+\end{equation*}
+\end{minipage}%
+\begin{minipage}{.4\linewidth}
+\begin{flalign*}
+a &= gain \\
+ s& =j\cdot\omega\\
+\omega&=2 \cdot \pi \cdot f
+\end{flalign*}
+\end{minipage}
+\begin{minipage}{.1\linewidth}
+\ref{eq:Band_Pass}
+\end{minipage}
+
+
+For flere equations:
+
+For at tilfredsstille Emil:
+\begin{flalign}
+    ligning 1\\[20pt]
+    ligning 2\\[20pt]
+    ligning 3
+\end{flalign}
+
+Flere equations med kun 1 label (de alligner ved \&):
+\begin{equation}
+    \begin{aligned}
+    \label{indsæt label her}
+        ligning & 1\\[20pt]
+        ligning & 2\\[20pt]
+        ligning & 3
+    \end{aligned}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Indsæt pdf i appendix:
+Har lavet en macro:
+%usepackage{pdfpages}
+
+%\pdfappendix[TITEL]{LABEL}{PDF LOKATION}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\Chap{TITEL}{LABEL}
+\Sec{TITEL}{LABEL}
+\Sub{TITEL}{LABEL}
+\Subsub{TITEL}{LABEL}
+
+Sådan indsætter du både et nyt afsnit med label.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Eksempel på kode indsæt
+% https://www.overleaf.com/learn/latex/Code_listing
+
+% Der er i preabmle lavet en styling for koden, hvor man kan ændre farve og så vidre...
+
+%%%
+% Ren kode eksempel
+
+\begin{lstlisting}[language=C++, caption=WiFi connection]
+// Include library.
+#include <WiFi.h>
+
+// Define the wanted connection.
+const char* ssid = "Test_SW";                  
+const char* password = "SmartWatch";
+
+void setup(){
+// Establish connection.
+WiFi.begin(ssid, password);
+}
+\end{lstlisting}
+%%%
+% Dokument kode eksempel
+
+%\lstinputlisting[language=Octave, firstline=2, lastline=12]{BitXorMatrix.m}
+
+% Her "linker" vi til det dokument som vi vil vise i den anden tuborg-klæmme. Og first line og lastline er den linje vi starter ved og den vi slutter på tilsvarrende. 
+
+%Overstregning af tekst
+%\colorbox{1}{2}  %1: Farven til overstregning (SKAL skrives med småt. fx red, yellow, green, blue...Alle farverne kan ses her: https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX)  %2: Teksten der skal overstreges.

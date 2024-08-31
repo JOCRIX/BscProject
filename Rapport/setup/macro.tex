@@ -1,0 +1,164 @@
+%  A simple AAU report template.
+%  2015-05-08 v. 1.2.0
+%  Copyright 2010-2015 by Jesper Kjær Nielsen <jkn@es.aau.dk>
+%
+%  This is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
+%
+%
+%
+% see, e.g., http://en.wikibooks.org/wiki/LaTeX/Customizing_LaTeX#New_commands
+% for more information on how to create macros
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros for the titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Creates the aau titlepage
+\newcommand{\aautitlepage}[3]{%
+  {
+    %set up various length
+    \ifx\titlepageleftcolumnwidth\undefined
+      \newlength{\titlepageleftcolumnwidth}
+      \newlength{\titlepagerightcolumnwidth}
+    \fi
+    \setlength{\titlepageleftcolumnwidth}{0.5\textwidth-\tabcolsep}
+    \setlength{\titlepagerightcolumnwidth}{\textwidth-2\tabcolsep-\titlepageleftcolumnwidth}
+    %create title page
+    \thispagestyle{empty}
+    \noindent%
+    \begin{tabular}{@{}ll@{}}
+      \parbox{\titlepageleftcolumnwidth}{
+        \iflanguage{danish}{%
+          \includegraphics[width=\titlepageleftcolumnwidth]{aaugraphics/aau_logo_da.pdf}
+        }{%
+          \includegraphics[width=\titlepageleftcolumnwidth]{aaugraphics/aau_logo_en.pdf}
+        }
+      } &
+      \parbox{\titlepagerightcolumnwidth}{\raggedleft\sf\small
+        #2
+      }\bigskip\\
+       #1 &
+      \parbox[t]{\titlepagerightcolumnwidth}{%
+      \textbf{Abstract:}\bigskip\par
+        \fbox{\parbox{\titlepagerightcolumnwidth-2\fboxsep-2\fboxrule}{%
+          #3
+        }}
+      }\\
+    \end{tabular}
+    \vfill
+    \clearpage
+  }
+}
+
+%Create english project info
+\newcommand{\englishprojectinfo}[9]{%
+  \parbox[t]{\titlepageleftcolumnwidth}{
+    \textbf{Title:}\\ #1\bigskip\par
+    \textbf{Theme:}\\ #2\bigskip\par
+    \textbf{Project Period:}\\ #3\bigskip\par
+    \textbf{Project Group:}\\ #4\bigskip\par
+    \textbf{Participants:}\\ #5\bigskip\par
+    \textbf{Supervisors:}\\ #6\bigskip\par
+    \textbf{Copies:} #7\bigskip\par
+    \textbf{Page Numbers:} #8 \\\bigskip\par
+    \textbf{Date of Completion:}\\ #9
+  }
+}
+
+%Create danish project info
+\newcommand{\danishprojectinfo}[8]{%
+  \parbox[t]{\titlepageleftcolumnwidth}{
+    \textbf{Titel:}\\ #1\bigskip\par
+    \textbf{Tema:}\\ #2\bigskip\par
+    \textbf{Projektperiode:}\\ #3\bigskip\par
+    \textbf{Projektgruppe:}\\ #4\bigskip\par
+    \textbf{Deltager(e):}\\ #5\bigskip\par
+    \textbf{Vejleder(e):}\\ #6\bigskip\par
+    \textbf{Oplagstal:} #7\bigskip\par
+    \textbf{Sidetal:} \pageref{LastPage}\bigskip\par
+    \textbf{Afleveringsdato:}\\ #8
+  }
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% An example environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremheaderfont{\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoremstyle{break}
+\def\theoremframecommand{{\color{gray!50}\vrule width 5pt \hspace{5pt}}}
+\newshadedtheorem{exa}{Example}[chapter]
+\newenvironment{example}[1]{%
+		\begin{exa}[#1]
+}{%
+		\end{exa}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\es}{\\[20pt]}
+
+\newcommand{\subsubsubsection}[1]{
+\paragraph{#1}
+}
+
+%Test command til at lave kommandoer med optional arguments.
+%nr. 4 viser hvordan man kan lave en default hvis den er efterladt tom.
+\newcommand{\test}[4][]{
+\ifthenelse{\equal{#1}{}}{}{#1 \\[20pt]}
+\ifthenelse{\equal{#2}{}}{}{#2 \\[20pt]}
+\ifthenelse{\equal{#3}{}}{}{#3 \\[20pt]}
+\ifthenelse{\equal{#4}{}}{default value}{#4}
+}
+
+\newcommand{\AAU}[1][]{AAU$^3$ }
+
+\DeclareSIUnit{\kmph}{\kilo \meter\per\hour}
+
+%\test[XXX]{AAA}{BBB}{CCC}
+%Til PDF i appendix
+\newcommand{\pdfappendix}[3][]{
+\includepdf[pages=1,scale=1,pagecommand={\subsection{#1}\label{#2}},linktodoc=true]{#3}
+\includepdf[pages=2-,scale=1,linktodoc=true]{#3}
+}
+%Til Chapter
+\newcommand{\Chap}[2]{\chapter{#1}\label{ch:#2}}
+
+%Dette gøres ved at skrive \Chap{}{}, hvor den første er Titlen og den anden er label.
+%Til Section
+\newcommand{\Sec}[2]{\section{#1}\label{sec:#2}}
+
+%Til SubSection
+\newcommand{\Sub}[2]{\subsection{#1}\label{subsec:#2}}
+
+%Til SubsubSection
+\newcommand{\Subsub}[2]{\subsubsection{#1}\label{subsubsec:#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+

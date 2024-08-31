@@ -1,0 +1,40 @@
+ \pdfbookmark[0]{Frontpage}{label:frontpage}%
+
+ \begin{titlepage}
+ %background waves
+     \tikz[remember picture,overlay]
+     \node[opacity=1,inner sep=0pt]
+     at (current page.center)
+     {\includegraphics[width=\paperwidth,height=\paperheight]{aaugraphics/aau_waves.pdf}};
+ %background waves end 
+
+  \fboxsep0pt\colorbox{aaublue}
+
+   \vfill% add spacing 
+    \noindent
+
+    {\colorbox{aaublue}{\begin{tabular}{@{}p{\textwidth}@{}}% Adding box
+    \color{white}
+     \begin{center}
+     \Huge{\textbf{Title of report}}
+     \end{center}
+     \vspace{0.2cm}
+    \begin{center}
+     {\Large
+        name nameson\\
+        another name\\
+      }
+     \vspace{0.4cm}
+     {\large
+       Electronics and IT, P6, 2024
+     }
+    \end{center}
+    \vspace{0.2cm}
+   \end{tabular}}}
+ 
+   \vfill %spacing
+   \begin{center} %add circle logo
+     \includegraphics[width=0.2\paperwidth]{aaugraphics/aau_logo_circle_en.pdf}
+   \end{center}
+ \end{titlepage}
+ \clearpage

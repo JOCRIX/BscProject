@@ -1,0 +1,128 @@
+
+
+
+\section{References, labels and abbreviations}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+
+Section type  & Reference/Label name \\ \hline
+Chapter       & ch:name                  \\ \hline
+Section       & sec:name                  \\ \hline
+Subsection    & subsec:name               \\ \hline
+Subsubsection & subsubsec:name           \\ \hline
+Figure        & fig:name                  \\ \hline
+Table         & tab:name                  \\ \hline
+Equation      & eq:name                   \\ \hline
+code snippets & snip:name                 \\ \hline
+Appendix      & app:name                  \\ \hline
+Bibliography  & bib:name\_addition\_another\_addition                \\ \hline
+\end{tabular}
+\end{table}
+\section{Figures and tables}
+\subsection{2 by x table}
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+
+        &       \\ \hline
+        &       \\ \hline
+        &       \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{3 by x table}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+
+        &       &       \\ \hline
+        &       &       \\ \hline
+        &       &       \\ \hline
+\end{tabular}
+\end{table}
+\subsection{colored 3 by x table}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+ 
+&  &  \\ \hline
+ &  &  \\ \hline
+ &  &  \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Figure figure}
+Inserting figures of type: PDF, JPEG, JPG, PNG
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{aaugraphics/aau_logo_circle_en.pdf}
+    \caption{Caption}
+    \label{fig:enter_label2}
+\end{figure}
+
+\subsection{SVG figure}
+\begin{figure}[H]
+    \centering
+    \includesvg[width=0.3\textwidth]{Sections/1_Introduction/figures/Smiley.svg}
+    \caption{ SVG smiley. He is happy be cause the file size is small but the resolution is high}
+    \label{fig:enter_label1}
+\end{figure}
+
+\section{Unit and equations}
+Examples of how to use units and different equations
+\subsection{SI units}
+
+\subsection{Equations}
+\paragraph*{numerated equation:}
+In equation \ref{ex:eq1} how to set up a enumerated equation can be seen.
+\begin{equation}\label{ex:eq1}
+    K_T = \frac{\tau}{I_a}
+\end{equation}
+\begin{conditions}
+    K_T     & motor constant\\
+    \tau    & the torque the motor produces\\
+    I_a     & the current the motor draws\\
+\end{conditions}
+
+
+\paragraph*{unnumerated equation:}
+In equation \ref{ex:eq2} how to set up an unenumerated equation can be seen. The reference however is changed to the nearest reference-able title object. Always try to add a reference to the equation, it might come in handy.
+\begin{equation*}\label{ex:eq2}
+    K_T = \frac{\tau}{I_a}
+\end{equation*}
+\begin{conditions}
+    K_T     & motor constant\\
+    \tau    & the torque the motor produces\\
+    I_a     & the current the motor draws\\
+\end{conditions}
+
+\paragraph*{How to do math in latex}
+If the table below is not fulfilling:
+\url{https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l |c|l|} \hline   
+addition & + & + \\ \hline 
+subtraction & - & - \\ \hline 
+multiplication & $\cdot$ & \textbackslash{cdot} \\ \hline 
+division & $\frac{num}{denom}$ & \textbackslash{frac\{num\}\{denom\}} \\ \hline 
+powers & $a^{b+c}$ & a\^ \space\{b+c\}\\ \hline 
+square root & $\sqrt{a+b} $ & \textbackslash{sqrt(a+b)} \\ \hline 
+summation & $\sum $ & \textbackslash{sum} \\ \hline 
+integration & $\int$ & \textbackslash{}int \\ \hline 
+2x int & $\iint$ & \textbackslash{}iint \\ \hline 
+3x int & $\iiint$ & \textbackslash{}iiint \\ \hline 
+differentiation & $\dot{a}$ & \textbackslash{Ddot\{a\{}\\ \hline 
+2x diff & $\Ddot{a}$ & \textbackslash{Ddot\{a\{}\\ \hline 
+vector notation & $\overline{\rm AB}$  & \textbackslash{}overline\{\rm AB\}  \\ \hline
+
+\end{tabular}
+
+\end{table}
+

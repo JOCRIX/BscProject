@@ -1,0 +1,34 @@
+
+\input{setup/preamble.tex}% package inclusion and set up of the document
+\input{setup/macro.tex}% my new macros
+
+\begin{document}
+
+
+\raggedright
+\input{Formalia/Frontpage}
+\input{Formalia/titelblad}
+\input{Formalia/preface}
+
+\tableofcontents
+\clearpage
+%\input{Examples}
+
+
+% Introduction
+\input{Sections/1_Introduction/1_Introduction}
+
+
+
+%Bibliography
+\printbibliography[heading = bibintoc]
+
+%Appendix
+\appendix
+
+\input{Appendix/GIT}
+
+
+
+
+\end{document}
