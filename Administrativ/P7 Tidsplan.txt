@@ -1,0 +1,11 @@
+Dates are deadlines:
+
+	- 5/9		initierende problemformulering
+	- 15/9		Problemanalyse
+	- 24/9		TechAnal
+	- 26/9		Techspec. / Produktspec.
+	- 29/9		Systemdesign
+	- 1/10		Modulariseing
+	- 4/12		Moduldesing
+	- 13/12		Accepttest skal være færdig
+	- 20/12		Rapport skal være done
