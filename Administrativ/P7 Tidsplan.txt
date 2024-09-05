@@ -1,7 +1,7 @@
 Dates are deadlines:
 
-	- 5/9		initierende problemformulering
-	- 15/9		Problemanalyse
+	- 5/9		initierende problemformulering - DONE
+	- 15/9		Problemanalyse			- Fordelt/Igang
 	- 24/9		TechAnal
 	- 26/9		Techspec. / Produktspec.
 	- 29/9		Systemdesign
