@@ -1,2 +1,46 @@
-\section{Current LCR meter capabilities} \label{sec:CurrentLCRMEterCapabilities}
-fafa
+\section{Current LCR meter capabilities} \label{sec:CurrentLCRMeterCapabilities}
+A few LCR meters and impedance analyzers were reviewed in section \ref{sec:CommercialImpedanceMeasurement}, there are many more but it would be impractical to list all of them, it was done in order to analyze what functionality they have. Their functionality and price points are, however, closely related. This section seeks to break down some of the functionality a customer could expect at certain price points.
+
+At sub 1000€ the Keysight U1733C can do the following
+\begin{enumerate}
+  \item Can measure the impedance of a DUT in the range \SI[]{20}{\hertz} to \SI[]{100}{\kilo\hertz}. The test frequencies are pre-determined.
+  \item Has a basic accuracy of 0.2\% for impedance and phase measurement.
+  \item Can display, numerically, the value of L, C, R, DCR, ESR, D, Q, $\phi$.
+  \item Uses a 2-wire measurement mode.
+  \item Will auto-detect the type of component.
+  \item Has an auto-ranging function.
+\end{enumerate}
+
+At 15000€ the Rohde \& Schwarz LCX can do the following
+\begin{enumerate}
+    \item Can measure the impedance of a DUT in the range DC to \SI[]{500}{\kilo\hertz}. Has a \SI[]{1}{\hertz} resolution. The test frequency bandwidth can be extended to \SI[]{10}{\mega\hertz} with a software option.
+    \item Has a basic accuracy of $\pm 0.05\%$ for impedance measurements and $\pm 0.03\degree$ for phase measurement.
+    \item Can display, numerically, the value of L, C, R, DCR, ESR, D, Q, $\phi$.
+    \item Can use either a 2-wire or 4-wire measurement mode.
+    \item Will auto-detect the type of component and has auto-ranging function.
+    \item Has adjustable DC bias to 40VDC.
+    \item Has data logging functionality.
+    \item Can graph the data points on a touchscreen.
+    \item Has a component binning functionality.
+    \item Has digital I/O ports and networking capabilities.
+  \end{enumerate}
+
+  At a non-disclosed price the Wayne Kerr 6500B can do the following
+\begin{enumerate}
+    \item Can measure the impedance of a DUT in the range \SI[]{20}{\hertz} to \SI[]{120}{\mega\hertz}. Has a \SI[]{100}{\micro\hertz} resolution. 
+    \item Has a basic accuracy of $\pm 0.05\%$ for impedance measurements and Q factor and $\pm 0.0005\degree$ for dissapation factor accuracy.
+    \item Can display, numerically, the value of L, C, R, DCR, ESR, D, Q, $\phi$.
+    \item Can use either a 2-wire or 4-wire measurement mode.
+    \item Will auto-detect the type of component and has auto-ranging function.
+    \item Has adjustable DC bias to $\pm 40VDC$
+    \item Has adjustable AC drive level depending on test frequency.
+    \item Has adjustable DC bias current level.
+    \item Has data logging functionality.
+    \item Has the ability to perform sweep measurements.
+    \item Can graph the data points on a touchscreen.
+    \item Can draw polar and complex plots.
+    \item Has a component binning functionality.
+    \item Has digital I/O ports and networking capabilities.
+  \end{enumerate}
+
+  There is a clear distinction in the level of features available at different price points. The U1733C is affordable for most individuals but lacks a lot of the functions available at higher price brackets. The LCX and 6500B will contain more advanced hardware, but, it is noteworthy how some of their features are due to them having more advanced software and interfaces. Some of these features could be made available in a lower price bracket with software alone.
