@@ -1,0 +1,18 @@
+07/09 Tænker at vi bør have en konklusion på problemanalyses. Efter problemanalysen kan vi lave den rigtige problemformulering, som så fører til
+at vi kigger på, hvordan LCR metre er lavet af HP, keysight m.m. i Techanalysis. Så vi ender med en struktur som er ca sådan her:
+
+1.)Init. problem statement
+2.)Problem analysis + konklusion på problem analysis
+3.)Problem formulering (Hvilket problem vil vi løse)
+4.)Technical analysis (Hvordan virker de?)
+5.)Produkt specifikation / Tech spec (Skal have xyz BW, skal have opløsning.. skal have præcision.. skal have touchscreen.. skal kunne lave sweeps.. skal tegne grafer.. skal kunne eksportere over netværk..)
+6.)System arkitektur / blok diagram
+6.1) Interfaces
+7.)Modularisering
+7.1)Modul specs og krav
+8.)System design (Langt afsnit, alt vores design arbejde af moduler og kode.)
+9.)Integration af moduler (Vi sætter lego klodserne sammen, gik det som planlagt?)
+10.)Accept test (Har vi opfyldt produkt og tech specs?)
+11.)Discussion
+12.)konklusion
+
