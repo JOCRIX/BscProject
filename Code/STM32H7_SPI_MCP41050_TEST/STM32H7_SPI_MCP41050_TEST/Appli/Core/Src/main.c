@@ -15,12 +15,21 @@
   *
   ******************************************************************************
   */
+
+/* 			Board Pin Use
+### NUCLEO PIN -> MCP40150 Pins ###
+SPI3_SPI_B_MOSI[PB2](D22) 	-> SI[3]
+SPI3_SPIB_SCK[PB3](D23) 	-> SI[2]
+SPI3_SPI_B_NSS[PA4](D24) 	-> _CS_
+*/
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -69,6 +78,9 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+	char spi_buf[20];
+	spi_buf[0] = 0b00010001; //Write to Channel 0 register;
+	spi_buf[1] = 50;
 
   /* USER CODE END 1 */
 
@@ -101,6 +113,7 @@ int main(void)
   MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
 
+
   /* USER CODE END 2 */
 
   /* Initialize leds */
@@ -126,7 +139,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+	HAL_SPI_Transmit(&hspi3, (uint8_t *)&spi_buf[0], 1, 100);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 
+	HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -194,7 +211,6 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
