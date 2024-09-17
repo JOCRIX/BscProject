@@ -56,7 +56,7 @@ Applying eq \ref{eq:4_1_IndPhase} to eq \ref{eq:4_1_Impedance} gives the impedan
 \begin{equation}\label{eq:4_1_IndImpedance2}
     \bar Z_l = \frac{|\bar v|}{|\bar i| [cos(\phi_1) -j\cdot sin(\phi_1)]}
 \end{equation}
-Once again apply Eulers formula like in eq \ref{eq:4_1_CapImpedance4} on eq \ref{eq:4_1_IndImpedance2} gives eq \ref{eq:4_1_IndImpedance3}
+Once again Eulers formula is applied like in eq \ref{eq:4_1_CapImpedance4} on eq \ref{eq:4_1_IndImpedance2} and gives eq \ref{eq:4_1_IndImpedance3}
 
 \begin{equation}\label{eq:4_1_IndImpedance3} 
     \bar Z_l = \frac{|\bar v|}{|\bar i|} \cdot \frac{1}{cos(\phi_1) - j\cdot sin(\phi_1)} = |\bar Z| \cdot \mathrm (e^{-j\phi})^{-1}
@@ -65,7 +65,7 @@ Eq \ref{eq:4_1_IndImpedance3} is simplified to equation \ref{eq:4_1_IndImpedance
 \begin{equation}\label{eq:4_1_IndImpedance4} 
     \bar Z_l =|\bar Z| \cdot \mathrm e^{j\phi}
 \end{equation}
-Equation \ref{eq:4_1_IndImpedance4} has positive phase and is an impedance vector now pointing into the first quadrant which signifies that it has inductive reactance as shown on figure \ref{fig:4_1_IndImpedance}.
+Equation \ref{eq:4_1_IndImpedance4} has positive phase and is an impedance vector now pointing into the first quadrant which signifies that it has inductive reactance as shown on figure \ref{fig:4_1_IndImpedance} and figure \ref{fig:4_1_CapImpedance}.
 
 \begin{figure}[H]
     \centering
@@ -73,3 +73,25 @@ Equation \ref{eq:4_1_IndImpedance4} has positive phase and is an impedance vecto
     \caption{The impedance an of inductive DUT is pointing into the first quadrant which means the impedance has inductive reactance.}
     \label{fig:4_1_IndImpedance}
 \end{figure}
+
+For the case where the DUT has no reactive components the reference voltage waveform will be \textit{in phase} with the resulting current waveform as shown on figure \ref{fig:4_1_ResImpedance}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 275 0 0, width=0.4\textwidth]{Sections/4_TechnicalAnalysis/Figures/4_1_ResPhasor.pdf}
+    \caption{The current vector is in phase with the reference voltage vector. Both vectors lie on the real axis and the impedance will be purely resistive as a result.}
+    \label{fig:4_1_ResImpedance}
+\end{figure}
+
+The phasor diagram on \ref{fig:4_1_ResImpedance} has the current vector $\bar i$ and the voltage vector $\bar v$ in phase $\phi = 0$ and 
+the resulting impedance will be as eq \ref{eq:4_1_Resistance}.
+\begin{equation}\label{eq:4_1_Resistance}
+    \bar Z_c = \frac{|\bar v| [cos(0) +j\cdot sin(0)]}{|\bar i| [cos(0) +j\cdot sin(0)]}
+\end{equation}
+
+With $cos(0) = 1$ and  $sin(0) = 1$ the impedance $\bar Z$ in eq \ref{eq:4_1_Resistance} is purely resistive. It has no imaginary component and thus has no phase shift and depends only on the magnitude of $\bar i$ and $\bar v$ as shown in eq \ref{eq:4_2_Resistance}
+\begin{equation}\label{eq:4_2_Resistance}
+    \bar Z_c = \frac{|\bar v|}{|\bar i|}
+\end{equation}
+
+Equations \ref{eq:4_1_CapImpedance4}, \ref{eq:4_1_IndImpedance4} and \ref{eq:4_2_Resistance} show that, in order to calculate the impedance of a DUT, an impedance analyzer must be able to measure the magnitude and phase of the reference voltage waveform $\bar v_{ref}$ along with the magnitude and phase of the resulting current waveform $\bar i_{dut}$. The system may already have some information on $\bar v_{ref}$ but in either case it must be known. It is possible to calculate the value of $L, C, R, D, Q..$ and so on once the impedance is known as will be shown in the next chapter.
