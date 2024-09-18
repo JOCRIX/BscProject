@@ -17,6 +17,7 @@
 *.gz
 *.bcf-SAVE-ERROR
 *.bbl-SAVE-ERROR
+*.venv
 /Rapport/main.pdf
 
 #STM32 Cube IDE .ignores
