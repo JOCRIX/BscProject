@@ -6,8 +6,6 @@ and a broad bandwidth, from a few hertz to about \SIQ{100}{\mega\hertz}. The RF 
 
 The principle of the I-V method is simple, measure current and voltage, and determine the angle between them. This can be implemented in numerous different ways, using coupled inductors to measure the current, or a series shunt where the voltage-drop can be measured across, to name a few. 
 
-The principle of the I-V method can be seen in figure \refq{fig_4_2_IVMethod}.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{Sections/4_TechnicalAnalysis/Figures_JFT/IV_Method.pdf}
@@ -15,3 +13,24 @@ The principle of the I-V method can be seen in figure \refq{fig_4_2_IVMethod}.
     \label{fig_4_2_IVMethod}
 \end{figure}
 
+The principle of the I-V method can be seen in figure \refq{fig_4_2_IVMethod}. The current in the system can be described by an amplitude and phase, as can the voltage, as seen in equation \ref{eq:4_2_2_IVVectors}, where v is the voltage across the DUT and i is the current through it. It is assumed that the current is the same through the shunt and the DUT.
+
+\begin{equation}
+    \label{eq:4_2_2_IVVectors}
+    \begin{split}
+        \vec{i} & = |i|\cdot\e ^{j\theta_i} \Rightarrow \vec{i} = \frac{|v_{shunt}|}{R_{shunt}}\e ^{j\theta_{v\:shunt}}\\
+        \vec{v_{DUT}} & = |v_{DUT}| \cdot\e ^{j\theta_{v\:DUT}}
+    \end{split}
+\end{equation}
+
+The impedance can then be calculated from the two voltages of the system, i.e. the shunt voltage and the DUT voltage, as seen in equation \ref{eq:4_2_2_Impedance}.
+
+\begin{equation}
+    \label{eq:4_2_2_Impedance}
+    \begin{split}
+        \vec{Z} & = \frac{\vec{v_{DUT}}}{\vec{i}} \Rightarrow \vec{Z} = \frac{|v_{DUT}| \cdot\e ^{j\theta_{v\:DUT}}}{\frac{|v_{shunt}|}{R_{shunt}}\e ^{j\theta_{v\:shunt}}} \\
+        \vec{Z} & = \frac{|v_{DUT}|\cdot R_{shunt}}{|v_{shunt}|}\cdot \e ^{j\left(\theta_{v\:DUT}-\theta_{v\:shunt}\right)}
+    \end{split}
+\end{equation}
+
+This is the I-V method in its simplest form. The shunt used is however required to be swapped depending on the DUT, as a small shunt would be poorly suited to measure small currents. In practice, compensation elements can also be required to ensure stability, as some systems can become unstable under large capacitive loads.
