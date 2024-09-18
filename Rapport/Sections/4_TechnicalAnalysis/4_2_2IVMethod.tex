@@ -1,2 +1,16 @@
 \subsection{I-V Method} \label{ssec:IVMethod}
-The I-V method or current voltage method, has already been shortly introduced in section \ref{sec:MeasureReactiveComponents}, here it was realized by the use of a function generator and an oscilloscope. In this chapter, the I-V method will however be introduced in a more broad spectrum, that is to say, the general principle of the mothod will be outlined.
+The I-V method or current voltage method, has already been shortly introduced in section \ref{sec:MeasureReactiveComponents}, here it was realized by the use of a function generator and an oscilloscope. In this chapter, the I-V method will however be introduced in a more broad spectrum, that is to say, the general principle of the method will be outlined.
+
+In general, two principles of the I-V method are implemented in the industry, either the I-V method or the RF I-V method. The I-V method offers good accuracy 
+and a broad bandwidth, from a few hertz to about \SIQ{100}{\mega\hertz}. The RF I-V method uses RF principles such as directional couplers and extends the bandwidth up to about \SIQ{3}{\giga\hertz}, it is however not suitable for frequencies below the mega hertz region\citeq{Keysight_Impedance}. This chapter will solely focus on the I-V method, as the RF range is not of interest, at least not in this project.
+
+The principle of the I-V method is simple, measure current and voltage, and determine the angle between them. This can be implemented in numerous different ways, using coupled inductors to measure the current, or a series shunt where the voltage-drop can be measured across, to name a few. 
+
+The principle of the I-V method can be seen in figure \refq{fig_4_2_IVMethod}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Sections/4_TechnicalAnalysis/Figures_JFT/IV_Method.pdf}
+    \caption{The I-V Method implemented with a current shunt to measure the current}
+    \label{fig_4_2_IVMethod}
+\end{figure}

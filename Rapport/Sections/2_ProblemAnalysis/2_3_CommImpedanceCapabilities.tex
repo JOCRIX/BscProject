@@ -1,46 +1,33 @@
 \section{Commercial impedance analyzer capabilities} \label{sec:CommercialImpedanceAnalyzerCapabilities}
-A few LCR meters and impedance analyzers were reviewed in section \ref{sec:CommercialImpedanceMeasurement}, there are many more but it would be impractical to list all of them, it was done in order to analyze what functionality they have. Their functionality and price points are, however, closely related. This section seeks to break down some of the functionality a customer could expect at certain price points.
+A few LCR meters and impedance analyzers were reviewed in section \ref{sec:CommercialImpedanceMeasurement}, there are many more but it would be impractical to list all of them, it was done in order to analyze what functionality they have. Their functionality and price points are, however, closely related. This section seeks to break down some of the functionality a customer could expect at certain price points. The results for this can be seen in table \ref{tab:2_3_CapabilityTab}.
 
-At sub 1000€ the Keysight U1733C can do the following
-\begin{enumerate}
-  \item Can measure the impedance of a DUT in the range \SI[]{20}{\hertz} to \SI[]{100}{\kilo\hertz}. The test frequencies are pre-determined.
-  \item Has a basic accuracy of 0.2\% for impedance and phase measurement.
-  \item Can display, numerically, the value of L, C, R, DCR, ESR, D, Q, $\phi$.
-  \item Uses a 2-wire measurement mode.
-  \item Will auto-detect the type of component.
-  \item Has an auto-ranging function.
-\end{enumerate}
+\begin{table}[H]
+  \begin{tabular}{|m{9.5em}|m{8em}|m{8em}|m{8em}|}
+  \hline
+    &   Keysight U1733C       & Rohde \&\newline Schwartz LCX      & Wayne-Kerr\newline 6500B                 \\ \hline
+    Test frequency range      &  \SI[]{20}{\hertz} to \SI[]{100}{\kilo\hertz}$\mathbf{^1}$     &    DC-\SI[]{500}{\kilo\hertz},\newline \SI[]{1}{\hertz} steps   & \SI[]{20}{\hertz}-\SI[]{120}{\mega\hertz},\newline  \SI[]{100}{\micro\hertz} steps                                                  \\ \hline
+    Basic accuracy$\mathbf{^2}$            &  [Z] 0.2\%\newline [$\phi$] $0.2$\%      & [Z] $\pm 0.05$\%\newline [$\phi$] $\pm 0.03$\degree       &[Z] $\pm 0.05$\%\newline [$\phi$] $\pm 0.0005$\degree                                                    \\ \hline
+    Interface Type            &  Simple$\mathbf{^3}$\nl LCD, buttons    & Touchscreen & Touchscreen \\ \hline
+    Measurement mode          &   2-wire    & 4-wire      & 4-wire                                  \\ \hline
+    Auto ranging              &   Yes    & Yes      & Yes                                           \\ \hline
+    Adj. DC Bias range        &   No    & \SIQ{40}{\volt}DC      & $\pm$\SIQ{40}{\volt}DC           \\ \hline
+    Frequency sweep           &   No    & Yes$\mathbf{^4}$      & Yes                               \\ \hline
+    Data logging              &   No    & Yes      & Yes                                            \\ \hline
+    Component binning         &   No    & Yes      & Yes                                            \\ \hline
+    Graph data point          &   No    & Yes      & Yes                                            \\ \hline
+    Complex plane plots       &   No    & No       & Yes                                             \\ \hline
+    Network access            &   No    & Yes      & Yes                                  \\ \hline
+    Price point               & <1000€   & 15000€   & Yes                                    \\ \hline
+  \end{tabular}
+  \caption*{
+    \raggedright
+    $\mathbf{^1}$ The test frequencies for the U1733C are in pre-determined steps.\\
+    $\mathbf{^2}$ \textit{Z} refers to impedance measurement accuracy. \textit{$\phi$} refers specifically to the phase measurement. The term \textit{basic accuracy} covers the minimum accuracy of L, C, R, ESR, D, Q measurements across the frequency range of the instrument.\\
+    $\mathbf{^3}$ \textit{simple} refers to the instruments U/I being a few buttons and an LCD display as shown on figure \ref{fig:2_2_U1733C}.\\
+    $\mathbf{^4}$ The Rohde \& Schwartz LCX can do frequency sweeps if an extra software option is purchased.\\
+  }
+  \caption{Table to test captions and labels.}
+  \label{tab:2_3_CapabilityTab}
+\end{table}
 
-At 15000€ the Rohde \& Schwarz LCX can do the following
-\begin{enumerate}
-    \item Can measure the impedance of a DUT in the range DC to \SI[]{500}{\kilo\hertz}. Has a \SI[]{1}{\hertz} resolution. The test frequency bandwidth can be extended to \SI[]{10}{\mega\hertz} with a software option.
-    \item Has a basic accuracy of $\pm 0.05\%$ for impedance measurements and $\pm 0.03\degree$ for phase measurement.
-    \item Can display, numerically, the value of L, C, R, DCR, ESR, D, Q, $\phi$.
-    \item Can use either a 2-wire or 4-wire measurement mode.
-    \item Will auto-detect the type of component and has auto-ranging function.
-    \item Has adjustable DC bias to 40VDC.
-    \item Has data logging functionality.
-    \item Can graph the data points on a touchscreen.
-    \item Has a component binning functionality.
-    \item Has digital I/O ports and networking capabilities.
-  \end{enumerate}
-
-  At a non-disclosed price the Wayne Kerr 6500B can do the following
-\begin{enumerate}
-    \item Can measure the impedance of a DUT in the range \SI[]{20}{\hertz} to \SI[]{120}{\mega\hertz}. Has a \SI[]{100}{\micro\hertz} resolution. 
-    \item Has a basic accuracy of $\pm 0.05\%$ for impedance measurements and Q factor and $\pm 0.0005\degree$ for dissapation factor accuracy.
-    \item Can display, numerically, the value of L, C, R, DCR, ESR, D, Q, $\phi$.
-    \item Can use either a 2-wire or 4-wire measurement mode.
-    \item Will auto-detect the type of component and has auto-ranging function.
-    \item Has adjustable DC bias to $\pm 40VDC$
-    \item Has adjustable AC drive level depending on test frequency.
-    \item Has adjustable DC bias current level.
-    \item Has data logging functionality.
-    \item Has the ability to perform sweep measurements.
-    \item Can graph the data points on a touchscreen.
-    \item Can draw polar and complex plots.
-    \item Has a component binning functionality.
-    \item Has digital I/O ports and networking capabilities.
-  \end{enumerate}
-
-  There is a clear distinction in the level of features available at different price points. The U1733C is affordable for most individuals but lacks a lot of the functions available at higher price brackets. The LCX and 6500B will contain more advanced hardware, but, it is noteworthy how some of their features are due to them having more advanced software and interfaces. Some of these features could be made available in a lower price bracket with software alone.
+There is a clear distinction in the level of features available at different price points. The U1733C is affordable for most individuals but lacks a lot of the functions available at higher price brackets. The LCX and 6500B will contain more advanced hardware and a major difference between these two is there test frequency ranges, but, it is noteworthy how some of their features are due to them having more advanced software and interfaces. Some of these features could be made available in a lower price bracket with software alone. 
