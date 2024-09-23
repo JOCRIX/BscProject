@@ -139,9 +139,20 @@ First and formost the distribution fuction must have an area of 1 at infinity. T
     a $\texttt{weibull}(k,\lambda)$ distribution, then
     $$\ln(-\ln(1-\tfrac{i}{n}))\approx -k\ln(\lambda) + k\ln(x_{(i)}).$$
 
+We earlier showed that the equation is true, And we have now reasoned that i/n approximates F(x), thus if x(i) approximates x in a discrete case, then we conclude that the discrete equation must be approximately true as well.
+
 The code below computes a vector containing the values
 $v_i=\ln(-\ln(1-\tfrac{i}{n}))$ and a vector containing the values
 $u_i = \ln(x_{(i)}).$
+
+By plotting both v and u, we see that they both follow the same curve, thus if we plot a scatterplot of Q-Q plot we would expect a linear relationship.
+One way to look at this is, that we i/n is a linear plot, and -ln(1-i/n) very closely approximates an exponential function, as seen in the plots. At the same time,
+the sorted function xi also follows a somewhat exponential growth, given it is sorted. We can do a scatterplot for the sorted xi and -log(1-i/n) and see
+that it is somewhat linear, and once again, when we take log of both sides, we would again expect a linear hehaviour.
+
+Another reasonanle explanation would be that i/n approximates F(x), and F(x) is an exponential function, thus -ln(1-F(x)) would be expected to behave linearly.
+we then take ln again such that we have ln(-ln(1-F(x))) and thus should behave like a log function. On the other side we have a linear function x, and we take
+ln(x), resulting in a log behaviour, and plotting a log log function will yield a linear graph.
 
 ```{r, message=FALSE}
 n<-length(speed)
@@ -149,7 +160,14 @@ sortedSpeed<-sort(speed)
 u<-log(sortedSpeed)
 CDF<-(1:n)/n
 v<-log(-log(1-CDF))
+#gf_point(v ~ u)
+plt1 <- plot(sortedSpeed)
+plt2 <- plot(-log(1-CDF))
+plt3 <- gf_point(-log(1-CDF) ~ sortedSpeed)
+plt4 <- gf_point(v~u)%>%gf_lm()
+grid.arrange(plt1, plt2, plt3, plt4, ncol = 2)
 #gf_point(...~...) %>%gf_lm()
+
 ```
 
 4.  Argue that the points $(u_i,v_i)$ should lie approximately on a
@@ -164,9 +182,16 @@ v<-log(-log(1-CDF))
     (`shape` is $k$ and `scale` is $\lambda$).
 
 ```{r}
-#gf_dhistogram( ~ speed, bins = 25) %>%
+plt5 <- plotDist("weibull", params = list(shape = 1.78, scale = 4.876))
+plt6 <- gf_dhistogram( ~ speed, bins = 20)
+grid.arrange(plt5, plt6, ncol = 2)
+ #%>%
 #gf_dist("weibull", shape = ..., scale = ..., col = "red")
 ```
+
+We can see the QQ plot as a xy plot, where x is -k ln(lambda)+k ln(xi) and y is ln(-ln(1-i/n)).
+If we were to look at the y axis crossing, we could simply set x to 0, and find that -k ln(lambda) = 0
+and the final parameter to 
 
 # Part III: Sample mean and the central limit theorem
 
