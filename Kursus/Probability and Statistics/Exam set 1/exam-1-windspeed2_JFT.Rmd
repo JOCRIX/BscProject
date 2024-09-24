@@ -190,8 +190,18 @@ grid.arrange(plt5, plt6, ncol = 2)
 ```
 
 We can see the QQ plot as a xy plot, where x is -k ln(lambda)+k ln(xi) and y is ln(-ln(1-i/n)).
-If we were to look at the y axis crossing, we could simply set x to 0, and find that -k ln(lambda) = 0
-and the final parameter to 
+We know that it forms a straight line, and as such, we can see the right side as the "input" and the left side as the "output".
+A linaer fit follows the form a*x+b where b is the value of intersection with the y axis, and a is the slope if the line. 
+
+On the left side of the equation we have -k ln(lambda) + k ln(x),
+we know -k ln(lambda) the be a constant so this must be b, and we can see k at the slope of the line. Thus wee can find the intersection value simply by knowing that k is the slope. We simply only look at -k (lambda). 
+we can make the expression, y_c = -k (lambda) -> -y_c/k = ln(lambda)
+-> e^(-y_c/k) = lambda, and with the given values we get:
+lambda = e^(-(-2.82)/1.78) = 4.876 we then have:
+lambda = 4.876
+k = 1.78
+
+We reason that the slope is k, by seing it as a log plot, so the input is ln(x) and the multiplier of this is simply k, so the slope must be k.
 
 # Part III: Sample mean and the central limit theorem
 
@@ -214,6 +224,17 @@ where $\Gamma(x)$ denotes the gamma function.
 1.  Using the values of $k$ and $\lambda$ from Part II, Exercise 5, 
     what is the mean and standard deviation? 
     (Hint: You can use the function `gamma()` in R to compute the gamma function.)
+    
+```{r}
+la <- 4.876
+k <- 1.78
+mu <- la*gamma(1+(1/k))
+variance <- (la^2)*(gamma(1+2/k)-(gamma(1+1/k))^2)
+STD <- sqrt(variance)
+print(mu)
+print(STD)
+```
+
 
 2.  Suppose that a sample consists of 30 observations from this
     distribution. We denote the sample mean by `x_bar`. Using the
@@ -228,10 +249,17 @@ The code below generates 30 independent realizations of a Weibull
 distribution with parameters $k$ and $\lambda$. One may think of this of
 as simulated random sample of 30 independent wind speed observations.
 
+The expected value is quite simply the mean. Note that the following function simply gives a ramndom weibull set with 30 samples.
+To find the standard deviation of the expected value (a mean) we find the standard deviation of the set, and device by sqrt(n)
 ```{r}
-# x<-rweibull(30, shape=..., scale = ... )
-# mean(x)
+x<-rweibull(30, shape=k, scale = la )
+n <- 30
+xbar <- mean(x)
+SEM_xbar = sd(x)/sqrt(n)
+print(xbar)
+print(SEM_xbar)
 ```
+x_bar will approximately be of normal distribution, but given the limited set of sampels, it would be closer to t distributed with larger tails than that of normal distribution.
 
 3.  Insert the values of $k$ and $\lambda$ from Part II, Exercise 5 in
     the code. Run the command a few times. Is each sample mean close to
@@ -241,17 +269,43 @@ Use `replicate` to repeat the sampling 500 times and save each mean
 value in the vector `x_bar`:
 
 ```{r}
-# x_bar <- replicate(500, mean(rweibull(30, shape=..., scale = ...) ))
+x_bar1 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+x_bar2 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+x_bar3 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+x_bar4 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+hist1 <- gf_dhistogram( ~ x_bar, bins = 25)
+hist2 <- gf_dhistogram( ~ x_bar, bins = 25)
+hist3 <- gf_dhistogram( ~ x_bar, bins = 25)
+hist4 <- gf_dhistogram( ~ x_bar, bins = 25)
+grid.arrange(hist1, hist2, hist3, hist4, ncol = 2)
 ```
+Here we have 4 instances, and we see that the mean will tend to be around the expected 4.3, and that each instance approximates normal dist. 
+
+We get that the true mean is 4.33 from earlier.
+
 
 4.  Calculate the mean and standard deviation of the values in `x_bar`.
     How do they match with what you expected?
+
+Here we use x_bar1
+```{r}
+mean(x_bar1)
+mean(x_bar2)
+mean(x_bar3)
+mean(x_bar4)
+sd(x_bar1)
+sd(x_bar2)
+sd(x_bar3)
+sd(x_bar4)
+```
+They match a value that is amazingly close to the population mean, with a very small SEM.
 
 5.  Make a QQ-plot to assess the distribution of `x_bar`. Does this look
     like what you would expect?
     
 ```{r}
-#qqnorm(...)
-#qqline(...)
+qqnorm(x_bar1)
+qqline(x_bar1)
 ```
 
+The slope is approximately 0.45, approximating the standard deviation, and the intercept is about 4.3 apprioximating the mean.
