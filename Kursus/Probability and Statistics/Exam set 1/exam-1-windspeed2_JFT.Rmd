@@ -129,32 +129,30 @@ smallest to largest $$x_{(1)}\leq x_{(2)}\leq \dotsm \leq x_{(n)}.$$
 
 2.  Argue that $F(x_{(i)})\approx \tfrac{i}{n}$ for $i=1,\ldots,n$. (Hint: How many observations are less than or equal to $x_{(i)}$?)
 
-<<<<<<< HEAD
-We know from 2.1) that the values Xi aproximately follow a Weibull distribution. We also know that F(xi) is the weibull distribution function. Because the sample values ordered from low to high follow a Weibull distribution as shown in 2.1) it is reasonable to assume that they follow F(x.) Also We are asked if F(x) ~= i/n for i = 1..n
-we know that
-lim(i(n)) = 1 when i -> n
-We also know that F(x) = 1-exp(-(x/lambda)^l) for any values of lambda and k this will also converge at 1 when x -> infinity.
-Therefore i/n and F(x) are approximately equal.
-=======
 The distribution funciton F(x), gives the probability of a value being in the range from 0 to x. Thus if we where to compute F(10) it would return the probability of getting a value from 0 to 10. Much in the same way,
 if we say i =250, and compute 250/589 = 0.424 this means, that the probability of an output being in the span from 0 to the x value at index 250 would be 0.424. In other words, we know that all value below the i'th index must be smaller than the value at the i'th index and as such i/n approximates F(x).
 
 First and formost the distribution fuction must have an area of 1 at infinity. The infitnity in our discrete case 
 
->>>>>>> f21b599532b3cf0991949968686451fec2be83d6
 
 3.  Using Exercise 2 in Part I, argue that if the observations come from
     a $\texttt{weibull}(k,\lambda)$ distribution, then
     $$\ln(-\ln(1-\tfrac{i}{n}))\approx -k\ln(\lambda) + k\ln(x_{(i)}).$$
 
-Since we have concluded in 2.2) that F(x) = i/n when Xi is a ranked list of observations from low to high, it is fair to say that the approximation i/n will also fulfill the empirical distribution function ln(-ln(1-F(x))) = -k*ln(lambda) + k*ln(xi) this means that the empirical distribution function equation ln(-ln(1-i/n)) ~= -k*ln(lambda) + k*ln(xi) is also valid.
-
-Another way to look at it is that we have concluded in 2.2 that (1-i/n) ~1-exp(-(x/lambda)^k) so we can approximate the two sides of the equation as equal.
-
+We earlier showed that the equation is true, And we have now reasoned that i/n approximates F(x), thus if x(i) approximates x in a discrete case, then we conclude that the discrete equation must be approximately true as well.
 
 The code below computes a vector containing the values
 $v_i=\ln(-\ln(1-\tfrac{i}{n}))$ and a vector containing the values
 $u_i = \ln(x_{(i)}).$
+
+By plotting both v and u, we see that they both follow the same curve, thus if we plot a scatterplot of Q-Q plot we would expect a linear relationship.
+One way to look at this is, that we i/n is a linear plot, and -ln(1-i/n) very closely approximates an exponential function, as seen in the plots. At the same time,
+the sorted function xi also follows a somewhat exponential growth, given it is sorted. We can do a scatterplot for the sorted xi and -log(1-i/n) and see
+that it is somewhat linear, and once again, when we take log of both sides, we would again expect a linear hehaviour.
+
+Another reasonanle explanation would be that i/n approximates F(x), and F(x) is an exponential function, thus -ln(1-F(x)) would be expected to behave linearly.
+we then take ln again such that we have ln(-ln(1-F(x))) and thus should behave like a log function. On the other side we have a linear function x, and we take
+ln(x), resulting in a log behaviour, and plotting a log log function will yield a linear graph.
 
 ```{r, message=FALSE}
 n<-length(speed)
@@ -162,21 +160,20 @@ sortedSpeed<-sort(speed)
 u<-log(sortedSpeed)
 CDF<-(1:n)/n
 v<-log(-log(1-CDF))
+#gf_point(v ~ u)
+plt1 <- plot(sortedSpeed)
+plt2 <- plot(-log(1-CDF))
+plt3 <- gf_point(-log(1-CDF) ~ sortedSpeed)
+plt4 <- gf_point(v~u)%>%gf_lm()
+grid.arrange(plt1, plt2, plt3, plt4, ncol = 2)
 #gf_point(...~...) %>%gf_lm()
+
 ```
 
 4.  Argue that the points $(u_i,v_i)$ should lie approximately on a
     straight line if the observations come from a
     $\texttt{weibull}(k,\lambda)$ distribution. Edit the code above to
     check that this is the case.
-
-If the observations come from a Weibull distribution then they will work for the discrete empirical distribution function
-ln(-ln(1-i/n)) ~= -k*ln(lambda) + k*ln(xi). This means the equation is true. If we examine both sides of the equation then the equation is of the form y = ax -b and this is the function for a straight line. They will only follow this straight line if the observations follow a weibull distrubtion because the empirical distribution function is only valid in this case.
-
-We can examine the EMF further to see it is a straight line. We just need to analyze the ln(1-F(x)) expression in the CDF
-
-
-
 
 5.  The intercept and slope of the line can be found to be $-2.82$ and
     $1.78$, respectively. Use this to give estimates of the parameters
@@ -185,9 +182,26 @@ We can examine the EMF further to see it is a straight line. We just need to ana
     (`shape` is $k$ and `scale` is $\lambda$).
 
 ```{r}
-#gf_dhistogram( ~ speed, bins = 25) %>%
+plt5 <- plotDist("weibull", params = list(shape = 1.78, scale = 4.876))
+plt6 <- gf_dhistogram( ~ speed, bins = 20)
+grid.arrange(plt5, plt6, ncol = 2)
+ #%>%
 #gf_dist("weibull", shape = ..., scale = ..., col = "red")
 ```
+
+We can see the QQ plot as a xy plot, where x is -k ln(lambda)+k ln(xi) and y is ln(-ln(1-i/n)).
+We know that it forms a straight line, and as such, we can see the right side as the "input" and the left side as the "output".
+A linaer fit follows the form a*x+b where b is the value of intersection with the y axis, and a is the slope if the line. 
+
+On the left side of the equation we have -k ln(lambda) + k ln(x),
+we know -k ln(lambda) the be a constant so this must be b, and we can see k at the slope of the line. Thus wee can find the intersection value simply by knowing that k is the slope. We simply only look at -k (lambda). 
+we can make the expression, y_c = -k (lambda) -> -y_c/k = ln(lambda)
+-> e^(-y_c/k) = lambda, and with the given values we get:
+lambda = e^(-(-2.82)/1.78) = 4.876 we then have:
+lambda = 4.876
+k = 1.78
+
+We reason that the slope is k, by seing it as a log plot, so the input is ln(x) and the multiplier of this is simply k, so the slope must be k.
 
 # Part III: Sample mean and the central limit theorem
 
@@ -210,6 +224,17 @@ where $\Gamma(x)$ denotes the gamma function.
 1.  Using the values of $k$ and $\lambda$ from Part II, Exercise 5, 
     what is the mean and standard deviation? 
     (Hint: You can use the function `gamma()` in R to compute the gamma function.)
+    
+```{r}
+la <- 4.876
+k <- 1.78
+mu <- la*gamma(1+(1/k))
+variance <- (la^2)*(gamma(1+2/k)-(gamma(1+1/k))^2)
+STD <- sqrt(variance)
+print(mu)
+print(STD)
+```
+
 
 2.  Suppose that a sample consists of 30 observations from this
     distribution. We denote the sample mean by `x_bar`. Using the
@@ -224,10 +249,17 @@ The code below generates 30 independent realizations of a Weibull
 distribution with parameters $k$ and $\lambda$. One may think of this of
 as simulated random sample of 30 independent wind speed observations.
 
+The expected value is quite simply the mean. Note that the following function simply gives a ramndom weibull set with 30 samples.
+To find the standard deviation of the expected value (a mean) we find the standard deviation of the set, and device by sqrt(n)
 ```{r}
-# x<-rweibull(30, shape=..., scale = ... )
-# mean(x)
+x<-rweibull(30, shape=k, scale = la )
+n <- 30
+xbar <- mean(x)
+SEM_xbar = sd(x)/sqrt(n)
+print(xbar)
+print(SEM_xbar)
 ```
+x_bar will approximately be of normal distribution, but given the limited set of sampels, it would be closer to t distributed with larger tails than that of normal distribution.
 
 3.  Insert the values of $k$ and $\lambda$ from Part II, Exercise 5 in
     the code. Run the command a few times. Is each sample mean close to
@@ -237,17 +269,43 @@ Use `replicate` to repeat the sampling 500 times and save each mean
 value in the vector `x_bar`:
 
 ```{r}
-# x_bar <- replicate(500, mean(rweibull(30, shape=..., scale = ...) ))
+x_bar1 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+x_bar2 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+x_bar3 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+x_bar4 <- replicate(500, mean(rweibull(30, shape=k, scale = la) ))
+hist1 <- gf_dhistogram( ~ x_bar, bins = 25)
+hist2 <- gf_dhistogram( ~ x_bar, bins = 25)
+hist3 <- gf_dhistogram( ~ x_bar, bins = 25)
+hist4 <- gf_dhistogram( ~ x_bar, bins = 25)
+grid.arrange(hist1, hist2, hist3, hist4, ncol = 2)
 ```
+Here we have 4 instances, and we see that the mean will tend to be around the expected 4.3, and that each instance approximates normal dist. 
+
+We get that the true mean is 4.33 from earlier.
+
 
 4.  Calculate the mean and standard deviation of the values in `x_bar`.
     How do they match with what you expected?
+
+Here we use x_bar1
+```{r}
+mean(x_bar1)
+mean(x_bar2)
+mean(x_bar3)
+mean(x_bar4)
+sd(x_bar1)
+sd(x_bar2)
+sd(x_bar3)
+sd(x_bar4)
+```
+They match a value that is amazingly close to the population mean, with a very small SEM.
 
 5.  Make a QQ-plot to assess the distribution of `x_bar`. Does this look
     like what you would expect?
     
 ```{r}
-#qqnorm(...)
-#qqline(...)
+qqnorm(x_bar1)
+qqline(x_bar1)
 ```
 
+The slope is approximately 0.45, approximating the standard deviation, and the intercept is about 4.3 apprioximating the mean.
