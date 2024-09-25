@@ -143,6 +143,39 @@ Since we have concluded in 2.2) that F(x) = i/n when Xi is a ranked list of obse
 
 Another way to look at it is that we have concluded in 2.2 that (1-i/n) ~1-exp(-(x/lambda)^k) so we can approximate the two sides of the equation as equal.
 
+4.  Argue that the points $(u_i,v_i)$ should lie approximately on a
+    straight line if the observations come from a
+    $\texttt{weibull}(k,\lambda)$ distribution. Edit the code above to
+    check that this is the case.
+
+If the observations come from a Weibull distribution then they will work for the discrete empirical distribution function
+ln(-ln(1-i/n)) ~= -k*ln(lambda) + k*ln(xi). This means the equation is true. If we examine both sides of the equation then the equation is of the form y = ax -b and this is the function for a straight line. They will only follow this straight line if the observations follow a weibull distrubtion because the empirical distribution function is only valid in this case.
+
+We can examine the EMF further to see it is a straight line. We just need to analyze the ln(1-F(x)) expression in the CDF
+```{r}
+
+library("png")
+pp <- readPNG("2.4.png")
+plot.new() 
+rasterImage(pp,0,0,1,1)
+
+
+```
+
+If we substitute this expression back into the CDF we get the following
+```{r}
+
+library("png")
+pp <- readPNG("2.4.2.png")
+plot.new() 
+rasterImage(pp,0,0,1,1)
+
+
+```
+
+The picture shows that the log-log plot should produce a straight line if the points follow a weibull distribution.
+We can plot the points and see if true.
+
 
 The code below computes a vector containing the values
 $v_i=\ln(-\ln(1-\tfrac{i}{n}))$ and a vector containing the values
@@ -154,20 +187,8 @@ sortedSpeed<-sort(speed)
 u<-log(sortedSpeed)
 CDF<-(1:n)/n
 v<-log(-log(1-CDF))
-#gf_point(...~...) %>%gf_lm()
+gf_point(v~u) %>%gf_lm()
 ```
-
-4.  Argue that the points $(u_i,v_i)$ should lie approximately on a
-    straight line if the observations come from a
-    $\texttt{weibull}(k,\lambda)$ distribution. Edit the code above to
-    check that this is the case.
-
-If the observations come from a Weibull distribution then they will work for the discrete empirical distribution function
-ln(-ln(1-i/n)) ~= -k*ln(lambda) + k*ln(xi). This means the equation is true. If we examine both sides of the equation then the equation is of the form y = ax -b and this is the function for a straight line. They will only follow this straight line if the observations follow a weibull distrubtion because the empirical distribution function is only valid in this case.
-
-We can examine the EMF further to see it is a straight line. We just need to analyze the ln(1-F(x)) expression in the CDF
-
-
 
 
 5.  The intercept and slope of the line can be found to be $-2.82$ and
@@ -176,10 +197,33 @@ We can examine the EMF further to see it is a straight line. We just need to ana
     below to plot the histogram together with the approximate density
     (`shape` is $k$ and `scale` is $\lambda$).
 
+We can find values of lambda and k from the straight line equation. We know from the picture on 2.4 that
+"k" is the slope of the line as this is the value that is multiplied by x. Our slope is then given as 
+k = 1.78
+
+The lambda value can be found from the intercept with the y-axis on the straight line as shown on the picture
 ```{r}
-#gf_dhistogram( ~ speed, bins = 25) %>%
-#gf_dist("weibull", shape = ..., scale = ..., col = "red")
+
+library("png")
+pp <- readPNG("2.4.3.png")
+plot.new() 
+rasterImage(pp,0,0,1,1)
+
+
 ```
+
+Using k = 1.78 and lambda = 4.876 we can plot the approximate distribution along with the histogram
+
+```{r}
+k1 <- 1.78
+lambda1  <- 4.876
+w5 <- gf_dhistogram( ~ speed, bins = 25) #%>%
+w6 <- gf_dist("weibull", shape = k1, scale = lambda1, col = "red")
+grid.arrange(w5,w6, ncol = 2)
+
+```
+We can see that the approximated distribution function looks very similar to the histogram.
+
 
 # Part III: Sample mean and the central limit theorem
 
