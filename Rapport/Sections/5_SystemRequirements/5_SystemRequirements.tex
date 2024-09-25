@@ -1,2 +1,65 @@
-\chapter{Technical Analysis} \label{ch:TechnicalAnalysis}
+\chapter{System Requirements} \label{ch:SystemRequirements}
 
+
+
+\begin{table}[H]
+    \begin{tabular}{|m{3.5em}|m{15em}|m{15em}|}
+    \hline
+      ID &   Description       & Requirement  \\ \hline
+      §1 & Frequency Range &    \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
+      §2 & Impedance Fit$^1$ & Series and Parallel mode \\\hline 
+      §3 & Impedance Range & $\SIQ{10}{\milli\ohm}\leq|Z|\leq\SIQ{100}{\mega\ohm}$ \\ \hline
+      §4 & $|Z|$ Modulus Accuracy$^2$& $A_Z(f, Z)$ \\ \hline
+      §5 & $\angle\phi$ Accuracy of Argument$^3$ & $A_\phi(f, Z)$ \\ \hline
+      §6 & Test Voltage Range & \SIQ{10}{\milli\volt}$_{pp}$ - \SIQ{5}{\volt}$_{pp}$ \\ \hline
+      §7 & Maximum Test Current & \SIQ{100}{\milli\ampere}$_{pp}$ \\ \hline
+      §8 & DC Bias Voltage Range & \SIQ{0}{\volt}DC - \SIQ{20}{\volt}DC \\ \hline
+      §9 & Parameters of DUT & $L/C/R/Q/D/R_s/R_p/Z\theta$ \\ \hline
+      §10 & Parameter Sweep & Can Perform \newline Frequency and Bias Sweep \\ \hline
+      §11 & Frequency Sweep Range$^4$ & \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
+      §12 & Maximum Frequency \newline Sweep Points$^5$ & 10000 Points in a sweep \\ \hline
+      §13 & Maximum Bias Sweep Points$^6$ & 100 Points \\ \hline
+      §14 & Binning$^7$ & Can do Component Binning \\ \hline
+      §15 & Histogram & Can plot a Histogram$^8$ \\ \hline
+      §16 & Plots & Can Plot all Parameters vs. \newline Frequency and Bias Voltage \\ \hline
+      §17 & Interface & Minimum 7" Touchscreen \\ \hline
+      §18 & DUT Connection & 4-wire Kelvin connection \\ \hline
+      §19 & Data Export & Can export data to CSV file \newline via UART. \\ \hline
+    \end{tabular}
+    \caption*{
+      \raggedright
+      $\mathbf{^1}$ .\\
+    }
+    \caption{Table to test captions and labels.}
+    \label{tab:5_SystemRequirements}
+  \end{table}
+
+
+%   \begin{table}[H]
+%     \begin{tabular}{|m{9.5em}|m{8em}|m{8em}|m{8em}|}
+%     \hline
+%       &   Keysight U1733C       & Rohde \&\newline Schwartz LCX      & Wayne-Kerr\newline 6500B                 \\ \hline
+%       Test frequency range      &  \SI[]{20}{\hertz} to \SI[]{100}{\kilo\hertz}$\mathbf{^1}$     &    DC-\SI[]{500}{\kilo\hertz},\newline \SI[]{1}{\hertz} steps   & \SI[]{20}{\hertz}-\SI[]{120}{\mega\hertz},\newline  \SI[]{100}{\micro\hertz} steps                                                  \\ \hline
+%       Basic accuracy$\mathbf{^2}$            &  [Z] 0.2\%\newline [$\phi$] $0.2$\%      & [Z] $\pm 0.05$\%\newline [$\phi$] $\pm 0.03$\degree       &[Z] $\pm 0.05$\%\newline [$\phi$] $\pm 0.0005$\degree                                                    \\ \hline
+%       Interface Type            &  Simple$\mathbf{^3}$\nl LCD, buttons    & Touchscreen & Touchscreen \\ \hline
+%       Measurement mode          &   2-wire    & 4-wire      & 4-wire                                  \\ \hline
+%       Auto ranging              &   Yes    & Yes      & Yes                                           \\ \hline
+%       Adj. DC Bias range        &   No    & \SIQ{40}{\volt}DC      & $\pm$\SIQ{40}{\volt}DC           \\ \hline
+%       Frequency sweep           &   No    & Yes$\mathbf{^4}$      & Yes                               \\ \hline
+%       Data logging              &   No    & Yes      & Yes                                            \\ \hline
+%       Component binning         &   No    & Yes      & Yes                                            \\ \hline
+%       Graph data point          &   No    & Yes      & Yes                                            \\ \hline
+%       Complex plane plots       &   No    & No       & Yes                                             \\ \hline
+%       Network access            &   No    & Yes      & Yes                                  \\ \hline
+%       Price point               & <1000€   & 15000€   & Yes                                    \\ \hline
+%     \end{tabular}
+%     \caption*{
+%       \raggedright
+%       $\mathbf{^1}$ The test frequencies for the U1733C are in pre-determined steps.\\
+%       $\mathbf{^2}$ \textit{Z} refers to impedance measurement accuracy. \textit{$\phi$} refers specifically to the phase measurement. The term \textit{basic accuracy} covers the minimum accuracy of L, C, R, ESR, D, Q measurements across the frequency range of the instrument.\\
+%       $\mathbf{^3}$ \textit{simple} refers to the instruments U/I being a few buttons and an LCD display as shown on figure \ref{fig:2_2_U1733C}.\\
+%       $\mathbf{^4}$ The Rohde \& Schwartz LCX can do frequency sweeps if an extra software option is purchased.\\
+%     }
+%     \caption{Table to test captions and labels.}
+%     \label{tab:2_3_CapabilityTab}
+%   \end{table}
