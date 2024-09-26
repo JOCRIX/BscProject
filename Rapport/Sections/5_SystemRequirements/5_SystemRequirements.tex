@@ -1,65 +1,73 @@
 \chapter{System Requirements} \label{ch:SystemRequirements}
 
-
-
 \begin{table}[H]
     \begin{tabular}{|m{3.5em}|m{15em}|m{15em}|}
     \hline
       ID &   Description       & Requirement  \\ \hline
-      §1 & Frequency Range &    \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
-      §2 & Impedance Fit$^1$ & Series and Parallel mode \\\hline 
-      §3 & Impedance Range & $\SIQ{10}{\milli\ohm}\leq|Z|\leq\SIQ{100}{\mega\ohm}$ \\ \hline
-      §4 & $|Z|$ Modulus Accuracy$^2$& $A_Z(f, Z)$ \\ \hline
-      §5 & $\angle\phi$ Accuracy of Argument$^3$ & $A_\phi(f, Z)$ \\ \hline
-      §6 & Test Voltage Range & \SIQ{10}{\milli\volt}$_{pp}$ - \SIQ{5}{\volt}$_{pp}$ \\ \hline
-      §7 & Maximum Test Current & \SIQ{100}{\milli\ampere}$_{pp}$ \\ \hline
-      §8 & DC Bias Voltage Range & \SIQ{0}{\volt}DC - \SIQ{20}{\volt}DC \\ \hline
+      §1 & Frequency range &    \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
+      §2 & Impedance fit$^1$ & Series and parallel mode \\\hline 
+      §3 & Impedance range & $\SIQ{10}{\milli\ohm}\leq|Z|\leq\SIQ{100}{\mega\ohm}$ \\ \hline
+      §4 & $|Z|$ Modulus accuracy$^2$& $A_Z(f_m, Z_m)$ \\ \hline
+      §5 & $\angle\phi$ accuracy of argument$^3$ & $A_\phi(f_m, Z_m)$ \\ \hline
+      §6 & Test voltage range & \SIQ{10}{\milli\volt}$_{pp}$ - \SIQ{5}{\volt}$_{pp}$ \\ \hline
+      §7 & Maximum test current & \SIQ{100}{\milli\ampere}$_{pp}$ \\ \hline
+      §8 & DC bias voltage range & \SIQ{0}{\volt}DC - \SIQ{20}{\volt}DC \\ \hline
       §9 & Parameters of DUT & $L/C/R/Q/D/R_s/R_p/Z\theta$ \\ \hline
-      §10 & Parameter Sweep & Can Perform \newline Frequency and Bias Sweep \\ \hline
-      §11 & Frequency Sweep Range$^4$ & \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
-      §12 & Maximum Frequency \newline Sweep Points$^5$ & 10000 Points in a sweep \\ \hline
-      §13 & Maximum Bias Sweep Points$^6$ & 100 Points \\ \hline
-      §14 & Binning$^7$ & Can do Component Binning \\ \hline
-      §15 & Histogram & Can plot a Histogram$^8$ \\ \hline
-      §16 & Plots & Can Plot all Parameters vs. \newline Frequency and Bias Voltage \\ \hline
-      §17 & Interface & Minimum 7" Touchscreen \\ \hline
-      §18 & DUT Connection & 4-wire Kelvin connection \\ \hline
-      §19 & Data Export & Can export data to CSV file \newline via UART. \\ \hline
+      §10 & Parameter sweep & Can perform \newline frequency and bias sweep \\ \hline
+      §11 & Frequency sweep range$^4$ & \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
+      §12 & Maximum frequency \newline sweep points$^5$ & 10000 points in a sweep \\ \hline
+      §13 & Maximum bias sweep points$^6$ & 100 Points \\ \hline
+      §14 & Binning & Can do component binning \\ \hline
+      §15 & Histogram & Can plot a histogram$^7$ \\ \hline
+      §16 & Plots & Can plot all parameters vs. \newline frequency and bias voltage \\ \hline
+      §17 & Interface & Minimum 7" touchscreen \\ \hline
+      §18 & DUT connection & 4-wire kelvin connection \\ \hline
+      §19 & Data export & Can export data to CSV file \newline via UART. \\ \hline
     \end{tabular}
     \caption*{
       \raggedright
-      $\mathbf{^1}$ .\\
+      $\mathbf{^1}$ Impedance fit refers to the model used to represent the impedance, see section \refq{subsec:SeriesToParallel}.\\
+      $\mathbf{^2}$ The accuracy of the measured impedance magnitude. \\
+      $\mathbf{^3}$ The accuracy of the phase angle of the measured impedance. \\
+      $\mathbf{^4}$ The maximum range of a frequency sweep. \\
+      $\mathbf{^5}$ The maximum points that a frequency sweep can contain. \\
+      $\mathbf{^6}$ The maximum points that a bias voltage sweep can contain. \\
+      $\mathbf{^7}$ Capable of measuring and saving multiple component values, such that a histogram of the components can be shown. \\
     }
     \caption{Table to test captions and labels.}
     \label{tab:5_SystemRequirements}
   \end{table}
 
+\section{Modulus accuracy} \label{sec:ModulusAccuracy}
+The commercially available instruments, such as the LCX-200 from R\&S, degrade in accuracy, as they deviate from their "ideal" setting. 
+Typically the best measurement accuracy can be found at or around \SIQ{1}{\kilo\hertz} at \SIQ{1}{\kilo\ohm}. The R\&S LCX-200 has been
+been used as a reference for the specifications of this project, as this instrument offers many of the features a hobbyist would 
+find attractive. 
 
-%   \begin{table}[H]
-%     \begin{tabular}{|m{9.5em}|m{8em}|m{8em}|m{8em}|}
-%     \hline
-%       &   Keysight U1733C       & Rohde \&\newline Schwartz LCX      & Wayne-Kerr\newline 6500B                 \\ \hline
-%       Test frequency range      &  \SI[]{20}{\hertz} to \SI[]{100}{\kilo\hertz}$\mathbf{^1}$     &    DC-\SI[]{500}{\kilo\hertz},\newline \SI[]{1}{\hertz} steps   & \SI[]{20}{\hertz}-\SI[]{120}{\mega\hertz},\newline  \SI[]{100}{\micro\hertz} steps                                                  \\ \hline
-%       Basic accuracy$\mathbf{^2}$            &  [Z] 0.2\%\newline [$\phi$] $0.2$\%      & [Z] $\pm 0.05$\%\newline [$\phi$] $\pm 0.03$\degree       &[Z] $\pm 0.05$\%\newline [$\phi$] $\pm 0.0005$\degree                                                    \\ \hline
-%       Interface Type            &  Simple$\mathbf{^3}$\nl LCD, buttons    & Touchscreen & Touchscreen \\ \hline
-%       Measurement mode          &   2-wire    & 4-wire      & 4-wire                                  \\ \hline
-%       Auto ranging              &   Yes    & Yes      & Yes                                           \\ \hline
-%       Adj. DC Bias range        &   No    & \SIQ{40}{\volt}DC      & $\pm$\SIQ{40}{\volt}DC           \\ \hline
-%       Frequency sweep           &   No    & Yes$\mathbf{^4}$      & Yes                               \\ \hline
-%       Data logging              &   No    & Yes      & Yes                                            \\ \hline
-%       Component binning         &   No    & Yes      & Yes                                            \\ \hline
-%       Graph data point          &   No    & Yes      & Yes                                            \\ \hline
-%       Complex plane plots       &   No    & No       & Yes                                             \\ \hline
-%       Network access            &   No    & Yes      & Yes                                  \\ \hline
-%       Price point               & <1000€   & 15000€   & Yes                                    \\ \hline
-%     \end{tabular}
-%     \caption*{
-%       \raggedright
-%       $\mathbf{^1}$ The test frequencies for the U1733C are in pre-determined steps.\\
-%       $\mathbf{^2}$ \textit{Z} refers to impedance measurement accuracy. \textit{$\phi$} refers specifically to the phase measurement. The term \textit{basic accuracy} covers the minimum accuracy of L, C, R, ESR, D, Q measurements across the frequency range of the instrument.\\
-%       $\mathbf{^3}$ \textit{simple} refers to the instruments U/I being a few buttons and an LCD display as shown on figure \ref{fig:2_2_U1733C}.\\
-%       $\mathbf{^4}$ The Rohde \& Schwartz LCX can do frequency sweeps if an extra software option is purchased.\\
-%     }
-%     \caption{Table to test captions and labels.}
-%     \label{tab:2_3_CapabilityTab}
-%   \end{table}
+The required measurement accuracy of the impedance magnitude is given as a function with two input variables as seen in equation
+\refq{eq:5:A_Z}
+\begin{equation}
+  \begin{split}
+      \label{eq:5:A_Z}
+      A_Z(f_m, Z_m) & \leq \pm 0.1\% + |log_{10}\left( f_m \right)|\cdot0.3\%+ |log_{10}\left( |Z_m| \right)|\cdot0.3\%\\
+      f_m & = Measurement \; frequency \; in \; kHz. \\
+      Z_m &= Measured \; impedance \; magnitude \; in \; k\Omega.
+  \end{split}
+\end{equation}
+
+Such that the further away from \SIQ{1}{\kilo\hertz} the test frequency is, the worse the measurement accuracy will be. The same 
+is true for the magnitude of the impedance, such that the further away from \SIQ{1}{\kilo\ohm} the measured impedance is, the less
+accurate the measurement will be.
+
+An example could be given at $f_ m = \SIQ{100}{\kilo\hertz}$ and measured impedance magnitude of $|Z_m| = \SIQ{10}{\ohm}$. Here the
+accuracy of the instrument should be better than \SIQ{1.3}{\%}, as seen from equation \refq{eq:5:A_Z_example}.
+\begin{equation}
+  \label{eq:5:A_Z_example}
+  \begin{split}
+    A_Z(100, 0.01) & \leq 0.1\% + |log_{10}(100)|\cdot0.3\%+|log_{10}(0.01)|\cdot0.3\% \\
+    \Rightarrow A_Z(100, 0.01) & \leq 0.1\% + |2|\cdot0.3\%+|-2|\cdot0.3\% \\
+    \Rightarrow A_Z(100,0.01) & \leq 0.1\% + 0.6\% + 0.6\% \Rightarrow A_Z(100,0.01) \leq 1.3\%
+  \end{split}
+\end{equation}
+
+
