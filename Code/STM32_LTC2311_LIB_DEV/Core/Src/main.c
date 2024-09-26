@@ -20,6 +20,14 @@
 #include "main.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+void TimingDelayUS(uint32_t us);
+uint8_t FloatToString(float input, char *output);
+float ConvertADCValue(uint16_t rawADC);
+uint16_t CombineWord(uint8_t highByte, uint8_t lowByte);
+uint8_t *ConvertToBinaryArray(uint8_t highByte, uint8_t lowByte);
+//#include "timing.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -77,8 +85,16 @@ int main(void)
 	//char UARTBuf[] = "Test\r\n";
 	char UARTBuf[20];
 	uint16_t rawADC = 0;
-	uint8_t SPIBuf[2] = {0,0};
+	//uint8_t SPIBuf[2] = {0,0};
+	uint8_t SPIBuf[2];
+	uint16_t SPIWordValue = 0;
+	float voltageRead = 0;
+	uint8_t UARTStringSize = 0;
+	uint8_t bits[16];
 
+	char buf1[20];
+	char buf2[20];
+	char testbuf[50];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -106,20 +122,29 @@ int main(void)
 
   //Start counting on timer 14 - HUSK!!
   HAL_TIM_Base_Start(&htim14);
-
+  //TimingInit(14, &htim14, uint32_t setTmrTickFreq, enum __Purpose purpose)
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	 // HAL_GPIO_WritePin(GPIOA, CNV_Pin, GPIO_PIN_SET);
-	 // DelayUS(1);
-	 // HAL_GPIO_WritePin(GPIOA, CNV_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GPIOA, CNV_Pin, GPIO_PIN_SET);
+	  TimingDelayUS(1);
+	  HAL_GPIO_WritePin(GPIOA, CNV_Pin, GPIO_PIN_RESET);
 	  //HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_8);
-	 // HAL_SPI_Receive(&hspi2, (uint8_t *)SPIBuf, 2, 100);
-	 // sprintf(UARTBuf, "\n \r %d %d", SPIBuf[0], SPIBuf[1]);
-	 // HAL_Delay(500);
+	  HAL_SPI_Receive(&hspi2, (uint8_t *)SPIBuf, 1, 100);
+	  HAL_GPIO_WritePin(GPIOA, CNV_Pin, GPIO_PIN_SET);
+	  //sprintf(UARTBuf, "\n \r %d %d", SPIBuf[0], SPIBuf[1]);
+	  //SPIWordValue = CombineWord(SPIBuf[0], SPIBuf[1]);
+	  //voltageRead = ConvertADCValue(SPIWordValue);
+	  //UARTStringSize = FloatToString(voltageRead, &UARTBuf[0]);
+	  //uint8_t *ptr = ConvertToBinaryArray(SPIBuf[0], SPIBuf[1]);
+	  itoa(SPIBuf[0], buf1[0],2);
+	  itoa(SPIBuf[1], buf1[1],2);
+	  sprintf(testbuf, "\r\n %s %s", buf1[0], buf2[0]);
+	  HAL_UART_Transmit(&huart2, (uint8_t*)testbuf[0], 50, 100);
+	  HAL_Delay(100	);
 	 // HAL_UART_Transmit(&huart2, (uint8_t *)UARTBuf, 20, 100);
 
 	  //SPIBuf[0] = 0;
@@ -130,6 +155,44 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
+}
+
+
+uint8_t *ConvertToBinaryArray(uint8_t highByte, uint8_t lowByte){
+	static uint8_t binaryArray[16];
+
+	for(int i = 0; i < 8; i++){
+		binaryArray[i] = lowByte | (1 << i);
+		binaryArray[i + 8] = highByte | (1 << i);
+	}
+	return &binaryArray[0];
+}
+
+uint16_t CombineWord(uint8_t highByte, uint8_t lowByte){
+	uint16_t resultWord = 0;
+	resultWord = (highByte << 7) + lowByte;
+	return resultWord;
+}
+
+uint8_t FloatToString(float input, char *output){
+	uint8_t stringSize = sprintf(output, "\r\n%f", input);
+	return stringSize;
+}
+
+float ConvertADCValue(uint16_t rawADC){
+	//Resolution = (VREFOUT * 2)/2^16 = 0.000125
+	float res = 0.000250;
+	return (res * rawADC);
+}
+
+void TimingDelayUS(uint32_t us) {
+	if (us == 1) {
+		__HAL_TIM_SET_COUNTER(&htim14, 0);
+		while (__HAL_TIM_GET_COUNTER(&htim14) != 1);
+	} else {
+		__HAL_TIM_SET_COUNTER(&htim14, 0);
+		while (__HAL_TIM_GET_COUNTER(&htim14) != us);
+	}
 }
 
 /**
