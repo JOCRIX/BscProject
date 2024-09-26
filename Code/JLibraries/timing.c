@@ -1,20 +1,15 @@
 #include "stm32f4xx_hal.h"
 #include "timing.h"
 #include <stdint.h>
+static uint8_t __TimingWipeTimers();
+static void TimingUpdateTimerPurposes();
 
-enum __Purpose{
-	DelayUS,
-	Undefined
-};
-enum __TimerSetup{
-	OK = 1,
-	FAIL = 0
-};
-enum __VerifiedTimers{
+static enum __VerifiedTimers{
 	Unsupported = 0,
 	TMR14 = 1
 };
-enum __VerifiedTimers __supTmr[14] = {Unsupported,Unsupported,Unsupported,
+
+static enum __VerifiedTimers __supTmr[14] = {Unsupported,Unsupported,Unsupported,
 								  Unsupported,Unsupported,Unsupported,
 								  Unsupported,Unsupported,Unsupported,
 								  Unsupported,Unsupported,Unsupported,
@@ -40,7 +35,7 @@ void TimingDelayUS(uint32_t us) {
 	}
 }
 
-void TimingUpdateTimerPurposes(){
+static void TimingUpdateTimerPurposes(){
 	for(int i = 0; i < sizeof(__TMR);i++){
 		switch(__TMR[i].config.purpose){
 		case DelayUS:
@@ -70,7 +65,7 @@ enum __TimerSetup TimingInit(uint8_t setTimerID, TIM_HandleTypeDef *setTmrHandle
 	return state;
 }
 
-uint8_t __TimingWipeTimers(){
+static uint8_t __TimingWipeTimers(){
 	for(int i = 0; i < sizeof(__TMR); i++){
 		__TMR[i].tmrHandle = 0;
 		__TMR[i].tmrTickFreq = 0;
