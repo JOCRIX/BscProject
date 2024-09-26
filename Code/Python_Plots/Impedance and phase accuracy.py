@@ -1,0 +1,67 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+f = [0]*1000
+A = [0]*1000
+P = [0]*1000
+
+Z = [0]*1000
+AZ = [0]*1000
+PZ = [0]*1000
+
+for i in range(1000):
+    f[i] = 49+1.0*10**((i)/166.500591)
+    A[i] = 0.1+abs(np.log10(f[i]/1000))*0.3
+    P[i] = (A[i]/100) * 180/np.pi
+
+for i in range(1000):
+    Z[i] = 0.01*10**((i)/99.9)
+    AZ[i] = 0.1+abs(np.log10(Z[i]/1000))*0.3
+    PZ[i] = (AZ[i]/100) * 180/np.pi
+print(Z[0])
+
+
+
+# fig, axes = plt.subplots(nrows = 1, ncols =2, figsize = (10,6))
+# fig.tight_layout()
+
+# plt.subplot(1,2,1)
+
+# plt.semilogx(f,A)
+# plt.grid(True,which= "major", axis = "both")
+# # plt.grid(True,which= "minor", axis = "both")
+# plt.ylabel("Accuracy in %")
+# plt.xlabel("Frequency in Hz")
+# plt.title("Accuracy vs. Frequency at 1 kOhm")
+# # plt.show()
+
+# plt.subplot(1,2,2)
+# plt.semilogx(Z,AZ)
+# plt.grid(True,which= "major", axis = "both")
+# # plt.grid(True,which= "minor", axis = "both")
+# plt.ylabel("Accuracy in %")
+# plt.xlabel("Impedance in Ohm")
+# plt.title("Accuracy vs. Impedance at 1 kHz")
+# plt.show()
+
+fig, axes = plt.subplots(nrows = 1, ncols =2, figsize = (10,6))
+fig.tight_layout()
+
+plt.subplot(1,2,1)
+
+plt.semilogx(f,P)
+plt.grid(True,which= "major", axis = "both")
+# plt.grid(True,which= "minor", axis = "both")
+plt.ylabel("Accuracy in degrees")
+plt.xlabel("Frequency in Hz")
+plt.title("Phase Accuracy vs. Frequency at 1 kOhm")
+# plt.show()
+
+plt.subplot(1,2,2)
+plt.semilogx(Z,PZ)
+plt.grid(True,which= "major", axis = "both")
+# plt.grid(True,which= "minor", axis = "both")
+plt.ylabel("Accuracy in degrees")
+plt.xlabel("Impedance in Ohm")
+plt.title("Phase Accuracy vs. Impedance at 1 kHz")
+plt.show()
