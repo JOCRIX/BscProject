@@ -1,0 +1,40 @@
+1.) Problemformuleringen springer direkte over til problemanalyses. Der er en manglende forklaring i mellem, der mangler en rød tråd mellem PBF til PA. Hvad skal vi kigge på i problemanalysen for at svare på init. PBF.
+
+2.) s.7 omformuler sætningen hvor vi siger at præcisionen af scope / generator sættet er dårlig. Det går for dybt og er uklart. Alternativt så
+skal forklare hvad det er vi faktisk måler, men det kommer vi ind på senere. Troels foreslår at ændre sætningen ved at gøre den mere generel.
+"Hvorfor er det et problem det her?" Evt bare slet sætningen.
+
+
+3.) Omdøb afsnit 2.2. Vi kigger på instrumenter ikke, hvordan DUTs måles. Brug "Instrumentering" etc i stedet.
+
+4.) Tabel med U1733C specs er forvirrende. Enten skal vi forklare hvad læseren skal kigge på, eller i stedet for tabellen prøv og lav en graf som viser præcisionen af instrumentet ud fra graferne. Det er for at gøre det nemmere at overskue, hvad det er vi kigger på. Hele tabellen kan erstattes med en graf der helt konkrek viser, hvad der sker med præcisionen ift. frekvens.
+
+5.) U1733C Hvad mener vi med at instrumentet bruges til fejlfinding etc og ikke "engineering use". Vi skal præcisere hvad use casen for instrumentet er. Hvad er engineering use?
+
+6.) s.9 Forklar hvad "% of accuracy +n*resolution" betyder. Hvad betyder n*resolution?. 
+
+7.) Vi nævner flere gange på f.eks figur 2.4 at "den er god til at vise målinger" og på figur 2.5 at "den kan vise dem grafisk". Det er uklart hvad det er vi faktisk vil vise. Er det impedansen af DUT'en eller DUT'ens parametre som L,C,R,Q,D vi vil vise? I afsnit 2.1 bør vi fortælle hvad vi faktisk er interesseret i at vide om DUT'en, så det er klart at vi er interesseret i L,C... og ikke selve impedansen.
+Vi kan evt. lade en tidlig "forward reference" til afsnittet vedr. derived quantities så det bliver klart hvilke størrelser vi gerne vil kende om DUT'en.
+
+8.) Tabellen er god. Vi kunne fortælle hvor mange points de kan gemme. Ret price point for Wayne-Kerr. I andre afsnit bør vi ikke nævne andre instrumenter end som som står i sammenlignings tabellen, det er forvirrende. Lav 2.4 om så det er ensrettet med tabellen. Hvordan har vi valgt at kigge på de instrumentet vi har valgt?
+
+9.) Evt slå section 2.2 og 2.3 sammen. Section 2.3 er meget kort, men det er ikke super kritisk.
+
+10.) Kommentaren i bunden af 2.3 - "De har mere advanced software og interfaces". Det er de fundamentale ting som frequency range og præcision som koster kasten og det som vi bør fokusere på. DC bias på rohde schwarz er også en option, ret det i tabellen. Vi kan notere at hardwaren ER i instrumentet, men skal unlockes med dyr software.
+
+11.) Vi bør have et eller andet svar på prisen på wayne kerr
+
+12.) Teksten i toppen af side 12 er forvirrende. Vi snakker om switching converters, laver hobbyfolk dem? Det er vel større firmaer som laver dem. Vi siger at vi vil lave LCR til hobbybrug og så snakker vi om business brug. Kan vi gøre mere for at kvantisere hvad demand er på markedet. Vi skal måske prøve at gøre mere for at gøre det klart præcist hvem kunden er. Man kan godt lave instrumenter til hobby folk, se på Rigol scoper, det argument er OK. Vi skal ligge vægt på at der findes producenter som lever af at sælge instrumenter til hobby segmentet.
+
+13.) Problem analysis konklusion. Vi skal kunne svare på init PBF. Vi kommer nok ikke til at kunne svare på om vi kan lave et billigt instrument som der står i problem formuleringen, så vi skal nok rette problem formuleringen.
+
+14.) Vi bør have lidt mere information on det instrument vi vil lave inden vi skriver en problemstatement.
+
+15.) Phasor diagrammer gode, men hvad er I og V. Hvad er det for nogle størrelser, kan vi få et diagram ind som viser hvad det er for nogle spændinger og strømme vi se på phasor diagrammerne.
+
+16.) Lidt forvirring i den første ligning, det er brugen af kant paranteser, alm. paranteser og modulus. Kan vi gøre det mere klart med |z|? Evt større font så det er nemmere at se. 
+
+17.) I impedans afsnittet skal vi præcisere hvad DUT'en er. Snakker vi en enkelt DUT eller forbindelser af flere DUT's.
+
+18.) Overvej BH kurve for spoler. Bias niveauer er vigtige for både spoler og kondensatorer.
+
