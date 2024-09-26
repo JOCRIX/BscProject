@@ -7,8 +7,8 @@
       §1 & Frequency range &    \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
       §2 & Impedance fit$^1$ & Series and parallel mode \\\hline 
       §3 & Impedance range & $\SIQ{10}{\milli\ohm}\leq|Z|\leq\SIQ{100}{\mega\ohm}$ \\ \hline
-      §4 & $|Z|$ Modulus accuracy$^2$& $A_Z(f_m, Z_m)$ \\ \hline
-      §5 & $\angle\phi$ accuracy of argument$^3$ & $A_\phi(f_m, Z_m)$ \\ \hline
+      §4 & $|Z|$, Modulus accuracy$^2$& $A_Z(f_m, Z_m)$ \\ \hline
+      §5 & $\angle\phi$, Accuracy of argument$^3$ & $A_\phi(f_m, Z_m)$ \\ \hline
       §6 & Test voltage range & \SIQ{10}{\milli\volt}$_{pp}$ - \SIQ{5}{\volt}$_{pp}$ \\ \hline
       §7 & Maximum test current & \SIQ{100}{\milli\ampere}$_{pp}$ \\ \hline
       §8 & DC bias voltage range & \SIQ{0}{\volt}DC - \SIQ{20}{\volt}DC \\ \hline
@@ -27,8 +27,8 @@
     \caption*{
       \raggedright
       $\mathbf{^1}$ Impedance fit refers to the model used to represent the impedance, see section \refq{subsec:SeriesToParallel}.\\
-      $\mathbf{^2}$ The accuracy of the measured impedance magnitude. \\
-      $\mathbf{^3}$ The accuracy of the phase angle of the measured impedance. \\
+      $\mathbf{^2}$ The accuracy of the measured impedance magnitude, see section \ref{sec:ModulusArgumentAccuracy}. \\
+      $\mathbf{^3}$ The accuracy of the phase angle of the measured impedance, see section \ref{sec:ModulusArgumentAccuracy}. \\
       $\mathbf{^4}$ The maximum range of a frequency sweep. \\
       $\mathbf{^5}$ The maximum points that a frequency sweep can contain. \\
       $\mathbf{^6}$ The maximum points that a bias voltage sweep can contain. \\
@@ -38,11 +38,17 @@
     \label{tab:5_SystemRequirements}
   \end{table}
 
-\section{Modulus accuracy} \label{sec:ModulusAccuracy}
-The commercially available instruments, such as the LCX-200 from R\&S, degrade in accuracy, as they deviate from their "ideal" setting. 
-Typically the best measurement accuracy can be found at or around \SIQ{1}{\kilo\hertz} at \SIQ{1}{\kilo\ohm}. The R\&S LCX-200 has been
-been used as a reference for the specifications of this project, as this instrument offers many of the features a hobbyist would 
-find attractive. 
+\section{Modulus and Argument Accuracy} \label{sec:ModulusArgumentAccuracy}
+The requirement of both impedance magnitude accuracy and phase accuracy, or modulus and argument accuracy will be described in more detail
+in this section. This is done based on the specifications from commercially available impedance analysers, as the 
+requiremets are based upon these.
+
+The requirements for modulus and argument accuracy are based on the R\&S LCX-200, given that the scope of this project however is to
+research and develop a frequency analyser at a lower price point, the specifications are looser than that of the LCX-200.
+
+Section \ref{sec:CommercialImpedanceAnalyzerCapabilities} has shown how the accuracy of impedance analyzer degrade as they deviate from
+their ideal opperating point, often around \SIQ{1}{\kilo\hertz} and \SIQ{1}{\kilo\ohm}. The specification given here is based upon this
+principle and as a result it is given as a continoues two variable function, both for modulus and argument.
 
 The required measurement accuracy of the impedance magnitude is given as a function with two input variables as seen in equation
 \refq{eq:5:A_Z}
@@ -70,4 +76,34 @@ accuracy of the instrument should be better than \SIQ{1.3}{\%}, as seen from equ
   \end{split}
 \end{equation}
 
+The two dimmensional function for modulus accuracy can be seen as two plots in figure \ref{fig_5_ModulusAccuracy}. Here the left plot is with a fixed impedance of \SIQ{1}{\kilo\ohm}
+and a sweept frequency from \SIQ{50}{\hertz} to \SIQ{1}{\mega\hertz}, and the right plot is with a fixed frequency of \SIQ{1}{kilo\hertz} with impedance ranging from \SIQ{10}{\milli\ohm} to \SIQ{100}{\mega\ohm}.
 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{Sections/5_SystemRequirements/Figures/ImpedanceSpec.pdf}
+  \caption{Plots of the requirement for modulus accuracy, left for fixed impedance, but varying frequency, right with fixed frequency but varying impedance.}
+  \label{fig_5_ModulusAccuracy}
+\end{figure}
+
+The phase accuracy is given in much the same way as for impedance. The accuracy of the phase will be dependant on the accuracy of the magnitude of the measured impedance, and as such, the phase accuracy in degrees is a function that is dependant on the impedance magnitude accuracy as can be seen in equation \ref{eq:5:A_Phi}.
+
+\begin{equation}
+  \begin{split}
+    \label{eq:5:A_Phi}
+    A_\phi(f_m, Z_m) & \leq \frac{180}{\pi} \cdot \frac{A_Z(f,Z)}{100} \qquad in \:degrees\\
+    f_m & = Measurement \; frequency \; in \; kHz. \\
+    Z_m &= Measured \; impedance \; magnitude \; in \; k\Omega.
+  \end{split}
+\end{equation}
+
+Following on the previous example with an impedance of \SIQ{10}{\ohm} at a frequency of \SIQ{100}{\kilo\hertz} the impedance magnitude accuracy requirement is \SIQ{1.3}{\%} the phase
+angle accuracy would be $A_(100,0.01) \leq (180/\pi)\cdot(1.3/100) = \SIQ{0.745}{\degree}$. This two variable function can also be shown as a side by side plot as seen in figure \ref{fig_5_PhaseAccuracy}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{Sections/5_SystemRequirements/Figures/PhaseSpec.pdf}
+  \caption{Plots of the requirement for argument accuracy, left for fixed impedance, but varying frequency, right with fixed frequency but varying impedance.}
+  \label{fig_5_PhaseAccuracy}
+\end{figure}
