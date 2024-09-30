@@ -76,7 +76,7 @@ uint8_t FloatToString(float input, char *output){
 
 float ConvertADCVoltage(uint16_t rawADC){
 	//Resolution = (VREFOUT * 2)/2^16 = 0.000125
-	float res = 0.000125;
+	float res = 0.000250;
 	return (res * rawADC);
 }
 
@@ -89,10 +89,9 @@ void TimingDelayUS(uint32_t us) {
 		while (__HAL_TIM_GET_COUNTER(&htim14) != us);
 	}
 }
-
 uint16_t BytesToWord(uint8_t highByte, uint8_t lowByte){
 	uint16_t resultWord = 0;
-	resultWord = (highByte << 8) + lowByte;
+	resultWord = (highByte << 7) + lowByte;
 	return resultWord;
 }
 /* uint8_t *ToBinaryArray(uint8_t highByte, uint8_t lowByte)
@@ -144,38 +143,36 @@ uint8_t * FlipArray(uint8_t *arr){
 	}
 	return &newArray[0];
 }
-/* void ADCTXBinary(UART_HandleTypeDef *uartHandle, uint8_t highByte, uint8_t lowByte)
- * Transmits the contents of the SPI Buffer in a binary format over UART.
- * Input: (UART_HandleTypeDef *uartHandle) - Handle for UART module
- * Input: (uint8_t highByte) - bits 15-8of SPI Buffer
- * Input: (uint8_t lowByte) - bits 7- 0 of SPI buffer
- * Output: void
- * */
+
+char *MakeASCIIString(uint8_t *sourceArr, uint8_t length){
+	static char* ASCIIString[25];
+	for (int i = 0; i < length; i++){
+		//leftJustBinArray[i] = *ptrFlippedBinArr;
+		//stringTest[i] = IntegerToASCII(binaryArray[i]);
+		ASCIIString[i] = IntToASCII(*sourceArr);
+		sourceArr++;
+	}
+	return ASCIIString[0];
+}
 void ADCTxBinary(UART_HandleTypeDef *uartHandle, uint8_t highByte, uint8_t lowByte){
 	uint8_t *ptrBinArr = NULL; //Local array size is 16
 	uint8_t *ptrFlippedBinArr = NULL; //Local array size is 16
 	char termStrLineFeed[] = "\r\n\0"; //Generate return carriage, line feed and message terminator
-	char bitString[25];
+	char stringTest[25];
 
 	ptrBinArr = ToBinaryArray(highByte, lowByte); //Convert SPI Buffer values to a array holding a total of 16 bits
 	ptrFlippedBinArr = FlipArray(ptrBinArr); //Flip the array around to MSB is in the max array index.
 
-	for (int i = 0; i < 16; i++){ //Generate a string of 1's and 0's bases on the flipped array.
+	for (int i = 0; i < 16; i++){
 		//leftJustBinArray[i] = *ptrFlippedBinArr;
 		//stringTest[i] = IntegerToASCII(binaryArray[i]);
-		bitString[i] = IntToASCII(*ptrFlippedBinArr);
+		stringTest[i] = IntToASCII(*ptrFlippedBinArr);
 		ptrFlippedBinArr++;
 	}
 	//HAL_UART_Transmit(&huart2, (uint8_t*)ASCIIString, 16, HAL_MAX_DELAY);
-	HAL_UART_Transmit(uartHandle, (uint8_t*)bitString, 16, HAL_MAX_DELAY);
+	HAL_UART_Transmit(uartHandle, (uint8_t*)stringTest, 16, HAL_MAX_DELAY);
 	HAL_UART_Transmit(uartHandle, (uint8_t*)termStrLineFeed, 3, HAL_MAX_DELAY);
 
-}
-
-void ADCTxVoltage(UART_HandleTypeDef *uartHandle, float voltage){
-	char ADCVoltageString[10];
-	uint8_t size = sprintf(ADCVoltageString, "%f\r\n", voltage);
-	HAL_UART_Transmit(uartHandle, (uint8_t*)ADCVoltageString, size, HAL_MAX_DELAY);
 }
 
 /* USER CODE END 0 */
@@ -188,16 +185,20 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
+	uint8_t UARTBuf[20];
+	UARTBuf[19] = 0;
 	uint8_t SPIBuf[2];
 	SPIBuf[0] = 0;
 	SPIBuf[1] = 0;
-	uint16_t SPIWord = 0;
-	float ADCVoltage = 0;
-	uint8_t size;
 
-	char *floatval;
+	uint8_t *ptrBinArr = NULL; //Local array size is 16
+	uint8_t *ptrFlippedBinArr = NULL; //Local array size is 16
+	char *ASCIIString = NULL;
+	uint8_t binaryArray[16], leftJustBinArray[16];
+	char termStrLineFeed[] = "\r\n\0"; //Generate return carriage, line feed and message terminator
+	char stringTest[25];
 
-	char testString[25];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -236,12 +237,22 @@ int main(void)
 		TimingDelayUS(1);
 		HAL_GPIO_WritePin(GPIOA, CNV_Pin, GPIO_PIN_RESET);
 		HAL_SPI_Receive(&hspi2, (uint8_t*) SPIBuf, 2, 100);
-		//ADCTxBinary(&huart2, SPIBuf[0], SPIBuf[1]); //UART TX the contents of SPI Buffer in binary
-		SPIWord = BytesToWord(SPIBuf[0], SPIBuf[1]);
-		ADCVoltage = ConvertADCVoltage(SPIWord);
-		ADCTxVoltage(&huart2, ADCVoltage);
+		ADCTxBinary(&huart2, SPIBuf[0], SPIBuf[1]);
+	/*	ptrBinArr = ToBinaryArray(SPIBuf[0], SPIBuf[1]); //Convert SPI Buffer values to a array holding a total of 16 bits
+		ptrFlippedBinArr = FlipArray(ptrBinArr); //Flip the array around to MSB is in the max array index.
 
-		//HAL_Delay(100);
+		ASCIIString = MakeASCIIString(ptrFlippedBinArr, 16);
+		for (int i = 0; i < 16; i++){
+			//leftJustBinArray[i] = *ptrFlippedBinArr;
+			//stringTest[i] = IntegerToASCII(binaryArray[i]);
+			stringTest[i] = IntToASCII(*ptrFlippedBinArr);
+			ptrFlippedBinArr++;
+		}
+		//HAL_UART_Transmit(&huart2, (uint8_t*)ASCIIString, 16, HAL_MAX_DELAY);
+		HAL_UART_Transmit(&huart2, (uint8_t*)stringTest, 16, HAL_MAX_DELAY);
+		HAL_UART_Transmit(&huart2, (uint8_t*)termStrLineFeed, 3, HAL_MAX_DELAY);
+*/
+		HAL_Delay(100);
 
 
     /* USER CODE END WHILE */
