@@ -104,7 +104,7 @@ In this part we compare all four quarters of the year.
 1. Make a box plot of the variable `speed` for each quarter and explain how a boxplot is computed. 
 
 ```{r}
-# gf_boxplot(...~...,data=...)
+gf_boxplot(~speed|quarter,data=wind)
 ```
 
 
