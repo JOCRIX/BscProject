@@ -106,26 +106,55 @@ In this part we compare all four quarters of the year.
 ```{r}
 gf_boxplot(~speed|quarter,data=wind)
 ```
-
+```{r}
+library("png")
+pp <- readPNG("Median_JFT.png")
+plot.new() 
+rasterImage(pp,0,0,1,1)
+```
+A boxplot can be constructed as showen in the figure above. Where Q0 or the minimum bar marks the minima of the dataseet excluding any outliers. Q1 marks the 25th percentile, it is also the median of the lower half of the dataset.
+Q2 is the median of the dataset, it is the value ocuring most often.
+Q3 is the 75th perventile, 75% off all "samples" lies from Q0 to Q3, this is also the median of the upper half of the dataset.
+Q4 is the maxima of the dataset, excluding outliers
 
 2. Test the null-hypothesis that the mean wind speed is the same for all four quarters by editing the code below. Explain the parameter estimates in the output.
 
 ```{r}
-# model <- lm(... ~ ..., data = ...)
-# summary(model)
+model <- lm(speed~quarter,data=wind)
+summary(model)
 ```
+Using the lm function we get Fobs to 26, in other words if the true means of all seasons were the same, it would require us to
+hit a critical value of f=26 or above to observe such an extreme case, this is a probability of 1.7E-11. NOT HAPPENING.
+
 
 To find out which quarters differ, we can make pairwise comparisons. We could use the pairwise t-tests as in Part I, Exercise 3. However, there is a problem with this approach:
 
 3. How many pairwise comparisons of quarterly mean values can we make? What is the probability of rejecting a single true null-hypothesis?  If we test several true null-hypotheses, explain why the probability of falsely rejecting at least one of them is larger than the significance level. 
+
+We can make 6 different caparisons between means. This can be found using the binomial coefficient:
+We have 4 elements (seasons) and two comparisons such that we get:
+$\binom{n}{r} = \frac{n!}{r!(n-r)!} \Rightarrow \binom{4}{2} = \frac{4!}{2!(2)!} = 6$
+We can make 6 different comparisons, given a probability of error of 5% for each the final
+probability of making at least one error is 6*0.05 = 0.3 or 30%. If we do not care what comparison is at "fault" or erroneous,
+but only care if we make an error, then there is 5% chance at each comparison for an error, and this adds up to a total chance
+for an error to be 30%.
+We can say that the event for each comparison is mutually exclusive. This is also the reason why we can
+add their probabilities together. We can say that the sample space contains 6 independent events, each event is a comparison 
+either being true or false.
+
+The probability of rejecting a single true null-hyp is 5% given a level of significance of $\alpha = 0.05$.
 
 This phenomenon is known as multiple testing. We can adjust the pairwise t-tests for multiple testing by performing a so-called Tukey's test. It replaces the t-distribution by a different distribution (the studentized range distribution) that takes multiple testing into account.
 
 4. Tukey's test can be performed using the code below. Which quarters differ significantly? 
 
 ```{r}
-#model<-aov(speed~quarter,data=wind)
-#TukeyHSD(model, conf.level=.95)
+model<-aov(speed~quarter,data=wind)
+TukeyHSD(model, conf.level=.95)
 ```
+We can see that the largest difference is summer and winter.
 
 5. Compare the confidence interval for the difference between spring and autumn from Tukey's test to the one you computed in Part I, Exercise 3. What is different?
+Tukey's test indicate from -0.012 to 0.516 and we found on for $0.0771 < µ_1 - µ_2 < 0.4272$
+Tukey's test interval is larger than the one we found. 
+
