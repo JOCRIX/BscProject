@@ -3,7 +3,7 @@ The user segment that this project is interested in, is the hobbyist segment. Th
 \begin{table}[H]
     \begin{tabular}{|m{3.5em}|m{15em}|m{15em}|}
     \hline
-      ID &   Description       & Requirement  \\ \hline
+      \textbf{ID} &   \textbf{Description}       & \textbf{Requirement}  \\ \hline
       §1 & Frequency range &    \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
       §2 & Impedance fit$^1$ & Series and parallel mode \\\hline 
       §3 & Impedance range & $\SIQ{10}{\milli\ohm}\leq|Z|\leq\SIQ{100}{\mega\ohm}$ \\ \hline
@@ -41,13 +41,13 @@ The user segment that this project is interested in, is the hobbyist segment. Th
 \section{Modulus and Argument Accuracy} \label{sec:ModulusArgumentAccuracy}
 The requirement of both impedance magnitude accuracy and phase accuracy, or modulus and argument accuracy will be described in more detail
 in this section. This is done based on the specifications from commercially available impedance analysers, as the 
-requiremets are based upon these.
+requirements are based upon these.
 
-The requirements for modulus and argument accuracy are based on the R\&S LCX-200, given that the scope of this project however is to
-research and develop a frequency analyser at a lower price point, the specifications are looser than that of the LCX-200.
+The requirements for modulus and argument accuracy are based on the R\&S LCX-200, given that the scope of this project is to
+research and develop an impedance analyser at a lower price point, the specifications are looser than that of the LCX-200.
 
 Section \ref{sec:CommercialImpedanceAnalyzerCapabilities} has shown how the accuracy of impedance analyzer degrade as they deviate from
-their ideal opperating point, often around \SIQ{1}{\kilo\hertz} and \SIQ{1}{\kilo\ohm}. The specification given here is based upon this
+their ideal operating point, often around \SIQ{1}{\kilo\hertz} and \SIQ{1}{\kilo\ohm}. The specifications given here is based upon this
 principle and as a result it is given as a continoues two variable function, both for modulus and argument.
 
 The required measurement accuracy of the impedance magnitude is given as a function with two input variables as seen in equation
@@ -55,7 +55,7 @@ The required measurement accuracy of the impedance magnitude is given as a funct
 \begin{equation}
   \begin{split}
       \label{eq:5:A_Z}
-      A_Z(f_m, Z_m) & \leq \pm 0.1\% + |log_{10}\left( f_m \right)|\cdot0.3\%+ |log_{10}\left( |Z_m| \right)|\cdot0.3\%\\
+      A_Z(f_m, Z_m) & \leq \left(\pm 0.1\% + |log_{10}\left( f_m \right)|\cdot0.3\%+ |log_{10}\left( |Z_m| \right)|\cdot0.3\%\right)\\
       f_m & = Measurement \; frequency \; in \; kHz. \\
       Z_m &= Measured \; impedance \; magnitude \; in \; k\Omega.
   \end{split}
@@ -70,9 +70,9 @@ accuracy of the instrument should be better than \SIQ{1.3}{\%}, as seen from equ
 \begin{equation}
   \label{eq:5:A_Z_example}
   \begin{split}
-    A_Z(100, 0.01) & \leq 0.1\% + |log_{10}(100)|\cdot0.3\%+|log_{10}(0.01)|\cdot0.3\% \\
-    \Rightarrow A_Z(100, 0.01) & \leq 0.1\% + |2|\cdot0.3\%+|-2|\cdot0.3\% \\
-    \Rightarrow A_Z(100,0.01) & \leq 0.1\% + 0.6\% + 0.6\% \Rightarrow A_Z(100,0.01) \leq 1.3\%
+    A_Z(100, 0.01) & \leq \pm \left(0.1\% + |log_{10}(100)|\cdot0.3\%+|log_{10}(0.01)|\cdot0.3\% \right)\\
+    \Rightarrow A_Z(100, 0.01) & \leq \pm \left( 0.1\% + |2|\cdot0.3\%+|-2|\cdot0.3\% \right) \\
+    \Rightarrow A_Z(100,0.01) & \leq \pm \left( 0.1\% + 0.6\% + 0.6\% \right) \Rightarrow A_Z(100,0.01) \leq \pm 1.3\% 
   \end{split}
 \end{equation}
 
@@ -92,7 +92,7 @@ The phase accuracy is given in much the same way as for impedance. The accuracy 
 \begin{equation}
   \begin{split}
     \label{eq:5:A_Phi}
-    A_\phi(f_m, Z_m) & \leq \frac{180}{\pi} \cdot \frac{A_Z(f,Z)}{100} \qquad in \:degrees\\
+    A_\phi(f_m, Z_m) & \leq \frac{180}{\pi} \cdot \frac{A_Z(f_m,Z_m)}{100} \qquad in \:degrees\\
     f_m & = Measurement \; frequency \; in \; kHz. \\
     Z_m &= Measured \; impedance \; magnitude \; in \; k\Omega.
   \end{split}

@@ -1,0 +1,131 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Exam exercise: Seasonal wind speed
+
+It is highly recommended that you answer the exam using Rmarkdown
+(you can simply use the exam Rmarkdown file as a starting point).
+
+The data set for this exam problem contains measurements of the quarterly average wind speed in the years 2001-2019. The measurements were made at the Danish weather station Sjælsmark in the years 2001-2019. 
+
+We first read in the data:
+```{r message=FALSE}
+library(mosaic)
+wind <- read.delim("https://asta.math.aau.dk/datasets?file=speed_quarterly.txt",sep="")
+head(wind)
+```
+We saw in Exam exercise 1 that wind speed measurements are Weibull distributed. However, because of the central limit theorem, when we take the average of hourly measurements from three months, these values will be close to having a normal distribution. Hence, we will assume in this workshop that the quarterly averages are normally distributed. 
+
+Throughout the exercise, we use a significance level of $\alpha=0.05.$
+
+
+
+# Part I: Comparison of wind speed for spring and autumn
+
+In part I we compare the wind speed in spring and autumn. 
+The questions for Part I should be answered using pen and paper. You may use R as a calculator. You can use the output from `favstats` in your computations:
+```{r}
+favstats(~speed|quarter,data=wind)
+```
+For independant random samples of sizes n1 and n2, respectively, from two populations, the f-value for testing variance1 = variance 2 is f = s1^2 / s2^2
+
+```{r}
+S_1 <- 0.2772962
+S_2 <- 0.2532494
+f_Test <- (S_1^2)/(S_2^2)
+f_Test
+pdist("f", f_Test, df1=18, df2 = 18)
+```
+We have a two-sided tail test, where to total area of error must be 0.05, or 0.025 at each tail.
+Here we observe that 64.8% of observations would result in the variances being equal. this is far above the 2.5% region of error and thus we do not have enough evidance to support that they are not the same, we cannot reject H0.
+
+1. Make an $F$-test to check whether the variance is the same in spring and autumn.  See above.
+
+2. Make a t-test to compare the mean wind speed in spring and autumn. What is the null hypothesis and the corresponding alternative hypothesis? Explain how the test statistic and p-value are computed? What is the conclusion of the analysis?
+
+H0: mean1 = mean2
+H1: mean1 != mean2
+Under the assumption that the variances are equal, as by excercise one, we use the unknown bu equal variance test.
+We have a two-sided tail test, can accept +/- 2.5% error.
+
+The two sample t-test is given as:
+$t = \frac{(\bar{x_1} - \bar{x_2})-d_0}{sp \cdot \sqrt{(1/n_1) + (1/n_2)}}$
+$sp^2 = \frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$
+Note that H0 defines the two true means to be equal such that d0 = 0.
+So, given that we observe xBar1 and xBar2, how likely is this observation if the true means µ1 and µ2 are equal.
+```{r}
+xBar1 <- 3.34627
+xBar2 <- 3.09413
+n_1 <- 19
+n_2 <- 19
+S_1
+S_2
+sp <- (((S_1)^2)*((n_1)-1)+((S_2)^2)*((n_2)-1))/((n_1)+(n_2)-2)
+sp <- sqrt(sp)
+sp
+do <- 0
+t <- ((xBar1) -( xBar2) - do)/ (sp*sqrt((1/(n_1))+(1/(n_2))))
+t
+pdist("t", 2.9267, df=(n_1)+(n_2)-2)
+
+```
+Given, that the true means µ1 and µ2 are equal, the likelihood of observing t=2.93 or greater is
+only 0.3%, it is highly unlikely to have such an observation of µ1 and µ2 being equal, given the variances 
+that was observed.
+
+  
+3. Make a 95\% confidence interval for the difference between mean wind speed in spring and autumn. What is the interpretation of the confidence interval?
+There is a straight forward way of doing this, we shal first find the t_crit value for 2.5% as we have +/- 2.5% yielding a total confidance of 95%
+t value for v=30 is 2.042
+t value for v=40 is 2.021
+their average approximates that of v = 35, t $\approx 2.032$
+The degrees of freedrom is given as $v= n_1+n_2-2$.
+$t_{a/2} \approx 2.032$
+
+first we find the upper bound, as we already found the pooled standard deviation.
+```{r}
+print(xBar1-xBar2 + 2.032*sp*sqrt((1/(n_1))+(1/(n_2))))
+print(xBar1-xBar2 - 2.032*sp*sqrt((1/(n_1))+(1/(n_2))))
+```
+We can then say the following:
+$0.0771 < µ_1 - µ_2 < 0.4272$
+The equation used for this is:
+${\bar{x_1} - \bar{x_2} -t_{\alpha /2}\cdot \sqrt{1/n_1 + 1/n_2} < µ_1 - µ_2 < \bar{x_1} - \bar{x_2} +t_{\alpha /2}\cdot \sqrt{1/n_1 + 1/n_2}}$
+
+$v = n_1 +n_2 -2$
+
+## Part II: Comparing all four quarters
+
+In this part we compare all four quarters of the year.
+
+1. Make a box plot of the variable `speed` for each quarter and explain how a boxplot is computed. 
+
+```{r}
+# gf_boxplot(...~...,data=...)
+```
+
+
+2. Test the null-hypothesis that the mean wind speed is the same for all four quarters by editing the code below. Explain the parameter estimates in the output.
+
+```{r}
+# model <- lm(... ~ ..., data = ...)
+# summary(model)
+```
+
+To find out which quarters differ, we can make pairwise comparisons. We could use the pairwise t-tests as in Part I, Exercise 3. However, there is a problem with this approach:
+
+3. How many pairwise comparisons of quarterly mean values can we make? What is the probability of rejecting a single true null-hypothesis?  If we test several true null-hypotheses, explain why the probability of falsely rejecting at least one of them is larger than the significance level. 
+
+This phenomenon is known as multiple testing. We can adjust the pairwise t-tests for multiple testing by performing a so-called Tukey's test. It replaces the t-distribution by a different distribution (the studentized range distribution) that takes multiple testing into account.
+
+4. Tukey's test can be performed using the code below. Which quarters differ significantly? 
+
+```{r}
+#model<-aov(speed~quarter,data=wind)
+#TukeyHSD(model, conf.level=.95)
+```
+
+5. Compare the confidence interval for the difference between spring and autumn from Tukey's test to the one you computed in Part I, Exercise 3. What is different?
