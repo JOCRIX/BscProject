@@ -48,7 +48,7 @@ Kan ikke finde en ny pris.
 
 12.) Teksten i toppen af side 12 er forvirrende. Vi snakker om switching converters, laver hobbyfolk dem? Det er vel større firmaer som laver dem. Vi siger at vi vil lave LCR til hobbybrug og så snakker vi om business brug. Kan vi gøre mere for at kvantisere hvad demand er på markedet. Vi skal måske prøve at gøre mere for at gøre det klart præcist hvem kunden er. Man kan godt lave instrumenter til hobby folk, se på Rigol scoper, det argument er OK. Vi skal ligge vægt på at der findes producenter som lever af at sælge instrumenter til hobby segmentet.
 
-
+Tilføjet en længere sætning i 2.3 market demand for at gøre det her klart.
 
 13.) Problem analysis konklusion. Vi skal kunne svare på init PBF. Vi kommer nok ikke til at kunne svare på om vi kan lave et billigt instrument som der står i problem formuleringen, så vi skal nok rette problem formuleringen.
 
