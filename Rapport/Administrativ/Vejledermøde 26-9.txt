@@ -1,22 +1,38 @@
 1.) Problemformuleringen springer direkte over til problemanalyses. Der er en manglende forklaring i mellem, der mangler en rød tråd mellem PBF til PA. Hvad skal vi kigge på i problemanalysen for at svare på init. PBF.
 
+(TODO)
+
+
 2.) s.7 omformuler sætningen hvor vi siger at præcisionen af scope / generator sættet er dårlig. Det går for dybt og er uklart. Alternativt så
 skal forklare hvad det er vi faktisk måler, men det kommer vi ind på senere. Troels foreslår at ændre sætningen ved at gøre den mere generel.
 "Hvorfor er det et problem det her?" Evt bare slet sætningen.
 
+(TODO)
 
 3.) Omdøb afsnit 2.2. Vi kigger på instrumenter ikke, hvordan DUTs måles. Brug "Instrumentering" etc i stedet.
 
+ - Done. Lader filnavn og ref være som det er for ikke at fucke noget op.
+
 4.) Tabel med U1733C specs er forvirrende. Enten skal vi forklare hvad læseren skal kigge på, eller i stedet for tabellen prøv og lav en graf som viser præcisionen af instrumentet ud fra graferne. Det er for at gøre det nemmere at overskue, hvad det er vi kigger på. Hele tabellen kan erstattes med en graf der helt konkrek viser, hvad der sker med præcisionen ift. frekvens.
+
+(TODO)
 
 5.) U1733C Hvad mener vi med at instrumentet bruges til fejlfinding etc og ikke "engineering use". Vi skal præcisere hvad use casen for instrumentet er. Hvad er engineering use?
 
+- Done. Har omformuleret hele den sætning
+
 6.) s.9 Forklar hvad "% of accuracy +n*resolution" betyder. Hvad betyder n*resolution?. 
+
+-@Jakob kig lige her. Forklaringen står i linje 20 i teksten, men måske er det ikke tydeligt nok?
 
 7.) Vi nævner flere gange på f.eks figur 2.4 at "den er god til at vise målinger" og på figur 2.5 at "den kan vise dem grafisk". Det er uklart hvad det er vi faktisk vil vise. Er det impedansen af DUT'en eller DUT'ens parametre som L,C,R,Q,D vi vil vise? I afsnit 2.1 bør vi fortælle hvad vi faktisk er interesseret i at vide om DUT'en, så det er klart at vi er interesseret i L,C... og ikke selve impedansen.
 Vi kan evt. lade en tidlig "forward reference" til afsnittet vedr. derived quantities så det bliver klart hvilke størrelser vi gerne vil kende om DUT'en.
 
+(TODO)
+
 8.) Tabellen er god. Vi kunne fortælle hvor mange points de kan gemme. Ret price point for Wayne-Kerr. I andre afsnit bør vi ikke nævne andre instrumenter end som som står i sammenlignings tabellen, det er forvirrende. Lav 2.4 om så det er ensrettet med tabellen. Hvordan har vi valgt at kigge på de instrumentet vi har valgt?
+
+-Kan ikke finde noget info om hvor mange points LCX og Wayne-kerr kan gemme. Price rettet. Tror du må rette det som er skrevet i andre afsnit for at ensrette. Jeg har skrevet hvorfor vi har valgt dem vi har valgt.
 
 9.) Evt slå section 2.2 og 2.3 sammen. Section 2.3 er meget kort, men det er ikke super kritisk.
 
