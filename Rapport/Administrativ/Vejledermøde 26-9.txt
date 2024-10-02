@@ -36,9 +36,15 @@ Vi kan evt. lade en tidlig "forward reference" til afsnittet vedr. derived quant
 
 9.) Evt slå section 2.2 og 2.3 sammen. Section 2.3 er meget kort, men det er ikke super kritisk.
 
+Done. Har slået dem sammen. Det giver mere mening.
+
 10.) Kommentaren i bunden af 2.3 - "De har mere advanced software og interfaces". Det er de fundamentale ting som frequency range og præcision som koster kasten og det som vi bør fokusere på. DC bias på rohde schwarz er også en option, ret det i tabellen. Vi kan notere at hardwaren ER i instrumentet, men skal unlockes med dyr software.
 
+-Done, done and done.
+
 11.) Vi bør have et eller andet svar på prisen på wayne kerr
+
+Kan ikke finde en ny pris.
 
 12.) Teksten i toppen af side 12 er forvirrende. Vi snakker om switching converters, laver hobbyfolk dem? Det er vel større firmaer som laver dem. Vi siger at vi vil lave LCR til hobbybrug og så snakker vi om business brug. Kan vi gøre mere for at kvantisere hvad demand er på markedet. Vi skal måske prøve at gøre mere for at gøre det klart præcist hvem kunden er. Man kan godt lave instrumenter til hobby folk, se på Rigol scoper, det argument er OK. Vi skal ligge vægt på at der findes producenter som lever af at sælge instrumenter til hobby segmentet.
 
