@@ -8,7 +8,9 @@ LCR meters typically come in two different form factors, one is a handheld devic
     \caption{A handheld Keysight U1733C LCR meter.\cite{KeysightU1733C}}
     \label{fig:2_2_U1733C}
 \end{figure}
-The U1733C shown on \ref{fig:2_2_U1733C} is meant for, primarily, troubleshooting and repair work and not electronics development purposes, while it is affordable at about 550€, it has limited capabilities. It can measure all the basic parameters such as capacitance, inductance, ESR and display all the derived quantities like dissipation and quality factor numerically, however it can only take these measurements at a pre-determined set of test frequencies in the range \SI[]{100}{\hertz} to \SI[]{100}{\kilo\hertz} with measurement accuracy weaning off in both ends of the frequency range as shown on figure \ref{fig:2_2_U1733CCapAccurancy}.
+The U1733C shown on \ref{fig:2_2_U1733C} is meant for, primarily, troubleshooting and repair work and not electronics development purposes, while it is affordable at about 550€, it has limited capabilities. It can measure all the basic parameters such as capacitance, inductance, ESR and display all the derived quantities like dissipation and quality factor, see section \refq{subsec:DerivedQuantities} for further explanation. Numerically, however it can only take these measurements at a pre-determined set of test frequencies in the range \SI[]{100}{\hertz} to \SI[]{100}{\kilo\hertz} with measurement accuracy weaning off in both ends of the impedance range, and at higher frequencies.
+
+Table \refq{tab:2_3_AccuracyTab_U1733C} shows the accuracy the impedance magnitude for the U1733C at the high and low end of the impedance ranges, as well as over a range of frequencies. Table \refq{tab:2_3_PhaseAccuracyTab_U1733C} shows the corresponding phase angle accuracy at the same impedances and frequencies. It clearly shows that at the extremes of impedance the accuracy degrades.
 
 \begin{table}[H]
   \begin{tabular}{|m{6.3em}|m{6.3em}|m{6.3em}|m{6.3em}|m{6.3em}|}
@@ -20,18 +22,25 @@ The U1733C shown on \ref{fig:2_2_U1733C} is meant for, primarily, troubleshootin
   \SIQ{100}{\kilo\ohm} &   \SIQ{0.55}{\%}     &  \SIQ{0.55}{\%}  & \SIQ{0.55}{\%}   & \SIQ{0.78}{\%}  \\ \hline
   \SIQ{100}{\mega\ohm} &   \SIQ{6.8}{\%}     &   \SIQ{6.8}{\%}  &  NA   &   NA  \\ \hline
   \end{tabular}
-  \caption{Table of selected measurement accuracy of a U1733C. It can be seen that the accuracy degrades at higher frequencies and at the extreme ends of the impedance capabilities.}
-  \label{tab:2_3_AccuracyTab}
+  \caption{Table of selected impedance measurement accuracy of a U1733C. It can be seen that the accuracy degrades at higher frequencies and at the extreme ends of the impedance capabilities.}
+  \label{tab:2_3_AccuracyTab_U1733C}
   \end{table}
 
 
+  \begin{table}[H]
+    \begin{tabular}{|m{6.3em}|m{6.3em}|m{6.3em}|m{6.3em}|m{6.3em}|}
+    \hline
+     Frequency / \nl Applied \nl Impedance & \SIQ{100}{\hertz} & \SIQ{1}{\kilo\hertz} & \SIQ{10}{\kilo\hertz} & \SIQ{100}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\ohm}    &   \SIQ{0.69}{\degree} &   \SIQ{0.69}{\degree} &   \SIQ{0.69}{\degree}  &  \SIQ{0.86}{\degree}  \\ \hline
+    \SIQ{10}{\ohm}   &   \SIQ{0.45}{\degree}     &  \SIQ{0.45}{\degree} & \SIQ{0.45}{\degree}  & \SIQ{0.45}{\degree}  \\ \hline
+    \SIQ{1}{\kilo\ohm}   &  \SIQ{0.13}{\degree}  & \SIQ{0.13}{\degree}  &  \SIQ{0.13}{\degree}  & \SIQ{0.32}{\degree} \\ \hline
+    \SIQ{100}{\kilo\ohm} &   \SIQ{0.32}{\degree} &  \SIQ{0.32}{\degree} & \SIQ{0.32}{\degree}  & \SIQ{0.45}{\degree}  \\ \hline
+    \SIQ{100}{\mega\ohm} &   \SIQ{3.90}{\degree}     &   \SIQ{3.90}{\degree}  &  NA   &   NA  \\ \hline
+    \end{tabular}
+    \caption{Table of selected phase angle measurement accuracy of a U1733C. It can be seen that the accuracy degrades at higher frequencies and at the extreme ends of the impedance capabilities.}
+    \label{tab:2_3_PhaseAccuracyTab_U1733C}
+    \end{table}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[clip, trim=0 630 0 0, width=1\textwidth]{Sections/2_ProblemAnalysis/FIgures/U1733CAccuracyDatasheet.pdf}
-    \caption{A snapshop from the Keysight U1733C datasheet listing the accuracy of capacitance measurements.\cite{KeysightU1733CDatasheet}. Measurements for inductance, resistance and so on show a similar pattern.}
-    \label{fig:2_2_U1733CCapAccurancy}
-\end{figure}
 
 The U1733C datasheet has similar charts for other measurements, but they follow a similar pattern of accuracy as capacitance where it becomes clear that the accuracy is worse in the higher ends of the range. The accuracy is listed as a $\%$ of range $ + n\cdot resolution$, so a measurement in the \SI[]{20}{\micro\farad} range will have an accuracy of $\pm \SI[]{1}{\micro\farad} + \SI[]{10}{\nano\farad} = \SIQ{1.01}{\micro\farad}$ at \SIQ{100}{\kilo\hertz}.
 
