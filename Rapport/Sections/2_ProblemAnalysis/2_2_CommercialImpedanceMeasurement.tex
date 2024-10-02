@@ -10,6 +10,22 @@ LCR meters typically come in two different form factors, one is a handheld devic
 \end{figure}
 The U1733C shown on \ref{fig:2_2_U1733C} is meant for, primarily, troubleshooting and repair work and not electronics development purposes, while it is affordable at about 550€, it has limited capabilities. It can measure all the basic parameters such as capacitance, inductance, ESR and display all the derived quantities like dissipation and quality factor numerically, however it can only take these measurements at a pre-determined set of test frequencies in the range \SI[]{100}{\hertz} to \SI[]{100}{\kilo\hertz} with measurement accuracy weaning off in both ends of the frequency range as shown on figure \ref{fig:2_2_U1733CCapAccurancy}.
 
+\begin{table}[H]
+  \begin{tabular}{|m{6.3em}|m{6.3em}|m{6.3em}|m{6.3em}|m{6.3em}|}
+  \hline
+   Frequency / \nl Applied \nl Impedance & \SIQ{100}{\hertz} & \SIQ{1}{\kilo\hertz} & \SIQ{10}{\kilo\hertz} & \SIQ{100}{\kilo\hertz} \\ \hline
+  \SIQ{1}{\ohm}    &   \SIQ{1.2}{\%}   &   \SIQ{1.2}{\%}    &   \SIQ{1.2}{\%}     &   \SIQ{1.5}{\%}      \\ \hline
+  \SIQ{10}{\ohm}   &   \SIQ{0.78}{\%}     &  \SIQ{0.78}{\%} & \SIQ{0.78}{\%}  & \SIQ{0.78}{\%}    \\ \hline
+  \SIQ{1}{\kilo\ohm}   &   \SIQ{0.23}{\%}     & \SIQ{0.23}{\%}  &  \SIQ{0.23}{\%}  & \SIQ{0.55}{\%} \\ \hline
+  \SIQ{100}{\kilo\ohm} &   \SIQ{0.55}{\%}     &  \SIQ{0.55}{\%}  & \SIQ{0.55}{\%}   & \SIQ{0.78}{\%}  \\ \hline
+  \SIQ{100}{\mega\ohm} &   \SIQ{6.8}{\%}     &   \SIQ{6.8}{\%}  &  NA   &   NA  \\ \hline
+  \end{tabular}
+  \caption{Table of selected measurement accuracy of a U1733C. It can be seen that the accuracy degrades at higher frequencies and at the extreme ends of the impedance capabilities.}
+  \label{tab:2_3_AccuracyTab}
+  \end{table}
+
+
+
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 630 0 0, width=1\textwidth]{Sections/2_ProblemAnalysis/FIgures/U1733CAccuracyDatasheet.pdf}

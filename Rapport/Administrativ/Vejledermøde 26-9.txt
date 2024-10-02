@@ -1,13 +1,13 @@
 1.) Problemformuleringen springer direkte over til problemanalyses. Der er en manglende forklaring i mellem, der mangler en rød tråd mellem PBF til PA. Hvad skal vi kigge på i problemanalysen for at svare på init. PBF.
 
-(TODO)
+- Done. Har tilføjet en bedre overgang i introen til chapter 2 - JFT.
 
 
 2.) s.7 omformuler sætningen hvor vi siger at præcisionen af scope / generator sættet er dårlig. Det går for dybt og er uklart. Alternativt så
 skal forklare hvad det er vi faktisk måler, men det kommer vi ind på senere. Troels foreslår at ændre sætningen ved at gøre den mere generel.
 "Hvorfor er det et problem det her?" Evt bare slet sætningen.
 
-(TODO)
+- Done, har rettet således det ikke er specifikt omkring tal og ESR endnu - JFT.
 
 3.) Omdøb afsnit 2.2. Vi kigger på instrumenter ikke, hvordan DUTs måles. Brug "Instrumentering" etc i stedet.
 
