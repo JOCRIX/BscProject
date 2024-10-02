@@ -28,7 +28,7 @@ skal forklare hvad det er vi faktisk måler, men det kommer vi ind på senere. T
 7.) Vi nævner flere gange på f.eks figur 2.4 at "den er god til at vise målinger" og på figur 2.5 at "den kan vise dem grafisk". Det er uklart hvad det er vi faktisk vil vise. Er det impedansen af DUT'en eller DUT'ens parametre som L,C,R,Q,D vi vil vise? I afsnit 2.1 bør vi fortælle hvad vi faktisk er interesseret i at vide om DUT'en, så det er klart at vi er interesseret i L,C... og ikke selve impedansen.
 Vi kan evt. lade en tidlig "forward reference" til afsnittet vedr. derived quantities så det bliver klart hvilke størrelser vi gerne vil kende om DUT'en.
 
-(TODO)
+- Done
 
 8.) Tabellen er god. Vi kunne fortælle hvor mange points de kan gemme. Ret price point for Wayne-Kerr. I andre afsnit bør vi ikke nævne andre instrumenter end som som står i sammenlignings tabellen, det er forvirrende. Lav 2.4 om så det er ensrettet med tabellen. Hvordan har vi valgt at kigge på de instrumentet vi har valgt?
 
@@ -50,13 +50,22 @@ Kan ikke finde en ny pris.
 
 13.) Problem analysis konklusion. Vi skal kunne svare på init PBF. Vi kommer nok ikke til at kunne svare på om vi kan lave et billigt instrument som der står i problem formuleringen, så vi skal nok rette problem formuleringen.
 
+Done. Det med prisen er væk fra vores problem statement.
+
 14.) Vi bør have lidt mere information on det instrument vi vil lave inden vi skriver en problemstatement.
 
 15.) Phasor diagrammer gode, men hvad er I og V. Hvad er det for nogle størrelser, kan vi få et diagram ind som viser hvad det er for nogle spændinger og strømme vi se på phasor diagrammerne.
 
+- Done and done.
+
 16.) Lidt forvirring i den første ligning, det er brugen af kant paranteser, alm. paranteser og modulus. Kan vi gøre det mere klart med |z|? Evt større font så det er nemmere at se. 
+
+-Done. Firkant paranteser skiftede.
 
 17.) I impedans afsnittet skal vi præcisere hvad DUT'en er. Snakker vi en enkelt DUT eller forbindelser af flere DUT's.
 
+-Done
+
 18.) Overvej BH kurve for spoler. Bias niveauer er vigtige for både spoler og kondensatorer.
 
+-Not happening
