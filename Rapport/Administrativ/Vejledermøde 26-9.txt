@@ -23,7 +23,7 @@ skal forklare hvad det er vi faktisk måler, men det kommer vi ind på senere. T
 
 6.) s.9 Forklar hvad "% of accuracy +n*resolution" betyder. Hvad betyder n*resolution?. 
 
--@Jakob kig lige her. Forklaringen står i linje 20 i teksten, men måske er det ikke tydeligt nok?
+- Done sammen med 5.)
 
 7.) Vi nævner flere gange på f.eks figur 2.4 at "den er god til at vise målinger" og på figur 2.5 at "den kan vise dem grafisk". Det er uklart hvad det er vi faktisk vil vise. Er det impedansen af DUT'en eller DUT'ens parametre som L,C,R,Q,D vi vil vise? I afsnit 2.1 bør vi fortælle hvad vi faktisk er interesseret i at vide om DUT'en, så det er klart at vi er interesseret i L,C... og ikke selve impedansen.
 Vi kan evt. lade en tidlig "forward reference" til afsnittet vedr. derived quantities så det bliver klart hvilke størrelser vi gerne vil kende om DUT'en.
@@ -47,6 +47,8 @@ Done. Har slået dem sammen. Det giver mere mening.
 Kan ikke finde en ny pris.
 
 12.) Teksten i toppen af side 12 er forvirrende. Vi snakker om switching converters, laver hobbyfolk dem? Det er vel større firmaer som laver dem. Vi siger at vi vil lave LCR til hobbybrug og så snakker vi om business brug. Kan vi gøre mere for at kvantisere hvad demand er på markedet. Vi skal måske prøve at gøre mere for at gøre det klart præcist hvem kunden er. Man kan godt lave instrumenter til hobby folk, se på Rigol scoper, det argument er OK. Vi skal ligge vægt på at der findes producenter som lever af at sælge instrumenter til hobby segmentet.
+
+
 
 13.) Problem analysis konklusion. Vi skal kunne svare på init PBF. Vi kommer nok ikke til at kunne svare på om vi kan lave et billigt instrument som der står i problem formuleringen, så vi skal nok rette problem formuleringen.
 
