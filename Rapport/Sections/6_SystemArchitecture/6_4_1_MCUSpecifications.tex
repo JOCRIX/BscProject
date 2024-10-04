@@ -1,1 +1,23 @@
 \subsection{Main Processor Specifications} \label{subsec:MainProcessorSpecifications}
+
+\begin{table}[H]
+    \begin{tabular}{|m{3.5em}|m{30em}|}
+    \hline
+      \textbf{ID} &   \textbf{Description}   \\ \hline
+      §6.4.1 & Must be capable of fetching samples from the sample memory of the Sample Control module via the sample control bus.\\ \hline
+      §6.4.2 & Must be capable of performing spectral analysis on the sampled data, and from this calculate magnitude and phase of the impedance. \\ \hline
+      §6.4.3 & Must be capable of converting the measured impedance to any of the derived quantities from section \refq{subsec:DerivedQuantities}. \\ \hline
+      §6.4.4 & Must be capable of transmitting the derived quantities to the User Interface. \\ \hline
+      §6.4.5 & Must have a UART serial interface to the User Interface module. \\ \hline
+      §6.4.6 & Must be capable of storing 10000 impedance magnitude values,  10000 phase angle values, and 10000 frequency values for the frequency sweep option.  \\ \hline
+      §6.4.7 & Must be capable of receiving the test parameters from the User Interface. These are DAC test level, test frequency, sweep enable, sweep start, sweep stop, sweep resolution, bias level, bias sweep enable, bias sweep start, bias sweep stop, bias sweep resolution, auto range, manual range, range. \\ \hline
+      §6.5.7 & Must be able to generate a DC bias to the Analog Front End module, this shall be in the range from \SIQ{0}{\volt} to \SIQ{20}{\volt} at a resolution of no higher than \SIQ{200}{\milli\volt}. \\ \hline
+    \end{tabular}
+    \caption*{
+      \raggedright
+      $\mathbf{^1}$ Impedance fit refers to the model used to represent the impedance, see section \refq{subsec:SeriesToParallel}.\\
+      $\mathbf{^2}$ The accuracy of the measured impedance magnitude, see section \ref{sec:ModulusArgumentAccuracy}. \\
+    }
+    \caption{Table to test captions and labels.}
+    \label{tab:6_4_1MCUSpec}
+  \end{table}
