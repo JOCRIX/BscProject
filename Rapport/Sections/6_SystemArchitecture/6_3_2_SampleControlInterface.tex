@@ -1,1 +1,22 @@
 \subsection{Sample Control Interface} \label{subsec:SampleControlInterface}
+
+\begin{table}[H]
+    \begin{tabular}{|m{3.5em}|m{12.5em}|m{5em}|m{12.5em}|}
+    \hline
+      \textbf{Pins} &   \textbf{Type} & \textbf{Level} & \textbf{Description}  \\ \hline
+      0-15 & Parallel data bus IO & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
+      16 & Parallel data bus R/W & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
+      17 & Parallel data bus CLK & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
+      18-19 & ADC CLK & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 CLK input. \\ \hline
+      20-21 & ADC DATA & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 DATA output. \\ \hline 
+      22 & ADC CNV & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 Trigger pulse. \\
+      \hline
+      23-25 & Voltage PGA gain & \SIQ{3.3}{\volt} LVTTL & PGA gain \\ \hline
+      26-28 & Current PGA gain & \SIQ{3.3}{\volt} LVTTL & PGA gain \\ \hline
+      29-31 & Range setting & \SIQ{3.3}{\volt} LVTTL & Range setting \\ \hline
+      32-47 & DAC Data & \SIQ{3.3}{\volt} LVTTL & Data for DAC \\ \hline
+      48 & DAC CLK & \SIQ{3.3}{\volt} LVTTL & CLK for DAC \\ \hline
+    \end{tabular}
+    \caption{Table to test captions and labels.}
+    \label{tab:6_3_2FPGAInterface}
+  \end{table}

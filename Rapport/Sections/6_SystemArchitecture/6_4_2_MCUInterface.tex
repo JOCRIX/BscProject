@@ -1,1 +1,18 @@
 \subsection{Main Processor Interface} \label{subsec:MainProcessorInterface}
+\begin{table}[H]
+    \begin{tabular}{|m{3.5em}|m{12.5em}|m{5em}|m{12.5em}|}
+    \hline
+    \textbf{Pins} &   \textbf{Type} & \textbf{Level} & \textbf{Description}  \\ \hline
+    0-15 & Parallel data bus IO & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
+    16 & Parallel data bus R/W & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
+    17 & Parallel data bus CLK & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
+    18 & DC Bias Voltage for DAC & \SIQ{0}{\volt} - \SIQ{20}{\volt} & DC bias output. \\ \hline
+    19 & DC Bias On/Off & \SIQ{3.3}{\volt} LVTTL & On/Off switch for DC bias. \\ \hline
+    20-21 & UART RX/TX & \SIQ{3.3}{\volt} LVTTL & MCU $\leftarrow \rightarrow$ UI \SIQ{115.2}{\kilo\bit} \\ \hline
+    \end{tabular}
+    \caption{Table to test captions and labels.}
+    \label{tab:6_4_2MCUInterface}
+\end{table}
+
+
+  

@@ -1,18 +1,11 @@
 \subsection{User Interface} \label{subsec:UserInterface}
 
 \begin{table}[H]
-    \begin{tabular}{|m{3.5em}|m{30em}|}
+    \begin{tabular}{|m{3.5em}|m{12.5em}|m{5em}|m{12.5em}|}
     \hline
-      \textbf{ID} &   \textbf{Description}   \\ \hline
-      §6.5.1 & Must have a UART serial interface with the MCU module. \\ \hline
-      §6.5.2 & Must have a 7" touch-screen. \\ \hline
-      §6.5.3 & Must be capable of displaying TBD elements from the MCU. \\ \hline
+    \textbf{Pins} &   \textbf{Type} & \textbf{Level} & \textbf{Description}  \\ \hline
+    0-1 & UART RX/TX & \SIQ{3.3}{\volt} LVTTL & MCU $\leftarrow \rightarrow$ UI \SIQ{115.2}{\kilo\bit} \\ \hline
     \end{tabular}
-    \caption*{
-      \raggedright
-      $\mathbf{^1}$ Impedance fit refers to the model used to represent the impedance, see section \refq{subsec:SeriesToParallel}.\\
-      $\mathbf{^2}$ The accuracy of the measured impedance magnitude, see section \ref{sec:ModulusArgumentAccuracy}. \\
-    }
     \caption{Table to test captions and labels.}
-    \label{tab:6_5_1UISpec}
-  \end{table}
+    \label{tab:6_5_2UIInterface}
+\end{table}

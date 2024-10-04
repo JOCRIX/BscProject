@@ -1,1 +1,22 @@
 \subsection{Analog Front End Interface} \label{subsec:AnalogFrontEndInterface}
+
+\begin{table}[H]
+    \begin{tabular}{|m{3.5em}|m{12.5em}|m{5em}|m{12.5em}|}
+    \hline
+    \textbf{Pins} &   \textbf{Type} & \textbf{Level} & \textbf{Description}  \\ \hline
+    0-1 & ADC CLK & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 CLK input \\ \hline
+    2-3 & ADC DATA & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 DATA output. \\ \hline 
+    4 & ADC CNV & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 Trigger pulse. \\
+    \hline
+    5-7 & Voltage PGA gain & \SIQ{3.3}{\volt} LVTTL & PGA gain \\ \hline
+    8-10 & Current PGA gain & \SIQ{3.3}{\volt} LVTTL & PGA gain \\ \hline
+    11-13 & Range setting & \SIQ{3.3}{\volt} LVTTL & Range setting \\ \hline
+    14-29 & DAC Data & \SIQ{3.3}{\volt} LVTTL & Data for DAC \\ \hline
+    30 & DAC CLK & \SIQ{3.3}{\volt} LVTTL & CLK for DAC \\ \hline
+    31-34 & 4 wire kelvin connection & TBD & 4 wire BNC connection \\ \hline
+    35 & DC Bias level & \SIQ{0}{\volt} - \SIQ{20}{\volt} & DC voltage for bias. \\ \hline
+    \end{tabular}
+    \caption{Table to test captions and labels.}
+    \label{tab:6_1_2ANFEInterface}
+  \end{table}
+
