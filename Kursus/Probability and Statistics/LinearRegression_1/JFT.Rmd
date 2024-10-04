@@ -1,0 +1,104 @@
+---
+title: "Exercises 11.1, 11.15, 11.44"
+author: ""
+date: ""
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+require(mosaic)   # Load additional packages here 
+library(mosaic)
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+## Exercise 11.1, 11.15, 11.44
+
+Import data set for Exercise 11.1:
+```{r}
+strength <- read.table("https://asta.math.aau.dk/datasets?file=strength.txt", header = TRUE)
+head(strength)
+```
+
+You should answer the exercise by an analysis in RStudio.
+
+Start by making relevant plot(s).
+```{r}
+## Write plot command(s) here. Hint: gf_point could be relevant...
+gf_point(dynamicLift ~armStrength, data = strength)
+```
+
+Then fit the linear model in R:
+
+```{r}
+model = lm( dynamicLift ~ armStrength, data = strength)
+summary(model)
+```
+
+Now answer questions 11.1 (a) - (b) and 11.15.
+We can read the slope and intercept directly from the linear model, here we find them to be
+11.1 (a)
+b0 = intercept = 64.3944
+b1 = slope = 0.5645
+```{r}
+b0 <- 64.3944
+b1 <- 0.5645
+```
+
+11.1 b
+We evaluate the function at x = 30, and get $\mu_{y|30} = 64.3944+30*0.5645$
+```{r}
+b0+b1*30
+```
+11.15 a
+```{r}
+res<- resid(model)
+SSE <- sum(res^2)
+s_sq <- SSE/(length(res)-2)
+s_sq
+```
+11.15 b
+To test that the true b0 = 0, we say that H0: b0 = 0 and test this.
+the linear model gives this output directly in the sumary and we can see that it has a probability of 0.0515 with a 
+t-score of 2.054.
+We do not have enough evidence to reject H0, and thus we cannot say with 95% certainty that there is a correlation from x to y.
+
+
+You can visualize the regression line by filling out the following code:
+```{r}
+plotModel(model)
+```
+
+
+
+In Exercise 11.44 (a), you need to find the correlation.
+```{r}
+## Write a command like: cor( ??? )
+r <- cor(dynamicLift ~ armStrength, data = strength)
+r
+```
+
+What does this correlation tell you?
+It gives a measure of how much y and x correlate. It is standardized to the standard deviation of the y and x axis, making it
+indefferent to any changes in "numeric" value. r = 1 means they completly correlate, -1 means the same but for a falling slope etc.
+
+Find $R^2$ and interpret the result.
+R squared in this case of only one input variable is simply the correlation coeffecient squared
+thus we get
+```{r}
+r_sq <-r^2
+r_sq
+```
+
