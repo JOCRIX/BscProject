@@ -76,7 +76,11 @@ uint8_t FloatToString(float input, char *output){
 
 float ConvertADCVoltage(uint16_t rawADC){
 	//Resolution = (VREFOUT * 2)/2^16 = 0.000125
-	float res = 0.000125;
+	//float res = 0.000125;
+	//With 5V supply Resolution = 0.000250
+	//float res = 0.00025;
+	//With 5V Supply and 5V external reference on REFOUT && REFIN grounded res = 0.0003055
+	float res = 0.0003055;
 	return (res * rawADC);
 }
 
