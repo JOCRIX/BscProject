@@ -1,14 +1,16 @@
 \subsection{Main Processor Interface} \label{subsec:MainProcessorInterface}
+This section will define the interface between the Microcontroller module and all other modules that can communicate with this module. The interface can be seen in table 
+\ref{tab:6_4_2MCUInterface}. In this talbe, ANFE refers to Analog Front End.
 \begin{table}[H]
     \begin{tabular}{|m{3.5em}|m{12.5em}|m{5em}|m{12.5em}|}
     \hline
     \textbf{Pins} &   \textbf{Type} & \textbf{Level} & \textbf{Description}  \\ \hline
-    0-15 & Parallel data bus IO & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
-    16 & Parallel data bus R/W & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
-    17 & Parallel data bus CLK & \SIQ{3.3}{\volt} LVTTL & FPGA $\leftarrow \rightarrow$ MCU comm. \\ \hline
-    18 & DC Bias Voltage for DAC & \SIQ{0}{\volt} - \SIQ{20}{\volt} & DC bias output. \\ \hline
-    19 & DC Bias On/Off & \SIQ{3.3}{\volt} LVTTL & On/Off switch for DC bias. \\ \hline
-    20-21 & UART RX/TX & \SIQ{3.3}{\volt} LVTTL & MCU $\leftarrow \rightarrow$ UI \SIQ{115.2}{\kilo\bit} \\ \hline
+    0-15 & Parallel data bus IO, 0 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Data and address bus for MCU and FPGA. \nl FPGA $\leftarrow \rightarrow$ MCU. \\ \hline
+    16 & Parallel data bus R/W & \SIQ{3.3}{\volt} \nl LVTTL & Read or write data to/from the FPGA. \nl FPGA $\leftarrow$ MCU. \\ \hline
+    17 & Parallel data bus CLK & \SIQ{3.3}{\volt} \nl LVTTL & Clock for the data bus. \nl FPGA $\leftarrow$ MCU. \\ \hline
+    18 & DC Bias Voltage for DAC & \SIQ{0}{\volt} - \SIQ{20}{\volt} & DC bias output \nl ANFE $\leftarrow$ MCU. \\ \hline
+    19 & DC Bias On/Off & \SIQ{3.3}{\volt} \nl LVTTL & On/Off switch for DC bias. \\ \hline
+    20-21 & UART RX/TX & \SIQ{3.3}{\volt} \nl LVTTL & MCU $\leftarrow \rightarrow$ UI \SIQ{115.2}{\kilo\bit} \\ \hline
     \end{tabular}
     \caption{Table to test captions and labels.}
     \label{tab:6_4_2MCUInterface}

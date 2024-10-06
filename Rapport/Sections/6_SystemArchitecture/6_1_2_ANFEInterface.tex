@@ -1,22 +1,27 @@
 \subsection{Analog Front End Interface} \label{subsec:AnalogFrontEndInterface}
+This section will define the interface between the Analog Front End and all other modules that can communicate with this module. The interface can be seen in table 
+\ref{tab:6_1_2ANFEInterface}. In this talbe, ANFE refers to Analog Front End, PGA refers to Programable Amplifier and KC refers to Kelvin Connection.
 
 \begin{table}[H]
     \begin{tabular}{|m{3.5em}|m{12.5em}|m{5em}|m{12.5em}|}
     \hline
     \textbf{Pins} &   \textbf{Type} & \textbf{Level} & \textbf{Description}  \\ \hline
-    0-1 & ADC CLK & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 CLK input \\ \hline
-    2-3 & ADC DATA & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 DATA output. \\ \hline 
-    4 & ADC CNV & \SIQ{2.5}{\volt} LVCMOS & ADC1, ADC2 Trigger pulse. \\
+    0-1 & ADC CLK & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 CLK input. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+    2-3 & ADC DATA & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 DATA output. \nl ANFE $\rightarrow$ FPGA. \\ \hline 
+    4 & ADC CNV & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 Trigger. \nl ANFE $\leftarrow$ FPGA. \\
     \hline
-    5-7 & Voltage PGA gain & \SIQ{3.3}{\volt} LVTTL & PGA gain \\ \hline
-    8-10 & Current PGA gain & \SIQ{3.3}{\volt} LVTTL & PGA gain \\ \hline
-    11-13 & Range setting & \SIQ{3.3}{\volt} LVTTL & Range setting \\ \hline
-    14-29 & DAC Data & \SIQ{3.3}{\volt} LVTTL & Data for DAC \\ \hline
-    30 & DAC CLK & \SIQ{3.3}{\volt} LVTTL & CLK for DAC \\ \hline
-    31-34 & 4 wire kelvin connection & TBD & 4 wire BNC connection \\ \hline
-    35 & DC Bias level & \SIQ{0}{\volt} - \SIQ{20}{\volt} & DC voltage for bias. \\ \hline
+    5-7 & PGA1 gain, 5 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Setting for voltage PGA. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+    8-10 & PGA2 gain, 8 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Setting for current PGA. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+    11-13 & Range, 11 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Range setting. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+    14-29 & DAC Data , 14 is lsb& \SIQ{3.3}{\volt} \nl LVTTL & Data for DAC. \nl ANFE $\leftarrow$ FPGA.\\ \hline
+    30 & DAC CLK & \SIQ{3.3}{\volt} \nl LVTTL & CLK for DAC. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+    31 & $H_{Cur}$ of kelvin connection & TBD & Current output to KC. \nl ANFE $\rightarrow$ KC. \\ \hline
+    32 & $H_{Pot}$ of kelvin connection & TBD & Postive sence wire. \nl ANFE $\leftarrow$ KC. \\ \hline
+    33 & $L_{POT}$ of kelvin connection & TBD & Negative sence wire. \nl ANFE $\leftarrow$ KC. \\ \hline
+    34 & $L_{Cur}$ of kelvin connection & TBD & Current return from KC. \nl ANFE $\leftarrow$ KC. \\ \hline
+    35 & DC Bias level & \SIQ{0}{\volt} - \SIQ{20}{\volt} & DC voltage for bias. \nl ANFE $\leftarrow$ MCU. \\ \hline
     \end{tabular}
-    \caption{Table to test captions and labels.}
+    \caption{Table of the connections to and from the Analog Front End.}
     \label{tab:6_1_2ANFEInterface}
   \end{table}
 

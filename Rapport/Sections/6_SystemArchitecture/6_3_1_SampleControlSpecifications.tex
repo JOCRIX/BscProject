@@ -1,5 +1,5 @@
 \subsection{Sample Control Specifications} \label{subsec:SampleControlSpec}
-
+This section will define the requirements given for the Sample Control module (FPGA).
 \begin{table}[H]
     \begin{tabular}{|m{3.5em}|m{30em}|}
     \hline
@@ -17,16 +17,11 @@
       §6.3.11 & The ADC sample rate must be configurable through a \nl programmable 32 bit resister (may be 2 shared 16 bit registers). \\ \hline
       §6.3.12 & The amount of samples acquired must be configurable through a programmable 16 bit register. \\ \hline
       §6.3.13 & The DAC output frequency must be configurable through a programmable 32 bit register (may be 2 shared 16 bit registers). \\ \hline
-      §6.3.14 & A 16 bit general purpose register shall trigger the n-samples of the ADC's at the defined sample rate. \\ \hline
+      §6.3.14 & A 16 bit general purpose register shall trigger the n-sample sequence of the ADC's at the defined sample rate. \\ \hline
       §6.3.15 & When the defined n-samples have been acquired, a bit shall
       be set in a register that is accessible through the sample control data bus. \\ \hline
 
     \end{tabular}
-    \caption*{
-      \raggedright
-      $\mathbf{^1}$ Impedance fit refers to the model used to represent the impedance, see section \refq{subsec:SeriesToParallel}.\\
-      $\mathbf{^2}$ The accuracy of the measured impedance magnitude, see section \ref{sec:ModulusArgumentAccuracy}. \\
-    }
     \caption{Table to test captions and labels.}
     \label{tab:6_3_1FPGASpec}
   \end{table}
