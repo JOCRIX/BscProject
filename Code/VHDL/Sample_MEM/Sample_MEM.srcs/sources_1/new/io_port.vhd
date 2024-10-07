@@ -33,21 +33,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity io_port is
   Port (
-    IO_PINS : inout std_logic_vector(15 downto 0);
+    IO_PINS : inout std_logic;
     RW : in std_logic;
     DATAIN : in std_logic;
-    DATAOUT : out std_logic;
-    CLK_IN : in std_logic;
-    CLK_OUT : out std_logic
-   )
+    DATAOUT : out std_logic
+   );
 end io_port;
 
 architecture Behavioral of io_port is
 
 begin
-CLK_OUT <= CLK_IN;
 
-DATABUS : process (RW, DATAIN, DATAOUT) is
+DATABUS : process (RW, DATAIN, IO_PINS) is
 begin
     if(RW = '1') then
         if(DATAIN = '1') then
