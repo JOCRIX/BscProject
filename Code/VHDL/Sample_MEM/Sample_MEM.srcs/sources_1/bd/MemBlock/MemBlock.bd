@@ -1,0 +1,49 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7a35tcpg236-1",
+      "gen_directory": "../../../../Sample_MEM.gen/sources_1/bd/MemBlock",
+      "name": "MemBlock",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.1"
+    },
+    "design_tree": {
+      "internal_ram_0": ""
+    },
+    "components": {
+      "internal_ram_0": {
+        "vlnv": "xilinx.com:module_ref:internal_ram:1.0",
+        "ip_revision": "1",
+        "xci_name": "MemBlock_internal_ram_0_0",
+        "xci_path": "ip\\MemBlock_internal_ram_0_0\\MemBlock_internal_ram_0_0.xci",
+        "inst_hier_path": "internal_ram_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "internal_ram",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "CLK": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "RW": {
+            "direction": "I"
+          },
+          "DATAIN": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "DATAOUT": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      }
+    }
+  }
+}
