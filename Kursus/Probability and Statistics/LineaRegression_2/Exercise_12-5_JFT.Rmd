@@ -1,0 +1,79 @@
+---
+title: "Exercise 12.5"
+author: ""
+date: ""
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+require(mosaic)   # Load additional packages here 
+
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+## Exercise 12.5
+
+Import data set for Exercise 12.5:
+```{r}
+power <- read.table("https://asta.math.aau.dk/datasets?file=power.txt", header = TRUE)
+head(power)
+```
+
+The dataset contains the following variables:
+- `consumption`: The monthly electrical power consumption of a chemical plant.
+- `temperature`: The ambient temperature.
+- `days`: The number of active days in the month.
+- `purity`: The average product purity.
+- `production`: The tons of product produced.
+
+Fit a multiple regression model with `consumption` as the response and `temperature`, `days`, `purity`, `production` as predictors and answer the following questions:
+  - Write down the prediction equation.
+  - What is the effect on the predicted response if the production is increased by 1 ton while all other variables are kept fixed?
+  - What is the interpretation of the intercept?
+  - Find R-squared. What is the interpretation of this?
+  - Make an overall F-test for the null-hypothesis that there is no effect of any of the predictors. What is your conclusion?
+  
+First we fit the data to a linear model using lm
+```{r}
+model <- lm(consumption ~ temperature+days+purity+production, data = power)
+summary(model)
+```
+The prediction equation is given as $\hat{y} \approx a+b_1x_1+b_2x_2+b_3x_3+b_4x_4$
+$\rightarrow \hat{y} \approx -102.713+0.605x_1+8.924x_2+1.437x_3+0.014x_4$
+
+The result on the predicted response, if all variables are fixed but production is x_4 pr. unit, and as we increase by
+1 unit, the increase is 1 ton, assuming that production is in tons, the prediction is increased by 1*0.014 = 0.014.
+
+The intercept indicates the response when all variables are at zero. An example could be a 4-20 mA load cell, where the intercept 
+is the output current of the load cell when no load is applied to it.
+In this case, it will be the consumption when temperature is 0, days is 0, purity is 0 and production is 0. 
+It is the mean response when all predictors are equal to zero
+
+In our case, when when all predictor but x4 are kept fixed, we get a new intercept given as
+$\tilde{a} = a +b_1x_1+b_2x_2+b_3x_3$
+So one could imagine that if we "freeze frame" at some predictor values of all but x4, the intercept would be the baseline, such that
+the intercept would be the consumption with all these fixed predictors, and varying x4 around 0 allows us to see how this baseline
+consumption varies with the predictor not fixed.
+
+R-squared is 0.745, as found in the summary of the model.
+```{r}
+anova(model)
+```
+The ANOVA test compares the populations means. It is an analysis of variance, and as such is F-distributed. We see that temperature
+clearly has an effect, as we cannot prove it wrong under the null hypothesis that it has no influence, all the others can more
+or less be seen as being explained by statistical sampling.
+
+
