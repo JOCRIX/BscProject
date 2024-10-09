@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.tcl"
+  variable script "C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.tcl"
   variable category "vivado_synth"
 }
 
@@ -64,18 +64,18 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.cache/wt} [current_project]
-set_property parent.project_path {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.xpr} [current_project]
+set_property webtalk.parent_dir {C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.cache/wt} [current_project]
+set_property parent.project_path {C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.cache/ip} [current_project]
+set_property ip_output_repo {c:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd}
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd}
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd}
+  {C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd}
+  {C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd}
+  {C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd}
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -86,12 +86,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc}}
-set_property used_in_implementation false [get_files {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc}}]
+read_xdc {{C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc}}
+set_property used_in_implementation false [get_files {{C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp}
+read_checkpoint -auto_incremental -incremental {C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

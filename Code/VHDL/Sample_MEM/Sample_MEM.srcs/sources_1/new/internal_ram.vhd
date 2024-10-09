@@ -44,75 +44,52 @@ architecture Behavioral of internal_ram is
 type BLOCKRAM is array(23 downto 0) of std_logic_vector(15 downto 0); --24x16 block ram type deklarering
 signal RAM : BLOCKRAM := (others => (others => '0')); --Generer block ram som signal og nulstil, aka nu har vi noget ram at skrive/læse til/fra
 
-signal ADDRBUF : integer range 0 to 23;
-signal stage : integer range 0 to 1 := 0;
+
+signal ADDRBUF_READ : integer range 0 to 23;
+signal ADDRBUF_WRITE : integer range 0 to 23;
+
+signal stage_readmem : integer range 0 to 1 := 0;
+signal stage_writemem : integer range 0 to 1 := 0;
 
 constant WRITE : std_logic := '0'; --Vi kan bruge WRITE/READ som kontrol ord i koden.
 constant READ : std_logic := '1';
 
 begin
 
-READMEMORY : process (CLK, RW, TORAM, stage) is
+READMEMORY : process (CLK, RW, TORAM, stage_readmem) is
 begin
-if(RW = read and stage = 0) then
-    if(rising_edge(CLK)) then
-        ADDRBUF <= to_integer(unsigned(TORAM));
+    if(rising_edge(clk)) then
+        if (RW = READ) then
+            if(stage_readmem = 0) then
+                --On rising edge save TORAM address in ADDRBUF
+                ADDRBUF_READ <= to_integer(unsigned(TORAM));
+                --Change stage to 1.
+                stage_readmem <= 1;
+                elsif(stage_readmem = 1) then
+                --On rising edge, get data from RAM using ADDRBUF 
+                TOPORT <= RAM(ADDRBUF_READ);
+                --reset stage to 0.
+                stage_readmem <= 0;
+            end if;
+        end if;
     end if;
-    if(falling_edge(CLK)) then
-        stage <= 1;
-    end if;
-    
-end if;
-
-if(RW = READ and stage =  1) then
-    if(rising_edge(CLK)) then
-    TOPORT <= RAM(ADDRBUF);
-    end if;
-    if(falling_edge(CLK)) then
-    stage <= 0;
-    end if;
-end if;
-
-
 end process;
 
-WRITEMEMORY : process (CLK, RW, TORAM, stage) is
+WRITEMEMORY : process (CLK, RW, TORAM, stage_writemem) is
 begin
-if(RW = WRITE and stage = 0) then
-    if(rising_edge(CLK)) then
-        ADDRBUF <= to_integer(unsigned(TORAM));
+    if(rising_edge(clk)) then
+        if(RW = WRITE) then
+            if(stage_writemem = 0) then
+            ADDRBUF_WRITE <= to_integer(unsigned(TORAM));
+            stage_writemem <= 1;
+            elsif(stage_writemem = 1) then
+            RAM(ADDRBUF_WRITE) <= TORAM;
+            stage_writemem <= 0;
+            end if;
+        end if;
     end if;
-    if(falling_edge(CLK)) then
-    stage <= 1;
-    end if;
-end if;
 
-if(RW = WRITE and stage = 1) then
-    if(rising_edge(CLK)) then
-    RAM(ADDRBUF) <= TORAM;
-    end if;
-    if(falling_edge(CLK)) then
-    stage <= 0;
-    end if;
-end if;
 end process;
---MemoryControl : process (CLK, RW, DATAIN) is
-  --  begin
-   -- if(rising_edge(CLK)) then
-   --   ADDRBUF <= to_integer(unsigned(DATAIN));
-   -- end if;
-   -- if(falling_edge(CLK)) then
-    --    if(RW = READ)then
-    --    DATAOUT <= RAM(ADDRBUF);
-    --    ADDRBUF <= 0;
-    --    elsif (RW = WRITE) then
-     --   RAM(ADDRBUF) <= DATAIN;
-     --   ADDRBUF <= 0;
-    --    end if;
-    --nd if;
---end process;
-
-
 
 end Behavioral;
 
