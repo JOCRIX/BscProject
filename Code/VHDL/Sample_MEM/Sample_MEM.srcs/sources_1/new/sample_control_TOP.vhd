@@ -33,7 +33,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity sample_control_TOP is
   Port (
-        CLK_EXT : in std_logic;
+        CLK_EXT : in std_logic := '0';
         RW_EXT : in std_logic;
         IO_PINS_EXT : inout std_logic_vector(15 downto 0)     
   );
@@ -41,14 +41,14 @@ end sample_control_TOP;
 
 architecture rtl of sample_control_TOP is
 --Internal signals
-    signal CLK_internal : std_logic;
-    signal RW_internal : std_logic;
-    signal TOPORT_internal : std_logic_vector(15 downto 0);
-    signal TORAM_internal : std_logic_vector(15 downto 0); 
-    signal IO_PINS_internal : std_logic_vector(15 downto 0);
+    signal CLK_internal : std_logic := '0';
+    signal RW_internal : std_logic := '0';
+    signal TOPORT_internal : std_logic_vector(15 downto 0) := (others => '0');
+    signal TORAM_internal : std_logic_vector(15 downto 0):= (others => '0'); 
+    signal IO_PINS_internal : std_logic_vector(15 downto 0):= (others => '0');
 
 --Component declarations
-component io_port
+component comm_port
       Port (
     IO_PINS : inout std_logic;
     RW : in std_logic;
@@ -56,7 +56,7 @@ component io_port
     TOPORT : in std_logic;
     TORAM : out std_logic
    );
-end component io_port;
+end component comm_port;
 
 component internal_ram
   Port (
@@ -73,19 +73,29 @@ begin
      --RW_internal <= RW_EXT;
 
 --Generate 16 instances of the IO buffer (io_port) component
-gen_io_bufs : for index in 0 to 15 generate
-    io_buf : io_port
-    port map(
-      RW => RW_EXT,--RW_internal,--RW_EXT,
+--gen_io_bufs : for index in 0 to 15 generate
+ --   io_buf : comm_port
+ --   port map(
+ --     RW => RW_EXT,--RW_internal,--RW_EXT,
       --DATAIN => DataIn_internal(index),
       --DATAOUT => DataOut_internal(index),
-      CLK => CLK_EXT,
-      TOPORT => TOPORT_internal(index),
-      TORAM => TORAM_internal(index),
-      IO_PINS => IO_PINS_EXT(index)
-    );
-end generate gen_io_bufs;
+  --    CLK => CLK_EXT,
+  --    TOPORT => TOPORT_internal(index),
+  --    TORAM => TORAM_internal(index),
+  --    IO_PINS => IO_PINS_EXT(index)
+  --  );
+--end generate gen_io_bufs;
 
+gen_comm_port : for index in 0 to 15 generate
+    commport : comm_port
+        port map(
+        CLK => CLK_EXT,
+        RW => RW_EXT,
+        IO_PINS => IO_PINS_EXT(index),
+        TOPORT => TOPORT_internal(index),
+        TORAM => TORAM_internal(index)
+);
+end generate gen_comm_port;
 
 ram : internal_ram 
     port map(
