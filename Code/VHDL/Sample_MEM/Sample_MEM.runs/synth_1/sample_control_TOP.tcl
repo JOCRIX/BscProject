@@ -67,7 +67,7 @@ set_param synth.vivado.isSynthRun true
 set_property webtalk.parent_dir {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.cache/wt} [current_project]
 set_property parent.project_path {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
-set_property target_language Verilog [current_project]
+set_property target_language VHDL [current_project]
 set_property ip_output_repo {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
