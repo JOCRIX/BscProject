@@ -1,6 +1,5 @@
 \section{Main Processor} \label{sec:MainProcessor}
-
-The stored samples inside the sample control module will be retrieved by the main processor module through a parallel bus. The main processor module will perform spectral analysis on the samples and use these calculations to retrieve the magnitude and phase of the impedance. The module will then calculate all the derived quantities described in section \refq{subsec:DerivedQuantities} and transmit them to the UI module. The main processor module is shown on figure \refq{fig_6_4_MainprocessorModule}.
+The stored samples inside the sample control module will be retrieved by the main processor module through a parallel bus. The main processor module will perform spectral analysis (DFT) on the samples and use these calculations to retrieve the magnitude and phase of the impedance. The module will then calculate all the derived quantities described in section \refq{subsec:DerivedQuantities} and transmit them to the UI module. The main processor module is shown on figure \refq{fig_6_4_MainprocessorModule}.
 
 \begin{figure}[H]
     \centering
