@@ -3,28 +3,27 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Oct  9 15:01:53 2024
-# Process ID: 31408
-# Current directory: C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1
+# Start of session at: Sun Oct 13 01:10:23 2024
+# Process ID: 27476
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1
 # Command line: vivado.exe -log sample_control_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sample_control_TOP.tcl
-# Log file: C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.vds
-# Journal file: C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1\vivado.jou
-# Running On        :LAPTOP-EVQDCN9M
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.vds
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
 # Platform          :Windows Server 2016 or Windows 10
-# Operating System  :22631
-# Processor Detail  :Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
-# CPU Frequency     :2592 MHz
-# CPU Physical cores:6
-# CPU Logical cores :12
-# Host memory       :17022 MB
-# Swap memory       :9542 MB
-# Total Virtual     :26565 MB
-# Available Virtual :4997 MB
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :8053 MB
+# Total Virtual     :42165 MB
+# Available Virtual :21794 MB
 #-----------------------------------------------------------
 source sample_control_TOP.tcl -notrace
-create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 514.629 ; gain = 200.375
-Command: read_checkpoint -auto_incremental -incremental {C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp}
-INFO: [Vivado 12-5825] Read reference checkpoint from C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp for incremental synthesis
+Command: read_checkpoint -auto_incremental -incremental {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top sample_control_TOP -part xc7a35tcpg236-1 -keep_equivalent_registers -no_lc -no_srlextract -assert
 Starting synth_design
@@ -36,79 +35,96 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 43908
+INFO: [Synth 8-7075] Helper process launched with PID 18160
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 1368.383 ; gain = 448.594
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1384.031 ; gain = 449.160
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'sample_control_TOP' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:42]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-638] synthesizing module 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:44]
-INFO: [Synth 8-256] done synthesizing module 'io_port' (0#1) [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:44]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'io_port' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/io_port.vhd:34' bound to instance 'io_buf' of component 'io_port' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:77]
-INFO: [Synth 8-3491] module 'internal_ram' declared at 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:34' bound to instance 'ram' of component 'internal_ram' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:90]
-INFO: [Synth 8-638] synthesizing module 'internal_ram' [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:43]
-INFO: [Synth 8-256] done synthesizing module 'internal_ram' (0#1) [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:43]
-INFO: [Synth 8-256] done synthesizing module 'sample_control_TOP' (0#1) [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:42]
+INFO: [Synth 8-638] synthesizing module 'sample_control_TOP' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:43]
+INFO: [Synth 8-3491] module 'logic_reset' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/logic_reset.vhd:34' bound to instance 'logic_resetter' of component 'logic_reset' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:83]
+INFO: [Synth 8-638] synthesizing module 'logic_reset' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/logic_reset.vhd:42]
+INFO: [Synth 8-256] done synthesizing module 'logic_reset' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/logic_reset.vhd:42]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-638] synthesizing module 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:45]
+INFO: [Synth 8-256] done synthesizing module 'comm_port' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:45]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:36' bound to instance 'commport' of component 'comm_port' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:91]
+INFO: [Synth 8-3491] module 'internal_ram' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:39' bound to instance 'ram' of component 'internal_ram' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-638] synthesizing module 'internal_ram' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:50]
+INFO: [Synth 8-256] done synthesizing module 'internal_ram' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:50]
+INFO: [Synth 8-256] done synthesizing module 'sample_control_TOP' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:43]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:19 . Memory (MB): peak = 1478.750 ; gain = 558.961
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1494.359 ; gain = 559.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1478.750 ; gain = 558.961
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1494.359 ; gain = 559.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1478.750 ; gain = 558.961
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1494.359 ; gain = 559.488
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1478.750 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1494.359 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]
-Finished Parsing XDC File [C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]
+Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]
+Finished Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/sample_control_TOP_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/sample_control_TOP_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1581.637 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1522.914 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1581.637 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1522.914 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:33 ; elapsed = 00:00:41 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:33 ; elapsed = 00:00:41 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:41 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 's_reset_reg' in module 'logic_reset'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  r_clk1 |                               00 |                               00
+                  r_clk2 |                               01 |                               01
+                  r_clk3 |                               10 |                               10
+             reset_trigd |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_reset_reg' using encoding 'sequential' in module 'logic_reset'
+WARNING: [Synth 8-327] inferring latch for variable 'TORAM_reg' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:61]
+WARNING: [Synth 8-327] inferring latch for variable 'IO_reg' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:56]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:33 ; elapsed = 00:00:42 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -116,12 +132,13 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Registers : 
 	               16 Bit    Registers := 1     
-	                5 Bit    Registers := 1     
-	                1 Bit    Registers := 66    
+	                1 Bit    Registers := 3     
 +---RAMs : 
-	              384 Bit	(24 X 16 bit)          RAMs := 1     
+	              512 Bit	(32 X 16 bit)          RAMs := 1     
 +---Muxes : 
-	   2 Input    1 Bit        Muxes := 96    
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 21    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -138,35 +155,20 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[0].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[1].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[2].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[3].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[4].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[5].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[6].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[7].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[8].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[9].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[10].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[11].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[12].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[13].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[14].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
-WARNING: [Synth 8-3332] Sequential element (gen_io_bufs[15].io_buf/stage[0]_P) is unused and will be removed from module sample_control_TOP.
+WARNING: [Synth 8-3332] Sequential element (gen_comm_port[15].commport/IO_reg) is unused and will be removed from module sample_control_TOP.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:38 ; elapsed = 00:00:47 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 Distributed RAM: Preliminary Mapping Report (see note below)
-+-------------------+-------------+-----------+----------------------+-------------+
-|Module Name        | RTL Object  | Inference | Size (Depth x Width) | Primitives  | 
-+-------------------+-------------+-----------+----------------------+-------------+
-|sample_control_TOP | ram/RAM_reg | Implied   | 32 x 16              | RAM32M x 3  | 
-+-------------------+-------------+-----------+----------------------+-------------+
++-------------------+-------------+-----------+----------------------+----------------+
+|Module Name        | RTL Object  | Inference | Size (Depth x Width) | Primitives     | 
++-------------------+-------------+-----------+----------------------+----------------+
+|sample_control_TOP | ram/RAM_reg | Implied   | 32 x 16              | RAM32X1S x 16  | 
++-------------------+-------------+-----------+----------------------+----------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 ---------------------------------------------------------------------------------
@@ -176,24 +178,24 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:49 ; elapsed = 00:01:02 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:01:02 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 Distributed RAM: Final Mapping Report
-+-------------------+-------------+-----------+----------------------+-------------+
-|Module Name        | RTL Object  | Inference | Size (Depth x Width) | Primitives  | 
-+-------------------+-------------+-----------+----------------------+-------------+
-|sample_control_TOP | ram/RAM_reg | Implied   | 32 x 16              | RAM32M x 3  | 
-+-------------------+-------------+-----------+----------------------+-------------+
++-------------------+-------------+-----------+----------------------+----------------+
+|Module Name        | RTL Object  | Inference | Size (Depth x Width) | Primitives     | 
++-------------------+-------------+-----------+----------------------+----------------+
+|sample_control_TOP | ram/RAM_reg | Implied   | 32 x 16              | RAM32X1S x 16  | 
++-------------------+-------------+-----------+----------------------+----------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -202,7 +204,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:50 ; elapsed = 00:01:02 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -220,37 +222,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:01 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:01 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:01 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:01 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:01 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:01 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -263,48 +265,48 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |BUFG   |     1|
-|2     |LUT1   |    16|
-|3     |LUT2   |    22|
-|4     |LUT3   |    48|
-|5     |LUT5   |    32|
-|6     |LUT6   |    16|
-|7     |RAM32M |     3|
-|8     |FDCE   |    32|
-|9     |FDPE   |    32|
-|10    |FDRE   |    60|
-|11    |LDC    |    32|
-|12    |IBUF   |     2|
-|13    |IOBUF  |    16|
-+------+-------+------+
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     2|
+|2     |CARRY4   |     2|
+|3     |LUT1     |    17|
+|4     |LUT2     |    30|
+|5     |LUT3     |     4|
+|6     |RAM32X1S |    16|
+|7     |FDCE     |     1|
+|8     |FDRE     |    25|
+|9     |LD       |    32|
+|10    |IBUF     |     2|
+|11    |IOBUF    |    16|
+|12    |OBUF     |     1|
++------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:01 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 17 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:42 ; elapsed = 00:01:11 . Memory (MB): peak = 1581.637 ; gain = 558.961
-Synthesis Optimization Complete : Time (s): cpu = 00:01:01 ; elapsed = 00:01:16 . Memory (MB): peak = 1581.637 ; gain = 661.848
+Synthesis finished with 0 errors, 0 critical warnings and 4 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:16 . Memory (MB): peak = 1522.914 ; gain = 559.488
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1522.914 ; gain = 588.043
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1581.637 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 51 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1522.914 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 66 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1581.637 ; gain = 0.000
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 16 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1522.914 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 51 instances were transformed.
+  A total of 64 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 16 instances
-  LDC => LDCE: 32 instances
-  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 3 instances
+  LD => LDCE: 16 instances
+  LD => LDCE (inverted pins: G): 16 instances
+  RAM32X1S => RAM32X1S (RAMS32): 16 instances
 
-Synth Design complete | Checksum: 1aab4a64
+Synth Design complete | Checksum: 19c8c887
 INFO: [Common 17-83] Releasing license: Synthesis
-44 Infos, 17 Warnings, 0 Critical Warnings and 0 Errors encountered.
+50 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:11 ; elapsed = 00:01:29 . Memory (MB): peak = 1581.637 ; gain = 1063.324
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1581.637 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/EIT GIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1522.914 ; gain = 988.891
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1522.914 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file sample_control_TOP_utilization_synth.rpt -pb sample_control_TOP_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Oct  9 15:03:45 2024...
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 13 01:10:50 2024...

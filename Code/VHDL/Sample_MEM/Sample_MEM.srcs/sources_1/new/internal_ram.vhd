@@ -31,65 +31,72 @@ use ieee.numeric_std.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
+-- Remember to check for Pullups / Pulldowns on unused IO pins during testing if some are left open!
+-- You WILL have issues if you don't control their state when you leave them open.
+-- I.e. you write to address "010" on the MCU because you only want to test with 3 pins, but you left PULLUPS activated 
+-- On the remaining pins. You will write to an address you don't intend to and you will not realize it!! REMEMBER!!
+
 entity internal_ram is
   Port (
-        CLK : in std_logic;
-        RW : in std_logic;
-        TORAM : in std_logic_vector(15 downto 0);
-        TOPORT : out std_logic_vector(15 downto 0)
+        CLK         : in std_logic  := '0';
+        RW          : in std_logic  := '0';
+        FSM_RESET   :in std_logic := '0';
+        TORAM : in std_logic_vector(15 downto 0) := (others => '0');
+        TOPORT : out std_logic_vector(15 downto 0) := (others => '0')
+        
    );
 end internal_ram;
 
 architecture Behavioral of internal_ram is
-type BLOCKRAM is array(23 downto 0) of std_logic_vector(15 downto 0); --24x16 block ram type deklarering
-signal RAM : BLOCKRAM := (others => (others => '0')); --Generer block ram som signal og nulstil, aka nu har vi noget ram at skrive/læse til/fra
 
-
-signal ADDRBUF_READ : integer range 0 to 23;
-signal ADDRBUF_WRITE : integer range 0 to 23;
-
-signal stage_readmem : integer range 0 to 1 := 0;
-signal stage_writemem : integer range 0 to 1 := 0;
-
-constant WRITE : std_logic := '0'; --Vi kan bruge WRITE/READ som kontrol ord i koden.
+constant MAX_ADDRESS : integer := 31;
+constant WRITE : std_logic := '0'; 
 constant READ : std_logic := '1';
 
-begin
 
-READMEMORY : process (CLK, RW, TORAM, stage_readmem) is
+type BLOCKRAM is array(MAX_ADDRESS downto 0) of std_logic_vector(15 downto 0); --32x16 block ram type deklarering
+signal RAM : BLOCKRAM := (others => (others => '0')); --Generer block ram som signal og nulstil, aka nu har vi noget ram at skrive/læse til/fra
+
+signal ADDRESS : integer range 0 to MAX_ADDRESS;
+
+type state_mem is (SET_ADDR, SET_DATA);
+signal state : state_mem := SET_ADDR; 
+
 begin
-    if(rising_edge(clk)) then
-        if (RW = READ) then
-            if(stage_readmem = 0) then
-                --On rising edge save TORAM address in ADDRBUF
-                ADDRBUF_READ <= to_integer(unsigned(TORAM));
-                --Change stage to 1.
-                stage_readmem <= 1;
-                elsif(stage_readmem = 1) then
-                --On rising edge, get data from RAM using ADDRBUF 
-                TOPORT <= RAM(ADDRBUF_READ);
-                --reset stage to 0.
-                stage_readmem <= 0;
-            end if;
+--If MCU write to RAM: First set RW = '0' (Write mode). Set address to I/O pins. CLK once.
+--Write Address CLK's into RAM on first rising edge. Next, set DATA on I/O pins. CLK once. 
+--Data is clocked into ADDRESS on second rising edge. (2 CLK's total)
+
+--If MCU reads from RAM: First set RW = '0' (Write mode). Set address to I/O pins. CLK once.
+--Read address CLK's into RAM on first rising edge. Next, set RW = '1' (Read mode).
+--Set MCU Pins to INPUT(High-Z). CLK once.
+--Data from RAM is clocked to I/O pins on second rising edge. (2 CLK's total)
+--The I/O pins will need pull-up resistors.
+memoryFSM : process (CLK, RW, ADDRESS, FSM_RESET) is
+begin
+    if(rising_edge(CLK)) then
+        if(RW = READ) then
+            TOPORT <= RAM(ADDRESS);
+            state <= SET_ADDR;
+        elsif(RW = WRITE) then
+            case state is
+               when SET_ADDR =>
+                      if(to_integer(unsigned(TORAM)) <= MAX_ADDRESS) then
+                      ADDRESS <= to_integer(unsigned(TORAM));
+                      TOPORT <= (others => '0');
+                      state <= SET_DATA;
+                      end if;
+                when SET_DATA =>
+                      RAM(ADDRESS) <= TORAM;
+                      state <= SET_ADDR;
+               end case;
         end if;
+    end if;
+    if(FSM_RESET = '1') then --Used to reset the RAM FSM on initial boot-up. 
+        state <= SET_ADDR;   --..MCU occasionally does weird stuff when booting and will trigger the RAM.
     end if;
 end process;
 
-WRITEMEMORY : process (CLK, RW, TORAM, stage_writemem) is
-begin
-    if(rising_edge(clk)) then
-        if(RW = WRITE) then
-            if(stage_writemem = 0) then
-            ADDRBUF_WRITE <= to_integer(unsigned(TORAM));
-            stage_writemem <= 1;
-            elsif(stage_writemem = 1) then
-            RAM(ADDRBUF_WRITE) <= TORAM;
-            stage_writemem <= 0;
-            end if;
-        end if;
-    end if;
-
-end process;
 
 end Behavioral;
 

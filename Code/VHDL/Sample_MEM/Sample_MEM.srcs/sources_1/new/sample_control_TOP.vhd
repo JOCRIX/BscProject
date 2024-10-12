@@ -33,64 +33,75 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity sample_control_TOP is
   Port (
-        CLK_EXT : in std_logic;
+        CLK_EXT : in std_logic := '0';
         RW_EXT : in std_logic;
-        IO_PINS_EXT : inout std_logic_vector(15 downto 0)     
+        TEST_RESET : out std_logic;
+        IO_PINS_EXT : inout std_logic_vector(15 downto 0)   
   );
 end sample_control_TOP;
 
 architecture rtl of sample_control_TOP is
 --Internal signals
-    signal CLK_internal : std_logic;
-    signal RW_internal : std_logic;
-    signal TOPORT_internal : std_logic_vector(15 downto 0);
-    signal TORAM_internal : std_logic_vector(15 downto 0); 
-    signal IO_PINS_internal : std_logic_vector(15 downto 0);
-
+    signal CLK_internal : std_logic := '0';
+    signal RW_internal : std_logic := '0';
+    signal TOPORT_internal : std_logic_vector(15 downto 0) := (others => '0');
+    signal TORAM_internal : std_logic_vector(15 downto 0):= (others => '0'); 
+    signal IO_PINS_internal : std_logic_vector(15 downto 0):= (others => '0');
+    signal LOGIC_RESET_internal : std_logic := '0';
 --Component declarations
-component io_port
+component comm_port
       Port (
-    IO_PINS : inout std_logic;
+    IO : inout std_logic;
     RW : in std_logic;
-    CLK : in std_logic;
     TOPORT : in std_logic;
     TORAM : out std_logic
    );
-end component io_port;
+end component comm_port;
 
 component internal_ram
   Port (
         CLK : in std_logic;
         RW : in std_logic;
+        FSM_RESET : in std_logic;
         TORAM : in std_logic_vector(15 downto 0);
         TOPORT : out std_logic_vector(15 downto 0)
    );
    end component internal_ram;
-    
+   
+component logic_reset
+      Port (
+        CLK : in std_logic;
+        RW : in std_logic;
+        RESET : out std_logic := '0'
+   );   
+end component logic_reset;
+
 begin
 
-     --CLK_internal <= CLK_EXT;
-     --RW_internal <= RW_EXT;
+TEST_RESET <= LOGIC_RESET_internal;
 
---Generate 16 instances of the IO buffer (io_port) component
-gen_io_bufs : for index in 0 to 15 generate
-    io_buf : io_port
+logic_resetter : logic_reset
     port map(
-      RW => RW_EXT,--RW_internal,--RW_EXT,
-      --DATAIN => DataIn_internal(index),
-      --DATAOUT => DataOut_internal(index),
-      CLK => CLK_EXT,
-      TOPORT => TOPORT_internal(index),
-      TORAM => TORAM_internal(index),
-      IO_PINS => IO_PINS_EXT(index)
+    RW => RW_EXT,
+    CLK => CLK_EXT,
+    RESET => LOGIC_RESET_internal
     );
-end generate gen_io_bufs;
 
+gen_comm_port : for index in 0 to 15 generate
+    commport : comm_port
+        port map(
+        RW => RW_EXT,
+        IO => IO_PINS_EXT(index),
+        TOPORT => TOPORT_internal(index),
+        TORAM => TORAM_internal(index)
+);
+end generate gen_comm_port;
 
 ram : internal_ram 
     port map(
-    CLK => CLK_EXT,--CLK_internal,
-    RW => RW_EXT,--RW_internal,
+    CLK => CLK_EXT,
+    FSM_RESET => LOGIC_RESET_internal,
+    RW => RW_EXT,
     TOPORT => TOPORT_internal,
     TORAM => TORAM_internal
 );

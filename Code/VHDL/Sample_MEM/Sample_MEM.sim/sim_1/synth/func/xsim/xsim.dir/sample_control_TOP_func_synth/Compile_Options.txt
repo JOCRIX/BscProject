@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "sample_control_TOP_func_synth" "xil_defaultlib.sample_control_TOP" -log "elaborate.log" 

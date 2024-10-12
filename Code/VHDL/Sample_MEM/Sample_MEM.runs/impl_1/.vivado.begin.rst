@@ -8,3 +8,43 @@
     <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="3692" HostCore="24" HostMemory="034112311296">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="23936" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="13240" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="22020" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="7220" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="20116" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="14156" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="15416" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="13328" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
