@@ -1,203 +1,186 @@
-#define BIT0 22
-#define BIT1 24
-#define BIT2 26
-#define BIT3 30
-#define BIT4 32
-#define BIT5 34
-#define BIT6 36
-#define BIT7 38
-#define BIT8 40
-#define BIT9 42
-#define BIT10 44
-#define BIT11 46
-#define BIT12 48
-#define BIT13 50
-#define BIT14 52
-#define BIT15 54
+                        #define BI0 19
+#define BI1 24
+#define BI2 26
+#define BI3 30
+#define BI4 32
+#define BI5 34
+#define BI6 36
+#define BI7 38
+#define BI8 40
+#define BI9 42
+#define BI10 44
+#define BI11 46
+#define BI12 48
+#define BI13 50
+#define BI14 52
+#define BI15 54
 #define CLK 51
 #define RW 53
+#define btn 2
 
-uint8_t commPortArr[16] = {BIT0, BIT1, BIT2, BIT3, BIT4,
-                           BIT5, BIT6, BIT7, BIT8, BIT9,
-                           BIT10, BIT11, BIT12, BIT13, BIT14,
-                           BIT15};
+#define in 1
+#define out 2
+
+uint8_t commPortArr[16] = {BI0, BI1, BI2, BI3, BI4,
+                           BI5, BI6, BI7, BI8, BI9,
+                           BI10, BI11, BI12, BI13, BI14,
+                           BI15
+                          };
 
 
-uint16_t val1 = 0, val2 = 0;
-
+volatile uint8_t trig = 0;
+uint8_t count = 1;
+void Trig_ISR();
+void Clk();
+void SetPinValue(uint8_t val1, uint8_t val2, uint8_t val3);
+void SetPinsMode(uint8_t mode, uint8_t pin0, uint8_t pin1, uint8_t pin2);
 void setup() {
-  Serial.begin(115200);
-  SetInput();
-  pinMode(CLK, OUTPUT);
-  digitalWrite(CLK, 0);
+  Serial.begin(9600);
+  pinMode(btn, INPUT);
   pinMode(RW, OUTPUT);
-  digitalWrite(RW,0);
-  delay(5000);
+  digitalWrite(RW, 0);
+  pinMode(CLK, OUTPUT);
+  digitalWrite(CLK, LOW);
+  pinMode(BI0, OUTPUT);
+  pinMode(BI2, OUTPUT);
+
+
+  pinMode(BI1, OUTPUT);
+  digitalWrite(BI1, 0);
+  pinMode(BI2, OUTPUT);
+  digitalWrite(BI2, 0);
+  digitalWrite(BI0, 0);
+
+  pinMode(30, INPUT);
+  pinMode(34, INPUT);
+  pinMode(36, INPUT);
+  pinMode(38, INPUT);
+  pinMode(40, INPUT);
+  pinMode(42, INPUT);
+  pinMode(44, INPUT);
+  pinMode(46, INPUT);
+  pinMode(48, INPUT);
+  pinMode(50, INPUT);
+  pinMode(52, INPUT);
+  pinMode(54, INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(2), Trig_ISR, RISING);
+  // pinMode(CLK, OUTPUT);
+  // digitalWrite(CLK, 0);
+  // pinMode(RW, OUTPUT);
+  // digitalWrite(RW,0);
+  // delay(20000);
+  trig = 0;
 }
 
 void loop() {
-
-  //Write To Address 10, Data = 5
-
-  SetOutput();
-  delay(10);
-  digitalWrite(RW, 0);
-  //CLK address into RAM
-  digitalWrite(BIT1, 1);
-  digitalWrite(BIT3, 1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  SetAllZero();
-  //Set Data to IO
-  digitalWrite(BIT0, 1);
-  digitalWrite(BIT2, 1);
-    digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-    digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-    digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  
-  //Write to RAM complete
-  SetAllZero();
-  //Write To Address 7, Data = 71
-  delay(10);
-  digitalWrite(RW, 0);
-  //CLK address into RAM
-  digitalWrite(BIT0, 1);
-  digitalWrite(BIT1, 1);
-  digitalWrite(BIT2, 1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  SetAllZero();
-  //Set Data to IO
-  digitalWrite(BIT0, 1);
-  digitalWrite(BIT1, 1);
-  digitalWrite(BIT2, 1);
-  digitalWrite(BIT6, 1);
-  //CLK data into RAM
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  //Write to RAM complete
-  SetAllZero();
-  //Change to READ mode
-  digitalWrite(RW, 1);
-  
-  //Read back value in register 10 and print
-  //CLK address 10 into RAM
-  digitalWrite(BIT1, 1);
-  digitalWrite(BIT3, 1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-
-  //Address clocked. Change all OUTPUTS to INPUTS. EXTREMELY IMPORTANT!!
-  SetInput();
-  //CLK Data Out of RAM
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  //Data should be available on IO PINS
-  val1 = CommPortValue();
-
-  //Read back value in register 7 and print
-  //CLK address 7 into RAM
-  //Change to outputs first
-  SetOutput();
-  delay(1);
-  
-  digitalWrite(BIT0, 1);
-  digitalWrite(BIT1, 1);
-  digitalWrite(BIT2, 1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  SetAllZero();
-  //Address clocked, changed all outputs to inputs
-  SetInput();
-  //CLK data OUT of RAM.
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  digitalWrite(CLK, 1);
-  delay(1);
-  digitalWrite(CLK,0);
-  delay(1);
-  val2 = CommPortValue();
-
-  Serial.print("Register 10 Value: ");
-  Serial.print(val1);
-  Serial.println();
-
-  Serial.print("Register 7 Value: ");
-  Serial.print(val1);
-  Serial.println();
-
-  delay(30000);
-}
-
-void SetOutput(){
-for(int i = 0; i < 15; i++){
-  pinMode(commPortArr[i], OUTPUT);
+  if (count == 9) {
+    count = 1;
   }
-}
-void SetInput(){
-  delay(100);
-  for(int i = 0; i < 16; i++){
-  pinMode(commPortArr[i], INPUT);
-  }
-}
-void SetAllZero(){
-  for(int i = 0; i < 16; i++){
-  digitalWrite(commPortArr[i], 0);
-  }
-}
+  if (trig == 1) {
+    Serial.print("Count :");
+    Serial.print(count);
+    Serial.println();
+    delay(100);
+    trig = 0;
+    switch (count) {
+      case 1:
+        Serial.println("Case 1");
+        digitalWrite(RW, 0); //Write mode
+        pinMode(19, OUTPUT);
+        pinMode(24, OUTPUT);
+        pinMode(26, OUTPUT);
+        digitalWrite(19, 1);
+        digitalWrite(24, 1);
+        digitalWrite(26, 1);
+        count++;
 
-uint16_t CommPortValue(){
-  uint16_t value = 0;
+        break;
+      case 2:
+        Serial.println("Case 2");
+        Clk();
+        count++;
+        break;
 
-  for(int i = 0; i < 16; i++){
-    if(digitalRead(commPortArr[i]) == 1){
-      val1 += 1 << i;
+      case 3:
+        Serial.println("Case 3");
+        digitalWrite(19, 1);
+        digitalWrite(24, 0);
+        digitalWrite(26, 1);
+        count++;
+        break;
+      case 4:
+        Serial.println("Case 4");
+        Clk();
+        count++;
+        break;
+
+      //Lets read them back out
+      case 5:
+        Serial.println("Case 5");
+        digitalWrite(RW, 0); //Write mode for address
+        //SetPinsMode(out, BI0, BI1, BI2);
+        //SetPinValue(1, 1, 1); //Address 7
+        digitalWrite(19, 1);
+        digitalWrite(24, 1);
+        digitalWrite(26, 1);
+        count++;
+        break;
+      case 6:
+        Serial.println("Case 6");
+        Clk();
+        count++;
+        break;
+      case 7:
+        Serial.println("Case 7");
+        //SetPinsMode(in, BI0, BI1, BI2);
+        digitalWrite(RW, 1); //Write mode
+        pinMode(19, INPUT);
+        pinMode(24, INPUT);
+        pinMode(26, INPUT);
+        count++;
+        break;
+      case 8:
+        Serial.println("Case 8");
+        Clk();
+        count++;
+        //Value in address 7 should now be available
+        Serial.print("Value in Reg 7: ");
+        Serial.print(digitalRead(26));
+        Serial.print(digitalRead(24));
+        Serial.print(digitalRead(19));
+        Serial.println("Finished");
+        break;
+
     }
   }
+}
 
 
-  return value;
+void Trig_ISR() {
+  trig = 1;
+}
+
+void SetPinsMode(uint8_t mode, uint8_t pin0, uint8_t pin1, uint8_t pin2) {
+  if (mode = in) {
+    pinMode(pin0, INPUT);
+    pinMode(pin1, INPUT);
+    pinMode(pin2, INPUT);
+  } else if (mode = out) {
+    pinMode(pin0, OUTPUT);
+    pinMode(pin1, OUTPUT);
+    pinMode(pin2, OUTPUT);
+  }
+}
+
+void SetPinValue(uint8_t val1, uint8_t val2, uint8_t val3) {
+  digitalWrite(BI0, val1);
+  digitalWrite(BI1, val2);
+  digitalWrite(BI2, val3);
+}
+
+void Clk() {
+  digitalWrite(CLK, HIGH);
+  delay(1000);
+  digitalWrite(CLK, LOW);
 }
