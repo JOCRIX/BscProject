@@ -35,15 +35,7 @@ entity internal_ram is
   Port (
         CLK         : in std_logic  := '0';
         RW          : in std_logic  := '0';
-        TORAM : in std_logic_vector(15 downto 0) := (others => '0');
-        DEBUG0 : out std_logic := '0';
-        DEBUG1 : out std_logic := '0';
-        DEBUG2 : out std_logic := '0';
-        DEBUG3 : out std_logic := '0';
-        DEBUG4 : out std_logic := '0';
-        DEBUGLED : out std_logic;
-        DEBUGBTN : in std_logic;
-        
+        TORAM : in std_logic_vector(15 downto 0);    
         TOPORT : out std_logic_vector(15 downto 0) := (others => '0')
         
    );
@@ -62,16 +54,36 @@ signal RAM : BLOCKRAM := (others => (others => '0')); --Generer block ram som si
 signal ADDRESS : integer range 0 to MAX_ADDRESS;
 
 type m_state is (SET_ADDR, SET_DATA);
-signal r_Curr_State, r_Next_State : m_state; 
+signal state : m_state; 
 
 
 begin
 
-
-CurrentStateFSM : process (CLK) is 
+memoryFSM : process (CLK, RW) is
 begin
-    
+
+    if (rising_edge(CLK)) then
+        if(RW = READ) then
+            TOPORT <= RAM(ADDRESS);
+            state <= SET_ADDR;
+        elsif(RW = WRITE) then
+            case state is
+                when SET_ADDR =>
+                   if(to_integer(unsigned(TORAM)) <= MAX_ADDRESS) then
+                      ADDRESS <= to_integer(unsigned(TORAM));
+                      TOPORT <= (others => '0'); 
+                      state <= SET_DATA;
+                   end if;   
+                when SET_DATA =>
+                      RAM(ADDRESS) <= TORAM;
+                      state <= SET_ADDR;
+                end case;
+           end if;
+    end if;
 end process;
+
+end Behavioral;
+
 
 
 --memoryFSM : process (CLK, RW) is
@@ -97,13 +109,6 @@ end process;
 --        end if;
 --    end if;
 --end process;
-
-
-end Behavioral;
-
-
-
-
 
 
 

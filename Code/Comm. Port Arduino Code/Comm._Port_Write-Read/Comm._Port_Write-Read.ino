@@ -61,7 +61,7 @@ void setup() {
 }
 
 void loop() {
-  if(count == 16){
+  if(count == 17){
     count = 1;
   }
   if (trig == 1) {
@@ -199,9 +199,8 @@ count++;
         pinMode(19, INPUT);
         pinMode(24, INPUT);
         pinMode(26, INPUT);
-count++;
-
-        
+        count++;
+       
         break;
         case 16:
         Serial.println("Case 16");
@@ -213,7 +212,9 @@ count++;
         Serial.print(digitalRead(24));
         Serial.print(digitalRead(19));
         Serial.println("Finished");
+        count++;
         break;
+        
     }
   }
 }

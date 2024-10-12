@@ -221,18 +221,6 @@ set_property SLEW FAST [get_ports {IO_PINS_EXT[0]}]
 
 
 
-set_property PACKAGE_PIN V8 [get_ports DEBUG0_EXT]
-set_property PACKAGE_PIN U8 [get_ports DEBUG1_EXT]
-set_property PACKAGE_PIN W7 [get_ports DEBUG2_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports DEBUG0_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports DEBUG1_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports DEBUG2_EXT]
-
-set_property PACKAGE_PIN C16 [get_ports DEBUGLED_EXT]
-set_property PACKAGE_PIN A18 [get_ports DEBUGBTN_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports DEBUGBTN_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports DEBUGLED_EXT]
-
 
 set_property CONFIG_VOLTAGE 3.3 [current_design]
 set_property CFGBVS VCCO [current_design]
@@ -253,7 +241,3 @@ set_property OFFCHIP_TERM NONE [get_ports IO_PINS_EXT[3]]
 set_property OFFCHIP_TERM NONE [get_ports IO_PINS_EXT[2]]
 set_property OFFCHIP_TERM NONE [get_ports IO_PINS_EXT[1]]
 set_property OFFCHIP_TERM NONE [get_ports IO_PINS_EXT[0]]
-set_property PACKAGE_PIN B17 [get_ports DEBUG3_EXT]
-set_property PACKAGE_PIN G19 [get_ports DEBUG4_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports DEBUG3_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports DEBUG4_EXT]

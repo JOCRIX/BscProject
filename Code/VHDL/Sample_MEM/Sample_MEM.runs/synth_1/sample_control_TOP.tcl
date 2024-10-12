@@ -75,7 +75,6 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd}
   {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd}
   {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd}
 }
