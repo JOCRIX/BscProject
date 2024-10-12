@@ -31,8 +31,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
---The communication port between FPGA and MCU has been implemented as a Finite State Machine (FSM)
+--This is the output port (1 of 16 pins) for the RAM.
+--The .vhd will synthesize a tri-state buffer w. open drain connection for output.
+--Pull-Up required for logic '1' output.
 
+--MCU should _always_ be in INPUT mode BEFORE setting RW = '1' to ensure no MCU pins are at logic '1' output.
+--While comm_port is driving a pin to '0'.
 entity comm_port is
   Port (
         RW          : in std_logic    := '0';
@@ -51,14 +55,13 @@ begin
 
 comm_port : process (RW, TOPORT, IO) is
 begin
-     if (RW = READ) then --Write from DataInto DataBus_IO (MCU is reading from RAM)
-        TORAM <= IO;
-        if (TOPORT = '1') then
-            IO <= 'Z';
+     if (RW = READ) then       --Write from RAM to I/O pins (MCU is reading from RAM)
+        if (TOPORT = '1') then --A logic '1' on the port is the output going High-Z
+            IO <= 'Z';         --The I/O port requires pull-up resistor to produce a logic '1'.
         else
-            IO <= '0';
+            IO <= '0';         --Actively pulls I/O pin low.
         end if;
-     elsif (RW = WRITE) then --Write to DataOut from DataBus (MCU wants to write to RAM)
+     elsif (RW = WRITE) then   --Write to RAM from I/O pins. (MCU wants to write to RAM)
         TORAM <= IO;    
     end if;
 end process;

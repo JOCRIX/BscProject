@@ -38,3 +38,13 @@
     <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="14156" HostCore="24" HostMemory="034112311296">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="15416" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="13328" HostCore="24" HostMemory="034112311296">
+    </Process>
+</ProcessHandle>

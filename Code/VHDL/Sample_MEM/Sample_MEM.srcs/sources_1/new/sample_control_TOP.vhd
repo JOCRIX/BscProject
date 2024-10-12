@@ -33,9 +33,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity sample_control_TOP is
   Port (
-        DUMMYOUT : out std_logic; --Den her skal fjernes senere.
         CLK_EXT : in std_logic := '0';
         RW_EXT : in std_logic;
+        TEST_RESET : out std_logic;
         IO_PINS_EXT : inout std_logic_vector(15 downto 0)   
   );
 end sample_control_TOP;
@@ -47,14 +47,12 @@ architecture rtl of sample_control_TOP is
     signal TOPORT_internal : std_logic_vector(15 downto 0) := (others => '0');
     signal TORAM_internal : std_logic_vector(15 downto 0):= (others => '0'); 
     signal IO_PINS_internal : std_logic_vector(15 downto 0):= (others => '0');
-    SIGNAL ADDR_ERROR_internal :std_logic;
-
+    signal LOGIC_RESET_internal : std_logic := '0';
 --Component declarations
 component comm_port
       Port (
     IO : inout std_logic;
     RW : in std_logic;
-    --CLK : in std_logic;
     TOPORT : in std_logic;
     TORAM : out std_logic
    );
@@ -64,33 +62,47 @@ component internal_ram
   Port (
         CLK : in std_logic;
         RW : in std_logic;
-        --ADDR_ERROR : out std_logic := '0';
+        FSM_RESET : in std_logic;
         TORAM : in std_logic_vector(15 downto 0);
         TOPORT : out std_logic_vector(15 downto 0)
    );
    end component internal_ram;
    
+component logic_reset
+      Port (
+        CLK : in std_logic;
+        RW : in std_logic;
+        RESET : out std_logic := '0'
+   );   
+end component logic_reset;
+
 begin
+
+TEST_RESET <= LOGIC_RESET_internal;
+
+logic_resetter : logic_reset
+    port map(
+    RW => RW_EXT,
+    CLK => CLK_EXT,
+    RESET => LOGIC_RESET_internal
+    );
 
 gen_comm_port : for index in 0 to 15 generate
     commport : comm_port
         port map(
-        --CLK => CLK_EXT,
         RW => RW_EXT,
         IO => IO_PINS_EXT(index),
         TOPORT => TOPORT_internal(index),
-        --RESET => RESET_LOGIC_internal,
         TORAM => TORAM_internal(index)
 );
 end generate gen_comm_port;
 
 ram : internal_ram 
     port map(
-    CLK => CLK_EXT,--CLK_internal,
-    RW => RW_EXT,--RW_internal,
+    CLK => CLK_EXT,
+    FSM_RESET => LOGIC_RESET_internal,
+    RW => RW_EXT,
     TOPORT => TOPORT_internal,
-    --ADDR_ERROR => ADDR_ERROR_internal,
-    --RESET => RESET_LOGIC_internal,
     TORAM => TORAM_internal
 );
 

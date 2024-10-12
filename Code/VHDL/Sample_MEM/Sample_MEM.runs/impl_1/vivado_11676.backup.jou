@@ -3,12 +3,12 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Sun Oct 13 01:10:23 2024
-# Process ID: 27476
-# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1
-# Command line: vivado.exe -log sample_control_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sample_control_TOP.tcl
-# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.vds
-# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1\vivado.jou
+# Start of session at: Sat Oct 12 22:25:28 2024
+# Process ID: 11676
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/impl_1
+# Command line: vivado.exe -log sample_control_TOP.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source sample_control_TOP.tcl -notrace
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/impl_1/sample_control_TOP.vdi
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/impl_1\vivado.jou
 # Running On        :DESKTOP-DNC9NIR
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
@@ -19,6 +19,6 @@
 # Host memory       :34112 MB
 # Swap memory       :8053 MB
 # Total Virtual     :42165 MB
-# Available Virtual :21794 MB
+# Available Virtual :17227 MB
 #-----------------------------------------------------------
 source sample_control_TOP.tcl -notrace
