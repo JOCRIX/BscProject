@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Sat Oct 12 01:52:07 2024
+# Process ID: 26976
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestChip/TestChip.runs/impl_1
+# Command line: vivado.exe -log test.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source test.tcl -notrace
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestChip/TestChip.runs/impl_1/test.vdi
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestChip/TestChip.runs/impl_1\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :8053 MB
+# Total Virtual     :42165 MB
+# Available Virtual :20525 MB
+#-----------------------------------------------------------
+source test.tcl -notrace

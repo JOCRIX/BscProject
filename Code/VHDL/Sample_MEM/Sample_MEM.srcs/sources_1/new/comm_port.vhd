@@ -37,7 +37,7 @@ entity comm_port is
   Port (
         RW          : in std_logic    := '0';
         TOPORT      : in std_logic    := '0';
-        TORAM       : out std_logic   :='0';
+        TORAM       : out std_logic   := '0';
         IO          : inout std_logic := 'Z'
         );
 end comm_port;
@@ -49,17 +49,25 @@ constant READ  : std_logic := '1'; --Read from port
 
 begin
 
+
+--	IO <= TOPORT when RW = '1' else 'Z';
+--	TORAM <= IO;
+
+--IO <= 'Z' when TOPORT = '1' and RW = '1' else '0';
+
+TORAM <= IO; 
+
 comm_port : process (RW, TOPORT, IO) is
 begin
-     if (RW = READ) then --Write from DataInto DataBus_IO (MCU is reading from RAM)
-        TORAM <= IO;
+     if (RW = READ) then --Write from RAM To IO PINS (MCU is reading from RAM)
+        --TORAM <= IO;
         if (TOPORT = '1') then
             IO <= 'Z';
         else
             IO <= '0';
         end if;
-     elsif (RW = WRITE) then --Write to DataOut from DataBus (MCU wants to write to RAM)
-        TORAM <= IO;    
+     else --(RW = WRITE) then --Write to RAM from IO PINS (MCU wants to write to RAM)
+        IO <= 'Z'; 
     end if;
 end process;
 

@@ -33,9 +33,16 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity sample_control_TOP is
   Port (
-        DUMMYOUT : out std_logic; --Den her skal fjernes senere.
+        --DUMMYOUT : out std_logic; --Den her skal fjernes senere.
         CLK_EXT : in std_logic := '0';
         RW_EXT : in std_logic;
+        DEBUG0_EXT : out std_logic;
+        DEBUG1_EXT : out std_logic;
+        DEBUG2_EXT : out std_logic;
+        DEBUG3_EXT : out std_logic;
+        DEBUG4_EXT : out std_logic;
+        DEBUGLED_EXT : out std_logic;
+        DEBUGBTN_EXT : in std_logic;
         IO_PINS_EXT : inout std_logic_vector(15 downto 0)   
   );
 end sample_control_TOP;
@@ -47,7 +54,6 @@ architecture rtl of sample_control_TOP is
     signal TOPORT_internal : std_logic_vector(15 downto 0) := (others => '0');
     signal TORAM_internal : std_logic_vector(15 downto 0):= (others => '0'); 
     signal IO_PINS_internal : std_logic_vector(15 downto 0):= (others => '0');
-    SIGNAL ADDR_ERROR_internal :std_logic;
 
 --Component declarations
 component comm_port
@@ -64,7 +70,13 @@ component internal_ram
   Port (
         CLK : in std_logic;
         RW : in std_logic;
-        --ADDR_ERROR : out std_logic := '0';
+        DEBUG0 : out std_logic := '0';
+        DEBUG1 : out std_logic := '0';
+        DEBUG2 : out std_logic := '0';
+        DEBUG3 : out std_logic;
+        DEBUG4 : out std_logic;
+        DEBUGLED : out std_logic;
+        DEBUGBTN : in std_logic;
         TORAM : in std_logic_vector(15 downto 0);
         TOPORT : out std_logic_vector(15 downto 0)
    );
@@ -88,6 +100,13 @@ ram : internal_ram
     port map(
     CLK => CLK_EXT,--CLK_internal,
     RW => RW_EXT,--RW_internal,
+    DEBUG0 => DEBUG0_EXT,
+    DEBUG1 => DEBUG1_EXT,
+    DEBUG2 => DEBUG2_EXT,
+    DEBUG3 => DEBUG3_EXT,
+    DEBUG4 => DEBUG4_EXT,
+    DEBUGBTN => DEBUGBTN_EXT,
+    DEBUGLED => DEBUGLED_EXT,
     TOPORT => TOPORT_internal,
     --ADDR_ERROR => ADDR_ERROR_internal,
     --RESET => RESET_LOGIC_internal,
