@@ -165,24 +165,24 @@ set_property PULLTYPE PULLDOWN [get_ports {IO_PINS_EXT[3]}]
 set_property PULLTYPE PULLUP [get_ports {IO_PINS_EXT[2]}]
 set_property PULLTYPE PULLUP [get_ports {IO_PINS_EXT[1]}]
 set_property PULLTYPE PULLUP [get_ports {IO_PINS_EXT[0]}]
-set_property PACKAGE_PIN M3 [get_ports {IO_PINS_EXT[0]}]
-set_property PACKAGE_PIN L3 [get_ports {IO_PINS_EXT[1]}]
-set_property PACKAGE_PIN A16 [get_ports {IO_PINS_EXT[2]}]
-set_property PACKAGE_PIN K3 [get_ports {IO_PINS_EXT[3]}]
-set_property PACKAGE_PIN C15 [get_ports {IO_PINS_EXT[4]}]
-set_property PACKAGE_PIN H1 [get_ports {IO_PINS_EXT[5]}]
-set_property PACKAGE_PIN A15 [get_ports {IO_PINS_EXT[6]}]
-set_property PACKAGE_PIN B15 [get_ports {IO_PINS_EXT[7]}]
-set_property PACKAGE_PIN A14 [get_ports {IO_PINS_EXT[8]}]
-set_property PACKAGE_PIN J3 [get_ports {IO_PINS_EXT[9]}]
-set_property PACKAGE_PIN J1 [get_ports {IO_PINS_EXT[10]}]
-set_property PACKAGE_PIN K2 [get_ports {IO_PINS_EXT[11]}]
-set_property PACKAGE_PIN L1 [get_ports {IO_PINS_EXT[12]}]
-set_property PACKAGE_PIN L2 [get_ports {IO_PINS_EXT[13]}]
-set_property PACKAGE_PIN M1 [get_ports {IO_PINS_EXT[14]}]
-set_property PACKAGE_PIN N3 [get_ports {IO_PINS_EXT[15]}]
-set_property PACKAGE_PIN W5 [get_ports CLK_EXT]
-set_property PACKAGE_PIN W7 [get_ports RW_EXT]
+set_property PACKAGE_PIN M3 [get_ports {IO_PINS_EXT[0]}]  #PIO1
+set_property PACKAGE_PIN L3 [get_ports {IO_PINS_EXT[1]}]  #PIO2
+set_property PACKAGE_PIN A16 [get_ports {IO_PINS_EXT[2]}] #PIO3
+set_property PACKAGE_PIN K3 [get_ports {IO_PINS_EXT[3]}]  #PIO4
+set_property PACKAGE_PIN C15 [get_ports {IO_PINS_EXT[4]}] #PIO5
+set_property PACKAGE_PIN H1 [get_ports {IO_PINS_EXT[5]}]  #PIO6
+set_property PACKAGE_PIN A15 [get_ports {IO_PINS_EXT[6]}] #PIO7
+set_property PACKAGE_PIN B15 [get_ports {IO_PINS_EXT[7]}] #PIO8
+set_property PACKAGE_PIN A14 [get_ports {IO_PINS_EXT[8]}] #PIO9
+set_property PACKAGE_PIN J3 [get_ports {IO_PINS_EXT[9]}]  #PIO10
+set_property PACKAGE_PIN J1 [get_ports {IO_PINS_EXT[10]}] #PIO11
+set_property PACKAGE_PIN K2 [get_ports {IO_PINS_EXT[11]}] #PIO12
+set_property PACKAGE_PIN L1 [get_ports {IO_PINS_EXT[12]}] #PIO13
+set_property PACKAGE_PIN L2 [get_ports {IO_PINS_EXT[13]}] #PIO14
+set_property PACKAGE_PIN M1 [get_ports {IO_PINS_EXT[14]}] #PIO17
+set_property PACKAGE_PIN N3 [get_ports {IO_PINS_EXT[15]}] #PIO18
+set_property PACKAGE_PIN W5 [get_ports CLK_EXT]           #PIO36
+set_property PACKAGE_PIN W7 [get_ports RW_EXT]            #PIO46
 set_property DRIVE 4 [get_ports {IO_PINS_EXT[15]}]
 set_property DRIVE 4 [get_ports {IO_PINS_EXT[14]}]
 set_property DRIVE 4 [get_ports {IO_PINS_EXT[13]}]
