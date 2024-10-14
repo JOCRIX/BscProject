@@ -1,0 +1,32 @@
+%Code for togling a pin
+while (1)
+{
+    //Clear output pin
+    GPIOC->BSRR = DB_CLK_Pin << 16;
+    //Set output pin
+    GPIOC->BSRR = DB_CLK_Pin;
+}
+%Code for Changing to input back to output
+while (1)
+{
+    //Clear output pin
+    GPIOC->BSRR = DB_CLK_Pin << 16;
+    //Set to input
+    GPIOC->MODER = GPIOC->MODER & (~0xff) ;
+    GPIOC->PUPDR = GPIOC->PUPDR & ~(0xff);
+    //Set to output
+    GPIOC->MODER = GPIOC->MODER | 0xff;
+    //Set Output type to push-pull
+    GPIOC->OTYPER = GPIOC->OTYPER & (~0xff);
+    //Set Output to no pull-up
+    GPIOC->PUPDR = GPIOC->PUPDR & (~0xff);
+    //Set Output slew rate to max.
+    GPIOC->OSPEEDR = GPIOC->OTYPER | 0xff;
+    //Set output pin
+    GPIOC->BSRR = DB_CLK_Pin;
+  /* USER CODE END WHILE */
+
+  /* USER CODE BEGIN 3 */
+}
+/* USER CODE END 3 */
+

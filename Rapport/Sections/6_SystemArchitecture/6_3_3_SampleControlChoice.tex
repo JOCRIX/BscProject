@@ -1,0 +1,11 @@
+\subsection{Choosing an FPGA} \label{subsec:ChoosingAnFPGA}
+
+Based on the jitter issues with the STM32F446 microprocessor mentionen in subsection \refq{subsec:MainProcessorChoice} and appendix \refq{App:MicrocontrollerConsiderations} it was decided to let an FPGA control all the sampling and timing of the ADC's and DACs in the analog front end. FPGA's are typically used for this exact purpose in other instruments. The only consideration for the choice of FPGA in this project is that it should have sufficient GPIO pins, it should produce \textit{low} jitter output signals and it should have sufficient memory to store the samples.
+
+It can be seen in the interface specification \refq{subsec:SampleControlInterface} that the FPGA should have 46 GPIO pins to connect with the Main Processor module and Analog Front End module. The FPGA (module) should have \SIQ{320}{\kilo\bit} memory for storing the 10000 16 bit values of current and voltage samples.
+
+The Digilent CMOD A7\cite{CMOD_A7_AT35T} with an Artix 7 35T-236 AMD-Xilinx FPGA\cite{ARTIX7} will be used for this project as the team members have prior experience working with this FPGA. The FPGA has 56 GPIO pins and comes with \SIQ{512}{\kilo\byte} external SRAM which is more than sufficient for this project. The FPGA also has very low jitter and the project team was not able to actually measure it with the instruments that are available, so, it is suitable for controlling the sampling signals for the ADCs.
+
+
+
+
