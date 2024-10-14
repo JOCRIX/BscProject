@@ -1,0 +1,140 @@
+---
+title: "Battery capacity"
+header-includes:
+  -\usepackage{amsmath}
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+
+# Exam exercise: Battery capacity
+
+```{r, fig.width=10, echo=FALSE, fig.align='center'}
+url <- "https://asta.math.aau.dk/static-files/asta/img/battery.png"
+z <- tempfile()
+download.file(url, z, mode = "wb")
+grid::grid.raster(png::readPNG(z))
+invisible(file.remove(z))
+```
+
+In this exercise you will study a data set on battery capacity collected by researchers from AAU Energy. The batteries were kept at three different temperatures. The capacity loss Q (in percentage of initial capacity) is the response variable. We are interested in the effect on the response of the temperature and the efficient number of charge cycles FEC that the battery had been exposed to. 
+
+In the analysis, we will work with the log  transformed variables `logQ` and `logFEC`. Moreover, we will consider `Temperature` as a categorical variable with the three levels $35^\circ$, $40^\circ$, and $45^\circ$ Celcius.
+
+We begin by loading the `mosaic` package and reading in the data. Since we consider `Temperature` a categorical variable, we make this variable a factor.
+```{r, message=FALSE}
+library(mosaic)
+library(gridExtra)
+capacity<-read.delim("https://asta.math.aau.dk/datasets?file=capacity.txt",sep="")
+capacity$Temperature<-factor(capacity$Temperature)
+capacity
+```
+
+1. Make a scatter plot of the log transformed variables `logQ` and `logFEC` where points are colored by temperature level.
+
+A scatterplot can be made using the following R-command:
+```{r}
+gf_point(logQ~ logFEC, color = ~Temperature, group = ~Temperature, data = capacity)
+```
+
+
+
+2. The code below finds the correlation between `logQ` and `logFEC` for each level of temperature. Explain the concept of correlation and interpret the results in relation to the plot from Question 1. 
+```{r }
+tempGrupper=split(capacity,capacity$Temperature)
+lapply(tempGrupper,function(x) cor(x$logQ,x$logFEC)) 
+```
+Correlation indicates how closely linked something is. If they are closely correlated an increase in one element will result in an increase in the other element. 
+It gives a measure of how much logQ and logFEC correlate. It is standardized to the standard deviation of logQ and logFEC, making it
+indefferent to any changes in "numeric" value. r = 1 means they completly correlate, -1 means the same but for a falling slope etc.
+This indicates that the slope of each line should about the same, if the same units are used.
+
+3. Consider a multiple regression model without interaction with `logQ` as the response variable and `logFEC` and `Temperature` as predictors. Write out the model equation using dummy variables. What is the interpretation of the parameters? 
+
+Given that we have 3 categories, and in each category has one variable, namely logFEC, we will get the following. <br>
+$y_i = \alpha + b_1x_i+b_2z_{1i}+b_3z_{2i} + \epsilon$ <br>
+Here $x_i$is logFEC.
+We will then have 3 equations <br>
+$y_1 = \alpha + \beta_1 \cdot logFEC$ <br>
+$y_2 = \alpha + \beta_1 \cdot logFEC + \beta_2$ <br>
+$y_3 = \alpha + \beta_1 \cdot logFEC + \beta_3$ <br>
+$\bar{y} = \alpha + \beta_1 \cdot logFEC + \begin{bmatrix} 0 & 0 \\ 1 & 0 \\ 0 & 1  \end{bmatrix} \cdot \begin{bmatrix} \beta_2 \\ \beta_3 \end{bmatrix}$ <br>
+ 
+
+Here $z = \begin{bmatrix} 0 & 0 \\ 1 & 0 \\ 0 & 1  \end{bmatrix}$ <br>
+This allows us to construct the following:<br>
+$\bar{y}=\alpha+\beta_1\cdot logFEC+\bar z \cdot \begin{bmatrix} \beta_2 \\ \beta_3  \end{bmatrix}$ <br>
+what we can interpret from this, as our predictor is affecting all categories in the same way, we see that the intercept changes
+depending on the chosen model
+for category one (temp=35) we get intercept $\alpha$, for category two we get $\alpha + \beta_2$ and for category 3 (temp = 45) we get $\alpha+\beta_3$
+Alternatively the equation can be written as:
+$\bar{y} = \alpha + \beta_1 \cdot logFEC + \beta_2 \cdot \bar{z} + \beta_3 \cdot \bar{z}$
+
+
+4. Edit the code below to fit the model from Question 3. Explain the output from the code. Your explanation should as a minimum include:
+
+  - What is the prediction equation?
+  - Explain the calculation of `t value` and determination and interpretation of the p-value.
+  - What is the interpretation of `Multiple R-squared`?
+  - Make an overall $F$-test for the null-hypothesis that there is no effect of any of the predictors.
+
+```{r}
+model<-lm(logQ~logFEC+Temperature,data=capacity)
+summary(model)
+```
+From the linear model command we get the following <br>
+$a = 0.225, b_1 = 0.411, b_2 = 0.0433, b_3 = 0.1066$ <br>
+notice how we now use a and not alpha, as these are estimaters.
+
+Under the assumption that $\beta_1$ is zero and we observe 0.411 with a standard error of 0.0075, it is highly unlikely to have
+such an outcome, thus we can safly reject that $\beta_1$ has no effect.
+
+```{r}
+mod1<-plotModel(model)
+mod1
+```
+We regards to $\beta_2$ we see that is is rather unlikely that it has no influence on the intercept point, down to a probability of 0.5%. For $\beta_3$ se assume it to have no significance, and observe that the probability of this outcome under this assumption is very small, we conclude with a confidance of 99.5%, that the interception of the 3 equations are not the same, if we look at the plotted lines, we can clearly see that they roughly have the same slope, but cross at different values.
+
+R² explains how much of the variance in the response is explained by variance in the predictor, in this case R² is 0.982, indicating a very good fit, as 98.2% of the variance in the response is explained by variance in the predictor.
+
+When we assume that all predictors have zero influence, we say the following: <br>
+$H_0: \beta_1 = 0, \beta_2 = 0, \beta_3 = 0$ <br>
+An F-test can be calculated here as: <br>
+$F_{obs} = \frac{R^2 / k}{(1-R^2)/(n-k-1)}$ <br>
+We have 61 observations, can be seen in the data-set.
+we have 3 parameters that we set to 0, so n = 61, k = 3 <br>
+$F_{obs} = \frac{0.982 / 3}{(1-0.982)/(61-3-1)} = 1037$ <br>
+This can also be oberserved from the lm command, here it returns a probability of 2.2E-16.
+```{r}
+pdist("f", 1031, df1=3, df2=(61-3-1))
+```
+The probability of all parameters having no influence is practically zero. The probability of making an error when H0 is rejected is practically zero. We can with 99.999999% confidence reject H0.
+
+5. Investigate whether or not there is an interaction between the effect of `Temperature` and the effect of `logFEC` as predictors of `logQ` (Hint: With more than two groups you need to use the `anova` function to make the test, see p. 31 in the slides from the second lecture of the module).
+```{r}
+model2<-lm(logQ~logFEC*Temperature,data=capacity)
+summary(model)
+anova(model, model2)
+```
+The ANOVA test indicates whether or not the slopes are the same or not, $\beta_1 \beta2 = 0$ and $\beta_1 \beta_3= 0$,
+in this case the likelihood for this being true is 0.033 or 3.3%, this is less than the typical level of significance of 5%,
+so we conclude the lines most likely do not have the same slope.
+
+
+6. Plot the model with and without interaction and explain the difference.
+```{r}
+mod2 <- plotModel(model2)
+grid.arrange(mod1, mod2, ncol = 1)
+```
+When we plot the models with interaction we see that the slopes are no longer independent, each equation has a different slope. Where the "older" model assumes the slopes to be equal.
+
+7. The code below computes the residuals $y_i-\hat{y}_i$ in the model without interaction. Draw a boxplot of the residuals and comment on the result.
+```{r}
+residuals<-model$residuals
+boxplot(residuals, col = "lightblue")
+
+```
+
+The smaller the residuals the better the fir, the median is about 0, so the fit is quite good, we also note that R² was also very small indicating a decent fit.
