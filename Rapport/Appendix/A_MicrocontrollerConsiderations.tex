@@ -13,7 +13,7 @@ The code will clear the output pin by setting the corresponding pin in the upper
     \label{fig:App_A_SetResetSpeed}
 \end{figure}
 
-The period of the CLK signal shown on figure \refq{fig:App_A_SetResetSpeed} is \SIQ{71.6}{\nano\second}. It has a 50\% duty cycle so the pulse width, and thus execution time, is \SIQ{35.8}{\nano\second}.
+The period of the CLK signal shown on figure \refq{fig:App_A_SetResetSpeed} is \SIQ{71.6}{\nano\second}. It has a 50\% duty cycle so the pulse width, and thus execution time, is \SIQ{35.8}{\nano\second} for toggling the pin by setting and clearing a register. This also means that it takes \SIQ{17.9}{\nano\second} to set 1 register.
 
 It was also tested how much time it takes to change the mode of a GPIO pin. I.e. it was tested how long it takes to switch a pin from being an input to being an output. This will be necessary for the microcontroller to communicate with the FPGA. The code for this can be seen in listing \refq{lst:App_A_SwitchGPIOModes}. Lines 6-7 sets the input mode and turns off pull-up resistors. Lines 9-15 sets the GPIO pin to an output and sets the output to a push-pull type with no pull ups and a maximum slew rate. Lines 4 and 17 will toggle the pin.
 
