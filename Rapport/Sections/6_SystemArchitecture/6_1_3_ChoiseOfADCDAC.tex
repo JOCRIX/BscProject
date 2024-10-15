@@ -1,0 +1,6 @@
+\subsection{Choice of ADCs and DAC} \label{subsec:ADC_DAC_Choice}
+The System requirements specify that the best case scenario accuracy of impedance magnitude must be less than \SIQ{0.1}{\%}. Impedance will be calculated as voltage divided by current, with both voltage and current being sampled by their own ADC. Assuming a worst case scenario where the error of one ADC directly adds to that of the other, such that the total ADC error can be given as $E_{ADC1}+E_{ADC2} = E_{ADC}$, the total ADC error $E_{ADC}$ should be less than the required magnitude accuracy, such that each ADC should be accurate to \SIQ{0.05}{\%}.
+
+To ensure that the ADCs are accurate it has been chosen to use two 16 bit ADCs, more specifically two LTC2311 \cite{ADC_LTC2311}. These are 16 bit analog to digital converters with a maximum sample rate of 5 Msps. These offer a guaranteed integral non-linearity (INL) of less than 8 lsb, i.e. less than \SIQ{0.0122}{\%}, resulting in a guaranteed maximum ADC error $E_{ADC}$ of less than \SIQ{0.0244}{\%}.
+
+Likewise a 16 bit DAC have been chosen, LTC1668 \cite{DAC_LTC1668}. This is a DAC capable of 50 Msps, ensuring good spectral purity even at \SIQ{1}{\mega\hertz}.
