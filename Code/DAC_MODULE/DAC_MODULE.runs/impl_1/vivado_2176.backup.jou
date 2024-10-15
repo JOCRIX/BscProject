@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Oct 15 14:48:35 2024
+# Process ID: 2176
+# Current directory: C:/Users/jakob/DAC_MODULE/DAC_MODULE.runs/impl_1
+# Command line: vivado.exe -log DAC_MODULE.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source DAC_MODULE.tcl -notrace
+# Log file: C:/Users/jakob/DAC_MODULE/DAC_MODULE.runs/impl_1/DAC_MODULE.vdi
+# Journal file: C:/Users/jakob/DAC_MODULE/DAC_MODULE.runs/impl_1\vivado.jou
+# Running On        :DESKTOP-26ONRPF
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :8627 MB
+# Total Virtual     :17096 MB
+# Available Virtual :3365 MB
+#-----------------------------------------------------------
+source DAC_MODULE.tcl -notrace
