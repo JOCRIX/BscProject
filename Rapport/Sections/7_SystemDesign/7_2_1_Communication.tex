@@ -57,9 +57,36 @@ It takes a total of 8 register writes to perform a single write operation to the
 \begin{equation}\label{eq:7_2_1_Write_ThroughPutTotalTime}
     t_{write} = t_{rs} \cdot n_{reg} = 17.9e-9 \cdot 8 =  143.2e-9
 \end{equation}
-It takes \SIQ{143.2}{\nano\second} for the MCU to perform a write operation. The total throughput on the bus in write mode will be about \SIQ{7}{\mega\bit} as shown in equation \refq{eq:7_2_1_Write_ThroughPut}.
+It takes \SIQ{143.2}{\nano\second} for the MCU to perform a write operation. The total throughput on the bus in write mode will be about \SIQ{7}{\mega\bit}/s as shown in equation \refq{eq:7_2_1_Write_ThroughPut}.
 
 \begin{equation}\label{eq:7_2_1_Write_ThroughPut}
     R_{write} = \frac{1}{t_{write}} = 6.949e6 
 \end{equation}
-The throughput on the bus is about \SIQ{7}{\mega\bit} in write mode. A significant amount of the throughput is used on protocol overhead as half the transmissions are addresses. The protocol efficiency, $\eta_{p}$, is 
+The throughput on the bus is about \SIQ{7}{\mega\bit}/s in write mode. A significant amount of the throughput is used on protocol overhead as half the transmissions are addresses. The protocol efficiency is thus $\eta_{write} = 0.5$. The goodput will be as in eq \refq{eq:7_2_1_Write_ThroughPut2}.
+\begin{equation}\label{eq:7_2_1_Write_ThroughPut2}
+    G_{write} = R_{write}\cdot \eta_{write} = 6.949e6 \cdot 0.5 = 3.475e6 
+\end{equation}
+The goodput of the bus in write mode is \SIQ{3.475}{\mega\bit}/s for consecutive writes. The situation is different for consecutive MCU read operations as it will have to toggle it's GPIO modes from output to input in each read operation. It takes $t_{mode} = 181.2$ns to toggle between GPIO input and output modes as found in appendix \refq{App:MicrocontrollerConsiderations}. For a consecutive read operation the MCU will have to perform two of these transitions. The MCU will also need to toggle the RW pin along with, those are two register operations and it will have to set an address on the GPIO pins. The total amount of transitions is shown in eq \refq{eq:7_2_1_Read_Register1}.
+
+\begin{equation}\label{eq:7_2_1_Read_Register1}
+    n_{read} = n_{clk} + n_{address} + n_{RW} + {n_mode} = 5 \cdot n_{rs} + 2 \cdot n_{mode} 
+\end{equation}
+
+The total time for a read operation will thus be $t_{read} = 451.9$ns as shown in eq \refq{eq:7_2_1_Read_Register2}.
+\begin{equation}\label{eq:7_2_1_Read_Register2}
+    t_{read} = 5\cdot 17.9e-9 + 2\cdot 181.2e-9 = 451.9e-9 
+\end{equation}
+The throughput of the data bus for consecutive read modes will be \SIQ{2.213}{\mega\bit}/s as shown in equation \refq{eq:7_2_1_Read_Throughput}.
+\begin{equation}\label{eq:7_2_1_Read_Throughput}
+    R_{read} = \frac{1}{t_{read}} =\frac{1}{451.9e-9} = 2.213e6  
+\end{equation}
+Once again, the address is 'wasted' data and the goodput on the bus will be halved by $\eta_{read} = 0.5$, so the goodput on the bus is about \SIQ{1.1}{\mega\bit}/s as shown in eq \refq{eq:7_2_1_Read_Goodput}.
+\begin{equation}\label{eq:7_2_1_Read_Goodput}
+    G_{read} = \eta_{read} \cdot  = 2.213e6\cdot 0.5  = 1.106e6 
+\end{equation}
+The Sample Control module can store up to \SIQ{320}{\kilo\bit} worth of samples that the MCU will have to retrieve. With a bus goodput of \SIQ{1.1}{\mega\bit} it will take about \SIQ{290}{\milli\second} for the MCU retrieve all the samples as shown in eq \refq{eq:7_2_1_SampleReadTime}.
+\begin{equation}\label{eq:7_2_1_SampleReadTime}
+    t_{sample} = \frac{b_{samplesize}}{G_{read}} = \frac{320e3}{1.106e6} = 289.2e-3 
+\end{equation}
+
+The bus efficiency for read operations could be drastically improved to $\eta = 1.0$ if some logic was implemented in the Sample Control module that makes it possible to clock samples out of the module without first specifying an address and by also assuming that the FPGA will not require extra clock cycles to do this. I.e. start from address = 0 and keep clocking until address = 20000. This would allow the MCU to remain in read mode and retrieve a sample for every single CLK pulse. Depending on the amount of time available for this project this could be implemented to improve the bus speed.
