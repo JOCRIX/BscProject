@@ -43,7 +43,7 @@ entity samplemem is
         nOE : out std_logic := '0'; -- Output driver enable, '0' = Enabled, '1' = disabled.  Used during read.
         nWE : out std_logic := '0'; --Write enable, '0' = Read From RAM / DOUT operation.
                                     --'1' = Write to Ram / DIN operation
-        ExtMemDio : out std_logic_vector(7 downto 0) := (others => '0');
+        ExtMemDio : inout std_logic_vector(7 downto 0) := (others => '0');
         ExtMemAdr : out std_logic_vector(18 downto 0) := (others => '0')
    );
 end samplemem;

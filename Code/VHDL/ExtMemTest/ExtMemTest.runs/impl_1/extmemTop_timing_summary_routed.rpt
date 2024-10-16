@@ -1,0 +1,618 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Wed Oct 16 17:53:15 2024
+| Host         : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+| Command      : report_timing_summary -max_paths 10 -report_unconstrained -file extmemTop_timing_summary_routed.rpt -pb extmemTop_timing_summary_routed.pb -rpx extmemTop_timing_summary_routed.rpx -warn_on_violation
+| Design       : extmemTop
+| Device       : 7a35t-cpg236
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Summary Report
+
+------------------------------------------------------------------------------------------------
+| Timer Settings
+| --------------
+------------------------------------------------------------------------------------------------
+
+  Enable Multi Corner Analysis               :  Yes
+  Enable Pessimism Removal                   :  Yes
+  Pessimism Removal Resolution               :  Nearest Common Node
+  Enable Input Delay Default Clock           :  No
+  Enable Preset / Clear Arcs                 :  No
+  Disable Flight Delays                      :  No
+  Ignore I/O Paths                           :  No
+  Timing Early Launch at Borrowing Latches   :  No
+  Borrow Time for Max Delay Exceptions       :  Yes
+  Merge Timing Exceptions                    :  Yes
+  Inter-SLR Compensation                     :  Conservative
+
+  Corner  Analyze    Analyze    
+  Name    Max Paths  Min Paths  
+  ------  ---------  ---------  
+  Slow    Yes        Yes        
+  Fast    Yes        Yes        
+
+
+------------------------------------------------------------------------------------------------
+| Report Methodology
+| ------------------
+------------------------------------------------------------------------------------------------
+
+Rule       Severity          Description                  Violations  
+---------  ----------------  ---------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell  33          
+
+Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
+
+
+
+check_timing report
+
+Table of Contents
+-----------------
+1. checking no_clock (33)
+2. checking constant_clock (0)
+3. checking pulse_width_clock (0)
+4. checking unconstrained_internal_endpoints (67)
+5. checking no_input_delay (24)
+6. checking no_output_delay (25)
+7. checking multiple_clock (0)
+8. checking generated_clocks (0)
+9. checking loops (0)
+10. checking partial_input_delay (0)
+11. checking partial_output_delay (0)
+12. checking latch_loops (0)
+
+1. checking no_clock (33)
+-------------------------
+ There are 33 register/latch pins with no clock driven by root clock pin: CLK_ext (HIGH)
+
+
+2. checking constant_clock (0)
+------------------------------
+ There are 0 register/latch pins with constant_clock.
+
+
+3. checking pulse_width_clock (0)
+---------------------------------
+ There are 0 register/latch pins which need pulse_width check
+
+
+4. checking unconstrained_internal_endpoints (67)
+-------------------------------------------------
+ There are 67 pins that are not constrained for maximum delay. (HIGH)
+
+ There are 0 pins that are not constrained for maximum delay due to constant clock.
+
+
+5. checking no_input_delay (24)
+-------------------------------
+ There are 24 input ports with no input delay specified. (HIGH)
+
+ There are 0 input ports with no input delay but user has a false path constraint.
+
+
+6. checking no_output_delay (25)
+--------------------------------
+ There are 25 ports with no output delay specified. (HIGH)
+
+ There are 0 ports with no output delay but user has a false path constraint
+
+ There are 0 ports with no output delay but with a timing clock defined on it or propagating through it
+
+
+7. checking multiple_clock (0)
+------------------------------
+ There are 0 register/latch pins with multiple clocks.
+
+
+8. checking generated_clocks (0)
+--------------------------------
+ There are 0 generated clocks that are not connected to a clock source.
+
+
+9. checking loops (0)
+---------------------
+ There are 0 combinational loops in the design.
+
+
+10. checking partial_input_delay (0)
+------------------------------------
+ There are 0 input ports with partial input delay specified.
+
+
+11. checking partial_output_delay (0)
+-------------------------------------
+ There are 0 ports with partial output delay specified.
+
+
+12. checking latch_loops (0)
+----------------------------
+ There are 0 combinational latch loops in the design through latch input
+
+
+
+------------------------------------------------------------------------------------------------
+| Design Timing Summary
+| ---------------------
+------------------------------------------------------------------------------------------------
+
+    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+        inf        0.000                      0                   92          inf        0.000                      0                   92           NA           NA                      NA                    NA  
+
+
+There are no user specified timing constraints.
+
+
+------------------------------------------------------------------------------------------------
+| Clock Summary
+| -------------
+------------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------------
+| Intra Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
+-----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Inter Clock Table
+| -----------------
+------------------------------------------------------------------------------------------------
+
+From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| Other Path Groups Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints  
+----------    ----------    --------          -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------  
+
+
+------------------------------------------------------------------------------------------------
+| User Ignored Path Table
+| -----------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+
+
+------------------------------------------------------------------------------------------------
+| Unconstrained Path Table
+| ------------------------
+------------------------------------------------------------------------------------------------
+
+Path Group    From Clock    To Clock    
+----------    ----------    --------    
+(none)                                    
+
+
+------------------------------------------------------------------------------------------------
+| Timing Details
+| --------------
+------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  
+
+Max Delay            92 Endpoints
+Min Delay            92 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[7]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        10.829ns  (logic 5.002ns (46.191%)  route 5.827ns (53.809%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          5.827     7.308    gen_io_port_extRam[7].IOBUF_inst/T
+    U14                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.521    10.829 r  gen_io_port_extRam[7].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000    10.829    ExtMemIO_ext[7]
+    U14                                                               r  ExtMemIO_ext[7] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[6]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        10.684ns  (logic 4.997ns (46.769%)  route 5.687ns (53.231%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          5.687     7.168    gen_io_port_extRam[6].IOBUF_inst/T
+    V14                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.516    10.684 r  gen_io_port_extRam[6].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000    10.684    ExtMemIO_ext[6]
+    V14                                                               r  ExtMemIO_ext[6] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[5]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        10.537ns  (logic 5.000ns (47.451%)  route 5.537ns (52.549%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          5.537     7.018    gen_io_port_extRam[5].IOBUF_inst/T
+    V13                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.519    10.537 r  gen_io_port_extRam[5].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000    10.537    ExtMemIO_ext[5]
+    V13                                                               r  ExtMemIO_ext[5] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[4]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        10.388ns  (logic 5.001ns (48.140%)  route 5.387ns (51.860%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          5.387     6.868    gen_io_port_extRam[4].IOBUF_inst/T
+    U16                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.520    10.388 r  gen_io_port_extRam[4].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000    10.388    ExtMemIO_ext[4]
+    U16                                                               r  ExtMemIO_ext[4] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[3]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        10.248ns  (logic 5.011ns (48.893%)  route 5.237ns (51.107%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          5.237     6.718    gen_io_port_extRam[3].IOBUF_inst/T
+    U15                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.530    10.248 r  gen_io_port_extRam[3].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000    10.248    ExtMemIO_ext[3]
+    U15                                                               r  ExtMemIO_ext[3] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[2]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        10.088ns  (logic 5.001ns (49.569%)  route 5.088ns (50.431%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          5.088     6.568    gen_io_port_extRam[2].IOBUF_inst/T
+    W14                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.520    10.088 r  gen_io_port_extRam[2].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000    10.088    ExtMemIO_ext[2]
+    W14                                                               r  ExtMemIO_ext[2] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[1]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        9.947ns  (logic 5.010ns (50.363%)  route 4.938ns (49.637%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          4.938     6.418    gen_io_port_extRam[1].IOBUF_inst/T
+    W13                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.529     9.947 r  gen_io_port_extRam[1].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000     9.947    ExtMemIO_ext[1]
+    W13                                                               r  ExtMemIO_ext[1] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 RW_ext
+                            (input port)
+  Destination:            ExtMemIO_ext[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        9.777ns  (logic 5.002ns (51.158%)  route 4.775ns (48.842%))
+  Logic Levels:           2  (IBUF=1 OBUFT=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    V8                                                0.000     0.000 f  RW_ext (IN)
+                         net (fo=0)                   0.000     0.000    RW_ext
+    V8                   IBUF (Prop_ibuf_I_O)         1.481     1.481 f  RW_ext_IBUF_inst/O
+                         net (fo=20, routed)          4.775     6.256    gen_io_port_extRam[0].IOBUF_inst/T
+    W15                  OBUFT (TriStatE_obuft_T_O)
+                                                      3.521     9.777 r  gen_io_port_extRam[0].IOBUF_inst/OBUFT/O
+                         net (fo=1, unset)            0.000     9.777    ExtMemIO_ext[0]
+    W15                                                               r  ExtMemIO_ext[0] (INOUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/SampleDO_reg[2]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            SampleDO_ext[2]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.724ns  (logic 3.967ns (51.358%)  route 3.757ns (48.642%))
+  Logic Levels:           2  (FDRE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y29         FDRE                         0.000     0.000 r  extmem/SampleDO_reg[2]/C
+    SLICE_X13Y29         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  extmem/SampleDO_reg[2]/Q
+                         net (fo=1, routed)           3.757     4.213    SampleDO_ext_OBUF[2]
+    R2                   OBUF (Prop_obuf_I_O)         3.511     7.724 r  SampleDO_ext_OBUF[2]_inst/O
+                         net (fo=0)                   0.000     7.724    SampleDO_ext[2]
+    R2                                                                r  SampleDO_ext[2] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/SampleDO_reg[4]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            SampleDO_ext[4]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        7.719ns  (logic 4.107ns (53.201%)  route 3.612ns (46.799%))
+  Logic Levels:           2  (FDRE=1 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y29         FDRE                         0.000     0.000 r  extmem/SampleDO_reg[4]/C
+    SLICE_X13Y29         FDRE (Prop_fdre_C_Q)         0.419     0.419 r  extmem/SampleDO_reg[4]/Q
+                         net (fo=1, routed)           3.612     4.031    SampleDO_ext_OBUF[4]
+    T2                   OBUF (Prop_obuf_I_O)         3.688     7.719 r  SampleDO_ext_OBUF[4]_inst/O
+                         net (fo=0)                   0.000     7.719    SampleDO_ext[4]
+    T2                                                                r  SampleDO_ext[4] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_read_reg[3]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/nOE_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.280ns  (logic 0.141ns (50.366%)  route 0.139ns (49.634%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y28         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_read_reg[3]/C
+    SLICE_X13Y28         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  extmem/FSM_onehot_s_read_reg[3]/Q
+                         net (fo=4, routed)           0.139     0.280    extmem/FSM_onehot_s_read_reg_n_0_[3]
+    SLICE_X12Y28         FDSE                                         r  extmem/nOE_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_write_reg[3]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_write_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.296ns  (logic 0.164ns (55.378%)  route 0.132ns (44.622%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y27         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_write_reg[3]/C
+    SLICE_X12Y27         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  extmem/FSM_onehot_s_write_reg[3]/Q
+                         net (fo=3, routed)           0.132     0.296    extmem/FSM_onehot_s_write_reg_n_0_[3]
+    SLICE_X12Y27         FDRE                                         r  extmem/FSM_onehot_s_write_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_read_reg[3]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_read_reg[0]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.340ns  (logic 0.141ns (41.444%)  route 0.199ns (58.556%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y28         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_read_reg[3]/C
+    SLICE_X13Y28         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  extmem/FSM_onehot_s_read_reg[3]/Q
+                         net (fo=4, routed)           0.199     0.340    extmem/FSM_onehot_s_read_reg_n_0_[3]
+    SLICE_X13Y28         FDRE                                         r  extmem/FSM_onehot_s_read_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_write_reg[1]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_write_reg[2]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.346ns  (logic 0.164ns (47.432%)  route 0.182ns (52.568%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y27         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_write_reg[1]/C
+    SLICE_X12Y27         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  extmem/FSM_onehot_s_write_reg[1]/Q
+                         net (fo=2, routed)           0.182     0.346    extmem/FSM_onehot_s_write_reg_n_0_[1]
+    SLICE_X12Y27         FDRE                                         r  extmem/FSM_onehot_s_write_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_write_reg[2]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_write_reg[3]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.352ns  (logic 0.164ns (46.602%)  route 0.188ns (53.398%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y27         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_write_reg[2]/C
+    SLICE_X12Y27         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  extmem/FSM_onehot_s_write_reg[2]/Q
+                         net (fo=2, routed)           0.188     0.352    extmem/FSM_onehot_s_write_reg_n_0_[2]
+    SLICE_X12Y27         FDRE                                         r  extmem/FSM_onehot_s_write_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_read_reg[2]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_read_reg[3]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.391ns  (logic 0.141ns (36.100%)  route 0.250ns (63.900%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y28         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_read_reg[2]/C
+    SLICE_X13Y28         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  extmem/FSM_onehot_s_read_reg[2]/Q
+                         net (fo=1, routed)           0.250     0.391    extmem/FSM_onehot_s_read_reg_n_0_[2]
+    SLICE_X13Y28         FDRE                                         r  extmem/FSM_onehot_s_read_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_read_reg[0]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_read_reg[1]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.398ns  (logic 0.141ns (35.419%)  route 0.257ns (64.581%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y28         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_read_reg[0]/C
+    SLICE_X13Y28         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  extmem/FSM_onehot_s_read_reg[0]/Q
+                         net (fo=3, routed)           0.257     0.398    extmem/FSM_onehot_s_read_reg_n_0_[0]
+    SLICE_X13Y28         FDRE                                         r  extmem/FSM_onehot_s_read_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_read_reg[1]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_read_reg[2]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.402ns  (logic 0.141ns (35.102%)  route 0.261ns (64.898%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X13Y28         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_read_reg[1]/C
+    SLICE_X13Y28         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  extmem/FSM_onehot_s_read_reg[1]/Q
+                         net (fo=2, routed)           0.261     0.402    extmem/FSM_onehot_s_read_reg_n_0_[1]
+    SLICE_X13Y28         FDRE                                         r  extmem/FSM_onehot_s_read_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_write_reg[0]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/FSM_onehot_s_write_reg[1]/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.437ns  (logic 0.164ns (37.544%)  route 0.273ns (62.456%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y27         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_write_reg[0]/C
+    SLICE_X12Y27         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  extmem/FSM_onehot_s_write_reg[0]/Q
+                         net (fo=4, routed)           0.273     0.437    extmem/FSM_onehot_s_write_reg_n_0_[0]
+    SLICE_X12Y27         FDRE                                         r  extmem/FSM_onehot_s_write_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 extmem/FSM_onehot_s_write_reg[3]/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            extmem/nWE_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.442ns  (logic 0.209ns (47.260%)  route 0.233ns (52.740%))
+  Logic Levels:           2  (FDRE=1 LUT2=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X12Y27         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_write_reg[3]/C
+    SLICE_X12Y27         FDRE (Prop_fdre_C_Q)         0.164     0.164 r  extmem/FSM_onehot_s_write_reg[3]/Q
+                         net (fo=3, routed)           0.233     0.397    extmem/FSM_onehot_s_write_reg_n_0_[3]
+    SLICE_X13Y27         LUT2 (Prop_lut2_I0_O)        0.045     0.442 r  extmem/nWE_i_2/O
+                         net (fo=1, routed)           0.000     0.442    extmem/nWE_i_2_n_0
+    SLICE_X13Y27         FDRE                                         r  extmem/nWE_reg/D
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+

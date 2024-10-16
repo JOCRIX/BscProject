@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../ExtMemTest.srcs/sources_1/new/extMemHandler.vhd" \
+"../../../../ExtMemTest.srcs/sources_1/new/extmemTop.vhd" \
+
+# Do not sort compile order
+nosort
