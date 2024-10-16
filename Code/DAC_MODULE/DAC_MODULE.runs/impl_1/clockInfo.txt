@@ -1,8 +1,8 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.1
-| Date         : Tue Oct 15 14:49:21 2024
+| Date         : Wed Oct 16 14:11:21 2024
 | Host         : DESKTOP-26ONRPF
-| Design       : design_1
+| Design       : checkpoint_DAC_MODULE
 | Device       : xc7a35t-cpg236-1--
 -------------------------------------
 

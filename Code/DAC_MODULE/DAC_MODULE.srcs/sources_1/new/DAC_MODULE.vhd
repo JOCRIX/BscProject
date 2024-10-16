@@ -67,15 +67,22 @@ component DAC_PRESCALER is -- Set up the DAC/DDS prescaller as a component.
     Port (
            CLK_IN : in STD_LOGIC; --The clock input, this is divided down by two to generate the DAC and DDS clocks. 100 MHz for 50 MHz DAC opperation.
            CLK_TO_DDS : out STD_LOGIC; -- The diveded down clock for the DDS.
-           CLK_TO_DAC : out STD_LOGIC; -- The clock for the DAC, a delayed version of the DDS clock.
-           --SET_F_IN_L : in std_logic_vector(15 downto 0); --bit 0 to 15 of the 32 bit wide phase word.
-           SET_F_IN_H : in std_logic_vector(31 downto 16); --bit 16 to 31 of the 32 bit wide phase word.
-           F_OUT : out std_logic_vector(31 downto 0); --The full 32 bit wide phase word for the DDS.
-           DDS_DATA_IN : in std_logic_vector(15 downto 0); --DDS output data, in two's compliment.
-           DAC_DATA_OUT : out std_logic_vector(15 downto 0); --DDS data converted to unsigned, this is the Data for the DAC.
-           UPDATE_F : out std_logic -- Used to indicate to the DDS that new data is present on the phase word pins.
+           CLK_TO_DAC : out STD_LOGIC -- The clock for the DAC, a delayed version of the DDS clock.
            );
 end component;    
+
+component DAC_DATA_Conversion is
+    port (
+            --SET_F_IN_L : in std_logic_vector(15 downto 0); --bit 0 to 15 of the 32 bit wide frequency setting word.
+            SET_F_IN_H : in std_logic_vector (31 downto 16); --bit 16 to 31 of the 32 bit wide frequency setting word.
+            F_OUT : out std_logic_vector (31 downto 0); --The full 32 bit wide frequency setting word.
+            DDS_DATA_IN : in std_logic_vector(15 downto 0); --DDS output data, in two's compliment.
+            DAC_DATA_OUT : out std_logic_vector (15 downto 0); --DDS data converted to unsigned, this is the Data for the DAC.
+            UPDATE_F : out std_logic;  --Togles when a new frequency is to be set at the output.
+            CLK_IN : in std_logic -- Master clock input, (100 MHz when implemented).
+            );
+end component;
+
 
 signal sig_clk_prescaller_to_DDS : std_logic := '0';  -- Connects the prescaller clock the DDS clock.
 signal sig_clk_to_DAC_prescaler : std_logic := '0'; --connects the prescaller delayed clock to the DAC clock.
@@ -98,7 +105,12 @@ DAC_Prescaler1 : DAC_PRESCALER  --make connections between signals and the presc
     port map (
     CLK_IN => sig_clk_to_DAC_prescaler, --Connect the master clock from the PLL to the clock input.
     CLK_TO_DDS => sig_clk_prescaller_to_DDS, -- Connect the output DDS clock to the DDS_clock signal.
-    CLK_TO_DAC => Ext_CLK_TO_DAC, -- Connect the output DAC clock to the DAC_CLOCK signal.
+    CLK_TO_DAC => Ext_CLK_TO_DAC -- Connect the output DAC clock to the DAC_CLOCK signal.
+    );
+    
+DAC_DATA_Converter1 : DAC_DATA_Conversion
+    port map (
+    CLK_IN => sig_clk_to_DAC_prescaler,
     SET_F_IN_H => Ext_SET_F_IN, -- Connect the external dipswitches to bit 31 downto 16 of the phase word.
     --SET_F_IN_H => YOUR REGISTER HERE;
     --SET_F_IN_L => YOUR REGISTER HERE;

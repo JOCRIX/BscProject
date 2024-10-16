@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/jakob/DAC_MODULE/DAC_MODULE.runs/impl_1'
+HD_PWD='C:/Users/jakob/Desktop/P7---Bsc/Code/DAC_MODULE/DAC_MODULE.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

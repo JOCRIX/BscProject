@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Tue Oct 15 14:49:54 2024
+| Date             : Wed Oct 16 14:11:53 2024
 | Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file DAC_MODULE_power_routed.rpt -pb DAC_MODULE_power_summary_routed.pb -rpx DAC_MODULE_power_routed.rpx
 | Design           : DAC_MODULE
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |    <0.001 |        5 |       --- |             --- |
-| Slice Logic             |    <0.001 |      236 |       --- |             --- |
+| Slice Logic             |    <0.001 |      238 |       --- |             --- |
 |   LUT as Logic          |    <0.001 |       54 |     20800 |            0.26 |
 |   Register              |    <0.001 |      134 |     41600 |            0.32 |
 |   CARRY4                |    <0.001 |       10 |      8150 |            0.12 |
 |   LUT as Shift Register |    <0.001 |        1 |      9600 |            0.01 |
 |   BUFG                  |    <0.001 |        1 |        32 |            3.13 |
-|   Others                |     0.000 |       22 |       --- |             --- |
+|   Others                |     0.000 |       24 |       --- |             --- |
 | Signals                 |    <0.001 |      179 |       --- |             --- |
 | Block RAM               |    <0.001 |      7.5 |        50 |           15.00 |
 | MMCM                    |     0.105 |        1 |         5 |           20.00 |
