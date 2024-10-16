@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemTest/ExtMemTest.runs/impl_1/extmemTop.tcl"
+  variable script "F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemTest/ExtMemTest.runs/impl_1/extmemTop.tcl"
   variable category "vivado_impl"
 }
 
@@ -107,11 +107,11 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_param chipscope.maxJobs 3
+  set_param chipscope.maxJobs 6
   set_param xicom.use_bs_reader 1
-  set_param runs.launchOptions { -jobs 12  }
+  set_param runs.launchOptions { -jobs 24  }
   open_checkpoint extmemTop_routed.dcp
-  set_property webtalk.parent_dir {C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemTest/ExtMemTest.cache/wt} [current_project]
+  set_property webtalk.parent_dir {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemTest/ExtMemTest.cache/wt} [current_project]
 set_property TOP extmemTop [current_fileset]
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }

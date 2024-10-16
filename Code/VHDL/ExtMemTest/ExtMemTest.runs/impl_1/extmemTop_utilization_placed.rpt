@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Oct 16 17:52:39 2024
-| Host         : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+| Date         : Wed Oct 16 21:35:43 2024
+| Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_utilization -file extmemTop_utilization_placed.rpt -pb extmemTop_utilization_placed.pb
 | Design       : extmemTop
 | Device       : xc7a35tcpg236-1
@@ -86,9 +86,9 @@ Table of Contents
 |     using O6 output only                   |    0 |       |            |           |       |
 |     using O5 and O6                        |    0 |       |            |           |       |
 | Slice Registers                            |   33 |     0 |          0 |     41600 |  0.08 |
-|   Register driven from within the Slice    |    5 |       |            |           |       |
-|   Register driven from outside the Slice   |   28 |       |            |           |       |
-|     LUT in front of the register is unused |   27 |       |            |           |       |
+|   Register driven from within the Slice    |    4 |       |            |           |       |
+|   Register driven from outside the Slice   |   29 |       |            |           |       |
+|     LUT in front of the register is unused |   28 |       |            |           |       |
 |     LUT in front of the register is used   |    1 |       |            |           |       |
 | Unique Control Sets                        |    7 |       |          0 |      8150 |  0.09 |
 +--------------------------------------------+------+-------+------------+-----------+-------+

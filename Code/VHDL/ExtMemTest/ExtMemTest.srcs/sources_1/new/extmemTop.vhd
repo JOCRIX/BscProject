@@ -70,8 +70,9 @@ signal i_nWE : std_logic;
 signal i_ExtMemDo : std_logic_vector(7 downto 0);
 signal i_ExtMemDi : std_logic_vector(7 downto 0);
 signal i_ExtMemAdr : std_logic_vector(18 downto 0); 
+signal i_invert_t :std_logic;
 
-component samplemem
+component samplemem is
   Port (
         SampleDIn : in std_logic_vector(15 downto 0) := (others => '0'); --Sample data input
         SampleDO : out std_logic_vector(7 downto 0):= (others => '0');
@@ -94,7 +95,8 @@ end component samplemem;
 begin
 
 --Connect signals to whereever they gotta go.
-    i_SampleRW <= RW_ext; 
+    i_SampleRW <= not RW_ext; 
+    --i_invert_t <= not i_SampleRW;
     i_CLK <= CLK_ext;
     i_SampleDI(7 downto 0) <= SampleDI_ext;
     SampleDO_ext <= i_SampleDO; 
@@ -123,8 +125,8 @@ extmem : samplemem
   -- IOBUF: Single-ended Bi-directional Buffer
    --        Artix-7
    -- Xilinx HDL Language Template, version 2024.1
-gen_io_port_extRam : for index in 0 to 7 generate   
-   IOBUF_inst : IOBUF
+gen_io_port_extRam : for index in 0 to 7 generate   --Output driver disabled når T = '1'. Aka vi vil læse med porten. 
+   IOBUF_inst : IOBUF                               --https://docs.amd.com/r/en-US/ug953-vivado-7series-libraries/IOBUF
    generic map (
       DRIVE => 12,
       IOSTANDARD => "DEFAULT",
@@ -133,7 +135,7 @@ gen_io_port_extRam : for index in 0 to 7 generate
       O => i_ExtMemDi(index),     -- Buffer output
       IO => ExtMemIo_ext(index),   -- Buffer inout port (connect directly to top-level port)
       I => i_ExtMemDo(index),     -- Buffer input
-      T => i_SampleRW      -- 3-state enable input, high=input, low=output 
+      T => RW_ext--i_SampleRW      -- 3-state enable input, high=input, low=output 
    );
   
    -- End of IOBUF_inst instantiation

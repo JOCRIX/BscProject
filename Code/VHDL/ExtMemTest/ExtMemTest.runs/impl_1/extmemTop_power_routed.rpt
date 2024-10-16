@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Wed Oct 16 17:53:15 2024
-| Host             : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+| Date             : Wed Oct 16 21:35:54 2024
+| Host             : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command          : report_power -file extmemTop_power_routed.rpt -pb extmemTop_power_summary_routed.pb -rpx extmemTop_power_routed.rpx
 | Design           : extmemTop
 | Device           : xc7a35tcpg236-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 7.320        |
+| Total On-Chip Power (W)  | 7.321        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 7.213        |
+| Dynamic (W)              | 7.214        |
 | Device Static (W)        | 0.107        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 48.4         |
@@ -52,15 +52,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.015 |       44 |       --- |             --- |
+| Slice Logic    |     0.016 |       44 |       --- |             --- |
+|   LUT as Logic |     0.007 |        8 |     20800 |            0.04 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
-|   LUT as Logic |     0.006 |        8 |     20800 |            0.04 |
 |   Register     |     0.003 |       33 |     41600 |            0.08 |
 |   Others       |     0.000 |        2 |       --- |             --- |
 | Signals        |     0.242 |       66 |       --- |             --- |
 | I/O            |     6.956 |       55 |       106 |           51.89 |
 | Static Power   |     0.107 |          |           |                 |
-| Total          |     7.320 |          |           |                 |
+| Total          |     7.321 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -70,7 +70,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.376 |       0.337 |      0.039 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.377 |       0.338 |      0.039 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.268 |       0.252 |      0.016 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     1.947 |       1.946 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -137,14 +137,14 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| extmemTop                          |     7.213 |
-|   extmem                           |     0.063 |
+| extmemTop                          |     7.214 |
+|   extmem                           |     0.065 |
 |   gen_io_port_extRam[0].IOBUF_inst |     0.369 |
 |   gen_io_port_extRam[1].IOBUF_inst |     0.370 |
 |   gen_io_port_extRam[2].IOBUF_inst |     0.370 |
 |   gen_io_port_extRam[3].IOBUF_inst |     0.370 |
 |   gen_io_port_extRam[4].IOBUF_inst |     0.370 |
-|   gen_io_port_extRam[5].IOBUF_inst |     0.370 |
+|   gen_io_port_extRam[5].IOBUF_inst |     0.369 |
 |   gen_io_port_extRam[6].IOBUF_inst |     0.370 |
 |   gen_io_port_extRam[7].IOBUF_inst |     0.370 |
 +------------------------------------+-----------+

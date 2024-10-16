@@ -36,7 +36,9 @@ entity samplemem is
         SampleDIn : in std_logic_vector(15 downto 0) := (others => '0'); --Sample data input
         SampleDO : out std_logic_vector(7 downto 0):= (others => '0');
        -- SampleDOut : out std_logic_vector(15 downto 0) := (others => '0'); --Stored sample data output
-        SampleRW : in std_logic := '0'; --Store in, or retrieve from, RAM.
+        SampleRW : in std_logic := '0'; --Store in, or retrieve from, RAM. This single should be '1' for WRITE mode ande '0' for mode
+                                        --Coordinate this with tri-state buffer behaviour! The Xilinx primitive is inverted from this
+                                        --So we add an interter to the signal in top layer or in this code. I did it in the top layer.
        -- Mode : in std_logic := '0'; -- Continous read = '1', single read = '0';
         SampleAddr : in std_logic_vector(18 downto 0) := (others => '0'); 
         CLK : in std_logic := '0';
