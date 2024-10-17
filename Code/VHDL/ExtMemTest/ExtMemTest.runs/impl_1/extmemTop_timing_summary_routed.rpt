@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Oct 16 21:35:54 2024
-| Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
+| Date         : Thu Oct 17 13:13:30 2024
+| Host         : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file extmemTop_timing_summary_routed.rpt -pb extmemTop_timing_summary_routed.pb -rpx extmemTop_timing_summary_routed.rpx -warn_on_violation
 | Design       : extmemTop
 | Device       : 7a35t-cpg236
@@ -395,7 +395,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 extmem/SampleDO_reg[2]/C
+  Source:                 extmem/SampleByteFromRam_reg[2]/C
                             (rising edge-triggered cell FDRE)
   Destination:            SampleDO_ext[2]
                             (output port)
@@ -406,8 +406,8 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X13Y29         FDRE                         0.000     0.000 r  extmem/SampleDO_reg[2]/C
-    SLICE_X13Y29         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  extmem/SampleDO_reg[2]/Q
+    SLICE_X13Y29         FDRE                         0.000     0.000 r  extmem/SampleByteFromRam_reg[2]/C
+    SLICE_X13Y29         FDRE (Prop_fdre_C_Q)         0.456     0.456 r  extmem/SampleByteFromRam_reg[2]/Q
                          net (fo=1, routed)           3.757     4.213    SampleDO_ext_OBUF[2]
     R2                   OBUF (Prop_obuf_I_O)         3.511     7.724 r  SampleDO_ext_OBUF[2]_inst/O
                          net (fo=0)                   0.000     7.724    SampleDO_ext[2]
@@ -415,7 +415,7 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 extmem/SampleDO_reg[4]/C
+  Source:                 extmem/SampleByteFromRam_reg[4]/C
                             (rising edge-triggered cell FDRE)
   Destination:            SampleDO_ext[4]
                             (output port)
@@ -426,8 +426,8 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X13Y29         FDRE                         0.000     0.000 r  extmem/SampleDO_reg[4]/C
-    SLICE_X13Y29         FDRE (Prop_fdre_C_Q)         0.419     0.419 r  extmem/SampleDO_reg[4]/Q
+    SLICE_X13Y29         FDRE                         0.000     0.000 r  extmem/SampleByteFromRam_reg[4]/C
+    SLICE_X13Y29         FDRE (Prop_fdre_C_Q)         0.419     0.419 r  extmem/SampleByteFromRam_reg[4]/Q
                          net (fo=1, routed)           3.612     4.031    SampleDO_ext_OBUF[4]
     T2                   OBUF (Prop_obuf_I_O)         3.688     7.719 r  SampleDO_ext_OBUF[4]_inst/O
                          net (fo=0)                   0.000     7.719    SampleDO_ext[4]
@@ -596,7 +596,7 @@ Slack:                    inf
 Slack:                    inf
   Source:                 extmem/FSM_onehot_s_read_reg[0]/C
                             (rising edge-triggered cell FDRE)
-  Destination:            extmem/ExtMemAdr_reg[0]/CE
+  Destination:            extmem/ExtMemAdrToRam_reg[0]/CE
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
   Data Path Delay:        0.486ns  (logic 0.186ns (38.243%)  route 0.300ns (61.757%))
@@ -607,9 +607,9 @@ Slack:                    inf
     SLICE_X13Y27         FDRE                         0.000     0.000 r  extmem/FSM_onehot_s_read_reg[0]/C
     SLICE_X13Y27         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  extmem/FSM_onehot_s_read_reg[0]/Q
                          net (fo=3, routed)           0.179     0.320    extmem/FSM_onehot_s_read_reg_n_0_[0]
-    SLICE_X13Y27         LUT3 (Prop_lut3_I0_O)        0.045     0.365 r  extmem/ExtMemAdr[6]_i_1/O
-                         net (fo=7, routed)           0.121     0.486    extmem/ExtMemAdr[6]_i_1_n_0
-    SLICE_X12Y26         FDRE                                         r  extmem/ExtMemAdr_reg[0]/CE
+    SLICE_X13Y27         LUT3 (Prop_lut3_I0_O)        0.045     0.365 r  extmem/ExtMemAdrToRam[6]_i_1/O
+                         net (fo=7, routed)           0.121     0.486    extmem/ExtMemAdrToRam[6]_i_1_n_0
+    SLICE_X12Y26         FDRE                                         r  extmem/ExtMemAdrToRam_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
 

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="18320" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="31968" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="26896" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="31448" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="31876" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="27232" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="35616" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="32204" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="28912" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="13176" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="5744" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="26376" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="36040" HostCore="12" HostMemory="017022836736">
+    </Process>
+</ProcessHandle>

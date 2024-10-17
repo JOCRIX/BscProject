@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemTest/ExtMemTest.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc} rfile:../../../ExtMemTest.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:{C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemTest/ExtMemTest.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc} rfile:../../../ExtMemTest.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:134 export:INPUT save:INPUT read:READ} [current_design]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets CLK_ext_IBUF]
 set_property src_info {type:XDC file:1 line:186 export:INPUT save:INPUT read:READ} [current_design]

@@ -1,35 +1,20 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="15196" HostCore="24" HostMemory="034112311296">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="35076" HostCore="12" HostMemory="017022836736">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="5976" HostCore="24" HostMemory="034112311296">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="10128" HostCore="12" HostMemory="017022836736">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="7568" HostCore="24" HostMemory="034112311296">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="36144" HostCore="12" HostMemory="017022836736">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="10280" HostCore="24" HostMemory="034112311296">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="16604" HostCore="24" HostMemory="034112311296">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="17232" HostCore="24" HostMemory="034112311296">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="21172" HostCore="24" HostMemory="034112311296">
+    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="14944" HostCore="12" HostMemory="017022836736">
     </Process>
 </ProcessHandle>
