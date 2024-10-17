@@ -90,8 +90,10 @@ signal sig_prescaller_to_DDS : std_logic_vector (31 downto 0) := (others => '0')
 signal dummy1 : std_logic;  --Simply used to connect an unused pin of the DDS.
 signal sig_dds_data_to_DAC : std_logic_vector(15 downto 0); -- Connects the DDS two's compliment output data to the prescaller.
 signal sig_update_f : std_logic; -- connects the update phase word indicater from the prescaller to the DDS.
+signal sig_clk_to_DAC : std_logic := '0';
 
 begin
+Ext_CLK_TO_DAC <= sig_clk_to_DAC;
 
 PLL1 : clk_wiz_0 -- Clocking wiz, used to set-up a pll to generate the master clock for the DDS prescaller.
    port map ( 
@@ -105,12 +107,12 @@ DAC_Prescaler1 : DAC_PRESCALER  --make connections between signals and the presc
     port map (
     CLK_IN => sig_clk_to_DAC_prescaler, --Connect the master clock from the PLL to the clock input.
     CLK_TO_DDS => sig_clk_prescaller_to_DDS, -- Connect the output DDS clock to the DDS_clock signal.
-    CLK_TO_DAC => Ext_CLK_TO_DAC -- Connect the output DAC clock to the DAC_CLOCK signal.
+    CLK_TO_DAC => sig_clk_to_DAC -- Connect the output DAC clock to the DAC_CLOCK signal.
     );
     
 DAC_DATA_Converter1 : DAC_DATA_Conversion
     port map (
-    CLK_IN => sig_clk_to_DAC_prescaler,
+    CLK_IN => sig_clk_to_DAC,
     SET_F_IN_H => Ext_SET_F_IN, -- Connect the external dipswitches to bit 31 downto 16 of the phase word.
     --SET_F_IN_H => YOUR REGISTER HERE;
     --SET_F_IN_L => YOUR REGISTER HERE;
@@ -128,5 +130,7 @@ DDS1 : dds_compiler_0 -- make connections between the signals and the DDS module
     m_axis_data_tvalid => dummy1,
     m_axis_data_tdata => sig_dds_data_to_DAC
   );
+  
+
 
 end rtl;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Oct 16 14:11:51 2024
+| Date         : Thu Oct 17 12:22:50 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_drc -file DAC_MODULE_drc_routed.rpt -pb DAC_MODULE_drc_routed.pb -rpx DAC_MODULE_drc_routed.rpx
 | Design       : DAC_MODULE
@@ -24,12 +24,14 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 1
-+----------+----------+-----------------------------------------------------+------------+
-| Rule     | Severity | Description                                         | Violations |
-+----------+----------+-----------------------------------------------------+------------+
-| CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
-+----------+----------+-----------------------------------------------------+------------+
+             Violations found: 3
++-------------+----------+-------------------------------------------------------------+------------+
+| Rule        | Severity | Description                                                 | Violations |
++-------------+----------+-------------------------------------------------------------+------------+
+| CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
+| PDRC-153    | Warning  | Gated clock check                                           | 1          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
++-------------+----------+-------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -44,6 +46,31 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
  #where value2 is the voltage provided to configuration bank 0
 
 Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+PDRC-153#1 Warning
+Gated clock check  
+Net DAC_Prescaler1/Ext_CLK_TO_DAC_OBUF is a gated clock net sourced by a combinational pin DAC_Prescaler1/Ext_CLK_TO_DAC_OBUF_inst_i_1/O, cell DAC_Prescaler1/Ext_CLK_TO_DAC_OBUF_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PLHOLDVIO-2#1 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT DAC_Prescaler1/Ext_CLK_TO_DAC_OBUF_inst_i_1 is driving clock pin of 17 cells. This could lead to large hold time violations. Involved cells are:
+DAC_DATA_Converter1/sig_f_out_reg[16],
+DAC_DATA_Converter1/sig_f_out_reg[17],
+DAC_DATA_Converter1/sig_f_out_reg[18],
+DAC_DATA_Converter1/sig_f_out_reg[19],
+DAC_DATA_Converter1/sig_f_out_reg[20],
+DAC_DATA_Converter1/sig_f_out_reg[21],
+DAC_DATA_Converter1/sig_f_out_reg[22],
+DAC_DATA_Converter1/sig_f_out_reg[23],
+DAC_DATA_Converter1/sig_f_out_reg[24],
+DAC_DATA_Converter1/sig_f_out_reg[25],
+DAC_DATA_Converter1/sig_f_out_reg[26],
+DAC_DATA_Converter1/sig_f_out_reg[27],
+DAC_DATA_Converter1/sig_f_out_reg[28],
+DAC_DATA_Converter1/sig_f_out_reg[29],
+DAC_DATA_Converter1/sig_f_out_reg[30] (the first 15 of 17 listed)
 Related violations: <none>
 
 
