@@ -1,0 +1,23 @@
+\chapter{Pin Map: Sample Controller - DAC} \label{App:PinMap_FPGA_DAC}
+The specific connections between the Sample Controller (CMOD A7 Artix-7 35T FPGA) and the DAC (LTC1668) can be seen in this appendix. A block diagram with the specific
+connections can also be found. Table \ref{tab:App_FPGA_DAC_PinMap} shows all connections between the DAC and Sample Controller. FPGA I.Pin refers to FPGA Interface Pin, this is the
+pin-number assinged to the connection in the Interface of the FPGA, see section \ref{subsec:MainProcessorInterface}. A diagram of the connections can be seen in figure \ref{fig_App_MCU_FPGA_PinMap}.
+
+\begin{table}[H]
+    \begin{tabular}{|m{5.2em}|m{5.2em}|m{6.7em}|m{6.7em}|m{8.7em}|}
+    \hline
+    \textbf{FPGA I.Pin} &   \textbf{LTC1668 Pin} & \textbf{Artix 7 Pin} & \textbf{Reference}  \\ \hline
+    48 & 26 / CLK & GPIO17 / M1 & DAC CLK\\ \hline
+    32 & 10 / DB0 (LSB) & GPIO16 / J2 & DAC Data bit 0 \\ \hline
+    33 & 9 / DB1 & GPIO3 / A16 & DAC Data bit 1 \\ \hline
+    34 & 8 / DB2 & GPIO4 / K3 & DAC Data bit 2 \\ \hline
+    35 & 7 / DB3 &
+ 
+    \end{tabular}
+    \caption*{
+        \raggedright
+        $\mathbf{^1}$ $\overline{ADDR}$ is active low. When low, register address will be sent over data-bus.\\
+      }
+    \caption{Pin map of the interconnections between the MCU and the Sample Controller (FPGA).}
+    \label{tab:App_FPGA_DAC_PinMap}
+  \end{table}
