@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Oct 18 14:37:46 2024
+# Process ID: 5608
+# Current directory: C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.runs/impl_1
+# Command line: vivado.exe -log pulse_train_gen.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pulse_train_gen.tcl -notrace
+# Log file: C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.runs/impl_1/pulse_train_gen.vdi
+# Journal file: C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.runs/impl_1\vivado.jou
+# Running On        :LAPTOP-EVQDCN9M
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+# CPU Frequency     :2592 MHz
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :17022 MB
+# Swap memory       :11274 MB
+# Total Virtual     :28297 MB
+# Available Virtual :8096 MB
+#-----------------------------------------------------------
+source pulse_train_gen.tcl -notrace

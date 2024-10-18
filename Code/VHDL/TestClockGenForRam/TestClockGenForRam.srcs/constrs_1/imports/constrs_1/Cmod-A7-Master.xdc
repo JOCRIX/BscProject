@@ -140,6 +140,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports MASTER_CLK]
 set_property IOSTANDARD LVCMOS33 [get_ports RAM_CLK]
 set_property IOSTANDARD LVCMOS33 [get_ports Trigger]
 set_property IOSTANDARD LVCMOS33 [get_ports TRIGGER_OUT]
-
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets TRIGGER_OUT_OBUF] 
-
+create_clock -add -name sys_clk_pin -period 83.33 -waveform {0 41.66} [get_ports {MASTER_CLK}]
+set_property PACKAGE_PIN K2 [get_ports TestOut]
+set_property IOSTANDARD LVCMOS33 [get_ports TestOut]

@@ -44,7 +44,7 @@ end read_write_repeat;
 architecture Behavioral of read_write_repeat is
 
 constant NR_OF_CLKs : integer := 4;
-signal ACTIVE : std_logic := '0';
+signal active : std_logic := '0';
 signal count : integer range 0 to 4 := 0;
 
 type clk_gen is (CLK1, CLK2, CLK3, CLK4);
@@ -56,51 +56,20 @@ begin
 TRIGGER_OUT <= Trigger;
 --
 
-generate_ram_clks : process (MASTER_CLK, Trigger, Active) is
+generate_ram_clks : process (MASTER_CLK, Trigger, active) is
+variable clk_count : integer range 0 to NR_OF_CLKs := 0;
 begin
-    if(rising_edge(MASTER_CLK)) then
-        case s_gen is 
-            when CLK1 =>
-                if(Trigger = '1') then
-                    ACTIVE <= '1';
-                    s_gen <= CLK2;
-                else
-                    ACTIVE <= '0';
-                end if;
-                
-            when CLK2 =>
-                  if(Trigger = '1') then
-                    ACTIVE <= '1';
-                    s_gen <= CLK3;
-                else
-                    ACTIVE <= '0';
-                end if;
-                
-            when CLK3 =>
-                  if(Trigger = '1') then
-                    ACTIVE <= '1';
-                    s_gen <= CLK4;
-                else
-                    ACTIVE <= '0';
-                end if;
-                
-            when CLK4 =>
-                  if(Trigger = '1') then
-                    ACTIVE <= '1';
-                else
-                    ACTIVE <= '0';
-                end if;
-                    s_gen <= CLK1;
-            
-        end case;
-    end if;
-    if(ACTIVE = '1') then
-        RAM_CLK <= MASTER_CLK;
-    else
-        RAM_CLK <= '0';
-    end if;
+   
 end process;
 
---RAM_CLK <= MASTER_CLK when ACTIVE = '1' else '0';
+
 
 end Behavioral;
+
+
+
+
+
+
+
+
