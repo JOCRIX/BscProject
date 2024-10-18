@@ -47,51 +47,52 @@ architecture Behavioral of pulse_train_gen is
 constant NR_OF_CLKs : integer := 4;
 signal active : std_logic := '0';
 signal count : integer range 0 to 4 := 0;
-
-type clk_gen is (CLK1, CLK2, CLK3, CLK4);
-signal s_gen : clk_gen := CLK1;
-signal trig_state : std_logic := '0';
-
+signal start : std_logic := '0';
+signal done : std_logic := '0';
+signal dtest : std_logic := '0';
 
 begin
 --Test
 TRIGGER_OUT <= Trigger;
-TestOut <= trig_state;
 --
 
-
-trig_start : process (Trigger) is
---variable trigger_state : std_logic := '0';
-begin
-    if(rising_edge(Trigger)) then 
-        trig_state <= '1';
-        end if;
-    if(Trigger = '0') then
-        trig_state <= '0';
-    end if;
-   -- if(falling_edge(Trigger)) then
-   --     trig_State <= '0';
-   -- end if; 
+trig_start : process (Trigger, done) is
+begin 
+    if(Trigger = '1' and done = '0') then
+        start <= '1';
+    elsif (Trigger = '1' and done = '1') then
+        start <= '0';
+        dtest <= '0';
+    else
+        start <='0';
+    end if;    
 end process;
 
-generate_ram_clks : process (MASTER_CLK, trig_state, active) is
-variable clk_count : integer range 0 to NR_OF_CLKs := 0;
-
+generate_ram_clks : process (MASTER_CLK, start,Trigger) is
+--variable clk_count : integer range 0 to NR_OF_CLKs := 0;
 begin
-    if(rising_edge(MASTER_CLK)) then-- and trig_state = '1') then
-        if(trig_state = '1') then
+
+if(rising_edge(MASTER_CLK)) then
+    if(start = '1') then
+        active <= '1';
+        done <= '0';
         if(count /= NR_OF_CLKS) then
             count <= count + 1;
-            active <= '1';
+            --done <= '0';
         else
-        active <= '0';
-        count <= 0;
-        end if;
+            count <= 0;
+            done <= '1';
+            active <= '0';
         end if;
     end if;
-    RAM_CLK <= active and MASTER_CLK;
-end process;
+end if;
 
+if(falling_edge(Trigger)) then
+    done <= '0';
+end if;
+
+end process;
+RAM_CLK <= MASTER_CLK and active;
 end Behavioral;
 
 

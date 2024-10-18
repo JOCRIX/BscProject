@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.runs/synth_1/pulse_train_gen.tcl"
+  variable script "F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.runs/synth_1/pulse_train_gen.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,8 +56,11 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
+set_param chipscope.maxJobs 6
+set_param checkpoint.writeSynthRtdsInDcp 1
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Board 49-26}  -suppress 
 set_msg_config  -id {Common 17-180}  -string {{ERROR: [Common 17-180] Spawn failed: No such file or directory}}  -suppress 
 OPTRACE "Creating in-memory project" START { }
@@ -66,15 +69,15 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir {C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.cache/wt} [current_project]
-set_property parent.project_path {C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.xpr} [current_project]
+set_property webtalk.parent_dir {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.cache/wt} [current_project]
+set_property parent.project_path {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo {c:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.cache/ip} [current_project]
+set_property ip_output_repo {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib {{C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd}}
+read_vhdl -library xil_defaultlib {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd}}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -84,12 +87,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc}}
-set_property used_in_implementation false [get_files {{C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc}}]
+read_xdc {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc}}
+set_property used_in_implementation false [get_files {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental {C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/utils_1/imports/synth_1/read_write_repeat.dcp}
+read_checkpoint -auto_incremental -incremental {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/utils_1/imports/synth_1/read_write_repeat.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

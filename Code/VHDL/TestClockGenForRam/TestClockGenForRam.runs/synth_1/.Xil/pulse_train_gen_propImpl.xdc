@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:{C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc} rfile:../../../TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc} rfile:../../../TestClockGenForRam.srcs/constrs_1/imports/constrs_1/Cmod-A7-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:135 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN L17 [get_ports MASTER_CLK]
 set_property src_info {type:XDC file:1 line:136 export:INPUT save:INPUT read:READ} [current_design]
@@ -11,3 +11,5 @@ set_property src_info {type:XDC file:1 line:143 export:INPUT save:INPUT read:REA
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets TRIGGER_OUT_OBUF]
 set_property src_info {type:XDC file:1 line:145 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN K2 [get_ports TestOut]
+set_property src_info {type:XDC file:1 line:148 export:INPUT save:INPUT read:READ} [current_design]
+set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets <myHier/myNet>]
