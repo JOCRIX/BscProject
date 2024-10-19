@@ -57,10 +57,7 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 6
-set_param checkpoint.writeSynthRtdsInDcp 1
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Board 49-26}  -suppress 
 set_msg_config  -id {Common 17-180}  -string {{ERROR: [Common 17-180] Spawn failed: No such file or directory}}  -suppress 
 OPTRACE "Creating in-memory project" START { }

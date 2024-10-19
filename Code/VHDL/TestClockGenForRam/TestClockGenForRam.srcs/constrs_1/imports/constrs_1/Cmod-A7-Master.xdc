@@ -132,17 +132,21 @@
 
 
 
-set_property PACKAGE_PIN L17 [get_ports MASTER_CLK]
 set_property PACKAGE_PIN L3 [get_ports RAM_CLK]
-set_property PACKAGE_PIN A18 [get_ports Trigger]
-set_property PACKAGE_PIN M3 [get_ports TRIGGER_OUT]
-set_property IOSTANDARD LVCMOS33 [get_ports MASTER_CLK]
 set_property IOSTANDARD LVCMOS33 [get_ports RAM_CLK]
-set_property IOSTANDARD LVCMOS33 [get_ports Trigger]
-set_property IOSTANDARD LVCMOS33 [get_ports TRIGGER_OUT]
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets TRIGGER_OUT_OBUF] 
-create_clock -add -name sys_clk_pin -period 83.33 -waveform {0 41.66} [get_ports {MASTER_CLK}]
-set_property PACKAGE_PIN K2 [get_ports TestOut]
-set_property IOSTANDARD LVCMOS33 [get_ports TestOut]
 
-set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets <myHier/myNet>]
+
+set_property PACKAGE_PIN A18 [get_ports Trig_in]
+set_property IOSTANDARD LVCMOS33 [get_ports Trig_in]
+set_property IOSTANDARD LVCMOS33 [get_ports CLK_in]
+set_property IOSTANDARD LVCMOS33 [get_ports Trig_out]
+set_property PACKAGE_PIN L17 [get_ports CLK_in]
+set_property PACKAGE_PIN M3 [get_ports Trig_out]
+create_clock -period 83.330 -name sys_clk_pin -waveform {0.000 41.660} -add [get_ports CLK_in]
+
+set_property PACKAGE_PIN K3 [get_ports test]
+set_property IOSTANDARD LVCMOS33 [get_ports test]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets Trig_out_OBUF]
+
+
+

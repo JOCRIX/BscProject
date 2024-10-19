@@ -33,11 +33,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity pulse_train_gen is
 Port (
-        Trigger : in std_logic;
-        TRIGGER_OUT : out std_logic; --test signal output
-        MASTER_CLK : in std_logic;
-        TestOut : out std_logic;
+test : out std_logic;
+        Trig_in : in std_logic;
+        Trig_out : out std_logic; --test signal output
+        CLK_in : in std_logic;
         RAM_CLK : out std_logic :='0' 
+        
 
       );
 end pulse_train_gen;
@@ -46,63 +47,47 @@ architecture Behavioral of pulse_train_gen is
 
 constant NR_OF_CLKs : integer := 4;
 signal active : std_logic := '0';
-signal count : integer range 0 to 4 := 0;
-signal start : std_logic := '0';
+signal count : integer range 0 to NR_OF_CLKs := 0;--4 := 0;
 signal done : std_logic := '0';
-signal dtest : std_logic := '0';
-
+signal run : std_logic := '0';
 begin
---Test
-TRIGGER_OUT <= Trigger;
---
 
-trig_start : process (Trigger, done) is
+Trig_out <= Trig_in; -- test
+
+test <= done; --test
+
+trig_start : process (Trig_in, done) is
 begin 
-    if(Trigger = '1' and done = '0') then
-        start <= '1';
-    elsif (Trigger = '1' and done = '1') then
-        start <= '0';
-        dtest <= '0';
-    else
-        start <='0';
-    end if;    
+        
+    if(done = '1') then
+        run <= '0';
+    elsif(rising_edge(Trig_in)) then
+        run <= '1';
+    end if;
+   
 end process;
 
-generate_ram_clks : process (MASTER_CLK, start,Trigger) is
---variable clk_count : integer range 0 to NR_OF_CLKs := 0;
+generate_ram_clks : process (CLK_in, Trig_in) is
 begin
-
-if(rising_edge(MASTER_CLK)) then
-    if(start = '1') then
-        active <= '1';
-        done <= '0';
-        if(count /= NR_OF_CLKS) then
+    if(rising_edge(CLK_in)) then
+        if(run = '1') then
+           if(count /= NR_OF_CLKS) then
+            active <= '1';
             count <= count + 1;
-            --done <= '0';
-        else
-            count <= 0;
-            done <= '1';
+            done <= '0';
+           else
             active <= '0';
+            done <= '1';
+           end if;
+        else
+        done <= '0';
+        count <= 0;
         end if;
     end if;
-end if;
-
-if(falling_edge(Trigger)) then
-    done <= '0';
-end if;
 
 end process;
-RAM_CLK <= MASTER_CLK and active;
+RAM_CLK <= CLK_in and active;
 end Behavioral;
-
-
-
-
-
-
-
-
-
 
 
 

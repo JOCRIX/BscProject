@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Oct 18 23:39:57 2024
+| Date         : Sat Oct 19 23:15:50 2024
 | Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_methodology -file pulse_train_gen_methodology_drc_routed.rpt -pb pulse_train_gen_methodology_drc_routed.pb -rpx pulse_train_gen_methodology_drc_routed.rpx
 | Design       : pulse_train_gen
@@ -20,21 +20,27 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: design_1
+          Floorplan: checkpoint_pulse_train_gen
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 1
-+-----------+----------+-------------------------------+------------+
-| Rule      | Severity | Description                   | Violations |
-+-----------+----------+-------------------------------+------------+
-| TIMING-18 | Warning  | Missing input or output delay | 1          |
-+-----------+----------+-------------------------------+------------+
+             Violations found: 2
++-----------+------------------+-------------------------------+------------+
+| Rule      | Severity         | Description                   | Violations |
++-----------+------------------+-------------------------------+------------+
+| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 1          |
+| TIMING-18 | Warning          | Missing input or output delay | 1          |
++-----------+------------------+-------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
+TIMING-17#1 Critical Warning
+Non-clocked sequential cell  
+The clock pin run_reg/C is not reached by a timing clock
+Related violations: <none>
+
 TIMING-18#1 Warning
 Missing input or output delay  
-An input delay is missing on Trigger relative to the rising and/or falling clock edge(s) of sys_clk_pin.
+An output delay is missing on test relative to the rising and/or falling clock edge(s) of sys_clk_pin.
 Related violations: <none>
 
 
