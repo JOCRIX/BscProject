@@ -19,8 +19,8 @@ The specific requirements can be seen in table \refq{tab:5_SystemRequirements}.
       §11 & Frequency sweep range$^4$ & \SIQ{50}{\hertz} - \SIQ{1}{\mega\hertz} \\ \hline
       §12 & Maximum frequency \newline sweep points$^5$ & 10000 points in a sweep \\ \hline
       §13 & Maximum bias sweep points$^6$ & 100 Points \\ \hline
-      §14 & Binning & Can do component binning \\ \hline
-      §15 & Histogram & Can plot a histogram$^7$ \\ \hline
+      §14 & Binning & Can do component binning$^7$ \\ \hline
+      §15 & Histogram & Can plot a histogram$^8$ \\ \hline
       §16 & Plots & Can plot all parameters vs. \newline frequency and bias voltage \\ \hline
       §17 & Interface & Minimum 7" touchscreen \\ \hline
       §18 & DUT connection & 4-wire kelvin connection \\ \hline
@@ -33,8 +33,9 @@ The specific requirements can be seen in table \refq{tab:5_SystemRequirements}.
       $\mathbf{^3}$ The accuracy of the phase angle of the measured impedance, see section \ref{sec:ModulusArgumentAccuracy}. \\
       $\mathbf{^4}$ The maximum range of a frequency sweep. \\
       $\mathbf{^5}$ The maximum points that a frequency sweep can contain. \\
-      $\mathbf{^6}$ The maximum points that a bias voltage sweep can contain. \\
-      $\mathbf{^7}$ Capable of measuring and saving multiple component values, such that a histogram of the components can be shown. \\
+      $\mathbf{^6}$ The maximum points that a bias voltage sweep can contain. \\ 
+      $\mathbf{^7}$ For binning explanation see section \refq{sec:5_1_Binning} \\
+      $\mathbf{^8}$ Capable of measuring and saving multiple component values, such that a histogram of the components can be shown. \\
     }
     \caption{Table to test captions and labels.}
     \label{tab:5_SystemRequirements}
@@ -86,7 +87,7 @@ and a sweept frequency from \SIQ{50}{\hertz} to \SIQ{1}{\mega\hertz}, and the ri
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{Sections/5_SystemRequirements/Figures/ImpedanceSpec.pdf}
-  \caption{Plots of the requirement for modulus accuracy, left for fixed impedance, but varying frequency, right with fixed frequency but varying impedance.}
+  \caption{Plots of the requirement for modulus accuracy, left for fixed impedance, but varying frequency, right with fixed frequency but varying impedance. The dots are the specifications of the R\&S LCX-200, with the \SIQ{1}{\mega\hertz} option.}
   \label{fig_5_ModulusAccuracy}
 \end{figure}
 
@@ -107,6 +108,6 @@ angle accuracy would be $A_(100,0.01) \leq (180/\pi)\cdot(1.3/100) = \SIQ{0.745}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{Sections/5_SystemRequirements/Figures/PhaseSpec.pdf}
-  \caption{Plots of the requirement for argument accuracy, left for fixed impedance, but varying frequency, right with fixed frequency but varying impedance.}
+  \caption{Plots of the requirement for argument accuracy, left for fixed impedance, but varying frequency, right with fixed frequency but varying impedance. The dots are the specifications of the R\&S LCX-200, with the \SIQ{1}{\mega\hertz} option.}
   \label{fig_5_PhaseAccuracy}
 \end{figure}

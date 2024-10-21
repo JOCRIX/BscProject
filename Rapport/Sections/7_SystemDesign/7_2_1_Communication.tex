@@ -24,7 +24,7 @@ If the MCU wants to read from the FPGA it must first CLK in an address in the sa
 
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=0 50 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommWrite.pdf}
+    \includegraphics[clip, trim=0 50 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommRead.pdf}
     \caption{In order to read from the FPGA, the MCU must first set RW ='0' then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To read data from the address; the MCU sets RW = '1' and changes it's DB0..DB15 outputs to input. The FPGA clocks the data out on DB0..DB15 on the next rising edge.}
     \label{fig_7_2_1_CommRead}
 \end{figure}
