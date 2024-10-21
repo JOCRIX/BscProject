@@ -1,0 +1,35 @@
+1.) Start på produkt specs: LCX200 bruges som reference. Vi skal gøre det mere klart i tabellen i problemanalyses at LCX 200 er en "baseline model".
+-check, it is done.
+
+2.) Problem statement. Vi skal kalde det for et "gap in the market" og ikke "hole in the market". Det er uklart hvad vi ser som et "gap", er det prisen? Funktioner? er det et sammensurium af flere parametre? Vi skal opridse hvad "gap"et er. Vi bør tilføje argumentet for, hvad vi faktisk vil løse. Hvad vil det sige at laver et "billigere" instrument og hvad giver vi op for at opnå det? Præcision, båndbredde etc? Der skal komme flere argumenter INDEN problem statement på, hvad det er og hvordan vi vil løse problemet. Det skal være mere klart hvilken vej vi går inden problem statement. Opsummer argumenter for "gap"et.
+-Check, it is done.
+
+3.) Kan vi vise LCX200 præcision sammen med vores egne krav for præcision? Bare et par målepunkter, så man kan sammenligne, hvad "reference" i form af LCX200 kan og, hvad vi sigter efter at kunne.
+-Check, it is done.
+
+4.) Inden problem formuleringen bør vi argumentere mere for, hvorfor vi vil have en øvre test range på 1MHz.
+-Check, it is done.
+
+5.) Produkt specs er OK. I produkt specs nr §2, hvad mener vi med fodnoten om at vi "fitter" impedancen til en model? Uklart. Det er forvirring omkring §2 og §9, hvad er det der skal vises?
+
+6.) Forklar, hvad "binning" funktionen går ud på. Det er et "go/no go" princip.
+
+7.) Forklar mere hvad "histogram" funktionen går ud på. Denne funktion hænger sammen med binning på en måde. Men i alle tilfælde, så skal vi forklare hvad §6 og §7 går ud på.
+
+8.) Vi kunne overveje at tilføje en "averaging" funktion til requirements som gør det muligt at finde gennemsnits værdier i bestemte intervaller.
+
+9.) Vi kunne simulere med monte carlo for at få en bedre idé om indflydelsen af jitter.
+
+10.) Vi bør separere data path og control path på sample control blokken i system architecture.
+
+11.) Det er OK at system architecture diagrammet er "overordnet", men de underordnede forklaringerne til modulerne bør have mere detaljerede diagrammer. F.eks Analog Front End på system diagrammet er overordnet, men vi bør lave mere detaljerede diagrammer nede i modul forklaringerne. Det er OK at vise detaljerede diagrammer i modulerne og så sige at de bliver forklaret i dybden i Design afsnittet. 
+
+12.) Alt det vigtigste der hører til designet skal være i hoved teksten og ikke appendix.
+
+13.) Det er uklart hvordan DC bias kommer ind. Vi mangler at vise summing pointet. Det er i system architecture igen.
+
+14.) Vi skal uddybe, hvilken opløsning vi vil have på DC bias. Det er det samme med sample rate etc. Hvad skal der til for at kunne måle det vi vil måle? Og hvorfor skal vi have den opløsning vi har valgt på ADC og DAC?
+
+15.) Interface tabeller kan man overveje at smide i bilag. De fortæller ikke det store til læseren. De skal bruges til design og er vigtige men bør ryge i bilag. Evt. tilføj interface grænseflader på system architecture diagrammet.
+
+16.) Vi mangler noget forklaring af, hvorfor system architecture er som den er. Hvordan fungerer _vores_ måle princip?

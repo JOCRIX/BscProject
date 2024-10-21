@@ -44,7 +44,9 @@ Table \refq{tab:2_3_AccuracyTab_U1733C} shows the accuracy of the impedance magn
     \end{table}
 
 \subsubsection*{Rohde \& Schwarz LCX-line}
-Rohde \& Schwarz has a benchtop line of LCR meters called the LCX line \cite{RSLCXLCRMeters}. These have tighter specifications for accuracy, a greater range and a more diverse set of displaying the measurements. They also come with a significantly higher price tag at 15000€ for a 500kHz bandwidth version. This LCR meter is shown on figure \ref{fig:2_2_RSLCX}. This line comes in a verity of different frequency models up to \SIQ{10}{\mega\hertz}.
+Rohde \& Schwarz has a benchtop line of LCR meters called the LCX line \cite{RSLCXLCRMeters}. These have tighter specifications for accuracy, a greater range and a more diverse set of displaying the measurements. They also come with a significantly higher price tag, the baseline LCX-200 offering a bandwidth of \SIQ{500}{\kilo\hertz} comes in at 5000 €. This model can then be upgraded through software to the LCX-k201 or LCX-k210, increasing the bandwidth to \SIQ{1}{\mega\hertz} and \SIQ{10}{\mega\hertz}. These software upgrades come at a steep price, with the \SIQ{1}{\mega\hertz} upgrade at 2200 € and the \SIQ{10}{\mega\hertz} upgrade at 8800 € bringing the total price of a \SIQ{1}{\mega\hertz} model to 7200 € and 13800 € for the \SIQ{10}{\mega\hertz} model.
+
+This LCR meter is shown on figure \ref{fig:2_2_RSLCX}. 
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 630 0 50, width=1\textwidth]{Sections/2_ProblemAnalysis/FIgures/RSLCXLCR.pdf}
@@ -102,8 +104,8 @@ A few LCR meters and impedance analyzers were reviewed, there are many more but 
 \begin{table}[H]
   \begin{tabular}{|m{9.5em}|m{8em}|m{8em}|m{8em}|}
   \hline
-    &   Keysight U1733C       & Rohde \&\newline Schwartz LCX      & Wayne-Kerr\newline 6500B                 \\ \hline
-    Test frequency \nl range$\mathbf{^1}$      &  \SI[]{20}{\hertz} to \SI[]{100}{\kilo\hertz}$\mathbf{^2}$     &    DC-\SI[]{10}{\mega\hertz},\newline \SI[]{1}{\hertz} steps   & \SI[]{20}{\hertz}-\SI[]{120}{\mega\hertz},\newline  \SI[]{100}{\micro\hertz} steps                                                  \\ \hline
+    &   Keysight U1733C       & Rohde \& \newline Schwartz \newline LCX-200      & Wayne-Kerr\newline 6500B                 \\ \hline
+    Test frequency \nl range$\mathbf{^1}$      &  \SI[]{20}{\hertz} to \SI[]{100}{\kilo\hertz}$\mathbf{^2}$     &    DC-\SI[]{500}{\kilo\hertz},\newline \SI[]{1}{\hertz} steps   & \SI[]{20}{\hertz}-\SI[]{120}{\mega\hertz},\newline  \SI[]{100}{\micro\hertz} steps                                                  \\ \hline
     Accuracy$\mathbf{^3}$            &  [Z]: see table \refq{tab:2_3_AccuracyTab_U1733C}\newline [$\phi$]: see table \refq{tab:2_3_PhaseAccuracyTab_U1733C}     & [Z]: see table \refq{tab:2_3_AccuracyTab_LCX}\newline [$\phi$]: see table \refq{tab:2_3_PhaseAccuracyTab_LCX}       &[Z] $\pm 0.05$\%\newline [$\phi$] $\pm 0.0005$\degree                                                    \\ \hline
     Interface Type            &  Simple$\mathbf{^4}$\nl LCD, buttons    & Touchscreen & Touchscreen \\ \hline
     Measurement mode          &   2-wire    & 4-wire      & 4-wire                                  \\ \hline
@@ -115,7 +117,7 @@ A few LCR meters and impedance analyzers were reviewed, there are many more but 
     Graph data point          &   No    & Yes      & Yes                                            \\ \hline
     Complex plane plots       &   No    & No       & Yes                                             \\ \hline
     Network access            &   No    & Yes      & Yes                                  \\ \hline
-    Price point               & <1000€   & 15000€ $\mathbf{^7}$   & Undisclosed                                    \\ \hline
+    Price point               & <1000€   & 5000€ $\mathbf{^7}$   & Undisclosed                                    \\ \hline
   \end{tabular}
   \caption*{
     \raggedright
@@ -125,7 +127,7 @@ A few LCR meters and impedance analyzers were reviewed, there are many more but 
     $\mathbf{^4}$ \textit{simple} refers to the instruments U/I being a few buttons and an LCD display as shown on figure \ref{fig:2_2_U1733C}.\\
     $\mathbf{^5}$ The Rohde \& Schwartz LCX DC bias setting is an extra software options that can be purchased\\
     $\mathbf{^6}$ The Rohde \& Schwartz LCX can do frequency sweeps if an extra software option is purchased.\\
-    $\mathbf{^7}$ The price of a \SIQ{500}{\kilo\hertz} version without any options. \\
+    $\mathbf{^7}$ The price of a \SIQ{500}{\kilo\hertz} LCX-200 version without any options. \\
   }
   \caption{A summary of the capabilties of the 3 instruments.}
   \label{tab:2_3_CapabilityTab}
