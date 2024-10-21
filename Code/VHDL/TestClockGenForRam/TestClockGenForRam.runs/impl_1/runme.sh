@@ -12,9 +12,9 @@ echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executi
 exit
 
 if [ -z "$PATH" ]; then
-  PATH=G:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;G:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:G:/Xilinx/Vivado/2024.1/bin
+  PATH=C:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2024.1/bin
 else
-  PATH=G:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;G:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:G:/Xilinx/Vivado/2024.1/bin:$PATH
+  PATH=C:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2024.1/bin:$PATH
 fi
 export PATH
 
@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='F:/Git Projects/EIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.runs/impl_1'
+HD_PWD='C:/EIT GIT/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -42,7 +42,7 @@ EAStep()
 }
 
 # pre-commands:
-/bin/touch .init_design.begin.rst
-EAStep vivado -log pulse_train_gen.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source pulse_train_gen.tcl -notrace
+/bin/touch .write_bitstream.begin.rst
+EAStep vivado -log pulse_TOP_test.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source pulse_TOP_test.tcl -notrace
 
 

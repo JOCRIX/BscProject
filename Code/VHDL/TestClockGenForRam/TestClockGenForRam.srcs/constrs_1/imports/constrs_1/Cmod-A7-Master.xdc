@@ -141,7 +141,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports Trig_in]
 set_property IOSTANDARD LVCMOS33 [get_ports CLK_in]
 set_property IOSTANDARD LVCMOS33 [get_ports Trig_out]
 set_property PACKAGE_PIN L17 [get_ports CLK_in]
-set_property PACKAGE_PIN M3 [get_ports Trig_out]
 create_clock -period 83.330 -name sys_clk_pin -waveform {0.000 41.660} -add [get_ports CLK_in]
 
 set_property PACKAGE_PIN K3 [get_ports test]
@@ -150,3 +149,22 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets Trig_out_OBUF]
 
 
 
+
+set_property PACKAGE_PIN M3 [get_ports Pulse_complete]
+set_property PACKAGE_PIN L3 [get_ports Pulse_out]
+set_property PACKAGE_PIN K2 [get_ports Trig_out]
+set_property IOSTANDARD LVCMOS33 [get_ports Pulse_complete]
+set_property IOSTANDARD LVCMOS33 [get_ports Pulse_out]
+
+set_property PACKAGE_PIN L17 [get_ports EXT_CLK_in]
+set_property PACKAGE_PIN M3 [get_ports EXT_Pulse_complete]
+set_property PACKAGE_PIN L3 [get_ports EXT_Pulse_out]
+set_property PACKAGE_PIN A18 [get_ports EXT_Trig_in]
+set_property PACKAGE_PIN K2 [get_ports EXT_Trig_out]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_CLK_in]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_Pulse_complete]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_Pulse_out]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_Trig_in]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_Trig_out]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets EXT_Trig_out_OBUF] 

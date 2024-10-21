@@ -2,13 +2,14 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 18.10.2024 13:24:19
--- Design Name: 
+-- Create Date: 21.10.2024 13:24:19
+-- Design Name: JRIX
 -- Module Name: pulse_train_gen - Behavioral
--- Project Name: 
--- Target Devices: 
+-- Project Name: Impedance Analyzer
+-- Target Devices: Artix 7 AT35-236
 -- Tool Versions: 
--- Description: 
+-- Description: Generates "n" amount of pulses. Requires external CLK signal. Pulses are synchronous with CLK_in. "n" can be set by NR_OF_CLKs during instantiation.
+--              The pulses start with a rising_edge on Trig_in. A rising edge on "Complete" indicates that it has finished pulsing.
 -- 
 -- Dependencies: 
 -- 
@@ -32,29 +33,32 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity pulse_train_gen is
+Generic(
+        NR_OF_CLKs : integer := 4       
+);
 Port (
-test : out std_logic;
-        Trig_in : in std_logic;
-        Trig_out : out std_logic; --test signal output
-        CLK_in : in std_logic;
-        RAM_CLK : out std_logic :='0' 
-        
-
+        --test : out std_logic;
+        Trig_in : in std_logic := '0';
+      --  Trig_out : out std_logic; --test signal output
+        CLK_in : in std_logic := '0';
+        Pulse_out : out std_logic :='0';
+        Pulse_complete : out std_logic := '0' 
       );
 end pulse_train_gen;
 
 architecture Behavioral of pulse_train_gen is
 
-constant NR_OF_CLKs : integer := 4;
+--constant NR_OF_CLKs : integer := 4;
 signal active : std_logic := '0';
 signal count : integer range 0 to NR_OF_CLKs := 0;--4 := 0;
 signal done : std_logic := '0';
 signal run : std_logic := '0';
 begin
 
-Trig_out <= Trig_in; -- test
+--Trig_out <= Trig_in; -- test
 
-test <= done; --test
+--test <= done; --test
+Pulse_complete <= done;
 
 trig_start : process (Trig_in, done) is
 begin 
@@ -86,7 +90,7 @@ begin
     end if;
 
 end process;
-RAM_CLK <= CLK_in and active;
+Pulse_out <= CLK_in and active;
 end Behavioral;
 
 
