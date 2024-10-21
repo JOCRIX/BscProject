@@ -1,0 +1,329 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Mon Oct 21 20:56:21 2024
+# Process ID: 21628
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1
+# Command line: vivado.exe -log ExternalMemoryDistribution.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ExternalMemoryDistribution.tcl
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1/ExternalMemoryDistribution.vds
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39212 MB
+# Available Virtual :23471 MB
+#-----------------------------------------------------------
+source ExternalMemoryDistribution.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/utils_1/imports/synth_1/ExternalMemoryDistribution.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/utils_1/imports/synth_1/ExternalMemoryDistribution.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top ExternalMemoryDistribution -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2268
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1383.457 ; gain = 448.832
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'ExternalMemoryDistribution' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:53]
+INFO: [Synth 8-256] done synthesizing module 'ExternalMemoryDistribution' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:53]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd-34.0, F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd-53.0 with 1st driver pin 'VCC' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:34]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd-34.0, F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd-53.0 with 2nd driver pin 'GND' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:34]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd-34.0, F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd-53.0 is connected to at least one constant driver which has been preserved, other driver is ignored [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:34]
+WARNING: [Synth 8-3330] design ExternalMemoryDistribution has an empty top module
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port PulseMemoryControlTrigger driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port PulseExtReadWriteTrigger driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port ADDR_EXT_MEM_DIST_TO_EXT_MEM[18] driven by constant 1
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port ADDR_EXT_MEM_DIST_TO_EXT_MEM[17] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port ADDR_EXT_MEM_DIST_TO_EXT_MEM[16] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[7] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[6] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[5] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[4] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[3] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[2] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[1] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[0] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[15] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[14] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[13] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[12] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[11] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[10] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[9] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[8] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[7] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[6] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[5] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[4] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[3] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[2] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[1] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[0] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port CLK_TO_EXT_MEM_READ_WRITE driven by constant 0
+WARNING: [Synth 8-7129] Port PulseInMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseInExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RnW in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK_IVSAVER_TO_MEM_DIST in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[15] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[14] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[13] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[12] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[11] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[10] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[9] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[8] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[7] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[6] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[5] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[4] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[3] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[2] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[1] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[0] in module ExternalMemoryDistribution is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1492.637 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
+Finished Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1492.637 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1492.637 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3330] design ExternalMemoryDistribution has an empty top module
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port PulseMemoryControlTrigger driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port PulseExtReadWriteTrigger driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port ADDR_EXT_MEM_DIST_TO_EXT_MEM[18] driven by constant 1
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port ADDR_EXT_MEM_DIST_TO_EXT_MEM[17] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port ADDR_EXT_MEM_DIST_TO_EXT_MEM[16] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[7] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[6] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[5] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[4] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[3] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[2] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[1] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_DIST_TO_EXT_MEM[0] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[15] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[14] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[13] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[12] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[11] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[10] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[9] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[8] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[7] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[6] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[5] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[4] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[3] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[2] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[1] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port DATA_EXT_MEM_TO_IVSAVER[0] driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port CLK_TO_EXT_MEM_READ_WRITE driven by constant 0
+WARNING: [Synth 8-7129] Port PulseInMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseInExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RnW in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK_IVSAVER_TO_MEM_DIST in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[15] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[14] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[13] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[12] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[11] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[10] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[9] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[8] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[7] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[6] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[5] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[4] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[3] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[2] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[1] in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port DATA_IVSAVER_TO_EXT_MEM_DIST[0] in module ExternalMemoryDistribution is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |IBUF |    16|
+|2     |OBUF |    46|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 54 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1492.637 ; gain = 558.012
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1492.637 ; gain = 558.012
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1492.637 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1492.637 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 8fd38b4c
+INFO: [Common 17-83] Releasing license: Synthesis
+21 Infos, 107 Warnings, 3 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1492.637 ; gain = 957.301
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1492.637 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1/ExternalMemoryDistribution.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file ExternalMemoryDistribution_utilization_synth.rpt -pb ExternalMemoryDistribution_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Oct 21 20:56:46 2024...
