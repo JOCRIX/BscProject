@@ -68,3 +68,7 @@ release
 *.x86_64
 
 #
+
+#Vivado
+
+Code/VHDL/ExtMemTest/ExtMemTest.sim/sim_1/
