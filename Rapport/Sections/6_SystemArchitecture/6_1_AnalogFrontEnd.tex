@@ -1,15 +1,14 @@
 \section{Analog Front End} \label{sec:AnalogFrontEnd}
 
-The analog front is a critical part of the impedance analyzer. The module is internally split into two major sections; a test signal generator and a sampling circuit. The module will generate test signals for the DUT with a digital-to-analog converter (DAC) and then acquire and sample the resulting DUT current and voltage waveforms with an analog-to-digital converter (ADC). A snippet of the analog front end can be seen on figure \refq{fig_6_1_AnalogFrontEnd}. Here it can also be seen that the Analog Front End will connect to the DUT using a 4 wire Kelvin connection.
-
+The analog front is a critical part of the impedance analyzer. The module is internally split into two major sections; a test signal generator and a sampling circuit. The module will generate test signals for the DUT with a digital-to-analog converter (DAC) and then acquire and sample the resulting DUT current and voltage waveforms with an analog-to-digital converter (ADC). A simplifeid diagram of the Analog Front End can be seen of figure \refq{fig_6_1_AnalogFrontEnd}. 
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=18 0 18 0,width=0.70\textwidth]{Sections/6_SystemArchitecture/Figures/AnalogFrontEnd.pdf}
+    \includegraphics[clip, trim=0 0 0 0,width=1\textwidth]{Sections/6_SystemArchitecture/Figures/AnalogFrontEndDetailedBlock.pdf}
     \caption{The analog front end module. The DAC is generating the test signal for the DUT through the $H_{CUR}$, $L_{CUR}$ Kelvin Connections, while the two ADC's are sampling the DUT voltage through the $H_{pot}$ and $L_{pot}$ connections. The DUT current is sampled through a range resistor. All the control signal for the ADC and DAC come from the sample control module (marked as FPGA). The samples are stored in the sample control module. The  }
     \label{fig_6_1_AnalogFrontEnd}
 \end{figure}
 
-A DAC will generate the test signals for the DUT and two ADC's will sample the resulting current and voltage waveforms. The control signals for the DAC and the ADC's will come from the Sample Control Module. The DAC will drive the DUT through a programmable gain amplifier, allowing for different test voltages. This also has the benefit of allowign the DAC to run at a constant full-scale output, improving the signal to noise ratio. 
+A differential DAC will generate the test signals for the DUT and two differential ADC's will sample the resulting current and voltage waveforms. The choise of using differential signal is very deliberately done to reduce common mode noise. The control signals for the DAC and the ADC's will come from the Sample Control Module. The DAC will drive the DUT through a programmable gain amplifier, allowing for different test voltages. This also has the benefit of allowign the DAC to run at a constant full-scale output, improving the signal to noise ratio. 
 
 In much the same way, a Programable Gain Amplifier, PGA, is placed in front of each ADC, such that smaller voltages can be amplified, improving the signal to noise ratio of the analog to digital conversion. This also alows the design to better use the full dynamic range of both ADC's. The DAC \textit{side} of the analog front end will have a system to DC bias to the DUT as well, this means the DUT will see a sum of the test signal and DC bias voltage. The DC bias function is supplied by the Microprocessor module and will be described in section \refq{sec:MainProcessor}.
 
