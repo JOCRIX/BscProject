@@ -41,6 +41,7 @@ Port (
         Trig_in : in std_logic := '0';
       --  Trig_out : out std_logic; --test signal output
         CLK_in : in std_logic := '0';
+        BUSY : out std_logic := '0';
         Pulse_out : out std_logic :='0';
         Pulse_complete : out std_logic := '0' 
       );
@@ -59,6 +60,7 @@ begin
 
 --test <= done; --test
 Pulse_complete <= done;
+BUSY <= run;
 
 trig_start : process (Trig_in, done) is
 begin 
