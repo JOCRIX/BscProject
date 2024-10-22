@@ -1,0 +1,264 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Oct 22 13:53:45 2024
+# Process ID: 1164
+# Current directory: C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1
+# Command line: vivado.exe -log ExternalMemoryDistribution.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ExternalMemoryDistribution.tcl
+# Log file: C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1/ExternalMemoryDistribution.vds
+# Journal file: C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1\vivado.jou
+# Running On        :LAPTOP-EVQDCN9M
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+# CPU Frequency     :2592 MHz
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :17022 MB
+# Swap memory       :11274 MB
+# Total Virtual     :28297 MB
+# Available Virtual :7179 MB
+#-----------------------------------------------------------
+source ExternalMemoryDistribution.tcl -notrace
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 514.137 ; gain = 198.824
+Command: read_checkpoint -auto_incremental -incremental {C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/utils_1/imports/synth_1/ExternalMemoryDistribution.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/utils_1/imports/synth_1/ExternalMemoryDistribution.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top ExternalMemoryDistribution -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 8612
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 1368.922 ; gain = 449.238
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'ExternalMemoryDistribution' [C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:57]
+WARNING: [Synth 8-614] signal 's_byte' is read in the process but is not in the sensitivity list [C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:111]
+INFO: [Synth 8-256] done synthesizing module 'ExternalMemoryDistribution' (0#1) [C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:57]
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port PulseExtReadWriteTrigger driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port CLK_TO_EXT_MEM_READ_WRITE driven by constant 0
+WARNING: [Synth 8-7129] Port PulseInMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseInExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:13 . Memory (MB): peak = 1478.516 ; gain = 558.832
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:13 . Memory (MB): peak = 1478.516 ; gain = 558.832
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:13 . Memory (MB): peak = 1478.516 ; gain = 558.832
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1478.516 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
+Finished Parsing XDC File [C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1565.453 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1565.453 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:29 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:29 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:29 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 's_byte_reg' in module 'ExternalMemoryDistribution'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+             byte1_step1 |                            00001 |                              000
+             byte1_step2 |                            00010 |                              001
+                   reset |                            00100 |                              010
+                   byte2 |                            01000 |                              011
+                finished |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_byte_reg' using encoding 'one-hot' in module 'ExternalMemoryDistribution'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:29 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               19 Bit    Registers := 1     
+	                8 Bit    Registers := 3     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   5 Input   19 Bit        Muxes := 1     
+	   5 Input    8 Bit        Muxes := 1     
+	   5 Input    1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port PulseExtReadWriteTrigger driven by constant 0
+WARNING: [Synth 8-3917] design ExternalMemoryDistribution has port CLK_TO_EXT_MEM_READ_WRITE driven by constant 0
+WARNING: [Synth 8-7129] Port PulseInMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteMemoryControl in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseInExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:43 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:43 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:43 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     2|
+|2     |LUT1 |     1|
+|3     |LUT2 |     1|
+|4     |LUT3 |     2|
+|5     |LUT4 |     8|
+|6     |LUT5 |     3|
+|7     |LUT6 |     3|
+|8     |FDCE |     1|
+|9     |FDRE |    40|
+|10    |FDSE |     8|
+|11    |IBUF |    44|
+|12    |OBUF |    47|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:50 . Memory (MB): peak = 1565.453 ; gain = 558.832
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:00:53 . Memory (MB): peak = 1565.453 ; gain = 645.770
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1565.453 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1565.453 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: f317ad49
+INFO: [Common 17-83] Releasing license: Synthesis
+23 Infos, 14 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:01:03 . Memory (MB): peak = 1565.453 ; gain = 1046.875
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1565.453 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/EIT GIT/P7---Bsc/Code/VHDL/ExtMemoryControl/ExtMemoryControl.runs/synth_1/ExternalMemoryDistribution.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file ExternalMemoryDistribution_utilization_synth.rpt -pb ExternalMemoryDistribution_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 22 13:55:06 2024...
