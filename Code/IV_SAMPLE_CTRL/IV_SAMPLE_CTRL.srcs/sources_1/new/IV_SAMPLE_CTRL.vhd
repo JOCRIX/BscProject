@@ -35,7 +35,6 @@ use ieee.numeric_std.ALL;
 entity IV_SAMPLE_CTRL is
     Port ( 
             --MASTER_CLK_IN : in std_logic;
-            EN_IN : in STD_LOGIC;
             CLK_FROM_INT_MEM_IN : in STD_LOGIC;
             ADDR_FROM_INT_MEM_IN : in STD_LOGIC_VECTOR (3 downto 0);
             DATA_TO_INT_MEM_OUT : out STD_LOGIC_VECTOR (3 downto 0);
@@ -101,9 +100,9 @@ begin
     end if;
 end process;
 
-DATA_ADDR_read_mode: process(ADC_DnB, EN_IN, CLK_FROM_INT_MEM_IN, ADDR_FROM_INT_MEM_IN, DATA_FROM_MEM_DIST_IN)
+DATA_ADDR_read_mode: process(ADC_DnB, CLK_FROM_INT_MEM_IN, ADDR_FROM_INT_MEM_IN, DATA_FROM_MEM_DIST_IN)
 begin
-    if(ADC_DnB = '1' and EN_IN = '1') then
+    if(ADC_DnB = '1') then
         sig_int_mem_ADDR <= ADDR_FROM_INT_MEM_IN;
         sig_int_mem_DATA <= DATA_FROM_MEM_DIST_IN;
         sig_CLK_from_int_mem <= CLK_FROM_INT_MEM_IN;

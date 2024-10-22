@@ -3,12 +3,12 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Tue Oct 22 11:38:06 2024
-# Process ID: 6592
-# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL/IV_SAMPLE_CTRL.runs/impl_1
-# Command line: vivado.exe -log IV_SAMPLE_CTRL.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source IV_SAMPLE_CTRL.tcl -notrace
-# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL/IV_SAMPLE_CTRL.runs/impl_1/IV_SAMPLE_CTRL.vdi
-# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL/IV_SAMPLE_CTRL.runs/impl_1\vivado.jou
+# Start of session at: Tue Oct 22 10:46:27 2024
+# Process ID: 5216
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12708 C:\Users\jakob\Desktop\P7---Bsc\Code\IV_SAMPLE_CTRL\IV_SAMPLE_CTRL.xpr
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL/vivado.log
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL\vivado.jou
 # Running On        :DESKTOP-26ONRPF
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
@@ -19,6 +19,7 @@
 # Host memory       :8469 MB
 # Swap memory       :4831 MB
 # Total Virtual     :13301 MB
-# Available Virtual :6370 MB
+# Available Virtual :9442 MB
 #-----------------------------------------------------------
-source IV_SAMPLE_CTRL.tcl -notrace
+start_gui
+open_project C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL/IV_SAMPLE_CTRL.xpr

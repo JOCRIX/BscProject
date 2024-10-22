@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Sat Oct 19 21:19:26 2024
-| Host             : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+| Date             : Tue Oct 22 11:21:16 2024
+| Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file IV_SAMPLE_CTRL_power_routed.rpt -pb IV_SAMPLE_CTRL_power_summary_routed.pb -rpx IV_SAMPLE_CTRL_power_routed.rpx
 | Design           : IV_SAMPLE_CTRL
 | Device           : xc7a35tcpg236-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 12.939 (Junction temp exceeded!) |
+| Total On-Chip Power (W)  | 12.919 (Junction temp exceeded!) |
 | Design Power Budget (W)  | Unspecified*                     |
 | Power Budget Margin (W)  | NA                               |
-| Dynamic (W)              | 12.742                           |
+| Dynamic (W)              | 12.723                           |
 | Device Static (W)        | 0.197                            |
 | Effective TJA (C/W)      | 5.0                              |
-| Max Ambient (C)          | 20.3                             |
-| Junction Temperature (C) | 89.7                             |
+| Max Ambient (C)          | 20.4                             |
+| Junction Temperature (C) | 89.6                             |
 | Confidence Level         | Low                              |
 | Setting File             | ---                              |
 | Simulation Activity File | ---                              |
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.049 |       22 |       --- |             --- |
-|   LUT as Logic |     0.036 |        8 |     20800 |            0.04 |
+| Slice Logic    |     0.043 |       22 |       --- |             --- |
+|   LUT as Logic |     0.030 |        8 |     20800 |            0.04 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   CARRY4       |     0.004 |        1 |      8150 |            0.01 |
 |   Register     |     0.003 |        4 |     41600 |           <0.01 |
 |   Others       |     0.000 |        2 |       --- |             --- |
-| Signals        |     0.305 |       34 |       --- |             --- |
-| I/O            |    12.387 |       30 |       106 |           28.30 |
+| Signals        |     0.296 |       33 |       --- |             --- |
+| I/O            |    12.384 |       29 |       106 |           27.36 |
 | Static Power   |     0.197 |          |           |                 |
-| Total          |    12.939 |          |           |                 |
+| Total          |    12.919 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.526 |       0.414 |      0.111 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.506 |       0.395 |      0.111 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.476 |       0.452 |      0.024 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     3.490 |       3.489 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -138,7 +138,7 @@ Table of Contents
 +----------------+-----------+
 | Name           | Power (W) |
 +----------------+-----------+
-| IV_SAMPLE_CTRL |    12.742 |
+| IV_SAMPLE_CTRL |    12.723 |
 +----------------+-----------+
 
 

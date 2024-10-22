@@ -61,3 +61,5 @@ set_property src_info {type:XDC file:1 line:215 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN U1 [get_ports RnW_TO_MEM_DIST_OUT]
 set_property src_info {type:XDC file:1 line:216 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN T3 [get_ports ADC_DnB]
+set_property src_info {type:XDC file:1 line:220 export:INPUT save:INPUT read:READ} [current_design]
+set_property IOSTANDARD LVCMOS33 [get_ports EN_IN]

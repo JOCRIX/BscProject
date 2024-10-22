@@ -105,8 +105,8 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_param chipscope.maxJobs 3
-  set_param runs.launchOptions { -jobs 12  }
+  set_param chipscope.maxJobs 1
+  set_param runs.launchOptions { -jobs 4  }
   open_checkpoint IV_SAMPLE_CTRL_routed.dcp
   set_property webtalk.parent_dir C:/Users/jakob/Desktop/P7---Bsc/Code/IV_SAMPLE_CTRL/IV_SAMPLE_CTRL.cache/wt [current_project]
 set_property TOP IV_SAMPLE_CTRL [current_fileset]

@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Sat Oct 19 21:19:26 2024
-| Host         : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+| Date         : Tue Oct 22 11:21:15 2024
+| Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_methodology -file IV_SAMPLE_CTRL_methodology_drc_routed.rpt -pb IV_SAMPLE_CTRL_methodology_drc_routed.pb -rpx IV_SAMPLE_CTRL_methodology_drc_routed.rpx
 | Design       : IV_SAMPLE_CTRL
 | Device       : xc7a35tcpg236-1
@@ -20,7 +20,7 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: design_1
+          Floorplan: checkpoint_IV_SAMPLE_CTRL
       Design limits: <entire design considered>
              Max violations: <unlimited>
              Violations found: 4
