@@ -13,6 +13,7 @@
 5.) Produkt specs er OK. I produkt specs nr §2, hvad mener vi med fodnoten om at vi "fitter" impedancen til en model? Uklart. Det er forvirring omkring §2 og §9, hvad er det der skal vises?
 
 6.) Forklar, hvad "binning" funktionen går ud på. Det er et "go/no go" princip.
+-Check, it is done.
 
 7.) Forklar mere hvad "histogram" funktionen går ud på. Denne funktion hænger sammen med binning på en måde. Men i alle tilfælde, så skal vi forklare hvad §6 og §7 går ud på.
 
