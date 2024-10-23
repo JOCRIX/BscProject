@@ -1,6 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd" \
-
-# Do not sort compile order
-nosort

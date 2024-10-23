@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Tue Oct 22 17:25:00 2024
+| Date         : Wed Oct 23 11:33:45 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_utilization -file MASTER_FILE_utilization_synth.rpt -pb MASTER_FILE_utilization_synth.pb
 | Design       : MASTER_FILE
@@ -93,7 +93,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   82 |     0 |          0 |       106 | 77.36 |
+| Bonded IOB                  |   71 |     0 |          0 |       106 | 66.98 |
 | Bonded IPADs                |    0 |     0 |          0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |          0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         5 |  0.00 |
@@ -153,12 +153,12 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     |   87 |        Flop & Latch |
-| IBUF     |   44 |                  IO |
 | OBUF     |   38 |                  IO |
-| LUT2     |   22 |                 LUT |
-| LUT3     |   21 |                 LUT |
+| LUT2     |   33 |                 LUT |
+| IBUF     |   33 |                  IO |
 | FDCE     |   16 |        Flop & Latch |
 | LUT5     |   11 |                 LUT |
+| LUT3     |   10 |                 LUT |
 | FDSE     |    9 |        Flop & Latch |
 | OBUFT    |    8 |                  IO |
 | LUT4     |    5 |                 LUT |

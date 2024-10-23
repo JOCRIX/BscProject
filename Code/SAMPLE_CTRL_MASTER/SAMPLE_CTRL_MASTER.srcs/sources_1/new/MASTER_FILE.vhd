@@ -37,7 +37,7 @@ entity MASTER_FILE is
     Port (
         Ext_DATA_INPUT : in std_logic_vector(15 downto 0);
         Ext_DATA_OUTPUT : out std_logic_vector(15 downto 0);
-        Ext_DATA_ADDR : in std_logic_vector(15 downto 0);
+        Ext_DATA_ADDR : in std_logic_vector(4 downto 0);
         Ext_CLK_FROM_INT_MEM : in std_logic;
         Ext_DnB : in std_logic;
         Ext_ADC_RDY : in std_logic;
@@ -169,7 +169,12 @@ signal sig_data_from_mem_dist_to_IV_SAVER : std_logic_vector(15 downto 0);
 
 signal sig_GRANDMASTER_CLK : std_logic;
 
+signal sig_ADDR_DOWNSCALE : std_logic_vector (15 downto 5) := (others => '0');
+signal sig_ADDR : std_logic_vector(15 downto 0) := (others => '0');
+
 begin
+
+sig_ADDR <= sig_ADDR_DOWNSCALE & Ext_DATA_ADDR;
 
 gen_io_port_extRam : for index in 0 to 7 generate   --Output driver disabled når T = '1'. Aka vi vil læse med porten. 
    IOBUF_inst : IOBUF                               --https://docs.amd.com/r/en-US/ug953-vivado-7series-libraries/IOBUF
@@ -251,7 +256,7 @@ Port map(
     
     --Connections to ext. ports.
     CLK_FROM_INT_MEM_IN => Ext_CLK_FROM_INT_MEM,
-    ADDR_FROM_INT_MEM_IN => Ext_DATA_ADDR,
+    ADDR_FROM_INT_MEM_IN => sig_ADDR,
     DATA_TO_INT_MEM_OUT => Ext_DATA_OUTPUT,
     ADC_DnB => Ext_DnB,
     ADC_DATA_IN => Ext_DATA_INPUT,
