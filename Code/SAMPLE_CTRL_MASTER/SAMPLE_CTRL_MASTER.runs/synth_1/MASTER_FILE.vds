@@ -1,0 +1,344 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Oct 22 17:23:59 2024
+# Process ID: 9784
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.runs/synth_1
+# Command line: vivado.exe -log MASTER_FILE.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source MASTER_FILE.tcl
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.runs/synth_1/MASTER_FILE.vds
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-26ONRPF
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :4831 MB
+# Total Virtual     :13301 MB
+# Available Virtual :3806 MB
+#-----------------------------------------------------------
+source MASTER_FILE.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 504.391 ; gain = 200.285
+Command: read_checkpoint -auto_incremental -incremental C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/utils_1/imports/synth_1/MASTER_FILE.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/utils_1/imports/synth_1/MASTER_FILE.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top MASTER_FILE -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 12992
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1368.586 ; gain = 450.387
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'MASTER_FILE' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:55]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:175]
+INFO: [Synth 8-3491] module 'ExtMemReadWrite' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/imports/new/ext_mem_read_write.vhd:34' bound to instance 'EXT_MEM_RW1' of component 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:189]
+INFO: [Synth 8-638] synthesizing module 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/imports/new/ext_mem_read_write.vhd:58]
+INFO: [Synth 8-256] done synthesizing module 'ExtMemReadWrite' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/imports/new/ext_mem_read_write.vhd:58]
+INFO: [Synth 8-3491] module 'ExternalMemoryDistribution' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:34' bound to instance 'MEM_DIST1' of component 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:207]
+INFO: [Synth 8-638] synthesizing module 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:54]
+INFO: [Synth 8-256] done synthesizing module 'ExternalMemoryDistribution' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:54]
+	Parameter NR_OF_CLKs bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd:35' bound to instance 'PulseGen1' of component 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:231]
+INFO: [Synth 8-638] synthesizing module 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd:50]
+	Parameter NR_OF_CLKs bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'pulse_train_gen' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd:50]
+INFO: [Synth 8-3491] module 'IV_SAMPLE_CTRL' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/new/IV_SAMPLE_CTRL.vhd:35' bound to instance 'IV_SAVER1' of component 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:243]
+INFO: [Synth 8-638] synthesizing module 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/new/IV_SAMPLE_CTRL.vhd:55]
+INFO: [Synth 8-256] done synthesizing module 'IV_SAMPLE_CTRL' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/imports/new/IV_SAMPLE_CTRL.vhd:55]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.runs/synth_1/.Xil/Vivado-9784-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'PLL_1' of component 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:261]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.runs/synth_1/.Xil/Vivado-9784-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:14]
+INFO: [Synth 8-256] done synthesizing module 'MASTER_FILE' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/sources_1/new/MASTER_FILE.vhd:55]
+WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1481.445 ; gain = 563.246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1481.445 ; gain = 563.246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1481.445 ; gain = 563.246
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1481.445 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'PLL_1'
+Finished Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'PLL_1'
+Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/constrs_1/imports/CMOD/Cmod-A7-Master.xdc]
+Finished Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.srcs/constrs_1/imports/CMOD/Cmod-A7-Master.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1574.660 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 8 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 8 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1574.660 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for Ext_CLK_IN. (constraint file  c:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for Ext_CLK_IN. (constraint file  c:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
+Applied set_property KEEP_HIERARCHY = SOFT for PLL_1. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 's_write_reg' in module 'ExtMemReadWrite'
+INFO: [Synth 8-802] inferred FSM for state register 's_read_reg' in module 'ExtMemReadWrite'
+INFO: [Synth 8-802] inferred FSM for state register 's_byte_reg' in module 'ExternalMemoryDistribution'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               readstep1 |                             0001 |                               00
+               readstep2 |                             0010 |                               01
+               readstep3 |                             0100 |                               10
+               readstep4 |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_read_reg' using encoding 'one-hot' in module 'ExtMemReadWrite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              writestep1 |                             0001 |                               00
+              writestep2 |                             0010 |                               01
+              writestep3 |                             0100 |                               10
+              writestep4 |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_write_reg' using encoding 'one-hot' in module 'ExtMemReadWrite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+             byte1_step1 |                            00001 |                              000
+             byte1_step2 |                            00010 |                              001
+                   reset |                            00100 |                              010
+                   byte2 |                            01000 |                              011
+                finished |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_byte_reg' using encoding 'one-hot' in module 'ExternalMemoryDistribution'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    3 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	               19 Bit    Registers := 2     
+	                8 Bit    Registers := 5     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   5 Input   19 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 4     
+	   5 Input    8 Bit        Muxes := 1     
+	   4 Input    1 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 5     
+	   5 Input    1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design MASTER_FILE has port Ext_Mem_nCE_ext driven by constant 0
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+---------------+------+
+|      |Cell           |Count |
++------+---------------+------+
+|1     |clk_wiz_0_bbox |     1|
+|2     |BUFG           |     2|
+|3     |CARRY4         |     4|
+|4     |LUT1           |     2|
+|5     |LUT2           |    22|
+|6     |LUT3           |    21|
+|7     |LUT4           |     5|
+|8     |LUT5           |    11|
+|9     |LUT6           |     4|
+|10    |FDCE           |    16|
+|11    |FDPE           |     2|
+|12    |FDRE           |    87|
+|13    |FDSE           |     9|
+|14    |IBUF           |    35|
+|15    |IOBUF          |     8|
+|16    |OBUF           |    38|
++------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:36 . Memory (MB): peak = 1574.660 ; gain = 563.246
+Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1574.660 ; gain = 656.461
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1574.660 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1574.660 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 8 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 8 instances
+
+Synth Design complete | Checksum: 14dd5e23
+INFO: [Common 17-83] Releasing license: Synthesis
+54 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 1574.660 ; gain = 1056.910
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1574.660 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/jakob/Desktop/P7---Bsc/Code/SAMPLE_CTRL_MASTER/SAMPLE_CTRL_MASTER.runs/synth_1/MASTER_FILE.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file MASTER_FILE_utilization_synth.rpt -pb MASTER_FILE_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 22 17:25:00 2024...
