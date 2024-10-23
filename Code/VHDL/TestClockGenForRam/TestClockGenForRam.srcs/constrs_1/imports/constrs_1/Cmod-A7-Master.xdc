@@ -167,4 +167,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports EXT_Pulse_out]
 set_property IOSTANDARD LVCMOS33 [get_ports EXT_Trig_in]
 set_property IOSTANDARD LVCMOS33 [get_ports EXT_Trig_out]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets EXT_Trig_out_OBUF] 
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets EXT_Trig_out_OBUF]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets Trig_in_IBUF]
+
+set_property OFFCHIP_TERM NONE [get_ports BUSY]
+set_property OFFCHIP_TERM NONE [get_ports Pulse_complete]
+set_property OFFCHIP_TERM NONE [get_ports Pulse_out]
+set_property IOSTANDARD LVCMOS33 [get_ports BUSY]
+set_property PACKAGE_PIN N2 [get_ports BUSY]

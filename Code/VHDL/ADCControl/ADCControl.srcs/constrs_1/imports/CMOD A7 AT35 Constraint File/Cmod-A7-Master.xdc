@@ -130,3 +130,25 @@
 #set_property -dict { PACKAGE_PIN R19   IOSTANDARD LVCMOS33 } [get_ports { RamWEn     }]; #IO_L10N_T1_D15_14 Sch=sram-we
 #set_property -dict { PACKAGE_PIN N19   IOSTANDARD LVCMOS33 } [get_ports { RamCEn     }]; #IO_L9N_T1_DQS_D13_14 Sch=sram-ce
 
+
+set_property PACKAGE_PIN L17 [get_ports CLK_IN]
+set_property IOSTANDARD LVCMOS33 [get_ports CLK_IN]
+set_property PACKAGE_PIN M3 [get_ports ACTIVE_PULSE_WIDTH_OUT]
+set_property PACKAGE_PIN L3 [get_ports PULSE_OUT]
+set_property PACKAGE_PIN A18 [get_ports TRIGGER_IN]
+set_property IOSTANDARD LVCMOS33 [get_ports ACTIVE_PULSE_WIDTH_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports PULSE_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports TRIGGER_IN]
+
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_ACTIVE_PULSE_WIDTH_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_MASTER_CLK_IN]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_TRIGGER_IN]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_PULSE_OUT]
+set_property PACKAGE_PIN M3 [get_ports EXT_ACTIVE_PULSE_WIDTH_OUT]
+set_property PACKAGE_PIN L3 [get_ports EXT_PULSE_OUT]
+set_property PACKAGE_PIN A18 [get_ports EXT_TRIGGER_IN]
+set_property PACKAGE_PIN L17 [get_ports EXT_MASTER_CLK_IN]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets EXT_TRIGGER_IN_IBUF]
+
+
