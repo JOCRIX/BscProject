@@ -1,0 +1,61 @@
+---
+title: 15.WAIS
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Opgave 15.WAIS - 1.
+
+WAIS (Wechler Adult Intelligent Scale) determines an intelligence score $x$ based on a battery of tests. The result of one subtest on a samplle of 54 elderly men yielded scores between 4 and 20 with a mean of 11.6.
+
+Besides we have the variable $y$ indicating whether the man shows symptoms of senility ($y=1$ if Yes).
+
+Result of fitting a logistic regression:
+
+
+
+ 
+Coefficient|Estimate|Std. Error|z value|P-value
+----------- | -------- | ---------- | ------- | ------- 			 
+(Intercept) |  2.0429  |   1.0717   |  1.9063 | 0.0566
+x           | -0.2821  |   0.1007   | -2.8015 | 0.0051
+
+- Show $\hat P(y=1)=0.5$ at $x=7.2$
+We have been given the estimated intercept and slope in the excercise. We are also given that:
+$odds = e^{a+bx} \rightarrow ln(odds) = e^{2.0429-0.2821x}$ <br>
+We are also given that the following: <br>
+$odds = \frac{\hat{P}(Y=1|x)}{1+\hat{P}(Y=1|x)}$ <br>
+From this we can find the following equation: <br>
+$e^{a+bx} \rightarrow ln(odds) = \frac{\hat{P}(Y=1|x)}{1+\hat{P}(Y=1|x)}$ <br>
+From here we simply solve to: <br>
+$\hat{P} = \frac{e^{2.0429-0.2821x}}{1-e^{2.0429-0.2821x}}$ <br>
+Inserting x=7.2: <br>
+$\hat{P} = \frac{e^{2.0429-0.2821\cdot7.2}}{1-e^{2.0429-0.2821\cdot7.2}} = 0.5$
+
+
+- $\hat P(y=1)<0.5$ for $x>7.2$
+- Estimate the probability of senility at $x=20$
+- Fitting a simple linear regression yields $$\hat P(y=1)=0.847-0.051x$$ Estimate the probability of senility at $x=20$. Sensible?
+- Test $H_0: \beta=0$ against $H_a: \beta\not= 0$ . Report and interpret the P-value. 
+
+
+## Opgave 15.WAIS - 2.
+
+One of the WAIS subtests called *picture completion*, asks questions about 20 pictures that have one vital detail missing. It is considered a test of attention to fine detail.
+
+The observations for 20 subjects on (x,y), where x=picture completion score(0-20) and y=symptoms of senility(1=yes):
+```{r}
+pictSen <-
+read.table("http://people.math.aau.dk/~svante/PDP3/data/pictSen.csv",header=T)
+pictSen
+```
+
+- Estimate the logistic regression equation.
+- Estimate the probability that symptoms are present when (i) x=0, (ii) x=20.
+- Over what range of x-scores is the estimated probability of senility greater than 50%?
+- Estimate the effect of one-unit increase in x on the odds ratio of senility symptoms.
+- report a 95% confidence interval for the increase in odds ratio
+

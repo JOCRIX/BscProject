@@ -54,14 +54,17 @@ signal active : std_logic := '0';
 signal count : integer range 0 to NR_OF_CLKs := 0;--4 := 0;
 signal done : std_logic := '0';
 signal run : std_logic := '0';
+signal stop : std_logic := '0';
+signal gate_output : std_logic := '0';
+
 begin
 
 --Trig_out <= Trig_in; -- test
 
 --test <= done; --test
 Pulse_complete <= done;
-BUSY <= run;
-
+--BUSY <= run;
+BUSY <= active or done;
 trig_start : process (Trig_in, done) is
 begin 
         
@@ -92,7 +95,35 @@ begin
     end if;
 
 end process;
-Pulse_out <= CLK_in and active;
+
+stop_detect : process(active, CLK_in) is
+begin
+    if(active = '1') then
+        if(falling_edge(CLK_in)) then
+            if(count >= 4) then
+                stop <= '1';
+            else    
+                stop <= '0';
+            end if;
+       end if;
+       else
+        stop <= '0';
+    end if;        
+end process;
+
+gate_control : process (stop, active) is
+begin
+    if(stop = '1') then
+        gate_output <= '0';
+    elsif(active = '1') then
+        gate_output <= '1';
+    else
+        gate_output <= '0';
+    end if;
+    
+end process;
+
+Pulse_out <= CLK_in and gate_output;
 end Behavioral;
 
 

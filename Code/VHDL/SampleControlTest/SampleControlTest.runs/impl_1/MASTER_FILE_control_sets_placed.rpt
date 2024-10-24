@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Oct 23 21:43:08 2024
+| Date         : Thu Oct 24 17:47:54 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file MASTER_FILE_control_sets_placed.rpt
 | Design       : MASTER_FILE
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    13 |
-|    Minimum number of control sets                        |    13 |
+| Total control sets                                       |    22 |
+|    Minimum number of control sets                        |    22 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    58 |
+| Unused register locations in slices containing registers |    93 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    13 |
-| >= 0 to < 4        |     6 |
-| >= 4 to < 6        |     5 |
+| Total control sets |    22 |
+| >= 0 to < 4        |     8 |
+| >= 4 to < 6        |     7 |
 | >= 6 to < 8        |     1 |
-| >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     0 |
+| >= 8 to < 10       |     2 |
+| >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     0 |
+| >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,34 +58,43 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               7 |            2 |
-| No           | No                    | Yes                    |               7 |            4 |
+| No           | No                    | No                     |               8 |            3 |
+| No           | No                    | Yes                    |              19 |            7 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              27 |           10 |
+| Yes          | No                    | No                     |              67 |           24 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               5 |            1 |
+| Yes          | Yes                   | No                     |              29 |            8 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------------------+-----------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
-|           Clock Signal           |              Enable Signal              |                  Set/Reset Signal                 | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------------------------+-----------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
-|  MEM_DIST1/CLK_TO_MEM_DIST_OUT   |                                         | MEM_DIST1/Q[0]                                    |                1 |              1 |         1.00 |
-|  MEM_DIST1/sig_PulseGen1_trig_in |                                         | PulseGen1/done                                    |                1 |              1 |         1.00 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM0 |                                                   |                1 |              1 |         1.00 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       | MEM_DIST1/STATE_OUT[0]_i_1_n_0          |                                                   |                1 |              1 |         1.00 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       |                                         |                                                   |                1 |              2 |         2.00 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       | MEM_DIST1/STATE_OUT[2]_i_1_n_0          |                                                   |                1 |              2 |         2.00 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       | PulseGen1/E[0]                          |                                                   |                1 |              4 |         4.00 |
-|  Ext_CLK_IN_IBUF_BUFG            |                                         |                                                   |                1 |              5 |         5.00 |
-| ~Ext_ADC_RDY_IBUF_BUFG           |                                         | Ext_DnB_IBUF                                      |                2 |              5 |         2.50 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM0 | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM[4]_i_1_n_0 |                1 |              5 |         5.00 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       | MEM_DIST1/s_byte0                       |                                                   |                1 |              5 |         5.00 |
-|  MEM_DIST1/CLK_TO_MEM_DIST_OUT   | MEM_DIST1/p_0_in                        |                                                   |                2 |              6 |         3.00 |
-|  Ext_MANUAL_STEP_IBUF_BUFG       | MEM_DIST1/lowByte_EXT_MEM_TO_IV_SAVER0  |                                                   |                3 |              8 |         2.67 |
-+----------------------------------+-----------------------------------------+---------------------------------------------------+------------------+----------------+--------------+
++----------------------------------+-------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
+|           Clock Signal           |                        Enable Signal                        |                      Set/Reset Signal                      | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------------------+-------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
+| ~Ext_CLK_IN_IBUF                 |                                                             | PulseGen1/stop_i_1_n_0                                     |                1 |              1 |         1.00 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/nWE_i_2_n_0                                     | EXT_MEM_RW1/nWE_i_1_n_0                                    |                1 |              1 |         1.00 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/nOE_i_2_n_0                                     | EXT_MEM_RW1/nOE_i_1_n_0                                    |                1 |              1 |         1.00 |
+|  MEM_DIST1/CLK_TO_MEM_DIST_OUT   |                                                             | MEM_DIST1/Q[0]                                             |                1 |              1 |         1.00 |
+|  MEM_DIST1/sig_PulseGen1_trig_in |                                                             | PulseGen1/sig_PulseGen1_pulse_complete                     |                1 |              1 |         1.00 |
+|  PLL_1/inst/clk_out1             | MEM_DIST1/STATE_OUT[0]_i_1_n_0                              |                                                            |                1 |              1 |         1.00 |
+|  PLL_1/inst/clk_out1             | MEM_DIST1/STATE_OUT[2]_i_1_n_0                              |                                                            |                2 |              2 |         1.00 |
+|  PLL_1/inst/clk_out1             |                                                             |                                                            |                2 |              3 |         1.50 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | Ext_RnW_TO_MEM_DIST_OBUF                                    |                                                            |                1 |              4 |         4.00 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/ExtMemDataToRam[3]_i_1_n_0                      |                                                            |                1 |              4 |         4.00 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/sig_Sample_RW                                   |                                                            |                1 |              4 |         4.00 |
+|  PLL_1/inst/clk_out1             | PulseGen1/E[0]                                              |                                                            |                1 |              4 |         4.00 |
+|  PLL_1/inst/clk_out1             | MEM_DIST1/DATA_EXT_MEM_DIST_TO_EXT_MEM0                     |                                                            |                2 |              4 |         2.00 |
+|  Ext_CLK_IN_IBUF                 |                                                             |                                                            |                1 |              5 |         5.00 |
+|  PLL_1/inst/clk_out1             | MEM_DIST1/s_byte0                                           |                                                            |                1 |              5 |         5.00 |
+|  MEM_DIST1/CLK_TO_MEM_DIST_OUT   | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[18]_i_1_n_0 |                                                            |                2 |              6 |         3.00 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/SampleByteFromRam[7]_i_1_n_0                    |                                                            |                4 |              8 |         2.00 |
+|  PLL_1/inst/clk_out1             | MEM_DIST1/lowByte_EXT_MEM_TO_IV_SAVER0                      |                                                            |                3 |              8 |         2.67 |
+|  MEM_DIST1/CLK_TO_MEM_DIST_OUT   | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[18]_i_1_n_0 | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[5]_i_1_n_0 |                3 |             11 |         3.67 |
+| ~Ext_ADC_RDY_IBUF_BUFG           |                                                             | Ext_RnW_TO_MEM_DIST_OBUF                                   |                4 |             16 |         4.00 |
+|  PLL_1/inst/clk_out1             | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM0                     | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM[15]_i_1_n_0         |                3 |             16 |         5.33 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/ExtMemAdrToRam[18]_i_1_n_0                      |                                                            |                5 |             17 |         3.40 |
++----------------------------------+-------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
 
 

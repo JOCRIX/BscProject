@@ -2,7 +2,7 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Wed Oct 23 15:38:03 2024
+// Date        : Thu Oct 24 17:45:22 2024
 // Host        : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v
@@ -83,7 +83,7 @@ module clk_wiz_0_clk_wiz
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(83.333000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(3.750000),
+    .CLKOUT0_DIVIDE_F(62.500000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),

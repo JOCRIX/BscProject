@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Oct 23 21:43:04 2024
+| Date         : Thu Oct 24 17:47:48 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_drc -file MASTER_FILE_drc_opted.rpt -pb MASTER_FILE_drc_opted.pb -rpx MASTER_FILE_drc_opted.rpx
 | Design       : MASTER_FILE
@@ -20,16 +20,16 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_MASTER_FILE
+          Floorplan: design_1
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 5
+             Violations found: 4
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
-| PLCK-12     | Warning  | Clock Placer Checks                                         | 2          |
+| PLCK-12     | Warning  | Clock Placer Checks                                         | 1          |
 | PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
 +-------------+----------+-------------------------------------------------------------+------------+
 
@@ -59,33 +59,31 @@ Resolution: Poor placement of an IO pin and a BUFG has resulted in the router us
 
 Related violations: <none>
 
-PLCK-12#2 Warning
-Clock Placer Checks  
-Poor placement for routing between an IO pin and BUFG. 
-Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
- This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
-
-	Ext_MANUAL_STEP_IBUF_inst (IBUF.O) is locked to L18
-	Ext_MANUAL_STEP_IBUF_BUFG_inst (BUFG.I) cannot be placed
-
-Related violations: <none>
-
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT MEM_DIST1/run_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
-PulseGen1/run_reg
-Related violations: <none>
-
-PLHOLDVIO-2#2 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT MEM_DIST1/start_i_1 is driving clock pin of 7 cells. This could lead to large hold time violations. Involved cells are:
+A LUT MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[18]_i_2 is driving clock pin of 18 cells. This could lead to large hold time violations. Involved cells are:
 MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[0],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[10],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[11],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[12],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[13],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[14],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[15],
 MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[18],
 MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[1],
 MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[2],
 MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[3],
-MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[4]
-MEM_DIST1/start_reg
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[4],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[5],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[6],
+MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[7]
+ (the first 15 of 18 listed)
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT MEM_DIST1/run_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+PulseGen1/run_reg
 Related violations: <none>
 
 

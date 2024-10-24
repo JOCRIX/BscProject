@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Wed Oct 23 23:47:26 2024
+# Process ID: 10232
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestClockGenForRam
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2348 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\TestClockGenForRam\TestClockGenForRam.xpr
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestClockGenForRam/vivado.log
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestClockGenForRam\vivado.jou
+# Running On        :DESKTOP-26ONRPF
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :4831 MB
+# Total Virtual     :13301 MB
+# Available Virtual :6700 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestClockGenForRam/TestClockGenForRam.xpr
+update_compile_order -fileset sources_1
+reset_run synth_1

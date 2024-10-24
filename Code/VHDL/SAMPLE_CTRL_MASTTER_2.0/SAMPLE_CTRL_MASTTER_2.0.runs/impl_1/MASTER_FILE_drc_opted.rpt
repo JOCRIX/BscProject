@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Oct 23 13:12:24 2024
+| Date         : Wed Oct 23 23:54:09 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_drc -file MASTER_FILE_drc_opted.rpt -pb MASTER_FILE_drc_opted.pb -rpx MASTER_FILE_drc_opted.rpx
 | Design       : MASTER_FILE
@@ -20,7 +20,7 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: design_1
+          Floorplan: checkpoint_MASTER_FILE
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
@@ -61,14 +61,14 @@ Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT IV_SAVER1/CLK_TO_MEM_DIST_OUT is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
-MEM_DIST1/start_reg
+A LUT MEM_DIST1/run_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+PulseGen1/run_reg
 Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT MEM_DIST1/run_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
-PulseGen1/run_reg
+A LUT MEM_DIST1/start_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+MEM_DIST1/start_reg
 Related violations: <none>
 
 

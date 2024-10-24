@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Oct 23 20:52:11 2024
-# Process ID: 6508
+# Start of session at: Thu Oct 24 17:45:50 2024
+# Process ID: 10612
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.runs/synth_1
 # Command line: vivado.exe -log MASTER_FILE.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source MASTER_FILE.tcl
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.runs/synth_1/MASTER_FILE.vds
@@ -19,10 +19,10 @@
 # Host memory       :8469 MB
 # Swap memory       :4831 MB
 # Total Virtual     :13301 MB
-# Available Virtual :5514 MB
+# Available Virtual :6209 MB
 #-----------------------------------------------------------
 source MASTER_FILE.tcl -notrace
-create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 506.301 ; gain = 198.707
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 506.863 ; gain = 195.531
 Command: read_checkpoint -auto_incremental -incremental C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/utils_1/imports/synth_1/MASTER_FILE.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/utils_1/imports/synth_1/MASTER_FILE.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -36,149 +36,138 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 7788
+INFO: [Synth 8-7075] Helper process launched with PID 3936
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1361.469 ; gain = 450.887
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1370.566 ; gain = 448.465
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'MASTER_FILE' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:77]
-INFO: [Synth 8-3491] module 'ExternalMemoryDistribution' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:34' bound to instance 'MEM_DIST1' of component 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:259]
-INFO: [Synth 8-638] synthesizing module 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:55]
-INFO: [Synth 8-256] done synthesizing module 'ExternalMemoryDistribution' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:55]
+INFO: [Synth 8-638] synthesizing module 'MASTER_FILE' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:82]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+	Parameter DRIVE bound to: 12 - type: integer 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+	Parameter SLEW bound to: SLOW - type: string 
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:239]
+INFO: [Synth 8-3491] module 'ExtMemReadWrite' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/imports/new/ext_mem_read_write.vhd:34' bound to instance 'EXT_MEM_RW1' of component 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:253]
+INFO: [Synth 8-638] synthesizing module 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/imports/new/ext_mem_read_write.vhd:58]
+INFO: [Synth 8-256] done synthesizing module 'ExtMemReadWrite' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/imports/new/ext_mem_read_write.vhd:58]
+INFO: [Synth 8-3491] module 'ExternalMemoryDistribution' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:34' bound to instance 'MEM_DIST1' of component 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:271]
+INFO: [Synth 8-638] synthesizing module 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:56]
+INFO: [Synth 8-256] done synthesizing module 'ExternalMemoryDistribution' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:56]
 	Parameter NR_OF_CLKs bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd:35' bound to instance 'PulseGen1' of component 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:305]
+INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd:35' bound to instance 'PulseGen1' of component 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:318]
 INFO: [Synth 8-638] synthesizing module 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd:50]
 	Parameter NR_OF_CLKs bound to: 4 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'pulse_train_gen' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/TestClockGenForRam/TestClockGenForRam.srcs/sources_1/new/pulse_train_gen.vhd:50]
-INFO: [Synth 8-3491] module 'IV_SAMPLE_CTRL' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/new/IV_SAMPLE_CTRL.vhd:35' bound to instance 'IV_SAVER1' of component 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:317]
+INFO: [Synth 8-3491] module 'IV_SAMPLE_CTRL' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/new/IV_SAMPLE_CTRL.vhd:35' bound to instance 'IV_SAVER1' of component 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:330]
 INFO: [Synth 8-638] synthesizing module 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/new/IV_SAMPLE_CTRL.vhd:55]
 INFO: [Synth 8-256] done synthesizing module 'IV_SAMPLE_CTRL' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/new/IV_SAMPLE_CTRL.vhd:55]
-INFO: [Synth 8-256] done synthesizing module 'MASTER_FILE' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:77]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.runs/synth_1/.Xil/Vivado-10612-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'PLL_1' of component 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:354]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.runs/synth_1/.Xil/Vivado-10612-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:14]
+INFO: [Synth 8-256] done synthesizing module 'MASTER_FILE' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/new/MASTER_FILE.vhd:82]
 WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1471.672 ; gain = 561.090
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1484.922 ; gain = 562.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1471.672 ; gain = 561.090
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1484.922 ; gain = 562.820
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1471.672 ; gain = 561.090
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1484.922 ; gain = 562.820
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1471.672 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1487.027 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
+Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'PLL_1'
+Finished Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'PLL_1'
 Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
-WARNING: [Vivado 12-507] No nets matched 'Ext_MANUAL_STEP_IBUF'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:135]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:135]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'Ext_ADC_RDY_IBUF'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:136]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:136]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:205]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:205]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:206]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:206]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:207]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:207]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:208]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:208]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:209]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:209]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:210]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:210]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:211]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:211]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:212]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:212]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:213]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:213]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:214]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:214]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:215]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:215]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:216]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:216]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:217]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:217]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:218]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:218]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:219]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:219]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:220]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:220]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:238]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:238]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:239]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:239]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:240]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:240]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:241]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:241]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:242]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:242]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:243]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:243]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:244]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:244]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'Ext_MEM_DIST_TO_EXT_MEM[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:245]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:245]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'Ext_ADC_RDY_IBUF'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:137]
 Finished Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/MASTER_FILE_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/MASTER_FILE_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/MASTER_FILE_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1572.844 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1592.992 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 8 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 8 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1572.844 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1592.992 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for Ext_CLK_IN. (constraint file  c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for Ext_CLK_IN. (constraint file  c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
+Applied set_property KEEP_HIERARCHY = SOFT for PLL_1. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 's_write_reg' in module 'ExtMemReadWrite'
+INFO: [Synth 8-802] inferred FSM for state register 's_read_reg' in module 'ExtMemReadWrite'
 INFO: [Synth 8-802] inferred FSM for state register 's_byte_reg' in module 'ExternalMemoryDistribution'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               readstep1 |                             0001 |                               00
+               readstep2 |                             0010 |                               01
+               readstep3 |                             0100 |                               10
+               readstep4 |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_read_reg' using encoding 'one-hot' in module 'ExtMemReadWrite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              writestep1 |                             0001 |                               00
+              writestep2 |                             0010 |                               01
+              writestep3 |                             0100 |                               10
+              writestep4 |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_write_reg' using encoding 'one-hot' in module 'ExtMemReadWrite'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -190,7 +179,7 @@ INFO: [Synth 8-802] inferred FSM for state register 's_byte_reg' in module 'Exte
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 's_byte_reg' using encoding 'one-hot' in module 'ExternalMemoryDistribution'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -201,17 +190,19 @@ Detailed RTL Component Info :
 +---XORs : 
 	   2 Input      1 Bit         XORs := 1     
 +---Registers : 
-	               19 Bit    Registers := 2     
+	               19 Bit    Registers := 3     
 	               16 Bit    Registers := 1     
-	                8 Bit    Registers := 3     
+	                8 Bit    Registers := 5     
 	                3 Bit    Registers := 2     
-	                1 Bit    Registers := 6     
+	                1 Bit    Registers := 9     
 +---Muxes : 
 	   5 Input   19 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 4     
 	   5 Input    8 Bit        Muxes := 1     
 	   5 Input    3 Bit        Muxes := 3     
 	   2 Input    3 Bit        Muxes := 4     
+	   4 Input    1 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 5     
 	   5 Input    1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -229,31 +220,28 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3936] Found unconnected internal register 'MEM_DIST1/highByte_EXT_MEM_TO_IV_SAVER_reg' and it is trimmed from '8' to '4' bits. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:87]
-WARNING: [Synth 8-7129] Port Ext_ADC_DATA_TO_IV_SAVER[3] in module MASTER_FILE is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Ext_ADC_DATA_TO_IV_SAVER[2] in module MASTER_FILE is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Ext_ADC_DATA_TO_IV_SAVER[1] in module MASTER_FILE is either unconnected or has no load
-WARNING: [Synth 8-7129] Port Ext_ADC_DATA_TO_IV_SAVER[0] in module MASTER_FILE is either unconnected or has no load
+WARNING: [Synth 8-3936] Found unconnected internal register 'MEM_DIST1/highByte_EXT_MEM_TO_IV_SAVER_reg' and it is trimmed from '8' to '4' bits. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.srcs/sources_1/imports/sources_1/imports/VHDL/ExtMemoryControl/ExtMemoryControl.srcs/sources_1/new/ExternalMemoryControl.vhd:88]
+WARNING: [Synth 8-3917] design MASTER_FILE has port Ext_Mem_nCE_ext driven by constant 0
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -271,90 +259,94 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 Report BlackBoxes: 
-+-+--------------+----------+
-| |BlackBox name |Instances |
-+-+--------------+----------+
-+-+--------------+----------+
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |BUFG   |     3|
-|2     |CARRY4 |     2|
-|3     |LUT1   |     3|
-|4     |LUT2   |    18|
-|5     |LUT3   |    15|
-|6     |LUT4   |     4|
-|7     |LUT5   |     3|
-|8     |LUT6   |     5|
-|9     |FDCE   |     5|
-|10    |FDPE   |     2|
-|11    |FDRE   |    34|
-|12    |FDSE   |     5|
-|13    |IBUF   |    18|
-|14    |OBUF   |    24|
-+------+-------+------+
++------+---------------+------+
+|      |Cell           |Count |
++------+---------------+------+
+|1     |clk_wiz_0_bbox |     1|
+|2     |BUFG           |     2|
+|3     |CARRY4         |     4|
+|4     |LUT1           |     4|
+|5     |LUT2           |    21|
+|6     |LUT3           |    26|
+|7     |LUT4           |     9|
+|8     |LUT5           |     7|
+|9     |LUT6           |     6|
+|10    |FDCE           |    17|
+|11    |FDPE           |     2|
+|12    |FDRE           |    86|
+|13    |FDSE           |    18|
+|14    |IBUF           |    16|
+|15    |IOBUF          |     8|
+|16    |OBUF           |    40|
++------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1592.992 ; gain = 670.891
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 6 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:38 . Memory (MB): peak = 1572.844 ; gain = 561.090
-Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1572.844 ; gain = 662.262
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:39 . Memory (MB): peak = 1592.992 ; gain = 562.820
+Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1592.992 ; gain = 670.891
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1572.844 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1592.992 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1572.844 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1592.992 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 8 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 8 instances
 
-Synth Design complete | Checksum: e3de4f90
+Synth Design complete | Checksum: dfb85b59
 INFO: [Common 17-83] Releasing license: Synthesis
-35 Infos, 33 Warnings, 26 Critical Warnings and 0 Errors encountered.
+55 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 1572.844 ; gain = 1062.031
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1572.844 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1592.992 ; gain = 1072.102
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1592.992 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.runs/synth_1/MASTER_FILE.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file MASTER_FILE_utilization_synth.rpt -pb MASTER_FILE_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Oct 23 20:53:14 2024...
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 24 17:46:56 2024...

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Wed Oct 23 13:13:02 2024
+| Date             : Wed Oct 23 23:54:45 2024
 | Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file MASTER_FILE_power_routed.rpt -pb MASTER_FILE_power_summary_routed.pb -rpx MASTER_FILE_power_routed.rpx
 | Design           : MASTER_FILE
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.198        |
+| Total On-Chip Power (W)  | 0.201        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.126        |
+| Dynamic (W)              | 0.129        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.0         |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.001 |        5 |       --- |             --- |
-| Slice Logic    |    <0.001 |      195 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       43 |     20800 |            0.21 |
+| Slice Logic    |    <0.001 |      199 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       45 |     20800 |            0.22 |
+|   Register     |    <0.001 |      115 |     41600 |            0.28 |
 |   BUFG         |    <0.001 |        2 |        32 |            6.25 |
-|   Register     |    <0.001 |      114 |     41600 |            0.27 |
 |   CARRY4       |    <0.001 |        4 |      8150 |            0.05 |
 |   Others       |     0.000 |       10 |       --- |             --- |
-| Signals        |    <0.001 |      182 |       --- |             --- |
+| Signals        |    <0.001 |      186 |       --- |             --- |
 | MMCM           |     0.104 |        1 |         5 |           20.00 |
-| I/O            |     0.019 |       71 |       106 |           66.98 |
+| I/O            |     0.022 |       71 |       106 |           66.98 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.198 |          |           |                 |
+| Total          |     0.201 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,8 +74,8 @@ Table of Contents
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Vccint    |       1.000 |     0.013 |       0.003 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.071 |       0.058 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.006 |       0.005 |      0.001 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.071 |       0.059 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.007 |       0.006 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -141,13 +141,21 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-------------+-----------+
-| Name        | Power (W) |
-+-------------+-----------+
-| MASTER_FILE |     0.126 |
-|   MEM_DIST1 |     0.001 |
-|   PLL_1     |     0.105 |
-|     inst    |     0.105 |
-+-------------+-----------+
++------------------------------------+-----------+
+| Name                               | Power (W) |
++------------------------------------+-----------+
+| MASTER_FILE                        |     0.129 |
+|   MEM_DIST1                        |     0.001 |
+|   PLL_1                            |     0.105 |
+|     inst                           |     0.105 |
+|   gen_io_port_extRam[0].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[1].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[2].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[3].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[4].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[5].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[6].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[7].IOBUF_inst |     0.001 |
++------------------------------------+-----------+
 
 

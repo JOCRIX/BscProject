@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Oct 23 20:52:11 2024
-# Process ID: 6508
+# Start of session at: Thu Oct 24 17:45:50 2024
+# Process ID: 10612
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.runs/synth_1
 # Command line: vivado.exe -log MASTER_FILE.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source MASTER_FILE.tcl
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleControlTest/SampleControlTest.runs/synth_1/MASTER_FILE.vds
@@ -19,6 +19,6 @@
 # Host memory       :8469 MB
 # Swap memory       :4831 MB
 # Total Virtual     :13301 MB
-# Available Virtual :5514 MB
+# Available Virtual :6209 MB
 #-----------------------------------------------------------
 source MASTER_FILE.tcl -notrace

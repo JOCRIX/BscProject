@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Wed Oct 23 21:43:36 2024
+| Date             : Thu Oct 24 17:48:25 2024
 | Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file MASTER_FILE_power_routed.rpt -pb MASTER_FILE_power_summary_routed.pb -rpx MASTER_FILE_power_routed.rpx
 | Design           : MASTER_FILE
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 2.563        |
+| Total On-Chip Power (W)  | 0.177        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 2.485        |
-| Device Static (W)        | 0.079        |
+| Dynamic (W)              | 0.105        |
+| Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 72.2         |
-| Junction Temperature (C) | 37.8         |
+| Max Ambient (C)          | 84.1         |
+| Junction Temperature (C) | 25.9         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,16 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.146 |      105 |       --- |             --- |
-|   LUT as Logic |     0.111 |       34 |     20800 |            0.16 |
-|   BUFG         |     0.017 |        3 |        32 |            9.38 |
-|   Register     |     0.012 |       46 |     41600 |            0.11 |
-|   CARRY4       |     0.006 |        2 |      8150 |            0.02 |
-|   Others       |     0.000 |        6 |       --- |             --- |
-| Signals        |     0.211 |       94 |       --- |             --- |
-| I/O            |     2.127 |       42 |       106 |           39.62 |
-| Static Power   |     0.079 |          |           |                 |
-| Total          |     2.563 |          |           |                 |
+| Clocks         |    <0.001 |        5 |       --- |             --- |
+| Slice Logic    |    <0.001 |      212 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       47 |     20800 |            0.23 |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   Register     |    <0.001 |      123 |     41600 |            0.30 |
+|   CARRY4       |    <0.001 |        4 |      8150 |            0.05 |
+|   Others       |     0.000 |       10 |       --- |             --- |
+| Signals        |    <0.001 |      189 |       --- |             --- |
+| MMCM           |     0.104 |        1 |         5 |           20.00 |
+| I/O            |    <0.001 |       65 |       106 |           61.32 |
+| Static Power   |     0.072 |          |           |                 |
+| Total          |     0.177 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.441 |       0.425 |      0.015 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.089 |       0.075 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.584 |       0.583 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.010 |       0.000 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.070 |       0.058 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -124,9 +126,13 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+-------+--------+-----------------+
-| Clock | Domain | Constraint (ns) |
-+-------+--------+-----------------+
++--------------------+-------------------------------+-----------------+
+| Clock              | Domain                        | Constraint (ns) |
++--------------------+-------------------------------+-----------------+
+| PLL_1/inst/clk_in1 | Ext_CLK_IN_IBUF               |            83.3 |
+| clk_out1_clk_wiz_0 | PLL_1/inst/clk_out1_clk_wiz_0 |            83.3 |
+| clkfbout_clk_wiz_0 | PLL_1/inst/clkfbout_clk_wiz_0 |            83.3 |
++--------------------+-------------------------------+-----------------+
 
 
 3. Detailed Reports
@@ -138,10 +144,9 @@ Table of Contents
 +-------------+-----------+
 | Name        | Power (W) |
 +-------------+-----------+
-| MASTER_FILE |     2.485 |
-|   IV_SAVER1 |     0.067 |
-|   MEM_DIST1 |     0.061 |
-|   PulseGen1 |     0.121 |
+| MASTER_FILE |     0.105 |
+|   PLL_1     |     0.104 |
+|     inst    |     0.104 |
 +-------------+-----------+
 
 
