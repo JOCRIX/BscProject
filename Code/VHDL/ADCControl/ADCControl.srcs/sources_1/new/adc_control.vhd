@@ -89,5 +89,17 @@ begin
     end if;
 end process;
 
+--Make a 35 ns CNV Pulse
+cnv_ctrl : process (MASTER_CLK_TO_ADC_CONTROL, start_acquisition) is
+begin
+    if(rising_edge(MASTER_CLK_TO_ADC_CONTROL)) then
+        if(start_acquisition = '1') then
+            PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT <= '1'; --Triggers 35ns pulse gen
+        else
+            PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT <= '0';
+        end if;
+    end if; 
+end process;
+
 
 end Behavioral;
