@@ -1,8 +1,8 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
-"../../../../ADCControl.srcs/sources_1/new/adc_control.vhd" \
-"../../../../ADCControl.srcs/sources_1/imports/new/pulse_train_gen.vhd" \
-"../../../../ADCControl.srcs/sources_1/new/ADC_CONTROL_TOP.vhd" \
+"../../../../ADCControl.srcs/sources_1/imports/New folder/adc_control.vhd" \
+"../../../../ADCControl.srcs/sources_1/imports/New folder/pulse_train_gen.vhd" \
+"../../../../ADCControl.srcs/sources_1/imports/New folder/ADC_CONTROL_TOP.vhd" \
 
 # Do not sort compile order
 nosort
