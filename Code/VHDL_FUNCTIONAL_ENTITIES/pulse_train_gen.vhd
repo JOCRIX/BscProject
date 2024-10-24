@@ -100,7 +100,7 @@ stop_detect : process(active, CLK_in) is
 begin
     if(active = '1') then
         if(falling_edge(CLK_in)) then
-            if(count >= 4) then
+            if(count >= NR_OF_CLKs) then
                 stop <= '1';
             else    
                 stop <= '0';
