@@ -34,6 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity ADC_CONTROL_TOP is
   Port (
             MASTER_CLK_IN                                                               : in std_logic := '0';
+            MASTER_SDA_CLK_IN                                                           : in std_logic := '0';
             --Connections to external ADCs
             EXT_EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN                                     : in std_logic  := '0';
             EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN                                     : in std_logic  := '0';   
@@ -68,6 +69,11 @@ signal i_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_I
 signal i_PULSE_PULSE_OUT_PULSEGEN_3_TO_ADC_CONTROL_IN   : std_logic := '0';
 SIGNAL i_Unused_pulse_complete_from_pulsegen3 : std_logic;
 
+signal i_PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT   : std_logic := '0';
+signal i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN : std_logic := '0';
+signal i_PULSE_PULSE_OUT_PULSEGEN_4_TO_ADC_CONTROL_IN   : std_logic := '0';
+SIGNAL i_Unused_pulse_complete_from_pulsegen4 : std_logic;
+
 
 signal i_ADC_A_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER : std_logic_vector (15 downto 0) := (others => '0');
 signal i_ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER : std_logic_vector (15 downto 0) := (others => '0');
@@ -77,12 +83,12 @@ signal i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN : std_logic := '0';
 
 
 signal i_MASTER_CLK_TO_ADC_CONTROL  : std_logic := '0';
-
+signal i_MASTER_CLK_SDA_TO_ADC_CONTROL : std_logic := '0';
 
 
 component adc_control
     port(
-    --Pulse generator for 16 CLKs on SCK
+            --Pulse generator for 16 CLKs on SCK
             PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT                     : out std_logic := '0';
             PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN                          : in std_logic  := '0';
             PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN                                 : in std_logic  := '0';
@@ -95,6 +101,10 @@ component adc_control
             PULSE_TRIGGER_DCNVSCKL_PULSE_ADC_CONTROL_TO_PULSEGEN_3_OUT                   : out std_logic := '0';
             PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN     : in std_logic  := '0'; --ACTIVE_PULSE_WIDTH_OUT in Pulse_train_gen_active_out
             PULSE_PULSE_OUT_PULSEGEN_3_TO_ADC_CONTROL_IN                            : in std_logic  := '0'; --Unused
+            --Pulse generator for 20ns t_DSCKLCNVH pulse
+            PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT                 : out std_logic := '0';
+            PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN   : in std_logic  := '0'; 
+            PULSE_PULSE_OUT_PULSEGEN_4_TO_ADC_CONTROL_IN                                : in std_logic  := '0'; 
             --Connections to external ADCs
             EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN                                     : in std_logic  := '0';
             EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN                                     : in std_logic  := '0';   
@@ -129,6 +139,7 @@ end component pulse_train_gen;
 
 begin
 i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
+i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
 
 --test CNV
 i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
@@ -154,6 +165,10 @@ adc_ctrl1 : adc_control
         PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN => i_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,
         PULSE_PULSE_OUT_PULSEGEN_3_TO_ADC_CONTROL_IN => i_PULSE_PULSE_OUT_PULSEGEN_3_TO_ADC_CONTROL_IN,
         
+        PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT => i_PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT,
+        PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN => i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,
+        PULSE_PULSE_OUT_PULSEGEN_4_TO_ADC_CONTROL_IN  => i_PULSE_PULSE_OUT_PULSEGEN_4_TO_ADC_CONTROL_IN,
+        
         EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN => EXT_EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN,
         EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN => EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN,
         EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT => EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT,
@@ -167,7 +182,21 @@ adc_ctrl1 : adc_control
         MASTER_CLK_TO_ADC_CONTROL => i_MASTER_CLK_TO_ADC_CONTROL 
     );
 
-pulse_gen_1_35ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 35ns busy pulse
+pulse_gen_1_SDACLK : pulse_train_gen -- Must be clocked with 20MHz
+       Generic map (
+        NR_OF_CLKs => 16    
+        )
+        Port map (
+        --test : out std_logic;
+        Trig_in => i_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,
+      --  Trig_out : out std_logic; --test signal output
+        CLK_in => i_MASTER_CLK_SDA_TO_ADC_CONTROL,
+        BUSY => i_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN,
+        Pulse_out => i_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
+        Pulse_complete => i_PULSE_COMPLETE_PULSEGEN_1_TO_ADC_CONTROL_IN 
+      );
+
+pulse_gen_2_35ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 35ns busy pulse
        Generic map (
         NR_OF_CLKs => 6      
         )
@@ -194,5 +223,19 @@ pulse_gen_3_45ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 4
         Pulse_out => i_PULSE_PULSE_OUT_PULSEGEN_3_TO_ADC_CONTROL_IN,
         Pulse_complete => i_Unused_pulse_complete_from_pulsegen3 
       );
+      
+pulse_gen_4_20ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 20ns busy pulse
+       Generic map (
+        NR_OF_CLKs => 3      
+        )
+        Port map (
+        --test : out std_logic;
+        Trig_in => i_PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT,
+      --  Trig_out : out std_logic; --test signal output
+        CLK_in => i_MASTER_CLK_TO_ADC_CONTROL,
+        BUSY => i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,
+        Pulse_out => i_PULSE_PULSE_OUT_PULSEGEN_4_TO_ADC_CONTROL_IN,
+        Pulse_complete => i_Unused_pulse_complete_from_pulsegen4 
+      );      
 
 end Behavioral;
