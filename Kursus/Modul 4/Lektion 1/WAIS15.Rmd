@@ -1,0 +1,198 @@
+---
+title: 15.WAIS
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Opgave 15.WAIS - 1.
+
+WAIS (Wechler Adult Intelligent Scale) determines an intelligence score $x$ based on a battery of tests. The result of one subtest on a samplle of 54 elderly men yielded scores between 4 and 20 with a mean of 11.6.
+
+Besides we have the variable $y$ indicating whether the man shows symptoms of senility ($y=1$ if Yes).
+
+Result of fitting a logistic regression:
+
+ 
+Coefficient|Estimate|Std. Error|z value|P-value
+----------- | -------- | ---------- | ------- | ------- 			 
+(Intercept) |  2.0429  |   1.0717   |  1.9063 | 0.0566
+x           | -0.2821  |   0.1007   | -2.8015 | 0.0051
+
+- Show $\hat P(y=1)=0.5$ at $x=7.2$
+- $\hat P(y=1)<0.5$ for $x>7.2$
+- Estimate the probability of senility at $x=20$
+- Fitting a simple linear regression yields $$\hat P(y=1)=0.847-0.051x$$ Estimate the probability of senility at $x=20$. Sensible?
+- Test $H_0: \beta=0$ against $H_a: \beta\not= 0$ . Report and interpret the P-value. 
+
+A) Show that $\hat P(y=1)=0.5$ at $x=7.2$ 
+
+Vi har fra modellen af $a = 2.0429$ og $B = -0.2821$. Vi skal finde $P(Y=1|x) = 0.5$<br>
+Vores lineære model er givet som $y = a+Bx$ og vores Log(odds) er givet som $Log(odds) = a+Bx$<br>
+Vi tager e på begge sider for at isolere odds.<br>
+$odds = e^{a+Bx}$<br>
+Vi ved at odds også er givet som $odds = \frac{P}{1-P}$ vi kan sætte dem lig med hinanden for at finde probability<br>
+$e^{a+Bx}=\frac{P}{1-P}$<br> Vi isolerer nu P og får at $P = \frac{e^{a+Bx}}{1+e^{a+Bx}}$
+<br>Vi indsætter nu $x = 7.2$ i P funktionen for at finde probability<br>
+$P(y=1|x=7.2) = \frac{e^{2.0429-0.2821x}}{1+e^{2.0429-0.2821x}} =\frac{e^{2.0429-0.2821*7.2}}{1+e^{2.0429-0.2821*7.2}} = 0.503$<br>
+Vi har altså en probability på knap 0.5 eller 50\% for at være senil når man har en intelligens score på 7.2.<br>
+
+B) - $\hat P(y=1)<0.5$ for $x>7.2$
+
+Ved at plotte probability funktionen $P(x>7.2)$ så kan kan vi se hvad der sker for x > 7.2.
+
+```{r}
+x=seq(4,20,0.1) #Vi sampler P funktionen for at gøre det da plots skal være discrete.
+y=exp(-0.2821*x+2.0429)/(1+exp(-0.2821*x+2.0429))
+plot(x,y,type='l')
+```
+
+Man kan se at at P(x>7.2) aftager mod 0 når x vokser. Dvs at sandsynligheden for at være senile er mindre når man har en højere intelligens score.
+
+C) Estimate the probability of senility at $x=20$
+<br>
+Vi kan, igen, bruge probability funktionen for P(y=1|x=20) for at finde svaret på det. Vi indsætter x= 20 og finder probability.
+
+![Caption for the picture.](1.3 P of x 20.png)
+Vi kan se der er en probability på 2.66\% for at være senil når man har en intelligens score på 20.
+
+D) Fitting a simple linear regression yields $$\hat P(y=1)=0.847-0.051x$$ Estimate the probability of senility at $x=20$. Sensible?
+
+Vi indsætter bare x = 20 for at finde estimatet.
+$$\hat P(y=1)=0.847-0.051*20=-0.173$$
+Resultatet giver ikke mening da probability skal være positiv. Vi kan ikke bruge en simpel lineær regression som model for det her.
+
+E) Test $H_0: \beta=0$ against $H_a: \beta\not= 0$ . Report and interpret the P-value. 
+
+Vi ved fra D. at en lineær model ikke kan bruges, men de har lavet en logistisk model i starten af opgaven. Den er flg.
+Result of fitting a logistic regression:
+
+ 
+Coefficient|Estimate|Std. Error|z value|P-value
+----------- | -------- | ---------- | ------- | ------- 			 
+(Intercept) |  2.0429  |   1.0717   |  1.9063 | 0.0566
+x           | -0.2821  |   0.1007   | -2.8015 | 0.0051
+
+Vi kan se at $\beta = -0.2821$ har en probability på 0.0051, eller 0.5\%, i testen for $H_0: \beta=0$ against $H_a: \beta\not= 0$
+Det betyder at det er højst usansynligt at $\beta = 0$ når vi har observeret at den er $\beta = -0.2821$ og det betyder at probability for at $H_0$ er sand er meget lille og derfor kan vi rejecte $H_0$ og sige at $H_a$ er den rigtige og  $\beta \neq 0$.
+
+
+## Opgave 15.WAIS - 2.
+
+One of the WAIS subtests called *picture completion*, asks questions about 20 pictures that have one vital detail missing. It is considered a test of attention to fine detail.
+
+The observations for 20 subjects on (x,y), where x=picture completion score(0-20) and y=symptoms of senility(1=yes):
+```{r}
+pictSen <-
+read.table("http://people.math.aau.dk/~svante/PDP3/data/pictSen.csv",header=T)
+pictSen
+```
+
+- Estimate the logistic regression equation.
+- Estimate the probability that symptoms are present when (i) x=0, (ii) x=20.
+- Over what range of x-scores is the estimated probability of senility greater than 50%?
+- Estimate the effect of one-unit increase in x on the odds ratio of senility symptoms.
+- report a 95% confidence interval for the increase in odds ratio
+
+A) Estimate the logistic regression equation.
+
+Vi bruger glm() til at lave en logistisk model på datasættet.
+Senility er y-aksen og pictComplScore er en predictor.
+
+```{r}
+LogisticModel1 <- glm(senility~pictComplScore,data =pictSen ,family=binomial)
+summary(LogisticModel1)
+```
+Vores logistiske regressions ligning er
+$logit(Y=1|x)=log(Odds(y=1|x)) = \alpha + \beta x$
+
+B) Estimate the probability that symptoms are present when (i) x=0, (ii) x=20.<br>
+
+Vi har en log\(odds) funktion from A) og skal have en probability funktion. Der står
+$log(odds)=a+\beta x$
+
+Vi tager e på begge sider 
+$odds = e^{\alpha + \beta x}$
+
+Vi ved også at
+$odds = \frac{p}{1-p}
+
+Vi indsætter dette
+$ e^{\alpha + \beta x} = \frac{p}{1-p}$
+Vi isolerer p
+$p = \frac{e^{\alpha + \beta x} }{1+e^{\alpha + \beta x} }$
+
+Vi finder nu probability for x = 0 og x = 20
+
+```{r}
+alpha <-5.4266
+beta1 <- -0.7721
+#Vi finder P(y = 1|x = 0)
+x1 <- 0
+p1 <- (exp(alpha + beta1 * x1))/(1+(exp(alpha + beta1 * x1)))
+print(p1)
+
+# Vi finder P(y = 1|x = 20)
+x2 <- 20
+p2 <- (exp(alpha + beta1 * x2))/(1+(exp(alpha + beta1 * x2)))
+print(p2)
+```
+For x = 0 har vi en probability på 99.5%, eller næsten garanteret der er symptomer
+for x = 20 har vi en probability på 4.47e-5 eller meget usandsynligt der er symptomer.
+<br>
+
+C) Over what range of x-scores is the estimated probability of senility greater than 50%?
+Vores probability funktion er $P(Y=1|x) = \frac{e^{\alpha + \beta x} }{1+e^{\alpha + \beta x} }$
+Vi sætter $P(Y=1|x) = 1/2$ og finder x. Vi har gjort det i Maple of fik
+$x = 7.028364202$.
+Vi ved at funktionen startet med P(y = 1|x=0) = 0.9956212 og går mod 0 når x vokser, så vores interval er
+$x =[0,7.028364202]$
+Alt inde i det interval har mindst 50% probability for senilitet.
+
+Vi kunne også gøre det ved at plotte funktionen.. <br>
+```{r}
+x=seq(0,20,0.1)
+y=exp(-0.7721*x+5.4266)/(1+exp(-0.7721*x+5.4266))
+plot(x,y,type='l', col = "red")
+```
+<br>
+Man kan se at 0.5 findes ved knap x = 7 som forventet.<br>
+<br>
+D) Estimate the effect of one-unit increase in x on the odds ratio of senility symptoms.<br>
+Vi finder odds-ratio med flg. fra slide 
+$\frac{Odds(y=1|x+1)}{Odds(y=1|x)} = \frac{exp(\alpha + \beta(x+1))}{exp(\alpha + \beta)}= exp(\beta)$<br>
+Så vi finder bare $e^\beta$
+$exp(\beta)=exp(-0.7721) = 0.46204$<br>
+Det betyder at, hvis x stiger med 1 pictComplScore, så kan vi gange 0.46204 på vores odds for at finde ændringen. Det giver den relative ændring fra f.eks x = 1 til x = 2 når $exp(\beta)$ ganges på odds.
+Altså flg. giver ændringen i "x til x" <br> 
+$Odds(y=1|x) \cdot exp(\beta) = Odds(y=1|x+1)$
+
+E) report a 95% confidence interval for the increase in odds ratio
+Vores estimat af beta er -0.7721 og den har en standard error på $SEM = 0.3578$
+
+Vi ved fra standard normal fordelingen at $z = \pm 1$ giver et confidence på 68.26\% (15.87\%) til hver side. Vi skal skalere denne z-værdi så den passer med et interval på 95\%. Vi ved fra tabel A3 at $z_{crit} = \pm 1.96$ giver et confidence interval på 5%, med 2.5% i hver "ende".<br>
+
+Vores standard error er fundet til $SEM = 0.3578$ for $\beta$ og vi kan skalere den her værdi med $z_{crit} = \pm 1.96$ for at finde 95\% intervallet.<br>
+Vi finder z-værdierne til intervallet med $z_n = SEM \cdot z_{crit_n}$<br>
+For $z_{crit} = +1.96$ får vi<br>
+$z_1 = 1.96 \cdot 0.3578 = 0.701288$<br>
+For $z_{crit} = -1.96$ får vi<br>
+$z_2 = -1.96 \cdot 0.3578 = -0.701288$<br>
+
+Vi skalerer nu \beta på flg. måde $\beta_{95\%_1} = z_{12}+\beta$<br>
+$\beta_1 = 0.701288 + (-0.7721) ) = -0.070812$<br>
+$\beta_2 = -0.701288 + (-0.7721) ) = -1.473388$<br>
+
+Vores 95\% confidence interval for \beta er altså
+$-0.070812 < \beta < -1.473388$
+
+Vi skal bruge et 95\% interval for odds ratio. Vi ved at odds ratio er givet som $odds_{ratio} = exp(\beta)$ derfor får vi flg. interval<br>
+$0.2291478158 < exp(\beta) < 0.9316370234$
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+Consider the dataset PimaIndiansDiabetes2 [in mlbench package, which you probably need to install] for predicting the probability of being diabetes positive based on multiple clinical variables.
+
+
+
+```{r}
+# Load the data and remove NAs
+data("PimaIndiansDiabetes2", package = "mlbench")
+PD <- na.omit(PimaIndiansDiabetes2)
+# Inspect the data
+head(PD, 3)
+```
+
+Do an analysis similar to the analysis of breast cancer data in the lecture.
+
+Vi starter fra slide 13 og hælder flg. ind i R for at få en model. diabetes bliver vores binary variabel.
+```{r}
+PD$ill= PD$diabetes=="pos"
+bigPD <- glm(ill~., data=PD[,-9], family = binomial)
+summary(bigPD)
+```
+Vi kan se at pregnant, pressure, triceps, insulin og age alle har en høj probability for at være 0 og derfor kan vi smide dem væk. Husk at modellen tester for $H_0 : \mu = 0$.
+
+Glucose, mass og pedigree har en meget lav probability med 0.01\% level of significance så dem kan vi ikke smide væk. Da det er meget usandsynligt at de skulle være 0 ($H_0 : \mu = 0$) når vi har observeret at f.eks mass = 7.054e-2. Der er altså en 1\% chance for at mass ER 0.
+
+step() kan bruges til at få R til at fjerne dem som er insignificant.
+
+```{r}
+final <- step(bigPD,k=log(dim(PD)[1]),trace=0)
+round(summary(final)$coef,4)
+```
+Den har ikke fjernet age, ellers samme konklusion. Age har altså vist sig at være betydelig for chancen for at få diabetes.
+
+
