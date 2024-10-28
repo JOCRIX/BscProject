@@ -73,6 +73,6 @@ release
 
 Code/VHDL/ExtMemTest/ExtMemTest.sim/sim_1/
 
-Code/VHDL/ExtMemTest/ADCControl.sim/sim_1/
-Code/VHDL/ExtMemTest/ADCControl.sim/synth_1/
-Code/VHDL/ExtMemTest/ADCControl.cache/
+Code/VHDL/ExtMemTest/ADCControl.sim/sim_1/*
+Code/VHDL/ExtMemTest/ADCControl.sim/synth_1/*
+Code/VHDL/ExtMemTest/ADCControl.cache/*
