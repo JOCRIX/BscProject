@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Thu Oct 24 17:47:54 2024
+| Date         : Mon Oct 28 17:31:57 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file MASTER_FILE_control_sets_placed.rpt
 | Design       : MASTER_FILE
@@ -61,9 +61,9 @@ Table of Contents
 | No           | No                    | No                     |               8 |            3 |
 | No           | No                    | Yes                    |              19 |            7 |
 | No           | Yes                   | No                     |               0 |            0 |
-| Yes          | No                    | No                     |              67 |           24 |
+| Yes          | No                    | No                     |              67 |           21 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              29 |            8 |
+| Yes          | Yes                   | No                     |              29 |            7 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -73,28 +73,28 @@ Table of Contents
 +----------------------------------+-------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
 |           Clock Signal           |                        Enable Signal                        |                      Set/Reset Signal                      | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------------------------+-------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
-| ~Ext_CLK_IN_IBUF                 |                                                             | PulseGen1/stop_i_1_n_0                                     |                1 |              1 |         1.00 |
-|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/nWE_i_2_n_0                                     | EXT_MEM_RW1/nWE_i_1_n_0                                    |                1 |              1 |         1.00 |
+| ~PLL_1/inst/clk_out1             |                                                             | PulseGen1/stop_i_1_n_0                                     |                1 |              1 |         1.00 |
 |  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/nOE_i_2_n_0                                     | EXT_MEM_RW1/nOE_i_1_n_0                                    |                1 |              1 |         1.00 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/nWE_i_2_n_0                                     | EXT_MEM_RW1/nWE_i_1_n_0                                    |                1 |              1 |         1.00 |
+|  test_clk_BUFG                   | MEM_DIST1/STATE_OUT[0]_i_1_n_0                              |                                                            |                1 |              1 |         1.00 |
 |  MEM_DIST1/CLK_TO_MEM_DIST_OUT   |                                                             | MEM_DIST1/Q[0]                                             |                1 |              1 |         1.00 |
 |  MEM_DIST1/sig_PulseGen1_trig_in |                                                             | PulseGen1/sig_PulseGen1_pulse_complete                     |                1 |              1 |         1.00 |
-|  PLL_1/inst/clk_out1             | MEM_DIST1/STATE_OUT[0]_i_1_n_0                              |                                                            |                1 |              1 |         1.00 |
-|  PLL_1/inst/clk_out1             | MEM_DIST1/STATE_OUT[2]_i_1_n_0                              |                                                            |                2 |              2 |         1.00 |
-|  PLL_1/inst/clk_out1             |                                                             |                                                            |                2 |              3 |         1.50 |
-|  Ext_PULSE_OUT_OBUF_BUFG         | Ext_RnW_TO_MEM_DIST_OBUF                                    |                                                            |                1 |              4 |         4.00 |
+|  test_clk_BUFG                   | MEM_DIST1/STATE_OUT[2]_i_1_n_0                              |                                                            |                1 |              2 |         2.00 |
+|  test_clk_BUFG                   |                                                             |                                                            |                2 |              3 |         1.50 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | Ext_DnB_IBUF                                                |                                                            |                1 |              4 |         4.00 |
 |  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/ExtMemDataToRam[3]_i_1_n_0                      |                                                            |                1 |              4 |         4.00 |
 |  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/sig_Sample_RW                                   |                                                            |                1 |              4 |         4.00 |
-|  PLL_1/inst/clk_out1             | PulseGen1/E[0]                                              |                                                            |                1 |              4 |         4.00 |
-|  PLL_1/inst/clk_out1             | MEM_DIST1/DATA_EXT_MEM_DIST_TO_EXT_MEM0                     |                                                            |                2 |              4 |         2.00 |
-|  Ext_CLK_IN_IBUF                 |                                                             |                                                            |                1 |              5 |         5.00 |
-|  PLL_1/inst/clk_out1             | MEM_DIST1/s_byte0                                           |                                                            |                1 |              5 |         5.00 |
+|  test_clk_BUFG                   | PulseGen1/E[0]                                              |                                                            |                1 |              4 |         4.00 |
+|  test_clk_BUFG                   | MEM_DIST1/DATA_EXT_MEM_DIST_TO_EXT_MEM0                     |                                                            |                2 |              4 |         2.00 |
+|  PLL_1/inst/clk_out1             |                                                             |                                                            |                1 |              5 |         5.00 |
+|  test_clk_BUFG                   | MEM_DIST1/s_byte0                                           |                                                            |                1 |              5 |         5.00 |
 |  MEM_DIST1/CLK_TO_MEM_DIST_OUT   | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[18]_i_1_n_0 |                                                            |                2 |              6 |         3.00 |
-|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/SampleByteFromRam[7]_i_1_n_0                    |                                                            |                4 |              8 |         2.00 |
-|  PLL_1/inst/clk_out1             | MEM_DIST1/lowByte_EXT_MEM_TO_IV_SAVER0                      |                                                            |                3 |              8 |         2.67 |
-|  MEM_DIST1/CLK_TO_MEM_DIST_OUT   | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[18]_i_1_n_0 | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[5]_i_1_n_0 |                3 |             11 |         3.67 |
-| ~Ext_ADC_RDY_IBUF_BUFG           |                                                             | Ext_RnW_TO_MEM_DIST_OBUF                                   |                4 |             16 |         4.00 |
-|  PLL_1/inst/clk_out1             | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM0                     | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM[15]_i_1_n_0         |                3 |             16 |         5.33 |
-|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/ExtMemAdrToRam[18]_i_1_n_0                      |                                                            |                5 |             17 |         3.40 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/SampleByteFromRam[7]_i_1_n_0                    |                                                            |                2 |              8 |         4.00 |
+|  test_clk_BUFG                   | MEM_DIST1/lowByte_EXT_MEM_TO_IV_SAVER0                      |                                                            |                2 |              8 |         4.00 |
+|  MEM_DIST1/CLK_TO_MEM_DIST_OUT   | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[18]_i_1_n_0 | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE[5]_i_1_n_0 |                2 |             11 |         5.50 |
+| ~Ext_ADC_RDY_IBUF_BUFG           |                                                             | Ext_DnB_IBUF                                               |                4 |             16 |         4.00 |
+|  test_clk_BUFG                   | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM0                     | MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM[15]_i_1_n_0         |                3 |             16 |         5.33 |
+|  Ext_PULSE_OUT_OBUF_BUFG         | EXT_MEM_RW1/ExtMemAdrToRam[18]_i_1_n_0                      |                                                            |                6 |             17 |         2.83 |
 +----------------------------------+-------------------------------------------------------------+------------------------------------------------------------+------------------+----------------+--------------+
 
 

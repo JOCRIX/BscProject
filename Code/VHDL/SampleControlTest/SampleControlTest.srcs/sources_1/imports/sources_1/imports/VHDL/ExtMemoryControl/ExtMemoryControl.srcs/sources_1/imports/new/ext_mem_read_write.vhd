@@ -37,7 +37,6 @@ entity ExtMemReadWrite is
         SampleByteToRam : in std_logic_vector(7 downto 0):=(others => '0'); --Sample Byte input
         SampleByteFromRam : out std_logic_vector(7 downto 0):= (others => '0');
        -- SampleDOut : out std_logic_vector(15 downto 0) := (others => '0'); --Stored sample data output
-        SampleRW_OUT : out std_logic := '0'; 
         SampleRW : in std_logic := '0'; --Store in, or retrieve from, RAM. This single should be '1' for WRITE mode ande '0' for mode
                                         --Coordinate this with tri-state buffer behaviour! The Xilinx primitive is inverted from this
                                         --So we add an interter to the signal in top layer or in this code. I did it in the top layer.
@@ -51,7 +50,9 @@ entity ExtMemReadWrite is
         --ExtMemDio : inout std_logic_vector(7 downto 0) := (others => '0');
         ExtMemDataToRam : out std_logic_vector(7 downto 0):= (others => '0');
         ExtMemDataFromRam : in std_logic_vector(7 downto 0);--:= (others => '0');
-        ExtMemAdrToRam : out std_logic_vector(18 downto 0) := (others => '0')
+        ExtMemAdrToRam : out std_logic_vector(18 downto 0) := (others => '0');
+        
+        IO_BUF_CTRL : out std_logic
    );
 end ExtMemReadWrite;
 
@@ -69,7 +70,7 @@ type state_ext_mem_read is (ReadStep1, ReadStep2, ReadStep3, ReadStep4);
 signal s_write : state_ext_mem_write := WriteStep1;
 signal s_read : state_ext_mem_read := ReadStep1;
 begin
-    SampleRW_OUT <= SampleRW;
+    IO_BUF_CTRL <= not SampleRW;
     --Never disable chip.
     nCE <= '0'; 
     --Split data into two bytes

@@ -71,10 +71,10 @@ entity MASTER_FILE is
         --Ext_CLK_TO_EXT_MEM : out std_logic;
         
         Ext_STATE_OUT : out std_logic_vector(2 downto 0);
-        Ext_PULSE_OUT : out std_logic;
+        Ext_PULSE_OUT : out std_logic
         
-        Ext_MEM_DIST_RnW_OUT : out std_logic;
-        Ext_RnW_TO_MEM_DIST : out std_logic
+        --Ext_MEM_DIST_RnW_OUT : out std_logic;
+        --Ext_RnW_TO_MEM_DIST : out std_logic
         
     );
 end MASTER_FILE;
@@ -142,8 +142,7 @@ component ExternalMemoryDistribution is
         DATA_EXT_MEM_TO_EXT_MEM_DIST   : in std_logic_vector(7 downto 0)  := (others => '0');
         DATA_EXT_MEM_TO_IVSAVER        : out std_logic_vector(15 downto 0) := (others => '0');
         CLK_TO_EXT_MEM_READ_WRITE      : out std_logic := '0';
-        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0');
-        IO_BUF_CTRL : out std_logic
+        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0')        
    );
 end component ExternalMemoryDistribution;
 
@@ -153,7 +152,6 @@ component ExtMemReadWrite is
         SampleByteToRam : in std_logic_vector(7 downto 0):=(others => '0'); --Sample Byte input
         SampleByteFromRam : out std_logic_vector(7 downto 0):= (others => '0');
        -- SampleDOut : out std_logic_vector(15 downto 0) := (others => '0'); --Stored sample data output
-        SampleRW_OUT : out std_logic := '0';
         SampleRW : in std_logic := '0'; --Store in, or retrieve from, RAM. This single should be '1' for WRITE mode ande '0' for mode
                                         --Coordinate this with tri-state buffer behaviour! The Xilinx primitive is inverted from this
                                         --So we add an interter to the signal in top layer or in this code. I did it in the top layer.
@@ -167,7 +165,9 @@ component ExtMemReadWrite is
         --ExtMemDio : inout std_logic_vector(7 downto 0) := (others => '0');
         ExtMemDataToRam : out std_logic_vector(7 downto 0):= (others => '0');
         ExtMemDataFromRam : in std_logic_vector(7 downto 0);--:= (others => '0');
-        ExtMemAdrToRam : out std_logic_vector(18 downto 0) := (others => '0')
+        ExtMemAdrToRam : out std_logic_vector(18 downto 0) := (others => '0');
+        
+        IO_BUF_CTRL : out std_logic
    );
 end component ExtMemReadWrite;
 
@@ -217,6 +217,8 @@ signal sig_ADDR_TO_EXT_MEM : std_logic_vector(18 downto 0) := (others => '0');
 signal Ext_MEM_DIST_TO_EXT_MEM : std_logic_vector(7 downto 0) := (others => '0');
 signal sig_IO_BUF_CTRL : std_logic;
 
+signal test_clk : std_logic := '0';
+
 begin
 
 sig_ADDR <= sig_ADDR_DOWNSCALE & Ext_ADDR_FROM_INT_MEM;
@@ -226,14 +228,12 @@ sig_ADDR <= sig_ADDR_DOWNSCALE & Ext_ADDR_FROM_INT_MEM;
 Ext_DATA_TO_INT_MEM <= sig_DATA_TO_INT_MEM(11 downto 0);
 sig_ADC_DATA_TO_IV_SAVER(3 downto 0) <= Ext_ADC_LOBYTE_TO_IV_SAVER;
 sig_ADC_DATA_TO_IV_SAVER(11 downto 8) <= Ext_ADC_HIBYTE_TO_IV_SAVER;
-
+test_clk <= not sig_GRANDMASTER_CLK;
 --Ext_ADDR_TO_EXT_MEM(4 downto 0) <= sig_ADDR_TO_EXT_MEM(4 downto 0);
 --Ext_ADDR_TO_EXT_MEM(5) <= sig_ADDR_TO_EXT_MEM(18);
 Ext_PULSE_OUT <= sig_PulseGen1_pulse_out;
 
 
-Ext_MEM_DIST_RnW_OUT <= sig_IO_BUF_CTRL;
-Ext_RnW_TO_MEM_DIST <= sig_RnW_TO_MEM_DIST;
 
 gen_io_port_extRam : for index in 0 to 7 generate   --Output driver disabled når T = '1'. Aka vi vil læse med porten. 
    IOBUF_inst : IOBUF                               --https://docs.amd.com/r/en-US/ug953-vivado-7series-libraries/IOBUF
@@ -253,7 +253,6 @@ end generate gen_io_port_extRam;
 EXT_MEM_RW1 : ExtMemReadWrite
     port map (
         --To external memory
-        SampleRW_OUT => sig_RW_FROM_EXT_MEM_DIST_TO_EXT_MEM_RW,
         ExtMemDataToRam => sig_ExtMemDataToRam,
         ExtMemDataFromRam => sig_ExtMemDataFromRam,
         ExtMemAdrToRam => Ext_Mem_Addr_ext,
@@ -265,7 +264,8 @@ EXT_MEM_RW1 : ExtMemReadWrite
         SampleByteFromRam => sig_SampleByteFromRam,
         SampleRW => sig_Sample_RW,
         SampleAddr => sig_Sample_ADDR,
-        CLK => sig_CLK_to_ext_mem_RW
+        CLK => sig_CLK_to_ext_mem_RW,
+        IO_BUF_CTRL => sig_IO_BUF_CTRL
         );
         
 MEM_DIST1 :ExternalMemoryDistribution
@@ -308,11 +308,9 @@ MEM_DIST1 :ExternalMemoryDistribution
         DATA_IVSAVER_TO_EXT_MEM_DIST => sig_DATA_TO_MEM_DIST,
         DATA_EXT_MEM_TO_IVSAVER => sig_DATA_FROM_MEM_DIST,
         --Master clock
-        MASTER_CLK => sig_GRANDMASTER_CLK,
+        MASTER_CLK => test_clk,
         
-        STATE_OUT => Ext_STATE_OUT,
-        IO_BUF_CTRL => sig_IO_BUF_CTRL
-        
+        STATE_OUT => Ext_STATE_OUT        
         );
    
 PulseGen1 : pulse_train_gen 
@@ -321,7 +319,7 @@ Generic map(
 )
 Port map(
     Trig_in => sig_PulseGen1_trig_in,
-    CLK_in => Ext_CLK_IN, -- 12 MHz crystal, can be configured for other clocks too.
+    CLK_in => sig_GRANDMASTER_CLK, -- 12 MHz crystal, can be configured for other clocks too.
     BUSY => sig_PulseGen1_BUSY,
     Pulse_out => sig_PulseGen1_pulse_out,
     Pulse_complete => sig_PulseGen1_pulse_complete
