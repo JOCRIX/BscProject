@@ -48,8 +48,7 @@ entity ExternalMemoryDistribution is
         DATA_EXT_MEM_TO_EXT_MEM_DIST   : in std_logic_vector(7 downto 0)  := (others => '0');
         DATA_EXT_MEM_TO_IVSAVER        : out std_logic_vector(15 downto 0) := (others => '0');
         CLK_TO_EXT_MEM_READ_WRITE      : out std_logic := '0';
-        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0');
-        IO_BUF_CTRL : out std_logic
+        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0')
    );
 end ExternalMemoryDistribution;
 
@@ -88,7 +87,6 @@ highByte_To_EXT_MEM(7 downto 0) <= DATA_IVSAVER_TO_EXT_MEM_DIST (15 downto 8);
 DATA_EXT_MEM_TO_IVSAVER <= highByte_EXT_MEM_TO_IV_SAVER & lowByte_EXT_MEM_TO_IV_SAVER;
 --Invert RW signal for EXT MEM module
 nRW_TO_EXT_MEM <= not RnW;
-IO_BUF_CTRL <= RnW;
 --CLK to ext mem read write control.
 CLK_TO_EXT_MEM_READ_WRITE <= PulseInExtReadWrite;
 

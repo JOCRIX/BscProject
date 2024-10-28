@@ -1,0 +1,13 @@
+Consider the dataset PimaIndiansDiabetes2 [in mlbench package, which you probably need to install] for predicting the probability of being diabetes positive based on multiple clinical variables.
+
+
+
+```{r}
+# Load the data and remove NAs
+data("PimaIndiansDiabetes2", package = "mlbench")
+PimaIndiansDiabetes2 <- na.omit(PimaIndiansDiabetes2)
+# Inspect the data
+head(PimaIndiansDiabetes2, 3)
+```
+
+Do an analysis similar to the analysis of breast cancer data in the lecture.
