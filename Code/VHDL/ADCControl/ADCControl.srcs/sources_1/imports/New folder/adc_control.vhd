@@ -103,7 +103,7 @@ begin
 --Local copy of SPI clk busy flag
 spi_clk_busy <= PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN;
 --local copy of SPI CLK
-spi_clk <= PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN ;
+spi_clk <= not PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN ;
 --Local copy of SPI data from ADC1.
 adc_1_spi_data_in <= EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN;
 
