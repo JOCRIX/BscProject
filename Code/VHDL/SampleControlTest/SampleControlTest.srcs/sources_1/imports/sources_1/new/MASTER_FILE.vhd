@@ -217,7 +217,7 @@ signal sig_ADDR_TO_EXT_MEM : std_logic_vector(18 downto 0) := (others => '0');
 signal Ext_MEM_DIST_TO_EXT_MEM : std_logic_vector(7 downto 0) := (others => '0');
 signal sig_IO_BUF_CTRL : std_logic;
 
-signal test_clk : std_logic := '0';
+signal sig_MEM_CLK : std_logic := '0';
 
 begin
 
@@ -228,7 +228,7 @@ sig_ADDR <= sig_ADDR_DOWNSCALE & Ext_ADDR_FROM_INT_MEM;
 Ext_DATA_TO_INT_MEM <= sig_DATA_TO_INT_MEM(11 downto 0);
 sig_ADC_DATA_TO_IV_SAVER(3 downto 0) <= Ext_ADC_LOBYTE_TO_IV_SAVER;
 sig_ADC_DATA_TO_IV_SAVER(11 downto 8) <= Ext_ADC_HIBYTE_TO_IV_SAVER;
-test_clk <= not sig_GRANDMASTER_CLK;
+sig_MEM_CLK <= not sig_GRANDMASTER_CLK;
 --Ext_ADDR_TO_EXT_MEM(4 downto 0) <= sig_ADDR_TO_EXT_MEM(4 downto 0);
 --Ext_ADDR_TO_EXT_MEM(5) <= sig_ADDR_TO_EXT_MEM(18);
 Ext_PULSE_OUT <= sig_PulseGen1_pulse_out;
@@ -259,13 +259,13 @@ EXT_MEM_RW1 : ExtMemReadWrite
         nCE => Ext_Mem_nCE_ext,
         nOE => Ext_Mem_nOE_ext,
         nWE => Ext_Mem_nWE_ext, 
+        IO_BUF_CTRL => sig_IO_BUF_CTRL,
         --From memory distribution
         SampleByteToRam => sig_SampleByteToRam,
         SampleByteFromRam => sig_SampleByteFromRam,
         SampleRW => sig_Sample_RW,
         SampleAddr => sig_Sample_ADDR,
-        CLK => sig_CLK_to_ext_mem_RW,
-        IO_BUF_CTRL => sig_IO_BUF_CTRL
+        CLK => sig_CLK_to_ext_mem_RW
         );
         
 MEM_DIST1 :ExternalMemoryDistribution
@@ -308,7 +308,7 @@ MEM_DIST1 :ExternalMemoryDistribution
         DATA_IVSAVER_TO_EXT_MEM_DIST => sig_DATA_TO_MEM_DIST,
         DATA_EXT_MEM_TO_IVSAVER => sig_DATA_FROM_MEM_DIST,
         --Master clock
-        MASTER_CLK => test_clk,
+        MASTER_CLK => sig_MEM_CLK,
         
         STATE_OUT => Ext_STATE_OUT        
         );
