@@ -1,0 +1,88 @@
+## Matematiktest i børnehaveklasse
+
+Vi skal kigge på resultaterne af en matematiktest i en børnehaveklasse. Data er et uddrag af et større datasæt, hvor vi har indskrænket til 
+
+- fire spørgsmål benævnt A,B,C,D.
+- 5 drenge og 5 piger benævnt A,B,...,I,J.
+- 2 testtidspunkter oktober og maj.
+
+- A,B og C består af 4 delspørgsmål, mens D har 5 delspørgsmål.
+
+### Model
+Hertil bør det nævnes at vi laver en binomial fordeling for hvert spørgsmål, hver person og hver måned. eks. man har $Y_{i,A,okt}$ hvor man så køre på tværs af alle deltager, hefter har man $Y_{1,j,okt}$ med alle spørgsmål, på den måde gøres det på tværs af alt data.
+
+Lad $i$ angive en person, $j$ et spørgsmål og $k$ en måned.
+
+- Antag at personen har sandsynlighed $p_{ijk}$ for at svare rigtigt på hvert af delspørgsmålene og at svarene er uafhængige.
+- Lad $Y_{ijk}$ være antal rigtige svar på delspørgsmålene.
+
+Argumenter for at $Y_{ijk}$ er binomialfordelt med sandsynlighedsparameter $p_{ijk}$ og antalsparameter $n_j$, hvor $n_A=n_B=n_C=4$ og $n_D=5$. Dvs $Y_{ijk}\sim bin(n_j,p_{ijk})$.
+
+
+Diskuter for og imod denne model. <br>
+Det følger definitionen for binomial fordeling, da der enten er et sandt eller falsk udfald, heraf binomial, og alle udfald er uafhængige. Om det så er rigtigt at antage at alle spørgsmål mm. er lige svære for alle personer er nok ikke helt fair. Det antages at alle spørgsmål i en delopgave er lige svære.
+### Indlæsning af data
+
+```{r}
+testData=read.csv("http://people.math.aau.dk/~svante/PDP3/data/pisa.csv")[,-1]
+#head(testData,4)
+#tail(testData,4)
+testData
+```
+
+- `resultat` er antal rigtige svar på delspørgsmålene, dvs responsen $Y$.
+- `max` er antal delspørgsmål.
+- `maaned`: testen er afholdt første gang i oktober og anden gang i maj, så man kan undersøge for progression.
+- `koen`: faktoren køn har niveauerne p(ige) og d(reng).
+
+### Model med hovedvirkninger
+
+Vi skal studerende en logisk regression med hovedvirkninger af `opgave`,`koen` og `maaned`, dvs
+
+$$log(\frac{p_{ijk}}{1-p_{ijk}})=koen_i+opgave_j+maaned_k$$
+
+Denne model fittes med kommandoen
+
+`fit=glm(cbind(resultat,max-resultat)~.,data=testData,family=binomial)`
+```{r}
+fit=glm(cbind(resultat,max-resultat)~.,data=testData[,-1],family=binomial)
+(summary(fit))
+
+```
+HUSK, at dette er log(odds) <br>
+Det vil altså sige, at intercept op 2.3 fortæller at i opgave A, maj måned har en dreng log(odds) for at svare rigtigt på 2.3. Vi kunne for eks udregne sandsynligheden for at svare rigtigt i opgave A vil være <br>
+$P(2.28) = \frac{e^2.28}{1+e^2.28} = 0.907$ <br>
+
+- Betragt outputtet af kommandoen `summary(fit)` og konkluderer at effekten af koen er insignifikant. <br>
+Koen er ikke af betydning, da vi under antagelsen $H_0$ siger at dregn og pige er ens, med en std. error på 0.27 vil have 59% sandsynlighed for at opservere sådan et udfald, det vil altså sige at det er højest sandsynligt at opservere dette udfald hvis der ikke er  forskel på koen.
+
+
+Dette begrunder at vi reducerer modellen til
+```{r}
+fit0=glm(cbind(resultat,max-resultat)~ opgave+maaned,data=testData,family=binomial)
+summary(fit0)
+```
+
+Anvend outputtet af kommandoen `summary(fit0)` til at
+
+- estimere sandsynligheden for i oktober at svare rigtigt på et delspørgsmål i opgaveA. <br>
+Vi bruger den linæer funktion: $log(odds) = 2.3469-2.498*x$ for maj: $P=\frac{e^{2.3469-2.498}}{1+e^{2.3469-2.498}} = 46.2\%$. <br>
+Bemærk her at vi har en dummy variabel "x" der er 0 i maj og 1 i okt. <br>
+
+- estimere forbedringen i odds fra oktober til maj ift at svare rigtigt på et vilkårligt delspørgsmål <br>
+Vi kan estimere odds forbedringen ud fra hældningen, her på -2.498, vi er dog interesseret i forbedringen fra okt. til maj, og -2.498 er fra maj til okt. derved skal vi blot flippe det til 2.498. dette giver altså at odds forbedres med $e^{2.498} = 12.16$. Der er altså 12.16 bedre odds i maj end okt. En væsentlig forbedring.
+
+- angive et konfidensinterval for forbedringen
+```{r}
+confint(fit0)
+```
+Alternativt kan vi udregne for intercept manuelt, ved antagelse af normalfordeling:
+2.3469 +/- 0.3604*1.96 = 1.641 - 3.053 <br>
+Det her er i log(odds) vi vil have den i odds: <br>
+$2.5\% = e^{22.8}$ <br>
+$97.5\% = e^{1.92}= 6.82\%$ <br>
+
+- sammenligne odds for den sværeste opgave med odds for den letteste opgave <br>
+Når vi ser på vores model, ser vi at i henhold til opgave A, der har en log(odds) på 2.35, har opgave B en på 2.35+1.04 = 3.39, den er altså 
+lettere end opgave, opgave C har log(odds) på 2.35-1.53 = 0.85 og D på 2.35-0.52=1.83. <br>
+Her hvor vi har den værste log(odds) er altå for opgave C på 0.85, det må altså være den hvor en person har de dårligste odds for en success i en opgave. Derved også den sværeste opgave.

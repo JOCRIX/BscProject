@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Mon Oct 28 17:32:28 2024
+| Date             : Tue Oct 29 11:38:23 2024
 | Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file MASTER_FILE_power_routed.rpt -pb MASTER_FILE_power_summary_routed.pb -rpx MASTER_FILE_power_routed.rpx
 | Design           : MASTER_FILE
@@ -54,7 +54,7 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        5 |       --- |             --- |
 | Slice Logic    |    <0.001 |      212 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       48 |     20800 |            0.23 |
+|   LUT as Logic |    <0.001 |       47 |     20800 |            0.23 |
 |   CARRY4       |    <0.001 |        4 |      8150 |            0.05 |
 |   Register     |    <0.001 |      123 |     41600 |            0.30 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
@@ -73,7 +73,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.010 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.011 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.080 |       0.067 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -129,7 +129,7 @@ Table of Contents
 +--------------------+-------------------------------+-----------------+
 | Clock              | Domain                        | Constraint (ns) |
 +--------------------+-------------------------------+-----------------+
-| Ext_CLK_IN         | Ext_CLK_IN                    |            25.0 |
+| Ext_CLK_IN         | Ext_CLK_IN                    |             5.0 |
 | clk_out1_clk_wiz_0 | PLL_1/inst/clk_out1_clk_wiz_0 |            83.3 |
 | clkfbout_clk_wiz_0 | PLL_1/inst/clkfbout_clk_wiz_0 |            50.0 |
 +--------------------+-------------------------------+-----------------+

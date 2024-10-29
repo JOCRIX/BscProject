@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Oct 28 17:32:27 2024
+| Date         : Tue Oct 29 11:38:23 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_methodology -file MASTER_FILE_methodology_drc_routed.rpt -pb MASTER_FILE_methodology_drc_routed.pb -rpx MASTER_FILE_methodology_drc_routed.rpx
 | Design       : MASTER_FILE
@@ -40,7 +40,7 @@ Related violations: <none>
 
 TIMING-14#2 Critical Warning
 LUT on the clock tree  
-The LUT test_clk_BUFG_inst_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+The LUT sig_MEM_CLK_BUFG_inst_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
 Related violations: <none>
 
 TIMING-17#1 Critical Warning
