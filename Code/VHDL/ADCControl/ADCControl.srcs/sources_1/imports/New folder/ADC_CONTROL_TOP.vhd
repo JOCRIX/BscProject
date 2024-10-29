@@ -137,6 +137,22 @@ Port (
       );
 end component pulse_train_gen;
 
+component pulse_gen_invert
+    Generic(
+        NR_OF_CLKs : integer := 6       
+);
+Port (
+        --test : out std_logic;
+        Trig_in : in std_logic := '0';
+      --  Trig_out : out std_logic; --test signal output
+        CLK_in : in std_logic := '0';
+        BUSY : out std_logic := '0';
+        Pulse_out : out std_logic :='0';
+        Pulse_complete : out std_logic := '0' 
+      );
+end component pulse_gen_invert;
+
+
 begin
 i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
 i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
@@ -182,9 +198,9 @@ adc_ctrl1 : adc_control
         MASTER_CLK_TO_ADC_CONTROL => i_MASTER_CLK_TO_ADC_CONTROL 
     );
 
-pulse_gen_1_SDACLK : pulse_train_gen -- Must be clocked with 20MHz
+pulse_gen_1_SDACLK : pulse_gen_invert -- Must be clocked with 20MHz
        Generic map (
-        NR_OF_CLKs => 16    
+        NR_OF_CLKs => 15    
         )
         Port map (
         --test : out std_logic;
@@ -195,6 +211,20 @@ pulse_gen_1_SDACLK : pulse_train_gen -- Must be clocked with 20MHz
         Pulse_out => i_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
         Pulse_complete => i_PULSE_COMPLETE_PULSEGEN_1_TO_ADC_CONTROL_IN 
       );
+
+--pulse_gen_1_SDACLK : pulse_train_gen -- Must be clocked with 20MHz
+--       Generic map (
+--        NR_OF_CLKs => 16    
+--        )
+--        Port map (
+--        --test : out std_logic;
+--        Trig_in => i_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,
+--      --  Trig_out : out std_logic; --test signal output
+--        CLK_in => i_MASTER_CLK_SDA_TO_ADC_CONTROL,
+--        BUSY => i_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN,
+--        Pulse_out => i_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
+--        Pulse_complete => i_PULSE_COMPLETE_PULSEGEN_1_TO_ADC_CONTROL_IN 
+--      );
 
 pulse_gen_2_35ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 35ns busy pulse
        Generic map (
@@ -210,9 +240,9 @@ pulse_gen_2_35ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 3
         Pulse_complete => i_Unused_pulse_complete_from_pulsegen2 
       );
 
-pulse_gen_3_45ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 45ns busy pulse
+pulse_gen_3_45ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 45ns busy pulse. Subtract 1 with new invert gen pulse 1.
        Generic map (
-        NR_OF_CLKs => 8      
+            NR_OF_CLKs => 7      
         )
         Port map (
         --test : out std_logic;

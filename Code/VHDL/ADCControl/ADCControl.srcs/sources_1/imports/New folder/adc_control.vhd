@@ -103,7 +103,12 @@ begin
 --Local copy of SPI clk busy flag
 spi_clk_busy <= PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN;
 --local copy of SPI CLK
-spi_clk <= not PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN ;
+--spi_clk <= not PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN ;
+spi_clk <= PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN ;
+--Route SPI CLK to SCK pins
+EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT <= spi_clk;
+EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT <= spi_clk;
+
 --Local copy of SPI data from ADC1.
 adc_1_spi_data_in <= EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN;
 
@@ -196,7 +201,7 @@ begin
     end if;
 end process;
 
---Starts the pulse generator for the 16 CLKs.
+--Starts the pulse generator for the 16 CLKs. Starts 45 ns after Trigger input.
 sda_clk_start : process (MASTER_CLK_TO_ADC_CONTROL, PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN, clks_start, clks_done) is
 begin
     if(clks_start = '1') then
