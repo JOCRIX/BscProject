@@ -34,7 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity ADC_CONTROL_TOP is
   Port (
             MASTER_CLK_IN                                                               : in std_logic := '0';
-            MASTER_SDA_CLK_IN                                                           : in std_logic := '0';
+            --MASTER_SDA_CLK_IN                                                           : in std_logic := '0';
             --Connections to external ADCs
             EXT_EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN                                     : in std_logic  := '0';
             EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN                                     : in std_logic  := '0';   
@@ -152,10 +152,19 @@ Port (
       );
 end component pulse_gen_invert;
 
+component clk_wiz_0
+port
+ (-- Clock in ports
+  -- Clock out ports
+  clk_out1          : out    std_logic;
+  clk_out2          : out    std_logic;
+  clk_in1           : in     std_logic
+ );
+end component;
 
 begin
-i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
-i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
+--i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
+--i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
 
 --test CNV
 i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
@@ -267,5 +276,17 @@ pulse_gen_4_20ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 2
         Pulse_out => i_PULSE_PULSE_OUT_PULSEGEN_4_TO_ADC_CONTROL_IN,
         Pulse_complete => i_Unused_pulse_complete_from_pulsegen4 
       );      
+      
+--200MHz CLK(50% DC) and 20MHz(48.3% DC) CLK
+
+     your_instance_name : clk_wiz_0
+   port map ( 
+  -- Clock out ports  
+   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
+   clk_out2 => i_MASTER_CLK_SDA_TO_ADC_CONTROL,
+   -- Clock in ports
+   clk_in1 =>MASTER_CLK_IN
+ ); 
+      
 
 end Behavioral;

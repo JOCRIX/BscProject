@@ -1,0 +1,89 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Wed Oct 30 13:48:28 2024
+| Host         : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file ADC_CONTROL_TOP_control_sets_placed.rpt
+| Design       : ADC_CONTROL_TOP
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    11 |
+|    Minimum number of control sets                        |    11 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    71 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    11 |
+| >= 0 to < 4        |    10 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     0 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              16 |            5 |
+| No           | No                    | Yes                    |               5 |            5 |
+| No           | Yes                   | No                     |               1 |            1 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |               3 |            1 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------------------------------------------------+-------------------------------------+-----------------------------------+------------------+----------------+--------------+
+|                           Clock Signal                           |            Enable Signal            |          Set/Reset Signal         | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------------------------------------------------+-------------------------------------+-----------------------------------+------------------+----------------+--------------+
+|                                                                  |                                     | adc_ctrl1/clks_start              |                1 |              1 |         1.00 |
+|  your_instance_name/inst/clk_out2                                |                                     | pulse_gen_1_SDACLK/clear          |                1 |              1 |         1.00 |
+| ~your_instance_name/inst/clk_out2                                |                                     | pulse_gen_1_SDACLK/stop_i_1_n_0   |                1 |              1 |         1.00 |
+|  adc_ctrl1/PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT |                                     | pulse_gen_2_35ns/done_reg_n_0     |                1 |              1 |         1.00 |
+|  adc_ctrl1/PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT |                                     | pulse_gen_3_45ns/done_reg_n_0     |                1 |              1 |         1.00 |
+|  adc_ctrl1/PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT   |                                     | pulse_gen_1_SDACLK/Pulse_complete |                1 |              1 |         1.00 |
+| ~pulse_gen_3_45ns/EXT_DCN_OUT_OBUF                               |                                     |                                   |                1 |              1 |         1.00 |
+|  EXT_TEST_ACQUIRE_START_IBUF_BUFG                                |                                     |                                   |                1 |              1 |         1.00 |
+|  your_instance_name/inst/clk_out2                                |                                     |                                   |                1 |              2 |         2.00 |
+|  your_instance_name/inst/clk_out2                                | pulse_gen_1_SDACLK/count[2]_i_2_n_0 | pulse_gen_1_SDACLK/clear          |                1 |              3 |         3.00 |
+|  your_instance_name/inst/clk_out1                                |                                     |                                   |                2 |             12 |         6.00 |
++------------------------------------------------------------------+-------------------------------------+-----------------------------------+------------------+----------------+--------------+
+
+

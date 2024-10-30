@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.runs/synth_1/ADC_CONTROL_TOP.tcl"
+  variable script "C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.runs/synth_1/ADC_CONTROL_TOP.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,26 +56,35 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param tcl.statsThreshold 360
+set_param chipscope.maxJobs 3
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.cache/wt} [current_project]
-set_property parent.project_path {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.xpr} [current_project]
+set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
+set_property webtalk.parent_dir {C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.cache/wt} [current_project]
+set_property parent.project_path {C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.xpr} [current_project]
+set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
-set_property target_language Verilog [current_project]
-set_property ip_output_repo {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.cache/ip} [current_project]
+set_property target_language VHDL [current_project]
+set_property ip_output_repo {c:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/adc_control.vhd}
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/pulse_gen_invert.vhd}
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/pulse_train_gen.vhd}
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/ADC_CONTROL_TOP.vhd}
+  {C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/adc_control.vhd}
+  {C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/pulse_gen_invert.vhd}
+  {C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/pulse_train_gen.vhd}
+  {C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/New folder/ADC_CONTROL_TOP.vhd}
 }
+read_ip -quiet {{c:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci}}
+set_property used_in_implementation false [get_files -all {{c:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0_board.xdc}}]
+set_property used_in_implementation false [get_files -all {{c:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xdc}}]
+set_property used_in_implementation false [get_files -all {{c:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0_ooc.xdc}}]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -85,10 +94,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc}}
-set_property used_in_implementation false [get_files {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc}}]
+read_xdc {{C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc}}
+set_property used_in_implementation false [get_files {{C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental {C:/EIT GIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/utils_1/imports/synth_1/ADC_CONTROL_TOP.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
