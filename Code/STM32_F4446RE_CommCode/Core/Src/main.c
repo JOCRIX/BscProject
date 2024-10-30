@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <string.h>
 enum IOMode{
 	READ,
 	WRITE
@@ -100,9 +101,9 @@ int8_t SetGPIOMode(enum IOMode mode){
 			/*Set pins mode*/
 			GPIO_InitStruct_HighByte.Mode = GPIO_MODE_INPUT;
 			GPIO_InitStruct_LowByte.Mode = GPIO_MODE_INPUT;
-		/*Disable pullup/down*/
-			GPIO_InitStruct_HighByte.Pull = GPIO_NOPULL;
-			GPIO_InitStruct_LowByte.Pull = GPIO_NOPULL;
+		/*Disable pullup/down, for test they are enabled as pullup*/
+			GPIO_InitStruct_HighByte.Pull = GPIO_PULLUP;
+			GPIO_InitStruct_LowByte.Pull = GPIO_PULLUP;
 			cp->ctrl.CurrentMode = READ;
 			break;
 		case WRITE: /*Set all I/O to Output mode*/
@@ -163,34 +164,13 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	uint8_t test2 = 0;
-	CommPort.ctrl.selfAddr = &CommPort;
-	CommPort.ctrl.LowBytePins[0] = DB0_Pin;
-	CommPort.ctrl.LowBytePins[1] = DB1_Pin;
-	CommPort.ctrl.LowBytePins[2] = DB2_Pin;
-	CommPort.ctrl.LowBytePins[3] = DB3_Pin;
-	CommPort.ctrl.LowBytePins[4] = DB4_Pin;
-	CommPort.ctrl.LowBytePins[5] = DB5_Pin;
-	CommPort.ctrl.LowBytePins[6] = DB6_Pin;
-	CommPort.ctrl.LowBytePins[7] = DB7_Pin;
-	CommPort.ctrl.HighBytePins[0] = DB8_Pin;
-	CommPort.ctrl.HighBytePins[1] = DB9_Pin;
-	CommPort.ctrl.HighBytePins[2] = DB10_Pin;
-	CommPort.ctrl.HighBytePins[3] = DB11_Pin;
-	CommPort.ctrl.HighBytePins[4] = DB12_Pin;
-	CommPort.ctrl.HighBytePins[5] = DB13_Pin;
-	CommPort.ctrl.HighBytePins[6] = DB14_Pin;
-	CommPort.ctrl.HighBytePins[7] = DB15_Pin;
-	CommPort.ctrl.LowBytePort = GPIOB; /*Check med Jens om den her "advarsel" (?)*/
-	CommPort.ctrl.HighBytePort = GPIOC;
-	CommPort.ctrl.RWPin = DB_RW_Pin;
-	CommPort.ctrl.CLKPin = DB_CLK_Pin;
-	//CommPort.SetIOMode = SetGPIOMode;
-	CommPort.set.SetIOMode = SetGPIOMode;
-	CommPort.set.SetIOValue = SetIOValue;
-	//CommPort.set.SetIOMode(READ);
-
-
+	SetGPIOMode(WRITE);
+	SetIOValue(1);
+	uint8_t uartBuf[32];
+	uint16_t testVar = 0;
+	char str[32];
+	sprintf(str, "%d\r\n", 30000);
+  /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -219,8 +199,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  GPIOC -> ODR = 0xffff;
-	  GPIOC -> ODR = 0;
+	  //testVar = HAL_GPIO_ReadPin(GPIOB, DB0_Pin);
+	  //sprintf(str, "%d\r\n", testVar);
+	  //strcpy((char*)uartBuf, str);
+
+	  //HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  HAL_Delay(500);
+	  //GPIOC -> ODR = 0xffff;
+	  //GPIOC -> ODR = 0;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
