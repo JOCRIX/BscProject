@@ -3,10 +3,10 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Thu Oct 31 15:57:10 2024
-# Process ID: 3984
+# Start of session at: Thu Oct 17 21:06:34 2024
+# Process ID: 2448
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13820 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\Sample_MEM\Sample_MEM.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7540 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\Sample_MEM\Sample_MEM.xpr
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/vivado.log
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM\vivado.jou
 # Running On        :DESKTOP-S99FO1K
@@ -19,7 +19,7 @@
 # Host memory       :34182 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39282 MB
-# Available Virtual :24813 MB
+# Available Virtual :24594 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.xpr

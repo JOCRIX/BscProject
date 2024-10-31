@@ -18,15 +18,20 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "string.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+//Declares specific modes, here we can either read or write.
+//Enum is essentially a special type that represents a group of constants,
+//Here the IOMode can take two constants, either READ or WRITE.
 enum IOMode{
-	READ,
-	WRITE
+	READ = 0,
+	WRITE = 1
 };
 int8_t SetGPIOMode(enum IOMode mode);
 int8_t SetIOValue(uint16_t IOvalue);
+int8_t GetIOValue(uint16_t *result);
+int8_t SetRnW(enum IOMode mode);
 
 struct CommunicationPort{
 	struct Control{
@@ -36,11 +41,14 @@ struct CommunicationPort{
 		uint16_t HighBytePins[8];
 		GPIO_TypeDef *HighBytePort;
 		uint16_t RWPin, CLKPin;
+		GPIO_TypeDef *RWport, *CLKport;
 		enum IOMode CurrentMode;
 	}ctrl;
 	struct Set{
 		int8_t (*SetIOMode)(enum IOMode);
 		int8_t (*SetIOValue)(uint16_t);
+		int8_t (*GetIOValue)(uint16_t*);
+		int8_t (*SetRnW)(enum IOMode);
 	}set;
 
 }CommPort;
@@ -97,12 +105,14 @@ int8_t SetGPIOMode(enum IOMode mode){
 			GPIO_InitStruct_HighByte.Pin |= cp->ctrl.HighBytePins[i];
 			GPIO_InitStruct_LowByte.Pin |= cp->ctrl.LowBytePins[i];
 			}
+			GPIO_InitStruct_HighByte.Pin &= 0b0000000011111111;
+			GPIO_InitStruct_LowByte.Pin &= 0b0000000011111111;
 			/*Set pins mode*/
 			GPIO_InitStruct_HighByte.Mode = GPIO_MODE_INPUT;
 			GPIO_InitStruct_LowByte.Mode = GPIO_MODE_INPUT;
 		/*Disable pullup/down*/
-			GPIO_InitStruct_HighByte.Pull = GPIO_NOPULL;
-			GPIO_InitStruct_LowByte.Pull = GPIO_NOPULL;
+			GPIO_InitStruct_HighByte.Pull = GPIO_PULLUP;
+			GPIO_InitStruct_LowByte.Pull = GPIO_PULLUP;
 			cp->ctrl.CurrentMode = READ;
 			break;
 		case WRITE: /*Set all I/O to Output mode*/
@@ -111,11 +121,13 @@ int8_t SetGPIOMode(enum IOMode mode){
 				GPIO_InitStruct_HighByte.Pin |= cp->ctrl.HighBytePins[i];
 				GPIO_InitStruct_LowByte.Pin |= cp->ctrl.LowBytePins[i];
 			}
-			GPIO_InitStruct_HighByte.Mode = GPIO_MODE_OUTPUT_PP;
-			GPIO_InitStruct_HighByte.Pull = GPIO_NOPULL;
+			GPIO_InitStruct_HighByte.Pin &= 0b0000000011111111;
+			GPIO_InitStruct_LowByte.Pin &= 0b0000000011111111;
+			GPIO_InitStruct_HighByte.Mode = GPIO_MODE_OUTPUT_OD;
+			GPIO_InitStruct_HighByte.Pull = GPIO_PULLUP;
 			GPIO_InitStruct_HighByte.Speed = GPIO_SPEED_FREQ_LOW;
-			GPIO_InitStruct_LowByte.Mode = GPIO_MODE_OUTPUT_PP;
-			GPIO_InitStruct_LowByte.Pull = GPIO_NOPULL;
+			GPIO_InitStruct_LowByte.Mode = GPIO_MODE_OUTPUT_OD;
+			GPIO_InitStruct_LowByte.Pull = GPIO_PULLUP;
 			GPIO_InitStruct_LowByte.Speed = GPIO_SPEED_FREQ_LOW;
 			cp->ctrl.CurrentMode = WRITE;
 			break;
@@ -150,7 +162,42 @@ int8_t SetIOValue(uint16_t IOvalue){
 return status;
 }
 
+int8_t GetIOValue(uint16_t *result) {
+	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+	int8_t status = 1;
+	if (cp != NULL) {
+		uint16_t readVal = 0;
+		if ((cp -> ctrl.LowBytePort == GPIOB) && cp -> ctrl.HighBytePort == GPIOC) {
+			readVal = ((GPIOC->IDR)&0xFF)<<8;
+			readVal |= ((GPIOB->IDR)&0xFF);
+			*result = readVal;
+		} else {
+			status = -2;
+			*result = 0;
+		}
+	} else {
+		status = -1;
+	}
+	return status;
+}
 
+int8_t SetRnW(enum IOMode mode) {
+	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+	int8_t status = 1;
+	if (cp != NULL) {
+		if (mode == READ) {
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, 0);
+		}
+		else if (mode == WRITE) {
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, 1);
+		}
+		return(status);
+	}
+	else {
+		status = -1;
+		return(status);
+	}
+}
 
 
 /* USER CODE END 0 */
@@ -163,8 +210,16 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	uint8_t test2 = 0;
+	CommPort.set.SetIOMode = SetGPIOMode;
+	CommPort.set.SetIOValue = SetIOValue;
+	CommPort.set.GetIOValue = GetIOValue;
+	CommPort.set.SetRnW = SetRnW;
 	CommPort.ctrl.selfAddr = &CommPort;
+	CommPort.ctrl.RWPin = DB_RW_Pin;
+	CommPort.ctrl.LowBytePort = GPIOB;
+	CommPort.ctrl.HighBytePort = GPIOC;
+	CommPort.ctrl.RWport = GPIOB;
+	CommPort.ctrl.CLKport = GPIOC;
 	CommPort.ctrl.LowBytePins[0] = DB0_Pin;
 	CommPort.ctrl.LowBytePins[1] = DB1_Pin;
 	CommPort.ctrl.LowBytePins[2] = DB2_Pin;
@@ -181,16 +236,12 @@ int main(void)
 	CommPort.ctrl.HighBytePins[5] = DB13_Pin;
 	CommPort.ctrl.HighBytePins[6] = DB14_Pin;
 	CommPort.ctrl.HighBytePins[7] = DB15_Pin;
-	CommPort.ctrl.LowBytePort = GPIOB; /*Check med Jens om den her "advarsel" (?)*/
-	CommPort.ctrl.HighBytePort = GPIOC;
-	CommPort.ctrl.RWPin = DB_RW_Pin;
-	CommPort.ctrl.CLKPin = DB_CLK_Pin;
-	//CommPort.SetIOMode = SetGPIOMode;
-	CommPort.set.SetIOMode = SetGPIOMode;
-	CommPort.set.SetIOValue = SetIOValue;
-	//CommPort.set.SetIOMode(READ);
 
+	uint8_t uartBuf[16];
+	uint16_t testVar = 0;
+	char str[16];
 
+  /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -217,10 +268,28 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
-	  GPIOC -> ODR = 0xffff;
-	  GPIOC -> ODR = 0;
+//	  GPIOC -> ODR = 0xffff;
+//	  GPIOC -> ODR = 0;
+	  CommPort.set.SetIOMode(READ);
+	  CommPort.set.GetIOValue(&testVar);
+	  sprintf(str, "%d\r\n", testVar);
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  HAL_Delay(10);
+	  CommPort.set.SetRnW(WRITE);
+	  CommPort.set.SetIOMode(WRITE);
+	  CommPort.set.SetIOValue(0);
+	  HAL_Delay(10);
+	  CommPort.set.SetRnW(READ);
+//	  CommPort.set.SetIOMode(WRITE);
+//	  HAL_Delay(10);
+//	  CommPort.set.SetIOValue(0xFFFF);
+//	  HAL_Delay(1000);
+//	  CommPort.set.SetIOMode(READ);
+//	  HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
