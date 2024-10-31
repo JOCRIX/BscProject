@@ -21,9 +21,13 @@
 #include "string.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+<<<<<<< HEAD
 //Declares specific modes, here we can either read or write.
 //Enum is essentially a special type that represents a group of constants,
 //Here the IOMode can take two constants, either READ or WRITE.
+=======
+#include <string.h>
+>>>>>>> 27ce0c46640708a4af4f3cebe8426786c4cf98d7
 enum IOMode{
 	READ = 0,
 	WRITE = 1
@@ -110,7 +114,11 @@ int8_t SetGPIOMode(enum IOMode mode){
 			/*Set pins mode*/
 			GPIO_InitStruct_HighByte.Mode = GPIO_MODE_INPUT;
 			GPIO_InitStruct_LowByte.Mode = GPIO_MODE_INPUT;
+<<<<<<< HEAD
 		/*Disable pullup/down*/
+=======
+		/*Disable pullup/down, for test they are enabled as pullup*/
+>>>>>>> 27ce0c46640708a4af4f3cebe8426786c4cf98d7
 			GPIO_InitStruct_HighByte.Pull = GPIO_PULLUP;
 			GPIO_InitStruct_LowByte.Pull = GPIO_PULLUP;
 			cp->ctrl.CurrentMode = READ;
@@ -210,6 +218,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+<<<<<<< HEAD
 	CommPort.set.SetIOMode = SetGPIOMode;
 	CommPort.set.SetIOValue = SetIOValue;
 	CommPort.set.GetIOValue = GetIOValue;
@@ -241,6 +250,14 @@ int main(void)
 	uint16_t testVar = 0;
 	char str[16];
 
+=======
+	SetGPIOMode(WRITE);
+	SetIOValue(1);
+	uint8_t uartBuf[32];
+	uint16_t testVar = 0;
+	char str[32];
+	sprintf(str, "%d\r\n", 30000);
+>>>>>>> 27ce0c46640708a4af4f3cebe8426786c4cf98d7
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -271,6 +288,7 @@ int main(void)
 
   while (1)
   {
+<<<<<<< HEAD
 //	  GPIOC -> ODR = 0xffff;
 //	  GPIOC -> ODR = 0;
 	  CommPort.set.SetIOMode(READ);
@@ -290,6 +308,16 @@ int main(void)
 //	  HAL_Delay(1000);
 //	  CommPort.set.SetIOMode(READ);
 //	  HAL_Delay(10);
+=======
+	  //testVar = HAL_GPIO_ReadPin(GPIOB, DB0_Pin);
+	  //sprintf(str, "%d\r\n", testVar);
+	  //strcpy((char*)uartBuf, str);
+
+	  //HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  HAL_Delay(500);
+	  //GPIOC -> ODR = 0xffff;
+	  //GPIOC -> ODR = 0;
+>>>>>>> 27ce0c46640708a4af4f3cebe8426786c4cf98d7
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
