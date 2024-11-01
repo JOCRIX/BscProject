@@ -1,0 +1,8 @@
+vhdl xpm  \
+"G:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_VCOMP.vhd" \
+
+vhdl xil_defaultlib  \
+"../../../PulseGenInvert.srcs/sources_1/imports/Transfer/pulse_gen_invert.vhd" \
+
+# Do not sort compile order
+nosort

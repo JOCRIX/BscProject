@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Oct 30 13:48:17 2024
-| Host         : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+| Date         : Fri Nov  1 15:44:53 2024
+| Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_drc -file ADC_CONTROL_TOP_drc_opted.rpt -pb ADC_CONTROL_TOP_drc_opted.pb -rpx ADC_CONTROL_TOP_drc_opted.rpx
 | Design       : ADC_CONTROL_TOP
 | Device       : xc7a35tcpg236-1
@@ -29,8 +29,7 @@ Table of Contents
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
-| PLCK-12     | Warning  | Clock Placer Checks                                         | 1          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
 +-------------+----------+-------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -48,20 +47,22 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
 Refer to the device configuration user guide for more information.
 Related violations: <none>
 
-PLCK-12#1 Warning
-Clock Placer Checks  
-Poor placement for routing between an IO pin and BUFG. 
-Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
- This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
-
-	EXT_TEST_ACQUIRE_START_IBUF_inst (IBUF.O) is locked to A18
-	EXT_TEST_ACQUIRE_START_IBUF_BUFG_inst (BUFG.I) cannot be placed
-
-Related violations: <none>
-
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT pulse_gen_3_45ns/EXT_DCN_OUT_OBUF_inst_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+A LUT pulse_gen_1_SDACLK/Pulse_out is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
+adc_ctrl1/clks_done_reg, adc_ctrl1/clks_done_reg__0,
+adc_ctrl1/reset_acquisition_reg, adc_ctrl1/reset_acquisition_reg__0,
+adc_ctrl1/serial_clk_count_reg[0], adc_ctrl1/serial_clk_count_reg[0]__0,
+adc_ctrl1/serial_clk_count_reg[1], adc_ctrl1/serial_clk_count_reg[1]__0,
+adc_ctrl1/serial_clk_count_reg[2], adc_ctrl1/serial_clk_count_reg[2]__0,
+adc_ctrl1/serial_clk_count_reg[3], adc_ctrl1/serial_clk_count_reg[3]__0,
+adc_ctrl1/serial_clk_count_reg[4], adc_ctrl1/serial_clk_count_reg[4]__0,
+adc_ctrl1/stop_adc_control_reg (the first 15 of 16 listed)
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT pulse_gen_3_45ns/start_adc_control_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 adc_ctrl1/start_adc_control_reg
 Related violations: <none>
 

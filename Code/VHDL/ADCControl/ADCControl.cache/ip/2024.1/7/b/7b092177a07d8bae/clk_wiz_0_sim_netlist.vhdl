@@ -2,8 +2,8 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
--- Date        : Wed Oct 30 13:00:04 2024
--- Host        : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+-- Date        : Wed Oct 30 17:51:07 2024
+-- Host        : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 --               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ clk_wiz_0_sim_netlist.vhdl
 -- Design      : clk_wiz_0

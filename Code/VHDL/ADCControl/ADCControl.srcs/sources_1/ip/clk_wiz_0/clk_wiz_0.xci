@@ -4,7 +4,7 @@
     "xci_name": "clk_wiz_0",
     "component_reference": "xilinx.com:ip:clk_wiz:6.0",
     "ip_revision": "14",
-    "gen_directory": "../../../../ADCControl.gen/sources_1/ip/clk_wiz_0_1",
+    "gen_directory": "../../../../ADCControl.gen/sources_1/ip/clk_wiz_0",
     "parameters": {
       "component_parameters": {
         "Component_Name": [ { "value": "clk_wiz_0", "resolve_type": "user", "usage": "all" } ],
@@ -591,7 +591,7 @@
         "PACKAGE": [ { "value": "cpg236" } ],
         "PREFHDL": [ { "value": "VHDL" } ],
         "SILICON_REVISION": [ { "value": "" } ],
-        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "VHDL" } ],
         "SPEEDGRADE": [ { "value": "-1" } ],
         "STATIC_POWER": [ { "value": "" } ],
         "TEMPERATURE_GRADE": [ { "value": "" } ]
@@ -600,7 +600,7 @@
         "IPCONTEXT": [ { "value": "IP_Flow" } ],
         "IPREVISION": [ { "value": "14" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../ADCControl.gen/sources_1/ip/clk_wiz_0_1" } ],
+        "OUTPUTDIR": [ { "value": "../../../../ADCControl.gen/sources_1/ip/clk_wiz_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "." } ],
         "SWVERSION": [ { "value": "2024.1" } ],
