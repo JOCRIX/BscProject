@@ -95,6 +95,8 @@ void Error_Handler(void);
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define TimerPin_Pin GPIO_PIN_10
+#define TimerPin_GPIO_Port GPIOC
 #define DB3_Pin GPIO_PIN_3
 #define DB3_GPIO_Port GPIOB
 #define DB4_Pin GPIO_PIN_4

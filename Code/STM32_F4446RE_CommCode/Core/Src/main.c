@@ -280,6 +280,10 @@ int8_t WriteData(uint16_t data, uint16_t addr) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		CommPort.set.SetRnW(WRITE);
+//		if (CommPort.ctrl.CurrentMode != WRITE) {
+//
+//		}
+		CommPort.set.SetRnW(WRITE);
 		CommPort.set.SetIOMode(WRITE);
 		CommPort.set.SetIOValue(addr);
 		CommPort.set.PulseCLK();
@@ -298,9 +302,12 @@ int8_t FetchData(uint16_t *result, uint16_t addr) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		uint16_t readVal = 0;
+		CommPort.set.SetRnW(WRITE);
+		CommPort.set.SetIOMode(WRITE);
+		CommPort.set.SetIOValue(addr);
+		CommPort.set.PulseCLK();
 		CommPort.set.SetRnW(READ);
 		CommPort.set.SetIOMode(READ);
-		CommPort.set.SetIOValue(addr);
 		CommPort.set.PulseCLK();
 		CommPort.set.GetIOValue(&readVal);
 		*result = readVal;
@@ -413,44 +420,28 @@ int main(void)
 //  CommPort.set.PulseCLK();
   HAL_Delay(10);
 
-//  CommPort.set.ResetComm();
-//  CommPort.set.SetRnW(WRITE);
-//  CommPort.set.SetIOMode(WRITE);
-////  HAL_Delay(10);
-//  CommPort.set.SetIOValue(0b1100);
-////  HAL_Delay(10);
-//  CommPort.set.PulseCLK();
-////  HAL_Delay(10);
-//  CommPort.set.SetIOValue(3427);
-////  HAL_Delay(10);
-//  CommPort.set.PulseCLK();
-  CommPort.ResetComm();
-strcpy((char*)uartBuf, "--------\r\n");
-HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+	CommPort.ResetComm();
+	HAL_Delay(1);
+
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
   for(int i = 0; i < 24; i++) {
-	CommPort.WriteData(i, i);
+	CommPort.WriteData(i+0xFF, i);
+  }
+
+  HAL_GPIO_WritePin(GPIOC, TimerPin_Pin, 1);
+  for(int i = 0; i < 24; i++) {
 	CommPort.FetchData(&testVar, i);
-	sprintf(str, "%d\r\n", testVar);
-	strcpy((char*)uartBuf, str);
-	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 //	sprintf(str, "%d\r\n", "----------------");
   }
-strcpy((char*)uartBuf, "--------\r\n");
-HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//  HAL_Delay(10);
-//  CommPort.set.SetIOValue(0b1100);
-////  HAL_Delay(10);
-//  CommPort.set.PulseCLK();
-////  HAL_Delay(10);
-//  CommPort.set.SetRnW(READ);
-//  CommPort.set.SetIOMode(READ);
-////  HAL_Delay(10);
-//  CommPort.set.PulseCLK();
-////  HAL_Delay(10);
-//  CommPort.set.GetIOValue(&testVar);
+  HAL_GPIO_WritePin(GPIOC, TimerPin_Pin, 0);
 
-//  CommPort.set.SetRnW(WRITE);
-//  CommPort.set.SetIOMode(WRITE);
+
   while (1)
   {
 //
@@ -598,7 +589,8 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, DB8_Pin|DB9_Pin|DB10_Pin|DB11_Pin
-                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin, GPIO_PIN_RESET);
+                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin
+                          |TimerPin_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
@@ -615,9 +607,11 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DB8_Pin DB9_Pin DB10_Pin DB11_Pin
-                           DB12_Pin DB13_Pin DB15_Pin DB_CLK_Pin */
+                           DB12_Pin DB13_Pin DB15_Pin DB_CLK_Pin
+                           TimerPin_Pin */
   GPIO_InitStruct.Pin = DB8_Pin|DB9_Pin|DB10_Pin|DB11_Pin
-                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin;
+                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin
+                          |TimerPin_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
