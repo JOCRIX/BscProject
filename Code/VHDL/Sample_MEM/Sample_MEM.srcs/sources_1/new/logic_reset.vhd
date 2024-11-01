@@ -48,6 +48,8 @@ begin
 --Used to reset the state machine logic inside the internal_ram on initial boot-up.
 --3 clocks with RW = '1' will trigger the reset on the 4'th clock.
 --The reset will go low on the 4th clock falling edge.
+
+
 logic_reset_triggerFSM : process (CLK, RW, reset_trig) is 
 begin
     if(rising_edge(CLK)) then
@@ -67,12 +69,12 @@ begin
             when R_CLK3 =>
                 if(RW = '1') then
                     s_reset <= RESET_TRIGD;
+                    reset_trig <= '1';
                 else
                     s_reset <= R_CLK1;
                 end if;
             when RESET_TRIGD =>
                     s_reset<= R_CLK1;
-                    reset_trig <= '1';
         end case;
     end if;
     if(falling_edge(CLK)) then

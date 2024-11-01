@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "string.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -32,11 +32,22 @@ enum IOMode{
 	READ = 0,
 	WRITE = 1
 };
+enum bool{
+	FALSE,
+	TRUE
+};
 int8_t SetGPIOMode(enum IOMode mode);
 int8_t SetIOValue(uint16_t IOvalue);
 int8_t GetIOValue(uint16_t *result);
 int8_t SetRnW(enum IOMode mode);
+int8_t SetCLK(enum bool state);
+int8_t PulseCLK(void);
+int8_t ResetComm(void);
+int8_t WriteData(uint16_t data, uint16_t addr);
+int8_t FetchData(uint16_t *result, uint16_t addr);
 
+void ns_delay(uint16_t);
+//int8_t SetupCLK_RnW(void);
 struct CommunicationPort{
 	struct Control{
 		struct CommunicationPort *selfAddr;
@@ -53,7 +64,12 @@ struct CommunicationPort{
 		int8_t (*SetIOValue)(uint16_t);
 		int8_t (*GetIOValue)(uint16_t*);
 		int8_t (*SetRnW)(enum IOMode);
+		int8_t (*SetCLK)(enum bool);
+		int8_t (*PulseCLK)(void);
 	}set;
+	int8_t (*ResetComm)(void);
+	int8_t (*WriteData)(uint16_t, uint16_t);
+	int8_t (*FetchData)(uint16_t*, uint16_t);
 
 }CommPort;
 
@@ -104,13 +120,13 @@ int8_t SetGPIOMode(enum IOMode mode){
 	if(cp != NULL){
 		switch (mode){
 		case READ: /*Set all I/O to Read mode*/
-			for(uint8_t i = 0; i < 16; i++){
+			for(uint8_t i = 0; i < 8; i++){
 			/*Load pins*/
 			GPIO_InitStruct_HighByte.Pin |= cp->ctrl.HighBytePins[i];
 			GPIO_InitStruct_LowByte.Pin |= cp->ctrl.LowBytePins[i];
 			}
-			GPIO_InitStruct_HighByte.Pin &= 0b0000000011111111;
-			GPIO_InitStruct_LowByte.Pin &= 0b0000000011111111;
+			//GPIO_InitStruct_HighByte.Pin &= 0b0000000011111111;
+			//GPIO_InitStruct_LowByte.Pin &= 0b0000000011111111;
 			/*Set pins mode*/
 			GPIO_InitStruct_HighByte.Mode = GPIO_MODE_INPUT;
 			GPIO_InitStruct_LowByte.Mode = GPIO_MODE_INPUT;
@@ -119,13 +135,13 @@ int8_t SetGPIOMode(enum IOMode mode){
 			cp->ctrl.CurrentMode = READ;
 			break;
 		case WRITE: /*Set all I/O to Output mode*/
-			for(uint8_t i = 0; i < 16; i++){
+			for(uint8_t i = 0; i < 8; i++){
 				/*Load pins*/
 				GPIO_InitStruct_HighByte.Pin |= cp->ctrl.HighBytePins[i];
 				GPIO_InitStruct_LowByte.Pin |= cp->ctrl.LowBytePins[i];
 			}
-			GPIO_InitStruct_HighByte.Pin &= 0b0000000011111111;
-			GPIO_InitStruct_LowByte.Pin &= 0b0000000011111111;
+			//GPIO_InitStruct_HighByte.Pin &= 0b0000000011111111;
+			//GPIO_InitStruct_LowByte.Pin &= 0b0000000011111111;
 			GPIO_InitStruct_HighByte.Mode = GPIO_MODE_OUTPUT_OD;
 			GPIO_InitStruct_HighByte.Pull = GPIO_PULLUP;
 			GPIO_InitStruct_HighByte.Speed = GPIO_SPEED_FREQ_LOW;
@@ -151,8 +167,13 @@ int8_t SetIOValue(uint16_t IOvalue){
 		uint16_t lowByte = 0;
 		uint16_t highByte = 0;
 		//split IOValue into two.
-		lowByte = IOvalue & 0x00ff;
-		highByte = (IOvalue >> 8) & 0xff;
+//		lowByte = IOvalue & 0xFF;
+//		highByte = (IOvalue >> 8) & 0xFF;
+		/*Ensure that the new value to the high and low byte ports do not change what is
+		already on the port, i.e. only the 8 LSB of a port is used, we do not want to change
+		values of bit 8-15. */
+		lowByte = ((cp->ctrl.LowBytePort -> ODR)&0xFF00)|(IOvalue&0xFF);
+		highByte = ((cp->ctrl.HighBytePort -> ODR)&0xFF00)|((IOvalue>>8)&0xFF);
 		if((cp->ctrl.LowBytePort == GPIOB) && cp->ctrl.HighBytePort == GPIOC){
 			GPIOB->ODR = lowByte;
 			GPIOC->ODR = highByte;
@@ -189,10 +210,10 @@ int8_t SetRnW(enum IOMode mode) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		if (mode == READ) {
-			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, 0);
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, TRUE);
 		}
 		else if (mode == WRITE) {
-			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, 1);
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, FALSE);
 		}
 		return(status);
 	}
@@ -201,6 +222,114 @@ int8_t SetRnW(enum IOMode mode) {
 		return(status);
 	}
 }
+
+int8_t SetCLK(enum bool state) {
+	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+	int8_t status = 1;
+	if (cp != NULL) {
+		if (state == TRUE) {
+			HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, TRUE);
+		}
+		else if (state == FALSE) {
+			HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
+		}
+		return(status);
+	}
+	else {
+		status = -1;
+		return(status);
+	}
+}
+
+int8_t PulseCLK(void) {
+	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+	int8_t status = 1;
+	if (cp != NULL) {
+		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
+		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, TRUE);
+		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
+		return(status);
+	}
+	else {
+		status = -1;
+		return(status);
+	}
+}
+
+int8_t ResetComm(void) {
+	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+	int8_t status = 1;
+	if (cp != NULL) {
+		CommPort.set.SetRnW(WRITE);
+		CommPort.set.PulseCLK();
+		CommPort.set.SetRnW(READ);
+		CommPort.set.PulseCLK();
+		CommPort.set.PulseCLK();
+		CommPort.set.PulseCLK();
+		CommPort.set.PulseCLK();
+		return(status);
+	}
+	else {
+		status = -1;
+		return(status);
+	}
+}
+
+int8_t WriteData(uint16_t data, uint16_t addr) {
+	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+	int8_t status = 1;
+	if (cp != NULL) {
+		CommPort.set.SetRnW(WRITE);
+		CommPort.set.SetIOMode(WRITE);
+		CommPort.set.SetIOValue(addr);
+		CommPort.set.PulseCLK();
+		CommPort.set.SetIOValue(data);
+		CommPort.set.PulseCLK();
+		return(status);
+	}
+	else {
+		status = -1;
+		return(status);
+	}
+}
+
+int8_t FetchData(uint16_t *result, uint16_t addr) {
+	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+	int8_t status = 1;
+	if (cp != NULL) {
+		uint16_t readVal = 0;
+		CommPort.set.SetRnW(READ);
+		CommPort.set.SetIOMode(READ);
+		CommPort.set.SetIOValue(addr);
+		CommPort.set.PulseCLK();
+		CommPort.set.GetIOValue(&readVal);
+		*result = readVal;
+		return(status);
+	}
+	else {
+		status = -1;
+		return(status);
+	}
+}
+
+
+/*Creates delay of approx 285 ns + del_time ns delay, 75 ns resolution*/
+void ns_delay(uint16_t del_time) {
+	if (del_time != 0) {
+		uint16_t count = del_time/75;
+		for (uint16_t i = 0; i < count; i++) {
+			asm("NOP");
+		}
+	}
+}
+
+//int8_t SetupCLK_RnW(void) {
+//	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
+//	int8_t status = 1;
+//	if (cp != NULL) {
+//
+//	}
+//}
 
 
 /* USER CODE END 0 */
@@ -218,8 +347,14 @@ int main(void)
 	CommPort.set.SetIOValue = SetIOValue;
 	CommPort.set.GetIOValue = GetIOValue;
 	CommPort.set.SetRnW = SetRnW;
+	CommPort.set.SetCLK = SetCLK;
+	CommPort.set.PulseCLK = PulseCLK;
+	CommPort.ResetComm = ResetComm;
+	CommPort.WriteData = WriteData;
+	CommPort.FetchData = FetchData;
 	CommPort.ctrl.selfAddr = &CommPort;
 	CommPort.ctrl.RWPin = DB_RW_Pin;
+	CommPort.ctrl.CLKPin = DB_CLK_Pin;
 	CommPort.ctrl.LowBytePort = GPIOB;
 	CommPort.ctrl.HighBytePort = GPIOC;
 	CommPort.ctrl.RWport = GPIOB;
@@ -273,22 +408,78 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
+
+
+//  CommPort.set.PulseCLK();
+  HAL_Delay(10);
+
+//  CommPort.set.ResetComm();
+//  CommPort.set.SetRnW(WRITE);
+//  CommPort.set.SetIOMode(WRITE);
+////  HAL_Delay(10);
+//  CommPort.set.SetIOValue(0b1100);
+////  HAL_Delay(10);
+//  CommPort.set.PulseCLK();
+////  HAL_Delay(10);
+//  CommPort.set.SetIOValue(3427);
+////  HAL_Delay(10);
+//  CommPort.set.PulseCLK();
+  CommPort.ResetComm();
+strcpy((char*)uartBuf, "--------\r\n");
+HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+  for(int i = 0; i < 24; i++) {
+	CommPort.WriteData(i, i);
+	CommPort.FetchData(&testVar, i);
+	sprintf(str, "%d\r\n", testVar);
+	strcpy((char*)uartBuf, str);
+	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	sprintf(str, "%d\r\n", "----------------");
+  }
+strcpy((char*)uartBuf, "--------\r\n");
+HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//  HAL_Delay(10);
+//  CommPort.set.SetIOValue(0b1100);
+////  HAL_Delay(10);
+//  CommPort.set.PulseCLK();
+////  HAL_Delay(10);
+//  CommPort.set.SetRnW(READ);
+//  CommPort.set.SetIOMode(READ);
+////  HAL_Delay(10);
+//  CommPort.set.PulseCLK();
+////  HAL_Delay(10);
+//  CommPort.set.GetIOValue(&testVar);
+
+//  CommPort.set.SetRnW(WRITE);
+//  CommPort.set.SetIOMode(WRITE);
   while (1)
   {
+//
+//	  CommPort.set.PulseCLK();
+//	  HAL_Delay(1);
 
 //	  GPIOC -> ODR = 0xffff;
 //	  GPIOC -> ODR = 0;
-	  CommPort.set.SetIOMode(READ);
-	  CommPort.set.GetIOValue(&testVar);
-	  sprintf(str, "%d\r\n", testVar);
-	  strcpy((char*)uartBuf, str);
-	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  HAL_Delay(10);
-	  CommPort.set.SetRnW(WRITE);
-	  CommPort.set.SetIOMode(WRITE);
-	  CommPort.set.SetIOValue(0);
-	  HAL_Delay(10);
-	  CommPort.set.SetRnW(READ);
+//	  CommPort.set.SetIOMode(READ);
+//	  CommPort.set.SetCLK(TRUE);
+//	  HAL_Delay(1);
+//	  CommPort.set.SetCLK(FALSE);
+////	  CommPort.set.GetIOValue(&testVar);
+////	  sprintf(str, "%d\r\n", testVar);
+////	  strcpy((char*)uartBuf, str);
+////	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  HAL_Delay(3);
+//	  CommPort.set.SetRnW(WRITE);
+//	  CommPort.set.SetIOMode(WRITE);
+//	  CommPort.set.SetIOValue(0);
+//	  CommPort.set.SetCLK(TRUE);
+//	  HAL_Delay(1);
+//	  CommPort.set.SetCLK(FALSE);
+//	  HAL_Delay(3);
+//	  CommPort.set.SetRnW(READ);
+//	  CommPort.set.SetRnW(WRITE);
+//	  HAL_Delay(4);
+//	  CommPort.set.SetRnW(READ);
+//	  HAL_Delay(4);
 //	  CommPort.set.SetIOMode(WRITE);
 //	  HAL_Delay(10);
 //	  CommPort.set.SetIOValue(0xFFFF);
@@ -314,22 +505,28 @@ void SystemClock_Config(void)
   /** Configure the main internal regulator output voltage
   */
   __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 16;
-  RCC_OscInitStruct.PLL.PLLN = 336;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 360;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Activate the Over-Drive mode
+  */
+  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
     Error_Handler();
   }
@@ -340,10 +537,10 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
   {
     Error_Handler();
   }

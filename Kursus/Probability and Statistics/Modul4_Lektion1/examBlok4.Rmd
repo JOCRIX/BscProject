@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 ## Matematiktest i børnehaveklasse
 
 Vi skal kigge på resultaterne af en matematiktest i en børnehaveklasse. Data er et uddrag af et større datasæt, hvor vi har indskrænket til 
@@ -50,7 +55,7 @@ fit=glm(cbind(resultat,max-resultat)~.,data=testData[,-1],family=binomial)
 
 ```
 HUSK, at dette er log(odds) <br>
-Det vil altså sige, at intercept op 2.3 fortæller at i opgave A, maj måned har en dreng log(odds) for at svare rigtigt på 2.3. Vi kunne for eks udregne sandsynligheden for at svare rigtigt i opgave A vil være <br>
+Det vil altså sige, at intercept op 2.3 fortæller at i opgave A, maj måned har en dreng log(odds) for at svare rigtigt på 2.3. Vi kunne for eks udregne sandsynligheden for at svare rigtigt i opgave A til at være <br>
 $P(2.28) = \frac{e^2.28}{1+e^2.28} = 0.907$ <br>
 
 - Betragt outputtet af kommandoen `summary(fit)` og konkluderer at effekten af koen er insignifikant. <br>
@@ -65,7 +70,7 @@ summary(fit0)
 
 Anvend outputtet af kommandoen `summary(fit0)` til at
 
-- estimere sandsynligheden for i oktober at svare rigtigt på et delspørgsmål i opgaveA. <br>
+- estimere sandsynligheden for i oktober at svare rigtigt på et delspørgsmål i opgave A. <br>
 Vi bruger den linæer funktion: $log(odds) = 2.3469-2.498*x$ for maj: $P=\frac{e^{2.3469-2.498}}{1+e^{2.3469-2.498}} = 46.2\%$. <br>
 Bemærk her at vi har en dummy variabel "x" der er 0 i maj og 1 i okt. <br>
 
@@ -79,8 +84,12 @@ confint(fit0)
 Alternativt kan vi udregne for intercept manuelt, ved antagelse af normalfordeling:
 2.3469 +/- 0.3604*1.96 = 1.641 - 3.053 <br>
 Det her er i log(odds) vi vil have den i odds: <br>
-$2.5\% = e^{22.8}$ <br>
-$97.5\% = e^{1.92}= 6.82\%$ <br>
+$2.5\% = e^{1.641} = 5.16$ <br>
+$97.5\% = e^{3.053}= 21.18$ <br>
+Med værdier fra confint: <br>
+$2.5\% = e^{1.672} = 5.32$ <br>
+$97.5\% = e^{3.088}= 21.93$ <br>
+
 
 - sammenligne odds for den sværeste opgave med odds for den letteste opgave <br>
 Når vi ser på vores model, ser vi at i henhold til opgave A, der har en log(odds) på 2.35, har opgave B en på 2.35+1.04 = 3.39, den er altså 

@@ -2,4 +2,5 @@
 2020.2
 May 22 2024
 19:03:11
-F:/Git Projects/EIT/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.sim/sim_1/synth/func/xsim/sample_control_TOP_func_synth.vhd,1728601854,vhdl,,,,comm_port;comm_port_0;comm_port_1;comm_port_10;comm_port_11;comm_port_12;comm_port_13;comm_port_14;comm_port_2;comm_port_3;comm_port_4;comm_port_5;comm_port_6;comm_port_7;comm_port_8;comm_port_9;internal_ram;reset_io_ram_logic;sample_control_top,,,,,,,,
+C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.sim/sim_1/synth/func/xsim/logic_reset_func_synth.vhd,1730483134,vhdl,,,,logic_reset,,,,,,,,
+C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd,1730147372,vhdl,,,,comm_port,,,,,,,,
