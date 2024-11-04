@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Sat Nov  2 20:40:09 2024
+# Process ID: 17316
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlV2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6004 F:\Git Projects\EIT\P7---Bsc\Code\VHDL\ADCControlV2\ADCControlV2.xpr
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlV2/vivado.log
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlV2\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39212 MB
+# Available Virtual :28184 MB
+#-----------------------------------------------------------
+start_gui
+open_project {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlV2/ADCControlV2.xpr}
+update_compile_order -fileset sources_1
+close_project
+create_project ADCControlV3 {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlV3} -part xc7a35tcpg236-1
+set_property target_language VHDL [current_project]
+set_property simulator_language VHDL [current_project]
+add_files -norecurse {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/adc_control.vhd} {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd} {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd} {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/pulse_gen_invert.vhd} {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd}}
+import_files -force -norecurse
+import_files -fileset constrs_1 -force -norecurse {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc}}
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property is_enabled false [get_files  {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlV3/ADCControlV3.srcs/sources_1/imports/Transfer/pulse_gen_invert.vhd}}]
+launch_simulation
+source ADC_CONTROL_TOP.tcl
+add_force {/ADC_CONTROL_TOP/MASTER_CLK_IN} -radix hex {0 0ns} {1 50000ps} -repeat_every 100000ps
+add_force {/ADC_CONTROL_TOP/MASTER_CLK_IN} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/ADC_CONTROL_TOP/EXT_TEST_ACQUIRE_START} -radix hex {0 0ns} {1 50000ps} -repeat_every 100000ps
+run 500 ns
+run 500 ns
+close_sim
+launch_simulation
+source ADC_CONTROL_TOP.tcl
+add_force {/ADC_CONTROL_TOP/MASTER_CLK_IN} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/ADC_CONTROL_TOP/EXT_TEST_ACQUIRE_START} -radix hex {0 0ns} {1 50000ps} -repeat_every 100000ps
+run 500 ns
+run 500 ns
+close_sim

@@ -1,0 +1,277 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Sun Nov  3 18:53:11 2024
+# Process ID: 28396
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.runs/synth_1
+# Command line: vivado.exe -log ADC_CONTROL_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ADC_CONTROL_TOP.tcl
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.runs/synth_1/ADC_CONTROL_TOP.vds
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39212 MB
+# Available Virtual :18074 MB
+#-----------------------------------------------------------
+source ADC_CONTROL_TOP.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/utils_1/imports/synth_1/ADC_CONTROL_TOP.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/utils_1/imports/synth_1/ADC_CONTROL_TOP.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top ADC_CONTROL_TOP -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 22908
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1383.844 ; gain = 448.465
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'ADC_CONTROL_TOP' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:51]
+INFO: [Synth 8-3491] module 'adc_control' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:34' bound to instance 'adc_ctrl1' of component 'adc_control' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:199]
+INFO: [Synth 8-638] synthesizing module 'adc_control' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:71]
+INFO: [Synth 8-256] done synthesizing module 'adc_control' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:71]
+	Parameter NR_OF_CLKs bound to: 16 - type: integer 
+	Parameter HIGH_TIME bound to: 20 - type: integer 
+	Parameter LOW_TIME bound to: 25 - type: integer 
+INFO: [Synth 8-3491] module 'pulse_gen_width_modulator_inverted' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:35' bound to instance 'pulse_gen_1_SDACLK' of component 'pulse_gen_width_modulator_inverted' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:231]
+INFO: [Synth 8-638] synthesizing module 'pulse_gen_width_modulator_inverted' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:49]
+	Parameter NR_OF_CLKs bound to: 16 - type: integer 
+	Parameter HIGH_TIME bound to: 20 - type: integer 
+	Parameter LOW_TIME bound to: 25 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'pulse_gen_width_modulator_inverted' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:49]
+	Parameter NR_OF_CLKs bound to: 6 - type: integer 
+INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd:35' bound to instance 'pulse_gen_2_35ns_CNV' of component 'pulse_train_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:244]
+INFO: [Synth 8-638] synthesizing module 'pulse_train_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd:50]
+	Parameter NR_OF_CLKs bound to: 6 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'pulse_train_gen' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd:50]
+	Parameter NR_OF_CLKs bound to: 5 - type: integer 
+INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd:35' bound to instance 'pulse_gen_3_45ns_DCN' of component 'pulse_train_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:258]
+INFO: [Synth 8-638] synthesizing module 'pulse_train_gen__parameterized1' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd:50]
+	Parameter NR_OF_CLKs bound to: 5 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'pulse_train_gen__parameterized1' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd:50]
+	Parameter NR_OF_CLKs bound to: 5 - type: integer 
+INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd:35' bound to instance 'pulse_gen_4_45ns' of component 'pulse_train_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:272]
+INFO: [Synth 8-256] done synthesizing module 'ADC_CONTROL_TOP' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:51]
+WARNING: [Synth 8-6014] Unused sequential element data_ready_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:137]
+WARNING: [Synth 8-6014] Unused sequential element adc_busy_status_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:131]
+WARNING: [Synth 8-6014] Unused sequential element counting_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:192]
+WARNING: [Synth 8-6014] Unused sequential element counting_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:192]
+WARNING: [Synth 8-6014] Unused sequential element dcn_trig_out_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:113]
+WARNING: [Synth 8-6014] Unused sequential element cnv_trig_out_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:112]
+WARNING: [Synth 8-6014] Unused sequential element run_acquisition_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:240]
+WARNING: [Synth 8-6014] Unused sequential element dsc_trig_out_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:127]
+WARNING: [Synth 8-6014] Unused sequential element cnv_trig_out_reg was removed.  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:112]
+WARNING: [Synth 8-5787] Register serial_clk_count_reg in module adc_control is clocked by two different clocks in the same process. This may cause simulation mismatches and synthesis errors. Consider using different process statements  [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd:157]
+WARNING: [Synth 8-7129] Port PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN in module adc_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PULSE_COMPLETE_PULSEGEN_1_TO_ADC_CONTROL_IN in module adc_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PULSE_PULSE_OUT_PULSEGEN_2_TO_ADC_CONTROL_IN in module adc_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN in module adc_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PULSE_PULSE_OUT_PULSEGEN_3_TO_ADC_CONTROL_IN in module adc_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PULSE_PULSE_OUT_PULSEGEN_4_TO_ADC_CONTROL_IN in module adc_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN in module adc_control is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MASTER_CLK_TO_ADC_CONTROL in module adc_control is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1494.992 ; gain = 559.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1494.992 ; gain = 559.613
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1494.992 ; gain = 559.613
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1494.992 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]
+Finished Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/ADC_CONTROL_TOP_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/ADC_CONTROL_TOP_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1510.699 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1510.699 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    6 Bit       Adders := 2     
+	   2 Input    3 Bit       Adders := 3     
++---Registers : 
+	               16 Bit    Registers := 2     
+	                6 Bit    Registers := 2     
+	                3 Bit    Registers := 3     
+	                1 Bit    Registers := 27    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 6     
+	   3 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN in module ADC_CONTROL_TOP is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |OBUF |    19|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1510.699 ; gain = 559.613
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1510.699 ; gain = 575.320
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1510.699 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1510.699 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 4627daa6
+INFO: [Common 17-83] Releasing license: Synthesis
+35 Infos, 20 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+INFO: [Common 17-600] The following parameters have non-default value.
+tcl.statsThreshold
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1510.699 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.runs/synth_1/ADC_CONTROL_TOP.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file ADC_CONTROL_TOP_utilization_synth.rpt -pb ADC_CONTROL_TOP_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Nov  3 18:53:35 2024...

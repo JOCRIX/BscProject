@@ -1,0 +1,8 @@
+xpm_cdc.sv,systemverilog,xpm,G:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0"
+xpm_VCOMP.vhd,vhdl,xpm,G:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_VCOMP.vhd,incdir="../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0"
+clk_wiz_0_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl,incdir="../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0"
+adc_control.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/adc_control.vhd,incdir="../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0"
+pulse_gen_width_modulator_invert.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd,incdir="../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0"
+pulse_train_gen.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd,incdir="../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0"
+ADC_CONTROL_TOP.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpi/ADCControlVpi.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd,incdir="../../../ADCControlVpi.gen/sources_1/ip/clk_wiz_0"
+glbl.v,Verilog,xil_defaultlib,glbl.v

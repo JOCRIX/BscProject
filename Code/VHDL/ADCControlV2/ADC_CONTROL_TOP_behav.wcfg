@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="ADC_CONTROL_TOP_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="ADC_CONTROL_TOP" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="999,996 ps"></ZoomStartTime>
+      <ZoomEndTime time="1,000,001 ps"></ZoomEndTime>
+      <Cursor1Time time="1,000,000 ps"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="303"></NameColumnWidth>
+      <ValueColumnWidth column_width="277"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="14" />
+   <wvobject fp_name="/ADC_CONTROL_TOP/MASTER_CLK_IN" type="logic">
+      <obj_property name="ElementShortName">MASTER_CLK_IN</obj_property>
+      <obj_property name="ObjectShortName">MASTER_CLK_IN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN" type="logic">
+      <obj_property name="ElementShortName">EXT_EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN</obj_property>
+      <obj_property name="ObjectShortName">EXT_EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN" type="logic">
+      <obj_property name="ElementShortName">EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN</obj_property>
+      <obj_property name="ObjectShortName">EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT" type="logic">
+      <obj_property name="ElementShortName">EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT</obj_property>
+      <obj_property name="ObjectShortName">EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT" type="logic">
+      <obj_property name="ElementShortName">EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT</obj_property>
+      <obj_property name="ObjectShortName">EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT" type="logic">
+      <obj_property name="ElementShortName">EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT</obj_property>
+      <obj_property name="ObjectShortName">EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_LEDS_DATA_FROM_ADC_CONTROL" type="array">
+      <obj_property name="ElementShortName">EXT_LEDS_DATA_FROM_ADC_CONTROL[15:0]</obj_property>
+      <obj_property name="ObjectShortName">EXT_LEDS_DATA_FROM_ADC_CONTROL[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_TEST_ACQUIRE_START" type="logic">
+      <obj_property name="ElementShortName">EXT_TEST_ACQUIRE_START</obj_property>
+      <obj_property name="ObjectShortName">EXT_TEST_ACQUIRE_START</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/clks_start" type="logic">
+      <obj_property name="ElementShortName">clks_start</obj_property>
+      <obj_property name="ObjectShortName">clks_start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/clks_done" type="logic">
+      <obj_property name="ElementShortName">clks_done</obj_property>
+      <obj_property name="ObjectShortName">clks_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/stop_adc_control" type="logic">
+      <obj_property name="ElementShortName">stop_adc_control</obj_property>
+      <obj_property name="ObjectShortName">stop_adc_control</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/start_adc_control" type="logic">
+      <obj_property name="ElementShortName">start_adc_control</obj_property>
+      <obj_property name="ObjectShortName">start_adc_control</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/reset_acquisition" type="logic">
+      <obj_property name="ElementShortName">reset_acquisition</obj_property>
+      <obj_property name="ObjectShortName">reset_acquisition</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/start_acquisition" type="logic">
+      <obj_property name="ElementShortName">start_acquisition</obj_property>
+      <obj_property name="ObjectShortName">start_acquisition</obj_property>
+   </wvobject>
+</wave_config>

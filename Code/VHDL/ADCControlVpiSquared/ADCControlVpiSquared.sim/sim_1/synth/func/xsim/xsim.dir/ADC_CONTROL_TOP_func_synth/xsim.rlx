@@ -1,0 +1,12 @@
+
+{ 
+    crc :  13726821434253087368  , 
+    ccp_crc :  0  , 
+    cmdline : " --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L secureip --snapshot ADC_CONTROL_TOP_func_synth xil_defaultlib.ADC_CONTROL_TOP xil_defaultlib.glbl" , 
+    buildDate : "May 22 2024" , 
+    buildTime : "19:03:11" , 
+    linkCmd : "G:\\Xilinx\\Vivado\\2024.1\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/ADC_CONTROL_TOP_func_synth/xsimk.exe\"   \"xsim.dir/ADC_CONTROL_TOP_func_synth/obj/xsim_0.win64.obj\" \"xsim.dir/ADC_CONTROL_TOP_func_synth/obj/xsim_1.win64.obj\" \"xsim.dir/ADC_CONTROL_TOP_func_synth/obj/xsim_2.win64.obj\" -L\"G:\\Xilinx\\Vivado\\2024.1\\lib\\win64.o\" -lrdi_simulator_kernel   -lrdi_simbridge_kernel" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 

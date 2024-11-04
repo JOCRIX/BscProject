@@ -1,0 +1,12 @@
+
+{ 
+    crc :  7272594307258387314  , 
+    ccp_crc :  0  , 
+    cmdline : " --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot pulse_gen_invert_func_synth xil_defaultlib.pulse_gen_invert" , 
+    buildDate : "May 22 2024" , 
+    buildTime : "19:03:11" , 
+    linkCmd : "G:\\Xilinx\\Vivado\\2024.1\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/pulse_gen_invert_func_synth/xsimk.exe\"   \"xsim.dir/pulse_gen_invert_func_synth/obj/xsim_0.win64.obj\" \"xsim.dir/pulse_gen_invert_func_synth/obj/xsim_1.win64.obj\" -L\"G:\\Xilinx\\Vivado\\2024.1\\lib\\win64.o\" -lrdi_simulator_kernel   -lrdi_simbridge_kernel" , 
+    aggregate_nets : 
+    [ 
+    ] 
+} 

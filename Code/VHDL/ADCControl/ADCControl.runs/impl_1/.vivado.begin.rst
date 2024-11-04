@@ -1,20 +1,10 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="42104" HostCore="12" HostMemory="017022836736">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="26632" HostCore="24" HostMemory="034112311296">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="19676" HostCore="12" HostMemory="017022836736">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="17740" HostCore="12" HostMemory="017022836736">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="Jrixe" Host="LAPTOP-EVQDCN9M" Pid="37936" HostCore="12" HostMemory="017022836736">
+    <Process Command="vivado.bat" Owner="JRIX" Host="DESKTOP-DNC9NIR" Pid="8576" HostCore="24" HostMemory="034112311296">
     </Process>
 </ProcessHandle>
