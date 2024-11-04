@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Nov  4 02:36:14 2024
+| Date         : Mon Nov  4 20:07:21 2024
 | Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file ADC_CONTROL_TOP_timing_summary_routed.rpt -pb ADC_CONTROL_TOP_timing_summary_routed.pb -rpx ADC_CONTROL_TOP_timing_summary_routed.rpx -warn_on_violation
 | Design       : ADC_CONTROL_TOP
@@ -115,9 +115,9 @@ Table of Contents
 
  There is 1 register/latch pin with no clock driven by root clock pin: pulse_gen_3_45ns_DCN/done_reg/Q (HIGH)
 
- There is 1 register/latch pin with no clock driven by root clock pin: pulse_gen_4_45ns/active_reg/Q (HIGH)
+ There is 1 register/latch pin with no clock driven by root clock pin: pulse_gen_4_45ns_DSC/active_reg/Q (HIGH)
 
- There is 1 register/latch pin with no clock driven by root clock pin: pulse_gen_4_45ns/done_reg/Q (HIGH)
+ There is 1 register/latch pin with no clock driven by root clock pin: pulse_gen_4_45ns_DSC/done_reg/Q (HIGH)
 
 
 2. checking constant_clock (0)
@@ -1162,9 +1162,9 @@ Slack (MET) :             0.236ns  (arrival time - required time)
                          slack                                  0.236    
 
 Slack (MET) :             0.237ns  (arrival time - required time)
-  Source:                 pulse_gen_4_45ns/count_reg[2]/C
+  Source:                 pulse_gen_4_45ns_DSC/count_reg[2]/C
                             (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            pulse_gen_4_45ns/done_reg/D
+  Destination:            pulse_gen_4_45ns_DSC/done_reg/D
                             (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             clk_out1_clk_wiz_0
   Path Type:              Hold (Min at Fast Process Corner)
@@ -1188,14 +1188,14 @@ Slack (MET) :             0.237ns  (arrival time - required time)
                                                      -2.362    -1.678 r  master_of_clk/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.489    -1.189    master_of_clk/inst/clk_out1_clk_wiz_0
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.163 r  master_of_clk/inst/clkout1_buf/O
-                         net (fo=81, routed)          0.589    -0.575    pulse_gen_4_45ns/clk_out1
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/count_reg[2]/C
+                         net (fo=81, routed)          0.589    -0.575    pulse_gen_4_45ns_DSC/clk_out1
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/count_reg[2]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.128    -0.447 r  pulse_gen_4_45ns/count_reg[2]/Q
-                         net (fo=5, routed)           0.115    -0.332    pulse_gen_4_45ns/count_reg_n_0_[2]
-    SLICE_X59Y33         LUT4 (Prop_lut4_I0_O)        0.101    -0.231 r  pulse_gen_4_45ns/done_i_1__1/O
-                         net (fo=1, routed)           0.000    -0.231    pulse_gen_4_45ns/done_i_1__1_n_0
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/done_reg/D
+    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.128    -0.447 r  pulse_gen_4_45ns_DSC/count_reg[2]/Q
+                         net (fo=5, routed)           0.115    -0.332    pulse_gen_4_45ns_DSC/count_reg_n_0_[2]
+    SLICE_X59Y33         LUT4 (Prop_lut4_I0_O)        0.101    -0.231 r  pulse_gen_4_45ns_DSC/done_i_1__1/O
+                         net (fo=1, routed)           0.000    -0.231    pulse_gen_4_45ns_DSC/done_i_1__1_n_0
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/done_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_out1_clk_wiz_0 rise edge)
@@ -1208,10 +1208,10 @@ Slack (MET) :             0.237ns  (arrival time - required time)
                                                      -3.145    -2.233 r  master_of_clk/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.534    -1.700    master_of_clk/inst/clk_out1_clk_wiz_0
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.671 r  master_of_clk/inst/clkout1_buf/O
-                         net (fo=81, routed)          0.857    -0.814    pulse_gen_4_45ns/clk_out1
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/done_reg/C
+                         net (fo=81, routed)          0.857    -0.814    pulse_gen_4_45ns_DSC/clk_out1
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/done_reg/C
                          clock pessimism              0.239    -0.575    
-    SLICE_X59Y33         FDRE (Hold_fdre_C_D)         0.107    -0.468    pulse_gen_4_45ns/done_reg
+    SLICE_X59Y33         FDRE (Hold_fdre_C_D)         0.107    -0.468    pulse_gen_4_45ns_DSC/done_reg
   -------------------------------------------------------------------
                          required time                          0.468    
                          arrival time                          -0.231    
@@ -1333,9 +1333,9 @@ Slack (MET) :             0.249ns  (arrival time - required time)
                          slack                                  0.249    
 
 Slack (MET) :             0.250ns  (arrival time - required time)
-  Source:                 pulse_gen_4_45ns/count_reg[2]/C
+  Source:                 pulse_gen_4_45ns_DSC/count_reg[2]/C
                             (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            pulse_gen_4_45ns/count_reg[0]/D
+  Destination:            pulse_gen_4_45ns_DSC/count_reg[0]/D
                             (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             clk_out1_clk_wiz_0
   Path Type:              Hold (Min at Fast Process Corner)
@@ -1359,14 +1359,14 @@ Slack (MET) :             0.250ns  (arrival time - required time)
                                                      -2.362    -1.678 r  master_of_clk/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.489    -1.189    master_of_clk/inst/clk_out1_clk_wiz_0
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.163 r  master_of_clk/inst/clkout1_buf/O
-                         net (fo=81, routed)          0.589    -0.575    pulse_gen_4_45ns/clk_out1
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/count_reg[2]/C
+                         net (fo=81, routed)          0.589    -0.575    pulse_gen_4_45ns_DSC/clk_out1
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/count_reg[2]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.128    -0.447 r  pulse_gen_4_45ns/count_reg[2]/Q
-                         net (fo=5, routed)           0.116    -0.331    pulse_gen_4_45ns/count_reg_n_0_[2]
-    SLICE_X59Y33         LUT4 (Prop_lut4_I1_O)        0.098    -0.233 r  pulse_gen_4_45ns/count[0]_i_1/O
-                         net (fo=1, routed)           0.000    -0.233    pulse_gen_4_45ns/count[0]_i_1_n_0
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/count_reg[0]/D
+    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.128    -0.447 r  pulse_gen_4_45ns_DSC/count_reg[2]/Q
+                         net (fo=5, routed)           0.116    -0.331    pulse_gen_4_45ns_DSC/count_reg_n_0_[2]
+    SLICE_X59Y33         LUT4 (Prop_lut4_I1_O)        0.098    -0.233 r  pulse_gen_4_45ns_DSC/count[0]_i_1/O
+                         net (fo=1, routed)           0.000    -0.233    pulse_gen_4_45ns_DSC/count[0]_i_1_n_0
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/count_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_out1_clk_wiz_0 rise edge)
@@ -1379,10 +1379,10 @@ Slack (MET) :             0.250ns  (arrival time - required time)
                                                      -3.145    -2.233 r  master_of_clk/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.534    -1.700    master_of_clk/inst/clk_out1_clk_wiz_0
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.671 r  master_of_clk/inst/clkout1_buf/O
-                         net (fo=81, routed)          0.857    -0.814    pulse_gen_4_45ns/clk_out1
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/count_reg[0]/C
+                         net (fo=81, routed)          0.857    -0.814    pulse_gen_4_45ns_DSC/clk_out1
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/count_reg[0]/C
                          clock pessimism              0.239    -0.575    
-    SLICE_X59Y33         FDRE (Hold_fdre_C_D)         0.092    -0.483    pulse_gen_4_45ns/count_reg[0]
+    SLICE_X59Y33         FDRE (Hold_fdre_C_D)         0.092    -0.483    pulse_gen_4_45ns_DSC/count_reg[0]
   -------------------------------------------------------------------
                          required time                          0.483    
                          arrival time                          -0.233    
@@ -1390,9 +1390,9 @@ Slack (MET) :             0.250ns  (arrival time - required time)
                          slack                                  0.250    
 
 Slack (MET) :             0.250ns  (arrival time - required time)
-  Source:                 pulse_gen_4_45ns/count_reg[2]/C
+  Source:                 pulse_gen_4_45ns_DSC/count_reg[2]/C
                             (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            pulse_gen_4_45ns/active_reg/D
+  Destination:            pulse_gen_4_45ns_DSC/active_reg/D
                             (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@2.500ns period=5.000ns})
   Path Group:             clk_out1_clk_wiz_0
   Path Type:              Hold (Min at Fast Process Corner)
@@ -1416,14 +1416,14 @@ Slack (MET) :             0.250ns  (arrival time - required time)
                                                      -2.362    -1.678 r  master_of_clk/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.489    -1.189    master_of_clk/inst/clk_out1_clk_wiz_0
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.163 r  master_of_clk/inst/clkout1_buf/O
-                         net (fo=81, routed)          0.589    -0.575    pulse_gen_4_45ns/clk_out1
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/count_reg[2]/C
+                         net (fo=81, routed)          0.589    -0.575    pulse_gen_4_45ns_DSC/clk_out1
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/count_reg[2]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.128    -0.447 f  pulse_gen_4_45ns/count_reg[2]/Q
-                         net (fo=5, routed)           0.115    -0.332    pulse_gen_4_45ns/count_reg_n_0_[2]
-    SLICE_X59Y33         LUT5 (Prop_lut5_I0_O)        0.098    -0.234 r  pulse_gen_4_45ns/active_i_1__1/O
-                         net (fo=1, routed)           0.000    -0.234    pulse_gen_4_45ns/active_i_1__1_n_0
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/active_reg/D
+    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.128    -0.447 f  pulse_gen_4_45ns_DSC/count_reg[2]/Q
+                         net (fo=5, routed)           0.115    -0.332    pulse_gen_4_45ns_DSC/count_reg_n_0_[2]
+    SLICE_X59Y33         LUT5 (Prop_lut5_I0_O)        0.098    -0.234 r  pulse_gen_4_45ns_DSC/active_i_1__1/O
+                         net (fo=1, routed)           0.000    -0.234    pulse_gen_4_45ns_DSC/active_i_1__1_n_0
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/active_reg/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_out1_clk_wiz_0 rise edge)
@@ -1436,10 +1436,10 @@ Slack (MET) :             0.250ns  (arrival time - required time)
                                                      -3.145    -2.233 r  master_of_clk/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.534    -1.700    master_of_clk/inst/clk_out1_clk_wiz_0
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.671 r  master_of_clk/inst/clkout1_buf/O
-                         net (fo=81, routed)          0.857    -0.814    pulse_gen_4_45ns/clk_out1
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/active_reg/C
+                         net (fo=81, routed)          0.857    -0.814    pulse_gen_4_45ns_DSC/clk_out1
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/active_reg/C
                          clock pessimism              0.239    -0.575    
-    SLICE_X59Y33         FDRE (Hold_fdre_C_D)         0.091    -0.484    pulse_gen_4_45ns/active_reg
+    SLICE_X59Y33         FDRE (Hold_fdre_C_D)         0.091    -0.484    pulse_gen_4_45ns_DSC/active_reg
   -------------------------------------------------------------------
                          required time                          0.484    
                          arrival time                          -0.234    
@@ -3602,9 +3602,9 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 pulse_gen_4_45ns/done_reg/C
+  Source:                 pulse_gen_4_45ns_DSC/done_reg/C
                             (rising edge-triggered cell FDRE clocked by clk_out1_clk_wiz_0  {rise@0.000ns fall@2.500ns period=5.000ns})
-  Destination:            pulse_gen_4_45ns/run_reg/CLR
+  Destination:            pulse_gen_4_45ns_DSC/run_reg/CLR
   Path Group:             (none)
   Path Type:              Min at Slow Process Corner
   Data Path Delay:        0.757ns  (logic 0.337ns (44.534%)  route 0.420ns (55.466%))
@@ -3626,12 +3626,12 @@ Slack:                    inf
                                                      -7.221    -4.654 r  master_of_clk/inst/mmcm_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.587    -3.067    master_of_clk/inst/clk_out1_clk_wiz_0
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091    -2.976 r  master_of_clk/inst/clkout1_buf/O
-                         net (fo=81, routed)          1.511    -1.465    pulse_gen_4_45ns/clk_out1
-    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns/done_reg/C
+                         net (fo=81, routed)          1.511    -1.465    pulse_gen_4_45ns_DSC/clk_out1
+    SLICE_X59Y33         FDRE                                         r  pulse_gen_4_45ns_DSC/done_reg/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.337    -1.128 f  pulse_gen_4_45ns/done_reg/Q
-                         net (fo=2, routed)           0.420    -0.708    pulse_gen_4_45ns/done_reg_n_0
-    SLICE_X59Y32         FDCE                                         f  pulse_gen_4_45ns/run_reg/CLR
+    SLICE_X59Y33         FDRE (Prop_fdre_C_Q)         0.337    -1.128 f  pulse_gen_4_45ns_DSC/done_reg/Q
+                         net (fo=2, routed)           0.420    -0.708    pulse_gen_4_45ns_DSC/done_reg_n_0
+    SLICE_X59Y32         FDCE                                         f  pulse_gen_4_45ns_DSC/run_reg/CLR
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf

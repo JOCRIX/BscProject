@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Nov  4 02:35:59 2024
+| Date         : Mon Nov  4 20:07:06 2024
 | Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_drc -file ADC_CONTROL_TOP_drc_opted.rpt -pb ADC_CONTROL_TOP_drc_opted.pb -rpx ADC_CONTROL_TOP_drc_opted.rpx
 | Design       : ADC_CONTROL_TOP
@@ -68,7 +68,7 @@ Related violations: <none>
 
 PLHOLDVIO-2#3 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT pulse_gen_4_45ns/dsc_pulse_done_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+A LUT pulse_gen_4_45ns_DSC/dsc_pulse_done_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 adc_ctrl1/dsc_pulse_done_reg
 Related violations: <none>
 

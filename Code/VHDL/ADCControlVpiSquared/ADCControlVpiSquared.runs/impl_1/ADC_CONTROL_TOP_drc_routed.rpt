@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Nov  4 02:36:14 2024
+| Date         : Mon Nov  4 20:07:21 2024
 | Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_drc -file ADC_CONTROL_TOP_drc_routed.rpt -pb ADC_CONTROL_TOP_drc_routed.pb -rpx ADC_CONTROL_TOP_drc_routed.rpx
 | Design       : ADC_CONTROL_TOP
@@ -65,7 +65,7 @@ Related violations: <none>
 
 PDRC-153#4 Warning
 Gated clock check  
-Net pulse_gen_4_45ns/i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN is a gated clock net sourced by a combinational pin pulse_gen_4_45ns/dsc_pulse_done_i_1/O, cell pulse_gen_4_45ns/dsc_pulse_done_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net pulse_gen_4_45ns_DSC/i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN is a gated clock net sourced by a combinational pin pulse_gen_4_45ns_DSC/dsc_pulse_done_i_1/O, cell pulse_gen_4_45ns_DSC/dsc_pulse_done_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
@@ -89,7 +89,7 @@ Related violations: <none>
 
 PLHOLDVIO-2#3 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT pulse_gen_4_45ns/dsc_pulse_done_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+A LUT pulse_gen_4_45ns_DSC/dsc_pulse_done_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 adc_ctrl1/dsc_pulse_done_reg
 Related violations: <none>
 
