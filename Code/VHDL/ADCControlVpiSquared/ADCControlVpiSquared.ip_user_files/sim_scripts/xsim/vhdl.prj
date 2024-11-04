@@ -1,0 +1,5 @@
+vhdl xil_defaultlib  \
+"../../../ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd" \
+
+# Do not sort compile order
+nosort

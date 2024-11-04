@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Nov  1 15:43:45 2024
-# Process ID: 21800
+# Start of session at: Sun Nov  3 15:47:49 2024
+# Process ID: 25576
 # Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.runs/synth_1
 # Command line: vivado.exe -log ADC_CONTROL_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ADC_CONTROL_TOP.tcl
 # Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.runs/synth_1/ADC_CONTROL_TOP.vds
@@ -19,6 +19,6 @@
 # Host memory       :34112 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39212 MB
-# Available Virtual :20874 MB
+# Available Virtual :22291 MB
 #-----------------------------------------------------------
 source ADC_CONTROL_TOP.tcl -notrace

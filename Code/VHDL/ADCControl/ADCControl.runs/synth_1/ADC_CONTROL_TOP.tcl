@@ -56,7 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 6
 set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
@@ -76,7 +75,7 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
   {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/adc_control.vhd}
-  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/pulse_gen_invert.vhd}
+  {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd}
   {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/pulse_train_gen.vhd}
   {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControl/ADCControl.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd}
 }

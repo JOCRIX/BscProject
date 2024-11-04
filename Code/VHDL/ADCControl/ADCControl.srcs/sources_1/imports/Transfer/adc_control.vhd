@@ -85,7 +85,6 @@ signal stop_adc_control : std_logic := '0';
 signal clks_done : std_logic := '0';
 signal clks_start : std_logic := '0';
 
-signal clk_cycle_status : std_logic := '0';
 
 signal sample_data : std_logic_vector (15 downto 0) := (others => '0');
 
@@ -100,6 +99,8 @@ signal serial_data_adc_1 : std_logic_vector(15 downto 0):= (others => '0');
 signal serial_clk_count : integer range 0 to 16 := 0;
 
 signal DSCKLCNVH : std_logic := '1';
+
+signal counting : std_logic := '0';
 
 begin
 
@@ -116,11 +117,13 @@ EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT <= PULSE_CNV_PULSE_PULSEGEN_2
 DSCKLCNVH <= PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
 --Local copy of SPI data from ADC1.
 adc_1_spi_data_in <= EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN;
+--Route captured data to output
+ADC_A_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER <= serial_data_adc_1;
 
 
 
---Main process for the ADC control
-adc_control : process (MASTER_CLK_TO_ADC_CONTROL) is
+--starts CLK signal
+clk_control : process (MASTER_CLK_TO_ADC_CONTROL) is
 begin
     if(rising_edge(MASTER_CLK_TO_ADC_CONTROL)) then
         if(start_acquisition = '1') then
@@ -137,40 +140,78 @@ begin
     end if;
 end process;
 
-get_data : process (spi_clk, start_adc_control) is
+get_data : process (spi_clk, start_adc_control, start_acquisition,MASTER_CLK_TO_ADC_CONTROL,serial_clk_count) is
 begin
-    if(rising_edge(spi_clk)) then
+
+--    if(rising_edge(spi_clk)) then
+--        if(start_adc_control = '1') then 
+--            if(serial_clk_count < 15) then
+--                serial_clk_count <= serial_clk_count + 1;
+--                serial_data_adc_1(serial_clk_count) <= adc_1_spi_data_in;
+--                counting <= '1';
+--            end if;
+
+--        end if;
+--    end if;
+--   if((start_adc_control = '0') and (serial_clk_count = 16) and (start_acquisition = '0')) then
+--            counting <= '0';
+--            serial_clk_count <= 0;
+--   end if;
+   if(rising_edge(spi_clk)) then
         if(start_adc_control = '1') then 
-            if(serial_clk_count < 16) then
+            if(serial_clk_count /= 15) then
                 serial_clk_count <= serial_clk_count + 1;
                 serial_data_adc_1(serial_clk_count) <= adc_1_spi_data_in;
-                reset_acquisition <= '0';--Fix det her reset signal
-                stop_adc_control <= '0';
-                clks_done <= '0';
+                counting <= '1';
             end if;
+
+        --end if;
+--        elsif(serial_clk_count = 16) then
+--        counting <= '0';
+--            serial_clk_count <= 0;
+        end if;
+        if(serial_clk_count = 15) then
+            counting <= '0';
+            serial_clk_count <= 0;
         end if;
     end if;
-    if(falling_edge(spi_clk)) then
-       -- if(start_adc_control = '1') then
-            if(serial_clk_count = 15) then
-                serial_clk_count <= 0;
-                reset_acquisition <= '1';--Fix det her reset signal
-                stop_adc_control  <= '1';
-                clks_done <= '1';
-            end if;
-        --end if;
-    end if;    
 end process;
 
 --Ctrls the start signal for the entity. Start an acquisition of the ADC.
-adc_acquire_start : process (ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN, reset_acquisition) is
+adc_acquire_start : process (ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN, counting,spi_clk,serial_clk_count,PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN) is
 begin
-    if(reset_acquisition = '1') then
+--    if(falling_edge(spi_clk)) then
+--        if(serial_clk_count = 15) then
+--            start_acquisition <= '0';
+--        end if;
+--    end if;
+--    if(serial_clk_count = 15) then
+--        start_acquisition <= '0';
+--    elsif(rising_edge(ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN)) then
+--        start_acquisition <= '1';  
+--    end if;
+    
+    if(rising_edge(ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN)) then
+        start_acquisition <= '1';  
+    end if;
+    if(start_acquisition = '1') then
+    
+    
+        if(falling_edge(PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
         start_acquisition <= '0';
-    elsif(rising_edge(ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN)) then
-        start_acquisition <= '1';
+        start_adc_control <= '0';
+    end if;
     end if;
 end process;
+
+--reset_shit : process (PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN) is
+--begin
+--    if(falling_edge(PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
+--        start_acquisition <= '0';
+--        start_adc_control <= '0';
+--    end if;
+--end process;
+
 
 --Make a 35 ns CNV Pulse
 --Make a signal for controlling the start of the CLK. It should be 45ns from start of acquisition. as per LTC2311 Datasheet
@@ -194,33 +235,50 @@ end process;
 
 --Make a 20 ns tDSCKLCNVH pulse. Asynchronous reset.
 --Used as delay between the 16th CLK and the next rising edge of CNV.
-DSCKLCNVH_time_check : process (MASTER_CLK_TO_ADC_CONTROL, PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN, clks_done) is
+DSCKLCNVH_time_check : process (PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN, serial_clk_count, spi_clk) is
 begin
-    if(clks_done = '1') then
+    if(serial_clk_count = 15) then
+        if(falling_edge(spi_clk)) then
         PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT <= '1';
-    elsif(falling_edge(PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
+        end if;
+   elsif(falling_edge(PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
         PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT <= '0';
-    end if;
+   end if;
+
+--    if(counting = '0') then
+--        PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT <= '1';
+--    elsif(falling_edge(PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
+--        PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT <= '0';
+--    end if;
 end process;
 
 --Starts the ADC control process when the 45 ns have passed. Asynchronous reset in ADC_control process when done
-dcnvsckl_time_check : process (MASTER_CLK_TO_ADC_CONTROL, PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,stop_adc_control) is
+dcnvsckl_time_check : process (serial_clk_count,PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,counting, spi_clk) is
 begin
-    if(stop_adc_control = '1') then
-        start_adc_control <= '0';
-    elsif(falling_edge(PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
+--    if(serial_clk_count = 15) then
+--        start_adc_control <= '0';
+--    elsif(falling_edge(PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
+--        start_adc_control <= '1';
+--    end if;
+
+    if(falling_edge(PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN)) then
         start_adc_control <= '1';
     end if;
 end process;
 
 --Starts the pulse generator for the 16 CLKs. Starts 45 ns after Trigger input.
-sda_clk_start : process (MASTER_CLK_TO_ADC_CONTROL, PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN, clks_start, clks_done) is
+sda_clk_start : process (spi_clk, PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN, clks_start, clks_done,counting,serial_clk_count) is
 begin
     if(clks_start = '1') then
         PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT <= '1';
-    elsif(rising_edge(clks_done)) then
-        PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT <= '0';
     end if;
+    --elsif(falling_edge(spi_clk)) then
+        if(serial_clk_count = 15) then
+            PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT <= '0';
+            --start_adc_control <= '0';
+        end if;
+       -- PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT <= '0';
+    --end if;
 end process;
 
 --Set busy flag for ADC Control on start_acquisition and clear after DSC pulse.
@@ -233,47 +291,7 @@ begin
     end if;
 end process;
 
---Deprecated code
 
---get_data : process (spi_clk, start_adc_control) is
---begin
---    if(rising_edge(spi_clk)) then
---        if(start_adc_control = '1') then 
---            if(serial_clk_count < 16) then
---                serial_clk_count <= serial_clk_count + 1;
---                serial_data_adc_1(serial_clk_count) <= adc_1_spi_data_in;
---                reset_acquisition <= '0';
---                stop_adc_control <= '0';
---                clks_done <= '0';
---            else
---                serial_clk_count <= 0;
---                reset_acquisition <= '1';
---                stop_adc_control  <= '1';
---                clks_done <= '1';
---            end if;
---        end if;
---    end if;
---end process;
-
---get_data : process (spi_clk, start_adc_control, MASTER_CLK_TO_ADC_CONTROL) is
---begin
---    if(serial_clk_count = 16) then
---        serial_clk_count <= 0;
---        reset_acquisition <= '1';
---        stop_adc_control  <= '1';
---        clks_done <= '1';
---    elsif(rising_edge(spi_clk)) then
---        if(start_adc_control = '1') then 
---            if(serial_clk_count < 16) then
---                serial_clk_count <= serial_clk_count + 1;
---                serial_data_adc_1(serial_clk_count) <= adc_1_spi_data_in;
---                reset_acquisition <= '0';
---                stop_adc_control <= '0';
---                clks_done <= '0';
---            end if;
---        end if;
---    end if;
---end process;
 
 
 end Behavioral;

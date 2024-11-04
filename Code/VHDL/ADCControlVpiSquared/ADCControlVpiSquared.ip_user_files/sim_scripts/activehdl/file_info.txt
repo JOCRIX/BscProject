@@ -1,0 +1,1 @@
+adc_control.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd,incdir="../../ipstatic"

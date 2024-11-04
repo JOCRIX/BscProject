@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Nov  1 15:44:53 2024
+| Date         : Sun Nov  3 15:48:41 2024
 | Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_drc -file ADC_CONTROL_TOP_drc_opted.rpt -pb ADC_CONTROL_TOP_drc_opted.pb -rpx ADC_CONTROL_TOP_drc_opted.rpx
 | Design       : ADC_CONTROL_TOP
@@ -20,17 +20,16 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_ADC_CONTROL_TOP
+          Floorplan: design_1
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 3
-+-------------+----------+-------------------------------------------------------------+------------+
-| Rule        | Severity | Description                                                 | Violations |
-+-------------+----------+-------------------------------------------------------------+------------+
-| CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
-+-------------+----------+-------------------------------------------------------------+------------+
+             Violations found: 1
++----------+----------+-----------------------------------------------------+------------+
+| Rule     | Severity | Description                                         | Violations |
++----------+----------+-----------------------------------------------------+------------+
+| CFGBVS-1 | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
++----------+----------+-----------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -45,25 +44,6 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
  #where value2 is the voltage provided to configuration bank 0
 
 Refer to the device configuration user guide for more information.
-Related violations: <none>
-
-PLHOLDVIO-2#1 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT pulse_gen_1_SDACLK/Pulse_out is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
-adc_ctrl1/clks_done_reg, adc_ctrl1/clks_done_reg__0,
-adc_ctrl1/reset_acquisition_reg, adc_ctrl1/reset_acquisition_reg__0,
-adc_ctrl1/serial_clk_count_reg[0], adc_ctrl1/serial_clk_count_reg[0]__0,
-adc_ctrl1/serial_clk_count_reg[1], adc_ctrl1/serial_clk_count_reg[1]__0,
-adc_ctrl1/serial_clk_count_reg[2], adc_ctrl1/serial_clk_count_reg[2]__0,
-adc_ctrl1/serial_clk_count_reg[3], adc_ctrl1/serial_clk_count_reg[3]__0,
-adc_ctrl1/serial_clk_count_reg[4], adc_ctrl1/serial_clk_count_reg[4]__0,
-adc_ctrl1/stop_adc_control_reg (the first 15 of 16 listed)
-Related violations: <none>
-
-PLHOLDVIO-2#2 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT pulse_gen_3_45ns/start_adc_control_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
-adc_ctrl1/start_adc_control_reg
 Related violations: <none>
 
 

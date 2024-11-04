@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="ADC_CONTROL_TOP_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="ADC_CONTROL_TOP" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000000 s"></ZoomStartTime>
+      <ZoomEndTime time="0.000001292737 s"></ZoomEndTime>
+      <Cursor1Time time="0.000001916040 s"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="429"></NameColumnWidth>
+      <ValueColumnWidth column_width="111"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/ADC_CONTROL_TOP/MASTER_CLK_IN" type="logic">
+      <obj_property name="ElementShortName">MASTER_CLK_IN</obj_property>
+      <obj_property name="ObjectShortName">MASTER_CLK_IN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/EXT_TEST_ACQUIRE_START" type="logic">
+      <obj_property name="ElementShortName">EXT_TEST_ACQUIRE_START</obj_property>
+      <obj_property name="ObjectShortName">EXT_TEST_ACQUIRE_START</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/run_acquisition" type="logic">
+      <obj_property name="ElementShortName">run_acquisition</obj_property>
+      <obj_property name="ObjectShortName">run_acquisition</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/cnv_trig_out" type="logic">
+      <obj_property name="ElementShortName">cnv_trig_out</obj_property>
+      <obj_property name="ObjectShortName">cnv_trig_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/cnv_busy_in" type="logic">
+      <obj_property name="ElementShortName">cnv_busy_in</obj_property>
+      <obj_property name="ObjectShortName">cnv_busy_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/dcn_trig_out" type="logic">
+      <obj_property name="ElementShortName">dcn_trig_out</obj_property>
+      <obj_property name="ObjectShortName">dcn_trig_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/dcn_busy_in" type="logic">
+      <obj_property name="ElementShortName">dcn_busy_in</obj_property>
+      <obj_property name="ObjectShortName">dcn_busy_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/spi_clk_trig_out" type="logic">
+      <obj_property name="ElementShortName">spi_clk_trig_out</obj_property>
+      <obj_property name="ObjectShortName">spi_clk_trig_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/spi_clk" type="logic">
+      <obj_property name="ElementShortName">spi_clk</obj_property>
+      <obj_property name="ObjectShortName">spi_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/serial_clk_count" type="other">
+      <obj_property name="ElementShortName">serial_clk_count</obj_property>
+      <obj_property name="ObjectShortName">serial_clk_count</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/counting" type="logic">
+      <obj_property name="ElementShortName">counting</obj_property>
+      <obj_property name="ObjectShortName">counting</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/dsc_trig_out" type="logic">
+      <obj_property name="ElementShortName">dsc_trig_out</obj_property>
+      <obj_property name="ObjectShortName">dsc_trig_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/dsc_busy_in" type="logic">
+      <obj_property name="ElementShortName">dsc_busy_in</obj_property>
+      <obj_property name="ObjectShortName">dsc_busy_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/adc_busy_status" type="logic">
+      <obj_property name="ElementShortName">adc_busy_status</obj_property>
+      <obj_property name="ObjectShortName">adc_busy_status</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/adc_1_data" type="logic">
+      <obj_property name="ElementShortName">adc_1_data</obj_property>
+      <obj_property name="ObjectShortName">adc_1_data</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ADC_CONTROL_TOP/adc_ctrl1/data_ready" type="logic">
+      <obj_property name="ElementShortName">data_ready</obj_property>
+      <obj_property name="ObjectShortName">data_ready</obj_property>
+   </wvobject>
+</wave_config>

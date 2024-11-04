@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Nov  1 15:45:06 2024
+| Date         : Sun Nov  3 15:48:55 2024
 | Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_methodology -file ADC_CONTROL_TOP_methodology_drc_routed.rpt -pb ADC_CONTROL_TOP_methodology_drc_routed.pb -rpx ADC_CONTROL_TOP_methodology_drc_routed.rpx
 | Design       : ADC_CONTROL_TOP
@@ -20,52 +20,26 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_ADC_CONTROL_TOP
+          Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 7
+             Violations found: 2
 +-----------+------------------+-----------------------------+------------+
 | Rule      | Severity         | Description                 | Violations |
 +-----------+------------------+-----------------------------+------------+
-| TIMING-14 | Critical Warning | LUT on the clock tree       | 1          |
-| TIMING-17 | Critical Warning | Non-clocked sequential cell | 6          |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell | 2          |
 +-----------+------------------+-----------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
-TIMING-14#1 Critical Warning
-LUT on the clock tree  
-The LUT pulse_gen_1_SDACLK/Pulse_out has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
-Related violations: <none>
-
 TIMING-17#1 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT_reg/C is not reached by a timing clock
+The clock pin adc_ctrl1/start_acquisition_reg__0/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#2 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/start_acquisition_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#3 Critical Warning
-Non-clocked sequential cell  
-The clock pin adc_ctrl1/start_adc_control_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#4 Critical Warning
-Non-clocked sequential cell  
-The clock pin pulse_gen_1_SDACLK/output_logic_reg[0]/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#5 Critical Warning
-Non-clocked sequential cell  
 The clock pin pulse_gen_2_35ns/run_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-17#6 Critical Warning
-Non-clocked sequential cell  
-The clock pin pulse_gen_3_45ns/run_reg/C is not reached by a timing clock
 Related violations: <none>
 
 

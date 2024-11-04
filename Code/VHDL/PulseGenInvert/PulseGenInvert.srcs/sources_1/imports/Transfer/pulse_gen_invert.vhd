@@ -35,8 +35,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity pulse_gen_width_modulator_inverted is
 Generic(
         NR_OF_CLKs : integer := 7;  
-        HIGH_TIME : integer := 25; -- in ns, multiples of 5.
-        LOW_TIME : integer := 25   -- in ns, multiples of 5.  
+        HIGH_TIME : integer := 15; -- in ns, multiples of 5.
+        LOW_TIME : integer := 30   -- in ns, multiples of 5.  
 );
 Port (
         MASTER_CLK_200MEG_IN : in std_logic := '0';

@@ -1,8 +1,8 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.1
-| Date         : Fri Nov  1 15:44:54 2024
+| Date         : Sun Nov  3 15:48:43 2024
 | Host         : DESKTOP-DNC9NIR
-| Design       : checkpoint_ADC_CONTROL_TOP
+| Design       : design_1
 | Device       : xc7a35t-cpg236-1--
 -------------------------------------
 

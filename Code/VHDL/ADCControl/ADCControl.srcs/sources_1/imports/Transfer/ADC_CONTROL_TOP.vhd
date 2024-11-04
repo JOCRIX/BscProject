@@ -42,7 +42,7 @@ entity ADC_CONTROL_TOP is
             EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT                                    : out std_logic := '0';
             EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT                      : out std_logic := '0';
             
-
+            EXT_LEDS_DATA_FROM_ADC_CONTROL                                              : out std_logic_vector(15 downto 0) := (others => '0');
             --EXT_DCN_OUT                                                                 :out std_logic := '0';
            -- EXT_DSC_OUT                                                                 : out std_logic := '0';
             EXT_TEST_ACQUIRE_START                                                      :in std_logic := '0'
@@ -119,6 +119,7 @@ component adc_control
             ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN                  : in std_logic  := '0';
             --Master CLK for state machine
             MASTER_CLK_TO_ADC_CONTROL                                               : in std_logic := '0'
+
     );
 end component adc_control;
 
@@ -137,20 +138,35 @@ Port (
       );
 end component pulse_train_gen;
 
-component pulse_gen_invert
-    Generic(
-        NR_OF_CLKs : integer := 6       
+--component pulse_gen_invert
+--    Generic(
+--        NR_OF_CLKs : integer := 6       
+--);
+--Port (
+--        --test : out std_logic;
+--        Trig_in : in std_logic := '0';
+--      --  Trig_out : out std_logic; --test signal output
+--        CLK_in : in std_logic := '0';
+--        BUSY : out std_logic := '0';
+--        Pulse_out : out std_logic :='0';
+--        Pulse_complete : out std_logic := '0' 
+--      );
+--end component pulse_gen_invert;
+
+component pulse_gen_width_modulator_inverted
+Generic(
+        NR_OF_CLKs : integer := 16;  
+        HIGH_TIME : integer := 25; -- in ns, multiples of 5.
+        LOW_TIME : integer := 25   -- in ns, multiples of 5.  
 );
 Port (
-        --test : out std_logic;
-        Trig_in : in std_logic := '0';
-      --  Trig_out : out std_logic; --test signal output
-        CLK_in : in std_logic := '0';
-        BUSY : out std_logic := '0';
-        Pulse_out : out std_logic :='0';
-        Pulse_complete : out std_logic := '0' 
+        MASTER_CLK_200MEG_IN : in std_logic := '0';
+        TRIGGER   : in std_logic := '0';
+        PULSE_OUT : out std_logic := '0';
+        ACTIVE : out std_logic := '0'
       );
-end component pulse_gen_invert;
+end component pulse_gen_width_modulator_inverted;
+
 
 component clk_wiz_0
 port
@@ -163,6 +179,7 @@ port
 end component;
 
 begin
+--Simulation stuff
 --i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
 --i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
 
@@ -171,6 +188,9 @@ i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
 
 --Test
 --EXT_DCN_OUT <= i_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
+
+--test data,
+EXT_LEDS_DATA_FROM_ADC_CONTROL <= i_ADC_A_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER;
 
 --Cnv pulse out
 EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT <= i_PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
@@ -210,33 +230,18 @@ adc_ctrl1 : adc_control
         MASTER_CLK_TO_ADC_CONTROL => i_MASTER_CLK_TO_ADC_CONTROL 
     );
 
-pulse_gen_1_SDACLK : pulse_gen_invert -- Must be clocked with 20MHz
-       Generic map (
-        NR_OF_CLKs => 15    
-        )
-        Port map (
-        --test : out std_logic;
-        Trig_in => i_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,
-      --  Trig_out : out std_logic; --test signal output
-        CLK_in => i_MASTER_CLK_SDA_TO_ADC_CONTROL,
-        BUSY => i_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN,
-        Pulse_out => i_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
-        Pulse_complete => i_PULSE_COMPLETE_PULSEGEN_1_TO_ADC_CONTROL_IN 
+pulse_gen_1_SDACLK : pulse_gen_width_modulator_inverted
+Generic map(
+        NR_OF_CLKs => 16,  
+        HIGH_TIME => 20, --20, had to "calibrate" due to actual implementation
+        LOW_TIME =>25    
+)
+Port map(
+        MASTER_CLK_200MEG_IN => i_MASTER_CLK_TO_ADC_CONTROL,
+        TRIGGER => i_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,
+        PULSE_OUT => i_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
+        ACTIVE => i_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN
       );
-
---pulse_gen_1_SDACLK : pulse_train_gen -- Must be clocked with 20MHz
---       Generic map (
---        NR_OF_CLKs => 16    
---        )
---        Port map (
---        --test : out std_logic;
---        Trig_in => i_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,
---      --  Trig_out : out std_logic; --test signal output
---        CLK_in => i_MASTER_CLK_SDA_TO_ADC_CONTROL,
---        BUSY => i_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN,
---        Pulse_out => i_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
---        Pulse_complete => i_PULSE_COMPLETE_PULSEGEN_1_TO_ADC_CONTROL_IN 
---      );
 
 pulse_gen_2_35ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 35ns busy pulse
        Generic map (
@@ -254,7 +259,7 @@ pulse_gen_2_35ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 3
 
 pulse_gen_3_45ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 45ns busy pulse. Subtract 1 with new invert gen pulse 1.
        Generic map (
-            NR_OF_CLKs => 8--gave it +1 because post implementation is a bit faster than expected
+            NR_OF_CLKs => 4 --gave it +1 because post implementation is a bit faster than expected
         )
         Port map (
         --test : out std_logic;
@@ -282,7 +287,7 @@ pulse_gen_4_45ns : pulse_train_gen -- Must be clocked with 200MHz to produce a 2
       
 --200MHz CLK(50% DC) and 20MHz(48.3% DC) CLK
 
-     your_instance_name : clk_wiz_0
+     master_of_clk : clk_wiz_0
    port map ( 
   -- Clock out ports  
    clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
