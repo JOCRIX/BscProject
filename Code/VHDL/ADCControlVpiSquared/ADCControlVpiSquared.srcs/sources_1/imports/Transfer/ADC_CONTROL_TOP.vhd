@@ -249,7 +249,7 @@ Port map(
 
 pulse_gen_2_35ns_CNV : pulse_train_gen -- Must be clocked with 200MHz to produce a 35ns busy pulse
        Generic map (
-        NR_OF_CLKs => 6      
+        NR_OF_CLKs => 6--was 6 first, was 9 second
         )
         Port map (
         --test : out std_logic;
@@ -263,7 +263,7 @@ pulse_gen_2_35ns_CNV : pulse_train_gen -- Must be clocked with 200MHz to produce
 
 pulse_gen_3_45ns_DCN : pulse_train_gen -- Must be clocked with 200MHz
        Generic map (
-            NR_OF_CLKs => 5
+            NR_OF_CLKs => 5--was 5 first, was 8 second
         )
         Port map (
         --test : out std_logic;
@@ -275,9 +275,9 @@ pulse_gen_3_45ns_DCN : pulse_train_gen -- Must be clocked with 200MHz
         Pulse_complete => i_Unused_pulse_complete_from_pulsegen3 
       );
       
-pulse_gen_4_45ns : pulse_train_gen -- Must be clocked with 200MHz
+pulse_gen_4_45ns_DSC : pulse_train_gen -- Must be clocked with 200MHz
        Generic map (
-        NR_OF_CLKs => 5      
+        NR_OF_CLKs => 5 --was 5 first, was 8 second     
         )
         Port map (
         --test : out std_logic;
@@ -304,7 +304,7 @@ pulse_gen_4_45ns : pulse_train_gen -- Must be clocked with 200MHz
 
 process(i_MASTER_CLK_TO_ADC_CONTROL) is
 begin
-    if(i_counter >= 99) then
+    if(i_counter >= 99) then--500) then --counter var 99 for 1MS/s
         i_counter <= 0;
         i_outval <= not i_outval;
     elsif(rising_edge(i_MASTER_CLK_TO_ADC_CONTROL)) then
