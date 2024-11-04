@@ -1,8 +1,8 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.1
-| Date         : Fri Nov  1 19:40:04 2024
+| Date         : Mon Nov  4 00:32:34 2024
 | Host         : DESKTOP-S99FO1K
-| Design       : design_1
+| Design       : checkpoint_internal_ram
 | Device       : xc7a35t-cpg236-1--
 -------------------------------------
 

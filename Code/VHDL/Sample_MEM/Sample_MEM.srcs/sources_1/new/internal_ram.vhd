@@ -42,14 +42,17 @@ entity internal_ram is
         RW          : in std_logic  := '0';
         FSM_RESET   :in std_logic := '0';
         TORAM : in std_logic_vector(15 downto 0) := (others => '0');
-        TOPORT : out std_logic_vector(15 downto 0) := (others => '0')
+        TOPORT : out std_logic_vector(15 downto 0) := (others => '0');
+        ADDR_TO_IV_SAVER : out std_logic_vector(15 downto 0) := (others => '0');
+        DATA_FROM_IV_SAVER : in std_logic_vector(15 downto 0) :=(others => '0');
+        CLK_TO_IV_SAVER : out std_logic := '0'
         
    );
 end internal_ram;
 
 architecture Behavioral of internal_ram is
 
-constant MAX_ADDRESS : integer := 31;
+constant MAX_ADDRESS : integer  := 23;
 constant WRITE : std_logic := '0'; 
 constant READ : std_logic := '1';
 
@@ -57,7 +60,10 @@ constant READ : std_logic := '1';
 type BLOCKRAM is array(MAX_ADDRESS downto 0) of std_logic_vector(15 downto 0); --32x16 block ram type deklarering
 signal RAM : BLOCKRAM := (others => (others => '0')); --Generer block ram som signal og nulstil, aka nu har vi noget ram at skrive/læse til/fra
 
-signal ADDRESS : integer range 0 to MAX_ADDRESS;
+signal ADDRESS : integer range 0 to 65535;
+signal ADDRESS_IV_SAVER : std_logic_vector(15 downto 0) := (others => '0');
+signal DATA_IV_SAVER : std_logic_vector(15 downto 0) := (others => '0');
+signal sig_CLK_IV_SAVER : std_logic := '0';
 
 type state_mem is (SET_ADDR, SET_DATA);
 signal state : state_mem := SET_ADDR; 
@@ -72,31 +78,55 @@ begin
 --Set MCU Pins to INPUT(High-Z). CLK once.
 --Data from RAM is clocked to I/O pins on second rising edge. (2 CLK's total)
 --The I/O pins will need pull-up resistors.
-memoryFSM : process (CLK, RW, ADDRESS, FSM_RESET) is
+
+
+
+memoryFSM : process (CLK, RW, ADDRESS, FSM_RESET, DATA_IV_SAVER) is
 begin
     if(rising_edge(CLK)) then
+        if (ADDRESS > MAX_ADDRESS) then
+            sig_CLK_IV_SAVER <= '0';
+        end if;
         if(RW = READ) then
-            TOPORT <= RAM(ADDRESS);
-            state <= SET_ADDR;
+            if (ADDRESS > MAX_ADDRESS) then
+                TOPORT <= DATA_IV_SAVER;
+                state <= SET_ADDR;
+            else
+                TOPORT <= RAM(ADDRESS);
+                state <= SET_ADDR;
+            end if;
         elsif(RW = WRITE) then
             case state is
                when SET_ADDR =>
-                      if(to_integer(unsigned(TORAM)) <= MAX_ADDRESS) then
                       ADDRESS <= to_integer(unsigned(TORAM));
-                      TOPORT <= (others => '0');
+                      ADDRESS_IV_SAVER <= TORAM;
                       state <= SET_DATA;
-                      end if;
                 when SET_DATA =>
+                      if (ADDRESS <= MAX_ADDRESS) then
                       RAM(ADDRESS) <= TORAM;
+                      end if;
                       state <= SET_ADDR;
                end case;
+        end if;
+    end if;
+    if (falling_edge(CLK)) then
+        if ((ADDRESS > MAX_ADDRESS) and (RW = WRITE)) then
+            sig_CLK_IV_SAVER <= '1';
         end if;
     end if;
     if(FSM_RESET = '1') then --Used to reset the RAM FSM on initial boot-up. 
         state <= SET_ADDR;   --..MCU occasionally does weird stuff when booting and will trigger the RAM.
     end if;
 end process;
+    
 
+
+IV_SAVER_DATA_ADDR : process (ADDRESS_IV_SAVER, DATA_FROM_IV_SAVER, sig_CLK_IV_SAVER) is
+begin
+    ADDR_TO_IV_SAVER <= ADDRESS_IV_SAVER;
+    DATA_IV_SAVER <= DATA_FROM_IV_SAVER;
+    CLK_TO_IV_SAVER <= sig_CLK_IV_SAVER;
+end process;
 
 end Behavioral;
 

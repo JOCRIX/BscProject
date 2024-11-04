@@ -1,0 +1,743 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Sun Nov  3 23:42:14 2024
+| Host         : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+| Command      : report_methodology -file MASTER_FILE_methodology_drc_routed.rpt -pb MASTER_FILE_methodology_drc_routed.pb -rpx MASTER_FILE_methodology_drc_routed.rpx
+| Design       : MASTER_FILE
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 141
++-----------+------------------+--------------------------------+------------+
+| Rule      | Severity         | Description                    | Violations |
++-----------+------------------+--------------------------------+------------+
+| TIMING-14 | Critical Warning | LUT on the clock tree          | 2          |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell    | 106        |
+| TIMING-20 | Warning          | Non-clocked latch              | 32         |
+| LATCH-1   | Advisory         | Existing latches in the design | 1          |
++-----------+------------------+--------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-14#1 Critical Warning
+LUT on the clock tree  
+The LUT PulseGen1/Ext_PULSE_OUT_OBUF_BUFG_inst_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-14#2 Critical Warning
+LUT on the clock tree  
+The LUT sig_MEM_CLK_BUFG_inst_i_1 has been found on the clock tree. Run opt_design to optimize the clock trees, then re-run report_methodology. If LUT(s) are still present in the clock trees, modify the RTL or the synthesis options accordingly to move the clock gating logic to dedicated clock enable resources. Keep in mind that post-opt_design database cannot be used for pin-planning tasks
+Related violations: <none>
+
+TIMING-17#1 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#2 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[10]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#3 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[11]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#4 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[12]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#5 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[13]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#6 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[14]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#7 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[15]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#8 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#9 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#10 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#11 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#12 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#13 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#14 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#15 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#16 Critical Warning
+Non-clocked sequential cell  
+The clock pin IV_SAVER1/sample_count_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#17 Critical Warning
+Non-clocked sequential cell  
+The clock pin Logic_resetter/FSM_sequential_s_reset_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#18 Critical Warning
+Non-clocked sequential cell  
+The clock pin Logic_resetter/FSM_sequential_s_reset_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#19 Critical Warning
+Non-clocked sequential cell  
+The clock pin Logic_resetter/reset_trig_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#20 Critical Warning
+Non-clocked sequential cell  
+The clock pin Logic_resetter/reset_trig_reg__0/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#21 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#22 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[10]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#23 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[11]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#24 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[12]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#25 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[13]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#26 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[14]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#27 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[15]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#28 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[18]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#29 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#30 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#31 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#32 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#33 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#34 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#35 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#36 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#37 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#38 Critical Warning
+Non-clocked sequential cell  
+The clock pin MEM_DIST1/start_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#39 Critical Warning
+Non-clocked sequential cell  
+The clock pin PulseGen1/run_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#40 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#41 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[10]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#42 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[11]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#43 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[12]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#44 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[13]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#45 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[14]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#46 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[15]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#47 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#48 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#49 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#50 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#51 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#52 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#53 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#54 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#55 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/ADDRESS_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#56 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#57 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__0/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#58 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__1/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#59 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__10/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#60 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__11/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#61 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__12/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#62 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__13/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#63 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__14/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#64 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__15/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#65 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__16/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#66 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__17/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#67 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__18/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#68 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__19/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#69 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__2/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#70 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__20/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#71 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__21/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#72 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__22/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#73 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__23/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#74 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__24/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#75 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__25/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#76 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__26/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#77 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__27/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#78 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__28/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#79 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__29/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#80 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__3/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#81 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__30/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#82 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__4/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#83 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__5/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#84 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__6/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#85 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__7/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#86 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__8/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#87 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/RAM_reg_0_15_0_0__9/SP/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#88 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#89 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[10]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#90 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[11]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#91 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[12]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#92 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[13]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#93 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[14]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#94 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[15]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#95 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#96 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#97 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#98 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#99 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#100 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#101 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#102 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#103 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/TOPORT_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#104 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/sig_CLK_IV_SAVER_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#105 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/sig_CLK_IV_SAVER_reg__0/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#106 Critical Warning
+Non-clocked sequential cell  
+The clock pin RAM/state_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#1 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[0]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[0]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#2 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[10]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[10]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#3 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[11]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[11]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#4 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[12]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[12]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#5 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[13]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[13]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#6 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[14]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[14]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#7 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[15]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[15]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#8 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[1]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[1]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#9 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[2]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[2]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#10 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[3]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[3]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#11 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[4]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[4]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#12 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[5]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[5]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#13 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[6]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[6]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#14 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[7]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[7]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#15 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[8]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[8]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#16 Warning
+Non-clocked latch  
+The latch EXT_COMM_IO_IOBUF[9]_inst_i_2 cannot be properly analyzed as its control pin EXT_COMM_IO_IOBUF[9]_inst_i_2/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#17 Warning
+Non-clocked latch  
+The latch gen_comm_port[0].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[0].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#18 Warning
+Non-clocked latch  
+The latch gen_comm_port[10].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[10].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#19 Warning
+Non-clocked latch  
+The latch gen_comm_port[11].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[11].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#20 Warning
+Non-clocked latch  
+The latch gen_comm_port[12].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[12].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#21 Warning
+Non-clocked latch  
+The latch gen_comm_port[13].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[13].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#22 Warning
+Non-clocked latch  
+The latch gen_comm_port[14].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[14].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#23 Warning
+Non-clocked latch  
+The latch gen_comm_port[15].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[15].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#24 Warning
+Non-clocked latch  
+The latch gen_comm_port[1].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[1].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#25 Warning
+Non-clocked latch  
+The latch gen_comm_port[2].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[2].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#26 Warning
+Non-clocked latch  
+The latch gen_comm_port[3].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[3].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#27 Warning
+Non-clocked latch  
+The latch gen_comm_port[4].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[4].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#28 Warning
+Non-clocked latch  
+The latch gen_comm_port[5].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[5].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#29 Warning
+Non-clocked latch  
+The latch gen_comm_port[6].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[6].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#30 Warning
+Non-clocked latch  
+The latch gen_comm_port[7].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[7].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#31 Warning
+Non-clocked latch  
+The latch gen_comm_port[8].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[8].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#32 Warning
+Non-clocked latch  
+The latch gen_comm_port[9].commport/TORAM_reg cannot be properly analyzed as its control pin gen_comm_port[9].commport/TORAM_reg/G is not reached by a timing clock
+Related violations: <none>
+
+LATCH-1#1 Advisory
+Existing latches in the design  
+There are 32 latches found in the design. Inferred latches are often the result of HDL coding mistakes, such as incomplete if or case statements.
+Related violations: <none>
+
+

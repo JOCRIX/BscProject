@@ -36,7 +36,10 @@ entity sample_control_TOP is
         CLK_EXT : in std_logic := '0';
         RW_EXT : in std_logic;
         TEST_RESET : out std_logic;
-        IO_PINS_EXT : inout std_logic_vector(15 downto 0)   
+        IO_PINS_EXT : inout std_logic_vector(15 downto 0);   
+        IVSA_DATA : in std_logic_vector(15 downto 0);
+        IVSA_ADDR : out std_logic_vector(7 downto 0);
+        CLK_TO_IVSA :  out std_logic
   );
 end sample_control_TOP;
 
@@ -48,6 +51,7 @@ architecture rtl of sample_control_TOP is
     signal TORAM_internal : std_logic_vector(15 downto 0):= (others => '0'); 
     signal IO_PINS_internal : std_logic_vector(15 downto 0):= (others => '0');
     signal LOGIC_RESET_internal : std_logic := '0';
+    signal sig_IVSA_ADDR : std_logic_vector(15 downto 0) := (others => '0');
 --Component declarations
 component comm_port
       Port (
@@ -60,11 +64,15 @@ end component comm_port;
 
 component internal_ram
   Port (
-        CLK : in std_logic;
-        RW : in std_logic;
-        FSM_RESET : in std_logic;
-        TORAM : in std_logic_vector(15 downto 0);
-        TOPORT : out std_logic_vector(15 downto 0)
+        CLK         : in std_logic  := '0';
+        RW          : in std_logic  := '0';
+        FSM_RESET   :in std_logic := '0';
+        TORAM : in std_logic_vector(15 downto 0) := (others => '0');
+        TOPORT : out std_logic_vector(15 downto 0) := (others => '0');
+        ADDR_TO_IV_SAVER : out std_logic_vector(15 downto 0) := (others => '0');
+        DATA_FROM_IV_SAVER : in std_logic_vector(15 downto 0) :=(others => '0');
+        CLK_TO_IV_SAVER : out std_logic := '0'
+        
    );
    end component internal_ram;
    
@@ -79,6 +87,7 @@ end component logic_reset;
 begin
 
 TEST_RESET <= LOGIC_RESET_internal;
+IVSA_ADDR <= sig_IVSA_ADDR(7 downto 0);
 
 logic_resetter : logic_reset
     port map(
@@ -103,8 +112,12 @@ ram : internal_ram
     FSM_RESET => LOGIC_RESET_internal,
     RW => RW_EXT,
     TOPORT => TOPORT_internal,
-    TORAM => TORAM_internal
+    TORAM => TORAM_internal,
+    ADDR_TO_IV_SAVER => sig_IVSA_ADDR,
+    DATA_FROM_IV_SAVER => IVSA_DATA,
+    CLK_TO_IV_SAVER => CLK_TO_IVSA
 );
+
 
 
 

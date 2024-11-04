@@ -246,8 +246,11 @@ int8_t PulseCLK(void) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
+		ns_delay(500);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, TRUE);
+		ns_delay(500);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
+		ns_delay(500);
 		return(status);
 	}
 	else {
@@ -283,7 +286,6 @@ int8_t WriteData(uint16_t data, uint16_t addr) {
 //		if (CommPort.ctrl.CurrentMode != WRITE) {
 //
 //		}
-		CommPort.set.SetRnW(WRITE);
 		CommPort.set.SetIOMode(WRITE);
 		CommPort.set.SetIOValue(addr);
 		CommPort.set.PulseCLK();
@@ -422,28 +424,86 @@ int main(void)
 
 
 	CommPort.ResetComm();
-	HAL_Delay(1);
+	HAL_Delay(10);
 
+//	CommPort.WriteData(1, 1);
+//	HAL_Delay(1);
+//	CommPort.FetchData(&testVar, 23);
 //	sprintf(str, "%d\r\n", testVar);
 //	strcpy((char*)uartBuf, str);
 //	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-  for(int i = 0; i < 24; i++) {
-	CommPort.WriteData(i+0xFF, i);
-  }
 
+////	sprintf(str, "%d\r\n", testVar);
+////	strcpy((char*)uartBuf, str);
+////	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+  for(int i = 0; i < 24; i++) {
+	CommPort.WriteData((0xFFFF-i), i);
+  }
+  	strcpy((char*)uartBuf, "----------------\r\n");
+  	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
   HAL_GPIO_WritePin(GPIOC, TimerPin_Pin, 1);
   for(int i = 0; i < 24; i++) {
 	CommPort.FetchData(&testVar, i);
+	sprintf(str, "%d\r\n", testVar);
+	strcpy((char*)uartBuf, str);
+	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	sprintf(str, "%d\r\n", "----------------");
+  }
+  HAL_GPIO_WritePin(GPIOC, TimerPin_Pin, 0);
+  	strcpy((char*)uartBuf, "----------------\r\n");
+  	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+  	CommPort.FetchData(&testVar, 25);
+	sprintf(str, "%d\r\n", testVar);
+	strcpy((char*)uartBuf, str);
+	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+  	strcpy((char*)uartBuf, "----------------\r\n");
+  	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	CommPort.WriteData(0xFF, 1);
+//	HAL_Delay(1);
+//	CommPort.FetchData(&testVar, 1);
 //	sprintf(str, "%d\r\n", testVar);
 //	strcpy((char*)uartBuf, str);
 //	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	sprintf(str, "%d\r\n", "----------------");
-  }
-  HAL_GPIO_WritePin(GPIOC, TimerPin_Pin, 0);
+//	CommPort.FetchData(&testVar, 23);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	strcpy((char*)uartBuf, "----------------\r\n");
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	CommPort.FetchData(&testVar, 24);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	CommPort.FetchData(&testVar, 25);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	CommPort.FetchData(&testVar, 26);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	strcpy((char*)uartBuf, "----------------\r\n");
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
 
+
+//	strcpy((char*)uartBuf, "----------------\r\n");
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  for(int i = 0; i < 24; i++) {
+//		CommPort.FetchData(&testVar, i);
+//		sprintf(str, "%d\r\n", testVar);
+//		strcpy((char*)uartBuf, str);
+//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  }
+//	strcpy((char*)uartBuf, "----------------\r\n");
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
   while (1)
   {
+//	  CommPort.FetchData(&testVar, 65);
+//		sprintf(str, "%d\r\n", testVar);
+//		strcpy((char*)uartBuf, str);
+//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  HAL_Delay(1000);
 //
 //	  CommPort.set.PulseCLK();
 //	  HAL_Delay(1);
