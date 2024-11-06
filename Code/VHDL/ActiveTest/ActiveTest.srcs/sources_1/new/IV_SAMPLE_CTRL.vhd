@@ -78,7 +78,8 @@ DATA_ADDR_sample_mode: process(ADC_DnB, sig_ADC_ADDR, ADC_DATA_IN, ADC_DATA_RDY_
 begin
     if (ADC_DnB = '0') then
         sig_ADC_ADDR <= std_logic_vector(to_unsigned(sample_count, sig_ADC_ADDR'length));
-        sig_ADC_DATA <= ADC_DATA_IN;
+        --sig_ADC_DATA <= ADC_DATA_IN;
+        sig_ADC_DATA <= std_logic_vector(to_unsigned(sample_count, sig_ADC_DATA'length));
         sig_ADC_CLK_to_mem_dist <= ADC_DATA_RDY_IN;
         sig_RnW_to_mem_dist_out <= '0';
     else

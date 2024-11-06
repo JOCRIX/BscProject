@@ -3,22 +3,22 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Tue Nov  5 16:33:18 2024
-# Process ID: 7244
+# Start of session at: Wed Nov  6 20:42:02 2024
+# Process ID: 21320
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1
 # Command line: vivado.exe -log sample_control_TOP.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source sample_control_TOP.tcl -notrace
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.vdi
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1\vivado.jou
-# Running On        :DESKTOP-26ONRPF
+# Running On        :DESKTOP-S99FO1K
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
-# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# Processor Detail  :12th Gen Intel(R) Core(TM) i5-12400F
 # CPU Frequency     :2496 MHz
-# CPU Physical cores:4
-# CPU Logical cores :4
-# Host memory       :8469 MB
-# Swap memory       :4831 MB
-# Total Virtual     :13301 MB
-# Available Virtual :3442 MB
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :34182 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39282 MB
+# Available Virtual :18924 MB
 #-----------------------------------------------------------
 source sample_control_TOP.tcl -notrace

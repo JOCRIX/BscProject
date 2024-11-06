@@ -1,135 +1,130 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="8376" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="10284" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="11432" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="4732" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="9324" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="12648" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="12444" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="16932" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="14644" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="7416" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="12572" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="15856" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="14440" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="21072" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="14036" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="15940" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="14896" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="21132" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="16224" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="20672" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="15072" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="17284" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="4692" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="5952" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="4664" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="11936" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="16332" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="20576" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="1864" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="960" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="7248" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="7000" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="13520" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="16204" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="15776" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="20356" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="8572" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="14608" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="2920" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="7160" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="14708" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="14516" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="15816" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="19328" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="15940" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="8864" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="9884" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="7284" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="12632" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="21728" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="13952" HostCore="4" HostMemory="08469368832">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-26ONRPF" Pid="9156" HostCore="4" HostMemory="08469368832">
+    <Process Command="vivado.bat" Owner="jakob" Host="DESKTOP-S99FO1K" Pid="21396" HostCore="12" HostMemory="034182692864">
     </Process>
 </ProcessHandle>

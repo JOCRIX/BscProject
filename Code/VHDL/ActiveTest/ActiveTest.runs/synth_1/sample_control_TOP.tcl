@@ -56,7 +56,7 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 1
+set_param chipscope.maxJobs 3
 set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
@@ -84,7 +84,7 @@ read_vhdl -library xil_defaultlib {
   C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/pulse_train_gen.vhd
   C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd
 }
-read_ip -quiet c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+read_ip -quiet C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 set_property used_in_implementation false [get_files -all c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
 set_property used_in_implementation false [get_files -all c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]

@@ -71,6 +71,7 @@ signal s_write : state_ext_mem_write := WriteStep1;
 signal s_read : state_ext_mem_read := ReadStep1;
 begin
     IO_BUF_CTRL <= not SampleRW;
+    --IO_BUF_CTRL <= SampleRW;
     --Never disable chip.
     nCE <= '0'; 
     --Split data into two bytes

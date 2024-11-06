@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Wed Nov  6 16:09:57 2024
-| Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
+| Date             : Wed Nov  6 23:37:16 2024
+| Host             : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
 | Command          : report_power -file sample_control_TOP_power_routed.rpt -pb sample_control_TOP_power_summary_routed.pb -rpx sample_control_TOP_power_routed.rpx
 | Design           : sample_control_TOP
 | Device           : xc7a35tcpg236-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.180        |
+| Total On-Chip Power (W)  | 2.857        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.108        |
-| Device Static (W)        | 0.072        |
+| Dynamic (W)              | 2.778        |
+| Device Static (W)        | 0.080        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 84.1         |
-| Junction Temperature (C) | 25.9         |
+| Max Ambient (C)          | 70.7         |
+| Junction Temperature (C) | 39.3         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,19 +52,17 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |    <0.001 |        5 |       --- |             --- |
-| Slice Logic              |    <0.001 |      378 |       --- |             --- |
-|   LUT as Logic           |    <0.001 |       85 |     20800 |            0.41 |
-|   Register               |    <0.001 |      164 |     41600 |            0.39 |
-|   BUFG                   |    <0.001 |        3 |        32 |            9.38 |
-|   CARRY4                 |    <0.001 |        6 |      8150 |            0.07 |
-|   Others                 |     0.000 |       49 |       --- |             --- |
+| Slice Logic              |     0.241 |      485 |       --- |             --- |
+|   LUT as Logic           |     0.182 |      126 |     20800 |            0.61 |
+|   BUFG                   |     0.027 |        5 |        32 |           15.63 |
+|   Register               |     0.022 |      226 |     41600 |            0.54 |
+|   CARRY4                 |     0.011 |        8 |      8150 |            0.10 |
+|   Others                 |     0.000 |       48 |       --- |             --- |
 |   LUT as Distributed RAM |     0.000 |       32 |      9600 |            0.33 |
-| Signals                  |    <0.001 |      270 |       --- |             --- |
-| MMCM                     |     0.105 |        1 |         5 |           20.00 |
-| I/O                      |     0.003 |       52 |       106 |           49.06 |
-| Static Power             |     0.072 |          |           |                 |
-| Total                    |     0.180 |          |           |                 |
+| Signals                  |     0.238 |      390 |       --- |             --- |
+| I/O                      |     2.299 |       55 |       106 |           51.89 |
+| Static Power             |     0.080 |          |           |                 |
+| Total                    |     2.857 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.010 |       0.000 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.071 |       0.058 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.510 |       0.494 |      0.016 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.097 |       0.084 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.648 |       0.647 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -127,13 +125,9 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+--------------------+-------------------------------+-----------------+
-| Clock              | Domain                        | Constraint (ns) |
-+--------------------+-------------------------------+-----------------+
-| clk_out1_clk_wiz_0 | PLL_1/inst/clk_out1_clk_wiz_0 |            50.0 |
-| clkfbout_clk_wiz_0 | PLL_1/inst/clkfbout_clk_wiz_0 |            83.3 |
-| i_XCO              | i_XCO                         |            83.3 |
-+--------------------+-------------------------------+-----------------+
++-------+--------+-----------------+
+| Clock | Domain | Constraint (ns) |
++-------+--------+-----------------+
 
 
 3. Detailed Reports
@@ -142,12 +136,23 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+--------------------+-----------+
-| Name               | Power (W) |
-+--------------------+-----------+
-| sample_control_TOP |     0.108 |
-|   PLL_1            |     0.105 |
-|     inst           |     0.105 |
-+--------------------+-----------+
++------------------------------------+-----------+
+| Name                               | Power (W) |
++------------------------------------+-----------+
+| sample_control_TOP                 |     2.778 |
+|   EXT_MEM_RW1                      |     0.028 |
+|   MEM_DIST1                        |     0.018 |
+|   PulseGen1                        |     0.114 |
+|   gen_io_port_extRam[0].IOBUF_inst |     0.029 |
+|   gen_io_port_extRam[1].IOBUF_inst |     0.029 |
+|   gen_io_port_extRam[2].IOBUF_inst |     0.029 |
+|   gen_io_port_extRam[3].IOBUF_inst |     0.058 |
+|   gen_io_port_extRam[4].IOBUF_inst |     0.058 |
+|   gen_io_port_extRam[5].IOBUF_inst |     0.029 |
+|   gen_io_port_extRam[6].IOBUF_inst |     0.029 |
+|   gen_io_port_extRam[7].IOBUF_inst |     0.029 |
+|   logic_resetter                   |     0.043 |
+|   ram                              |     0.043 |
++------------------------------------+-----------+
 
 

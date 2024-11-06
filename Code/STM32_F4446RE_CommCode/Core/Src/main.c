@@ -246,8 +246,9 @@ int8_t PulseCLK(void) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
+		ns_delay(500);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, TRUE);
-		ns_delay(2500);
+		ns_delay(500);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
 		return(status);
 	}
@@ -306,17 +307,13 @@ int8_t FetchData(uint16_t *result, uint16_t addr) {
 		uint16_t readVal = 0;
 		CommPort.set.SetIOMode(WRITE);
 		CommPort.set.SetRnW(WRITE);
-		HAL_Delay(1);
 		CommPort.set.SetIOValue(addr);
-		HAL_Delay(1);
+		ns_delay(500);
 		CommPort.set.PulseCLK();
-		HAL_Delay(1);
 		CommPort.set.SetRnW(READ);
-		HAL_Delay(1);
 		CommPort.set.SetIOMode(READ);
-		HAL_Delay(1);
+		ns_delay(500);
 		CommPort.set.PulseCLK();
-		HAL_Delay(1);
 		CommPort.set.GetIOValue(&readVal);
 		*result = readVal;
 		return(status);
@@ -394,7 +391,7 @@ int main(void)
 	uint8_t uartBuf[16];
 	uint16_t testVar = 0;
 	char str[16];
-
+	char strAddr[16];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -443,7 +440,7 @@ int main(void)
 ////	strcpy((char*)uartBuf, str);
 ////	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
   for(int i = 0; i < 24; i++) {
-	CommPort.WriteData((0xFFFF-i), i);
+	CommPort.WriteData((i), i);
   }
   	strcpy((char*)uartBuf, "----------------\r\n");
   	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
@@ -457,9 +454,26 @@ int main(void)
   }
 	strcpy((char*)uartBuf, "----------------\r\n");
 	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  for(int i = 24; i < 50; i++) {
+
+//	CommPort.FetchData(&testVar, 24);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	CommPort.FetchData(&testVar, 24);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	CommPort.FetchData(&testVar, 24);
+//	sprintf(str, "%d\r\n", testVar);
+//	strcpy((char*)uartBuf, str);
+//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+	  for(int i = 24; i < 10024; i++) {
 		CommPort.FetchData(&testVar, i);
-		sprintf(str, "%d\r\n", testVar);
+		sprintf(str, "%d", testVar);
+		sprintf(strAddr, "%d\r\n", i);
+		strcat(str, ": ");
+		strcat(str, strAddr);
 		strcpy((char*)uartBuf, str);
 		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 		sprintf(str, "%d\r\n", "----------------");
@@ -629,7 +643,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 1000000;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
