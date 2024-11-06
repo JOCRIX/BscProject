@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc} rfile:../../../ADCControlVpiSquared.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc rfile:../../../ADCControlVpiSquared.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:135 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN K2 [get_ports EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT]
 set_property src_info {type:XDC file:1 line:137 export:INPUT save:INPUT read:READ} [current_design]

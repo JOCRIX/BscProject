@@ -304,7 +304,7 @@ pulse_gen_4_45ns_DSC : pulse_train_gen -- Must be clocked with 200MHz
 
 process(i_MASTER_CLK_TO_ADC_CONTROL) is
 begin
-    if(i_counter >= 99) then--500) then --counter var 99 for 1MS/s
+    if(i_counter >= 1999) then--500) then --counter var 99 for 1MS/s
         i_counter <= 0;
         i_outval <= not i_outval;
     elsif(rising_edge(i_MASTER_CLK_TO_ADC_CONTROL)) then

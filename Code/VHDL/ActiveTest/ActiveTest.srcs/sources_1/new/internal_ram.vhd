@@ -84,9 +84,7 @@ begin
 memoryFSM : process (CLK, RW, ADDRESS, FSM_RESET, DATA_IV_SAVER) is
 begin
     if(rising_edge(CLK)) then
-        if (ADDRESS > MAX_ADDRESS) then
-            sig_CLK_IV_SAVER <= '0';
-        end if;
+        sig_CLK_IV_SAVER <= '0';
         if(RW = READ) then
             if (ADDRESS > MAX_ADDRESS) then
                 TOPORT <= DATA_IV_SAVER;
