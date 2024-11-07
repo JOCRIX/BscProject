@@ -1,0 +1,6 @@
+\chapter{ADC Control Code} \label{App:ADCControlCode}
+This appendix has the complete code for the ADC control block code in code list \refq{lst:A_ADCControl} and the top layer required for interfacing the ADC control with the various pulse generators is listing \refq{lst:A_ADCControl_TOP}.
+
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=22-249, caption={VHDL code for the ADC control module}, label={lst:A_ADCControl}]{Appendix/Code/adc_control.vhd}
+
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=22-312, caption={VHDL code for the ADC control module top layer. The ADC Control takes inputs from several pulse generators in order to fulfill the timing requirement.}, label={lst:A_ADCControl_TOP}]{Appendix/Code/ADC_CONTROL_TOP.vhd}

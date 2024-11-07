@@ -1,6 +1,6 @@
 \subsection{ADC Control} \label{subsec:ADC_CONTROL} 
 
-The ADC control block is the controlling hardware for the two external LTC2311\cite{ADC_LTC2311} ADCs that are being used to sample the DUT voltage and current waveforms. The module should, when it sees a rising edge from another HDL block, start a sampling process through the ADCs, clock the data out of the ADCs, latch the data and set a data\_ready flag for the IV saver block to read the sampled data as shown on figure \refq{fig:7_2_8_ADCControlProcess}. This section will only concern itself with the timing of the ADC and the communication between the ADC and FPGA.
+The ADC control block is the controlling hardware for the two external LTC2311\cite{ADC_LTC2311} ADCs that are being used to sample the DUT voltage and current waveforms. The module should, when it sees a rising edge from another HDL block, start a sampling process through the ADCs, clock the data out of the ADCs, latch the data and set a data\_ready flag for the IV saver block to read the sampled data as shown on figure \refq{fig:7_2_8_ADCControlProcess}. This section will only concern itself with the timing of the ADC and the communication between the ADC and FPGA. The complete code for the ADC control module is quite long and can be seen in appendix \refq{App:ADCControlCode}. The code will be explained with diagrams as much as possible.
 
 \begin{figure}[H]
     \centering
@@ -18,8 +18,48 @@ In order to make the process flow in figure \refq{fig:7_2_8_ADCControlProcess} w
     \label{fig:7_2_8_LTC2311_TIMING}
 \end{figure}
 
-The ADC starts an acquisition, i.e. samples the input, when the CNV signal transitions from '0' to '1' and digitizes the value during the $t_{CNVH}$ time. FIgure \refq{fig:7_2_8_LTC2311_TIMING} also lists this time as the acquisition time, $t_{ACQ}$. This time is important and the datasheet suggests $t_{CNVH} = 30 ns$ for a $5M sps$ sample rate. The ADC control block will be designed for a sample rate of $1 Msps$, even though the actual sample rate is expected to be much lower at this point. The main CLK in the sample control module is a \SIQ{200}{\mega\hertz} CLK with a period of $t_{clk} = 5 ns$, so any multiple of this clock signal will be convenient for generating the CNV pulse. The CNV pulse width will be $t_{CNVH} = 35 ns$ for the project.
+The ADC starts an acquisition, i.e. samples the input, when the CNV signal transitions from '0' to '1' and digitizes the value during the $t_{CNVH}$ time. FIgure \refq{fig:7_2_8_LTC2311_TIMING} also lists this time as the acquisition time, $t_{ACQ}$. This time is important and the datasheet suggests $t_{CNVH} = 30 ns$ for a $5M sps$ sample rate. The ADC control block will be designed for a sample rate of $1 Msps$, even though the actual sample rate is expected to be much lower at this point. The main CLK in the sample control module is a \SIQ{200}{\mega\hertz} CLK with a period of $t_{clk} = 5 ns$, so a multiple of this clock period will be convenient for generating the CNV pulse.
 
-The DCN pulse is when data is clocked out on the bus..
+The $t_{DCNVSCKL}$ period, marked in red on figure \refq{fig:7_2_8_LTC2311_TIMING}, is the time from a falling edge of CNV to the start of the SPI clock signal. Note how data is clocked out of the ADC on a falling edge of the SPI clock with the MSb being clocked out when the $t_{DCNVSCKL}$ time is passed. The minimum time is listed $t_{DCNVSCKL} = 9.5 ns$ (DCN) in the datasheet. Data is ready and can be clocked into the FPGA on a rising edge of the SPI clock signal as shown on the timing diagram. The $t_{DSCKLCNVH}$ period (DSC), is the minimum time that must pass from the LSb being clocked out of the ADC and until a new CNV pulse can be sent and a new acquisition started. The minimum time for the DSC period is listed as $t_{DSCKLCNVH} = 19.1 ns$.
 
-The DSC pulse is the time from the last data is clocked to the bus and when a new acquisition can start....
+Assuming $t_{CNV} = 35 ns$, $t_{DCN} = 10 ns$, $t_{DSC} = 20ns$ the SPI clock frequency can be found for a minimum sample rate of $1 MS/s$. The 'protocol' overhead is $t_p = 65 ns$ shown in \refq{eq:7_2_8_ProtocolOverhead}.
+\begin{equation}\label{eq:7_2_8_ProtocolOverhead}
+        t_{p} = t_{CNV} + t_{DCN} + t_{DSC} = 35e-9 + 10 e-9 + 20 e-9 = 65 e-9
+\end{equation}
+To get $f_{sample} = 1 MS/s$ with a sample period of $t_{sample} = 1e-6$ and a data packet size of 16 bits equation \refq{eq:7_2_8_SampleFrq} must be true.
+\begin{equation}\label{eq:7_2_8_SampleFrq}
+   \frac{1}{f_{SPICLK}} \cdot 16 + t_p = t_{sample}
+\end{equation}
+Using equation \refq{eq:7_2_8_SampleFrq} the sample frequency should, at minimum, be \SIQ{17.11}{\mega\hertz} as shown in equation \refq{eq:7_2_8_SampleFrq2}.
+\begin{equation}\label{eq:7_2_8_SampleFrq2}
+    f_{SPICLK} = -\frac{16}{t_{p} - t_{sample}} = -\frac{16}{65e-9 - 1e-6} = 17.11e6
+ \end{equation}
+
+The minimum SPI clock frequency should be \SIQ{17.11}{\mega\hertz}. This is not a multiple of \SIQ{5}{\nano\second} that the main clock of \SIQ{200}{\mega\hertz} works at. The SPI clock frequency will be set to $f_{SPICLK} = 20 MHz$ as this has a period of $t_{SPICLK} = 1/f_{SPICLK} = 50 ns$ and is a multiple of \SIQ{5}{\nano\second}.
+
+ The ADC control module has been implemented as a state machine whose states will start and stop the various timing pulses required for the SPI communication with the ADC. The FSM will start when it sees a rising edge of a trigger input signal as shown on figure \refq{fig:7_2_8_ADC_START_ACQ}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 300 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_8_StartAcquisition.pdf}
+    \caption{A trigger input will signal to the ADC control block that it should enable the FSM that controls the communication with the ADC.}
+    \label{fig:7_2_8_ADC_START_ACQ}
+\end{figure}
+
+The "start\_acquisition" signal is checked in the FSM and will cause the FSM to start cycling through it's states, starting in the IDLE state and finishing in the LATCH state, as shown on figure \refq{fig:7_2_8_ADC_CONTROL_FSM}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 0 0 0, width=0.9\textwidth]{Sections/7_SystemDesign/Figures/7_2_8_ADC Control Logic FSM.pdf}
+    \caption{The state machine controlling the timing of the ADC. The FSM is clocked by a 200MHz clock and The FSM starts in the IDLE state in the upper left corner of the figure. The FSM will move from the IDLE state and down through the ACQUIRE and GET\_DATA states before it reaches the LATCH state where it will latch the data it has read from the ADC and return to the IDLE state. The data\_ready flag can be read by the next module in order to see when it should load the data from the ADC control module. The data should be read on a falling edge of the data\_ready flag. Note how the GET\_DATA and LATCH states will start some pulse generators that generate the CNV, DCN and DSC timing signals, these are marked in the dashed boxes. Each of these pulses have "busy" flags that are checked to see when those timing pulses have completed so the FSM can move on, in this way this FSM will generate the timing diagram shown on figure \refq{fig:7_2_8_LTC2311_TIMING}.}
+    \label{fig:7_2_8_ADC_CONTROL_FSM}
+\end{figure}
+
+As shown on figure \refq{fig:7_2_8_ADC_CONTROL_FSM} the state machine has 4 states, namely IDLE, ACQUIRE, GET\_DATA and LATCH. In the IDLE state the FSM will wait for a trigger input from another module and remain inactive until this happens. When the start\_acquisition signal is asserted the FSM will switch to the ACQUIRE state and, on a rising edge of the master CLK signal, start both the CNV and DCN pulses shown on figure \refq{fig:7_2_8_LTC2311_TIMING}.
+
+Note how on the timing diagram the DCN pulse is supposed to lag the CNV pulse, and not start at the same time, this is done on purpose. The DCN pulse will start at the same time as the CNV pulse, but the pulse has the width of the sum of both $t_{CNV} + t_{DCN} = 45 ns$ and the result is that the SPI clock will start at the falling edge of the DCN pulse as desired.  
+
+
+
+
+
