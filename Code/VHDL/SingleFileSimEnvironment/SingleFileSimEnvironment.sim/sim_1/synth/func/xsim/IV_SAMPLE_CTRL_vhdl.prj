@@ -1,6 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"IV_SAMPLE_CTRL_func_synth.vhd" \
-
-# Do not sort compile order
-nosort

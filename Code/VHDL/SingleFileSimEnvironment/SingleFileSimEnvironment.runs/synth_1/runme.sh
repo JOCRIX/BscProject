@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log IV_SAMPLE_CTRL.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source IV_SAMPLE_CTRL.tcl
+EAStep vivado -log TestFile2.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TestFile2.tcl

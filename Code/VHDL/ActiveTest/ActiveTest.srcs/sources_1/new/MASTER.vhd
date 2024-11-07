@@ -50,9 +50,9 @@ entity sample_control_TOP is
         o_Mem_nCE_ext : out std_logic;
         o_Mem_nOE_ext : out std_logic;
         i_XCO : in std_logic;
-        o_pulse_out : out std_logic;
-        
-        i_MCLK : in std_logic
+        o_RUN_COUNT : out std_logic;
+        o_pulse_out : out std_logic
+
   );
 end sample_control_TOP;
 
@@ -221,7 +221,7 @@ end component ExtMemReadWrite;
     --signal buf : std_logic_vector(15 downto 0) := (others => '0');
     signal w_test : std_logic := '0';
     
-    signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"0000";
+    signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
     
     signal count : integer range 0 to 20000 := 24;
     signal trigger : std_logic := '0';
@@ -229,58 +229,65 @@ end component ExtMemReadWrite;
     
     signal count2 : integer range 0 to 10000 := 0;
     signal divOut : std_logic := '0';
-    signal IVDATACOUNT : integer range 0 to 20000 := 0;
+--    signal IVDATACOUNT : integer range 0 to 20000 := 0;
+    signal countDone : std_logic := '0';
 begin
 
 process(i_XCO) is
 begin
 if(rising_edge(i_XCO)) then
     count2 <= count2 +1;
-    if(count2 >= 12) then
+    if(count2 >= 120) then
     count2 <= 0;
     divOut <= not divOut;
     end if;
 end if;
 end process;
 
-process(i_ADC_RDY, divOut, startCount, count) is
+process(i_ADC_RDY, divOut, startCount, count, countDone, trigger) is
 begin
-    if(startCount = '1') then
-        trigger <= divOut;
-    elsif(count >= 10024) then
+    if(countDone = '1') then
         startCount <= '0';
     elsif(rising_edge(i_ADC_RDY)) then
         startCount <= '1';
     end if;
+    
     if(rising_edge(divOut)) then
         if (startCount = '1') then
             count <= count + 1;
+            if (count >= 200) then
+                countDone <= '1';
+            else
+                countDone <= '0';
+            end if;
         else
             count <= 0;
+            countDone <= '0';
         end if;
     end if;
 end process;
 
-process(i_ADC_RDY, trigger, startCount, count, IVDATACOUNT, w_ADC_DATA_SIM) is
+process(startCount, divOut) is
+begin
+    if(startCount = '1') then
+        trigger <= divOut;
+    end if;
+end process;
+
+process(trigger, count, w_ADC_DATA_SIM) is
 begin
     if(falling_edge(trigger)) then
-        if(startCount = '1') then
-            IVDATACOUNT <= IVDATACOUNT+1;
-        else
-            IVDATACOUNT <= 0;
-        end if;
+        w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
     end if;
 end process;
-w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(IVDATACOUNT, w_ADC_DATA_SIM'length));
-
-
         
           
 
 --w_MEM_CLK <= not w_GRANDMASTER_CLK;
 w_MEM_CLK <= not i_XCO;
-o_pulse_out <= w_PulseGen1_Pulse_out;
+o_pulse_out <= trigger;
 w_test <= not w_IO_BUF_CTRL;
+o_RUN_COUNT <= startCount;
 --buf <= i_DATA_ADC_TO_IVSA;
 
 
@@ -424,6 +431,7 @@ end generate gen_comm_port;
 
 
 end rtl;
+
 
 
 

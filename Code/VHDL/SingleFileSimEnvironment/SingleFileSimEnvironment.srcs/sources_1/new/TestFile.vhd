@@ -32,76 +32,73 @@ use ieee.numeric_std.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity IV_SAMPLE_CTRL is
+entity TestFile is
     Port ( 
-            i_CLK : in std_logic := '0';
-            i_RnW : in std_logic := '0';
-            i_FSM_RESET : in std_logic := '0';
-            i_TORAM : in std_logic_vector(15 downto 0) := (others => '0');
-            o_TOPORT : out std_logic_vector(15 downto 0) := (others => '0');
-            i_DATA_FROM_IVSA : in std_logic_vector(15 downto 0) := (others => '0');
-            o_ADDR_TO_IVSA : out std_logic_vector(15 downto 0) := (others => '0');
-            o_CLK_TO_IVSA : out std_logic := '0'
+            i_XCO : in std_logic := '0';
+            i_ADC_RDY : in std_logic := '0'
             );
-end IV_SAMPLE_CTRL;
+end TestFile;
 
-architecture Behavioral of IV_SAMPLE_CTRL is
+architecture Behavioral of TestFile is
 
-constant MAX_ADDR_u : integer range 0 to 31 := 23;
-constant WRITE : std_logic := '0';
-constant READ : std_logic := '1';
-
-signal ADDR_u16 : integer range 0 to 65535 := 0;
-signal w_DATA_IVSA : std_logic_vector(15 downto 0) := (others => '0');
-signal w_DATA_EXT_MEM : std_logic_vector(15 downto 0) := (others => '0');
-signal w_DATA_INT_MEM : std_logic_vector(15 downto 0) := (others => '0');
-
-type BLOCKRAM is array(MAX_ADDR_u downto 0) of std_logic_vector(15 downto 0); 
-signal RAM : BLOCKRAM := (others => (others => '0'));                
-
-type state_mem is (SET_ADDR, SET_DATA); 
-signal state : state_mem := SET_ADDR; 
+    signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
+    
+    signal count : integer range 0 to 20000 := 24;
+    signal trigger : std_logic := '0';
+    signal startCount : std_logic := '0';
+    
+    signal count2 : integer range 0 to 10000 := 0;
+    signal divOut : std_logic := '0';
+--    signal IVDATACOUNT : integer range 0 to 20000 := 0;
+    signal countDone : std_logic := '0';
 
 
 begin
+process(i_XCO) is
+begin
+if(rising_edge(i_XCO)) then
+    count2 <= count2 +1;
+    if(count2 >= 4) then
+    count2 <= 0;
+    divOut <= not divOut;
+    end if;
+end if;
+end process;
 
-o_TOPORT <= w_DATA_EXT_MEM or w_DATA_INT_MEM;
-
-FETCH_EXT_MEM_DATA : process(i_RnW, ADDR_u16, i_CLK) is
-begin 
-    if((i_RnW = READ) and (ADDR_u16 > MAX_ADDR_u)) then
-        w_DATA_EXT_MEM <= i_DATA_FROM_IVSA;
-        o_CLK_TO_IVSA <= i_CLK;
-    else
-        w_DATA_EXT_MEM <= (others => '0');
-        o_CLK_TO_IVSA <= '0';
+process(i_ADC_RDY, divOut, startCount, count, countDone, trigger) is
+begin
+    if(countDone = '1') then
+        startCount <= '0';
+    elsif(rising_edge(i_ADC_RDY)) then
+        startCount <= '1';
+    end if;
+    
+    if(rising_edge(divOut)) then
+        if (startCount = '1') then
+            count <= count + 1;
+            if (count >= 10024) then
+                countDone <= '1';
+            else
+                countDone <= '0';
+            end if;
+        else
+            count <= 0;
+            countDone <= '0';
+        end if;
     end if;
 end process;
 
-int_ram : process(i_CLK, i_RnW, ADDR_u16, i_FSM_RESET) is
+process(startCount, divOut) is
 begin
-    if(rising_edge(i_CLK)) then
-        if((i_RnW = READ) and (to_integer(unsigned(i_TORAM)) <= MAX_ADDR_u)) then
-            w_DATA_INT_MEM <= RAM(ADDR_u16);
-            state <= SET_ADDR;
-        elsif(i_RnW = WRITE) then
-            w_DATA_INT_MEM <= (others => '0');
-            ADDR_u16 <= to_integer(unsigned(i_TORAM));
-            o_ADDR_TO_IVSA <= i_TORAM;
-            case state is
-                when SET_ADDR =>
-                    if(to_integer(unsigned(i_TORAM)) <= MAX_ADDR_u) then
-                        w_DATA_INT_MEM <= (others => '0');
-                        state <= SET_DATA;
-                    end if;
-                when SET_DATA =>
-                    RAM(ADDR_u16) <= i_TORAM;
-                    state <= SET_ADDR;
-            end case;
-        end if;
-    end if; 
-    if(i_FSM_RESET = '1') then
-        state <= SET_ADDR;
+    if(startCount = '1') then
+        trigger <= divOut;
+    end if;
+end process;
+
+process(trigger, count, w_ADC_DATA_SIM) is
+begin
+    if(falling_edge(trigger)) then
+        w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
     end if;
 end process;
 

@@ -440,7 +440,7 @@ int main(void)
 ////	strcpy((char*)uartBuf, str);
 ////	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
   for(int i = 0; i < 24; i++) {
-	CommPort.WriteData((i), i);
+	CommPort.WriteData((0xffff-i), i);
   }
   	strcpy((char*)uartBuf, "----------------\r\n");
   	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
@@ -481,10 +481,13 @@ int main(void)
 //  	HAL_Delay(10);
 //  	strcpy((char*)uartBuf, "----------------\r\n");
 //  	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//  	CommPort.FetchData(&testVar, 25);
-//	sprintf(str, "%d\r\n", testVar);
-//	strcpy((char*)uartBuf, str);
-//	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+  	CommPort.FetchData(&testVar, 371);
+  	CommPort.FetchData(&testVar, 372);
+  	CommPort.FetchData(&testVar, 373);
+	sprintf(str, "%d\r\n", testVar);
+	strcpy((char*)uartBuf, str);
+	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
 
 //  	strcpy((char*)uartBuf, "----------------\r\n");
 //  	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);

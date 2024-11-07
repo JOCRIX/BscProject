@@ -1,0 +1,103 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Nov  7 16:42:50 2024
+# Process ID: 14536
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11304 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\SingleFileSimEnvironment\SingleFileSimEnvironment.xpr
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/vivado.log
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment\vivado.jou
+# Running On        :DESKTOP-26ONRPF
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :6979 MB
+# Total Virtual     :15448 MB
+# Available Virtual :3537 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source IV_SAMPLE_CTRL.tcl
+add_force {/IV_SAMPLE_CTRL/i_XCO} -radix hex {1 0ns} {1 50000ps} -repeat_every 100000ps
+add_force {/IV_SAMPLE_CTRL/i_XCO} -radix hex {0 0ns} {1 50000ps} -repeat_every 100000ps
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+source IV_SAMPLE_CTRL.tcl
+add_force {/IV_SAMPLE_CTRL/i_XCO} -radix hex {0 0ns} {1 12500ps} -repeat_every 25000ps
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+add_force {/IV_SAMPLE_CTRL/i_ADC_RDY} -radix hex {1 0ns}
+run 100 ns
+add_force {/IV_SAMPLE_CTRL/i_ADC_RDY} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 100000 ns
+run 10000000 ns
+add_force {/IV_SAMPLE_CTRL/i_ADC_RDY} -radix hex {1 0ns}
+run 1000000 ns
+add_force {/IV_SAMPLE_CTRL/i_ADC_RDY} -radix hex {0 0ns}
+run 1000000 ns
+run 1000000 ns
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+close_sim
+open_run synth_1 -name synth_1
+launch_simulation -mode post-synthesis -type functional

@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date                      : Thu Nov  7 13:01:20 2024
-| Host                      : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+| Date                      : Thu Nov  7 18:02:26 2024
+| Host                      : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command                   : report_io -file sample_control_TOP_io_placed.rpt
 | Design                    : sample_control_TOP
 | Device                    : xc7a35t
@@ -120,7 +120,7 @@ Table of Contents
 | G11        |                    |            | GND                          | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | G12        |                    | Dedicated  | VCCO_0                       | VCCO          |             |       0 |            |      |                     |                      |   any** |            |           |          |      |                  |              |                   |              |
 | G13        |                    | High Range | VCCO_16                      | VCCO          |             |      16 |            |      |                     |                      |   any** |            |           |          |      |                  |              |                   |              |
-| G17        |                    | High Range | IO_L5N_T0_D07_14             | User IO       |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| G17        | o_RUN_COUNT        | High Range | IO_L5N_T0_D07_14             | OUTPUT        | LVCMOS33    |      14 |         12 | SLOW |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | G18        |                    | High Range | IO_L2P_T0_D02_14             | User IO       |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | G19        |                    | High Range | IO_L4N_T0_D05_14             | User IO       |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | H1         |                    | High Range | IO_L3P_T0_DQS_AD5P_35        | User IO       |             |      35 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |

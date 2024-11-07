@@ -2,8 +2,8 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
--- Date        : Wed Nov  6 21:46:47 2024
--- Host        : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+-- Date        : Thu Nov  7 17:41:13 2024
+-- Host        : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl
 -- Design      : clk_wiz_0
@@ -82,7 +82,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 83.333000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 3.750000,
+      CLKOUT0_DIVIDE_F => 7.500000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,

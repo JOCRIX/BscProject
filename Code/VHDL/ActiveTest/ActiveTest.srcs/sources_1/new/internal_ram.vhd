@@ -81,7 +81,7 @@ end process;
 int_ram : process(i_CLK, i_RnW, ADDR_u16, i_FSM_RESET) is
 begin
     if(rising_edge(i_CLK)) then
-        if((i_RnW = READ) and (to_integer(unsigned(i_TORAM)) <= MAX_ADDR_u)) then
+        if((i_RnW = READ) and (ADDR_u16 <= MAX_ADDR_u)) then
             w_DATA_INT_MEM <= RAM(ADDR_u16);
             state <= SET_ADDR;
         elsif(i_RnW = WRITE) then
@@ -90,6 +90,9 @@ begin
             o_ADDR_TO_IVSA <= i_TORAM;
             case state is
                 when SET_ADDR =>
+--                    w_DATA_INT_MEM <= (others => '0');
+--                    ADDR_u16 <= to_integer(unsigned(i_TORAM));
+--                    o_ADDR_TO_IVSA <= i_TORAM;
                     if(to_integer(unsigned(i_TORAM)) <= MAX_ADDR_u) then
                         w_DATA_INT_MEM <= (others => '0');
                         state <= SET_DATA;
@@ -98,6 +101,8 @@ begin
                     RAM(ADDR_u16) <= i_TORAM;
                     state <= SET_ADDR;
             end case;
+        else
+            w_DATA_INT_MEM <= (others => '0');
         end if;
     end if; 
     if(i_FSM_RESET = '1') then

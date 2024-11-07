@@ -3,220 +3,53 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Nov  6 18:22:14 2024
-# Process ID: 16948
+# Start of session at: Thu Nov  7 17:23:14 2024
+# Process ID: 14228
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9080 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\SingleFileSimEnvironment\SingleFileSimEnvironment.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14548 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\SingleFileSimEnvironment\SingleFileSimEnvironment.xpr
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/vivado.log
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment\vivado.jou
-# Running On        :DESKTOP-S99FO1K
+# Running On        :DESKTOP-26ONRPF
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
-# Processor Detail  :12th Gen Intel(R) Core(TM) i5-12400F
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
 # CPU Frequency     :2496 MHz
-# CPU Physical cores:6
-# CPU Logical cores :12
-# Host memory       :34182 MB
-# Swap memory       :5100 MB
-# Total Virtual     :39282 MB
-# Available Virtual :29115 MB
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :6979 MB
+# Total Virtual     :15448 MB
+# Available Virtual :3535 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.xpr
 update_compile_order -fileset sources_1
+launch_simulation -mode post-synthesis -type functional
+close_project
+create_project TestEnvironment C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestEnvironment -part xc7a35tcpg236-1
+file mkdir C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestEnvironment/TestEnvironment.srcs/sources_1/new
+set_property target_language VHDL [current_project]
+set_property simulator_language VHDL [current_project]
+close [ open C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestEnvironment/TestEnvironment.srcs/sources_1/new/TestFile2.vhd w ]
+add_files C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestEnvironment/TestEnvironment.srcs/sources_1/new/TestFile2.vhd
 update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-launch_simulation
-source IV_SAMPLE_CTRL.tcl
-restart
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-restart
-run 100 ns
-restart
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {0 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {AA 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-restart
-close_sim
-launch_simulation
-source IV_SAMPLE_CTRL.tcl
-restart
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {AA 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {19 0ns}
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_DATA_FROM_IVSA} -radix hex {BB 0ns}
-run 100 ns
-close_sim
-launch_simulation
-source IV_SAMPLE_CTRL.tcl
-restart
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {AA 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-run 100 ns
-run 100 ns
-close_sim
-launch_simulation
-source IV_SAMPLE_CTRL.tcl
-restart
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_FSM_RESET} -radix hex {AA 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {AA 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-restart
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-close_sim
-launch_simulation
-source IV_SAMPLE_CTRL.tcl
-restart
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {AA 0ns}
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-restart
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_DATA_FROM_IVSA} -radix hex {BB 0ns}
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {CC 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-close_sim
-reset_run synth_1
-launch_runs synth_1 -jobs 12
+launch_runs synth_1 -jobs 4
 wait_on_run synth_1
 open_run synth_1 -name synth_1
 launch_simulation -mode post-synthesis -type functional
-source IV_SAMPLE_CTRL.tcl
-restart
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_FSM_RESET} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {FF 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {19 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_DATA_FROM_IVSA} -radix hex {BB 0ns}
-run 100 ns
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-close_sim
+set_property library work [get_files  C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestEnvironment/TestEnvironment.srcs/sources_1/new/TestFile2.vhd]
 reset_run synth_1
-launch_runs synth_1 -jobs 12
+launch_runs synth_1 -jobs 4
 wait_on_run synth_1
 close_design
 open_run synth_1 -name synth_1
 launch_simulation -mode post-synthesis -type functional
-source IV_SAMPLE_CTRL.tcl
-restart
-add_force {/IV_SAMPLE_CTRL/i_CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/IV_SAMPLE_CTRL/i_RnW} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_FSM_RESET} -radix hex {0 0ns}
-add_force {/IV_SAMPLE_CTRL/i_TORAM} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-close_sim
+set_property library xil_defaultlib [get_files  C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestEnvironment/TestEnvironment.srcs/sources_1/new/TestFile2.vhd]
+set_property USED_IN {synthesis simulation} [get_files -all C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/TestEnvironment/TestEnvironment.srcs/sources_1/new/TestFile2.vhd]
+launch_simulation -simset sim_1 -mode post-implementation -type timing
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1
+launch_simulation -mode post-synthesis -type functional

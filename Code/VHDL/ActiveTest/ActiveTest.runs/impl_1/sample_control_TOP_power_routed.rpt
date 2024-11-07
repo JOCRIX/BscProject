@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Thu Nov  7 13:01:35 2024
-| Host             : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+| Date             : Thu Nov  7 18:02:56 2024
+| Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file sample_control_TOP_power_routed.rpt -pb sample_control_TOP_power_summary_routed.pb -rpx sample_control_TOP_power_routed.rpx
 | Design           : sample_control_TOP
 | Device           : xc7a35tcpg236-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 3.192        |
+| Total On-Chip Power (W)  | 3.187        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 3.112        |
+| Dynamic (W)              | 3.106        |
 | Device Static (W)        | 0.081        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 69.0         |
-| Junction Temperature (C) | 41.0         |
+| Max Ambient (C)          | 69.1         |
+| Junction Temperature (C) | 40.9         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,17 +52,17 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Slice Logic              |     0.235 |      498 |       --- |             --- |
-|   LUT as Logic           |     0.176 |      123 |     20800 |            0.59 |
-|   BUFG                   |     0.027 |        6 |        32 |           18.75 |
-|   Register               |     0.022 |      238 |     41600 |            0.57 |
-|   CARRY4                 |     0.011 |       12 |      8150 |            0.15 |
+| Slice Logic              |     0.270 |      482 |       --- |             --- |
+|   LUT as Logic           |     0.196 |      115 |     20800 |            0.55 |
+|   BUFG                   |     0.030 |        6 |        32 |           18.75 |
+|   Register               |     0.022 |      243 |     41600 |            0.58 |
+|   CARRY4                 |     0.022 |        8 |      8150 |            0.10 |
 |   Others                 |     0.000 |       48 |       --- |             --- |
 |   LUT as Distributed RAM |     0.000 |       32 |      9600 |            0.33 |
-| Signals                  |     0.221 |      402 |       --- |             --- |
-| I/O                      |     2.656 |       52 |       106 |           49.06 |
+| Signals                  |     0.297 |      382 |       --- |             --- |
+| I/O                      |     2.539 |       53 |       106 |           50.00 |
 | Static Power             |     0.081 |          |           |                 |
-| Total                    |     3.192 |          |           |                 |
+| Total                    |     3.187 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.487 |       0.470 |      0.017 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.110 |       0.097 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.749 |       0.748 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.599 |       0.581 |      0.017 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.106 |       0.092 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.715 |       0.714 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -139,19 +139,20 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| sample_control_TOP                 |     3.112 |
-|   EXT_MEM_RW1                      |     0.035 |
-|   MEM_DIST1                        |     0.015 |
-|   PulseGen1                        |     0.110 |
-|   gen_io_port_extRam[0].IOBUF_inst |     0.029 |
-|   gen_io_port_extRam[1].IOBUF_inst |     0.029 |
-|   gen_io_port_extRam[2].IOBUF_inst |     0.029 |
-|   gen_io_port_extRam[3].IOBUF_inst |     0.029 |
-|   gen_io_port_extRam[4].IOBUF_inst |     0.029 |
-|   gen_io_port_extRam[5].IOBUF_inst |     0.030 |
-|   gen_io_port_extRam[6].IOBUF_inst |     0.030 |
-|   logic_resetter                   |     0.043 |
-|   ram                              |     0.040 |
+| sample_control_TOP                 |     3.106 |
+|   EXT_MEM_RW1                      |     0.040 |
+|   IV_SAVER                         |     0.042 |
+|   MEM_DIST1                        |     0.061 |
+|   PulseGen1                        |     0.107 |
+|   gen_io_port_extRam[0].IOBUF_inst |     0.062 |
+|   gen_io_port_extRam[1].IOBUF_inst |     0.063 |
+|   gen_io_port_extRam[2].IOBUF_inst |     0.063 |
+|   gen_io_port_extRam[3].IOBUF_inst |     0.063 |
+|   gen_io_port_extRam[4].IOBUF_inst |     0.062 |
+|   gen_io_port_extRam[5].IOBUF_inst |     0.062 |
+|   gen_io_port_extRam[6].IOBUF_inst |     0.062 |
+|   gen_io_port_extRam[7].IOBUF_inst |     0.046 |
+|   ram                              |     0.111 |
 +------------------------------------+-----------+
 
 
