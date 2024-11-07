@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Nov  6 23:30:16 2024
-# Process ID: 21852
+# Start of session at: Thu Nov  7 13:00:15 2024
+# Process ID: 12764
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1
 # Command line: vivado.exe -log sample_control_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sample_control_TOP.tcl
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/sample_control_TOP.vds
@@ -19,10 +19,10 @@
 # Host memory       :34182 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39282 MB
-# Available Virtual :21994 MB
+# Available Virtual :26540 MB
 #-----------------------------------------------------------
 source sample_control_TOP.tcl -notrace
-create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 513.020 ; gain = 196.156
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 514.172 ; gain = 199.703
 Command: read_checkpoint -auto_incremental -incremental C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/utils_1/imports/synth_1/sample_control_TOP.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/utils_1/imports/synth_1/sample_control_TOP.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -36,115 +36,99 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 9012
+INFO: [Synth 8-7075] Helper process launched with PID 18180
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1376.969 ; gain = 449.352
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1376.711 ; gain = 448.203
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'sample_control_TOP' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:60]
-INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-21852-DESKTOP-S99FO1K/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'PLL_1' of component 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:275]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-21852-DESKTOP-S99FO1K/realtime/clk_wiz_0_stub.vhdl:14]
+INFO: [Synth 8-638] synthesizing module 'sample_control_TOP' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:59]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-12764-DESKTOP-S99FO1K/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'PLL_1' of component 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:287]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-12764-DESKTOP-S99FO1K/realtime/clk_wiz_0_stub.vhdl:14]
 	Parameter NR_OF_CLKs bound to: 4 - type: integer 
-INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/pulse_train_gen.vhd:35' bound to instance 'PulseGen1' of component 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:283]
+INFO: [Synth 8-3491] module 'pulse_train_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/pulse_train_gen.vhd:35' bound to instance 'PulseGen1' of component 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:295]
 INFO: [Synth 8-638] synthesizing module 'pulse_train_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/pulse_train_gen.vhd:50]
 	Parameter NR_OF_CLKs bound to: 4 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'pulse_train_gen' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/pulse_train_gen.vhd:50]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:297]
-INFO: [Synth 8-3491] module 'ExtMemReadWrite' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ext_mem_read_write.vhd:34' bound to instance 'EXT_MEM_RW1' of component 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:312]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:309]
+INFO: [Synth 8-3491] module 'ExtMemReadWrite' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ext_mem_read_write.vhd:34' bound to instance 'EXT_MEM_RW1' of component 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:324]
 INFO: [Synth 8-638] synthesizing module 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ext_mem_read_write.vhd:59]
 INFO: [Synth 8-256] done synthesizing module 'ExtMemReadWrite' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ext_mem_read_write.vhd:59]
-INFO: [Synth 8-3491] module 'ExternalMemoryDistribution' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemoryControl.vhd:34' bound to instance 'MEM_DIST1' of component 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:330]
+INFO: [Synth 8-3491] module 'ExternalMemoryDistribution' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemoryControl.vhd:34' bound to instance 'MEM_DIST1' of component 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:342]
 INFO: [Synth 8-638] synthesizing module 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemoryControl.vhd:55]
 INFO: [Synth 8-256] done synthesizing module 'ExternalMemoryDistribution' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemoryControl.vhd:55]
-INFO: [Synth 8-3491] module 'IV_SAMPLE_CTRL' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:35' bound to instance 'IV_SAVER' of component 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:358]
+INFO: [Synth 8-3491] module 'IV_SAMPLE_CTRL' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:35' bound to instance 'IV_SAVER' of component 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:370]
 INFO: [Synth 8-638] synthesizing module 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:55]
 INFO: [Synth 8-256] done synthesizing module 'IV_SAMPLE_CTRL' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:55]
-INFO: [Synth 8-3491] module 'internal_ram' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/internal_ram.vhd:35' bound to instance 'ram' of component 'internal_ram' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:378]
+INFO: [Synth 8-3491] module 'internal_ram' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/internal_ram.vhd:35' bound to instance 'ram' of component 'internal_ram' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:390]
 INFO: [Synth 8-638] synthesizing module 'internal_ram' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/internal_ram.vhd:48]
 INFO: [Synth 8-256] done synthesizing module 'internal_ram' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/internal_ram.vhd:48]
-INFO: [Synth 8-3491] module 'logic_reset' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:34' bound to instance 'logic_resetter' of component 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:395]
+INFO: [Synth 8-3491] module 'logic_reset' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:34' bound to instance 'logic_resetter' of component 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:407]
 INFO: [Synth 8-638] synthesizing module 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:42]
 INFO: [Synth 8-256] done synthesizing module 'logic_reset' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:42]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
 INFO: [Synth 8-638] synthesizing module 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:49]
 INFO: [Synth 8-256] done synthesizing module 'comm_port' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:49]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:403]
-INFO: [Synth 8-256] done synthesizing module 'sample_control_TOP' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:60]
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[15] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[14] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[13] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[12] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[11] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[10] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[9] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[8] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[7] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[6] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[5] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[4] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[3] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[2] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[1] in module IV_SAMPLE_CTRL is either unconnected or has no load
-WARNING: [Synth 8-7129] Port ADC_DATA_IN[0] in module IV_SAMPLE_CTRL is either unconnected or has no load
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-256] done synthesizing module 'sample_control_TOP' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:59]
 WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
 WARNING: [Synth 8-7129] Port i_MCLK in module sample_control_TOP is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1492.348 ; gain = 564.730
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 1492.418 ; gain = 563.910
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1492.348 ; gain = 564.730
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 1492.418 ; gain = 563.910
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1492.348 ; gain = 564.730
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 1492.418 ; gain = 563.910
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1492.348 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1492.418 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -155,130 +139,79 @@ Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTes
 Finished Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'PLL_1'
 Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
 WARNING: [Vivado 12-507] No nets matched 'i_ADC_RDY_IBUF'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:133]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[15]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:136]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[14]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:137]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[13]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:138]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[12]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:139]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[11]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:140]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[10]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:141]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[9]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:142]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[8]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:143]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:144]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:145]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:146]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:147]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:148]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:149]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:150]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:151]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[15]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:185]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[14]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:186]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[13]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:187]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[12]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:188]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[11]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:189]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[10]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:190]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[9]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:191]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[8]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:192]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[15]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:170]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[14]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:171]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[13]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:172]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[12]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:173]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[11]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:174]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[10]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:175]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[9]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:176]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[8]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:177]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:178]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:179]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:180]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:181]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:182]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:183]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:184]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:185]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:186]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:187]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:188]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:189]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:190]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:191]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:192]
 WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:193]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:194]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:195]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:196]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:197]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:198]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:199]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:200]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:201]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:202]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:203]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:204]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:205]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:206]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:207]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:208]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[8]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:209]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[9]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:210]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[10]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:211]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[11]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:212]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[12]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:213]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[13]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:214]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[14]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:215]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[15]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:216]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:217]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:218]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:219]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:220]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:221]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:222]
-WARNING: [Vivado 12-584] No ports matched 'o_CLK_IVSA_TO_MDIST'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:227]
-WARNING: [Vivado 12-584] No ports matched 'o_RnW_IVSA_TO_MDIST'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:228]
-WARNING: [Vivado 12-584] No ports matched 'o_CLK_IVSA_TO_MDIST'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:233]
-WARNING: [Vivado 12-584] No ports matched 'o_RnW_IVSA_TO_MDIST'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:234]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:235]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:236]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:237]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:238]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:239]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:240]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:274]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:275]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:276]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:277]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:278]
-WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:279]
-WARNING: [Vivado 12-584] No ports matched 'o_CLK_IVSA_TO_MDIST'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:280]
-WARNING: [Vivado 12-584] No ports matched 'o_RnW_IVSA_TO_MDIST'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:281]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[15]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:346]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[14]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:347]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[13]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:348]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[12]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:349]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[11]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:350]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[10]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:351]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[9]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:352]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[8]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:353]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:354]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:355]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:356]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:357]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:358]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:359]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:360]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:361]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[15]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:362]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[14]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:363]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[13]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:364]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[12]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:365]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[11]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:366]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[10]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:367]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[9]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:368]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[8]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:369]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[7]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:370]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[6]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:371]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:372]
-WARNING: [Vivado 12-584] No ports matched 'i_DATA_ADC_TO_IVSA[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:373]
-INFO: [Common 17-14] Message 'Vivado 12-584' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:373]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[8]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:194]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[9]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:195]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[10]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:196]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[11]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:197]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[12]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:198]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[13]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:199]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[14]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:200]
+WARNING: [Vivado 12-584] No ports matched 'i_DATA_MDIST_TO_IVSA[15]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:201]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:202]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:203]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:204]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:205]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:206]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:207]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:216]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:217]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:218]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:219]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:220]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:221]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[5]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:255]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[4]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:256]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[3]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:257]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[2]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:258]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[1]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:259]
+WARNING: [Vivado 12-584] No ports matched 'o_ADDR_IVSA_TO_MDIST[0]'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:260]
 Finished Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
 WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/sample_control_TOP_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/sample_control_TOP_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/sample_control_TOP_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1590.090 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1591.176 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 8 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1590.090 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1591.176 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -287,7 +220,7 @@ Applied set_property IO_BUFFER_TYPE = NONE for i_XCO. (constraint file  c:/Users
 Applied set_property CLOCK_BUFFER_TYPE = NONE for i_XCO. (constraint file  c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
 Applied set_property KEEP_HIERARCHY = SOFT for PLL_1. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 's_write_reg' in module 'ExtMemReadWrite'
 INFO: [Synth 8-802] inferred FSM for state register 's_read_reg' in module 'ExtMemReadWrite'
@@ -334,7 +267,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'TORAM_reg' [C:/Users/jakob/
 WARNING: [Synth 8-327] inferring latch for variable 'IO_reg' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:60]
 WARNING: [Synth 8-327] inferring latch for variable 'trigger_reg' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:249]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:11 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -356,7 +289,7 @@ Detailed RTL Component Info :
 	              384 Bit	(24 X 16 bit)          RAMs := 1     
 +---Muxes : 
 	   5 Input   19 Bit        Muxes := 1     
-	   2 Input   16 Bit        Muxes := 4     
+	   2 Input   16 Bit        Muxes := 5     
 	   5 Input    8 Bit        Muxes := 1     
 	   5 Input    3 Bit        Muxes := 3     
 	   2 Input    3 Bit        Muxes := 4     
@@ -385,7 +318,7 @@ WARNING: [Synth 8-3917] design sample_control_TOP has port o_Mem_nCE_ext driven 
 WARNING: [Synth 8-7129] Port i_MCLK in module sample_control_TOP is either unconnected or has no load
 WARNING: [Synth 8-3332] Sequential element (gen_comm_port[15].commport/IO_reg) is unused and will be removed from module sample_control_TOP.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -406,13 +339,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -432,7 +365,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -450,37 +383,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -498,38 +431,38 @@ Report Cell Usage:
 |      |Cell           |Count |
 +------+---------------+------+
 |1     |clk_wiz_0_bbox |     1|
-|2     |BUFG           |     4|
-|3     |CARRY4         |     8|
-|4     |LUT1           |    25|
-|5     |LUT2           |    29|
-|6     |LUT3           |    61|
-|7     |LUT4           |    12|
-|8     |LUT5           |    14|
-|9     |LUT6           |    26|
+|2     |BUFG           |     5|
+|3     |CARRY4         |    12|
+|4     |LUT1           |    26|
+|5     |LUT2           |    28|
+|6     |LUT3           |    44|
+|7     |LUT4           |    29|
+|8     |LUT5           |    13|
+|9     |LUT6           |    23|
 |10    |RAM16X1S       |    32|
 |11    |FDCE           |    19|
 |12    |FDPE           |     2|
-|13    |FDRE           |   154|
+|13    |FDRE           |   166|
 |14    |FDSE           |    18|
 |15    |LD             |    33|
 |16    |IBUF           |     4|
 |17    |IOBUF          |    24|
-|18    |OBUF           |    26|
+|18    |OBUF           |    23|
 +------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:20 . Memory (MB): peak = 1590.090 ; gain = 564.730
-Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1590.090 ; gain = 662.473
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:14 ; elapsed = 00:00:20 . Memory (MB): peak = 1591.176 ; gain = 563.910
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.176 ; gain = 662.668
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1590.090 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 97 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1591.176 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 101 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
 INFO: [Opt 31-138] Pushed 1 inverter(s) to 16 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1590.090 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1591.176 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 89 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 24 instances
@@ -537,12 +470,12 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   LD => LDCE (inverted pins: G): 16 instances
   RAM16X1S => RAM32X1S (RAMS32): 32 instances
 
-Synth Design complete | Checksum: 54733bea
+Synth Design complete | Checksum: d1dc4a9
 INFO: [Common 17-83] Releasing license: Synthesis
-82 Infos, 127 Warnings, 0 Critical Warnings and 0 Errors encountered.
+81 Infos, 61 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1590.090 ; gain = 1064.039
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1590.090 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1591.176 ; gain = 1064.250
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1591.176 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/sample_control_TOP.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file sample_control_TOP_utilization_synth.rpt -pb sample_control_TOP_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Nov  6 23:30:50 2024...
+INFO: [Common 17-206] Exiting Vivado at Thu Nov  7 13:00:48 2024...

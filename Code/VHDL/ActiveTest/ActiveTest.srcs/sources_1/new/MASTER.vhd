@@ -20,9 +20,9 @@
 
 --mx25l3273f
 
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.ALL;
 Library UNISIM;
 use UNISIM.vcomponents.all;
 
@@ -52,8 +52,7 @@ entity sample_control_TOP is
         i_XCO : in std_logic;
         o_pulse_out : out std_logic;
         
-        i_MCLK : in std_logic;
-        o_state : out std_logic_vector(2 downto 0)
+        i_MCLK : in std_logic
   );
 end sample_control_TOP;
 
@@ -222,7 +221,7 @@ end component ExtMemReadWrite;
     --signal buf : std_logic_vector(15 downto 0) := (others => '0');
     signal w_test : std_logic := '0';
     
-    signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
+    signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"0000";
     
     signal count : integer range 0 to 20000 := 24;
     signal trigger : std_logic := '0';
@@ -230,6 +229,7 @@ end component ExtMemReadWrite;
     
     signal count2 : integer range 0 to 10000 := 0;
     signal divOut : std_logic := '0';
+    signal IVDATACOUNT : integer range 0 to 20000 := 0;
 begin
 
 process(i_XCO) is
@@ -252,7 +252,6 @@ begin
     elsif(rising_edge(i_ADC_RDY)) then
         startCount <= '1';
     end if;
-    
     if(rising_edge(divOut)) then
         if (startCount = '1') then
             count <= count + 1;
@@ -261,6 +260,19 @@ begin
         end if;
     end if;
 end process;
+
+process(i_ADC_RDY, trigger, startCount, count, IVDATACOUNT, w_ADC_DATA_SIM) is
+begin
+    if(falling_edge(trigger)) then
+        if(startCount = '1') then
+            IVDATACOUNT <= IVDATACOUNT+1;
+        else
+            IVDATACOUNT <= 0;
+        end if;
+    end if;
+end process;
+w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(IVDATACOUNT, w_ADC_DATA_SIM'length));
+
 
         
           
@@ -344,13 +356,13 @@ MEM_DIST1 :ExternalMemoryDistribution
         RnW => w_RnW_IVSA_TO_MDIST,
         CLK_IVSAVER_TO_MEM_DIST => w_CLK_IVSA_TO_MDIST,
         ADDR_IV_SAVER_TO_EXT_MEM_DIST => w_ADDR_IVSA_TO_MDIST,
-        DATA_IVSAVER_TO_EXT_MEM_DIST => w_DATA_IVSA_TO_MDIST,
-        --DATA_IVSAVER_TO_EXT_MEM_DIST => w_ADC_DATA_SIM,
+        --DATA_IVSAVER_TO_EXT_MEM_DIST => w_DATA_IVSA_TO_MDIST,
+        DATA_IVSAVER_TO_EXT_MEM_DIST => w_ADC_DATA_SIM,
         DATA_EXT_MEM_TO_IVSAVER => w_DATA_MDIST_TO_IVSA,
         --Master clock
         MASTER_CLK => w_MEM_CLK,
         
-        STATE_OUT => o_STATE        
+        STATE_OUT => w_MDIST_STATE        
         );
 
 
