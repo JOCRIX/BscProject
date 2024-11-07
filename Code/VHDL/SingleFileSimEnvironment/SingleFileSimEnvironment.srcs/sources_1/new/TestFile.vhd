@@ -34,85 +34,76 @@ use ieee.numeric_std.ALL;
 
 entity IV_SAMPLE_CTRL is
     Port ( 
-            --MASTER_CLK_IN : in std_logic;
-            CLK_FROM_INT_MEM_IN : in STD_LOGIC;
-            ADDR_FROM_INT_MEM_IN : in STD_LOGIC_VECTOR (15 downto 0);
-            DATA_TO_INT_MEM_OUT : out STD_LOGIC_VECTOR (15 downto 0);
-            --ADC_TRIG_IN : in STD_LOGIC;
-            DATA_FROM_MEM_DIST_IN : in STD_LOGIC_VECTOR (15 downto 0);
-            
-            
-            ADC_DnB : in STD_LOGIC;
-            ADC_DATA_IN : in STD_LOGIC_VECTOR (15 downto 0);
-            ADC_DATA_RDY_IN : in STD_LOGIC;          
-            DATA_TO_MEM_DIST_OUT : out STD_LOGIC_VECTOR (15 downto 0);
-            ADDR_TO_MEM_DIST_OUT : out STD_LOGIC_VECTOR (15 downto 0);
-            RnW_TO_MEM_DIST_OUT : out STD_LOGIC;
-            CLK_TO_MEM_DIST_OUT : out STD_LOGIC
+            i_CLK : in std_logic := '0';
+            i_RnW : in std_logic := '0';
+            i_FSM_RESET : in std_logic := '0';
+            i_TORAM : in std_logic_vector(15 downto 0) := (others => '0');
+            o_TOPORT : out std_logic_vector(15 downto 0) := (others => '0');
+            i_DATA_FROM_IVSA : in std_logic_vector(15 downto 0) := (others => '0');
+            o_ADDR_TO_IVSA : out std_logic_vector(15 downto 0) := (others => '0');
+            o_CLK_TO_IVSA : out std_logic := '0'
             );
 end IV_SAMPLE_CTRL;
 
 architecture Behavioral of IV_SAMPLE_CTRL is
-    constant MAX_ADDR_DATA : integer := 15;
-    signal sig_ADC_ADDR : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
-    signal sig_ADC_DATA : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
-    signal sample_count : integer range 0 to 80000 := 24;
-    signal sig_ADC_CLK_to_mem_dist : std_logic := '0';
-    signal sig_RnW_to_mem_dist_out : STD_LOGIC := '0';
-    
-    signal sig_int_mem_ADDR : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
-    signal sig_int_mem_DATA : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
-    signal sig_CLK_from_int_mem : std_logic := '0';
-    signal sig_RnW_to_mem_dist_out_nB : std_logic := '0';
+
+constant MAX_ADDR_u : integer range 0 to 31 := 23;
+constant WRITE : std_logic := '0';
+constant READ : std_logic := '1';
+
+signal ADDR_u16 : integer range 0 to 65535 := 0;
+signal w_DATA_IVSA : std_logic_vector(15 downto 0) := (others => '0');
+signal w_DATA_EXT_MEM : std_logic_vector(15 downto 0) := (others => '0');
+signal w_DATA_INT_MEM : std_logic_vector(15 downto 0) := (others => '0');
+
+type BLOCKRAM is array(MAX_ADDR_u downto 0) of std_logic_vector(15 downto 0); 
+signal RAM : BLOCKRAM := (others => (others => '0'));                
+
+type state_mem is (SET_ADDR, SET_DATA); 
+signal state : state_mem := SET_ADDR; 
+
+
 begin
 
-CLK_TO_MEM_DIST_OUT <= sig_ADC_CLK_to_mem_dist or sig_CLK_from_int_mem;
-ADDR_TO_MEM_DIST_OUT <= sig_ADC_ADDR or sig_int_mem_ADDR;
-DATA_TO_MEM_DIST_OUT <= sig_ADC_DATA;
-RnW_TO_MEM_DIST_OUT <= sig_RnW_to_mem_dist_out or sig_RnW_to_mem_dist_out_nB;
-DATA_TO_INT_MEM_OUT <= sig_int_mem_DATA;
+o_TOPORT <= w_DATA_EXT_MEM or w_DATA_INT_MEM;
 
-
-
-DATA_ADDR_sample_mode: process(ADC_DnB, sig_ADC_ADDR, ADC_DATA_IN, ADC_DATA_RDY_IN, sample_count)
-begin
-    if (ADC_DnB = '0') then
-        sig_ADC_ADDR <= std_logic_vector(to_unsigned(sample_count, sig_ADC_ADDR'length));
-        sig_ADC_DATA <= ADC_DATA_IN;
-        sig_ADC_CLK_to_mem_dist <= ADC_DATA_RDY_IN;
-        sig_RnW_to_mem_dist_out <= '0';
+FETCH_EXT_MEM_DATA : process(i_RnW, ADDR_u16, i_CLK) is
+begin 
+    if((i_RnW = READ) and (ADDR_u16 > MAX_ADDR_u)) then
+        w_DATA_EXT_MEM <= i_DATA_FROM_IVSA;
+        o_CLK_TO_IVSA <= i_CLK;
     else
-        sig_ADC_ADDR <= (others => '0');
-        sig_ADC_CLK_to_mem_dist <= '0';
-        sig_ADC_DATA <= (others => '0');
-        sig_RnW_to_mem_dist_out <= '1';
+        w_DATA_EXT_MEM <= (others => '0');
+        o_CLK_TO_IVSA <= '0';
     end if;
 end process;
 
-ADDR_COUNT_sample_mode: process(ADC_DnB, ADC_DATA_RDY_IN, sample_count)
+int_ram : process(i_CLK, i_RnW, ADDR_u16, i_FSM_RESET) is
 begin
-    if (ADC_DnB = '0') then
-        if(falling_edge(ADC_DATA_RDY_IN)) then
-            sample_count <= sample_count + 1;
+    if(rising_edge(i_CLK)) then
+        if((i_RnW = READ) and (to_integer(unsigned(i_TORAM)) <= MAX_ADDR_u)) then
+            w_DATA_INT_MEM <= RAM(ADDR_u16);
+            state <= SET_ADDR;
+        elsif(i_RnW = WRITE) then
+            w_DATA_INT_MEM <= (others => '0');
+            ADDR_u16 <= to_integer(unsigned(i_TORAM));
+            o_ADDR_TO_IVSA <= i_TORAM;
+            case state is
+                when SET_ADDR =>
+                    if(to_integer(unsigned(i_TORAM)) <= MAX_ADDR_u) then
+                        w_DATA_INT_MEM <= (others => '0');
+                        state <= SET_DATA;
+                    end if;
+                when SET_DATA =>
+                    RAM(ADDR_u16) <= i_TORAM;
+                    state <= SET_ADDR;
+            end case;
         end if;
-    else
-        sample_count <= 24;
+    end if; 
+    if(i_FSM_RESET = '1') then
+        state <= SET_ADDR;
     end if;
 end process;
 
-DATA_ADDR_read_mode: process(ADC_DnB, CLK_FROM_INT_MEM_IN, ADDR_FROM_INT_MEM_IN, DATA_FROM_MEM_DIST_IN)
-begin
-    if(ADC_DnB = '1') then
-        sig_int_mem_ADDR <= ADDR_FROM_INT_MEM_IN;
-        sig_int_mem_DATA <= DATA_FROM_MEM_DIST_IN;
-        sig_CLK_from_int_mem <= CLK_FROM_INT_MEM_IN;
-        sig_RnW_to_mem_dist_out_nB <= '1';
-    else
-        sig_int_mem_ADDR <= (others => '0');
-        sig_int_mem_DATA <= (others => '0');
-        sig_CLK_from_int_mem <= '0';
-        sig_RnW_to_mem_dist_out_nB <= '0'; 
-    end if;
-end process;
 
 end Behavioral;

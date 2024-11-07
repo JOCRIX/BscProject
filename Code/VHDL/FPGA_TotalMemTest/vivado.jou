@@ -3,373 +3,41 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Sat Nov  2 23:34:47 2024
-# Process ID: 14948
+# Start of session at: Wed Nov  6 14:08:09 2024
+# Process ID: 15232
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent2004 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\FPGA_TotalMemTest\FPGA_TotalMemTest.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14844 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\FPGA_TotalMemTest\FPGA_TotalMemTest.xpr
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/vivado.log
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest\vivado.jou
-# Running On        :DESKTOP-S99FO1K
+# Running On        :DESKTOP-26ONRPF
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
-# Processor Detail  :12th Gen Intel(R) Core(TM) i5-12400F
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
 # CPU Frequency     :2496 MHz
-# CPU Physical cores:6
-# CPU Logical cores :12
-# Host memory       :34182 MB
-# Swap memory       :5100 MB
-# Total Virtual     :39282 MB
-# Available Virtual :26736 MB
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :6206 MB
+# Total Virtual     :14675 MB
+# Available Virtual :3047 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.xpr
 update_compile_order -fileset sources_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
 open_run synth_1 -name synth_1
-set_property IOSTANDARD LVCMOS33 [get_ports [list {Ext_Mem_Addr_ext[18]} {Ext_Mem_Addr_ext[17]} {Ext_Mem_Addr_ext[16]} {Ext_Mem_Addr_ext[15]} {Ext_Mem_Addr_ext[14]} {Ext_Mem_Addr_ext[13]} {Ext_Mem_Addr_ext[12]} {Ext_Mem_Addr_ext[11]} {Ext_Mem_Addr_ext[10]} {Ext_Mem_Addr_ext[9]} {Ext_Mem_Addr_ext[8]} {Ext_Mem_Addr_ext[7]} {Ext_Mem_Addr_ext[6]} {Ext_Mem_Addr_ext[5]} {Ext_Mem_Addr_ext[4]} {Ext_Mem_Addr_ext[3]} {Ext_Mem_Addr_ext[2]} {Ext_Mem_Addr_ext[1]} {Ext_Mem_Addr_ext[0]}]]
-set_property OFFCHIP_TERM NONE [get_ports [list {Ext_Mem_Addr_ext[18]} {Ext_Mem_Addr_ext[17]} {Ext_Mem_Addr_ext[16]} {Ext_Mem_Addr_ext[15]} {Ext_Mem_Addr_ext[14]} {Ext_Mem_Addr_ext[13]} {Ext_Mem_Addr_ext[12]} {Ext_Mem_Addr_ext[11]} {Ext_Mem_Addr_ext[10]} {Ext_Mem_Addr_ext[9]} {Ext_Mem_Addr_ext[8]} {Ext_Mem_Addr_ext[7]} {Ext_Mem_Addr_ext[6]} {Ext_Mem_Addr_ext[5]} {Ext_Mem_Addr_ext[4]} {Ext_Mem_Addr_ext[3]} {Ext_Mem_Addr_ext[2]} {Ext_Mem_Addr_ext[1]} {Ext_Mem_Addr_ext[0]}]]
-place_ports {Ext_Mem_Addr_ext[18]} V15
-place_ports {Ext_Mem_Addr_ext[17]} W17
-place_ports {Ext_Mem_Addr_ext[16]} W16
-place_ports {Ext_Mem_Addr_ext[15]} V16
-place_ports {Ext_Mem_Addr_ext[14]} U18
-place_ports {Ext_Mem_Addr_ext[13]} U17
-place_ports {Ext_Mem_Addr_ext[12]} T18
-place_ports {Ext_Mem_Addr_ext[11]} T17
-place_ports {Ext_Mem_Addr_ext[10]} W18
-place_ports {Ext_Mem_Addr_ext[9]} V19
-place_ports {Ext_Mem_Addr_ext[8]} U19
-place_ports {Ext_Mem_Addr_ext[7]} W19
-place_ports {Ext_Mem_Addr_ext[6]} R18
-place_ports {Ext_Mem_Addr_ext[5]} P18
-place_ports {Ext_Mem_Addr_ext[4]} P17
-place_ports {Ext_Mem_Addr_ext[3]} N17
-place_ports {Ext_Mem_Addr_ext[2]} K17
-place_ports {Ext_Mem_Addr_ext[1]} M19
-place_ports {Ext_Mem_Addr_ext[0]} M18
-set_property IOSTANDARD LVCMOS33 [get_ports [list {Ext_Mem_IO_ext[7]} {Ext_Mem_IO_ext[6]} {Ext_Mem_IO_ext[5]} {Ext_Mem_IO_ext[4]} {Ext_Mem_IO_ext[3]} {Ext_Mem_IO_ext[2]} {Ext_Mem_IO_ext[1]} {Ext_Mem_IO_ext[0]}]]
-set_property OFFCHIP_TERM NONE [get_ports [list {Ext_Mem_IO_ext[7]} {Ext_Mem_IO_ext[6]} {Ext_Mem_IO_ext[5]} {Ext_Mem_IO_ext[4]} {Ext_Mem_IO_ext[3]} {Ext_Mem_IO_ext[2]} {Ext_Mem_IO_ext[1]} {Ext_Mem_IO_ext[0]}]]
-place_ports {Ext_Mem_IO_ext[7]} U14
-place_ports {Ext_Mem_IO_ext[6]} V14
-place_ports {Ext_Mem_IO_ext[5]} V13
-place_ports {Ext_Mem_IO_ext[4]} U16
-place_ports {Ext_Mem_IO_ext[3]} U15
-place_ports {Ext_Mem_IO_ext[2]} W14
-place_ports {Ext_Mem_IO_ext[1]} W13
-place_ports {Ext_Mem_IO_ext[0]} W15
-set_property IOSTANDARD LVCMOS33 [get_ports [list {EXT_COMM_IO[15]} {EXT_COMM_IO[14]} {EXT_COMM_IO[13]} {EXT_COMM_IO[12]} {EXT_COMM_IO[11]} {EXT_COMM_IO[10]} {EXT_COMM_IO[9]} {EXT_COMM_IO[8]} {EXT_COMM_IO[7]} {EXT_COMM_IO[6]} {EXT_COMM_IO[5]} {EXT_COMM_IO[4]} {EXT_COMM_IO[3]} {EXT_COMM_IO[2]} {EXT_COMM_IO[1]} {EXT_COMM_IO[0]}]]
-set_property OFFCHIP_TERM NONE [get_ports [list {EXT_COMM_IO[15]} {EXT_COMM_IO[14]} {EXT_COMM_IO[13]} {EXT_COMM_IO[12]} {EXT_COMM_IO[11]} {EXT_COMM_IO[10]} {EXT_COMM_IO[9]} {EXT_COMM_IO[8]} {EXT_COMM_IO[7]} {EXT_COMM_IO[6]} {EXT_COMM_IO[5]} {EXT_COMM_IO[4]} {EXT_COMM_IO[3]} {EXT_COMM_IO[2]} {EXT_COMM_IO[1]} {EXT_COMM_IO[0]}]]
-place_ports {EXT_COMM_IO[15]} T2
-place_ports {EXT_COMM_IO[14]} U1
-place_ports {EXT_COMM_IO[13]} W2
-place_ports {EXT_COMM_IO[12]} V2
-place_ports {EXT_COMM_IO[11]} W3
-place_ports {EXT_COMM_IO[10]} V3
-place_ports {EXT_COMM_IO[9]} W5
-place_ports {EXT_COMM_IO[8]} V4
-place_ports {EXT_COMM_IO[7]} U4
-place_ports {EXT_COMM_IO[6]} V5
-place_ports {EXT_COMM_IO[5]} W4
-place_ports {EXT_COMM_IO[4]} U5
-place_ports {EXT_COMM_IO[3]} U2
-place_ports {EXT_COMM_IO[2]} W6
-place_ports {EXT_COMM_IO[1]} U3
-place_ports {EXT_COMM_IO[0]} U7
-place_ports Ext_ADC_RDY M3
-set_property IOSTANDARD LVCMOS33 [get_ports [list Ext_ADC_RDY]]
-place_ports EXT_BUS_CLK U8
-place_ports EXT_BUS_RnW W7
-set_property IOSTANDARD LVCMOS33 [get_ports [list EXT_BUS_CLK]]
-set_property IOSTANDARD LVCMOS33 [get_ports [list EXT_BUS_RnW]]
-place_ports Ext_CLK_IN L17
-set_property IOSTANDARD LVCMOS33 [get_ports [list Ext_CLK_IN]]
-set_property IOSTANDARD LVCMOS33 [get_ports [list Ext_DnB]]
-place_ports Ext_DnB L3
-place_ports Ext_Mem_nCE_ext N19
-set_property IOSTANDARD LVCMOS33 [get_ports [list Ext_Mem_nCE_ext]]
-set_property OFFCHIP_TERM NONE [get_ports [list Ext_Mem_nCE_ext]]
-place_ports Ext_Mem_nOE_ext P19
-set_property IOSTANDARD LVCMOS33 [get_ports [list Ext_Mem_nOE_ext]]
-set_property OFFCHIP_TERM NONE [get_ports [list Ext_Mem_nOE_ext]]
-place_ports Ext_Mem_nWE_ext R19
-set_property IOSTANDARD LVCMOS33 [get_ports [list Ext_Mem_nWE_ext]]
-set_property OFFCHIP_TERM NONE [get_ports [list Ext_Mem_nWE_ext]]
-place_ports Ext_PULSE_OUT A16
-set_property IOSTANDARD LVCMOS33 [get_ports [list Ext_PULSE_OUT]]
-set_property OFFCHIP_TERM NONE [get_ports [list Ext_PULSE_OUT]]
-place_ports EXT_TEST_RESET K3
-set_property IOSTANDARD LVCMOS33 [get_ports [list EXT_TEST_RESET]]
-set_property OFFCHIP_TERM NONE [get_ports [list EXT_TEST_RESET]]
-set_property IOSTANDARD LVCMOS33 [get_ports [list {Ext_STATE_OUT[2]} {Ext_STATE_OUT[1]} {Ext_STATE_OUT[0]}]]
-set_property OFFCHIP_TERM NONE [get_ports [list {Ext_STATE_OUT[2]} {Ext_STATE_OUT[1]} {Ext_STATE_OUT[0]}]]
-place_ports {Ext_STATE_OUT[2]} R3
-place_ports {Ext_STATE_OUT[1]} T3
-place_ports {Ext_STATE_OUT[0]} R2
-set_property IOSTANDARD LVCMOS33 [get_ports [list {EXT_ADC_DATA_TO_IVSA[15]} {EXT_ADC_DATA_TO_IVSA[14]} {EXT_ADC_DATA_TO_IVSA[13]} {EXT_ADC_DATA_TO_IVSA[12]} {EXT_ADC_DATA_TO_IVSA[11]} {EXT_ADC_DATA_TO_IVSA[10]} {EXT_ADC_DATA_TO_IVSA[9]} {EXT_ADC_DATA_TO_IVSA[8]} {EXT_ADC_DATA_TO_IVSA[7]} {EXT_ADC_DATA_TO_IVSA[6]} {EXT_ADC_DATA_TO_IVSA[5]} {EXT_ADC_DATA_TO_IVSA[4]} {EXT_ADC_DATA_TO_IVSA[3]} {EXT_ADC_DATA_TO_IVSA[2]} {EXT_ADC_DATA_TO_IVSA[1]} {EXT_ADC_DATA_TO_IVSA[0]}]]
-place_ports {EXT_ADC_DATA_TO_IVSA[0]} P1
-place_ports {EXT_ADC_DATA_TO_IVSA[1]} N2
-place_ports {EXT_ADC_DATA_TO_IVSA[2]} N1
-place_ports {EXT_ADC_DATA_TO_IVSA[3]} M2
-place_ports {EXT_ADC_DATA_TO_IVSA[4]} P3
-place_ports {EXT_ADC_DATA_TO_IVSA[5]} N3
-place_ports {EXT_ADC_DATA_TO_IVSA[6]} M1
-place_ports {EXT_ADC_DATA_TO_IVSA[7]} L2
-place_ports {EXT_ADC_DATA_TO_IVSA[8]} L1
-place_ports {EXT_ADC_DATA_TO_IVSA[9]} K2
-place_ports {EXT_ADC_DATA_TO_IVSA[10]} J1
-place_ports {EXT_ADC_DATA_TO_IVSA[11]} J3
-place_ports {EXT_ADC_DATA_TO_IVSA[11]} A14
-place_ports {EXT_ADC_DATA_TO_IVSA[12]} A15
-place_ports {EXT_ADC_DATA_TO_IVSA[13]} H1
-place_ports {EXT_ADC_DATA_TO_IVSA[14]} C15
-set_property package_pin "" [get_ports [list  EXT_TEST_RESET]]
-place_ports {EXT_ADC_DATA_TO_IVSA[15]} K3
-place_ports EXT_TEST_RESET V8
-set_property target_constrs_file {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc} [current_fileset -constrset]
-save_constraints -force
-launch_runs impl_1 -jobs 12
-wait_on_run impl_1
-refresh_design
-reset_run synth_1
-launch_runs impl_1 -jobs 12
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-close_design
-open_run impl_1
-open_hw_manager
-open_run synth_1 -name synth_1
-set_property PULLTYPE PULLUP [get_ports [list Ext_DnB]]
-set_property PULLTYPE PULLUP [get_ports [list {EXT_ADC_DATA_TO_IVSA[15]} {EXT_ADC_DATA_TO_IVSA[14]} {EXT_ADC_DATA_TO_IVSA[13]} {EXT_ADC_DATA_TO_IVSA[12]} {EXT_ADC_DATA_TO_IVSA[11]} {EXT_ADC_DATA_TO_IVSA[10]} {EXT_ADC_DATA_TO_IVSA[9]} {EXT_ADC_DATA_TO_IVSA[8]} {EXT_ADC_DATA_TO_IVSA[7]} {EXT_ADC_DATA_TO_IVSA[6]} {EXT_ADC_DATA_TO_IVSA[5]} {EXT_ADC_DATA_TO_IVSA[4]} {EXT_ADC_DATA_TO_IVSA[3]} {EXT_ADC_DATA_TO_IVSA[2]} {EXT_ADC_DATA_TO_IVSA[1]} {EXT_ADC_DATA_TO_IVSA[0]}]]
-set_property PULLTYPE PULLUP [get_ports [list {EXT_COMM_IO[15]} {EXT_COMM_IO[14]} {EXT_COMM_IO[13]} {EXT_COMM_IO[12]} {EXT_COMM_IO[11]} {EXT_COMM_IO[10]} {EXT_COMM_IO[9]} {EXT_COMM_IO[8]} {EXT_COMM_IO[7]} {EXT_COMM_IO[6]} {EXT_COMM_IO[5]} {EXT_COMM_IO[4]} {EXT_COMM_IO[3]} {EXT_COMM_IO[2]} {EXT_COMM_IO[1]} {EXT_COMM_IO[0]}]]
+place_ports Ext_DnB K18
 save_constraints
 reset_run impl_1
-launch_runs impl_1 -jobs 12
+launch_runs impl_1 -to_step write_bitstream -jobs 4
 wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
+open_hw_manager
 connect_hw_server -allow_non_jtag
 open_hw_target
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
 current_hw_device [get_hw_devices xc7a35t_0]
 refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-launch_runs impl_1 -jobs 12
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-update_compile_order -fileset sources_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -jobs 12
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-update_compile_order -fileset sources_1
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-launch_runs impl_1 -jobs 12
-wait_on_run impl_1
-current_design impl_1
-refresh_design
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-current_design synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-launch_runs impl_1 -jobs 12
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-current_design impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-current_design synth_1
-close_design
-open_run synth_1 -name synth_1
-set_property package_pin "" [get_ports [list  TEST_PORT]]
-set_property package_pin "" [get_ports [list  TEST_PORT]]
-place_ports EXT_TEST_RESET G17
-place_ports TEST_PORT V8
-set_property IOSTANDARD LVCMOS33 [get_ports [list TEST_PORT]]
-set_property OFFCHIP_TERM NONE [get_ports [list TEST_PORT]]
-save_constraints
-launch_runs impl_1 -jobs 12
-wait_on_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-place_ports {EXT_ADC_DATA_TO_IVSA[11]} J3
-place_ports {EXT_ADC_DATA_TO_IVSA[12]} A14
-place_ports {EXT_ADC_DATA_TO_IVSA[13]} B15
-place_ports {EXT_ADC_DATA_TO_IVSA[14]} A15
-place_ports {EXT_ADC_DATA_TO_IVSA[15]} H1
-save_constraints
-reset_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 12
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/FPGA_TotalMemTest/FPGA_TotalMemTest.runs/impl_1/MASTER_FILE.bit} [get_hw_devices xc7a35t_0]

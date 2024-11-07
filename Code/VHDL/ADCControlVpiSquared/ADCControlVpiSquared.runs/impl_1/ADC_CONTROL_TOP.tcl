@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.runs/impl_1/ADC_CONTROL_TOP.tcl"
+  variable script "C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.runs/impl_1/ADC_CONTROL_TOP.tcl"
   variable category "vivado_impl"
 }
 
@@ -105,11 +105,10 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_param chipscope.maxJobs 6
-  set_param xicom.use_bs_reader 1
-  set_param runs.launchOptions { -jobs 24  }
+  set_param chipscope.maxJobs 1
+  set_param runs.launchOptions { -jobs 4  }
   open_checkpoint ADC_CONTROL_TOP_routed.dcp
-  set_property webtalk.parent_dir {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.cache/wt} [current_project]
+  set_property webtalk.parent_dir C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.cache/wt [current_project]
 set_property TOP ADC_CONTROL_TOP [current_fileset]
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }

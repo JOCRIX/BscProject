@@ -1,0 +1,337 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Nov  5 16:07:46 2024
+# Process ID: 6572
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1
+# Command line: vivado.exe -log sample_control_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sample_control_TOP.tcl
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.vds
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-26ONRPF
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :4831 MB
+# Total Virtual     :13301 MB
+# Available Virtual :4061 MB
+#-----------------------------------------------------------
+source sample_control_TOP.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 508.906 ; gain = 202.586
+Command: read_checkpoint -auto_incremental -incremental C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/utils_1/imports/synth_1/protocol_port.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top sample_control_TOP -part xc7a35tcpg236-1 -keep_equivalent_registers -no_lc -no_srlextract -assert
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 5512
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1360.477 ; gain = 449.012
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'sample_control_TOP' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:46]
+INFO: [Synth 8-3491] module 'logic_reset' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/logic_reset.vhd:34' bound to instance 'logic_resetter' of component 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:92]
+INFO: [Synth 8-638] synthesizing module 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/logic_reset.vhd:42]
+INFO: [Synth 8-256] done synthesizing module 'logic_reset' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/logic_reset.vhd:42]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-638] synthesizing module 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:49]
+INFO: [Synth 8-256] done synthesizing module 'comm_port' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:49]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:100]
+INFO: [Synth 8-3491] module 'internal_ram' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:39' bound to instance 'ram' of component 'internal_ram' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:109]
+INFO: [Synth 8-638] synthesizing module 'internal_ram' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:53]
+INFO: [Synth 8-256] done synthesizing module 'internal_ram' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:53]
+INFO: [Synth 8-256] done synthesizing module 'sample_control_TOP' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd:46]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1470.805 ; gain = 559.340
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1470.805 ; gain = 559.340
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1470.805 ; gain = 559.340
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1470.805 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO1' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:168]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO2' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:169]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO3' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:170]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO4' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:171]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO5' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:172]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO6' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:173]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO7' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:174]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO8' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:175]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO9' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:176]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO10' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:177]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO11' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:178]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO12' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:179]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO13' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:180]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO14' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:181]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO17' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:182]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO18' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:183]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO36' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:184]
+CRITICAL WARNING: [Common 17-161] Invalid option value '#PIO46' specified for 'objects'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc:185]
+Finished Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/constrs_1/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/sample_control_TOP_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/sample_control_TOP_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1563.023 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1563.023 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 's_reset_reg' in module 'logic_reset'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  r_clk1 |                               00 |                               00
+                  r_clk2 |                               01 |                               01
+                  r_clk3 |                               10 |                               10
+             reset_trigd |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 's_reset_reg' using encoding 'sequential' in module 'logic_reset'
+WARNING: [Synth 8-327] inferring latch for variable 'TORAM_reg' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:65]
+WARNING: [Synth 8-327] inferring latch for variable 'IO_reg' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd:60]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
++---RAMs : 
+	              384 Bit	(24 X 16 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 1     
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 19    
+	   4 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3936] Found unconnected internal register 'ram/ADDRESS_IV_SAVER_reg' and it is trimmed from '16' to '8' bits. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/internal_ram.vhd:102]
+WARNING: [Synth 8-3332] Sequential element (gen_comm_port[15].commport/IO_reg) is unused and will be removed from module sample_control_TOP.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++-------------------+-------------+-----------+----------------------+----------------+
+|Module Name        | RTL Object  | Inference | Size (Depth x Width) | Primitives     | 
++-------------------+-------------+-----------+----------------------+----------------+
+|sample_control_TOP | ram/RAM_reg | Implied   | 32 x 16              | RAM16X1S x 32  | 
++-------------------+-------------+-----------+----------------------+----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++-------------------+-------------+-----------+----------------------+----------------+
+|Module Name        | RTL Object  | Inference | Size (Depth x Width) | Primitives     | 
++-------------------+-------------+-----------+----------------------+----------------+
+|sample_control_TOP | ram/RAM_reg | Implied   | 32 x 16              | RAM16X1S x 32  | 
++-------------------+-------------+-----------+----------------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     2|
+|2     |CARRY4   |     2|
+|3     |LUT1     |    17|
+|4     |LUT2     |    32|
+|5     |LUT3     |     2|
+|6     |LUT4     |     3|
+|7     |LUT5     |    16|
+|8     |RAM16X1S |    32|
+|9     |FDCE     |     1|
+|10    |FDRE     |    46|
+|11    |LD       |    32|
+|12    |IBUF     |    18|
+|13    |IOBUF    |    16|
+|14    |OBUF     |    10|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:00:41 . Memory (MB): peak = 1563.023 ; gain = 651.559
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:42 . Memory (MB): peak = 1563.023 ; gain = 559.340
+Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:00:45 . Memory (MB): peak = 1563.023 ; gain = 651.559
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1563.023 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 82 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 16 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1563.023 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 80 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 16 instances
+  LD => LDCE: 16 instances
+  LD => LDCE (inverted pins: G): 16 instances
+  RAM16X1S => RAM32X1S (RAMS32): 32 instances
+
+Synth Design complete | Checksum: ccb08bb
+INFO: [Common 17-83] Releasing license: Synthesis
+50 Infos, 5 Warnings, 18 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1563.023 ; gain = 1049.777
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1563.023 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.runs/synth_1/sample_control_TOP.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file sample_control_TOP_utilization_synth.rpt -pb sample_control_TOP_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Nov  5 16:09:01 2024...

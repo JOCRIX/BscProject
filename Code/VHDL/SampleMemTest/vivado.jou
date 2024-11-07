@@ -3,10 +3,10 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Sun Nov  3 01:58:23 2024
-# Process ID: 5564
+# Start of session at: Thu Nov  7 12:37:40 2024
+# Process ID: 7864
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleMemTest
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent8592 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\SampleMemTest\SampleMemTest.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6372 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\SampleMemTest\SampleMemTest.xpr
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleMemTest/vivado.log
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleMemTest\vivado.jou
 # Running On        :DESKTOP-S99FO1K
@@ -19,190 +19,9 @@
 # Host memory       :34182 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39282 MB
-# Available Virtual :21929 MB
+# Available Virtual :25868 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleMemTest/SampleMemTest.xpr
 update_compile_order -fileset sources_1
-close_project
-open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.xpr
-update_compile_order -fileset sources_1
-close_project
-open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SampleMemTest/SampleMemTest.xpr
-update_compile_order -fileset sources_1
-close_project
-open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.xpr
-update_compile_order -fileset sources_1
-launch_simulation -mode post-synthesis -type functional
-open_wave_config C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/sample_control_TOP_behav.wcfg
-source sample_control_TOP.tcl
-set_property is_enabled false [get_files  C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/sample_control_TOP.vhd]
-set_property is_enabled false [get_files  C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/logic_reset.vhd]
-set_property is_enabled false [get_files  C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/Sample_MEM.srcs/sources_1/new/comm_port.vhd]
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
 open_run synth_1 -name synth_1
-launch_simulation -mode post-synthesis -type functional
-close_sim
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-launch_simulation -mode post-synthesis -type functional
-open_wave_config C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/sample_control_TOP_behav.wcfg
-source internal_ram.tcl
-add_force {/internal_ram/CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-add_force {/internal_ram/FSM_RESET} -radix hex {0 0ns}
-add_force {/internal_ram/TORAM} -radix hex {FF 0ns}
-run 50 ns
-restart
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-restart
-add_force {/internal_ram/CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-add_force {/internal_ram/FSM_RESET} -radix hex {0 0ns}
-add_force {/internal_ram/TORAM} -radix hex {FF 0ns}
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-add_force {/internal_ram/RW} -radix hex {1 0ns}
-run 50 ns
-run 50 ns
-run 50 ns
-restart
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run all
-restart
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-restart
-add_force {/internal_ram/DATA_FROM_IV_SAVER} -radix hex {AA 0ns}
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-close_sim
-launch_simulation
-open_wave_config C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/sample_control_TOP_behav.wcfg
-source internal_ram.tcl
-restart
-add_force {/internal_ram/CLK} -radix hex {0 0ns} {1 50000ps} -repeat_every 100000ps
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-add_force {/internal_ram/DATA_FROM_IV_SAVER} -radix hex {aa 0ns}
-add_force {/internal_ram/TORAM} -radix hex {FF 0ns}
-add_force {/internal_ram/FSM_RESET} -radix hex {0 0ns}
-run 100 ns
-run 100 ns
-close_sim
-launch_simulation -mode post-synthesis -type functional
-open_wave_config C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/sample_control_TOP_behav.wcfg
-source internal_ram.tcl
-add_force {/internal_ram/CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-add_force {/internal_ram/FSM_RESET} -radix hex {0 0ns}
-add_force {/internal_ram/TORAM} -radix hex {FF 0ns}
-add_force {/internal_ram/DATA_FROM_IV_SAVER} -radix hex {AA 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-close_sim
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-launch_simulation -mode post-synthesis -type functional
-open_wave_config C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/sample_control_TOP_behav.wcfg
-source internal_ram.tcl
-restart
-add_force {/internal_ram/CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-add_force {/internal_ram/FSM_RESET} -radix hex {0 0ns}
-add_force {/internal_ram/TORAM} -radix hex {FF 0ns}
-add_force {/internal_ram/DATA_FROM_IV_SAVER} -radix hex {AA 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-restart
-add_force {/internal_ram/TORAM} -radix hex {11 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-close_sim
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-launch_simulation -mode post-synthesis -type functional
-open_wave_config C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/Sample_MEM/sample_control_TOP_behav.wcfg
-source internal_ram.tcl
-restart
-add_force {/internal_ram/CLK} -radix hex {0 0ns} -cancel_after 1
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-add_force {/internal_ram/FSM_RESET} -radix hex {0 0ns}
-add_force {/internal_ram/TORAM} -radix hex {FF 0ns}
-add_force {/internal_ram/DATA_FROM_IV_SAVER} -radix hex {AA 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/internal_ram/CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/internal_ram/RW} -radix hex {1 0ns}
-run 100 ns
-restart
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-run 100 ns
-run 100 ns
-restart
-add_force {/internal_ram/CLK} -radix hex {0 0ns} {1 150000ps} -repeat_every 300000ps
-add_force {/internal_ram/RW} -radix hex {0 0ns}
-add_force {/internal_ram/FSM_RESET} -radix hex {0 0ns}
-add_force {/internal_ram/TORAM} -radix hex {FF 0ns}
-add_force {/internal_ram/DATA_FROM_IV_SAVER} -radix hex {AA 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-run 100 ns
-add_force {/internal_ram/RW} -radix hex {1 0ns}
-run 100 ns
-run 100 ns
-run 100 ns
-close_sim

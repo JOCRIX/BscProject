@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Nov  4 20:07:22 2024
-| Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
+| Date         : Tue Nov  5 15:28:17 2024
+| Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_clock_utilization -file ADC_CONTROL_TOP_clock_utilization_routed.rpt
 | Design       : ADC_CONTROL_TOP
 | Device       : 7a35t-cpg236
@@ -73,13 +73,13 @@ Table of Contents
 +----------+-----------------+------------+-------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------------+------------------------------------+
 | Local Id | Driver Type/Pin | Constraint | Site/BEL          | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin                               | Net                                |
 +----------+-----------------+------------+-------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------------+------------------------------------+
-| 0        | FDRE/Q          | None       | SLICE_X60Y31/A5FF | X1Y0         |           2 |               1 |              |       | adc_ctrl1/cnv_trig_out_reg/Q             | adc_ctrl1/dcn_trig_out             |
-| 1        | FDRE/Q          | None       | SLICE_X60Y31/CFF  | X1Y0         |           1 |               1 |              |       | adc_ctrl1/dsc_trig_out_reg/Q             | adc_ctrl1/data_ready               |
-| 2        | FDRE/Q          | None       | SLICE_X60Y31/B5FF | X1Y0         |           1 |               2 |              |       | adc_ctrl1/spi_clk_trig_out_reg/Q         | adc_ctrl1/spi_clk_trig_out         |
-| 3        | LDCE/Q          | None       | SLICE_X59Y31/AFF  | X1Y0         |           1 |               1 |              |       | i_outval_reg/Q                           | i_outval                           |
-| 4        | FDCE/Q          | None       | SLICE_X65Y29/AFF  | X1Y0         |           1 |               0 |              |       | pulse_gen_1_SDACLK/ACTIVE_reg/Q          | pulse_gen_1_SDACLK/ACTIVE          |
-| 5        | FDCE/Q          | None       | SLICE_X65Y28/AFF  | X1Y0         |           1 |               6 |              |       | pulse_gen_1_SDACLK/done_reg/Q            | pulse_gen_1_SDACLK/done            |
-| 6        | FDCE/Q          | None       | SLICE_X60Y29/AFF  | X1Y0         |           1 |               5 |              |       | pulse_gen_1_SDACLK/output_state_reg[1]/Q | pulse_gen_1_SDACLK/output_state[1] |
+| 0        | FDRE/Q          | None       | SLICE_X60Y29/A5FF | X1Y0         |           2 |               1 |              |       | adc_ctrl1/cnv_trig_out_reg/Q             | adc_ctrl1/dcn_trig_out             |
+| 1        | FDRE/Q          | None       | SLICE_X60Y29/CFF  | X1Y0         |           1 |               1 |              |       | adc_ctrl1/dsc_trig_out_reg/Q             | adc_ctrl1/data_ready               |
+| 2        | FDRE/Q          | None       | SLICE_X60Y29/B5FF | X1Y0         |           1 |               2 |              |       | adc_ctrl1/spi_clk_trig_out_reg/Q         | adc_ctrl1/spi_clk_trig_out         |
+| 3        | LDCE/Q          | None       | SLICE_X58Y29/AFF  | X1Y0         |           1 |               1 |              |       | i_outval_reg/Q                           | i_outval                           |
+| 4        | FDCE/Q          | None       | SLICE_X61Y27/AFF  | X1Y0         |           1 |               0 |              |       | pulse_gen_1_SDACLK/ACTIVE_reg/Q          | pulse_gen_1_SDACLK/ACTIVE          |
+| 5        | FDCE/Q          | None       | SLICE_X64Y28/DFF  | X1Y0         |           1 |               6 |              |       | pulse_gen_1_SDACLK/done_reg/Q            | pulse_gen_1_SDACLK/done            |
+| 6        | FDCE/Q          | None       | SLICE_X60Y28/AFF  | X1Y0         |           1 |               5 |              |       | pulse_gen_1_SDACLK/output_state_reg[1]/Q | pulse_gen_1_SDACLK/output_state[1] |
 +----------+-----------------+------------+-------------------+--------------+-------------+-----------------+--------------+-------+------------------------------------------+------------------------------------+
 * Local Clocks in this context represents only clocks driven by non-global buffers
 ** Clock Loads column represents cell count of net connects that connect to a clock pin. Internal cell leaf pins are not considered
@@ -95,7 +95,7 @@ Table of Contents
 | Clock Region Name | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 | X0Y0              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    1 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  1200 |    0 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
-| X1Y0              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   89 |  1500 |   25 |   450 |    0 |    40 |    0 |    20 |    0 |    20 |
+| X1Y0              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   89 |  1500 |   18 |   450 |    0 |    40 |    0 |    20 |    0 |    20 |
 | X0Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  1200 |    0 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
 | X1Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  1500 |    0 |   450 |    0 |    40 |    0 |    20 |    0 |    20 |
 | X0Y2              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  1800 |    0 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
