@@ -334,7 +334,7 @@ PLL_1 : clk_wiz_0
 
 PulseGen2 : pulse_gen_width_modulator_inverted
 Generic map(
-        NR_OF_CLKs => 4,  
+        NR_OF_CLKs => 5,  
         HIGH_TIME => 15, -- in ns, multiples of 5.
         LOW_TIME => 5   -- in ns, multiples of 5.  
 )

@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Nov  8 05:19:19 2024
-| Host         : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+| Date         : Fri Nov  8 15:52:43 2024
+| Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_drc -file sample_control_TOP_drc_routed.rpt -pb sample_control_TOP_drc_routed.pb -rpx sample_control_TOP_drc_routed.rpx
 | Design       : sample_control_TOP
 | Device       : xc7a35tcpg236-1
@@ -51,7 +51,7 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net IV_SAVER/o_pulse_out_OBUF is a gated clock net sourced by a combinational pin IV_SAVER/o_pulse_out_OBUF_inst_i_1/O, cell IV_SAVER/o_pulse_out_OBUF_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net IV_SAVER/CLK is a gated clock net sourced by a combinational pin IV_SAVER/o_pulse_out_OBUF_inst_i_1/O, cell IV_SAVER/o_pulse_out_OBUF_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning

@@ -544,6 +544,19 @@ int main(void)
 //	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
   while (1)
   {
+		for (int i = 0; i < 500; i++) {
+			CommPort.set.GetIOValue(&testVar);
+			if(testVar > 100) {
+				strcpy((char*)uartBuf, "----------------\r\n");
+				HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			}
+			sprintf(str, "%d\r\n", testVar);
+			strcpy((char*)uartBuf, str);
+			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			CommPort.set.PulseCLK();
+			ns_delay(1000);
+		}
+		HAL_Delay(1000);
 //	  CommPort.FetchData(&testVar, 65);
 //		sprintf(str, "%d\r\n", testVar);
 //		strcpy((char*)uartBuf, str);

@@ -65,8 +65,8 @@ signal ToExtMemLowByte : std_logic_vector(7 downto 0) := (others => '0');
 signal ToExtMemHighByte : std_logic_vector(7 downto 0) := (others => '0');
 signal MemAddress : std_logic_vector(18 downto 0) := (others => '0');
 
-type state_ext_mem_write is (WriteStep1, WriteStep2, WriteStep3, WriteStep4);
-type state_ext_mem_read is (ReadStep1, ReadStep2, ReadStep3, ReadStep4);
+type state_ext_mem_write is (WriteStep1, WriteStep2, WriteStep3, WriteStep4, WriteStep5);
+type state_ext_mem_read is (ReadStep1, ReadStep2, ReadStep3, ReadStep4, ReadStep5);
 signal s_write : state_ext_mem_write := WriteStep1;
 signal s_read : state_ext_mem_read := ReadStep1;
 begin
@@ -95,10 +95,13 @@ begin
             when WriteStep2 =>                
                 nWE <= '0'; --Enable write mode.
                 s_write <= WriteStep3;
-            when WriteStep3 => 
-                ExtMemDataToRam <= SampleByteToRam;--ToExtMemLowByte;--Set DATA to IO pins, low byte only for now
+            when WriteStep3 =>
+                --nWE <= '0'; --Enable write mode.
                 s_write <= WriteStep4;
-            when WriteStep4 =>
+            when WriteStep4 => 
+                ExtMemDataToRam <= SampleByteToRam;--ToExtMemLowByte;--Set DATA to IO pins, low byte only for now
+                s_write <= WriteStep5;
+            when WriteStep5 =>
                 nWE <= '1'; --Disable write mode. CLKs data into ram on rising edge of nWE.
                 s_write <= WriteStep1;
             end case;
@@ -106,15 +109,20 @@ begin
           case s_read is
              when ReadStep1 =>
                 nWE <= '1'; --Enable read mode.
-                ExtMemAdrToRam <= MemAddress;
+                nOE <= '0';
                 s_read <= ReadStep2;
+                
             when ReadStep2 =>
-                 nOE <= '0';
-                 s_read <= ReadStep3;                        
+                s_read <= ReadStep3;
+                ExtMemAdrToRam <= MemAddress;
             when ReadStep3 =>
+                 --nOE <= '0';
+                 
+                 s_read <= ReadStep4;                        
+            when ReadStep4 =>
                 --Skip CLK for timing.
-                s_read <= ReadStep4;
-            when ReadStep4 =>    
+                s_read <= ReadStep5;
+            when ReadStep5 =>    
                 --Data should be valid with correct CLK
                 SampleByteFromRam <= ExtMemDataFromRam;
                 nOE <= '1'; -- CLK data out on rising of nOE.

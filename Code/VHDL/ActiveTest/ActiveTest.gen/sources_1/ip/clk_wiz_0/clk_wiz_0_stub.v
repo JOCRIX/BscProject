@@ -2,8 +2,8 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Thu Nov  7 17:41:06 2024
-// Host        : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
+// Date        : Wed Nov  6 21:46:47 2024
+// Host        : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub -rename_top clk_wiz_0 -prefix
 //               clk_wiz_0_ clk_wiz_0_stub.v
 // Design      : clk_wiz_0

@@ -96,12 +96,12 @@ nRW_TO_EXT_MEM <= not RnW;
 --CLK to ext mem read write control.
 CLK_TO_EXT_MEM_READ_WRITE <= PulseInExtReadWrite;
 
-mem_ctrl_trigger : process (CLK_IVSAVER_TO_MEM_DIST, s_byte, i_reset) is
+mem_ctrl_trigger : process (CLK_IVSAVER_TO_MEM_DIST, s_byte, i_reset, resetVar) is
 begin
-    if((s_byte = FINISHED) or (i_reset = '1')) then
+    if((s_byte = FINISHED) or (i_reset = '1') or (resetVar = '1')) then
         start <= '0';
     elsif(rising_edge(CLK_IVSAVER_TO_MEM_DIST)) then
-    --Concatenate '000' with ADDR_IV_SAVER_TO_EXT_MEM_DIST for data bits 7..0 address
+        --Concatenate '000' with ADDR_IV_SAVER_TO_EXT_MEM_DIST for data bits 7..0 address
         ADDR_EXT_MEM_DIST_TO_EXT_MEM_LOWBYTE <= lowAddressbits & ADDR_IV_SAVER_TO_EXT_MEM_DIST; 
         --Concatenate '100' with ADDR_IV_SAVER_TO_EXT_MEM_DIST for data bits 15..8 address
         ADDR_EXT_MEM_DIST_TO_EXT_MEM_HIGHBYTE <= highAddressbits & ADDR_IV_SAVER_TO_EXT_MEM_DIST;
@@ -153,6 +153,7 @@ if(rising_edge(MASTER_CLK)) then
                     trig_pulse_byte2 <= '0';
                     s_byte <= BYTE1_STEP1;
                     STATE_OUT <= "101";
+                    resetVar <= '1';
                 end case;            
             else
                 case s_byte is
@@ -181,6 +182,7 @@ if(rising_edge(MASTER_CLK)) then
                     trig_pulse_byte2 <= '0';
                     s_byte <= BYTE1_STEP1;
                     STATE_OUT <= "101";
+                    resetVar <= '1';
                 end case;            
             end if;
         else
