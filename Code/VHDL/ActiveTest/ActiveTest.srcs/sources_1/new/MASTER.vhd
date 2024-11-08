@@ -39,7 +39,8 @@ entity sample_control_TOP is
   Port (
         i_COMM_CLK : in std_logic := '0';
         i_COMM_RW : in std_logic;
-        io_COMM_BUS : inout std_logic_vector(15 downto 0);   
+        io_COMM_BUS : inout std_logic_vector(15 downto 0); 
+--        o_COMM_BUS : out std_logic_vector(15 downto 0);  
         --i_DATA_ADC_TO_IVSA : in std_logic_vector(15 downto 0);
         i_ADC_DnB : in std_logic;
         i_ADC_RDY : in std_logic;
@@ -51,8 +52,8 @@ entity sample_control_TOP is
         o_Mem_nOE_ext : out std_logic;
         i_XCO : in std_logic;
         o_RUN_COUNT : out std_logic;
-        o_pulse_out : out std_logic
-
+        o_pulse_out : out std_logic;
+        o_ADDR : out std_logic_vector(15 downto 0)
   );
 end sample_control_TOP;
 
@@ -67,6 +68,18 @@ component comm_port
     TORAM : out std_logic
    );
 end component comm_port;
+
+component EXT_MEM_COMM is
+    Port ( 
+            i_CLK : in std_logic := '0';
+            o_CLK : out std_logic := '0';
+            i_DATA : in std_logic_vector(15 downto 0) := (others => '0');
+            o_DATA : out std_logic_vector (15 downto 0) := (others => '0');
+            o_ADDR : out std_logic_vector (15 downto 0) := (others => '0');
+            i_RESET : in std_logic := '0'            
+            );
+end component;
+
 
 component internal_ram
   Port (
@@ -109,18 +122,18 @@ component IV_SAMPLE_CTRL is
             );
 end component;
 
-component pulse_train_gen is
-generic( 
-        NR_OF_CLKs : integer := 4
-    );
-    port (
-        Trig_in : in std_logic := '0';
-        CLK_in : in std_logic := '0';
-        BUSY : out std_logic := '0';
-        Pulse_out : out std_logic := '0';
-        Pulse_complete : out std_logic := '0'
-    );
-end component pulse_train_gen;
+--component pulse_train_gen is
+--generic( 
+--        NR_OF_CLKs : integer := 4
+--    );
+--    port (
+--        Trig_in : in std_logic := '0';
+--        CLK_in : in std_logic := '0';
+--        BUSY : out std_logic := '0';
+--        Pulse_out : out std_logic := '0';
+--        Pulse_complete : out std_logic := '0'
+--    );
+--end component pulse_train_gen;
 
 component clk_wiz_0
     port(
@@ -146,7 +159,8 @@ component ExternalMemoryDistribution is
         DATA_EXT_MEM_TO_EXT_MEM_DIST   : in std_logic_vector(7 downto 0)  := (others => '0');
         DATA_EXT_MEM_TO_IVSAVER        : out std_logic_vector(15 downto 0) := (others => '0');
         CLK_TO_EXT_MEM_READ_WRITE      : out std_logic := '0';
-        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0')        
+        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0');
+        i_RESET : in std_logic     
    );
 end component ExternalMemoryDistribution;
 
@@ -175,6 +189,21 @@ component ExtMemReadWrite is
    );
 end component ExtMemReadWrite;
 
+
+component pulse_gen_width_modulator_inverted is
+Generic(
+        NR_OF_CLKs : integer := 4;  
+        HIGH_TIME : integer := 15; -- in ns, multiples of 5.
+        LOW_TIME : integer := 5   -- in ns, multiples of 5.  
+);
+Port (
+        MASTER_CLK_200MEG_IN : in std_logic := '0';
+        TRIGGER   : in std_logic := '0';
+        PULSE_OUT : out std_logic := '0';
+        ACTIVE : out std_logic := '0'
+      );
+end component;
+    
     
 --Internal signals
     signal TOPORT_internal : std_logic_vector(15 downto 0) := x"AAAA";
@@ -222,74 +251,64 @@ end component ExtMemReadWrite;
     signal w_test : std_logic := '0';
     
     signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
+    signal w_ADC_DnB_n : std_logic := '1';
     
-    signal count : integer range 0 to 20000 := 24;
+    signal count : natural range 0 to 20000 := 0;
     signal trigger : std_logic := '0';
     signal startCount : std_logic := '0';
     
-    signal count2 : integer range 0 to 10000 := 0;
+    signal count2 : natural range 0 to 20000 := 0;
     signal divOut : std_logic := '0';
---    signal IVDATACOUNT : integer range 0 to 20000 := 0;
+    signal dataCount : natural range 0 to 20000 := 0;
     signal countDone : std_logic := '0';
 begin
 
-process(i_XCO) is
+w_ADC_DnB_n <= not i_ADC_DnB;
+
+process(w_GRANDMASTER_CLK) is
 begin
-if(rising_edge(i_XCO)) then
-    count2 <= count2 +1;
-    if(count2 >= 120) then
-    count2 <= 0;
-    divOut <= not divOut;
+if(rising_edge(w_GRANDMASTER_CLK)) then
+    if(count2 >= 2500) then
+        count2 <= 0;
+        divOut <= not divOut;
+    else
+        count2 <= count2 +1;
     end if;
 end if;
 end process;
 
-process(i_ADC_RDY, divOut, startCount, count, countDone, trigger) is
+process(divOut, count) is
 begin
-    if(countDone = '1') then
-        startCount <= '0';
-    elsif(rising_edge(i_ADC_RDY)) then
-        startCount <= '1';
-    end if;
-    
-    if(rising_edge(divOut)) then
-        if (startCount = '1') then
-            count <= count + 1;
-            if (count >= 200) then
-                countDone <= '1';
-            else
-                countDone <= '0';
-            end if;
-        else
+    if(falling_edge(divOut)) then
+        if(count >= 100)then
             count <= 0;
-            countDone <= '0';
+        else
+            count <= count +1;
         end if;
     end if;
 end process;
 
-process(startCount, divOut) is
+w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
+
+process(w_ADC_DnB_n, divOut) is
 begin
-    if(startCount = '1') then
+    if(w_ADC_DnB_n = '0') then
         trigger <= divOut;
+    else
+        trigger <= '0';
     end if;
 end process;
 
-process(trigger, count, w_ADC_DATA_SIM) is
-begin
-    if(falling_edge(trigger)) then
-        w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
-    end if;
-end process;
         
           
 
---w_MEM_CLK <= not w_GRANDMASTER_CLK;
-w_MEM_CLK <= not i_XCO;
+w_MEM_CLK <= not w_GRANDMASTER_CLK;
+--w_MEM_CLK <= not i_XCO;
 o_pulse_out <= trigger;
 w_test <= not w_IO_BUF_CTRL;
 o_RUN_COUNT <= startCount;
 --buf <= i_DATA_ADC_TO_IVSA;
-
+o_ADDR <= w_DATA_MDIST_TO_IVSA;
 
 PLL_1 : clk_wiz_0
    port map ( 
@@ -299,17 +318,34 @@ PLL_1 : clk_wiz_0
    clk_in1 => i_XCO
  );
 
-PulseGen1 : pulse_train_gen 
+--PulseGen1 : pulse_train_gen 
+--Generic map(
+--    NR_OF_CLKs => 4
+--)
+--Port map(
+--    Trig_in => w_PulseGen1_trig_in,
+--    CLK_in => w_GRANDMASTER_CLK, -- 12 MHz crystal, can be configured for other clocks too.
+--    BUSY => w_PulseGen1_BUSY,
+--    Pulse_out => w_PulseGen1_pulse_out,
+--    Pulse_complete => w_PulseGen1_pulse_complete
+--);
+
+
+
+PulseGen2 : pulse_gen_width_modulator_inverted
 Generic map(
-    NR_OF_CLKs => 4
+        NR_OF_CLKs => 4,  
+        HIGH_TIME => 15, -- in ns, multiples of 5.
+        LOW_TIME => 5   -- in ns, multiples of 5.  
 )
-Port map(
-    Trig_in => w_PulseGen1_trig_in,
-    CLK_in => i_XCO, -- 12 MHz crystal, can be configured for other clocks too.
-    BUSY => w_PulseGen1_BUSY,
-    Pulse_out => w_PulseGen1_pulse_out,
-    Pulse_complete => w_PulseGen1_pulse_complete
-);
+Port map (
+        MASTER_CLK_200MEG_IN => w_GRANDMASTER_CLK,
+        TRIGGER   => w_PulseGen1_trig_in,
+        PULSE_OUT => w_PulseGen1_pulse_out,
+        ACTIVE => w_PulseGen1_BUSY
+      );
+
+
 
 
 gen_io_port_extRam : for index in 0 to 7 generate   --Output driver disabled når T = '1'. Aka vi vil læse med porten. 
@@ -363,13 +399,15 @@ MEM_DIST1 :ExternalMemoryDistribution
         RnW => w_RnW_IVSA_TO_MDIST,
         CLK_IVSAVER_TO_MEM_DIST => w_CLK_IVSA_TO_MDIST,
         ADDR_IV_SAVER_TO_EXT_MEM_DIST => w_ADDR_IVSA_TO_MDIST,
-        --DATA_IVSAVER_TO_EXT_MEM_DIST => w_DATA_IVSA_TO_MDIST,
-        DATA_IVSAVER_TO_EXT_MEM_DIST => w_ADC_DATA_SIM,
+        DATA_IVSAVER_TO_EXT_MEM_DIST => w_DATA_IVSA_TO_MDIST,
+        --DATA_IVSAVER_TO_EXT_MEM_DIST => w_ADC_DATA_SIM,
         DATA_EXT_MEM_TO_IVSAVER => w_DATA_MDIST_TO_IVSA,
         --Master clock
         MASTER_CLK => w_MEM_CLK,
         
-        STATE_OUT => w_MDIST_STATE        
+        STATE_OUT => w_MDIST_STATE,
+                
+        i_reset => i_ADC_RDY
         );
 
 
@@ -383,7 +421,7 @@ IV_SAVER : IV_SAMPLE_CTRL
         DATA_FROM_MEM_DIST_IN => w_DATA_MDIST_TO_IVSA,
         --DATA_FROM_MEM_DIST_IN => w_ADC_DATA_SIM,
                 
-        ADC_DnB => i_ADC_DnB,
+        ADC_DnB => w_ADC_DnB_n,
         --ADC_DATA_IN => i_DATA_ADC_TO_IVSA,
         ADC_DATA_IN => w_ADC_DATA_SIM,
         --ADC_DATA_RDY_IN => i_ADC_RDY,       
@@ -394,21 +432,32 @@ IV_SAVER : IV_SAMPLE_CTRL
         CLK_TO_MEM_DIST_OUT => w_CLK_IVSA_TO_MDIST
     );
 
-ram : internal_ram 
+--ram : internal_ram 
+--    port map(
+--    i_CLK => i_COMM_CLK,
+--    i_FSM_RESET => LOGIC_RESET_internal,
+--    i_RnW => i_COMM_RW,
+--    o_TOPORT => TOPORT_internal,
+--    i_TORAM => TORAM_internal,
+--    o_ADDR_TO_IVSA => w_ADDR_IMEM_TO_IVSA,
+--    i_DATA_FROM_IVSA => w_DATA_IVSA_TO_IMEM,
+--    --DATA_FROM_IV_SAVER => w_ADC_DATA_SIM,
+--    o_CLK_TO_IVSA => w_CLK_IMEM_TO_IVSA
+----    ADDR_TO_IV_SAVER => sig_IVSA_ADDR,
+----    DATA_FROM_IV_SAVER => IVSA_DATA,
+----    CLK_TO_IV_SAVER => CLK_TO_IVSA
+--);
+
+ext_ram : EXT_MEM_COMM 
     port map(
-    i_CLK => i_COMM_CLK,
-    i_FSM_RESET => LOGIC_RESET_internal,
-    i_RnW => i_COMM_RW,
-    o_TOPORT => TOPORT_internal,
-    i_TORAM => TORAM_internal,
-    o_ADDR_TO_IVSA => w_ADDR_IMEM_TO_IVSA,
-    i_DATA_FROM_IVSA => w_DATA_IVSA_TO_IMEM,
-    --DATA_FROM_IV_SAVER => w_ADC_DATA_SIM,
-    o_CLK_TO_IVSA => w_CLK_IMEM_TO_IVSA
---    ADDR_TO_IV_SAVER => sig_IVSA_ADDR,
---    DATA_FROM_IV_SAVER => IVSA_DATA,
---    CLK_TO_IV_SAVER => CLK_TO_IVSA
-);
+        i_CLK => i_COMM_CLK,
+        o_CLK => w_CLK_IMEM_TO_IVSA,
+        i_DATA => w_DATA_IVSA_TO_IMEM,
+        o_DATA => TOPORT_internal,
+        o_ADDR => w_ADDR_IMEM_TO_IVSA,
+        i_RESET => i_ADC_RDY
+        );
+
 
 
 logic_resetter : logic_reset
@@ -431,10 +480,3 @@ end generate gen_comm_port;
 
 
 end rtl;
-
-
-
-
-
-
-

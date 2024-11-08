@@ -32,74 +32,33 @@ use ieee.numeric_std.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity TestFile2 is
+entity internal_ram is
     Port ( 
-            i_XCO : in std_logic := '0';
-            i_ADC_RDY : in std_logic := '0'
+            i_CLK : in std_logic := '0';
+            o_CLK : out std_logic := '0';
+            i_DATA : in std_logic_vector(15 downto 0) := (others => '0');
+            o_DATA : out std_logic_vector (15 downto 0) := (others => '0');
+            o_ADDR : out std_logic_vector (15 downto 0) := (others => '0')
+            
             );
-end TestFile2;
+end internal_ram;
 
-architecture Behavioral of TestFile2 is
+architecture Behavioral of internal_ram is
 
-    signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
-    
-    signal count : integer range 0 to 20000 := 24;
-    signal trigger : std_logic := '0';
-    signal startCount : std_logic := '0';
-    
-    signal count2 : integer range 0 to 10000 := 0;
-    signal divOut : std_logic := '0';
---    signal IVDATACOUNT : integer range 0 to 20000 := 0;
-    signal countDone : std_logic := '0';
-
+signal r_ADDR_COUNT_u32 : natural range 0 to 20000 := 0;
 
 begin
-process(i_XCO) is
-begin
-if(rising_edge(i_XCO)) then
-    count2 <= count2 +1;
-    if(count2 >= 4) then
-    count2 <= 0;
-    divOut <= not divOut;
-    end if;
-end if;
-end process;
 
-process(i_ADC_RDY, divOut, startCount, count, countDone, trigger) is
-begin
-    if(countDone = '1') then
-        startCount <= '0';
-    elsif(rising_edge(i_ADC_RDY)) then
-        startCount <= '1';
-    end if;
-    
-    if(rising_edge(divOut)) then
-        if (startCount = '1') then
-            count <= count + 1;
-            if (count >= 10024) then
-                countDone <= '1';
-            else
-                countDone <= '0';
-            end if;
-        else
-            count <= 0;
-            countDone <= '0';
-        end if;
-    end if;
-end process;
+o_CLK <= i_CLK;
+o_DATA <= i_DATA;
 
-process(startCount, divOut) is
-begin
-    if(startCount = '1') then
-        trigger <= divOut;
-    end if;
-end process;
 
-process(trigger, count, w_ADC_DATA_SIM) is
+SET_ADDR : process(i_CLK) is
 begin
-    if(falling_edge(trigger)) then
-        w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
+    if(falling_edge(i_CLK)) then
+        r_ADDR_COUNT_u32 <= r_ADDR_COUNT_u32+1;
     end if;
+    o_ADDR <= std_logic_vector(to_unsigned(r_ADDR_COUNT_u32, o_ADDR'length));
 end process;
 
 

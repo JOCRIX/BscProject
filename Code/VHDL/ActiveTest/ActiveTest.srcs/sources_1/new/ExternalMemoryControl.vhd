@@ -48,7 +48,8 @@ entity ExternalMemoryDistribution is
         DATA_EXT_MEM_TO_EXT_MEM_DIST   : in std_logic_vector(7 downto 0)  := (others => '0');
         DATA_EXT_MEM_TO_IVSAVER        : out std_logic_vector(15 downto 0) := (others => '0');
         CLK_TO_EXT_MEM_READ_WRITE      : out std_logic := '0';
-        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0')
+        STATE_OUT : out std_logic_vector (2 downto 0) := (others => '0');
+        i_reset : in std_logic
    );
 end ExternalMemoryDistribution;
 
@@ -74,6 +75,11 @@ signal trig_pulse_byte2 : std_logic := '0';
 type byte_state is (BYTE1_STEP1, BYTE1_STEP2, RESET, BYTE2, FINISHED);
 signal s_byte : byte_state := BYTE1_STEP1;
 
+---
+signal resetVar : std_logic := '0';
+---
+
+
 begin
 --Load 8 LSb's from data going to RAM
 lowByte_To_EXT_MEM(7 downto 0) <= DATA_IVSAVER_TO_EXT_MEM_DIST (7 downto 0);
@@ -90,9 +96,9 @@ nRW_TO_EXT_MEM <= not RnW;
 --CLK to ext mem read write control.
 CLK_TO_EXT_MEM_READ_WRITE <= PulseInExtReadWrite;
 
-mem_ctrl_trigger : process (CLK_IVSAVER_TO_MEM_DIST, s_byte) is
+mem_ctrl_trigger : process (CLK_IVSAVER_TO_MEM_DIST, s_byte, i_reset) is
 begin
-    if(s_byte = FINISHED) then
+    if((s_byte = FINISHED) or (i_reset = '1')) then
         start <= '0';
     elsif(rising_edge(CLK_IVSAVER_TO_MEM_DIST)) then
     --Concatenate '000' with ADDR_IV_SAVER_TO_EXT_MEM_DIST for data bits 7..0 address
@@ -115,8 +121,10 @@ end process;
 mem_ctrl : process (start,PulseInExtReadWrite, MASTER_CLK, s_byte) is
 begin
 
-if(start = '1' or s_byte = FINISHED) then
-    if(rising_edge(MASTER_CLK)) then
+--if(start = '1' or s_byte = FINISHED) then
+--    if(rising_edge(MASTER_CLK)) then
+if(rising_edge(MASTER_CLK)) then
+    if(start = '1' or s_byte = FINISHED) then
         if(PulseExtMemCtrlGenBusy   = '0') then 
             if(RnW = write) then
                 case s_byte is
@@ -175,7 +183,12 @@ if(start = '1' or s_byte = FINISHED) then
                     STATE_OUT <= "101";
                 end case;            
             end if;
+        else
+            resetVar <= '0';
         end if;
+   else
+        resetVar <= '0'; 
+        s_byte <= BYTE1_STEP1;
    end if;
 end if;
 end process;

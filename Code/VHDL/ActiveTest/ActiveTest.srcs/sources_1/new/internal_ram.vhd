@@ -47,11 +47,11 @@ end internal_ram;
 
 architecture Behavioral of internal_ram is
 
-constant MAX_ADDR_u : integer range 0 to 65535 := 23;
+constant MAX_ADDR_u : natural range 0 to 65535 := 23;
 constant WRITE : std_logic := '0';
 constant READ : std_logic := '1';
 
-signal ADDR_u16 : integer range 0 to 65535 := 0;
+signal ADDR_u16 : natural range 0 to 65535 := 0;
 signal w_DATA_IVSA : std_logic_vector(15 downto 0) := (others => '0');
 signal w_DATA_EXT_MEM : std_logic_vector(15 downto 0) := (others => '0');
 signal w_DATA_INT_MEM : std_logic_vector(15 downto 0) := (others => '0');
