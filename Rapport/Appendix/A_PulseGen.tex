@@ -1,3 +1,11 @@
 \chapter{Pulse Generator Measurements} \label{App:PulseGenTest}
-It was necessary to make a more advanced version with absolute control over the pulse width of the pulses, as the first pulse of the simpler pulse generator in section \refq{subsec:Pulse_Generator} will sometimes make short, initial, pulses as it works entirely by gating the main clock and is subject to variations in pulsewidths depending on when, exactly, the generator is started relative to the main clock, this can cause violations of the LTC2311 timing. This variation in the pulse widths can be seen on figure xyz where the output of the simple pulse generator has been measured.
-%INDSÆT BILLEDE af perspective view
+The pulse generator module was tested on it's own to check if it will consistently generate pulses immediately following a trigger input. The whole code for this module can be found in appendix \refq{App:PulseGeneratorCode}. To do this an external 'trigger' input was added to the FPGA and and the 'active' and 'pulse' outputs were measured with an oscilloscope. The oscilloscope is a Rigol DHO924S and it was set to use one of it's 'deep memory' functions, called Ultra Acquire, in order to display several waveforms side by side. The pulse generator is set to produce exactly 6 pulses and the results of this can be seen on figure \refq{fig:A_PulseGen_Test}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 50 0 50, width=1\textwidth]{Appendix/Figures/A_PulseGen_Test.pdf}
+    \caption{An oscilloscope screenshot of the pulse generators 'trigger' input (cyan), active' output(blue) and 'pulse' output(red). The oscilloscope is using a deep memory 'ultra acquire' mode to display 20 consequtive readings in a 'mosaic' pattern.}
+    \label{fig:A_PulseGen_Test}
+\end{figure}
+
+As can be seen on figure \refq{fig:A_PulseGen_Test} the pulse generator will always generate the desired amount of pulses, however it can be seen that the 'pulses' and 'active' signals are not asserted in a uniform way relative to the trigger input. They are often delayed from the trigger input by several nano seconds. This can occur because the assertion of the pulse generator from appendix \refq{App:PulseGeneratorCode} happens asynchronously to the main clock input. The pulse generator is thus not suitable for applications that have tight timing requirements. 
