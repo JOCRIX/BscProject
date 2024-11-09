@@ -3,26 +3,26 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Nov  8 15:50:00 2024
-# Process ID: 8892
+# Start of session at: Sat Nov  9 01:53:56 2024
+# Process ID: 20436
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1
 # Command line: vivado.exe -log sample_control_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sample_control_TOP.tcl
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/sample_control_TOP.vds
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1\vivado.jou
-# Running On        :DESKTOP-26ONRPF
+# Running On        :DESKTOP-S99FO1K
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
-# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# Processor Detail  :12th Gen Intel(R) Core(TM) i5-12400F
 # CPU Frequency     :2496 MHz
-# CPU Physical cores:4
-# CPU Logical cores :4
-# Host memory       :8469 MB
-# Swap memory       :7247 MB
-# Total Virtual     :15717 MB
-# Available Virtual :5004 MB
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :34182 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39282 MB
+# Available Virtual :18926 MB
 #-----------------------------------------------------------
 source sample_control_TOP.tcl -notrace
-create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 504.918 ; gain = 196.938
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 513.016 ; gain = 201.469
 Command: read_checkpoint -auto_incremental -incremental C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/utils_1/imports/synth_1/sample_control_TOP.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/utils_1/imports/synth_1/sample_control_TOP.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -36,17 +36,17 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 13460
+INFO: [Synth 8-7075] Helper process launched with PID 4784
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1369.398 ; gain = 449.070
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1375.789 ; gain = 447.383
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'sample_control_TOP' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:60]
-INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-8892-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'PLL_1' of component 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:313]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-8892-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:14]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-20436-DESKTOP-S99FO1K/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'PLL_1' of component 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:355]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/.Xil/Vivado-20436-DESKTOP-S99FO1K/realtime/clk_wiz_0_stub.vhdl:14]
 	Parameter NR_OF_CLKs bound to: 5 - type: integer 
 	Parameter HIGH_TIME bound to: 15 - type: integer 
 	Parameter LOW_TIME bound to: 5 - type: integer 
-INFO: [Synth 8-3491] module 'pulse_gen_width_modulator_inverted' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/PulseGenV2.vhd:35' bound to instance 'PulseGen2' of component 'pulse_gen_width_modulator_inverted' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:335]
+INFO: [Synth 8-3491] module 'pulse_gen_width_modulator_inverted' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/PulseGenV2.vhd:35' bound to instance 'PulseGen2' of component 'pulse_gen_width_modulator_inverted' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:377]
 INFO: [Synth 8-638] synthesizing module 'pulse_gen_width_modulator_inverted' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/PulseGenV2.vhd:49]
 	Parameter NR_OF_CLKs bound to: 5 - type: integer 
 	Parameter HIGH_TIME bound to: 15 - type: integer 
@@ -55,84 +55,85 @@ INFO: [Synth 8-256] done synthesizing module 'pulse_gen_width_modulator_inverted
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
 	Parameter DRIVE bound to: 12 - type: integer 
 	Parameter IOSTANDARD bound to: DEFAULT - type: string 
 	Parameter SLEW bound to: SLOW - type: string 
-INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:352]
-INFO: [Synth 8-3491] module 'ExtMemReadWrite' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ext_mem_read_write.vhd:34' bound to instance 'EXT_MEM_RW1' of component 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:367]
-INFO: [Synth 8-638] synthesizing module 'ExtMemReadWrite' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ext_mem_read_write.vhd:59]
-INFO: [Synth 8-256] done synthesizing module 'ExtMemReadWrite' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ext_mem_read_write.vhd:59]
-INFO: [Synth 8-3491] module 'ExternalMemoryDistribution' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemoryControl.vhd:34' bound to instance 'MEM_DIST1' of component 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:385]
-INFO: [Synth 8-638] synthesizing module 'ExternalMemoryDistribution' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemoryControl.vhd:56]
-INFO: [Synth 8-256] done synthesizing module 'ExternalMemoryDistribution' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemoryControl.vhd:56]
-INFO: [Synth 8-3491] module 'IV_SAMPLE_CTRL' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:35' bound to instance 'IV_SAVER' of component 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:415]
+INFO: [Synth 8-113] binding component instance 'IOBUF_inst' to cell 'IOBUF' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:394]
+INFO: [Synth 8-3491] module 'EXT_MEM_RW20' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_RW20.vhd:34' bound to instance 'ext_memRW' of component 'EXT_MEM_RW20' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:455]
+INFO: [Synth 8-638] synthesizing module 'EXT_MEM_RW20' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_RW20.vhd:56]
+INFO: [Synth 8-256] done synthesizing module 'EXT_MEM_RW20' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_RW20.vhd:56]
+INFO: [Synth 8-3491] module 'ExternalMemDist20' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemDist20.vhd:34' bound to instance 'MEM_DIST1' of component 'ExternalMemDist20' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:484]
+INFO: [Synth 8-638] synthesizing module 'ExternalMemDist20' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemDist20.vhd:52]
+INFO: [Synth 8-256] done synthesizing module 'ExternalMemDist20' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemDist20.vhd:52]
+INFO: [Synth 8-3491] module 'IV_SAMPLE_CTRL' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:35' bound to instance 'IV_SAVER' of component 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:501]
 INFO: [Synth 8-638] synthesizing module 'IV_SAMPLE_CTRL' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:55]
 INFO: [Synth 8-256] done synthesizing module 'IV_SAMPLE_CTRL' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/IV_SAMPLE_CTRL.vhd:55]
-INFO: [Synth 8-3491] module 'EXT_MEM_COMM' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_COMM.vhd:35' bound to instance 'ext_ram' of component 'EXT_MEM_COMM' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:451]
+INFO: [Synth 8-3491] module 'EXT_MEM_COMM' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_COMM.vhd:35' bound to instance 'ext_ram' of component 'EXT_MEM_COMM' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:537]
 INFO: [Synth 8-638] synthesizing module 'EXT_MEM_COMM' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_COMM.vhd:47]
 INFO: [Synth 8-256] done synthesizing module 'EXT_MEM_COMM' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_COMM.vhd:47]
-INFO: [Synth 8-3491] module 'logic_reset' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:34' bound to instance 'logic_resetter' of component 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:463]
+INFO: [Synth 8-3491] module 'logic_reset' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:34' bound to instance 'logic_resetter' of component 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:549]
 INFO: [Synth 8-638] synthesizing module 'logic_reset' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:42]
 INFO: [Synth 8-256] done synthesizing module 'logic_reset' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/logic_reset.vhd:42]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
 INFO: [Synth 8-638] synthesizing module 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:49]
 INFO: [Synth 8-256] done synthesizing module 'comm_port' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:49]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
-INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:471]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
+INFO: [Synth 8-3491] module 'comm_port' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:40' bound to instance 'commport' of component 'comm_port' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:557]
 INFO: [Synth 8-256] done synthesizing module 'sample_control_TOP' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/MASTER.vhd:60]
-WARNING: [Synth 8-3917] design sample_control_TOP has port o_RUN_COUNT driven by constant 0
-WARNING: [Synth 8-7129] Port PulseCompleteExtReadWrite in module ExternalMemoryDistribution is either unconnected or has no load
+WARNING: [Synth 8-6014] Unused sequential element count_u16_reg was removed.  [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_RW20.vhd:100]
+WARNING: [Synth 8-6014] Unused sequential element w_IDLE_reg was removed.  [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/EXT_MEM_RW20.vhd:111]
+WARNING: [Synth 8-6014] Unused sequential element w_IDLE_reg was removed.  [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/ExternalMemDist20.vhd:173]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1486.363 ; gain = 566.035
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1493.258 ; gain = 564.852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1486.363 ; gain = 566.035
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1493.258 ; gain = 564.852
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1486.363 ; gain = 566.035
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1493.258 ; gain = 564.852
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1486.363 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1493.258 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -152,23 +153,23 @@ Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTes
 Finished Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1585.980 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1589.438 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 8 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1585.980 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1589.438 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -177,42 +178,9 @@ Applied set_property IO_BUFFER_TYPE = NONE for i_XCO. (constraint file  c:/Users
 Applied set_property CLOCK_BUFFER_TYPE = NONE for i_XCO. (constraint file  c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
 Applied set_property KEEP_HIERARCHY = SOFT for PLL_1. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 's_write_reg' in module 'ExtMemReadWrite'
-INFO: [Synth 8-802] inferred FSM for state register 's_read_reg' in module 'ExtMemReadWrite'
-INFO: [Synth 8-802] inferred FSM for state register 's_byte_reg' in module 'ExternalMemoryDistribution'
 INFO: [Synth 8-802] inferred FSM for state register 's_reset_reg' in module 'logic_reset'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-               readstep1 |                            00001 |                              000
-               readstep2 |                            00010 |                              001
-               readstep3 |                            00100 |                              010
-               readstep4 |                            01000 |                              011
-               readstep5 |                            10000 |                              100
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 's_read_reg' using encoding 'one-hot' in module 'ExtMemReadWrite'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-              writestep1 |                            00001 |                              000
-              writestep2 |                            00010 |                              001
-              writestep3 |                            00100 |                              010
-              writestep4 |                            01000 |                              011
-              writestep5 |                            10000 |                              100
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 's_write_reg' using encoding 'one-hot' in module 'ExtMemReadWrite'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-             byte1_step1 |                            00001 |                              000
-             byte1_step2 |                            00010 |                              001
-                   reset |                            00100 |                              010
-                   byte2 |                            01000 |                              011
-                finished |                            10000 |                              100
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 's_byte_reg' using encoding 'one-hot' in module 'ExternalMemoryDistribution'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -225,37 +193,37 @@ INFO: [Synth 8-3354] encoded FSM with state register 's_reset_reg' using encodin
 WARNING: [Synth 8-327] inferring latch for variable 'TORAM_reg' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:65]
 WARNING: [Synth 8-327] inferring latch for variable 'IO_reg' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/new/comm_port.vhd:60]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input   16 Bit       Adders := 2     
 	   2 Input   15 Bit       Adders := 1     
-	   2 Input    7 Bit       Adders := 1     
-+---XORs : 
-	   2 Input      1 Bit         XORs := 1     
 +---Registers : 
-	               19 Bit    Registers := 3     
-	               16 Bit    Registers := 1     
+	               19 Bit    Registers := 2     
 	               15 Bit    Registers := 1     
 	                8 Bit    Registers := 5     
-	                7 Bit    Registers := 1     
-	                3 Bit    Registers := 1     
-	                1 Bit    Registers := 19    
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 21    
 +---Muxes : 
-	   5 Input   19 Bit        Muxes := 1     
+	   2 Input   19 Bit        Muxes := 2     
+	   8 Input   19 Bit        Muxes := 1     
+	  12 Input   19 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 3     
 	   2 Input   15 Bit        Muxes := 2     
-	   5 Input    8 Bit        Muxes := 1     
-	   5 Input    3 Bit        Muxes := 3     
-	   2 Input    3 Bit        Muxes := 4     
+	   2 Input    8 Bit        Muxes := 1     
+	   8 Input    8 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	   8 Input    4 Bit        Muxes := 1     
 	   4 Input    2 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 29    
+	   2 Input    1 Bit        Muxes := 40    
 	   3 Input    1 Bit        Muxes := 1     
-	   5 Input    1 Bit        Muxes := 5     
+	   8 Input    1 Bit        Muxes := 7     
+	  12 Input    1 Bit        Muxes := 8     
 	   4 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -274,7 +242,6 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-3917] design sample_control_TOP has port o_Mem_nCE_ext driven by constant 0
-WARNING: [Synth 8-3917] design sample_control_TOP has port o_RUN_COUNT driven by constant 0
 WARNING: [Synth 8-3332] Sequential element (logic_resetter/FSM_sequential_s_reset_reg[1]) is unused and will be removed from module sample_control_TOP.
 WARNING: [Synth 8-3332] Sequential element (logic_resetter/FSM_sequential_s_reset_reg[0]) is unused and will be removed from module sample_control_TOP.
 WARNING: [Synth 8-3332] Sequential element (gen_comm_port[0].commport/TORAM_reg) is unused and will be removed from module sample_control_TOP.
@@ -295,25 +262,25 @@ WARNING: [Synth 8-3332] Sequential element (gen_comm_port[14].commport/TORAM_reg
 WARNING: [Synth 8-3332] Sequential element (gen_comm_port[15].commport/TORAM_reg) is unused and will be removed from module sample_control_TOP.
 WARNING: [Synth 8-3332] Sequential element (gen_comm_port[15].commport/IO_reg) is unused and will be removed from module sample_control_TOP.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -331,37 +298,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -379,17 +346,17 @@ Report Cell Usage:
 |      |Cell           |Count |
 +------+---------------+------+
 |1     |clk_wiz_0_bbox |     1|
-|2     |BUFG           |     4|
-|3     |CARRY4         |    19|
-|4     |LUT1           |    25|
-|5     |LUT2           |    16|
-|6     |LUT3           |    57|
-|7     |LUT4           |    11|
-|8     |LUT5           |    15|
-|9     |LUT6           |    14|
-|10    |FDCE           |    21|
-|11    |FDRE           |   152|
-|12    |FDSE           |    23|
+|2     |BUFG           |     2|
+|3     |CARRY4         |    29|
+|4     |LUT1           |    31|
+|5     |LUT2           |    14|
+|6     |LUT3           |    39|
+|7     |LUT4           |    14|
+|8     |LUT5           |    12|
+|9     |LUT6           |    19|
+|10    |FDCE           |    17|
+|11    |FDRE           |   136|
+|12    |FDSE           |    14|
 |13    |LD             |    16|
 |14    |IBUF           |     4|
 |15    |IOBUF          |     8|
@@ -397,29 +364,29 @@ Report Cell Usage:
 |17    |OBUFT          |    16|
 +------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 24 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:40 . Memory (MB): peak = 1585.980 ; gain = 566.035
-Synthesis Optimization Complete : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1585.980 ; gain = 665.652
+Synthesis finished with 0 errors, 0 critical warnings and 23 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:20 . Memory (MB): peak = 1589.438 ; gain = 564.852
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1589.438 ; gain = 661.031
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1585.980 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 43 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1589.438 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 53 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1585.980 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1589.438 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 24 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 8 instances
   LD => LDCE: 16 instances
 
-Synth Design complete | Checksum: 884cd580
+Synth Design complete | Checksum: a50b4c62
 INFO: [Common 17-83] Releasing license: Synthesis
-80 Infos, 29 Warnings, 0 Critical Warnings and 0 Errors encountered.
+74 Infos, 29 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:52 . Memory (MB): peak = 1585.980 ; gain = 1067.523
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1585.980 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1589.438 ; gain = 1062.680
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1589.438 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/synth_1/sample_control_TOP.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file sample_control_TOP_utilization_synth.rpt -pb sample_control_TOP_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Nov  8 15:51:08 2024...
+INFO: [Common 17-206] Exiting Vivado at Sat Nov  9 01:54:30 2024...

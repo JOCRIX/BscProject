@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Fri Nov  8 15:52:45 2024
-| Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
+| Date             : Sat Nov  9 01:55:33 2024
+| Host             : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
 | Command          : report_power -file sample_control_TOP_power_routed.rpt -pb sample_control_TOP_power_summary_routed.pb -rpx sample_control_TOP_power_routed.rpx
 | Design           : sample_control_TOP
 | Device           : xc7a35tcpg236-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.218        |
+| Total On-Chip Power (W)  | 0.200        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.146        |
+| Dynamic (W)              | 0.128        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 83.9         |
-| Junction Temperature (C) | 26.1         |
+| Max Ambient (C)          | 84.0         |
+| Junction Temperature (C) | 26.0         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,18 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.003 |        5 |       --- |             --- |
-| Slice Logic    |    <0.001 |      389 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       99 |     20800 |            0.48 |
-|   Register     |    <0.001 |      214 |     41600 |            0.51 |
-|   CARRY4       |    <0.001 |       19 |      8150 |            0.23 |
-|   BUFG         |    <0.001 |        3 |        32 |            9.38 |
-|   Others       |     0.000 |       15 |       --- |             --- |
-| Signals        |     0.001 |      345 |       --- |             --- |
+| Clocks         |     0.002 |        5 |       --- |             --- |
+| Slice Logic    |    <0.001 |      381 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      106 |     20800 |            0.51 |
+|   CARRY4       |    <0.001 |       29 |      8150 |            0.36 |
+|   Register     |    <0.001 |      199 |     41600 |            0.48 |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   Others       |     0.000 |       14 |       --- |             --- |
+| Signals        |     0.001 |      380 |       --- |             --- |
 | MMCM           |     0.104 |        1 |         5 |           20.00 |
-| I/O            |     0.036 |       69 |       106 |           65.09 |
+| I/O            |     0.020 |       69 |       106 |           65.09 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.218 |          |           |                 |
+| Total          |     0.200 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,9 +73,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.016 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.072 |       0.059 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.011 |       0.010 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.014 |       0.005 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.071 |       0.059 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.007 |       0.006 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -144,15 +144,19 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| sample_control_TOP                 |     0.146 |
-|   MEM_DIST1                        |     0.002 |
+| sample_control_TOP                 |     0.128 |
+|   MEM_DIST1                        |     0.001 |
 |   PLL_1                            |     0.105 |
 |     inst                           |     0.105 |
-|   PulseGen2                        |     0.002 |
-|   gen_io_port_extRam[0].IOBUF_inst |     0.006 |
+|   ext_memRW                        |     0.001 |
+|   gen_io_port_extRam[0].IOBUF_inst |     0.001 |
 |   gen_io_port_extRam[1].IOBUF_inst |     0.003 |
-|   gen_io_port_extRam[2].IOBUF_inst |     0.001 |
-|   gen_io_port_extRam[6].IOBUF_inst |     0.001 |
+|   gen_io_port_extRam[2].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[3].IOBUF_inst |     0.002 |
+|   gen_io_port_extRam[4].IOBUF_inst |     0.002 |
+|   gen_io_port_extRam[5].IOBUF_inst |     0.002 |
+|   gen_io_port_extRam[6].IOBUF_inst |     0.002 |
+|   gen_io_port_extRam[7].IOBUF_inst |     0.002 |
 +------------------------------------+-----------+
 
 

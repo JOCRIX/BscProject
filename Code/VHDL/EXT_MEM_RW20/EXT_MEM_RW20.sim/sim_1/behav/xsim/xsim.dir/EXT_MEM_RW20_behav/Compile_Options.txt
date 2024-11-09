@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "EXT_MEM_RW20_behav" "xil_defaultlib.EXT_MEM_RW20" -log "elaborate.log" 

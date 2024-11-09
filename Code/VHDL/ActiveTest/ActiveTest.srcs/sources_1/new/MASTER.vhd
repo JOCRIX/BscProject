@@ -203,8 +203,48 @@ Port (
         ACTIVE : out std_logic := '0'
       );
 end component;
+
+component EXT_MEM_RW20 is
+    Port (
+        i_DATA : in std_logic_vector(7 downto 0);
+        o_DATA : out std_logic_vector(7 downto 0);
+        o_DATA_TO_ERAM : out std_logic_vector(7 downto 0);
+        i_DATA_FR_ERAM : in std_logic_vector(7 downto 0);
+        i_RnW : in std_logic := '0' ;
+        i_ADDR : std_logic_vector(18 downto 0);
+        i_RESET : std_logic;
+        
+        o_ADDR_TO_ERAM : out std_logic_vector(18 downto 0);
+        i_EN : in std_logic := '0' ;
+        i_CLK : in std_logic := '0';
+        o_nCE : out std_logic := '0';
+        o_nOE : out std_logic := '1';
+        o_nWE : out std_logic := '1';
+        
+        o_IO_BUF_CTRL : out std_logic;
+        o_ACTIVE : out std_logic := '0'
     
-    
+    );
+end component;
+
+component ExternalMemDist20 is
+    port (
+        i_CLK : in std_logic;  --Master CLK input
+        i_DATA : in std_logic_vector(15 downto 0);  --16 bit input data that is to be split
+        i_ADDR : in std_logic_vector(15 downto 0);  --16 bit input ADDR.
+        o_ADDR : out std_logic_vector(18 downto 0); --Output 19 bit ADDR to ext mem.
+        o_DATA_EMEM : out std_logic_vector(7 downto 0); --Output 8 bit data to ext mem.
+        i_DATA_EMEM : in std_logic_vector(7 downto 0); --input 8 bit data from ext mem.
+        o_DATA : out std_logic_vector(15 downto 0); --output 16 bit concatenated from two 8 bit registers
+        i_SET : in std_logic := '0'; --Trigger sequence to Write/Read
+        o_SET : out std_logic := '0'; --Output set, triggering next block sequence.
+        i_HOLD : in std_logic := '0'; --Input HOLD, FSM will not proceed when high.
+        i_RnW : in std_logic := '0'; -- Input to control Read or Write data
+        o_RnW : out std_logic; -- Output to control to read or write data.
+        i_RESET : in std_logic := '0' --Reset, simply resets logic.
+    );
+end component;
+
 --Internal signals
     signal TOPORT_internal : std_logic_vector(15 downto 0) := x"AAAA";
     signal TORAM_internal : std_logic_vector(15 downto 0):= x"AAAA"; 
@@ -223,7 +263,7 @@ end component;
     signal w_CLK_IVSA_TO_MDIST : std_logic := '0';
     
     --MDIST and EMEMRW wires
-    signal w_nRW_MDIST_TO_EMEMRW : std_logic := '0';
+    signal w_RnW_MDIST_TO_EMEMRW : std_logic := '0';
     signal w_ADDR_MDIST_TO_EMEMRW : std_logic_vector(18 downto 0) := (others => '0');
     signal w_DATA_MDIST_TO_EMEMRW : std_logic_vector(7 downto 0) := (others => '0');
     signal w_DATA_EMEMRW_TO_MDIST : std_logic_vector(7 downto 0) := (others => '0');
@@ -238,6 +278,8 @@ end component;
     signal w_PulseGen1_BUSY : std_logic := '0';
     signal w_PulseGen1_Pulse_out : std_logic := '0';
     signal w_PulseGen1_pulse_complete : std_logic := '0';
+
+    signal w_EMEMRW_HOLD : std_logic := '0';
 
     -- MISC
     signal w_MDIST_STATE : std_logic_vector (2 downto 0) := (others => '0');
@@ -280,10 +322,10 @@ end process;
 process(divOut, count) is
 begin
     if(falling_edge(divOut)) then
-        if(count >= 100)then
-            count <= 0;
+        if(count <= 0)then
+            count <= 255;
         else
-            count <= count +1;
+            count <= count -1;
         end if;
     end if;
 end process;
@@ -306,7 +348,7 @@ w_MEM_CLK <= not w_GRANDMASTER_CLK;
 --w_MEM_CLK <= not i_XCO;
 o_pulse_out <= trigger;
 w_test <= not w_IO_BUF_CTRL;
-o_RUN_COUNT <= startCount;
+
 --buf <= i_DATA_ADC_TO_IVSA;
 o_ADDR <= w_DATA_MDIST_TO_IVSA;
 
@@ -364,53 +406,97 @@ gen_io_port_extRam : for index in 0 to 7 generate   --Output driver disabled nå
    -- End of IOBUF_inst instantiation
 end generate gen_io_port_extRam; 
 
-EXT_MEM_RW1 : ExtMemReadWrite
-    port map (
-        --To external memory
-        ExtMemDataToRam => w_DATA_EMEMRW_TO_EMEM,
-        ExtMemDataFromRam => w_DATA_EMEM_TO_EMEMRW,
-        ExtMemAdrToRam => o_Mem_Addr_ext,
-        nCE => o_Mem_nCE_ext,
-        nOE => o_Mem_nOE_ext,
-        nWE => o_Mem_nWE_ext, 
-        IO_BUF_CTRL => w_IO_BUF_CTRL,
-        --From memory distribution
-        SampleByteToRam => w_DATA_MDIST_TO_EMEMRW,
-        SampleByteFromRam => w_DATA_EMEMRW_TO_MDIST,
-        SampleRW => w_nRW_MDIST_TO_EMEMRW,
-        SampleAddr => w_ADDR_MDIST_TO_EMEMRW,
-        CLK => w_CLK_MDIST_TO_EMEMRW
-        );
+--EXT_MEM_RW1 : ExtMemReadWrite
+--    port map (
+--        --To external memory
+--        ExtMemDataToRam => w_DATA_EMEMRW_TO_EMEM,
+--        ExtMemDataFromRam => w_DATA_EMEM_TO_EMEMRW,
+--        ExtMemAdrToRam => o_Mem_Addr_ext,
+--        nCE => o_Mem_nCE_ext,
+--        nOE => o_Mem_nOE_ext,
+--        nWE => o_Mem_nWE_ext, 
+--        IO_BUF_CTRL => w_IO_BUF_CTRL,
+--        --From memory distribution
+--        SampleByteToRam => w_DATA_MDIST_TO_EMEMRW,
+--        SampleByteFromRam => w_DATA_EMEMRW_TO_MDIST,
+--        SampleRW => w_nRW_MDIST_TO_EMEMRW,
+--        SampleAddr => w_ADDR_MDIST_TO_EMEMRW,
+--        CLK => w_CLK_MDIST_TO_EMEMRW
+--        );
 
-MEM_DIST1 :ExternalMemoryDistribution
-    port map (
-        --Memory Distribution to and  from External Memory Read Write control
-        DATA_EXT_MEM_DIST_TO_EXT_MEM => w_DATA_MDIST_TO_EMEMRW,
-        DATA_EXT_MEM_TO_EXT_MEM_DIST => w_DATA_EMEMRW_TO_MDIST,
-        nRW_TO_EXT_MEM => w_nRW_MDIST_TO_EMEMRW,
-        ADDR_EXT_MEM_DIST_TO_EXT_MEM => w_ADDR_MDIST_TO_EMEMRW,
-        CLK_TO_EXT_MEM_READ_WRITE => w_CLK_MDIST_TO_EMEMRW,
-        --Memory Distribution to and from pulse generator:
-        PulseExtReadWriteTrigger => w_PulseGen1_trig_in,
-        PulseExtMemCtrlGenBusy => w_PulseGen1_BUSY,
-        PulseInExtReadWrite => w_PulseGen1_pulse_out,
-        PulseCompleteExtReadWrite => w_PulseGen1_pulse_complete,
-        --IV Saver to and from Memory Distribution:
-        RnW => w_RnW_IVSA_TO_MDIST,
-        CLK_IVSAVER_TO_MEM_DIST => w_CLK_IVSA_TO_MDIST,
-        ADDR_IV_SAVER_TO_EXT_MEM_DIST => w_ADDR_IVSA_TO_MDIST,
-        DATA_IVSAVER_TO_EXT_MEM_DIST => w_DATA_IVSA_TO_MDIST,
-        --DATA_IVSAVER_TO_EXT_MEM_DIST => w_ADC_DATA_SIM,
-        DATA_EXT_MEM_TO_IVSAVER => w_DATA_MDIST_TO_IVSA,
-        --Master clock
-        MASTER_CLK => w_MEM_CLK,
+--MEM_DIST1 :ExternalMemoryDistribution
+--    port map (
+--        --Memory Distribution to and  from External Memory Read Write control
+--        DATA_EXT_MEM_DIST_TO_EXT_MEM => w_DATA_MDIST_TO_EMEMRW,
+--        DATA_EXT_MEM_TO_EXT_MEM_DIST => w_DATA_EMEMRW_TO_MDIST,
+--        nRW_TO_EXT_MEM => w_nRW_MDIST_TO_EMEMRW,
+--        ADDR_EXT_MEM_DIST_TO_EXT_MEM => w_ADDR_MDIST_TO_EMEMRW,
+--        CLK_TO_EXT_MEM_READ_WRITE => w_CLK_MDIST_TO_EMEMRW,
+--        --Memory Distribution to and from pulse generator:
+--        PulseExtReadWriteTrigger => w_PulseGen1_trig_in,
+--        PulseExtMemCtrlGenBusy => w_PulseGen1_BUSY,
+--        PulseInExtReadWrite => w_PulseGen1_pulse_out,
+--        PulseCompleteExtReadWrite => w_PulseGen1_pulse_complete,
+--        --IV Saver to and from Memory Distribution:
+--        RnW => w_RnW_IVSA_TO_MDIST,
+--        CLK_IVSAVER_TO_MEM_DIST => w_CLK_IVSA_TO_MDIST,
+--        ADDR_IV_SAVER_TO_EXT_MEM_DIST => w_ADDR_IVSA_TO_MDIST,
+--        DATA_IVSAVER_TO_EXT_MEM_DIST => w_DATA_IVSA_TO_MDIST,
+--        --DATA_IVSAVER_TO_EXT_MEM_DIST => w_ADC_DATA_SIM,
+--        DATA_EXT_MEM_TO_IVSAVER => w_DATA_MDIST_TO_IVSA,
+--        --Master clock
+--        MASTER_CLK => w_MEM_CLK,
         
-        STATE_OUT => w_MDIST_STATE,
+--        STATE_OUT => w_MDIST_STATE,
                 
-        i_reset => i_ADC_RDY
-        );
+--        i_reset => i_ADC_RDY
+--        );
 
+ext_memRW : EXT_MEM_RW20
+    port map(
+        i_DATA => w_DATA_MDIST_TO_EMEMRW,
+        o_DATA  => w_DATA_EMEMRW_TO_MDIST,
+        o_DATA_TO_ERAM => w_DATA_EMEMRW_TO_EMEM,
+        i_DATA_FR_ERAM => w_DATA_EMEM_TO_EMEMRW,
+        i_RnW => w_RnW_MDIST_TO_EMEMRW,
+        i_ADDR => w_ADDR_MDIST_TO_EMEMRW,
+        i_RESET => i_ADC_RDY,
+        
+        o_ADDR_TO_ERAM => o_Mem_Addr_ext,
+        i_EN => w_CLK_MDIST_TO_EMEMRW,
+        i_CLK => w_GRANDMASTER_CLK,
+        o_nCE => o_Mem_nCE_ext,
+        o_nOE => o_Mem_nOE_ext,
+        o_nWE => o_Mem_nWE_ext,
+        
+        o_IO_BUF_CTRL => w_IO_BUF_CTRL,
+        o_ACTIVE => w_EMEMRW_HOLD
+    );
 
+--w_DATA_MDIST_TO_EMEMRW <= w_DATA_IVSA_TO_MDIST(7 downto 0);
+--w_DATA_MDIST_TO_IVSA <= x"00" & w_DATA_EMEMRW_TO_MDIST;
+--w_RnW_MDIST_TO_EMEMRW <= w_RnW_IVSA_TO_MDIST;
+--w_ADDR_MDIST_TO_EMEMRW <= "000" & w_ADDR_IVSA_TO_MDIST;
+--w_CLK_MDIST_TO_EMEMRW <= w_CLK_IVSA_TO_MDIST;
+
+o_RUN_COUNT <= w_EMEMRW_HOLD;
+
+MEM_DIST1 : ExternalMemDist20
+    port map (
+        i_CLK => w_GRANDMASTER_CLK, --Master CLK input
+        i_DATA => w_DATA_IVSA_TO_MDIST,  --16 bit input data that is to be split
+        i_ADDR => w_ADDR_IVSA_TO_MDIST,  --16 bit input ADDR.
+        o_ADDR => w_ADDR_MDIST_TO_EMEMRW, --Output 19 bit ADDR to ext mem.
+        o_DATA_EMEM => w_DATA_MDIST_TO_EMEMRW, --Output 8 bit data to ext mem.
+        i_DATA_EMEM => w_DATA_EMEMRW_TO_MDIST, --input 8 bit data from ext mem.
+        o_DATA => w_DATA_MDIST_TO_IVSA, --output 16 bit concatenated from two 8 bit registers
+        i_SET => w_CLK_IVSA_TO_MDIST, --Trigger sequence to Write/Read
+        o_SET => w_CLK_MDIST_TO_EMEMRW, --Output set, triggering next block sequence.
+        i_HOLD => w_EMEMRW_HOLD, --Input HOLD, FSM will not proceed when high.
+        i_RnW  => w_RnW_IVSA_TO_MDIST, -- Input to control Read or Write data
+        o_RnW => w_RnW_MDIST_TO_EMEMRW, -- Output to control to read or write data.
+        i_RESET => i_ADC_RDY --Reset, simply resets logic.
+    );
 
 IV_SAVER : IV_SAMPLE_CTRL
     port map (
