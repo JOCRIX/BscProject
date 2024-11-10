@@ -42,6 +42,7 @@ entity sample_control_TOP is
         io_COMM_BUS : inout std_logic_vector(15 downto 0); 
 --        o_COMM_BUS : out std_logic_vector(15 downto 0);  
         --i_DATA_ADC_TO_IVSA : in std_logic_vector(15 downto 0);
+        i_SAMPLE_F : in std_logic_vector(15 downto 0);
         i_ADC_DnB : in std_logic;
         i_ADC_RDY : in std_logic;
         
@@ -53,11 +54,13 @@ entity sample_control_TOP is
         i_XCO : in std_logic;
         o_RUN_COUNT : out std_logic;
         o_pulse_out : out std_logic;
-        o_ADDR : out std_logic_vector(15 downto 0)
+        o_EMEM_HOLD : out std_logic
   );
 end sample_control_TOP;
 
 architecture rtl of sample_control_TOP is
+
+
 
 --Component declarations
 component comm_port
@@ -76,7 +79,7 @@ component EXT_MEM_COMM is
             i_DATA : in std_logic_vector(15 downto 0) := (others => '0');
             o_DATA : out std_logic_vector (15 downto 0) := (others => '0');
             o_ADDR : out std_logic_vector (15 downto 0) := (others => '0');
-            i_RESET : in std_logic := '0'            
+            i_RESET : in std_logic := '0'
             );
 end component;
 
@@ -118,7 +121,8 @@ component IV_SAMPLE_CTRL is
             DATA_TO_MEM_DIST_OUT : out STD_LOGIC_VECTOR (15 downto 0);
             ADDR_TO_MEM_DIST_OUT : out STD_LOGIC_VECTOR (15 downto 0);
             RnW_TO_MEM_DIST_OUT : out STD_LOGIC;
-            CLK_TO_MEM_DIST_OUT : out STD_LOGIC
+            CLK_TO_MEM_DIST_OUT : out STD_LOGIC;
+            i_RESET : in std_logic := '0'
             );
 end component;
 
@@ -241,7 +245,8 @@ component ExternalMemDist20 is
         i_HOLD : in std_logic := '0'; --Input HOLD, FSM will not proceed when high.
         i_RnW : in std_logic := '0'; -- Input to control Read or Write data
         o_RnW : out std_logic; -- Output to control to read or write data.
-        i_RESET : in std_logic := '0' --Reset, simply resets logic.
+        i_RESET : in std_logic := '0'; --Reset, simply resets logic.
+        o_ACTIVE : out std_logic := '0'
     );
 end component;
 
@@ -295,22 +300,28 @@ end component;
     signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
     signal w_ADC_DnB_n : std_logic := '1';
     
-    signal count : natural range 0 to 20000 := 0;
+    signal count : integer range 0 to 65535 := 0;
     signal trigger : std_logic := '0';
-    signal startCount : std_logic := '0';
+    signal init : std_logic := '0';
     
-    signal count2 : natural range 0 to 20000 := 0;
+    signal count2 : integer range 0 to 65535 := 0;
     signal divOut : std_logic := '0';
-    signal dataCount : natural range 0 to 20000 := 0;
+    signal dataCount : integer range 0 to 65535 := 0;
     signal countDone : std_logic := '0';
+    signal CMPLT : std_logic := '0';
+    signal arm : std_logic := '0';
+    
+    signal SAMPLE_F_u16 : integer range 0 to 65535 := 0;
 begin
 
-w_ADC_DnB_n <= not i_ADC_DnB;
+SAMPLE_F_u16 <= TO_INTEGER(unsigned(i_SAMPLE_F));
 
+--w_ADC_DnB_n <= not i_ADC_DnB;
+w_ADC_DnB_n <= not arm;
 process(w_GRANDMASTER_CLK) is
 begin
 if(rising_edge(w_GRANDMASTER_CLK)) then
-    if(count2 >= 2500) then
+    if(count2 >= SAMPLE_F_u16) then
         count2 <= 0;
         divOut <= not divOut;
     else
@@ -319,38 +330,87 @@ if(rising_edge(w_GRANDMASTER_CLK)) then
 end if;
 end process;
 
-process(divOut, count) is
+
+
+process(init, divOut, i_ADC_RDY) is
 begin
-    if(falling_edge(divOut)) then
-        if(count <= 0)then
-            count <= 255;
+    if(init <= '0' or i_ADC_RDY = '1') then
+        CMPLT <= '0';
+        count <= 0;
+    elsif(falling_edge(divOut)) then
+        if(count >= 255) then
+            CMPLT <= '1';
         else
-            count <= count -1;
+            count <= count +1;
         end if;
     end if;
 end process;
-
 w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
 
-process(w_ADC_DnB_n, divOut) is
+
+MUX_ADC_TRIGGER : process(init) is
 begin
-    if(w_ADC_DnB_n = '0') then
+    if(init = '1') then
         trigger <= divOut;
     else
         trigger <= '0';
     end if;
 end process;
 
-        
-          
+ARM_ADC : process(i_ADC_DnB, CMPLT) is
+begin
+    if(CMPLT = '1') then
+        arm <= '0';
+    elsif(rising_edge(i_ADC_DnB)) then
+        arm <= '1';
+    end if;
+end process;
 
+SETTLE_MEM : process(w_GRANDMASTER_CLK, arm) is
+    variable v_Count : natural range 0 to 1000 := 0;
+begin
+    if(rising_edge(w_GRANDMASTER_CLK)) then
+        if(arm = '1') then
+            if(v_Count >=100) then
+                init <= '1';
+            else
+                v_Count := v_Count +1;
+            end if;
+        else
+            v_Count := 0;
+            init <= '0';
+        end if;
+    end if;            
+end process;
+
+
+          
+--w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
+--w_ADC_DATA_SIM <= x"AAAA";
+
+
+
+
+--process(w_ADC_DnB_n) is
+--begin
+--    if (w_ADC_DnB_n = '0') then
+--        trigger <= divOut;
+--    else
+--        trigger <= '0';
+--    end if;
+--end process;
+
+
+        
+         
 w_MEM_CLK <= not w_GRANDMASTER_CLK;
 --w_MEM_CLK <= not i_XCO;
-o_pulse_out <= trigger;
+--o_pulse_out <= trigger;
+o_pulse_out <= arm;
 w_test <= not w_IO_BUF_CTRL;
 
 --buf <= i_DATA_ADC_TO_IVSA;
-o_ADDR <= w_DATA_MDIST_TO_IVSA;
+
 
 PLL_1 : clk_wiz_0
    port map ( 
@@ -479,7 +539,9 @@ ext_memRW : EXT_MEM_RW20
 --w_ADDR_MDIST_TO_EMEMRW <= "000" & w_ADDR_IVSA_TO_MDIST;
 --w_CLK_MDIST_TO_EMEMRW <= w_CLK_IVSA_TO_MDIST;
 
-o_RUN_COUNT <= w_EMEMRW_HOLD;
+o_EMEM_HOLD <= w_EMEMRW_HOLD;
+
+
 
 MEM_DIST1 : ExternalMemDist20
     port map (
@@ -495,8 +557,10 @@ MEM_DIST1 : ExternalMemDist20
         i_HOLD => w_EMEMRW_HOLD, --Input HOLD, FSM will not proceed when high.
         i_RnW  => w_RnW_IVSA_TO_MDIST, -- Input to control Read or Write data
         o_RnW => w_RnW_MDIST_TO_EMEMRW, -- Output to control to read or write data.
-        i_RESET => i_ADC_RDY --Reset, simply resets logic.
+        i_RESET => i_ADC_RDY, --Reset, simply resets logic.
+        o_ACTIVE => o_RUN_COUNT
     );
+    
 
 IV_SAVER : IV_SAMPLE_CTRL
     port map (
@@ -515,7 +579,8 @@ IV_SAVER : IV_SAMPLE_CTRL
         DATA_TO_MEM_DIST_OUT => w_DATA_IVSA_TO_MDIST,
         ADDR_TO_MEM_DIST_OUT => w_ADDR_IVSA_TO_MDIST,
         RnW_TO_MEM_DIST_OUT => w_RnW_IVSA_TO_MDIST,
-        CLK_TO_MEM_DIST_OUT => w_CLK_IVSA_TO_MDIST
+        CLK_TO_MEM_DIST_OUT => w_CLK_IVSA_TO_MDIST,
+        i_RESET => i_ADC_RDY
     );
 
 --ram : internal_ram 
@@ -543,8 +608,6 @@ ext_ram : EXT_MEM_COMM
         o_ADDR => w_ADDR_IMEM_TO_IVSA,
         i_RESET => i_ADC_RDY
         );
-
-
 
 logic_resetter : logic_reset
     port map(

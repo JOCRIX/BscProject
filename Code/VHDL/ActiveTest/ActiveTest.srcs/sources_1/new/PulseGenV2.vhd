@@ -62,6 +62,7 @@ signal done : std_logic := '0';
 signal gen_1_pulse : std_logic := '0';
 
 
+
 signal output_state : std_logic_vector(1 downto 0) := "00"; --(2) = Triggered, (1) Done,
 --signal PULSE_CLKS_GENERATED : std_logic := '0';
 type toggle_output is (HIGH, LOW);

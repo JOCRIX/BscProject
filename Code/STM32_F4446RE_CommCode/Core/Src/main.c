@@ -246,9 +246,9 @@ int8_t PulseCLK(void) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
-		ns_delay(500);
+		ns_delay(1);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, TRUE);
-		ns_delay(500);
+		ns_delay(1);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
 		return(status);
 	}
@@ -390,6 +390,7 @@ int main(void)
 
 	uint8_t uartBuf[16];
 	uint16_t testVar = 0;
+	uint16_t testVar2 = 0;
 	char str[16];
 	char strAddr[16];
   /* USER CODE END 1 */
@@ -420,24 +421,31 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
+CommPort.set.SetRnW(READ);
+CommPort.set.SetIOMode(READ);
 
-
+  HAL_GPIO_WritePin(GPIOA, RESET_SYS_Pin, 0);
 //  CommPort.set.PulseCLK();
-  HAL_Delay(10);
+  HAL_Delay(100);
+  HAL_GPIO_WritePin(GPIOA, RESET_SYS_Pin, 1);
+  HAL_Delay(100);
+  HAL_GPIO_WritePin(GPIOA, RESET_SYS_Pin, 0);
+  HAL_Delay(100);
 
 //
+  testVar2 = 0;
 
-  	CommPort.set.SetRnW(READ);
-	CommPort.set.SetIOMode(READ);
-
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i <= 255; i++) {
+		CommPort.set.PulseCLK();
 		CommPort.set.GetIOValue(&testVar);
-		sprintf(str, "%d\r\n", testVar);
+		testVar2 = testVar - testVar2;
+		sprintf(str, "%d\r\n", (testVar2));
 		strcpy((char*)uartBuf, str);
 		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-		CommPort.set.PulseCLK();
-		ns_delay(1000);
+		testVar2 = testVar;
+		ns_delay(100);
 	}
+
 //	CommPort.ResetComm();
 //	HAL_Delay(10);
 
@@ -544,19 +552,22 @@ int main(void)
 //	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
   while (1)
   {
-		for (int i = 0; i < 10; i++) {
-			CommPort.set.GetIOValue(&testVar);
-			if(testVar > 255) {
-				strcpy((char*)uartBuf, "----------------\r\n");
-				HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-			}
-			sprintf(str, "%d\r\n", testVar);
-			strcpy((char*)uartBuf, str);
-			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-			CommPort.set.PulseCLK();
-			ns_delay(1);
-		}
-		HAL_Delay(500);
+//		for (int i = 0; i < 100; i++) {
+//			CommPort.set.GetIOValue(&testVar);
+////			if(testVar > 255) {
+////				strcpy((char*)uartBuf, "----------------\r\n");
+////				HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+////			}
+//			sprintf(str, "%d\r\n", testVar);
+//			strcpy((char*)uartBuf, str);
+//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//			CommPort.set.PulseCLK();
+//			ns_delay(1000);
+//		}
+//		HAL_Delay(100);
+
+
+
 //	  CommPort.FetchData(&testVar, 65);
 //		sprintf(str, "%d\r\n", testVar);
 //		strcpy((char*)uartBuf, str);
@@ -671,7 +682,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 2000000;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -711,7 +722,7 @@ static void MX_GPIO_Init(void)
                           |TimerPin_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LD2_Pin|RESET_SYS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, DB0_Pin|DB1_Pin|DB2_Pin|DB3_Pin
@@ -735,12 +746,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LD2_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin;
+  /*Configure GPIO pins : LD2_Pin RESET_SYS_Pin */
+  GPIO_InitStruct.Pin = LD2_Pin|RESET_SYS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DB0_Pin DB1_Pin DB2_Pin DB3_Pin
                            DB4_Pin DB5_Pin DB6_Pin DB7_Pin

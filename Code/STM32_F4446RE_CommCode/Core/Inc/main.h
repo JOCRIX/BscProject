@@ -91,6 +91,8 @@ void Error_Handler(void);
 #define DB_CLK_GPIO_Port GPIOC
 #define Test_Input_Pin GPIO_PIN_8
 #define Test_Input_GPIO_Port GPIOA
+#define RESET_SYS_Pin GPIO_PIN_9
+#define RESET_SYS_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

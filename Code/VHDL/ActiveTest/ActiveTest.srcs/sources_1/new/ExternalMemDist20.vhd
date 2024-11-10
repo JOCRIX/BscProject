@@ -45,7 +45,8 @@ entity ExternalMemDist20 is
         i_HOLD : in std_logic := '0'; --Input HOLD, FSM will not proceed when high.
         i_RnW : in std_logic := '0'; -- Input to control Read or Write data
         o_RnW : out std_logic; -- Output to control to read or write data.
-        i_RESET : in std_logic := '0' --Reset, simply resets logic.
+        i_RESET : in std_logic := '0'; --Reset, simply resets logic.
+        o_ACTIVE : out std_logic := '0' --Indicates when this block is bussy
     );
 end ExternalMemDist20;
 
@@ -66,39 +67,68 @@ constant HOLD : std_logic := '1';
 constant RUN : std_logic := '1';                    --Indicate when to run
 constant CMPLT : std_logic := '1';                  --Indicate then sequenctiel logic is complete i.e. CMPLT
 
-signal count_u16 : natural range 0 to 65535 := 0;
+signal count_u16 : integer range 0 to 65535 := 0;
 signal w_RUN : std_logic := '0';
 signal w_CMPLT : std_Logic := '0';
 signal w_IDLE : std_logic := '0';
 
 type byte_state is (S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, SEQ_CMPLT);
 signal s_byte : byte_state := S1;
-
+signal w_init : std_logic := '0';
 
 begin
 
+
+
+o_RnW <= i_RnW;
+--o_DATA <= w_iHiBYTE & w_iLoBYTE;
+o_ACTIVE <= w_RUN or w_CMPLT;
 w_LoBYTE <= i_DATA(7 downto 0);
 w_HiBYTE <= i_DATA(15 downto 8);
 w_LoADDR <= "000" & i_ADDR;
 w_HiADDR <= "100" & i_ADDR;
 
-o_RnW <= i_RnW;
-o_DATA <= w_iHiBYTE & w_iLoBYTE;
 
 Initialize : process(W_CMPLT, i_SET, i_RESET) is
 begin
     if(w_CMPLT = CMPLT or i_RESET = '1') then
         w_RUN <= '0';
+        
     elsif(rising_edge(i_SET)) then
         w_RUN <= RUN;
     end if;
 end process;
 
+--arm : process(w_CMPLT, i_SET, i_RESET, i_CLK) is
+--begin
+--    if((i_RESET = '1') or (w_CMPLT = CMPLT)) then
+--        w_init <= '0';
+--    elsif(rising_edge(i_SET)) then
+--        w_init <= '1';
+--    end if;
+--end process;
+
+--Initialize : process(W_CMPLT, w_init, i_RESET, i_CLK) is
+--begin
+--    if(rising_edge(i_CLK)) then
+--        if(w_CMPLT = CMPLT or i_RESET = '1') then
+--            w_RUN <= '0';
+--        elsif(w_init = '1') then
+--            w_RUN <= RUN;
+----            w_LoBYTE <= i_DATA(7 downto 0);
+----            w_HiBYTE <= i_DATA(15 downto 8);
+----            w_LoADDR <= "000" & i_ADDR;
+----            w_HiADDR <= "100" & i_ADDR;
+--        end if;
+--    end if;
+    
+--end process;
+
 
 DistributeDATA : process(i_RnW, i_CLK, w_RUN, i_HOLD, s_byte) is
-variable v_Count : natural range 0 to 65535 := 0;
+variable v_Count : natural range 0 to 100 := 0;
 begin
-    if(rising_edge(i_CLK)) then
+    if(rising_edge (i_CLK)) then
         if(w_RUN = RUN) then
             if (i_HOLD /= HOLD) then
                 if(i_RnW = WRITE) then
@@ -108,25 +138,25 @@ begin
                             o_DATA_EMEM <= w_LoBYTE;
                             s_byte <= S2;
                         when S2 =>
-                            s_byte <= S3;
+                            v_Count := v_Count +1;
+                            if(v_Count > 6) then
+                                s_byte <= S3;
+                                o_SET <= '1';
+                                v_Count := 0;
+                            else
+                            end if;
                         when S3 =>
-                            o_SET <= '1';
-                            s_byte <= S4;
-                        when S4 =>
-                            s_byte <= S5;
-                        when S5 => 
                             o_SET <= '0';
                             o_ADDR <= w_HiADDR;
                             o_DATA_EMEM <= w_HiBYTE;
-                            s_byte <= S6;
-                        when S6 =>
+                            s_byte <= S4;
+                        when S4 =>
                             v_Count := v_Count +1;
-                            if(v_Count > 2) then
-                                s_byte <= S7;
+                            if(v_Count > 6) then
+                                s_BYTE <= SEQ_CMPLT;
+                                o_SET <= '1';
+                                v_Count := 0;
                             end if;
-                        when S7 =>
-                            o_SET <= '1';
-                            s_BYTE <= SEQ_CMPLT;
                         when others =>
                             w_CMPLT <= '1';
                     end case;
@@ -134,37 +164,45 @@ begin
                     CASE s_byte is
                         when S1 =>
                             o_ADDR <= w_LoADDR;
-                            s_byte <= S2;
+                            if (v_Count > 1) then
+                               s_byte <= S2;
+                               v_Count := 0;
+                            else
+                                v_Count := v_Count +1;
+                            end if;
                         when S2 =>
-                            s_byte <= S3;
-                        when S3 =>
                             o_SET <= '1';
+                            if(v_Count > 1) then                                
+                                s_byte <= S3;
+                                v_Count := 0;
+                            else
+                                v_Count := v_Count +1;
+                            end if;
+                        when S3 =>
+                            w_iLoBYTE <= i_DATA_EMEM;
                             s_byte <= S4;
                         when S4 =>
+                            o_SET <= '0';
                             s_byte <= S5;
                         when S5 =>
-                            o_SET <= '0';
-                            w_iLoBYTE <= i_DATA_EMEM;
-                            s_byte <= S6;
+                            o_ADDR <= w_HiADDR;
+                            if(v_Count > 1) then
+                                s_byte <= S6;
+                                v_Count := 0;
+                            else
+                                v_Count := v_Count +1;
+                            end if;
                         when S6 =>
-                            v_Count := v_Count +1; 
-                            if(v_Count > 2) then
+                            o_SET <= '1';
+                            if(v_Count > 1) then
                                 s_byte <= S7;
+                                v_Count := 0;
+                            else
+                                v_Count := v_Count +1;
                             end if;
                         when S7 =>
-                            o_ADDR <= w_HiADDR;
-                            s_byte <= S8;
-                        when S8 =>
-                            s_byte <= S9;
-                        when S9 =>
-                            o_SET <= '1';
-                            s_byte <= S10;
-                        when S10 =>
-                            s_byte <= S11;
-                        when S11 =>
-                            o_SET <= '0';
-                            w_iHiBYTE <= i_DATA_EMEM;
-                            s_BYTE <= SEQ_CMPLT;
+                                o_DATA <= i_DATA_EMEM & w_iLoBYTE;
+                                s_BYTE <= SEQ_CMPLT;
                         when others =>
                             w_CMPLT <= '1';
                         end case;
@@ -181,8 +219,6 @@ begin
     end if;
 end process;
         
-
-
 end Behavioral;
 
 

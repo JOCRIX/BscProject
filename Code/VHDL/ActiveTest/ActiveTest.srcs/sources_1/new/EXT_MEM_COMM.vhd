@@ -40,28 +40,27 @@ entity EXT_MEM_COMM is
             o_DATA : out std_logic_vector (15 downto 0) := (others => '0');
             o_ADDR : out std_logic_vector (15 downto 0) := (others => '0');
             i_RESET : in std_logic := '0'
-            
             );
 end EXT_MEM_COMM;
 
 architecture Behavioral of EXT_MEM_COMM is
 
-signal r_ADDR_COUNT_u32 : natural range 0 to 20000 := 0;
+signal r_ADDR_COUNT_u32 : integer range 0 to 65535 := 0;
 
 begin
 
 o_CLK <= i_CLK;
 o_DATA <= i_DATA;
+o_ADDR <= std_logic_vector(to_unsigned(r_ADDR_COUNT_u32, o_ADDR'length));
 
-
-SET_ADDR : process(i_CLK, r_ADDR_COUNT_u32, i_RESET) is
+SET_ADDR : process(i_CLK, i_RESET) is
 begin
     if(i_RESET = '1') then
         r_ADDR_COUNT_u32 <= 0;
     elsif(falling_edge(i_CLK)) then
         r_ADDR_COUNT_u32 <= r_ADDR_COUNT_u32+1;
     end if;
-    o_ADDR <= std_logic_vector(to_unsigned(r_ADDR_COUNT_u32, o_ADDR'length));
+
 end process;
 
 

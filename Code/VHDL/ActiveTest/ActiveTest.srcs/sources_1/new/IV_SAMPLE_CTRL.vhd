@@ -48,7 +48,8 @@ entity IV_SAMPLE_CTRL is
             DATA_TO_MEM_DIST_OUT : out STD_LOGIC_VECTOR (15 downto 0);
             ADDR_TO_MEM_DIST_OUT : out STD_LOGIC_VECTOR (15 downto 0);
             RnW_TO_MEM_DIST_OUT : out STD_LOGIC;
-            CLK_TO_MEM_DIST_OUT : out STD_LOGIC
+            CLK_TO_MEM_DIST_OUT : out STD_LOGIC;
+            i_RESET : in std_logic := '0'
             );
 end IV_SAMPLE_CTRL;
 
@@ -56,7 +57,7 @@ architecture Behavioral of IV_SAMPLE_CTRL is
     constant MAX_ADDR_DATA : integer := 15;
     signal sig_ADC_ADDR : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
     signal sig_ADC_DATA : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
-    signal sample_count : natural range 0 to 30000 := 0;
+    signal sample_count : integer range 0 to 65535 := 0;
     signal sig_ADC_CLK_to_mem_dist : std_logic := '0';
     signal sig_RnW_to_mem_dist_out : STD_LOGIC := '0';
     
@@ -90,17 +91,15 @@ begin
     end if;
 end process;
 
-ADDR_COUNT_sample_mode: process(ADC_DnB, ADC_DATA_RDY_IN, sample_count)
+ADDR_COUNT_sample_mode: process(i_RESET, ADC_DATA_RDY_IN, sample_count)
 begin
-    if(falling_edge(ADC_DATA_RDY_IN)) then
-        if (ADC_DnB = '0') then
-            if (sample_count <= 20000) then
-                sample_count <= sample_count + 1;
-            else
-                sample_count <= 20000;
-            end if;
+    if(i_RESET = '1') then
+        sample_count <= 0;
+    elsif(falling_edge(ADC_DATA_RDY_IN)) then
+        if (sample_count <= 40000) then
+            sample_count <= sample_count + 1;
         else
-            sample_count <= 0;
+            sample_count <= 65535;
         end if;
     end if;
 end process;
