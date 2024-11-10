@@ -257,7 +257,7 @@ pulse_gen_4_DSC : pulse_width_gen
 
 process(i_MASTER_CLK_TO_ADC_CONTROL) is
 begin
-    if(i_counter >= 1999) then--500) then --counter var 99 for 1MS/s
+    if(i_counter >= 99) then--1999) then--500) then --counter var 99 for 1MS/s
         i_counter <= 0;
         i_outval <= not i_outval;
     elsif(rising_edge(i_MASTER_CLK_TO_ADC_CONTROL)) then

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Sun Nov 10 20:31:07 2024
+| Date             : Sun Nov 10 20:46:09 2024
 | Host             : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command          : report_power -file ADC_CONTROL_TOP_power_routed.rpt -pb ADC_CONTROL_TOP_power_summary_routed.pb -rpx ADC_CONTROL_TOP_power_routed.rpx
 | Design           : ADC_CONTROL_TOP
@@ -53,12 +53,12 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        5 |       --- |             --- |
-| Slice Logic    |     0.001 |      227 |       --- |             --- |
-|   LUT as Logic |     0.001 |       62 |     20800 |            0.30 |
+| Slice Logic    |     0.001 |      228 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       62 |     20800 |            0.30 |
 |   Register     |    <0.001 |      116 |     41600 |            0.28 |
 |   CARRY4       |    <0.001 |        8 |      8150 |            0.10 |
 |   Others       |     0.000 |       15 |       --- |             --- |
-| Signals        |     0.001 |      171 |       --- |             --- |
+| Signals        |    <0.001 |      183 |       --- |             --- |
 | MMCM           |     0.104 |        1 |         5 |           20.00 |
 | I/O            |     0.005 |       21 |       106 |           19.81 |
 | Static Power   |     0.071 |          |           |                 |

@@ -1,0 +1,2 @@
+Målt ved 1MHz clock FRQ (1MS/s). Delay er sat til 20ms det betyder at vi kigger på den 20000'inde waveform. 
+Jitter er så lille at det dårligt kan måles.

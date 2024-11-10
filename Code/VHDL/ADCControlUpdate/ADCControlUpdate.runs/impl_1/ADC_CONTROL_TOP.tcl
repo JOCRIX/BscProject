@@ -104,9 +104,7 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param tcl.statsThreshold 360
   set_param chipscope.maxJobs 6
-  set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 24  }
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
@@ -122,7 +120,7 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.runs/synth_1/ADC_CONTROL_TOP.dcp}}
-  read_ip -quiet {{f:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci}}
+  read_ip -quiet {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci}}
 OPTRACE "read constraints: implementation" START { }
   read_xdc {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc}}
 OPTRACE "read constraints: implementation" END { }
