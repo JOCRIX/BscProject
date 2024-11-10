@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log TOP.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source TOP.tcl
+EAStep vivado -log pulse_gen_width_modulator_inverted.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source pulse_gen_width_modulator_inverted.tcl

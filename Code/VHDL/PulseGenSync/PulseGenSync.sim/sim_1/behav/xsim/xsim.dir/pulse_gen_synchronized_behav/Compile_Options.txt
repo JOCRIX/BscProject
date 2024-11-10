@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "pulse_gen_synchronized_behav" "xil_defaultlib.pulse_gen_synchronized" -log "elaborate.log" 

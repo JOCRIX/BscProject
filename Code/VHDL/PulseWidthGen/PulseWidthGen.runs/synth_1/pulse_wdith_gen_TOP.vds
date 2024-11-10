@@ -1,0 +1,255 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Sun Nov 10 01:53:39 2024
+# Process ID: 12992
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.runs/synth_1
+# Command line: vivado.exe -log pulse_wdith_gen_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pulse_wdith_gen_TOP.tcl
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.runs/synth_1/pulse_wdith_gen_TOP.vds
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39212 MB
+# Available Virtual :17977 MB
+#-----------------------------------------------------------
+source pulse_wdith_gen_TOP.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/utils_1/imports/synth_1/pulse_width_gen.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/utils_1/imports/synth_1/pulse_width_gen.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top pulse_wdith_gen_TOP -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 3964
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1392.680 ; gain = 448.383
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'pulse_wdith_gen_TOP' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_wdith_gen_TOP.vhd:43]
+	Parameter width bound to: 40 - type: integer 
+INFO: [Synth 8-3491] module 'pulse_width_gen' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:34' bound to instance 'pulsegen' of component 'pulse_width_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_wdith_gen_TOP.vhd:72]
+INFO: [Synth 8-638] synthesizing module 'pulse_width_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:46]
+	Parameter width bound to: 40 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'pulse_width_gen' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:46]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.runs/synth_1/.Xil/Vivado-12992-DESKTOP-DNC9NIR/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'your_instance_name' of component 'clk_wiz_0' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_wdith_gen_TOP.vhd:84]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.runs/synth_1/.Xil/Vivado-12992-DESKTOP-DNC9NIR/realtime/clk_wiz_0_stub.vhdl:14]
+INFO: [Synth 8-256] done synthesizing module 'pulse_wdith_gen_TOP' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_wdith_gen_TOP.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1503.516 ; gain = 559.219
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1503.516 ; gain = 559.219
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1503.516 ; gain = 559.219
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1503.516 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [f:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'your_instance_name'
+Finished Parsing XDC File [f:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'your_instance_name'
+Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
+WARNING: [Vivado 12-507] No nets matched 'E_TRIGGER_OUT_OBUF'. [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:144]
+WARNING: [Vivado 12-584] No ports matched 'o_pulse'. [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:146]
+WARNING: [Vivado 12-584] No ports matched 'o_trigger'. [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:147]
+WARNING: [Vivado 12-584] No ports matched 'i_master_clk'. [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:148]
+WARNING: [Vivado 12-584] No ports matched 'i_trigger'. [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:149]
+WARNING: [Vivado 12-584] No ports matched 'o_pulse'. [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:150]
+WARNING: [Vivado 12-584] No ports matched 'o_trigger'. [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc:151]
+Finished Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/pulse_wdith_gen_TOP_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/pulse_wdith_gen_TOP_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/pulse_wdith_gen_TOP_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1578.723 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1578.723 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for E_MASTER_CLK. (constraint file  {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for E_MASTER_CLK. (constraint file  {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
+Applied set_property KEEP_HIERARCHY = SOFT for your_instance_name. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    4 Bit       Adders := 1     
++---Registers : 
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+---------------+------+
+|      |Cell           |Count |
++------+---------------+------+
+|1     |clk_wiz_0_bbox |     1|
+|2     |BUFG           |     1|
+|3     |LUT1           |     1|
+|4     |LUT2           |     2|
+|5     |LUT3           |     1|
+|6     |LUT4           |     2|
+|7     |FDCE           |     1|
+|8     |FDRE           |     6|
+|9     |IBUF           |     1|
+|10    |OBUF           |     2|
++------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 1578.723 ; gain = 559.219
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1578.723 ; gain = 634.426
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1578.723 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1578.723 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: a476bc50
+INFO: [Common 17-83] Releasing license: Synthesis
+27 Infos, 9 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1578.723 ; gain = 1035.711
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1578.723 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/PulseWidthGen/PulseWidthGen.runs/synth_1/pulse_wdith_gen_TOP.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file pulse_wdith_gen_TOP_utilization_synth.rpt -pb pulse_wdith_gen_TOP_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Nov 10 01:54:04 2024...

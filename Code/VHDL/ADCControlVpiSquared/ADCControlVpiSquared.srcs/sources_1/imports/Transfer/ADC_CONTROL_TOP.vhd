@@ -182,13 +182,13 @@ end component;
 
 begin
 --Simulation stuff
---i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
+i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
 --i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
 
 --test CNV
---i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
+i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
 
-i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN<= i_outval;
+--i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN<= i_outval;
 
 --Test
 --EXT_DCN_OUT <= i_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
@@ -291,13 +291,13 @@ pulse_gen_4_45ns_DSC : pulse_train_gen -- Must be clocked with 200MHz
       
 --200MHz CLK(50% DC) and 20MHz(48.3% DC) CLK
 
-     master_of_clk : clk_wiz_0
-   port map ( 
-  -- Clock out ports  
-   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
-   -- Clock in ports
-   clk_in1 =>MASTER_CLK_IN
- ); 
+--     master_of_clk : clk_wiz_0
+--   port map ( 
+--  -- Clock out ports  
+--   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
+--   -- Clock in ports
+--   clk_in1 =>MASTER_CLK_IN
+-- ); 
  
  --divide clk2
  

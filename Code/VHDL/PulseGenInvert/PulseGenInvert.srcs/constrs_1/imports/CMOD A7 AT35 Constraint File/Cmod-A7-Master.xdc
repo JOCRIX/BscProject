@@ -146,8 +146,6 @@
 #set_property PACKAGE_PIN J3 [get_ports SCK_OUT]
 #set_property IOSTANDARD LVCMOS25 [get_ports SCK_OUT]
 
-set_property OFFCHIP_TERM NONE [get_ports ACTIVE]
-set_property OFFCHIP_TERM NONE [get_ports PULSE_OUT]
 
 set_property IOSTANDARD LVCMOS25 [get_ports ACQUIRE_START]
 set_property IOSTANDARD LVCMOS33 [get_ports MASTER_CLK_IN]
@@ -155,3 +153,20 @@ set_property IOSTANDARD LVCMOS25 [get_ports SCK_OUT]
 set_property PACKAGE_PIN L17 [get_ports MASTER_CLK_IN]
 set_property PACKAGE_PIN A16 [get_ports ACQUIRE_START]
 set_property PACKAGE_PIN J3 [get_ports SCK_OUT]
+
+set_property OFFCHIP_TERM NONE [get_ports ACTIVE]
+set_property OFFCHIP_TERM NONE [get_ports PULSE_OUT]
+set_property OFFCHIP_TERM NONE [get_ports o_TRIGGER]
+set_property IOSTANDARD LVCMOS33 [get_ports ACTIVE]
+set_property IOSTANDARD LVCMOS33 [get_ports MASTER_CLK_200MEG_IN]
+set_property IOSTANDARD LVCMOS33 [get_ports o_TRIGGER]
+set_property IOSTANDARD LVCMOS33 [get_ports PULSE_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports TRIGGER]
+set_property PACKAGE_PIN L17 [get_ports MASTER_CLK_200MEG_IN]
+set_property PACKAGE_PIN J19 [get_ports ACTIVE]
+set_property PACKAGE_PIN G17 [get_ports o_TRIGGER]
+set_property PACKAGE_PIN N18 [get_ports PULSE_OUT]
+set_property PACKAGE_PIN H17 [get_ports TRIGGER]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets o_TRIGGER_OBUF]
+

@@ -35,12 +35,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity pulse_gen_width_modulator_inverted is
 Generic(
         NR_OF_CLKs : integer := 7;  
-        HIGH_TIME : integer := 15; -- in ns, multiples of 5.
-        LOW_TIME : integer := 30   -- in ns, multiples of 5.  
+        HIGH_TIME : integer := 25; -- in ns, multiples of 5.
+        LOW_TIME : integer := 25   -- in ns, multiples of 5.  
 );
 Port (
         MASTER_CLK_200MEG_IN : in std_logic := '0';
         TRIGGER   : in std_logic := '0';
+        o_TRIGGER : out std_logic := '0';
         PULSE_OUT : out std_logic := '0';
         ACTIVE : out std_logic := '0'
       );
@@ -73,6 +74,8 @@ signal output_set : std_logic := '1';
 
 begin
 
+
+o_TRIGGER <= TRIGGER;
 --Calculate CLKs depending on input high/low times in multiples of 5 nano seconds (1/200MHz = 5ns)
 high_clks <= (HIGH_TIME / 5) -3;
 low_clks <= (LOW_TIME / 5);-- 1;--2;

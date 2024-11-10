@@ -43,6 +43,6 @@ EAStep()
 
 # pre-commands:
 /bin/touch .write_bitstream.begin.rst
-EAStep vivado -log TOP.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source TOP.tcl -notrace
+EAStep vivado -log pulse_gen_width_modulator_inverted.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source pulse_gen_width_modulator_inverted.tcl -notrace
 
 

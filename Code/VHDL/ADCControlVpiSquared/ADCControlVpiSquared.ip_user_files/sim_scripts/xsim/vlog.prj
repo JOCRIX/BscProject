@@ -1,4 +1,4 @@
-sv xpm --include "../../ipstatic" \
+sv xpm --include "../../../ADCControlVpiSquared.gen/sources_1/ip/clk_wiz_0" \
 "G:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
 
 verilog xil_defaultlib "glbl.v"
