@@ -435,14 +435,21 @@ CommPort.set.SetIOMode(READ);
 //
   testVar2 = 0;
 
-	for (int i = 0; i <= 255; i++) {
+	for (int i = 0; i <= 65535; i++) {
 		CommPort.set.PulseCLK();
 		CommPort.set.GetIOValue(&testVar);
-		testVar2 = testVar - testVar2;
-		sprintf(str, "%d\r\n", (testVar2));
-		strcpy((char*)uartBuf, str);
-		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-		testVar2 = testVar;
+//		testVar2 = testVar - i;
+//		sprintf(str, "%d\r", (testVar));
+//		strcpy((char*)uartBuf, str);
+//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//		strcpy((char*)uartBuf, " : ");
+//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//		sprintf(str, "%d\r\n", (testVar2));
+//		strcpy((char*)uartBuf, str);
+//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//		testVar2 = testVar;
 		ns_delay(100);
 	}
 

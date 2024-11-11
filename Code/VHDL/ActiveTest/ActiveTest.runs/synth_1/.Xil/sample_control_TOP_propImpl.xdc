@@ -141,5 +141,5 @@ set_property src_info {type:XDC file:1 line:346 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN A15 [get_ports {i_SAMPLE_F[14]}]
 set_property src_info {type:XDC file:1 line:347 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN H1 [get_ports {i_SAMPLE_F[15]}]
-set_property src_info {type:XDC file:1 line:382 export:INPUT save:INPUT read:READ} [current_design]
+set_property src_info {type:XDC file:1 line:349 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN G19 [get_ports o_EMEM_HOLD]
