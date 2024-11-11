@@ -58,6 +58,8 @@ entity adc_control is
             ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                    : out std_logic := '0';
             ADC_CONTROL_BUSY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                          : out std_logic := '0';
             ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN                      : in std_logic  := '0';
+            --Reset signal from logic resetter to ADC control
+            RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL                                   : in std_logic := '0';
             --Master CLK for state machine
             MASTER_CLK_TO_ADC_CONTROL                                                   : in std_logic := '0'       
    );
@@ -76,6 +78,8 @@ signal serial_data_adc_1_latched : std_logic_vector(15 downto 0):= (others => '0
 
 signal serial_data_adc_2 : std_logic_vector(16 downto 0):= (others => '0');
 signal serial_data_adc_2_latched : std_logic_vector(15 downto 0):= (others => '0');
+
+signal w_reset : std_logic := '0';
 
 signal acquire_trig_in : std_logic := '0';
 signal dcn_trig_out : std_logic := '0';
@@ -145,10 +149,15 @@ ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER <= data_ready;
 adc_2_data <= EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN;
 --ADC 2 latched data to output
 ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER <= adc_2_data_latched;
+--reset signal
+w_reset <= RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL;
+
 
 adc_control : process (m_clk) is
 begin
-    if(rising_edge(m_clk)) then
+    if(w_reset = '1') then
+        s_adc <= IDLE;
+    elsif(rising_edge(m_clk)) then
         case s_adc is
             when IDLE =>
             if(start_acquisition = '1') then
@@ -184,9 +193,9 @@ begin
     end if;
 end process;
 
-dsc_check : process(dsc_busy_in, s_adc) is
+dsc_check : process(dsc_busy_in, s_adc, w_reset) is
 begin
-    if(s_adc = IDLE) then
+    if(s_adc = IDLE or w_reset = '1') then
         dsc_pulse_done <= '0';
     elsif(falling_edge(dsc_busy_in)) then
         dsc_pulse_done <= '1';
@@ -205,36 +214,36 @@ begin
     end if;
 end process;
 
-spi_clk_count : process (s_adc, spi_clk, serial_clk_count) is
+spi_clk_count : process (s_adc, spi_clk, serial_clk_count, w_reset) is
 begin
-    if(s_adc = LATCH) then
+    if(s_adc = LATCH or w_reset = '1') then
         serial_clk_count <= 16;
     elsif(falling_edge(spi_clk)) then
         serial_clk_count <= serial_clk_count - 1;
     end if;
 end process;
 
-spi_clk_check : process(spi_clk_busy, s_adc) is
+spi_clk_check : process(spi_clk_busy, s_adc, w_reset) is
 begin
-    if(s_adc = LATCH) then
+    if(s_adc = LATCH or w_reset = '1') then
         spi_clk_done <= '0';
     elsif(falling_edge(spi_clk_busy)) then
         spi_clk_done <= '1';
     end if;
 end process;
 
-dcn_check : process (dcn_busy_in, s_adc) is
+dcn_check : process (dcn_busy_in, s_adc, w_reset) is
 begin
-    if(s_adc = GET_DATA) then
+    if(s_adc = GET_DATA or w_reset = '1') then
         set_spi_clk <= '0';
     elsif(falling_edge(dcn_busy_in)) then
         set_spi_clk <= '1';
     end if;
 end process;
 
-acquisition : process (m_clk, acquire_trig_in, s_adc) is
+acquisition : process (m_clk, acquire_trig_in, s_adc, w_reset) is
 begin
-    if(s_adc = LATCH) then
+    if(s_adc = LATCH or w_reset = '1') then
         start_acquisition <= '0';
     elsif(rising_edge(acquire_trig_in)) then
         start_acquisition <= '1';

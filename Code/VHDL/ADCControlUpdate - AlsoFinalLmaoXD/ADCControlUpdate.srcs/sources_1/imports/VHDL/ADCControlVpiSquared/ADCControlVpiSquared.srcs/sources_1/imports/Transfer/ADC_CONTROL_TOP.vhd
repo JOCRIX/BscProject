@@ -44,6 +44,8 @@ entity ADC_CONTROL_TOP is
             
             EXT_LEDS_DATA_FROM_ADC_CONTROL                                              : out std_logic_vector(15 downto 0) := (others => '0');
             --
+            EXT_RESET_TEST                                                              : in std_logic := '0';
+            --
             EXT_TEST_ACQUIRE_START                                                      :in std_logic := '0'
    );
 end ADC_CONTROL_TOP;
@@ -71,6 +73,7 @@ signal i_ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER  : std_logic :
 signal i_ADC_CONTROL_BUSY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER   : std_logic := '0';
 signal i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN : std_logic := '0';
 
+signal i_RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL : std_logic := '0';
 
 signal i_MASTER_CLK_TO_ADC_CONTROL  : std_logic := '0';
 signal i_MASTER_CLK_SDA_TO_ADC_CONTROL : std_logic := '0';
@@ -107,6 +110,7 @@ component adc_control
             ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                : out std_logic := '0';
             ADC_CONTROL_BUSY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                      : out std_logic := '0';
             ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN                  : in std_logic  := '0';
+            RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL                               : in std_logic := '0';
             --Master CLK for state machine
             MASTER_CLK_TO_ADC_CONTROL                                               : in std_logic := '0'
 
@@ -150,13 +154,13 @@ end component;
 
 begin
 --Simulation stuff
---i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
+i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
 --i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
 
 --test CNV
---i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
+i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
 
-i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN<= i_outval;
+--i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN<= i_outval;
 
 --Test
 --EXT_DCN_OUT <= i_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
@@ -169,6 +173,9 @@ EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT <= i_PULSE_CNV_PULSE_PULS
 
 --DSC pulse out
 --EXT_DSC_OUT <= i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
+
+--RESET test
+ i_RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL <= EXT_RESET_TEST;
 
 adc_ctrl1 : adc_control
     port map(
@@ -184,6 +191,8 @@ adc_ctrl1 : adc_control
         
         PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT => i_PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT,
         PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN => i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,
+        
+        RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL => i_RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL,
         
         EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN => EXT_EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN,
         EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN => EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN,
@@ -244,13 +253,13 @@ pulse_gen_4_DSC : pulse_width_gen
        
 --200MHz CLK(50% DC) and 20MHz(48.3% DC) CLK
 
-     master_of_clk : clk_wiz_0
-   port map ( 
-  -- Clock out ports  
-   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
-   -- Clock in ports
-   clk_in1 =>MASTER_CLK_IN
- ); 
+--     master_of_clk : clk_wiz_0
+--   port map ( 
+--  -- Clock out ports  
+--   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
+--   -- Clock in ports
+--   clk_in1 =>MASTER_CLK_IN
+-- ); 
  
  --divide clk2
  
