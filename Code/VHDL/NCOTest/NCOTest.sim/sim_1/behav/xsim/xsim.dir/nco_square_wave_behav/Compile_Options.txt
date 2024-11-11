@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "nco_square_wave_behav" "xil_defaultlib.nco_square_wave" -log "elaborate.log" 
