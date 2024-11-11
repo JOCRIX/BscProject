@@ -1,0 +1,22 @@
+\subsection{Pulse generator} \label{subsec:Pulse_Generator} 
+
+The ADC control has a need to generate pulses and delays with a specific, accurate, pulse width, so a "pulse generator" module was made. The "pulse generator" module is a module that can be instantiated in an HDL top layer and connected to other blocks in order to generate pulses with a specific pulse width. This pulse generator is a derivation of another module that was used earlier in the project for the same purpose and this can be seen in appendix \refq{App:PulseGenTest}.
+
+The pulse generator will synthesize pulses with a chosen pulse width from the main \SIQ{200}{\mega\hertz} clock with a resolution of $t_{res} = 1/f_{clk} = 1/200E6 = 5ns$, so the shortest pulse it can produce is 5 ns. It is used in the project by instantiating the entity in code \refq{lst:A_PulseGeneratorCode_Entity} in the top layer in the project.
+
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=34-43, caption={Entity declaration of the pulse generator}, label={lst:A_PulseGeneratorCode_Entity}]{Sections/7_SystemDesign/Code/pulse_width_gen.vhd}
+
+The width of the pulse is set by the 'width' integer during the time of instantiation and must be a multiple of \SIQ{5}{\nano\second} in order for the module to work. The code for this module is quite simple, so the code will be explained directly. The pulse generator will start by calculating the amount of CLKs it needs to count based on the 'width input as shown in line 8 of listing \refq{lst:A_PulseGeneratorCode_Trigger}.  The pulse generator is asserted by a 'trigger' input signal that is checked with the 'trigger' process in line 10.
+
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=47-65, caption={VHDL code for the signals used in the module along with the 'trigger' process.}, label={lst:A_PulseGeneratorCode_Trigger}]{Sections/7_SystemDesign/Code/pulse_width_gen.vhd}
+
+The trigger process will assert the 'r\_start' signal when it sees a rising edge of the trigger input and will be asynchronously reset when the 'r\_done' signal is asserted. The 'r\_done' signal is asserted at the end of a complete pulse as shown in line 12 listing \refq{lst:A_PulseGeneratorCode_PW}.
+
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=67-84, caption={VHDL code for the process that generates a pulse of some specified pulse width.}, label={lst:A_PulseGeneratorCode_PW}]{Sections/7_SystemDesign/Code/pulse_width_gen.vhd}
+
+The \texttt{gen\_pulse} process will generate a single pulse of the specified pulse width. When it sees that \texttt{r\_start = 1}, the process will 
+set the \texttt{o\_pulse} output pulse signal and synthesize the pulse width from the \texttt{i\_master\_clk} signal by counting the amount of clocks, 
+in line 5--6, until it reaches the \texttt{r\_count\_value}, at which point the process will clear the counter and the \texttt{o\_pulse} signal in lines 10-12,
+The \texttt{r\_done} flag is set when the counter has finished, and is cleared on the following rising edge of the \texttt{i\_master\_clk} signal.
+
+The pulse generator was tested to see if the generated pulse width matches the one specified in the entity instantiation and, because this pulse generator will generate the CNV pulse for the ADCs, the jitter was also tested. These tests can be seen in appendix \refq{App:PWCPulseGen}. The conclusion is that the pulse generator is suitable for use in the ADC control module.

@@ -10,7 +10,7 @@ This generator is based on counters for producing accurate 'high' and 'low' peri
 
 The process on listing \refq{lst:7_2_9_PWM_GEN_1_PULSE} will generate a single pulse on the on the 'output\_set' signal. If the 'gen\_1\_pulse' signal is asserted and 'pulse\_complete' is cleared then it will proceed to generate a pulse. As can be seen in lines 7 - 27 the generator is a state machine that alternates between a 'HIGH' case and a 'LOW' case. The default case is 'HIGH'.
 
-During the 'HIGH' case; the output is set to '1' and on every rising edge of MASTER\_CLK the counter inside the 'HIGH' case will increment 'clk\_count' in line 11 until it reaches the 'high\_clks' limit. 'high\_clks' is a parameter that can be set during the instantiation of the entity, see appendix \refq{App:PWMGenCode} for the full code. Once the counter has reached the 'high\_clks' value the state will be changes to 'LOW' in lines 12-15 and the process will start timing the 'LOW' period of the output signal.
+During the 'HIGH' case; the output is set to '1' and on every rising edge of MASTER\_CLK the counter inside the 'HIGH' case will increment 'clk\_count' in line 11 until it reaches the 'high\_clks' limit. 'high\_clks' is a parameter that can be set during the instantiation of the entity, see appendix \refq{App:PWMGenCode} for the full code. Once the counter has reached the 'high\_clks' value the state will be changed to 'LOW' in lines 12-15 and the process will start timing the 'LOW' period of the output signal.
 
 The 'LOW' case functions exactly like the 'HIGH' case. The output is set to logical '0' and a counter will increment until it reaches the 'low\_clks' value. When it reaches the 'low\_clks' value the state will change back to 'HIGH' and a 'pulse\_complete' signal will be asserted which lets the process in listing \refq{lst:7_2_9_PWM_GEN_SEVERAL_PULSES} know that it it has finished a pulse and is ready for the next one.
 
@@ -22,7 +22,7 @@ The pulse generator also has an active/busy signal output that can be used to ch
 
 \lstinputlisting[language=C ,style = c,firstnumber=1, linerange=119-126, caption={VHDL code for controlling the active flag.}, label={lst:7_2_9_PWM_GEN_ACTIVE}]{Sections/7_SystemDesign/Code/pulse_gen_width_modulator_invert.vhd}. 
 
-The active flag will set 'active = 1' when the pulse generator gets triggered på an external module. The active flag gets cleared when the pulse generator has reached 'NR\_OF\_CLKs' as seen in line 22 of listing \refq{lst:7_2_9_PWM_GEN_SEVERAL_PULSES}. This module has been tested and these results can be seen in appendix \refq{App:PWMGenTests}.
+The active flag will set 'active = 1' when the pulse generator gets triggered på an external module. The active flag gets cleared when the pulse generator has reached 'NR\_OF\_CLKs' as seen in line 22 of listing \refq{lst:7_2_9_PWM_GEN_SEVERAL_PULSES}. This module has been tested and is used to generate the SPI CLK signal in the ADC control module and these measurements can be seen in appendix \refq{App:ADCControlMeasurement}.
 
 
 

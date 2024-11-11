@@ -59,6 +59,15 @@ As shown on figure \refq{fig:7_2_8_ADC_CONTROL_FSM} the state machine has 4 stat
 
 Note how on the timing diagram the DCN pulse is supposed to lag the CNV pulse, and not start at the point in time, this is done on purpose. The DCN pulse will start at the same time as the CNV pulse, but the pulse has the width of the sum of both $t_{CNV} + t_{DCN} = 45 ns$ and the result is that the SPI clock will start at the falling edge of the DCN pulse as desired.  
 
+The various pulse generators used to generate the SPI CLK, CNV, DSC and CVN pulses interface with the ADC control block as shown on figure \refq{fig:7_2_8_PULSE_DELAY_TIMING} and the FSM diagram on figure \refq{fig:7_2_8_ADC_CONTROL_FSM}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 15 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_8_PulseAndADCControl.pdf}
+    \caption{Various "pulse generators" are used to generate pulses, delays and clock signals in the ADC control module. The SPI CLK is of the type described in section \refq{subsec:PWMGen} and the CNV, DCN and DSC pulses are of the type described in section \refq{subsec:Pulse_Generator}.}
+    \label{fig:7_2_8_PULSE_DELAY_TIMING}
+\end{figure}
+
 The GET\_DATA state shown on figure \refq{fig:7_2_8_ADC_CONTROL_FSM} will start the SPI CLK pulse generator. This pulse generator is a more advanced version of the pulse generator from section \refq{subsec:Pulse_Generator} and can control the high time and low time pulse widths. This pulse generator will be detailed in section \refq{subsec:PWMGen}. The pulse generator will generate 16 pulses, width a controlled width, that are used to CLK data out of the ADC and into the FPGA. On each falling edge of this CLK a bit is clocked out of the ADC and on the rising edge that same bit is clocked into the FPGA, starting with the MSb. The GET\_DATA state will save the data in a std\_logic\_vector and when it has counted 16 CLKs it will switch state to LATCH.
 
 The LATCH state, will latch the data the FPGA has read when in the GET\_DATA state and signal the next module that it must read the data from the ADC control module. It generates a pulse on the data\_ready signal and data can be read on the falling edge of this signal. The reading module must latch the data before another AD-conversion finishes, or the data is overwritten and lost.
@@ -90,7 +99,7 @@ The DCN time is slightly longer than the expected \SIQ{15}{ns} due to the actual
     \label{fig:7_2_8_ADC_CONTROL_SPI_CLK}
 \end{figure}
 
-The DSC time has not been verified by measurement, only simulation, instead it has been verified that the ADC control will function at a sample rate of, at least, 1MS/s as was the goal. Several consequtive ADC acquisitions and data transfers can be seen on figure \refq{fig:7_2_8_ADC_CONTROL_1MEGASAMPLE} which proves that the module will work at the desired sample rate as there is no corruption of the communication signals.
+The DSC time has not been verified by measurement, only simulation, instead it has been verified that the ADC control will function at a sample rate of, at least, 1MS/s as was the goal for the module. Several consequtive ADC acquisitions and data transfers can be seen on figure \refq{fig:7_2_8_ADC_CONTROL_1MEGASAMPLE} which proves that the module will work at the desired sample rate as there is no corruption of the communication signals.
 
 \begin{figure}[H]
     \centering
@@ -99,6 +108,4 @@ The DSC time has not been verified by measurement, only simulation, instead it h
     \label{fig:7_2_8_ADC_CONTROL_1MEGASAMPLE}
 \end{figure}
 
-As can be seen on figure \refq{fig:7_2_8_ADC_CONTROL_1MEGASAMPLE} the ADC control hardware will work at 1MS/s. There is even time to spare before the next cycle begins. The module can easily be modified to run at even higher sample rates by adjusting the pulse generators being used in this module, though it may require the use of differential clock and data lines between the FPGA and LTC2311 ADC. The test setup for these measurements, and the measurements themselves can be found in appendix \refq{App:ADCControlMeasurement}.
-
-\todo{beskriv pulse width gen}
+As can be seen on figure \refq{fig:7_2_8_ADC_CONTROL_1MEGASAMPLE} the ADC control hardware will work at 1MS/s. There is even time to spare before the next cycle begins. The module can easily be modified to run higher sample rates by adjusting the pulse generators being used in this module, though it may require the use of differential clock and data lines between the FPGA and LTC2311 ADC. The test setup for these measurements, and the measurements themselves can be found in appendix \refq{App:ADCControlMeasurement}.

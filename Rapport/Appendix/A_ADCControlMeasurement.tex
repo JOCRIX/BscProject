@@ -26,7 +26,7 @@ The signal going to the CNV pin has been measured and can be seen on figure \ref
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 75 0 0, width=1\textwidth]{Appendix/Figures/A_ADCControl_CNV_MEASURE.pdf}
-    \caption{A measurement of the pulse width of the CNV pin signal. The pulse width is \SIQ{35}{\nano\second} as expected.}
+    \caption{A measurement of the pulse width of the CNV pin signal. The pulse width is \SIQ{35}{\nano\second} as expected. The yellow trace is CNV. The purple trace is ADC data and the blue trace is SPI CLK.}
     \label{fig:A_ADC_CONTROL_CNV}
 \end{figure}
 
@@ -35,7 +35,7 @@ The CNV to CLK signal dead time has been measured and can be seen on figure \ref
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 150 0 0, width=1\textwidth]{Appendix/Figures/A_ADC_CONTROL_DCN_MEAS.pdf}
-    \caption{A measurement of the dead time between the falling edge of the CNV pin signal and the start of the SPI CLK. The dead time is about \SIQ{18.6}{\nano\second} which is OK for this project.}
+    \caption{A measurement of the dead time between the falling edge of the CNV pin signal and the start of the SPI CLK. The dead time is about \SIQ{18.6}{\nano\second} which is OK for this project.  The yellow trace is CNV. The purple trace is ADC data and the blue trace is SPI CLK.}
     \label{fig:A_ADC_CONTROL_DCN}
 \end{figure}
 
@@ -43,7 +43,7 @@ The pulse widths of the SPI CLK signals have been measured and this can be seen 
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 150 0 0, width=1\textwidth]{Appendix/Figures/A_ADC_CONTROL_PULSEWIDTH.pdf}
-    \caption{A measurement of pulse widths of the SPI CLK pulses can be seen. Both the high and low time is about \SIQ{25}{\nano\second} as was expected for this.}
+    \caption{A measurement of pulse widths of the SPI CLK pulses can be seen. Both the high and low time is about \SIQ{25}{\nano\second} as was expected for this.  The yellow trace is CNV. The purple trace is ADC data and the blue trace is SPI CLK.}
     \label{fig:A_ADC_CONTROL_SPICLKWIDTH}
 \end{figure}
 
@@ -52,6 +52,6 @@ The SPI CLK frequency can also be seen on figure \refq{fig:A_ADC_CONTROL_SPICLKW
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 150 0 0, width=1\textwidth]{Appendix/Figures/7_2_8_ADC_CONTROL_1MEGSAMPLE_MEAS.pdf}
-    \caption{A test of the ADC control block running at 1 MS/s. There are no glitches in the communication so the hardware works at 1 MS/s.}
+    \caption{A test of the ADC control block running at 1 MS/s. There are no glitches in the communication so the hardware works at 1 MS/s. The yellow trace is CNV. The purple trace is ADC data and the blue trace is SPI CLK.}
     \label{fig:A_ADC_CONTROL_1MSS}
 \end{figure}
