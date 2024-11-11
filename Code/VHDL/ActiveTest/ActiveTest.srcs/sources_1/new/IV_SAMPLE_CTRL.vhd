@@ -54,15 +54,15 @@ entity IV_SAMPLE_CTRL is
 end IV_SAMPLE_CTRL;
 
 architecture Behavioral of IV_SAMPLE_CTRL is
-    constant MAX_ADDR_DATA : integer := 15;
-    signal sig_ADC_ADDR : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
-    signal sig_ADC_DATA : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
+    --constant MAX_ADDR_DATA : integer := 15;
+    signal sig_ADC_ADDR : std_logic_vector(15 downto 0) := (others => '0');
+    signal sig_ADC_DATA : std_logic_vector(15 downto 0) := (others => '0');
     signal sample_count : integer range 0 to 65535 := 0;
     signal sig_ADC_CLK_to_mem_dist : std_logic := '0';
     signal sig_RnW_to_mem_dist_out : STD_LOGIC := '0';
     
-    signal sig_int_mem_ADDR : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
-    signal sig_int_mem_DATA : std_logic_vector(MAX_ADDR_DATA downto 0) := (others => '0');
+    signal sig_int_mem_ADDR : std_logic_vector(15 downto 0) := (others => '0');
+    signal sig_int_mem_DATA : std_logic_vector(15 downto 0) := (others => '0');
     signal sig_CLK_from_int_mem : std_logic := '0';
     signal sig_RnW_to_mem_dist_out_nB : std_logic := '0';
 begin

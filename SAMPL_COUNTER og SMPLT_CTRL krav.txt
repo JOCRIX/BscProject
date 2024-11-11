@@ -1,0 +1,42 @@
+SMPLT_COUNTER KRAV:
+	INPUTS:
+		i_SET --trigger på falling edge, bruges til at indikere at ADC data er klar (15 downto 0).
+		i_DATA_A --Input data for ADC A (15 downto 0).
+		i_DATA_B --Input data for ADC B 15 downto 0).
+		i_RESET --RESET til systemet (std_logic).
+		i_CLK --200 MHZ CLK (std_logic).
+	
+	OUTPUTS:
+		o_DATA --DATA til IVSA (15 downto 0).
+		o_SET -- Indikere på rising edge at DATA er klar til IVSA (std_logic).
+
+TIMING CONSTRAINTS:
+	Systemet skal være i stand til at dumpe de 2 inputs fra ADC A og ADC B over i IVSA på maks 1 us. 
+
+
+
+SMPLT_CTRL KRAV:
+	INPUTS:
+		i_ARM --Indikere at er nu skal tages samples og DnB skall sættes til bussy med det samme, og sampling kan starter herefter (std_logic).
+		i_SAMPLE_SIZE --(Indikere hvor mange samples systemet skal tage (15 downto 0).
+		i_ADC_BUSY --Indikere om ADCen er optaget (std_logic).
+		i_SAMPLE
+
+	OUTPUTS:
+		o__ACQ_START -- Acquire til ADC (std_logic).
+		o_DnB -- Fortæller at systemet er aktivt.
+
+
+INTERNAL REGISTERS:
+	REG0 | PGA_A_CTRL
+	REG1 | PGA_B_CTRL
+	REG2 | DAC_AMPL
+	REG3 | SMPL_F
+	REG4 | DAC_F_0
+	REG5 | DAC_F_1
+	REG6 | SMPL_SIZE
+	REG7 | ARM
+	REG8 | RANGE
+	REG9 | DnB
+
+

@@ -168,6 +168,7 @@ component ExternalMemoryDistribution is
    );
 end component ExternalMemoryDistribution;
 
+
 component ExtMemReadWrite is
   Port (
         --SampleDIn : in std_logic_vector(15 downto 0) := (others => '0'); --Sample data input
@@ -310,8 +311,11 @@ end component;
     signal countDone : std_logic := '0';
     signal CMPLT : std_logic := '0';
     signal arm : std_logic := '0';
+    signal w_ADC_TRIG : std_logic := '0';
     
     signal SAMPLE_F_u16 : integer range 0 to 65535 := 0;
+    type byte_state is (S1, S2, S3, S4, S5, S6, S7, SEQ_CMPLT);
+    signal s_byte : byte_state := S1;
 begin
 
 SAMPLE_F_u16 <= TO_INTEGER(unsigned(i_SAMPLE_F));
@@ -332,20 +336,62 @@ end process;
 
 
 
-process(init, divOut, i_ADC_RDY) is
+--process(init, divOut, i_ADC_RDY) is
+--begin
+--    if(init <= '0' or i_ADC_RDY = '1') then
+--        CMPLT <= '0';
+--        count <= 0;
+--    elsif(falling_edge(divOut)) then
+--        if(count >= 39000) then
+--            CMPLT <= '1';
+--        else
+--            count <= count +1;
+--        end if;
+--    end if;
+--end process;
+--w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
+
+
+process(init, w_GRANDMASTER_CLK, i_ADC_RDY, SAMPLE_F_u16) is
+variable v_DelCount : integer range 0 to 65535 := 0;
+variable v_TrigCount : integer range 0 to 65535 := 0;
 begin
-    if(init <= '0' or i_ADC_RDY = '1') then
-        CMPLT <= '0';
-        count <= 0;
-    elsif(falling_edge(divOut)) then
-        if(count >= 255) then
-            CMPLT <= '1';
+    if(rising_edge(w_GRANDMASTER_CLK)) then
+        w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
+        if(init = '0' or i_ADC_RDY = '1') then
+            CMPLT <= '0';
+            v_DelCount := 0;
+            v_TrigCount := 0;
         else
-            count <= count +1;
+            if(v_TrigCount < 20002) then
+                case s_byte is 
+                    when S1 =>
+                        w_ADC_TRIG <= '1';
+                        if(v_DelCount > SAMPLE_F_u16) then
+                            s_byte <= S2;
+                            v_DelCount := 0;
+                        else
+                            v_DelCount := v_DelCount +1;
+                        end if;
+                    when S2 =>
+                        w_ADC_TRIG <= '0';
+                        v_TrigCount := v_TrigCount +1;
+                        count <= v_TrigCount;
+                        s_byte <= SEQ_CMPLT;
+                    when others =>
+                        s_byte <= S1;
+                        v_DelCount := 0;
+                end case;
+            else
+                v_TrigCount := 0;
+                v_DelCount := 0;
+                CMPLT <= '1';
+                s_byte <= S1;
+                count <= 0;
+            end if;
         end if;
     end if;
 end process;
-w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
 
 
 MUX_ADC_TRIGGER : process(init) is
@@ -575,7 +621,8 @@ IV_SAVER : IV_SAMPLE_CTRL
         --ADC_DATA_IN => i_DATA_ADC_TO_IVSA,
         ADC_DATA_IN => w_ADC_DATA_SIM,
         --ADC_DATA_RDY_IN => i_ADC_RDY,       
-        ADC_DATA_RDY_IN => trigger,   
+        --ADC_DATA_RDY_IN => trigger,   
+        ADC_DATA_RDY_IN => w_ADC_TRIG,
         DATA_TO_MEM_DIST_OUT => w_DATA_IVSA_TO_MDIST,
         ADDR_TO_MEM_DIST_OUT => w_ADDR_IVSA_TO_MDIST,
         RnW_TO_MEM_DIST_OUT => w_RnW_IVSA_TO_MDIST,
