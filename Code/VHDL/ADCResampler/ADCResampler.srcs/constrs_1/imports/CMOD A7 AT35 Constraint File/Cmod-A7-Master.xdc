@@ -130,3 +130,9 @@
 #set_property -dict { PACKAGE_PIN R19   IOSTANDARD LVCMOS33 } [get_ports { RamWEn     }]; #IO_L10N_T1_D15_14 Sch=sram-we
 #set_property -dict { PACKAGE_PIN N19   IOSTANDARD LVCMOS33 } [get_ports { RamCEn     }]; #IO_L9N_T1_DQS_D13_14 Sch=sram-ce
 
+
+set_property OFFCHIP_TERM NONE [get_ports TEST_DDS_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports TEST_DDS_OUT]
+set_property IOSTANDARD LVCMOS33 [get_ports i_master_clk]
+set_property PACKAGE_PIN L17 [get_ports i_master_clk]
+set_property PACKAGE_PIN G17 [get_ports TEST_DDS_OUT]

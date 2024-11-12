@@ -1,0 +1,5 @@
+set_property SRC_FILE_INFO {cfile:{C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc} rfile:{../../../ADCResampler.srcs/constrs_1/imports/CMOD A7 AT35 Constraint File/Cmod-A7-Master.xdc} id:1} [current_design]
+set_property src_info {type:XDC file:1 line:137 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN L17 [get_ports i_master_clk]
+set_property src_info {type:XDC file:1 line:138 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN G17 [get_ports TEST_DDS_OUT]
