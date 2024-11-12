@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Nov 11 16:41:50 2024
+| Date         : Tue Nov 12 17:33:56 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_drc -file sample_control_TOP_drc_opted.rpt -pb sample_control_TOP_drc_opted.pb -rpx sample_control_TOP_drc_opted.rpx
 | Design       : sample_control_TOP
@@ -24,13 +24,13 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 19
+             Violations found: 20
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
 | PLCK-12     | Warning  | Clock Placer Checks                                         | 1          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
 | RPBF-3      | Warning  | IO port buffering is incomplete                             | 16         |
 +-------------+----------+-------------------------------------------------------------+------------+
 
@@ -62,8 +62,21 @@ Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT MEM_DIST1/w_RUN_i_1__0 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
-MEM_DIST1/w_RUN_reg
+A LUT IV_SAVER/sample_count2[0]_i_2 is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
+IV_SAVER/sample_count2_reg[0], IV_SAVER/sample_count2_reg[10],
+IV_SAVER/sample_count2_reg[11], IV_SAVER/sample_count2_reg[12],
+IV_SAVER/sample_count2_reg[13], IV_SAVER/sample_count2_reg[14],
+IV_SAVER/sample_count2_reg[15], IV_SAVER/sample_count2_reg[1],
+IV_SAVER/sample_count2_reg[2], IV_SAVER/sample_count2_reg[3],
+IV_SAVER/sample_count2_reg[4], IV_SAVER/sample_count2_reg[5],
+IV_SAVER/sample_count2_reg[6], IV_SAVER/sample_count2_reg[7],
+IV_SAVER/sample_count2_reg[8] (the first 15 of 16 listed)
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT MEM_DIST1/w_init_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+MEM_DIST1/w_init_reg
 Related violations: <none>
 
 RPBF-3#1 Warning

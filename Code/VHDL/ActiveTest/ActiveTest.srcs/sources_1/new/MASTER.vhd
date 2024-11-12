@@ -35,6 +35,7 @@ use UNISIM.vcomponents.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
+
 entity sample_control_TOP is
   Port (
         i_COMM_CLK : in std_logic := '0';
@@ -42,7 +43,8 @@ entity sample_control_TOP is
         io_COMM_BUS : inout std_logic_vector(15 downto 0); 
 --        o_COMM_BUS : out std_logic_vector(15 downto 0);  
         --i_DATA_ADC_TO_IVSA : in std_logic_vector(15 downto 0);
-        i_SAMPLE_F : in std_logic_vector(15 downto 0);
+        --i_SAMPLE_F : in std_logic_vector(15 downto 0);
+        o_ADDR_TEST : out std_logic_vector(18 downto 0);
         i_ADC_DnB : in std_logic;
         i_ADC_RDY : in std_logic;
         
@@ -59,7 +61,6 @@ entity sample_control_TOP is
 end sample_control_TOP;
 
 architecture rtl of sample_control_TOP is
-
 
 
 --Component declarations
@@ -313,13 +314,18 @@ end component;
     signal arm : std_logic := '0';
     signal w_ADC_TRIG : std_logic := '0';
     
+    signal test_ADDR_ext_mem : std_logic_vector(18 downto 0);
+    
     signal SAMPLE_F_u16 : integer range 0 to 65535 := 0;
     type byte_state is (S1, S2, S3, S4, S5, S6, S7, SEQ_CMPLT);
     signal s_byte : byte_state := S1;
 begin
 
-SAMPLE_F_u16 <= TO_INTEGER(unsigned(i_SAMPLE_F));
-
+o_Mem_Addr_ext <= test_ADDR_ext_mem;
+--o_ADDR_TEST <= test_ADDR_ext_mem;
+o_ADDR_TEST <= "000" & w_ADDR_IVSA_TO_MDIST;
+--SAMPLE_F_u16 <= TO_INTEGER(unsigned(i_SAMPLE_F));
+SAMPLE_F_u16 <= 100;
 --w_ADC_DnB_n <= not i_ADC_DnB;
 w_ADC_DnB_n <= not arm;
 process(w_GRANDMASTER_CLK) is
@@ -352,6 +358,7 @@ end process;
 --w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
 
 
+
 process(init, w_GRANDMASTER_CLK, i_ADC_RDY, SAMPLE_F_u16) is
 variable v_DelCount : integer range 0 to 65535 := 0;
 variable v_TrigCount : integer range 0 to 65535 := 0;
@@ -363,7 +370,7 @@ begin
             v_DelCount := 0;
             v_TrigCount := 0;
         else
-            if(v_TrigCount < 20002) then
+            if(v_TrigCount < 65535) then
                 case s_byte is 
                     when S1 =>
                         w_ADC_TRIG <= '1';
@@ -445,7 +452,6 @@ end process;
 --        trigger <= '0';
 --    end if;
 --end process;
-
 
         
          
@@ -568,7 +574,8 @@ ext_memRW : EXT_MEM_RW20
         i_ADDR => w_ADDR_MDIST_TO_EMEMRW,
         i_RESET => i_ADC_RDY,
         
-        o_ADDR_TO_ERAM => o_Mem_Addr_ext,
+        --o_ADDR_TO_ERAM => o_Mem_Addr_ext,
+        o_ADDR_TO_ERAM => test_ADDR_ext_mem,
         i_EN => w_CLK_MDIST_TO_EMEMRW,
         i_CLK => w_GRANDMASTER_CLK,
         o_nCE => o_Mem_nCE_ext,
@@ -606,7 +613,8 @@ MEM_DIST1 : ExternalMemDist20
         i_RESET => i_ADC_RDY, --Reset, simply resets logic.
         o_ACTIVE => o_RUN_COUNT
     );
-    
+
+
 
 IV_SAVER : IV_SAMPLE_CTRL
     port map (

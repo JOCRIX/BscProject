@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Mon Nov 11 16:42:34 2024
+| Date         : Tue Nov 12 17:34:33 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_drc -file sample_control_TOP_drc_routed.rpt -pb sample_control_TOP_drc_routed.pb -rpx sample_control_TOP_drc_routed.rpx
 | Design       : sample_control_TOP
@@ -24,14 +24,14 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 20
+             Violations found: 22
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
-| PDRC-153    | Warning  | Gated clock check                                           | 1          |
+| PDRC-153    | Warning  | Gated clock check                                           | 2          |
 | PLCK-12     | Warning  | Clock Placer Checks                                         | 1          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
 | RPBF-3      | Warning  | IO port buffering is incomplete                             | 16         |
 +-------------+----------+-------------------------------------------------------------+------------+
 
@@ -52,7 +52,12 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net MEM_DIST1/CLK_TO_MEM_DIST_OUT is a gated clock net sourced by a combinational pin MEM_DIST1/w_RUN_i_1__0/O, cell MEM_DIST1/w_RUN_i_1__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net IV_SAVER/sig_CLK_from_int_mem is a gated clock net sourced by a combinational pin IV_SAVER/sample_count2[0]_i_2/O, cell IV_SAVER/sample_count2[0]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#2 Warning
+Gated clock check  
+Net MEM_DIST1/CLK_TO_MEM_DIST_OUT is a gated clock net sourced by a combinational pin MEM_DIST1/w_init_i_1/O, cell MEM_DIST1/w_init_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLCK-12#1 Warning
@@ -62,14 +67,27 @@ Resolution: Poor placement of an IO pin and a BUFG has resulted in the router us
  This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
 
 	i_ADC_DnB_IBUF_inst (IBUF.O) is locked to K18
-	i_ADC_DnB_IBUF_BUFG_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y3
+	i_ADC_DnB_IBUF_BUFG_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y2
 
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT MEM_DIST1/w_RUN_i_1__0 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
-MEM_DIST1/w_RUN_reg
+A LUT IV_SAVER/sample_count2[0]_i_2 is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
+IV_SAVER/sample_count2_reg[0], IV_SAVER/sample_count2_reg[10],
+IV_SAVER/sample_count2_reg[11], IV_SAVER/sample_count2_reg[12],
+IV_SAVER/sample_count2_reg[13], IV_SAVER/sample_count2_reg[14],
+IV_SAVER/sample_count2_reg[15], IV_SAVER/sample_count2_reg[1],
+IV_SAVER/sample_count2_reg[2], IV_SAVER/sample_count2_reg[3],
+IV_SAVER/sample_count2_reg[4], IV_SAVER/sample_count2_reg[5],
+IV_SAVER/sample_count2_reg[6], IV_SAVER/sample_count2_reg[7],
+IV_SAVER/sample_count2_reg[8] (the first 15 of 16 listed)
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT MEM_DIST1/w_init_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+MEM_DIST1/w_init_reg
 Related violations: <none>
 
 RPBF-3#1 Warning

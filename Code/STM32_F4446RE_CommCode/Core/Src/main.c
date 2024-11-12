@@ -191,7 +191,7 @@ int8_t GetIOValue(uint16_t *result) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		uint16_t readVal = 0;
-		if ((cp -> ctrl.LowBytePort == GPIOB) && cp -> ctrl.HighBytePort == GPIOC) {
+		if ((cp -> ctrl.LowBytePort == GPIOB) && (cp -> ctrl.HighBytePort == GPIOC)) {
 			readVal = ((GPIOC->IDR)&0xFF)<<8;
 			readVal |= ((GPIOB->IDR)&0xFF);
 			*result = readVal;
@@ -370,7 +370,7 @@ int main(void)
 	CommPort.ctrl.LowBytePort = GPIOB;
 	CommPort.ctrl.HighBytePort = GPIOC;
 	CommPort.ctrl.RWport = GPIOB;
-	CommPort.ctrl.CLKport = GPIOC;
+	CommPort.ctrl.CLKport = GPIOA;
 	CommPort.ctrl.LowBytePins[0] = DB0_Pin;
 	CommPort.ctrl.LowBytePins[1] = DB1_Pin;
 	CommPort.ctrl.LowBytePins[2] = DB2_Pin;
@@ -432,26 +432,43 @@ CommPort.set.SetIOMode(READ);
   HAL_GPIO_WritePin(GPIOA, RESET_SYS_Pin, 0);
   HAL_Delay(100);
 
+
+
 //
   testVar2 = 0;
 
 	for (int i = 0; i <= 65535; i++) {
-		CommPort.set.PulseCLK();
+		//CommPort.set.PulseCLK();
+		CommPort.set.SetCLK(0);
+		ns_delay(200);
 		CommPort.set.GetIOValue(&testVar);
-//		testVar2 = testVar - i;
-//		sprintf(str, "%d\r", (testVar));
-//		strcpy((char*)uartBuf, str);
-//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//		strcpy((char*)uartBuf, " : ");
-//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//		sprintf(str, "%d\r\n", (testVar2));
-//		strcpy((char*)uartBuf, str);
-//		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//		testVar2 = testVar;
+		CommPort.set.SetCLK(1);
+		ns_delay(200);
+		testVar2 = testVar - i;
+		sprintf(str, "%d\r", (testVar));
+		strcpy((char*)uartBuf, str);
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+		strcpy((char*)uartBuf, " : ");
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+		sprintf(str, "%d\r", (testVar2));
+		strcpy((char*)uartBuf, str);
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+		testVar2 = testVar;
+		ns_delay(100);
+		strcpy((char*)uartBuf, " : ");
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+		sprintf(str, "%d\r\n", (i));
+		strcpy((char*)uartBuf, str);
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+		testVar2 = testVar;
 		ns_delay(100);
 	}
+
+
+
 
 //	CommPort.ResetComm();
 //	HAL_Delay(10);
@@ -725,11 +742,10 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, DB8_Pin|DB9_Pin|DB10_Pin|DB11_Pin
-                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin
-                          |TimerPin_Pin, GPIO_PIN_RESET);
+                          |DB12_Pin|DB13_Pin|DB15_Pin|TimerPin_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LD2_Pin|RESET_SYS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, DB_CLK_Pin|LD2_Pin|RESET_SYS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, DB0_Pin|DB1_Pin|DB2_Pin|DB3_Pin
@@ -743,29 +759,32 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DB8_Pin DB9_Pin DB10_Pin DB11_Pin
-                           DB12_Pin DB13_Pin DB15_Pin DB_CLK_Pin
-                           TimerPin_Pin */
+                           DB12_Pin DB13_Pin DB15_Pin TimerPin_Pin */
   GPIO_InitStruct.Pin = DB8_Pin|DB9_Pin|DB10_Pin|DB11_Pin
-                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin
-                          |TimerPin_Pin;
+                          |DB12_Pin|DB13_Pin|DB15_Pin|TimerPin_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LD2_Pin RESET_SYS_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin|RESET_SYS_Pin;
+  /*Configure GPIO pins : DB_CLK_Pin LD2_Pin RESET_SYS_Pin */
+  GPIO_InitStruct.Pin = DB_CLK_Pin|LD2_Pin|RESET_SYS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB0_Pin DB1_Pin DB2_Pin DB3_Pin
-                           DB4_Pin DB5_Pin DB6_Pin DB7_Pin
-                           DB_RW_Pin */
-  GPIO_InitStruct.Pin = DB0_Pin|DB1_Pin|DB2_Pin|DB3_Pin
-                          |DB4_Pin|DB5_Pin|DB6_Pin|DB7_Pin
-                          |DB_RW_Pin;
+  /*Configure GPIO pin : DB0_Pin */
+  GPIO_InitStruct.Pin = DB0_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  HAL_GPIO_Init(DB0_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : DB1_Pin DB2_Pin DB3_Pin DB4_Pin
+                           DB5_Pin DB6_Pin DB7_Pin DB_RW_Pin */
+  GPIO_InitStruct.Pin = DB1_Pin|DB2_Pin|DB3_Pin|DB4_Pin
+                          |DB5_Pin|DB6_Pin|DB7_Pin|DB_RW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

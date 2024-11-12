@@ -76,6 +76,9 @@ type byte_state is (S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, SEQ_CMPLT);
 signal s_byte : byte_state := S1;
 signal w_init : std_logic := '0';
 
+signal LoVal : std_logic_vector(2 downto 0) := "000";
+signal HiVal : std_logic_vector(2 downto 0) := "001";
+
 begin
 
 
@@ -83,46 +86,61 @@ begin
 o_RnW <= i_RnW;
 --o_DATA <= w_iHiBYTE & w_iLoBYTE;
 o_ACTIVE <= w_RUN or w_CMPLT;
-w_LoBYTE <= i_DATA(7 downto 0);
-w_HiBYTE <= i_DATA(15 downto 8);
-w_LoADDR <= "000" & i_ADDR;
-w_HiADDR <= "100" & i_ADDR;
+--w_LoBYTE <= i_DATA(7 downto 0);
+--w_HiBYTE <= i_DATA(15 downto 8);
+--w_LoADDR <= "0000" & i_ADDR(14 downto 0);
+--w_HiADDR <= "0100" & i_ADDR(14 downto 0);
 
 
-Initialize : process(W_CMPLT, i_SET, i_RESET) is
-begin
-    if(w_CMPLT = CMPLT or i_RESET = '1') then
-        w_RUN <= '0';
+--Initialize : process(W_CMPLT, i_SET, i_RESET) is
+--begin
+--    if(w_CMPLT = CMPLT or i_RESET = '1') then
+--        w_RUN <= '0';
         
+--    elsif(rising_edge(i_SET)) then
+--        w_RUN <= RUN;
+--        w_LoBYTE <= i_DATA(7 downto 0);
+--        w_HiBYTE <= i_DATA(15 downto 8);
+--        --w_LoADDR <= "0000" & i_ADDR(14 downto 0);
+--        --w_HiADDR <= "0100" & i_ADDR(14 downto 0);
+--        w_LoADDR(15 downto 0) <= i_ADDR;
+--        w_LoADDR(16) <= '0';
+--        w_LoADDR(17) <= '0';
+--        w_LoADDR(18) <= '0';
+--        w_HiADDR(15 downto 0) <= i_ADDR;
+--        w_HiADDR(16) <= '0';
+--        w_HiADDR(17) <= '0';
+--        w_HiADDR(18) <= '1';        
+        
+--    end if;
+--end process;
+
+arm : process(w_CMPLT, i_SET, i_RESET, i_CLK) is
+begin
+    if((i_RESET = '1') or (w_CMPLT = CMPLT)) then
+        w_init <= '0';
     elsif(rising_edge(i_SET)) then
-        w_RUN <= RUN;
+        w_init <= '1';
     end if;
 end process;
 
---arm : process(w_CMPLT, i_SET, i_RESET, i_CLK) is
---begin
---    if((i_RESET = '1') or (w_CMPLT = CMPLT)) then
---        w_init <= '0';
---    elsif(rising_edge(i_SET)) then
---        w_init <= '1';
---    end if;
---end process;
+Initialize : process(W_CMPLT, w_init, i_RESET, i_CLK) is
+begin
+    if(rising_edge(i_CLK)) then
+        if(w_CMPLT = CMPLT or i_RESET = '1') then
+            w_RUN <= '0';
+        elsif(w_init = '1') then
+            w_RUN <= RUN;
+            w_LoBYTE <= i_DATA(7 downto 0);
+            w_HiBYTE <= i_DATA(15 downto 8);
+            w_LoADDR <= LoVal & i_ADDR;
+            w_HiADDR <= HiVal & i_ADDR;
 
---Initialize : process(W_CMPLT, w_init, i_RESET, i_CLK) is
---begin
---    if(rising_edge(i_CLK)) then
---        if(w_CMPLT = CMPLT or i_RESET = '1') then
---            w_RUN <= '0';
---        elsif(w_init = '1') then
---            w_RUN <= RUN;
-----            w_LoBYTE <= i_DATA(7 downto 0);
-----            w_HiBYTE <= i_DATA(15 downto 8);
-----            w_LoADDR <= "000" & i_ADDR;
-----            w_HiADDR <= "100" & i_ADDR;
---        end if;
---    end if;
+            
+        end if;
+    end if;
     
---end process;
+end process;
 
 
 DistributeDATA : process(i_RnW, i_CLK, w_RUN, i_HOLD, s_byte) is
