@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../ADCResampler.gen/sources_1/ip/dds_compiler_0/sim/dds_compiler_0.vhd" \
+"../../../../ADCResampler.srcs/sources_1/imports/new/pulse_width_gen.vhd" \
+"../../../../ADCResampler.srcs/sources_1/new/adc_resampler.vhd" \
+
+# Do not sort compile order
+nosort

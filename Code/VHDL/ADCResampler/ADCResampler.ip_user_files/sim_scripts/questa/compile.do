@@ -1,8 +1,6 @@
 vlib questa_lib/work
 vlib questa_lib/msim
 
-vlib questa_lib/msim/xpm
-vlib questa_lib/msim/xil_defaultlib
 vlib questa_lib/msim/xbip_utils_v3_0_13
 vlib questa_lib/msim/axi_utils_v2_0_9
 vlib questa_lib/msim/xbip_pipe_v3_0_9
@@ -12,9 +10,8 @@ vlib questa_lib/msim/xbip_dsp48_wrapper_v3_0_6
 vlib questa_lib/msim/xbip_dsp48_addsub_v3_0_9
 vlib questa_lib/msim/xbip_dsp48_multadd_v3_0_9
 vlib questa_lib/msim/dds_compiler_v6_0_25
+vlib questa_lib/msim/xil_defaultlib
 
-vmap xpm questa_lib/msim/xpm
-vmap xil_defaultlib questa_lib/msim/xil_defaultlib
 vmap xbip_utils_v3_0_13 questa_lib/msim/xbip_utils_v3_0_13
 vmap axi_utils_v2_0_9 questa_lib/msim/axi_utils_v2_0_9
 vmap xbip_pipe_v3_0_9 questa_lib/msim/xbip_pipe_v3_0_9
@@ -24,15 +21,7 @@ vmap xbip_dsp48_wrapper_v3_0_6 questa_lib/msim/xbip_dsp48_wrapper_v3_0_6
 vmap xbip_dsp48_addsub_v3_0_9 questa_lib/msim/xbip_dsp48_addsub_v3_0_9
 vmap xbip_dsp48_multadd_v3_0_9 questa_lib/msim/xbip_dsp48_multadd_v3_0_9
 vmap dds_compiler_v6_0_25 questa_lib/msim/dds_compiler_v6_0_25
-
-vlog -work xpm  -incr -mfcu  -sv "+incdir+../../../ADCResampler.gen/sources_1/ip/clk_wiz_0" \
-"C:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
-
-vcom -work xpm  -93  \
-"C:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_VCOMP.vhd" \
-
-vcom -work xil_defaultlib  -93  \
-"../../../ADCResampler.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl" \
+vmap xil_defaultlib questa_lib/msim/xil_defaultlib
 
 vcom -work xbip_utils_v3_0_13  -93  \
 "../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \
@@ -91,8 +80,6 @@ vcom -work dds_compiler_v6_0_25  -93  \
 
 vcom -work xil_defaultlib  -93  \
 "../../../ADCResampler.gen/sources_1/ip/dds_compiler_0/sim/dds_compiler_0.vhd" \
+"../../../ADCResampler.srcs/sources_1/imports/new/pulse_width_gen.vhd" \
 "../../../ADCResampler.srcs/sources_1/new/adc_resampler.vhd" \
-
-vlog -work xil_defaultlib \
-"glbl.v"
 

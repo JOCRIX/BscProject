@@ -4,8 +4,6 @@ onerror {quit -force}
 transcript on
 
 vlib work
-vlib riviera/xpm
-vlib riviera/xil_defaultlib
 vlib riviera/xbip_utils_v3_0_13
 vlib riviera/axi_utils_v2_0_9
 vlib riviera/xbip_pipe_v3_0_9
@@ -15,9 +13,8 @@ vlib riviera/xbip_dsp48_wrapper_v3_0_6
 vlib riviera/xbip_dsp48_addsub_v3_0_9
 vlib riviera/xbip_dsp48_multadd_v3_0_9
 vlib riviera/dds_compiler_v6_0_25
+vlib riviera/xil_defaultlib
 
-vmap xpm riviera/xpm
-vmap xil_defaultlib riviera/xil_defaultlib
 vmap xbip_utils_v3_0_13 riviera/xbip_utils_v3_0_13
 vmap axi_utils_v2_0_9 riviera/axi_utils_v2_0_9
 vmap xbip_pipe_v3_0_9 riviera/xbip_pipe_v3_0_9
@@ -27,15 +24,7 @@ vmap xbip_dsp48_wrapper_v3_0_6 riviera/xbip_dsp48_wrapper_v3_0_6
 vmap xbip_dsp48_addsub_v3_0_9 riviera/xbip_dsp48_addsub_v3_0_9
 vmap xbip_dsp48_multadd_v3_0_9 riviera/xbip_dsp48_multadd_v3_0_9
 vmap dds_compiler_v6_0_25 riviera/dds_compiler_v6_0_25
-
-vlog -work xpm  -incr "+incdir+../../../ADCResampler.gen/sources_1/ip/clk_wiz_0" -l xpm -l xil_defaultlib -l xbip_utils_v3_0_13 -l axi_utils_v2_0_9 -l xbip_pipe_v3_0_9 -l xbip_bram18k_v3_0_9 -l mult_gen_v12_0_21 -l xbip_dsp48_wrapper_v3_0_6 -l xbip_dsp48_addsub_v3_0_9 -l xbip_dsp48_multadd_v3_0_9 -l dds_compiler_v6_0_25 \
-"C:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
-
-vcom -work xpm -93  -incr \
-"C:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_VCOMP.vhd" \
-
-vcom -work xil_defaultlib -93  -incr \
-"../../../ADCResampler.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl" \
+vmap xil_defaultlib riviera/xil_defaultlib
 
 vcom -work xbip_utils_v3_0_13 -93  -incr \
 "../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \
@@ -94,8 +83,6 @@ vcom -work dds_compiler_v6_0_25 -93  -incr \
 
 vcom -work xil_defaultlib -93  -incr \
 "../../../ADCResampler.gen/sources_1/ip/dds_compiler_0/sim/dds_compiler_0.vhd" \
+"../../../ADCResampler.srcs/sources_1/imports/new/pulse_width_gen.vhd" \
 "../../../ADCResampler.srcs/sources_1/new/adc_resampler.vhd" \
-
-vlog -work xil_defaultlib \
-"glbl.v"
 

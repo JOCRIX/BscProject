@@ -50,7 +50,7 @@ end adc_resampler;
 
 architecture Behavioral of adc_resampler is
 --Direct digital synthesis component
-COMPONENT dds_compiler_0
+component dds_compiler_0
   PORT (
     aclk : IN STD_LOGIC;
     s_axis_config_tvalid : IN STD_LOGIC;
@@ -58,7 +58,7 @@ COMPONENT dds_compiler_0
     m_axis_data_tvalid : OUT STD_LOGIC;
     m_axis_data_tdata : OUT STD_LOGIC_VECTOR(15 DOWNTO 0) 
   );
-END COMPONENT;
+end component;
 
 --50MHz CLK for testing
 component clk_wiz_0
@@ -72,7 +72,7 @@ end component;
 --500ns delay pulse
 component pulse_width_gen
     Generic(
-    width : integer := 100
+    width : integer := 100  
     );
   Port (
         i_master_clk : in std_logic := '0';
@@ -84,12 +84,13 @@ end component pulse_width_gen;
 signal r_sample_size : integer range 65535 downto 0;
 signal w_adc_busy : std_logic := '0';
 signal r_run_sampler : std_logic := '0';
+signal r_arm_sampler : std_logic := '0';
 signal r_done : std_logic := '0';
 signal r_acq : std_logic := '0';
 signal r_reset : std_logic := '0';
 signal r_pulse_500ns_trig : std_logic := '0';
 signal r_pulse_500ns : std_logic := '0';
-
+signal w_mclk : std_logic ;
 --DDS signaler, unused
 signal m_axis_config_tvalid : std_logic;
 signal  m_axis_data_tvalid : std_logic;
@@ -102,6 +103,9 @@ signal m_axis_data_tdata : std_logic_vector(15 downto 0);
 --DDS output CLK
 signal r_dds_clk : std_logic;
 --DDS input clk
+type state_resampler is (IDLE, ARM, RUN, STOP);
+signal s_resamp : state_resampler := IDLE;
+
 
 begin
 
@@ -124,7 +128,7 @@ sample_clk : dds_compiler_0
 -- );
 pulse_gen_500ns_delay : pulse_width_gen
     generic map (
-        width => 100
+        width => 500
         )
     port map(
         i_master_clk => i_master_clk,
@@ -146,19 +150,54 @@ w_adc_busy <= i_adc_control_busy;
 r_acq <= i_acquire_start_int_mem_reg(15); 
 --local reset
 r_reset <= i_reset_logic;
+--local master clk
+w_mclk <= i_master_clk;
 
+
+resampler : process (w_mclk, r_reset, s_resamp, r_arm_sampler) is
+begin
+    if(r_reset = '1') then 
+        s_resamp <= IDLE;
+    elsif(rising_edge(w_mclk)) then
+        case s_resamp is
+            when IDLE   =>
+                if(r_arm_sampler = '1') then --Arm(500ns delay) and set busy flag
+                    s_resamp <= ARM;
+                    o_resampler_busy <= '1';
+                    r_pulse_500ns_trig <= '1';
+                else
+                    o_resampler_busy <= '0';
+                end if;
+            when ARM    =>
+                if()
+            when RUN    =>
+            when STOP   =>         
+        end case;
+    end if;
+end process;
+
+arm_sampler : process (r_arm_sampler, r_pulse_500ns, r_reset) is
+begin
+    if(r_arm_sampler = '1') then
+        r_pulse_500ns_trig <= '1';
+    elsif(r_reset = '1') then
+        r_pulse_500ns_trig <= '0';
+    elsif(falling_edge(r_pulse_500ns)) then
+        r_pulse_500ns_trig <= '0';
+    end if;
+end process;
 
 trigger_sampler_set_flags : process (i_master_clk, r_acq, r_done, r_reset) is
 begin
 if(r_reset = '1') then
-    r_run_sampler <= '0';
+    r_arm_sampler <= '0';
 elsif(rising_edge(i_master_clk)) then
-    if(r_acq = '1') then
-        r_run_sampler <= '1';
+    if(r_acq = '1') then --Vi mangler en måde at clear det her flag på i intern memory
+        r_arm_sampler <= '1';
     elsif(r_done = '1') then
-        r_run_sampler <= '0';
+        r_arm_sampler <= '0';
     else
-        r_run_sampler <= '0';
+        r_arm_sampler <= '0';
     end if;
 end if;
 

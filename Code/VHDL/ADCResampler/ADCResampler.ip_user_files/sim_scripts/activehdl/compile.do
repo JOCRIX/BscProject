@@ -4,8 +4,6 @@ onerror {quit -force}
 transcript on
 
 vlib work
-vlib activehdl/xpm
-vlib activehdl/xil_defaultlib
 vlib activehdl/xbip_utils_v3_0_13
 vlib activehdl/axi_utils_v2_0_9
 vlib activehdl/xbip_pipe_v3_0_9
@@ -15,9 +13,8 @@ vlib activehdl/xbip_dsp48_wrapper_v3_0_6
 vlib activehdl/xbip_dsp48_addsub_v3_0_9
 vlib activehdl/xbip_dsp48_multadd_v3_0_9
 vlib activehdl/dds_compiler_v6_0_25
+vlib activehdl/xil_defaultlib
 
-vmap xpm activehdl/xpm
-vmap xil_defaultlib activehdl/xil_defaultlib
 vmap xbip_utils_v3_0_13 activehdl/xbip_utils_v3_0_13
 vmap axi_utils_v2_0_9 activehdl/axi_utils_v2_0_9
 vmap xbip_pipe_v3_0_9 activehdl/xbip_pipe_v3_0_9
@@ -27,15 +24,7 @@ vmap xbip_dsp48_wrapper_v3_0_6 activehdl/xbip_dsp48_wrapper_v3_0_6
 vmap xbip_dsp48_addsub_v3_0_9 activehdl/xbip_dsp48_addsub_v3_0_9
 vmap xbip_dsp48_multadd_v3_0_9 activehdl/xbip_dsp48_multadd_v3_0_9
 vmap dds_compiler_v6_0_25 activehdl/dds_compiler_v6_0_25
-
-vlog -work xpm  -sv2k12 "+incdir+../../../ADCResampler.gen/sources_1/ip/clk_wiz_0" -l xpm -l xil_defaultlib -l xbip_utils_v3_0_13 -l axi_utils_v2_0_9 -l xbip_pipe_v3_0_9 -l xbip_bram18k_v3_0_9 -l mult_gen_v12_0_21 -l xbip_dsp48_wrapper_v3_0_6 -l xbip_dsp48_addsub_v3_0_9 -l xbip_dsp48_multadd_v3_0_9 -l dds_compiler_v6_0_25 \
-"C:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
-
-vcom -work xpm -93  \
-"C:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_VCOMP.vhd" \
-
-vcom -work xil_defaultlib -93  \
-"../../../ADCResampler.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl" \
+vmap xil_defaultlib activehdl/xil_defaultlib
 
 vcom -work xbip_utils_v3_0_13 -93  \
 "../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \
@@ -94,8 +83,6 @@ vcom -work dds_compiler_v6_0_25 -93  \
 
 vcom -work xil_defaultlib -93  \
 "../../../ADCResampler.gen/sources_1/ip/dds_compiler_0/sim/dds_compiler_0.vhd" \
+"../../../ADCResampler.srcs/sources_1/imports/new/pulse_width_gen.vhd" \
 "../../../ADCResampler.srcs/sources_1/new/adc_resampler.vhd" \
-
-vlog -work xil_defaultlib \
-"glbl.v"
 
