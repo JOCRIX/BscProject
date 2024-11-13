@@ -3,10 +3,10 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Nov 13 12:09:34 2024
-# Process ID: 3856
+# Start of session at: Tue Nov 12 10:23:26 2024
+# Process ID: 3132
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent9268 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\ActiveTest\ActiveTest.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7004 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\ActiveTest\ActiveTest.xpr
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/vivado.log
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest\vivado.jou
 # Running On        :DESKTOP-26ONRPF
@@ -19,7 +19,7 @@
 # Host memory       :8469 MB
 # Swap memory       :7247 MB
 # Total Virtual     :15717 MB
-# Available Virtual :10137 MB
+# Available Virtual :11889 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.xpr
@@ -33,7 +33,147 @@ open_hw_target
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
 current_hw_device [get_hw_devices xc7a35t_0]
 refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
-create_hw_cfgmem -hw_device [get_hw_devices xc7a35t_0] -mem_dev [lindex [get_cfgmem_parts {mx25l3273f-spi-x1_x2_x4}] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
@@ -42,28 +182,42 @@ refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
 reset_run synth_1
 launch_runs synth_1 -jobs 4
 wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
 open_run synth_1 -name synth_1
 refresh_design
-place_ports {i_SAMPLE_F[0]} P1
-place_ports {i_SAMPLE_F[1]} N2
-place_ports {i_SAMPLE_F[2]} N1
-place_ports {i_SAMPLE_F[3]} M2
-place_ports {i_SAMPLE_F[4]} P3
-place_ports {i_SAMPLE_F[5]} N3
-place_ports {i_SAMPLE_F[6]} M1
-place_ports {i_SAMPLE_F[7]} L2
-place_ports {i_SAMPLE_F[8]} L1
-place_ports {i_SAMPLE_F[9]} K2
-place_ports {i_SAMPLE_F[10]} J1
-place_ports {i_SAMPLE_F[11]} J3
-place_ports {i_SAMPLE_F[12]} A14
-place_ports {i_SAMPLE_F[13]} B15
-place_ports {i_SAMPLE_F[14]} A15
-place_ports {i_SAMPLE_F[15]} H1
-set_property IOSTANDARD LVCMOS33 [get_ports [list {i_SAMPLE_F[15]} {i_SAMPLE_F[14]} {i_SAMPLE_F[13]} {i_SAMPLE_F[12]} {i_SAMPLE_F[11]} {i_SAMPLE_F[10]} {i_SAMPLE_F[9]} {i_SAMPLE_F[8]} {i_SAMPLE_F[7]} {i_SAMPLE_F[6]} {i_SAMPLE_F[5]} {i_SAMPLE_F[4]} {i_SAMPLE_F[3]} {i_SAMPLE_F[2]} {i_SAMPLE_F[1]} {i_SAMPLE_F[0]}]]
-set_property PULLTYPE PULLUP [get_ports [list {i_SAMPLE_F[15]} {i_SAMPLE_F[14]} {i_SAMPLE_F[13]} {i_SAMPLE_F[12]} {i_SAMPLE_F[11]} {i_SAMPLE_F[10]} {i_SAMPLE_F[9]} {i_SAMPLE_F[8]} {i_SAMPLE_F[7]} {i_SAMPLE_F[6]} {i_SAMPLE_F[5]} {i_SAMPLE_F[4]} {i_SAMPLE_F[3]} {i_SAMPLE_F[2]} {i_SAMPLE_F[1]} {i_SAMPLE_F[0]}]]
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1
+place_ports {o_ADDR_TEST[0]} P1
+place_ports {o_ADDR_TEST[1]} N2
+place_ports {o_ADDR_TEST[2]} N1
+place_ports {o_ADDR_TEST[3]} M2
+place_ports {o_ADDR_TEST[4]} P3
+place_ports {o_ADDR_TEST[5]} N3
+place_ports {o_ADDR_TEST[6]} M1
+place_ports {o_ADDR_TEST[7]} L2
+place_ports {o_ADDR_TEST[8]} L1
+place_ports {o_ADDR_TEST[9]} K2
+place_ports {o_ADDR_TEST[10]} J1
+place_ports {o_ADDR_TEST[11]} J3
+place_ports {o_ADDR_TEST[12]} A14
+place_ports {o_ADDR_TEST[13]} B15
+place_ports {o_ADDR_TEST[13]} H1
+place_ports {o_ADDR_TEST[13]} B15
+place_ports {o_ADDR_TEST[14]} A15
+place_ports {o_ADDR_TEST[15]} H1
+place_ports {o_ADDR_TEST[16]} C15
+set_property package_pin "" [get_ports [list  i_ADC_RDY]]
+place_ports {o_ADDR_TEST[17]} K3
+place_ports {o_ADDR_TEST[18]} A16
+place_ports i_ADC_RDY L3
+set_property IOSTANDARD LVCMOS33 [get_ports [list {o_ADDR_TEST[18]} {o_ADDR_TEST[17]} {o_ADDR_TEST[16]} {o_ADDR_TEST[15]} {o_ADDR_TEST[14]} {o_ADDR_TEST[13]} {o_ADDR_TEST[12]} {o_ADDR_TEST[11]} {o_ADDR_TEST[10]} {o_ADDR_TEST[9]} {o_ADDR_TEST[8]} {o_ADDR_TEST[7]} {o_ADDR_TEST[6]} {o_ADDR_TEST[5]} {o_ADDR_TEST[4]} {o_ADDR_TEST[3]} {o_ADDR_TEST[2]} {o_ADDR_TEST[1]} {o_ADDR_TEST[0]}]]
+set_property OFFCHIP_TERM NONE [get_ports [list {o_ADDR_TEST[18]} {o_ADDR_TEST[17]} {o_ADDR_TEST[16]} {o_ADDR_TEST[15]} {o_ADDR_TEST[14]} {o_ADDR_TEST[13]} {o_ADDR_TEST[12]} {o_ADDR_TEST[11]} {o_ADDR_TEST[10]} {o_ADDR_TEST[9]} {o_ADDR_TEST[8]} {o_ADDR_TEST[7]} {o_ADDR_TEST[6]} {o_ADDR_TEST[5]} {o_ADDR_TEST[4]} {o_ADDR_TEST[3]} {o_ADDR_TEST[2]} {o_ADDR_TEST[1]} {o_ADDR_TEST[0]}]]
 save_constraints
-reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 4
 wait_on_run impl_1
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
@@ -71,36 +225,9 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
@@ -129,8 +256,11 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-place_ports i_COMM_CLK N18
-place_ports i_COMM_CLK A16
+set_property DRIVE 4 [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
+set_property SLEW SLOW [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
+set_property SLEW SLOW [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
+set_property PULLTYPE NONE [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
+set_property SLEW SLOW [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
 save_constraints -force
 reset_run impl_1
 launch_runs impl_1 -to_step write_bitstream -jobs 4
@@ -140,6 +270,34 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+create_hw_cfgmem -hw_device [lindex [get_hw_devices xc7a35t_0] 0] [lindex [get_cfgmem_parts {mx25l3273f-spi-x1_x2_x4}] 0]
+set_property PROGRAM.BLANK_CHECK  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.ERASE  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.CFG_PROGRAM  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.VERIFY  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.CHECKSUM  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+delete_hw_cfgmem [ get_property PROGRAM.HW_CFGMEM [get_hw_devices xc7a35t_0 ]]
+create_hw_cfgmem -hw_device [lindex [get_hw_devices xc7a35t_0] 0] [lindex [get_cfgmem_parts {mx25l3273f-spi-x1_x2_x4}] 0]
+set_property PROGRAM.BLANK_CHECK  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.ERASE  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.CFG_PROGRAM  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.VERIFY  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.CHECKSUM  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROGRAM.ADDRESS_RANGE  {use_file} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.FILES [list "C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bin" ] [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.PRM_FILE {} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.UNUSED_PIN_TERMINATION {pull-none} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.BLANK_CHECK  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.ERASE  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.CFG_PROGRAM  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.VERIFY  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+set_property PROGRAM.CHECKSUM  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+startgroup 
+create_hw_bitstream -hw_device [lindex [get_hw_devices xc7a35t_0] 0] [get_property PROGRAM.HW_CFGMEM_BITFILE [ lindex [get_hw_devices xc7a35t_0] 0]]; program_hw_devices [lindex [get_hw_devices xc7a35t_0] 0]; refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0];
+program_hw_cfgmem -hw_cfgmem [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
+endgroup
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
@@ -155,12 +313,10 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-place_ports i_COMM_CLK U8
+set_property SLEW FAST [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
+set_property SLEW FAST [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
+set_property DRIVE 8 [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
+set_property PULLTYPE PULLUP [get_ports [list {io_COMM_BUS[15]} {io_COMM_BUS[14]} {io_COMM_BUS[13]} {io_COMM_BUS[12]} {io_COMM_BUS[11]} {io_COMM_BUS[10]} {io_COMM_BUS[9]} {io_COMM_BUS[8]} {io_COMM_BUS[7]} {io_COMM_BUS[6]} {io_COMM_BUS[5]} {io_COMM_BUS[4]} {io_COMM_BUS[3]} {io_COMM_BUS[2]} {io_COMM_BUS[1]} {io_COMM_BUS[0]}]]
 save_constraints -force
 reset_run impl_1
 launch_runs impl_1 -to_step write_bitstream -jobs 4
@@ -170,66 +326,17 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]

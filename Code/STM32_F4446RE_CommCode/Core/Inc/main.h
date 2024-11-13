@@ -67,8 +67,6 @@ void Error_Handler(void);
 #define DB10_GPIO_Port GPIOC
 #define DB11_Pin GPIO_PIN_3
 #define DB11_GPIO_Port GPIOC
-#define DB_CLK_Pin GPIO_PIN_0
-#define DB_CLK_GPIO_Port GPIOA
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
@@ -89,6 +87,8 @@ void Error_Handler(void);
 #define DB14_GPIO_Port GPIOC
 #define DB15_Pin GPIO_PIN_7
 #define DB15_GPIO_Port GPIOC
+#define DB_CLK_Pin GPIO_PIN_9
+#define DB_CLK_GPIO_Port GPIOC
 #define Test_Input_Pin GPIO_PIN_8
 #define Test_Input_GPIO_Port GPIOA
 #define RESET_SYS_Pin GPIO_PIN_9
