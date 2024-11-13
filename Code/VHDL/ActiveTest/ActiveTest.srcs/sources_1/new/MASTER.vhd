@@ -43,8 +43,8 @@ entity sample_control_TOP is
         io_COMM_BUS : inout std_logic_vector(15 downto 0); 
 --        o_COMM_BUS : out std_logic_vector(15 downto 0);  
         --i_DATA_ADC_TO_IVSA : in std_logic_vector(15 downto 0);
-        --i_SAMPLE_F : in std_logic_vector(15 downto 0);
-        o_ADDR_TEST : out std_logic_vector(18 downto 0);
+        i_SAMPLE_F : in std_logic_vector(15 downto 0);
+--        o_ADDR_TEST : out std_logic_vector(18 downto 0);
         i_ADC_DnB : in std_logic;
         i_ADC_RDY : in std_logic;
         
@@ -61,7 +61,6 @@ entity sample_control_TOP is
 end sample_control_TOP;
 
 architecture rtl of sample_control_TOP is
-
 
 --Component declarations
 component comm_port
@@ -321,11 +320,12 @@ end component;
     signal s_byte : byte_state := S1;
 begin
 
+
 o_Mem_Addr_ext <= test_ADDR_ext_mem;
 --o_ADDR_TEST <= test_ADDR_ext_mem;
-o_ADDR_TEST <= "000" & w_ADDR_IVSA_TO_MDIST;
---SAMPLE_F_u16 <= TO_INTEGER(unsigned(i_SAMPLE_F));
-SAMPLE_F_u16 <= 100;
+--o_ADDR_TEST <= "000" & w_ADDR_IVSA_TO_MDIST;
+SAMPLE_F_u16 <= TO_INTEGER(unsigned(i_SAMPLE_F));
+--SAMPLE_F_u16 <= 100;
 --w_ADC_DnB_n <= not i_ADC_DnB;
 w_ADC_DnB_n <= not arm;
 process(w_GRANDMASTER_CLK) is
@@ -360,8 +360,8 @@ end process;
 
 
 process(init, w_GRANDMASTER_CLK, i_ADC_RDY, SAMPLE_F_u16) is
-variable v_DelCount : integer range 0 to 65535 := 0;
-variable v_TrigCount : integer range 0 to 65535 := 0;
+variable v_DelCount : integer range 0 to 65536 := 0;
+variable v_TrigCount : integer range 0 to 65536 := 0;
 begin
     if(rising_edge(w_GRANDMASTER_CLK)) then
         w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
@@ -370,7 +370,7 @@ begin
             v_DelCount := 0;
             v_TrigCount := 0;
         else
-            if(v_TrigCount < 65535) then
+            if(v_TrigCount <= 65535) then
                 case s_byte is 
                     when S1 =>
                         w_ADC_TRIG <= '1';
