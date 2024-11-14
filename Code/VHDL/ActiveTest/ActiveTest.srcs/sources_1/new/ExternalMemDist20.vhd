@@ -157,7 +157,7 @@ begin
                             s_byte <= S2;
                         when S2 =>
                             v_Count := v_Count +1;
-                            if(v_Count > 6) then
+                            if(v_Count > 1) then
                                 s_byte <= S3;
                                 o_SET <= '1';
                                 v_Count := 0;
@@ -170,10 +170,11 @@ begin
                             s_byte <= S4;
                         when S4 =>
                             v_Count := v_Count +1;
-                            if(v_Count > 6) then
+                            if(v_Count > 1) then
                                 s_BYTE <= SEQ_CMPLT;
                                 o_SET <= '1';
                                 v_Count := 0;
+                                w_CMPLT <= '1';
                             end if;
                         when others =>
                             w_CMPLT <= '1';
@@ -199,11 +200,17 @@ begin
                         when S3 =>
                             w_iLoBYTE <= i_DATA_EMEM;
                             s_byte <= S4;
-                        when S4 =>
                             o_SET <= '0';
-                            s_byte <= S5;
-                        when S5 =>
+                        when S4 =>
                             o_ADDR <= w_HiADDR;
+                            if(v_Count > 1) then
+                                s_byte <= S5;
+                                v_Count := 0;
+                            else
+                                v_Count := v_Count +1;
+                            end if;
+                        when S5 =>
+                            o_SET <= '1';
                             if(v_Count > 1) then
                                 s_byte <= S6;
                                 v_Count := 0;
@@ -211,16 +218,9 @@ begin
                                 v_Count := v_Count +1;
                             end if;
                         when S6 =>
-                            o_SET <= '1';
-                            if(v_Count > 1) then
-                                s_byte <= S7;
-                                v_Count := 0;
-                            else
-                                v_Count := v_Count +1;
-                            end if;
-                        when S7 =>
                                 o_DATA <= i_DATA_EMEM & w_iLoBYTE;
                                 s_BYTE <= SEQ_CMPLT;
+                                w_CMPLT <= '1';
                         when others =>
                             w_CMPLT <= '1';
                         end case;

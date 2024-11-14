@@ -97,7 +97,7 @@ signal  m_axis_data_tvalid : std_logic;
 --Update output frq
 signal s_axis_config_tvalid : std_logic;
 --Sets output frq
-signal r_dds_frq_word : std_logic_vector(47 DOWNTO 0) := (others => '0'); 
+signal r_dds_frq_word : std_logic_vector(47 DOWNTO 0) := "000001010001111010111000010100011110111010011000";  -- (others => '0'); 
 --DDS output
 signal m_axis_data_tdata : std_logic_vector(15 downto 0);
 --DDS output CLK
@@ -105,7 +105,9 @@ signal r_dds_clk : std_logic;
 --DDS input clk
 type state_resampler is (IDLE, ARM, RUN, STOP);
 signal s_resamp : state_resampler := IDLE;
-
+signal r_run_adc_trigger : std_logic := '0';
+signal r_adc_trig_done : std_logic := '0';
+signal r_dds_clk_count : integer range 0 to 65535:= 0;
 
 begin
 
@@ -141,7 +143,8 @@ pulse_gen_500ns_delay : pulse_width_gen
 --DDS clock to local
 r_dds_clk <= m_axis_data_tdata(15);
 --set frq word to DDS
-r_dds_frq_word(47 downto 0) <= i_sample_frq_high_int_mem_reg & i_sample_frq_low_int_mem_reg & x"0000";
+--r_dds_frq_word(47 downto 0) <= i_sample_frq_high_int_mem_reg & i_sample_frq_low_int_mem_reg & x"0000";
+r_dds_frq_word <= "000001010001111010111000010100011110111010011000";
 --Get sample size
 r_sample_size <= to_integer(unsigned(i_sample_size_int_mem_reg));
 --local busy flag
@@ -154,7 +157,7 @@ r_reset <= i_reset_logic;
 w_mclk <= i_master_clk;
 
 
-resampler : process (w_mclk, r_reset, s_resamp, r_arm_sampler) is
+resampler : process (w_mclk, r_reset, s_resamp, r_arm_sampler, r_pulse_500ns_trig) is
 begin
     if(r_reset = '1') then 
         s_resamp <= IDLE;
@@ -169,10 +172,36 @@ begin
                     o_resampler_busy <= '0';
                 end if;
             when ARM    =>
-                if()
+                if(r_pulse_500ns_trig = '0') then
+                    s_resamp <= RUN;
+                end if;
             when RUN    =>
+            if(r_adc_trig_done = '0') then
+                r_run_adc_trigger <= '1';
+            else
+              s_resamp <= STOP;
+            end if;
             when STOP   =>         
         end case;
+    end if;
+end process;
+
+trig_adc_control : process (r_dds_clk, r_run_adc_trigger)is
+begin
+    if(rising_edge(r_dds_clk)) then
+        if(r_run_adc_trigger = '1') then
+            if(r_dds_clk_count < r_sample_size) then
+                o_acquire_start_adc_control <= r_dds_clk;
+                r_dds_clk_count <= r_dds_clk_count + 1;
+                r_adc_trig_done <= '0';
+            else
+                o_acquire_start_adc_control <= '0';
+                r_dds_clk_count <= 0;
+                r_adc_trig_done <= '1';
+            end if;
+        else
+            r_adc_trig_done <= '0';
+        end if;
     end if;
 end process;
 
