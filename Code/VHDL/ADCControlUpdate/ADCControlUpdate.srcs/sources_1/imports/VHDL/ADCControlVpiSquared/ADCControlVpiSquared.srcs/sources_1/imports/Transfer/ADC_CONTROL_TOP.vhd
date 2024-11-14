@@ -150,13 +150,13 @@ end component;
 
 begin
 --Simulation stuff
---i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
+i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
 --i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
 
 --test CNV
---i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
+i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN <= EXT_TEST_ACQUIRE_START;
 
-i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN<= i_outval;
+--i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN<= i_outval;
 
 --Test
 --EXT_DCN_OUT <= i_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
@@ -165,7 +165,7 @@ i_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN<= i_outval;
 EXT_LEDS_DATA_FROM_ADC_CONTROL <= i_ADC_A_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER;
 
 --Cnv pulse out
-EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT <= i_PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
+--EXT_EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT <= i_PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
 
 --DSC pulse out
 --EXT_DSC_OUT <= i_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN;
@@ -201,8 +201,8 @@ adc_ctrl1 : adc_control
 pulse_gen_1_SDACLK : pulse_gen_width_modulator_inverted
 Generic map(
         NR_OF_CLKs => 16,  
-        HIGH_TIME => 20, --20, had to "calibrate" due to actual implementation
-        LOW_TIME =>25    
+        HIGH_TIME => 5, --20, had to "calibrate" due to actual implementation
+        LOW_TIME =>10    
 )
 Port map(
         MASTER_CLK_200MEG_IN => i_MASTER_CLK_TO_ADC_CONTROL,
@@ -244,26 +244,26 @@ pulse_gen_4_DSC : pulse_width_gen
        
 --200MHz CLK(50% DC) and 20MHz(48.3% DC) CLK
 
-     master_of_clk : clk_wiz_0
-   port map ( 
-  -- Clock out ports  
-   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
-   -- Clock in ports
-   clk_in1 =>MASTER_CLK_IN
- ); 
+--     master_of_clk : clk_wiz_0
+--   port map ( 
+--  -- Clock out ports  
+--   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
+--   -- Clock in ports
+--   clk_in1 =>MASTER_CLK_IN
+-- ); 
  
  --divide clk2
  
 
-process(i_MASTER_CLK_TO_ADC_CONTROL) is
-begin
-    if(i_counter >= 99) then--1999) then--500) then --counter var 99 for 1MS/s
-        i_counter <= 0;
-        i_outval <= not i_outval;
-    elsif(rising_edge(i_MASTER_CLK_TO_ADC_CONTROL)) then
-       i_counter <= i_counter +1;
-    end if;
-end process;
+--process(i_MASTER_CLK_TO_ADC_CONTROL) is
+--begin
+--    if(i_counter >= 99) then--1999) then--500) then --counter var 99 for 1MS/s
+--        i_counter <= 0;
+--        i_outval <= not i_outval;
+--    elsif(rising_edge(i_MASTER_CLK_TO_ADC_CONTROL)) then
+--       i_counter <= i_counter +1;
+--    end if;
+--end process;
       
 
 end Behavioral;

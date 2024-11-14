@@ -1,0 +1,7 @@
+xpm_cdc.sv,systemverilog,xpm,G:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../ADCControlHighSpeedFinal.gen/sources_1/ip/clk_wiz_0"
+xpm_VCOMP.vhd,vhdl,xpm,G:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_VCOMP.vhd,incdir="../../../ADCControlHighSpeedFinal.gen/sources_1/ip/clk_wiz_0"
+adc_control.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlHighSpeedFinal/ADCControlHighSpeedFinal.srcs/sources_1/imports/Transfer/adc_control.vhd,incdir="../../../ADCControlHighSpeedFinal.gen/sources_1/ip/clk_wiz_0"
+pulse_gen_invert.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlHighSpeedFinal/ADCControlHighSpeedFinal.srcs/sources_1/imports/VHDL/PulseGenInvertHS/PulseGenInvertHS.srcs/sources_1/imports/Transfer/pulse_gen_invert.vhd,incdir="../../../ADCControlHighSpeedFinal.gen/sources_1/ip/clk_wiz_0"
+pulse_width_gen.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlHighSpeedFinal/ADCControlHighSpeedFinal.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd,incdir="../../../ADCControlHighSpeedFinal.gen/sources_1/ip/clk_wiz_0"
+ADC_CONTROL_TOP.vhd,vhdl,xil_defaultlib,F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlHighSpeedFinal/ADCControlHighSpeedFinal.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd,incdir="../../../ADCControlHighSpeedFinal.gen/sources_1/ip/clk_wiz_0"
+glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -210,8 +210,8 @@ adc_ctrl1 : adc_control
 pulse_gen_1_SDACLK : pulse_gen_width_modulator_inverted
 Generic map(
         NR_OF_CLKs => 16,  
-        HIGH_TIME => 20, --20, had to "calibrate" due to actual implementation
-        LOW_TIME =>25    
+        HIGH_TIME =>20,-- 20, --20, had to "calibrate" due to actual implementation
+        LOW_TIME =>25--25    
 )
 Port map(
         MASTER_CLK_200MEG_IN => i_MASTER_CLK_TO_ADC_CONTROL,
@@ -264,15 +264,15 @@ pulse_gen_4_DSC : pulse_width_gen
  --divide clk2
  
 
-process(i_MASTER_CLK_TO_ADC_CONTROL) is
-begin
-    if(i_counter >= 1999) then--500) then --counter var 99 for 1MS/s
-        i_counter <= 0;
-        i_outval <= not i_outval;
-    elsif(rising_edge(i_MASTER_CLK_TO_ADC_CONTROL)) then
-       i_counter <= i_counter +1;
-    end if;
-end process;
+--process(i_MASTER_CLK_TO_ADC_CONTROL) is
+--begin
+--    if(i_counter >= 1999) then--500) then --counter var 99 for 1MS/s
+--        i_counter <= 0;
+--        i_outval <= not i_outval;
+--    elsif(rising_edge(i_MASTER_CLK_TO_ADC_CONTROL)) then
+--       i_counter <= i_counter +1;
+--    end if;
+--end process;
       
 
 end Behavioral;

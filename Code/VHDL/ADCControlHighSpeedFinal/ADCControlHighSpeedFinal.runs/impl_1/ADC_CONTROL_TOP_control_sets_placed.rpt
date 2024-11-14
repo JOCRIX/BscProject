@@ -1,0 +1,112 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Thu Nov 14 01:23:47 2024
+| Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file ADC_CONTROL_TOP_control_sets_placed.rpt
+| Design       : ADC_CONTROL_TOP
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    34 |
+|    Minimum number of control sets                        |    34 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   215 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    34 |
+| >= 0 to < 4        |    29 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     1 |
+| >= 16              |     2 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              22 |            6 |
+| No           | No                    | Yes                    |              28 |           16 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              33 |           22 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              14 |            4 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-------------------------------------------------------------------+-----------------------------------------+----------------------------------+------------------+----------------+--------------+
+|                            Clock Signal                           |              Enable Signal              |         Set/Reset Signal         | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------------------------------------------+-----------------------------------------+----------------------------------+------------------+----------------+--------------+
+|  adc_ctrl1/data_ready                                             |                                         | pulse_gen_4_DSC/r_done_reg_n_0   |                1 |              1 |         1.00 |
+|  adc_ctrl1/dcn_trig_out                                           |                                         | pulse_gen_3_DCN/r_done_reg_n_0   |                1 |              1 |         1.00 |
+|  adc_ctrl1/dcn_trig_out                                           |                                         | pulse_gen_2_CNV/r_done           |                1 |              1 |         1.00 |
+|  adc_ctrl1/spi_clk_trig_out                                       |                                         | pulse_gen_1_SDACLK/done_reg_n_0  |                1 |              1 |         1.00 |
+| ~pulse_gen_1_SDACLK/ACTIVE                                        |                                         | adc_ctrl1/dsc_trig_out           |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[12]_i_1_n_0 |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[0]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[10]_i_1_n_0 |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[11]_i_1_n_0 |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[4]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[6]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[8]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[15]_i_1_n_0 |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[3]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[9]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[5]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[2]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[14]_i_1_n_0 |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[1]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[13]_i_1_n_0 |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF | adc_ctrl1/serial_data_adc_1[7]_i_1_n_0  |                                  |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/done_reg_n_0                                  |                                         | adc_ctrl1/spi_clk_trig_out       |                1 |              1 |         1.00 |
+|  pulse_gen_1_SDACLK/output_state[1]                               |                                         | pulse_gen_1_SDACLK/done_reg_n_0  |                1 |              1 |         1.00 |
+| ~pulse_gen_3_DCN/o_pulse                                          |                                         | adc_ctrl1/spi_clk_trig_out_0     |                1 |              1 |         1.00 |
+| ~pulse_gen_4_DSC/o_pulse_reg_0                                    |                                         | adc_ctrl1/dsc_pulse_done_i_1_n_0 |                1 |              1 |         1.00 |
+|  i_outval                                                         |                                         | adc_ctrl1/dsc_trig_out           |                1 |              1 |         1.00 |
+|  i_outval_reg_i_2_n_0                                             |                                         |                                  |                1 |              1 |         1.00 |
+|  master_of_clk/inst/clk_out1                                      |                                         | pulse_gen_1_SDACLK/pulse_count2  |                1 |              1 |         1.00 |
+|  master_of_clk/inst/clk_out1                                      | pulse_gen_2_CNV/r_start                 |                                  |                1 |              1 |         1.00 |
+| ~pulse_gen_1_SDACLK/EXT_EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT_OBUF |                                         | adc_ctrl1/dsc_trig_out           |                2 |              6 |         3.00 |
+|  master_of_clk/inst/clk_out1                                      |                                         | i_outval_reg_i_2_n_0             |                3 |             11 |         3.67 |
+|  master_of_clk/inst/clk_out1                                      | pulse_gen_1_SDACLK/pulses_generated0    | pulse_gen_1_SDACLK/done          |                4 |             14 |         3.50 |
+|  master_of_clk/inst/clk_out1                                      | adc_ctrl1/dsc_trig_out                  |                                  |                5 |             16 |         3.20 |
+|  master_of_clk/inst/clk_out1                                      |                                         |                                  |                5 |             21 |         4.20 |
++-------------------------------------------------------------------+-----------------------------------------+----------------------------------+------------------+----------------+--------------+
+
+
