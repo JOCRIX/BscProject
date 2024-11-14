@@ -1,0 +1,554 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Nov 14 17:16:31 2024
+# Process ID: 18644
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4592 F:\Git Projects\EIT\P7---Bsc\Code\VHDL\ADCResampler\ADCResampler.xpr
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/vivado.log
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39212 MB
+# Available Virtual :23713 MB
+#-----------------------------------------------------------
+start_gui
+open_project {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.xpr}
+update_compile_order -fileset sources_1
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_dds_clk_50MHz} -radix hex {0 0ns} {1 10000ps} -repeat_every 20000ps
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0000 0ns} {ffff 50000ps} -repeat_every 100000ps
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close [ open {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/sources_1/new/trig_registry_test.vhd} w ]
+add_files {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/sources_1/new/trig_registry_test.vhd}}
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/sources_1/new/trig_registry_test.vhd}}] -no_script -reset -force -quiet
+remove_files  {{F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/sources_1/new/trig_registry_test.vhd}}
+file delete -force {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/sources_1/new/trig_registry_test.vhd}
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_dds_clk_50MHz} -radix hex {0 0ns} {1 10000ps} -repeat_every 20000ps
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0000 0ns} {ffff 50000ps} -repeat_every 100000ps
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_dds_clk_50MHz} -radix hex {0 0ns} {1 10000ps} -repeat_every 20000ps
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0000 0ns}
+run 100 ns
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_dds_clk_50MHz} -radix hex {0 0ns} {1 10000ps} -repeat_every 20000ps
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0000 0ns}
+run 100 ns
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {00 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_dds_clk_50MHz} -radix hex {0 0ns} {1 10000ps} -repeat_every 20000ps
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_dds_clk_50MHz} -radix hex {0 0ns} {1 10000ps} -repeat_every 20000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+restart
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+restart
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+save_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+restart
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+save_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/i_dds_clk_50MHz} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+restart
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+save_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+close_sim
+launch_simulation
+open_wave_config {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/adc_resampler_behav.wcfg}
+source adc_resampler.tcl
+add_force {/adc_resampler/i_master_clk} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
+add_force {/adc_resampler/r_dds_clk} -radix hex {0 0ns} {1 500000ps} -repeat_every 1000000ps
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {ffff 0ns}
+run 100 ns
+add_force {/adc_resampler/i_acquire_start_int_mem_reg} -radix hex {0 0ns}
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+close_sim

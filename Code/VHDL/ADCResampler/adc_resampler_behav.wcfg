@@ -10,22 +10,18 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="460.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="2,018.001 ns"></ZoomEndTime>
-      <Cursor1Time time="800.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="6,005.001 ns"></ZoomEndTime>
+      <Cursor1Time time="2,275.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="299"></NameColumnWidth>
-      <ValueColumnWidth column_width="183"></ValueColumnWidth>
+      <ValueColumnWidth column_width="171"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/adc_resampler/i_master_clk" type="logic">
       <obj_property name="ElementShortName">i_master_clk</obj_property>
       <obj_property name="ObjectShortName">i_master_clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/i_dds_clk_50MHz" type="logic">
-      <obj_property name="ElementShortName">i_dds_clk_50MHz</obj_property>
-      <obj_property name="ObjectShortName">i_dds_clk_50MHz</obj_property>
    </wvobject>
    <wvobject fp_name="/adc_resampler/r_dds_clk" type="logic">
       <obj_property name="ElementShortName">r_dds_clk</obj_property>
@@ -43,29 +39,9 @@
       <obj_property name="ElementShortName">i_sample_size_int_mem_reg[15:0]</obj_property>
       <obj_property name="ObjectShortName">i_sample_size_int_mem_reg[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/i_sample_frq_high_int_mem_reg" type="array">
-      <obj_property name="ElementShortName">i_sample_frq_high_int_mem_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">i_sample_frq_high_int_mem_reg[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/i_sample_frq_low_int_mem_reg" type="array">
-      <obj_property name="ElementShortName">i_sample_frq_low_int_mem_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">i_sample_frq_low_int_mem_reg[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/i_adc_control_busy" type="logic">
-      <obj_property name="ElementShortName">i_adc_control_busy</obj_property>
-      <obj_property name="ObjectShortName">i_adc_control_busy</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/o_resampler_busy" type="logic">
-      <obj_property name="ElementShortName">o_resampler_busy</obj_property>
-      <obj_property name="ObjectShortName">o_resampler_busy</obj_property>
-   </wvobject>
    <wvobject fp_name="/adc_resampler/o_acquire_start_adc_control" type="logic">
       <obj_property name="ElementShortName">o_acquire_start_adc_control</obj_property>
       <obj_property name="ObjectShortName">o_acquire_start_adc_control</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/i_reset_logic" type="logic">
-      <obj_property name="ElementShortName">i_reset_logic</obj_property>
-      <obj_property name="ObjectShortName">i_reset_logic</obj_property>
    </wvobject>
    <wvobject fp_name="/adc_resampler/w_adc_busy" type="logic">
       <obj_property name="ElementShortName">w_adc_busy</obj_property>
@@ -102,5 +78,13 @@
    <wvobject fp_name="/adc_resampler/s_resamp" type="other">
       <obj_property name="ElementShortName">s_resamp</obj_property>
       <obj_property name="ObjectShortName">s_resamp</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adc_resampler/r_dds_clk_count" type="other">
+      <obj_property name="ElementShortName">r_dds_clk_count</obj_property>
+      <obj_property name="ObjectShortName">r_dds_clk_count</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adc_resampler/r_dds_mux_enable" type="logic">
+      <obj_property name="ElementShortName">r_dds_mux_enable</obj_property>
+      <obj_property name="ObjectShortName">r_dds_mux_enable</obj_property>
    </wvobject>
 </wave_config>
