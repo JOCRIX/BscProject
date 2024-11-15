@@ -1,1 +1,1 @@
---incr --debug typical --relax --mt 2  -L xil_defaultlib -L secureip --snapshot adc_resampler xil_defaultlib.adc_resampler -log elaborate.log
+--incr --debug typical --relax --mt 2  -L xpm -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot adc_resampler xil_defaultlib.adc_resampler xil_defaultlib.glbl -log elaborate.log

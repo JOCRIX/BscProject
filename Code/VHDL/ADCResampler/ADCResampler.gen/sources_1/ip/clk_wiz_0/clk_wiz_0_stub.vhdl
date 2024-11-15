@@ -2,7 +2,7 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
--- Date        : Tue Nov 12 12:34:13 2024
+-- Date        : Fri Nov 15 14:14:43 2024
 -- Host        : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub {c:/EIT
 --               GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_stub.vhdl}
@@ -16,6 +16,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity clk_wiz_0 is
   Port ( 
     clk_out1 : out STD_LOGIC;
+    clk_out2 : out STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
 
@@ -25,6 +26,6 @@ architecture stub of clk_wiz_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clk_out1,clk_in1";
+attribute black_box_pad_pin of stub : architecture is "clk_out1,clk_out2,clk_in1";
 begin
 end;

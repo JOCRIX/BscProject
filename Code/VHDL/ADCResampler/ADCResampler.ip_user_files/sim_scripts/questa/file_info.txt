@@ -1,2 +1,7 @@
-pulse_width_gen.vhd,vhdl,xil_defaultlib,../../../ADCResampler.srcs/sources_1/imports/new/pulse_width_gen.vhd,
-adc_resampler.vhd,vhdl,xil_defaultlib,../../../ADCResampler.srcs/sources_1/new/adc_resampler.vhd,
+xpm_cdc.sv,systemverilog,xpm,../../../../../../../../Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../ADCResampler.gen/sources_1/ip/clk_wiz_0"
+xpm_VCOMP.vhd,vhdl,xpm,../../../../../../../../Xilinx/Vivado/2024.1/data/ip/xpm/xpm_VCOMP.vhd,incdir="../../../ADCResampler.gen/sources_1/ip/clk_wiz_0"
+clk_wiz_0_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../ADCResampler.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.vhdl,incdir="../../../ADCResampler.gen/sources_1/ip/clk_wiz_0"
+dds_compiler_0_sim_netlist.vhdl,vhdl,xil_defaultlib,../../../ADCResampler.gen/sources_1/ip/dds_compiler_0/dds_compiler_0_sim_netlist.vhdl,incdir="../../../ADCResampler.gen/sources_1/ip/clk_wiz_0"
+pulse_width_gen.vhd,vhdl,xil_defaultlib,../../../../../../../../EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/sources_1/imports/new/pulse_width_gen.vhd,incdir="../../../ADCResampler.gen/sources_1/ip/clk_wiz_0"
+adc_resampler.vhd,vhdl,xil_defaultlib,../../../../../../../../EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.srcs/sources_1/new/adc_resampler.vhd,incdir="../../../ADCResampler.gen/sources_1/ip/clk_wiz_0"
+glbl.v,Verilog,xil_defaultlib,glbl.v

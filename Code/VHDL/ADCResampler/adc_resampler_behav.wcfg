@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="6,005.001 ns"></ZoomEndTime>
-      <Cursor1Time time="2,275.000 ns"></Cursor1Time>
+      <ZoomStartTime time="1,997.205 ns"></ZoomStartTime>
+      <ZoomEndTime time="7,712.206 ns"></ZoomEndTime>
+      <Cursor1Time time="6,392.205 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="299"></NameColumnWidth>
-      <ValueColumnWidth column_width="171"></ValueColumnWidth>
+      <ValueColumnWidth column_width="159"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="19" />
    <wvobject fp_name="/adc_resampler/i_master_clk" type="logic">
       <obj_property name="ElementShortName">i_master_clk</obj_property>
       <obj_property name="ObjectShortName">i_master_clk</obj_property>
@@ -86,5 +86,13 @@
    <wvobject fp_name="/adc_resampler/r_dds_mux_enable" type="logic">
       <obj_property name="ElementShortName">r_dds_mux_enable</obj_property>
       <obj_property name="ObjectShortName">r_dds_mux_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adc_resampler/r_run_adc_trigger" type="logic">
+      <obj_property name="ElementShortName">r_run_adc_trigger</obj_property>
+      <obj_property name="ObjectShortName">r_run_adc_trigger</obj_property>
+   </wvobject>
+   <wvobject fp_name="/adc_resampler/o_resampler_busy" type="logic">
+      <obj_property name="ElementShortName">o_resampler_busy</obj_property>
+      <obj_property name="ObjectShortName">o_resampler_busy</obj_property>
    </wvobject>
 </wave_config>
