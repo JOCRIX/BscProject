@@ -89,12 +89,12 @@ void Error_Handler(void);
 #define DB14_GPIO_Port GPIOC
 #define DB15_Pin GPIO_PIN_7
 #define DB15_GPIO_Port GPIOC
+#define DB_IX_Pin GPIO_PIN_8
+#define DB_IX_GPIO_Port GPIOC
 #define DB_CLK_Pin GPIO_PIN_9
 #define DB_CLK_GPIO_Port GPIOC
 #define Test_Input_Pin GPIO_PIN_8
 #define Test_Input_GPIO_Port GPIOA
-#define DB_IX_Pin GPIO_PIN_9
-#define DB_IX_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

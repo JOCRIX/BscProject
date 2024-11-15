@@ -404,7 +404,7 @@ int main(void)
 	CommPort.ctrl.HighBytePort = GPIOC;
 	CommPort.ctrl.RWport = GPIOB;
 	CommPort.ctrl.CLKport = GPIOC;
-	CommPort.ctrl.IXport = GPIOA;
+	CommPort.ctrl.IXport = GPIOC;
 	CommPort.ctrl.IXPin = DB_IX_Pin;
 	CommPort.ctrl.LowBytePins[0] = DB0_Pin;
 	CommPort.ctrl.LowBytePins[1] = DB1_Pin;
@@ -428,6 +428,8 @@ int main(void)
 	uint16_t testVar2 = 0;
 	char str[16];
 	char strAddr[16];
+	float f_set = 142300;
+	uint32_t f_word = (uint32_t)(f_set*214.748365);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -486,10 +488,15 @@ HAL_Delay(1);
 //CommPort.set.SetRnW(WRITE);
 //CommPort.set.PulseCLK();
 
-for(int i = 0; i <24; i++) {
-	CommPort.WriteData(2*i, i);
+for(int i = 0; i <23; i++) {
+	CommPort.WriteData(65535-i, i);
 	HAL_Delay(10);
 }
+CommPort.WriteData(100, 23);
+HAL_Delay(10);
+CommPort.WriteData((f_word & 0xFFFF), 4);
+HAL_Delay(10);
+CommPort.WriteData(((f_word >> 16)), 5);
 
 for(int i = 0; i <24; i++) {
 	CommPort.FetchData(&testVar, i);
@@ -801,11 +808,11 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, DB8_Pin|DB9_Pin|DB10_Pin|DB11_Pin
-                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin
-                          |TimerPin_Pin, GPIO_PIN_RESET);
+                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_IX_Pin
+                          |DB_CLK_Pin|TimerPin_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, DB_RESET_Pin|LD2_Pin|DB_IX_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, DB_RESET_Pin|LD2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, DB0_Pin|DB1_Pin|DB2_Pin|DB3_Pin
@@ -819,18 +826,18 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DB8_Pin DB9_Pin DB10_Pin DB11_Pin
-                           DB12_Pin DB13_Pin DB15_Pin DB_CLK_Pin
-                           TimerPin_Pin */
+                           DB12_Pin DB13_Pin DB15_Pin DB_IX_Pin
+                           DB_CLK_Pin TimerPin_Pin */
   GPIO_InitStruct.Pin = DB8_Pin|DB9_Pin|DB10_Pin|DB11_Pin
-                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_CLK_Pin
-                          |TimerPin_Pin;
+                          |DB12_Pin|DB13_Pin|DB15_Pin|DB_IX_Pin
+                          |DB_CLK_Pin|TimerPin_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB_RESET_Pin LD2_Pin DB_IX_Pin */
-  GPIO_InitStruct.Pin = DB_RESET_Pin|LD2_Pin|DB_IX_Pin;
+  /*Configure GPIO pins : DB_RESET_Pin LD2_Pin */
+  GPIO_InitStruct.Pin = DB_RESET_Pin|LD2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

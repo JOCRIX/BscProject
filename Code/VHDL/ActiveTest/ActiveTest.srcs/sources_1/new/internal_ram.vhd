@@ -45,7 +45,9 @@ entity internal_ram is
         i_FSM_RESET   :in std_logic := '0';
         i_DATA_IXMUX : in std_logic_vector(15 downto 0) := (others => '0');
         o_DATA_IXMUX : out std_logic_vector(15 downto 0) := (others => '0');
-        o_REGISTER_23 : out std_logic_vector(15 downto 0) := x"0064"
+        o_REGISTER_23 : out std_logic_vector(15 downto 0) := x"0064";
+        o_REGISTER_5 : out std_logic_vector(15 downto 0) := x"00FF";
+        o_REGISTER_4 : out std_logic_vector(15 downto 0) := (others => '0')
    );
 end internal_ram;
 
@@ -93,6 +95,8 @@ end process;
 Update_Registers : process (i_MASTER_CLK) is
 begin
     if(rising_edge(i_MASTER_CLK)) then
+        o_REGISTER_4 <= RAM(4);
+        o_REGISTER_5 <= RAM(5);
         o_REGISTER_23 <= RAM(23);
     end if;
 end process;
