@@ -3,11 +3,11 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Thu Nov  7 23:50:49 2024
-# Process ID: 6324
+# Start of session at: Fri Nov 15 00:21:47 2024
+# Process ID: 22060
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.runs/synth_1
-# Command line: vivado.exe -log internal_ram.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source internal_ram.tcl
-# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.runs/synth_1/internal_ram.vds
+# Command line: vivado.exe -log IVSA20.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source IVSA20.tcl
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.runs/synth_1/IVSA20.vds
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.runs/synth_1\vivado.jou
 # Running On        :DESKTOP-S99FO1K
 # Platform          :Windows Server 2016 or Windows 10
@@ -19,6 +19,6 @@
 # Host memory       :34182 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39282 MB
-# Available Virtual :18189 MB
+# Available Virtual :18196 MB
 #-----------------------------------------------------------
-source internal_ram.tcl -notrace
+source IVSA20.tcl -notrace

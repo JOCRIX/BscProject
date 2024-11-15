@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Wed Nov 13 13:49:06 2024
-| Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
+| Date         : Fri Nov 15 04:09:24 2024
+| Host         : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
 | Command      : report_drc -file sample_control_TOP_drc_routed.rpt -pb sample_control_TOP_drc_routed.pb -rpx sample_control_TOP_drc_routed.rpx
 | Design       : sample_control_TOP
 | Device       : xc7a35tcpg236-1
@@ -24,15 +24,15 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 22
+             Violations found: 19
 +-------------+----------+-------------------------------------------------------------+------------+
 | Rule        | Severity | Description                                                 | Violations |
 +-------------+----------+-------------------------------------------------------------+------------+
 | CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
+| IOSR-1      | Warning  | IOB set reset sharing                                       | 13         |
 | PDRC-153    | Warning  | Gated clock check                                           | 2          |
 | PLCK-12     | Warning  | Clock Placer Checks                                         | 1          |
 | PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
-| RPBF-3      | Warning  | IO port buffering is incomplete                             | 16         |
 +-------------+----------+-------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -50,14 +50,170 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
 Refer to the device configuration user guide for more information.
 Related violations: <none>
 
+IOSR-1#1 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[0] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#2 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[10] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#3 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[11] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#4 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[12] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#5 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[13] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#6 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[14] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#7 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[15] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#8 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[2] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#9 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[5] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#10 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[6] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#11 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[7] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#12 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[8] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
+IOSR-1#13 Warning
+IOB set reset sharing  
+IO io_COMM_BUS[9] connects to flops which have these IMEM/RAM[1][14]_i_1_n_0, IMEM/RAM[20][14]_i_1_n_0,
+IMEM/RAM[21][14]_i_1_n_0, IMEM/RAM[22][14]_i_1_n_0,
+IMEM/RAM[23][14]_i_1_n_0, IMEM/RAM[24][14]_i_1_n_0,
+IMEM/RAM[25][14]_i_1_n_0, IMEM/RAM[26][14]_i_1_n_0,
+IMEM/RAM[27][14]_i_1_n_0, IMEM/RAM[28][14]_i_1_n_0,
+IMEM/RAM[29][14]_i_1_n_0, IMEM/RAM[2][14]_i_1_n_0,
+IMEM/RAM[30][14]_i_1_n_0, IMEM/RAM[6][14]_i_1_n_0, IMEM/RAM[7][14]_i_1_n_0
+ (the first 15 of 32 listed nets/buses) set/reset signals.  For optimal IOB flop packing there should be only one set/reset signal coming into the IOB.
+Related violations: <none>
+
 PDRC-153#1 Warning
 Gated clock check  
-Net IV_SAVER/sig_CLK_from_int_mem is a gated clock net sourced by a combinational pin IV_SAVER/sample_count2[0]_i_2/O, cell IV_SAVER/sample_count2[0]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net IX_MUX1/CLK_TO_MEM_DIST_OUT is a gated clock net sourced by a combinational pin IX_MUX1/w_init_i_1/O, cell IX_MUX1/w_init_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net MEM_DIST1/CLK_TO_MEM_DIST_OUT is a gated clock net sourced by a combinational pin MEM_DIST1/w_init_i_1/O, cell MEM_DIST1/w_init_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net IX_MUX1/sig_CLK_from_int_mem is a gated clock net sourced by a combinational pin IX_MUX1/sample_count2[0]_i_2/O, cell IX_MUX1/sample_count2[0]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLCK-12#1 Warning
@@ -67,13 +223,13 @@ Resolution: Poor placement of an IO pin and a BUFG has resulted in the router us
  This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
 
 	i_ADC_DnB_IBUF_inst (IBUF.O) is locked to K18
-	i_ADC_DnB_IBUF_BUFG_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y2
+	i_ADC_DnB_IBUF_BUFG_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y4
 
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT IV_SAVER/sample_count2[0]_i_2 is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
+A LUT IX_MUX1/sample_count2[0]_i_2 is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
 IV_SAVER/sample_count2_reg[0], IV_SAVER/sample_count2_reg[10],
 IV_SAVER/sample_count2_reg[11], IV_SAVER/sample_count2_reg[12],
 IV_SAVER/sample_count2_reg[13], IV_SAVER/sample_count2_reg[14],
@@ -86,88 +242,8 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT MEM_DIST1/w_init_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+A LUT IX_MUX1/w_init_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 MEM_DIST1/w_init_reg
-Related violations: <none>
-
-RPBF-3#1 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[0] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#2 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[10] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#3 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[11] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#4 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[12] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#5 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[13] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#6 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[14] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#7 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[15] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#8 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[1] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#9 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[2] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#10 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[3] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#11 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[4] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#12 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[5] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#13 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[6] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#14 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[7] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#15 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[8] expects both input and output buffering but the buffers are incomplete.
-Related violations: <none>
-
-RPBF-3#16 Warning
-IO port buffering is incomplete  
-Device port io_COMM_BUS[9] expects both input and output buffering but the buffers are incomplete.
 Related violations: <none>
 
 

@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 18.10.2024 16:42:03
+-- Create Date: 07.10.2024 14:31:03
 -- Design Name: 
--- Module Name: IV_SAMPLE_CTRL - Behavioral
+-- Module Name: internal_ram - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -22,7 +22,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.ALL;
-
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
@@ -32,83 +31,70 @@ use ieee.numeric_std.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
+-- Remember to check for Pullups / Pulldowns on unused IO pins during testing if some are left open!
+-- You WILL have issues if you don't control their state when you leave them open.
+-- I.e. you write to address "010" on the MCU because you only want to test with 3 pins, but you left PULLUPS activated 
+-- On the remaining pins. You will write to an address you don't intend to and you will not realize it!! REMEMBER!!
+
+
 entity internal_ram is
-    Port ( 
-            i_CLK : in std_logic := '0';
-            i_RnW : in std_logic := '0';
-            i_FSM_RESET : in std_logic := '0';
-            i_TORAM : in std_logic_vector(15 downto 0) := (others => '0');
-            o_TOPORT : out std_logic_vector(15 downto 0) := (others => '0');
-            i_DATA_FROM_IVSA : in std_logic_vector(15 downto 0) := (others => '0');
-            o_ADDR_TO_IVSA : out std_logic_vector(15 downto 0) := (others => '0');
-            o_CLK_TO_IVSA : out std_logic := '0'
-            );
+  Port (
+        i_MASTER_CLK : in std_logic;
+        i_CLK_IXMUX         : in std_logic  := '0';
+        i_RnW          : in std_logic  := '0';
+        i_FSM_RESET   :in std_logic := '0';
+        i_DATA_IXMUX : in std_logic_vector(15 downto 0) := (others => '0');
+        o_DATA_IXMUX : out std_logic_vector(15 downto 0) := (others => '0');
+        o_REGISTER_23 : out std_logic_vector(15 downto 0) := x"0064"
+   );
 end internal_ram;
 
 architecture Behavioral of internal_ram is
 
-constant MAX_ADDR_u : natural range 0 to 65535 := 23;
-constant WRITE : std_logic := '0';
+constant MAX_ADDRESS : integer := 31;
+constant WRITE : std_logic := '0'; 
 constant READ : std_logic := '1';
+constant internal : std_logic := '0';
+constant external : std_logic := '1';
 
-signal ADDR_u16 : natural range 0 to 65535 := 0;
-signal w_DATA_IVSA : std_logic_vector(15 downto 0) := (others => '0');
-signal w_DATA_EXT_MEM : std_logic_vector(15 downto 0) := (others => '0');
-signal w_DATA_INT_MEM : std_logic_vector(15 downto 0) := (others => '0');
+signal r_ADDRESS : integer range 0 to MAX_ADDRESS;
 
-type BLOCKRAM is array(MAX_ADDR_u downto 0) of std_logic_vector(15 downto 0); 
-signal RAM : BLOCKRAM := (others => (others => '0'));                
+type BLOCKRAM is array(MAX_ADDRESS downto 0) of std_logic_vector(15 downto 0); 
+signal RAM : BLOCKRAM := (others => (others => '0'));                          
 
 type state_mem is (SET_ADDR, SET_DATA); 
 signal state : state_mem := SET_ADDR; 
 
-
 begin
-
-o_TOPORT <= w_DATA_EXT_MEM or w_DATA_INT_MEM;
-
-FETCH_EXT_MEM_DATA : process(i_RnW, ADDR_u16, i_CLK, i_DATA_FROM_IVSA) is
-begin 
-    if((i_RnW = READ) and (ADDR_u16 > MAX_ADDR_u)) then
-        w_DATA_EXT_MEM <= i_DATA_FROM_IVSA;
-        o_CLK_TO_IVSA <= i_CLK;
-    else
-        w_DATA_EXT_MEM <= (others => '0');
-        o_CLK_TO_IVSA <= '0';
-    end if;
-end process;
-
-int_ram : process(i_CLK, i_RnW, ADDR_u16, i_FSM_RESET) is
+memoryFSM : process (i_CLK_IXMUX, i_RnW, r_ADDRESS, i_FSM_RESET) is
 begin
-    if(rising_edge(i_CLK)) then
-        if((i_RnW = READ) and (ADDR_u16 <= MAX_ADDR_u)) then
-            w_DATA_INT_MEM <= RAM(ADDR_u16);
-            state <= SET_ADDR;
-        elsif(i_RnW = WRITE) then
-            w_DATA_INT_MEM <= (others => '0');
-            ADDR_u16 <= to_integer(unsigned(i_TORAM));
-            o_ADDR_TO_IVSA <= i_TORAM;
-            case state is
-                when SET_ADDR =>
---                    w_DATA_INT_MEM <= (others => '0');
---                    ADDR_u16 <= to_integer(unsigned(i_TORAM));
---                    o_ADDR_TO_IVSA <= i_TORAM;
-                    if(to_integer(unsigned(i_TORAM)) <= MAX_ADDR_u) then
-                        w_DATA_INT_MEM <= (others => '0');
-                        state <= SET_DATA;
-                    end if;
-                when SET_DATA =>
-                    RAM(ADDR_u16) <= i_TORAM;
-                    state <= SET_ADDR;
-            end case;
-        else
-            w_DATA_INT_MEM <= (others => '0');
-        end if;
-    end if; 
-    if(i_FSM_RESET = '1') then
+    if(i_FSM_RESET = '1')then
         state <= SET_ADDR;
-    end if;
+    elsif(rising_edge(i_CLK_IXMUX)) then
+            if((i_RnW = READ) and (r_ADDRESS <= MAX_ADDRESS)) then         
+                o_DATA_IXMUX <= RAM(r_ADDRESS);
+                state <= SET_ADDR;
+            elsif(i_RnW = WRITE) then
+                case state is 
+                   when SET_ADDR =>
+                          if(to_integer(unsigned(i_DATA_IXMUX)) <= MAX_ADDRESS) then
+                          r_ADDRESS <= to_integer(unsigned(i_DATA_IXMUX));
+                          o_DATA_IXMUX <= (others => '0');
+                          state <= SET_DATA;
+                          end if;
+                    when SET_DATA =>
+                          RAM(r_ADDRESS) <= i_DATA_IXMUX;
+                          state <= SET_ADDR;
+                   end case;
+            end if;
+        end if;
 end process;
 
+Update_Registers : process (i_MASTER_CLK) is
+begin
+    if(rising_edge(i_MASTER_CLK)) then
+        o_REGISTER_23 <= RAM(23);
+    end if;
+end process;
 
 end Behavioral;
