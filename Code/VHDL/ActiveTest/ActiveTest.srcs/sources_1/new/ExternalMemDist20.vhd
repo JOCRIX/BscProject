@@ -70,7 +70,6 @@ constant CMPLT : std_logic := '1';                  --Indicate then sequenctiel 
 signal count_u16 : integer range 0 to 65535 := 0;
 signal w_RUN : std_logic := '0';
 signal w_CMPLT : std_Logic := '0';
-signal w_IDLE : std_logic := '0';
 
 type byte_state is (S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11, SEQ_CMPLT);
 signal s_byte : byte_state := S1;
@@ -136,11 +135,11 @@ begin
             w_LoADDR <= LoVal & i_ADDR;
             w_HiADDR <= HiVal & i_ADDR;
 
-            
         end if;
     end if;
-    
 end process;
+
+
 
 
 DistributeDATA : process(i_RnW, i_CLK, w_RUN, i_HOLD, s_byte) is
@@ -225,8 +224,6 @@ begin
                             w_CMPLT <= '1';
                         end case;
                 end if;
-            else
-                w_IDLE <= '1';
             end if;
         else
             w_CMPLT <= '0';

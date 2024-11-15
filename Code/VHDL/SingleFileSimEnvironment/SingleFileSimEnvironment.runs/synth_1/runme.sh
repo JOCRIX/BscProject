@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log internal_ram.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source internal_ram.tcl
+EAStep vivado -log IVSA20.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source IVSA20.tcl

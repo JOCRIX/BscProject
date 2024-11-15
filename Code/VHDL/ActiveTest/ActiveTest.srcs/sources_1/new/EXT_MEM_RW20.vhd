@@ -66,18 +66,13 @@ constant WRITE : std_logic := '0';
 constant RUN : std_logic := '1';
 constant CMPLT : std_logic := '1';
 
-signal count_u16 : integer range 0 to 65535 := 0;
 signal w_RUN : std_logic := '0';
 signal w_CMPLT : std_Logic := '0';
-signal w_IDLE : std_logic := '0';
 signal w_init : std_logic := '0';
 
 begin
 
 
---w_iDATA <= i_DATA;
---o_DATA <= w_oDATA;
---o_ADDR_TO_ERAM <= w_oADDR;
 o_nCE <= '0';
 o_ACTIVE <= w_RUN or w_CMPLT;
 
@@ -90,25 +85,12 @@ begin
     end if;
 end process;
 
---Initialize : process(w_CMPLT, i_EN, i_RESET, i_CLK) is
---begin
---    if(rising_edge(i_CLK)) then
---        if((i_RESET = '1') or (w_CMPLT = CMPLT)) then
---            w_RUN <= '0';
---        elsif(i_EN = '1') then
---            w_RUN <= RUN;
---        end if;
---    end if;
---end process;
-
-
 ExtMem_Comm : process(w_RUN, i_CLK, i_RnW) is
     variable v_Count : natural range 0 to 15 := 0;
 begin
     if(rising_edge(i_CLK)) then
         if(w_RUN = RUN) then
             v_Count := v_Count +1;
-            count_u16 <= V_Count;
             if(i_RnW = READ) then
                 o_nOE <= '0';
                 if(v_Count =2) then
@@ -119,8 +101,6 @@ begin
                 elsif(v_Count = 6) then
                     o_DATA <= i_DATA_FR_ERAM;
                     w_CMPLT <= '1';
-                else
-                    w_IDLE <= '1';
                 end if;
             else
                 if(v_Count <= 1) then
@@ -137,12 +117,9 @@ begin
                 elsif(v_Count = 6) then
                     o_IO_BUF_CTRL <= '1';
                     w_CMPLT <= '1';
-                else
-                    w_IDLE <= '1';
                 end if;
             end if;
         else
-            w_IDLE <= '0';
             w_CMPLT <= '0';
             v_Count := 0;
         end if;

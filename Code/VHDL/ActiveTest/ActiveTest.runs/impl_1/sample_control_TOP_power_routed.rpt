@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Wed Nov 13 13:49:07 2024
+| Date             : Fri Nov 15 17:47:45 2024
 | Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file sample_control_TOP_power_routed.rpt -pb sample_control_TOP_power_summary_routed.pb -rpx sample_control_TOP_power_routed.rpx
 | Design           : sample_control_TOP
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.204        |
+| Total On-Chip Power (W)  | 0.331        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.132        |
-| Device Static (W)        | 0.072        |
+| Dynamic (W)              | 0.258        |
+| Device Static (W)        | 0.073        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 84.0         |
-| Junction Temperature (C) | 26.0         |
+| Max Ambient (C)          | 83.3         |
+| Junction Temperature (C) | 26.7         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -49,22 +49,25 @@ Table of Contents
 1.1 On-Chip Components
 ----------------------
 
-+----------------+-----------+----------+-----------+-----------------+
-| On-Chip        | Power (W) | Used     | Available | Utilization (%) |
-+----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.002 |        5 |       --- |             --- |
-| Slice Logic    |    <0.001 |      463 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      107 |     20800 |            0.51 |
-|   CARRY4       |    <0.001 |       24 |      8150 |            0.29 |
-|   Register     |    <0.001 |      261 |     41600 |            0.63 |
-|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
-|   Others       |     0.000 |       12 |       --- |             --- |
-| Signals        |     0.002 |      405 |       --- |             --- |
-| MMCM           |     0.104 |        1 |         5 |           20.00 |
-| I/O            |     0.023 |       70 |       106 |           66.04 |
-| Static Power   |     0.072 |          |           |                 |
-| Total          |     0.204 |          |           |                 |
-+----------------+-----------+----------+-----------+-----------------+
++-------------------------+-----------+----------+-----------+-----------------+
+| On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
++-------------------------+-----------+----------+-----------+-----------------+
+| Clocks                  |     0.004 |        5 |       --- |             --- |
+| Slice Logic             |     0.003 |     1723 |       --- |             --- |
+|   LUT as Logic          |     0.003 |      463 |     20800 |            2.23 |
+|   Register              |    <0.001 |      997 |     41600 |            2.40 |
+|   CARRY4                |    <0.001 |       37 |      8150 |            0.45 |
+|   BUFG                  |    <0.001 |        4 |        32 |           12.50 |
+|   LUT as Shift Register |    <0.001 |        1 |      9600 |            0.01 |
+|   F7/F8 Muxes           |    <0.001 |       64 |     32600 |            0.20 |
+|   Others                |     0.000 |       37 |       --- |             --- |
+| Signals                 |     0.007 |     1307 |       --- |             --- |
+| Block RAM               |     0.003 |      7.5 |        50 |           15.00 |
+| MMCM                    |     0.104 |        1 |         5 |           20.00 |
+| I/O                     |     0.137 |       70 |       106 |           66.04 |
+| Static Power            |     0.073 |          |           |                 |
+| Total                   |     0.331 |          |           |                 |
++-------------------------+-----------+----------+-----------+-----------------+
 
 
 1.2 Power Supply Summary
@@ -73,16 +76,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.015 |       0.005 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.071 |       0.059 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.007 |       0.006 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.027 |       0.017 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.075 |       0.062 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.040 |       0.039 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.001 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -96,7 +99,7 @@ Table of Contents
 | User Input Data             | Confidence | Details                                                | Action                                                                                                             |
 +-----------------------------+------------+--------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 | Design implementation state | High       | Design is routed                                       |                                                                                                                    |
-| Clock nodes activity        | Medium     | More than 5% of clocks are missing user specification  | Provide missing clock activity with a constraint file, simulation results or by editing the "By Clock Domain" view |
+| Clock nodes activity        | Low        | User specified less than 75% of clocks                 | Provide missing clock activity with a constraint file, simulation results or by editing the "By Clock Domain" view |
 | I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view           |
 | Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views         |
 | Device models               | High       | Device models are Production                           |                                                                                                                    |
@@ -144,10 +147,27 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| sample_control_TOP                 |     0.132 |
-|   MEM_DIST1                        |     0.001 |
+| sample_control_TOP                 |     0.258 |
+|   IMEM                             |     0.002 |
+|   MEM_DIST1                        |     0.002 |
 |   PLL_1                            |     0.105 |
 |     inst                           |     0.105 |
+|   gen_comm_port[0].IOBUF_inst      |     0.001 |
+|   gen_comm_port[10].IOBUF_inst     |     0.001 |
+|   gen_comm_port[11].IOBUF_inst     |     0.001 |
+|   gen_comm_port[12].IOBUF_inst     |     0.001 |
+|   gen_comm_port[13].IOBUF_inst     |     0.001 |
+|   gen_comm_port[14].IOBUF_inst     |     0.001 |
+|   gen_comm_port[15].IOBUF_inst     |     0.001 |
+|   gen_comm_port[1].IOBUF_inst      |     0.001 |
+|   gen_comm_port[2].IOBUF_inst      |     0.001 |
+|   gen_comm_port[3].IOBUF_inst      |     0.001 |
+|   gen_comm_port[4].IOBUF_inst      |     0.001 |
+|   gen_comm_port[5].IOBUF_inst      |     0.001 |
+|   gen_comm_port[6].IOBUF_inst      |     0.001 |
+|   gen_comm_port[7].IOBUF_inst      |     0.001 |
+|   gen_comm_port[8].IOBUF_inst      |     0.001 |
+|   gen_comm_port[9].IOBUF_inst      |     0.001 |
 |   gen_io_port_extRam[0].IOBUF_inst |     0.002 |
 |   gen_io_port_extRam[1].IOBUF_inst |     0.002 |
 |   gen_io_port_extRam[2].IOBUF_inst |     0.002 |
@@ -156,6 +176,9 @@ Table of Contents
 |   gen_io_port_extRam[5].IOBUF_inst |     0.002 |
 |   gen_io_port_extRam[6].IOBUF_inst |     0.002 |
 |   gen_io_port_extRam[7].IOBUF_inst |     0.002 |
+|   your_instance_name               |     0.007 |
+|     U0                             |     0.007 |
+|       i_synth                      |     0.007 |
 +------------------------------------+-----------+
 
 

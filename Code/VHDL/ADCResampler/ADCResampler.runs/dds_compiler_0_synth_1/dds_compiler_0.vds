@@ -1,0 +1,35 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Nov 15 13:52:14 2024
+# Process ID: 28480
+# Current directory: C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1
+# Command line: vivado.exe -log dds_compiler_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dds_compiler_0.tcl
+# Log file: C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1/dds_compiler_0.vds
+# Journal file: C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1\vivado.jou
+# Running On        :LAPTOP-EVQDCN9M
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+# CPU Frequency     :2592 MHz
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :17022 MB
+# Swap memory       :11274 MB
+# Total Virtual     :28297 MB
+# Available Virtual :10218 MB
+#-----------------------------------------------------------
+source dds_compiler_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:20 . Memory (MB): peak = 515.312 ; gain = 203.051
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: dds_compiler_0
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry 3e146cc21379435f to dir: C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.cache/ip/2024.1/3/e/3e146cc21379435f/dds_compiler_0.dcp to C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1/dds_compiler_0.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.cache/ip/2024.1/3/e/3e146cc21379435f/dds_compiler_0_sim_netlist.v to C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1/dds_compiler_0_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.cache/ip/2024.1/3/e/3e146cc21379435f/dds_compiler_0_sim_netlist.vhdl to C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1/dds_compiler_0_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.cache/ip/2024.1/3/e/3e146cc21379435f/dds_compiler_0_stub.v to C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1/dds_compiler_0_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file c:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.cache/ip/2024.1/3/e/3e146cc21379435f/dds_compiler_0_stub.vhdl to C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1/dds_compiler_0_stub.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP dds_compiler_0, cache-ID = 3e146cc21379435f.
+config_ip_cache: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 525.801 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 15 13:52:57 2024...
