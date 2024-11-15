@@ -60,7 +60,9 @@ entity sample_control_TOP is
         o_Mem_nOE_ext : out std_logic;
         i_XCO : in std_logic;
         o_MDIST_BUSY : out std_logic;
-        o_ADC_TRIG : out std_logic
+        o_ADC_TRIG : out std_logic;
+        o_CLK_DAC : out std_logic;
+        o_DATA_DAC : out std_logic_vector(15 downto 0)
   );
 end sample_control_TOP;
 
@@ -92,6 +94,8 @@ component internal_ram
         i_FSM_RESET   :in std_logic := '0';
         i_DATA_IXMUX : in std_logic_vector(15 downto 0) := (others => '0');
         o_DATA_IXMUX : out std_logic_vector(15 downto 0) := (others => '0');
+        o_REGISTER_4 : out std_logic_vector(15 downto 0) := (others => '0');
+        o_REGISTER_5 : out std_logic_vector(15 downto 0) := x"00FF";
         o_REGISTER_23 : out std_logic_vector(15 downto 0) := x"0064"
    );
    end component internal_ram;
@@ -129,6 +133,17 @@ component clk_wiz_0
         clk_in1 : in std_logic
         );
 end component;
+
+
+COMPONENT dds_compiler_0
+  PORT (
+    aclk : IN STD_LOGIC;
+    s_axis_config_tvalid : IN STD_LOGIC;
+    s_axis_config_tdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axis_data_tvalid : OUT STD_LOGIC;
+    m_axis_data_tdata : OUT STD_LOGIC_VECTOR(15 DOWNTO 0) 
+  );
+END COMPONENT;
 
 component EXT_MEM_RW20 is
     Port (
@@ -172,6 +187,25 @@ component ExternalMemDist20 is
     );
 end component;
 
+component DAC_PRESCALER is
+    Port ( 
+           i_CLK : in STD_LOGIC; --The clock input, this is divided down by two to generate the DAC and DDS clocks. 100 MHz for 50 MHz DAC opperation.
+           o_CLK_DDS : out STD_LOGIC; -- The diveded down clock for the DDS.
+           o_CLK_DAC : out STD_LOGIC -- The clock for the DAC, a delayed version of the DDS clock.
+           );
+end component;
+
+component DAC_DATA_Conversion is
+    port (
+            i_LoByte_FWORD : in std_logic_vector(15 downto 0); --bit 0 to 15 of the 32 bit wide frequency setting word.
+            i_HiByte_FWORD : in std_logic_vector (31 downto 16); --bit 16 to 31 of the 32 bit wide frequency setting word.
+            o_FWORD : out std_logic_vector (31 downto 0); --The full 32 bit wide frequency setting word.
+            i_DDS_DATA : in std_logic_vector(15 downto 0); --DDS output data, in two's compliment.
+            o_DAC_DATA : out std_logic_vector (15 downto 0); --DDS data converted to unsigned, this is the Data for the DAC.
+            o_UPDATE_F : out std_logic;  --Togles when a new frequency is to be set at the output.
+            i_CLK : in std_logic -- Master clock input, (200 MHz when implemented).
+        );
+end component;
 
 --Internal signals
     signal TOPORT_internal : std_logic_vector(15 downto 0) := x"AAAA";
@@ -227,6 +261,10 @@ end component;
     signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
     signal w_ADC_DnB_n : std_logic := '1';
     
+    signal w_FWORD_DDC_TO_DDS : std_logic_vector(31 downto 0);
+    signal w_DATA_DDS_TO_DDC : std_logic_vector(15 downto 0);
+    signal w_UP_F_DDC_TO_DDS : std_logic := '0';    
+    
     signal count : integer range 0 to 65535 := 0;
     signal trigger : std_logic := '0';
     signal init : std_logic := '0';
@@ -254,6 +292,9 @@ end component;
     signal w_MDIST_BUSY : std_logic;
     signal w_nRnW_COMM : std_logic;
     signal w_REGISTER_23 : std_logic_vector(15 downto 0);
+    signal w_REGISTER_5 : std_logic_vector(15 downto 0); 
+    signal w_REGISTER_4 : std_logic_vector(15 downto 0);
+    signal w_CLK_DDS : std_logic := '0';
 begin
 
 
@@ -366,6 +407,35 @@ PLL_1 : clk_wiz_0
    clk_in1 => i_XCO
  );
 
+your_instance_name : dds_compiler_0
+  PORT MAP (
+    aclk => w_CLK_DDS,
+    s_axis_config_tvalid => w_UP_F_DDC_TO_DDS,
+    s_axis_config_tdata => w_FWORD_DDC_TO_DDS,
+    --m_axis_data_tvalid => ,
+    m_axis_data_tdata => w_DATA_DDS_TO_DDC
+  );
+
+DAC_DATA_CONVERTER : DAC_DATA_Conversion  --DDC short for DAC DATA CONVERTERR
+    port map(
+            i_LoByte_FWORD => w_REGISTER_4,
+            i_HiByte_FWORD => w_REGISTER_5,
+            o_FWORD => w_FWORD_DDC_TO_DDS,
+            i_DDS_DATA => w_DATA_DDS_TO_DDC,
+            o_DAC_DATA => o_DATA_DAC,
+            o_UPDATE_F => w_UP_F_DDC_TO_DDS,
+            --i_CLK  => w_GRANDMASTER_CLK
+            i_CLK => w_CLK_DDS
+        );
+
+
+
+DAC_PRESCALER1 : DAC_PRESCALER
+    Port map ( 
+           i_CLK => w_GRANDMASTER_CLK,
+           o_CLK_DDS => w_CLK_DDS,
+           o_CLK_DAC => o_CLK_DAC
+           );
 
 
 
@@ -384,6 +454,7 @@ gen_io_port_extRam : for index in 0 to 7 generate   --Output driver disabled nå
    );
    -- End of IOBUF_inst instantiation
 end generate gen_io_port_extRam; 
+
 
 
 ext_memRW : EXT_MEM_RW20
@@ -458,6 +529,8 @@ IMEM : Internal_ram
         i_FSM_RESET => w_LOGIC_RESET,
         i_DATA_IXMUX => w_DATA_IXMUX_TO_IMEM,
         o_DATA_IXMUX => w_DATA_IMEM_TO_IXMUX,
+        o_REGISTER_4 => w_REGISTER_4,
+        o_REGISTER_5 => w_REGISTER_5,
         o_REGISTER_23 => w_REGISTER_23
         
     );
