@@ -105,7 +105,7 @@ end process;
 
 ADDR_COUNT_sample_mode: process(i_RESET, ADC_DATA_RDY_IN, sample_count)
 begin
-    if(i_RESET = '1') then
+    if(i_RESET = '1' or ADC_DnB = '1') then
         sample_count <= 0;
     elsif(falling_edge(ADC_DATA_RDY_IN)) then
         if (sample_count <= 65535) then

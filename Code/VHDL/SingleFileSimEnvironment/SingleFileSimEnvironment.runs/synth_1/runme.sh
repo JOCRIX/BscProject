@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log IVSA20.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source IVSA20.tcl
+EAStep vivado -log PARALLEL_SERIES_CONVERTER.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source PARALLEL_SERIES_CONVERTER.tcl

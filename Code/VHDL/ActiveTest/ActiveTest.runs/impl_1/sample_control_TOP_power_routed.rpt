@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Fri Nov 15 17:47:45 2024
-| Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
+| Date             : Fri Nov 15 22:19:42 2024
+| Host             : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
 | Command          : report_power -file sample_control_TOP_power_routed.rpt -pb sample_control_TOP_power_summary_routed.pb -rpx sample_control_TOP_power_routed.rpx
 | Design           : sample_control_TOP
 | Device           : xc7a35tcpg236-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.331        |
+| Total On-Chip Power (W)  | 0.338        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.258        |
+| Dynamic (W)              | 0.266        |
 | Device Static (W)        | 0.073        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 83.3         |
@@ -52,21 +52,21 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.004 |        5 |       --- |             --- |
-| Slice Logic             |     0.003 |     1723 |       --- |             --- |
-|   LUT as Logic          |     0.003 |      463 |     20800 |            2.23 |
-|   Register              |    <0.001 |      997 |     41600 |            2.40 |
-|   CARRY4                |    <0.001 |       37 |      8150 |            0.45 |
-|   BUFG                  |    <0.001 |        4 |        32 |           12.50 |
+| Clocks                  |     0.005 |        5 |       --- |             --- |
+| Slice Logic             |     0.003 |     1724 |       --- |             --- |
+|   LUT as Logic          |     0.003 |      408 |     20800 |            1.96 |
+|   Register              |    <0.001 |     1070 |     41600 |            2.57 |
+|   CARRY4                |    <0.001 |       41 |      8150 |            0.50 |
+|   BUFG                  |    <0.001 |        5 |        32 |           15.63 |
 |   LUT as Shift Register |    <0.001 |        1 |      9600 |            0.01 |
 |   F7/F8 Muxes           |    <0.001 |       64 |     32600 |            0.20 |
-|   Others                |     0.000 |       37 |       --- |             --- |
-| Signals                 |     0.007 |     1307 |       --- |             --- |
-| Block RAM               |     0.003 |      7.5 |        50 |           15.00 |
+|   Others                |     0.000 |       39 |       --- |             --- |
+| Signals                 |     0.007 |     1391 |       --- |             --- |
+| Block RAM               |     0.002 |      7.5 |        50 |           15.00 |
 | MMCM                    |     0.104 |        1 |         5 |           20.00 |
-| I/O                     |     0.137 |       70 |       106 |           66.04 |
+| I/O                     |     0.144 |       70 |       106 |           66.04 |
 | Static Power            |     0.073 |          |           |                 |
-| Total                   |     0.331 |          |           |                 |
+| Total                   |     0.338 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,9 +76,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.027 |       0.017 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.075 |       0.062 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.040 |       0.039 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.028 |       0.018 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.075 |       0.063 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.042 |       0.041 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -147,11 +147,15 @@ Table of Contents
 +------------------------------------+-----------+
 | Name                               | Power (W) |
 +------------------------------------+-----------+
-| sample_control_TOP                 |     0.258 |
+| sample_control_TOP                 |     0.266 |
+|   DDS_DAC                          |     0.007 |
+|     U0                             |     0.007 |
+|       i_synth                      |     0.007 |
 |   IMEM                             |     0.002 |
 |   MEM_DIST1                        |     0.002 |
 |   PLL_1                            |     0.105 |
 |     inst                           |     0.105 |
+|   ext_memRW                        |     0.001 |
 |   gen_comm_port[0].IOBUF_inst      |     0.001 |
 |   gen_comm_port[10].IOBUF_inst     |     0.001 |
 |   gen_comm_port[11].IOBUF_inst     |     0.001 |
@@ -168,17 +172,14 @@ Table of Contents
 |   gen_comm_port[7].IOBUF_inst      |     0.001 |
 |   gen_comm_port[8].IOBUF_inst      |     0.001 |
 |   gen_comm_port[9].IOBUF_inst      |     0.001 |
-|   gen_io_port_extRam[0].IOBUF_inst |     0.002 |
-|   gen_io_port_extRam[1].IOBUF_inst |     0.002 |
-|   gen_io_port_extRam[2].IOBUF_inst |     0.002 |
-|   gen_io_port_extRam[3].IOBUF_inst |     0.002 |
-|   gen_io_port_extRam[4].IOBUF_inst |     0.002 |
-|   gen_io_port_extRam[5].IOBUF_inst |     0.002 |
-|   gen_io_port_extRam[6].IOBUF_inst |     0.002 |
-|   gen_io_port_extRam[7].IOBUF_inst |     0.002 |
-|   your_instance_name               |     0.007 |
-|     U0                             |     0.007 |
-|       i_synth                      |     0.007 |
+|   gen_io_port_extRam[0].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[1].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[2].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[3].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[4].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[5].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[6].IOBUF_inst |     0.003 |
+|   gen_io_port_extRam[7].IOBUF_inst |     0.003 |
 +------------------------------------+-----------+
 
 

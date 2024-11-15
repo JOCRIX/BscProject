@@ -68,8 +68,6 @@ end sample_control_TOP;
 
 architecture rtl of sample_control_TOP is
 
-
-
 component IX_MUX is
     Port ( 
             i_MASTER_CLK : in std_logic;
@@ -126,6 +124,21 @@ component IV_SAMPLE_CTRL is
             i_RESET : in std_logic := '0'
             );
 end component;
+
+component PARALLEL_SERIES_CONVERTER is
+    Port (
+        i_SET : in std_logic := '0';        --Trigger for sample parallel to series data conversion, falling edge = DATA RDY
+        i_DATA_A : in std_logic_vector (15 downto 0) := (others => '0'); --Data from AD converter A
+        i_DATA_B : in std_logic_vector (15 downto 0) := (others => '0'); -- Data from AD converter B
+        i_RESET : in std_logic := '0'; --Reset for the module
+        i_CLK : in std_logic := '0';    --Master clock input
+       
+        o_DATA : out std_logic_vector(15 downto 0) := (others => '0'); --Data output.
+        o_SET : out std_logic := '0'    --Indicates that the output data is ready on a rising edge.
+    );
+end component;
+
+
 
 component clk_wiz_0
     port(
@@ -258,14 +271,16 @@ end component;
     --signal buf : std_logic_vector(15 downto 0) := (others => '0');
     signal w_test : std_logic := '0';
     
-    signal w_ADC_DATA_SIM : std_logic_vector(15 downto 0) := x"AAAA";
+    signal w_ADC_DATA_SIMA : std_logic_vector(15 downto 0) := x"AAAA";
+    signal w_ADC_DATA_SIMB : std_logic_vector(15 downto 0) := x"BBBB";
     signal w_ADC_DnB_n : std_logic := '1';
     
     signal w_FWORD_DDC_TO_DDS : std_logic_vector(31 downto 0);
     signal w_DATA_DDS_TO_DDC : std_logic_vector(15 downto 0);
     signal w_UP_F_DDC_TO_DDS : std_logic := '0';    
     
-    signal count : integer range 0 to 65535 := 0;
+    signal countA : integer range 0 to 65535 := 0;
+    signal countB : integer range 0 to 65535 := 20000;
     signal trigger : std_logic := '0';
     signal init : std_logic := '0';
     
@@ -295,6 +310,13 @@ end component;
     signal w_REGISTER_5 : std_logic_vector(15 downto 0); 
     signal w_REGISTER_4 : std_logic_vector(15 downto 0);
     signal w_CLK_DDS : std_logic := '0';
+    
+    signal w_DATA_A_ADC_TO_PSC : std_logic_vector(15 downto 0);
+    signal w_DATA_B_ADC_TO_PSC : std_logic_vector(15 downto 0);
+    signal w_DATA_PSC_TO_IVSA : std_logic_vector(15 downto 0);
+    signal w_TRIG_PSC_TO_IVSA : std_logic;
+    signal w_DAC_DDS_mValid : std_logic;
+
 begin
 
 
@@ -329,13 +351,14 @@ begin
             CMPLT <= '0';
             v_DelCount := 0;
             v_TrigCount := 0;
-            w_ADC_TRIG <= '0';
-            count <= 0;
+            w_ADC_TRIG <= '1';
+            countA <= 0;
+            countB <= 20000;
         else
-            if(v_TrigCount <= 65535) then
+            if(v_TrigCount <= 20000) then
                 case s_byte is 
                     when S1 =>
-                        w_ADC_TRIG <= '1';
+                        w_ADC_TRIG <= '0';
                         if(v_DelCount > SAMPLE_F_u16) then
                             s_byte <= S2;
                             v_DelCount := 0;
@@ -343,10 +366,11 @@ begin
                             v_DelCount := v_DelCount +1;
                         end if;
                     when S2 =>
-                        w_ADC_TRIG <= '0';
+                        w_ADC_TRIG <= '1';
                         if(v_DelCount > SAMPLE_F_u16) then
                             v_TrigCount := v_TrigCount +1;
-                            count <= v_TrigCount;
+                            countA <= v_TrigCount;
+                            countB <= 20000-v_TrigCount;
                             s_byte <= SEQ_CMPLT;
                         else
                             v_DelCount := v_DelCount+1;
@@ -360,12 +384,14 @@ begin
                 v_DelCount := 0;
                 CMPLT <= '1';
                 s_byte <= S1;
-                count <= 0;
+                countA <= 0;
+                CountB <= 20000;
             end if;
         end if;
     end if;
 end process;
-w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
+w_ADC_DATA_SIMA <= std_logic_vector(to_unsigned(countA, w_ADC_DATA_SIMA'length));
+w_ADC_DATA_SIMB <= std_logic_vector(to_unsigned(countB, w_ADC_DATA_SIMB'length));
 
 ARM_ADC : process(i_ADC_DnB, CMPLT) is
 begin
@@ -407,12 +433,24 @@ PLL_1 : clk_wiz_0
    clk_in1 => i_XCO
  );
 
-your_instance_name : dds_compiler_0
+PSC_1 : PARALLEL_SERIES_CONVERTER
+    Port map(
+        i_SET => w_ADC_TRIG,        --Trigger for sample parallel to series data conversion, falling edge = DATA RDY
+        i_DATA_A => w_ADC_DATA_SIMA, --Data from AD converter A
+        i_DATA_B => w_ADC_DATA_SIMB,  -- Data from AD converter B
+        i_RESET => w_LOGIC_RESET,  --Reset for the module
+        i_CLK => w_GRANDMASTER_CLK,    --Master clock input
+       
+        o_DATA => w_DATA_PSC_TO_IVSA, --Data output.
+        o_SET => w_TRIG_PSC_TO_IVSA    --Indicates that the output data is ready on a rising edge.
+    );
+
+DDS_DAC : dds_compiler_0
   PORT MAP (
     aclk => w_CLK_DDS,
     s_axis_config_tvalid => w_UP_F_DDC_TO_DDS,
     s_axis_config_tdata => w_FWORD_DDC_TO_DDS,
-    --m_axis_data_tvalid => ,
+    m_axis_data_tvalid => w_DAC_DDS_mValid,
     m_axis_data_tdata => w_DATA_DDS_TO_DDC
   );
 
@@ -511,8 +549,10 @@ IV_SAVER : IV_SAMPLE_CTRL
         o_DATA_IXMUX => w_DATA_IVSA_TO_IXMUX,
         DATA_FROM_MEM_DIST_IN => w_DATA_MDIST_TO_IVSA, 
         ADC_DnB => w_ADC_DnB_n,
-        ADC_DATA_IN => w_ADC_DATA_SIM,
-        ADC_DATA_RDY_IN => w_ADC_TRIG,
+        --ADC_DATA_IN => w_ADC_DATA_SIM,
+        ADC_DATA_IN => w_DATA_PSC_TO_IVSA,
+        --ADC_DATA_RDY_IN => w_ADC_TRIG,
+        ADC_DATA_RDY_IN => w_TRIG_PSC_TO_IVSA,
         DATA_TO_MEM_DIST_OUT => w_DATA_IVSA_TO_MDIST,
         ADDR_TO_MEM_DIST_OUT => w_ADDR_IVSA_TO_MDIST,
         RnW_TO_MEM_DIST_OUT => w_RnW_IVSA_TO_MDIST,
