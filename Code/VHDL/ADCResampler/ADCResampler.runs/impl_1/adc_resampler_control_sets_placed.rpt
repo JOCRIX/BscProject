@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Nov 15 17:56:58 2024
-| Host         : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+| Date         : Sat Nov 16 03:10:58 2024
+| Host         : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file adc_resampler_control_sets_placed.rpt
 | Design       : adc_resampler
 | Device       : xc7a35t
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    12 |
-|    Minimum number of control sets                        |    12 |
+| Total control sets                                       |     8 |
+|    Minimum number of control sets                        |     8 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    68 |
+| Unused register locations in slices containing registers |    47 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,11 +39,11 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    12 |
-| >= 0 to < 4        |     8 |
-| >= 4 to < 6        |     2 |
-| >= 6 to < 8        |     1 |
-| >= 8 to < 10       |     0 |
+| Total control sets |     8 |
+| >= 0 to < 4        |     5 |
+| >= 4 to < 6        |     0 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     2 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
@@ -58,33 +58,29 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             152 |           45 |
+| No           | No                    | No                     |             149 |           41 |
 | No           | No                    | Yes                    |               2 |            2 |
-| No           | Yes                   | No                     |               1 |            1 |
-| Yes          | No                    | No                     |               9 |            5 |
-| Yes          | No                    | Yes                    |               3 |            2 |
-| Yes          | Yes                   | No                     |               5 |            2 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |               1 |            1 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              17 |            6 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+------------------------------------+------------------+----------------+--------------+
-|                                                             Clock Signal                                                             |                     Enable Signal                    |          Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
-+--------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+------------------------------------+------------------+----------------+--------------+
-| ~pulse_gen_500ns_delay/o_pulse                                                                                                       |                                                      | r_arm_sampler                      |                1 |              1 |         1.00 |
-| ~pulse_gen_500ns_delay/o_pulse                                                                                                       | r_sampler_armed_i_1_n_0                              | r_arm_sampler                      |                1 |              1 |         1.00 |
-|  pulse_gen_500ns_delay/r_pulse_500ns_trig                                                                                            |                                                      | pulse_gen_500ns_delay/r_done       |                1 |              1 |         1.00 |
-|  r_arm_sampler                                                                                                                       |                                                      | r_arm_500_ns_delay_reg_LDC_i_1_n_0 |                1 |              1 |         1.00 |
-|  dds_50_MHz_clk/inst/clk_out2                                                                                                        | pulse_gen_500ns_delay/FSM_sequential_s_resamp_reg[1] |                                    |                1 |              1 |         1.00 |
-|  sample_clk/U0/i_synth/i_dds/I_SINCOS.i_comp_eff.i_eff/S1_SIN_U/i_synth_option.i_synth_model/opt_vx7.i_uniwrap/m_axis_data_tdata[11] |                                                      |                                    |                2 |              2 |         1.00 |
-|  dds_50_MHz_clk/inst/clk_out2                                                                                                        | pulse_gen_500ns_delay/r_start                        |                                    |                2 |              2 |         1.00 |
-|  dds_50_MHz_clk/inst/clk_out2                                                                                                        | pulse_gen_500ns_delay/E[0]                           | i_reset_logic_IBUF                 |                1 |              2 |         2.00 |
-|  dds_50_MHz_clk/inst/clk_out2                                                                                                        |                                                      |                                    |                4 |              5 |         1.25 |
-|  dds_50_MHz_clk/inst/clk_out2                                                                                                        | pulse_gen_500ns_delay/r_start                        | pulse_gen_500ns_delay/r_counter    |                2 |              5 |         2.50 |
-|  sample_clk/U0/i_synth/i_dds/I_SINCOS.i_comp_eff.i_eff/S1_SIN_U/i_synth_option.i_synth_model/opt_vx7.i_uniwrap/m_axis_data_tdata[11] | r_run_adc_trigger_reg_n_0                            |                                    |                2 |              6 |         3.00 |
-|  dds_50_MHz_clk/inst/clk_out1                                                                                                        |                                                      |                                    |               39 |            145 |         3.72 |
-+--------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+------------------------------------+------------------+----------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------+--------------------------+------------------+----------------+--------------+
+|                                                             Clock Signal                                                             |        Enable Signal       |     Set/Reset Signal     | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------+--------------------------+------------------+----------------+--------------+
+|  dds_50_MHz_clk/inst/clk_out2                                                                                                        | o_resampler_busy_i_1_n_0   |                          |                1 |              1 |         1.00 |
+|  TEST_ACQ_START_OUT_OBUF_BUFG                                                                                                        |                            | r_done_reg_n_0           |                1 |              1 |         1.00 |
+| ~CE                                                                                                                                  |                            | r_dds_done_count_i_1_n_0 |                1 |              1 |         1.00 |
+|  sample_clk/U0/i_synth/i_dds/I_SINCOS.i_comp_eff.i_eff/S1_SIN_U/i_synth_option.i_synth_model/opt_vx7.i_uniwrap/m_axis_data_tdata[11] |                            |                          |                1 |              1 |         1.00 |
+|  dds_50_MHz_clk/inst/clk_out2                                                                                                        |                            |                          |                2 |              3 |         1.50 |
+|  dds_50_MHz_clk/inst/clk_out2                                                                                                        | s_resamp[1]                | r_delay_count[7]_i_1_n_0 |                3 |              8 |         2.67 |
+|  sample_clk/U0/i_synth/i_dds/I_SINCOS.i_comp_eff.i_eff/S1_SIN_U/i_synth_option.i_synth_model/opt_vx7.i_uniwrap/m_axis_data_tdata[11] | r_dds_clk_count[8]_i_2_n_0 | r_dds_clk_count          |                3 |              9 |         3.00 |
+|  dds_50_MHz_clk/inst/clk_out1                                                                                                        |                            |                          |               38 |            145 |         3.82 |
++--------------------------------------------------------------------------------------------------------------------------------------+----------------------------+--------------------------+------------------+----------------+--------------+
 
 

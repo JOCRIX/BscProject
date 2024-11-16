@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Fri Nov 15 17:57:45 2024
-| Host             : LAPTOP-EVQDCN9M running 64-bit major release  (build 9200)
+| Date             : Sat Nov 16 03:11:10 2024
+| Host             : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
 | Command          : report_power -file adc_resampler_power_routed.rpt -pb adc_resampler_power_summary_routed.pb -rpx adc_resampler_power_routed.rpx
 | Design           : adc_resampler
 | Device           : xc7a35tcpg236-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.190        |
+| Total On-Chip Power (W)  | 0.166        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.118        |
+| Dynamic (W)              | 0.094        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 84.1         |
-| Junction Temperature (C) | 25.9         |
+| Max Ambient (C)          | 84.2         |
+| Junction Temperature (C) | 25.8         |
 | Confidence Level         | Medium       |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,19 +53,19 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        6 |       --- |             --- |
-| Slice Logic    |    <0.001 |      288 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       68 |     20800 |            0.33 |
-|   Register     |    <0.001 |      172 |     41600 |            0.41 |
+| Slice Logic    |    <0.001 |      284 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       66 |     20800 |            0.32 |
+|   Register     |    <0.001 |      169 |     41600 |            0.41 |
 |   CARRY4       |    <0.001 |       12 |      8150 |            0.15 |
-|   BUFG         |    <0.001 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       30 |       --- |             --- |
-| Signals        |    <0.001 |      240 |       --- |             --- |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   Others       |     0.000 |       28 |       --- |             --- |
+| Signals        |    <0.001 |      236 |       --- |             --- |
 | Block RAM      |     0.001 |      0.5 |        50 |            1.00 |
 | MMCM           |     0.084 |        1 |         5 |           20.00 |
 | DSPs           |     0.001 |        2 |        90 |            2.22 |
-| I/O            |     0.028 |        8 |       106 |            7.55 |
+| I/O            |     0.004 |        6 |       106 |            5.66 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.190 |          |           |                 |
+| Total          |     0.166 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,9 +75,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.016 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.060 |       0.048 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.009 |       0.008 |      0.001 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.015 |       0.006 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.059 |       0.047 |      0.013 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -131,10 +131,10 @@ Table of Contents
 +--------------------+----------------------------------------+-----------------+
 | Clock              | Domain                                 | Constraint (ns) |
 +--------------------+----------------------------------------+-----------------+
-| TEST_CLK_IN        | TEST_CLK_IN                            |            83.3 |
 | clk_out1_clk_wiz_0 | dds_50_MHz_clk/inst/clk_out1_clk_wiz_0 |            20.0 |
 | clk_out2_clk_wiz_0 | dds_50_MHz_clk/inst/clk_out2_clk_wiz_0 |             5.0 |
 | clkfbout_clk_wiz_0 | dds_50_MHz_clk/inst/clkfbout_clk_wiz_0 |            83.3 |
+| i_master_clk       | i_master_clk                           |            83.3 |
 +--------------------+----------------------------------------+-----------------+
 
 
@@ -147,7 +147,7 @@ Table of Contents
 +------------------+-----------+
 | Name             | Power (W) |
 +------------------+-----------+
-| adc_resampler    |     0.118 |
+| adc_resampler    |     0.094 |
 |   dds_50_MHz_clk |     0.085 |
 |     inst         |     0.085 |
 |   sample_clk     |     0.004 |

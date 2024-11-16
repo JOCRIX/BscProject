@@ -36,23 +36,16 @@ use UNISIM.vcomponents.all;
 
 entity adc_resampler is
   Port (
-        --i_acquire_start_int_mem_reg     : in std_logic_vector(15 downto 0) := (others => '0'); --MSb controls the start
+        i_acquire_start_int_mem_reg     : in std_logic_vector(15 downto 0) := (others => '0'); --MSb controls the start
         --o_acquire_start_read_int_mem    : in std_logic := '0';
-        --i_sample_frq_high_int_mem_reg   : in std_logic_vector(15 downto 0) := (others => '0');--remove default later
-        --i_sample_frq_low_int_mem_reg    : in std_logic_vector(15 downto 0) := (others => '0');--remove default later
-        --i_sample_size_int_mem_reg       : in std_logic_vector(15 downto 0) := "0000000001100100";--x"4E20"; --Default sample zie = 20000. May need to remove this when int mem is connected
-        --i_adc_control_busy              : in std_logic := '0';
-        o_resampler_busy                : out std_logic := '0';
+        i_sample_frq_high_int_mem_reg   : in std_logic_vector(15 downto 0) := (others => '0');--remove default later
+        i_sample_frq_low_int_mem_reg    : in std_logic_vector(15 downto 0) := (others => '0');--remove default later
+        i_sample_size_int_mem_reg       : in std_logic_vector(15 downto 0) := "0000000001100100";--x"4E20"; --Default sample zie = 20000. May need to remove this when int mem is connected
+        o_resampler_DnBusy              : out std_logic := '1';
         o_acquire_start_adc_control     : out std_logic := '0';
         i_reset_logic                   : in std_logic := '0';
-        --i_dds_clk_50MHz                 : in std_logic := '0';
-        --TEST_DDS_OUT                    : out std_logic;
-        TEST_MASTER_CLK_OUT             : out std_logic;
-        TEST_DDS_CLK_OUT                : out std_logic;
-        TEST_ACQ_START                  : in std_logic := '0';
-        TEST_ACQ_START_OUT                  : out std_logic := '0';
-        TEST_CLK_IN                     : in std_logic := '0'
-        --i_master_clk                    : in std_logic :='0'
+        i_dds_clk_50MHz                 : in std_logic := '0';
+        i_master_clk                    : in std_logic :='0'
    );
 end adc_resampler;
 
@@ -78,31 +71,15 @@ port
  );
 end component;
 
---500ns delay pulse
-component pulse_width_gen
-    Generic(
-    width : integer := 100  
-    );
-  Port (
-        i_master_clk : in std_logic := '0';
-        i_trigger : in std_logic    := '0';
-        o_pulse   : out std_logic   := '0'
-   );
-end component pulse_width_gen;
-
-signal r_sample_size : integer range 65535 downto 0;
-signal w_adc_busy : std_logic := '0';
+signal r_sample_size : integer range 32767 downto 0;
 signal r_run_sampler : std_logic := '0';
-signal r_arm_sampler : std_logic := '0';
 signal r_done : std_logic := '0';
 signal r_acq : std_logic := '0';
 signal r_reset : std_logic := '0';
-signal r_pulse_500ns_trig : std_logic := '0';
-signal r_pulse_500ns : std_logic := '0';
 signal w_mclk : std_logic ;
 --DDS signaler, unused
 signal m_axis_config_tvalid : std_logic;
-signal  m_axis_data_tvalid : std_logic;
+signal m_axis_data_tvalid : std_logic;
 --Update output frq
 signal s_axis_config_tvalid : std_logic;
 --Sets output frq
@@ -114,34 +91,19 @@ signal r_dds_clk : std_logic;
 --DDS input clk
 type state_resampler is (IDLE, ARM, RUN, STOP);
 signal s_resamp : state_resampler := IDLE;
-signal r_run_adc_trigger : std_logic := '0';
-signal r_adc_trig_done : std_logic := '0';
-signal r_dds_clk_count : integer range 0 to 65535:= 0;
-signal r_acquire_ack : std_logic := '0';
-signal r_sampler_armed : std_logic := '0';
+signal r_dds_clk_count : integer range 0 to 32767:= 0;
 signal r_dds_mux_enable : std_logic := '0';
-
-signal r_test_clk : std_logic := '0';
-signal r_stop_500ns_delay : std_logic := '0';
-signal r_arm_500_ns_delay : std_logic := '0';
-
 --test signals
-signal i_dds_clk_50MHz : std_logic := '0';
-signal i_master_clk : std_logic := '0';
-
+--signal i_dds_clk_50MHz : std_logic := '0';
+--signal i_master_clk : std_logic := '0';
+signal r_dds_counting : std_logic := '0';
+signal r_dds_done_count : std_logic := '0';
+signal r_delay_count : integer range 512 downto 0 := 0;
+signal r_F_IN       : std_logic_vector(47 downto 0) := (others => '0');
+signal w_update_F   : std_logic := '0';
 
 begin
 
---TEST signals start
- --i_master_clk <= TEST_CLK_IN;
- r_sample_size <= 50;
- r_acq <= TEST_ACQ_START;
- TEST_ACQ_START_OUT <= TEST_ACQ_START;
- TEST_MASTER_CLK_OUT <= i_master_clk;
- TEST_DDS_CLK_OUT <= r_dds_clk;
---TEST signals end
-r_pulse_500ns_trig  <= r_arm_500_ns_delay or r_stop_500ns_delay;
---Direct Digital Synthesizer (DDS) instantiation.
 sample_clk : dds_compiler_0
   PORT MAP (
     aclk => i_dds_clk_50MHz,
@@ -152,138 +114,127 @@ sample_clk : dds_compiler_0
   );
   
 --50MHz CLK for DDS
-dds_50_MHz_clk : clk_wiz_0
-   port map ( 
-  -- Clock out ports  W
-   clk_out1 => i_dds_clk_50MHz,
-   clk_out2 => i_master_clk,
-   -- Clock in ports
-   clk_in1 => TEST_CLK_IN --i_master_clk 
- );
- 
-pulse_gen_500ns_delay : pulse_width_gen
-    generic map (
-        width => 500
-        )
-    port map(
-        i_master_clk => i_master_clk,
-        i_trigger => r_pulse_500ns_trig,
-        o_pulse => r_pulse_500ns
-    );
-                
+--dds_50_MHz_clk : clk_wiz_0
+--   port map ( 
+--  -- Clock out ports  W
+--   clk_out1 => i_dds_clk_50MHz,
+--   clk_out2 => w_mclk,
+--   -- Clock in ports
+--   clk_in1 => i_master_clk --i_master_clk 
+-- );
 
---DDS clk is MSb of m_axis_data_tdata
---DDS clock to local
 r_dds_clk <= m_axis_data_tdata(15);
---set frq word to DDS
---r_dds_frq_word(47 downto 0) <= i_sample_frq_high_int_mem_reg & i_sample_frq_low_int_mem_reg & x"0000";
-r_dds_frq_word <= "000001010001111010111000010100011110111010011000";
---Get sample size
---r_sample_size <= to_integer(unsigned(i_sample_size_int_mem_reg));
---local busy flag
--- <= i_adc_control_busy;
---local acquire start
---r_acq <= i_acquire_start_int_mem_reg(15); 
---local reset
-r_reset <= i_reset_logic;
---local master clk
-w_mclk <= i_master_clk;
---local acquire acknowledge
---r_acquire_ack <= o_acquire_start_read_int_mem;
 
-resampler : process (w_mclk, r_reset, s_resamp, r_arm_sampler, r_pulse_500ns_trig,r_pulse_500ns) is
+--set frq word to DDS
+
+--r_sample_size <= 500;--50;
+r_sample_size <= to_integer(unsigned(i_sample_size_int_mem_reg));
+r_reset <= i_reset_logic;
+--r_acq <= TEST_ACQ_START;
+r_acq <= i_acquire_start_int_mem_reg(15); --MSb = '1' means acq start.
+--TEST_DDS_CLK <= r_dds_clk;
+--TEST_ACQ_START_OUT <= TEST_ACQ_START;
+
+--code for updating frq word for DDS
+r_F_IN <= i_sample_frq_high_int_mem_reg & i_sample_frq_low_int_mem_reg & x"0000";
+m_axis_data_tvalid <= w_update_f;
+
+update_frq_word : process (i_dds_clk_50MHz, r_dds_frq_word)is
 begin
-    if(r_reset = '1') then 
-        s_resamp <= IDLE;
-    elsif(rising_edge(w_mclk)) then
-        case s_resamp is
-            when IDLE =>
-                if(r_arm_sampler = '1') then --Arm(500ns delay) and set busy flag
-                    s_resamp <= ARM;
-                    o_resampler_busy <= '1';
---                else
---                    o_resampler_busy <= '0';
-                end if;
-            when ARM =>
-                if(r_pulse_500ns_trig = '0') then
-                    s_resamp <= RUN;
-                end if;
-            when RUN =>
-            if(r_adc_trig_done = '0') then
-                r_run_adc_trigger <= '1';
-            else
-                r_run_adc_trigger <= '0';
-                r_stop_500ns_delay <= '1';
-                s_resamp <= STOP;
-            end if;
-            when STOP   =>
-                if(r_pulse_500ns = '0') then
-                    o_resampler_busy <= '0';
-                    r_stop_500ns_delay <= '0';
-                    s_resamp <= IDLE;
-                end if;         
-        end case;
+    if(rising_edge(i_dds_clk_50MHz)) then       
+        if(r_dds_frq_word /= r_F_IN) then  
+            r_dds_frq_word <= r_F_IN;      
+            w_update_F <= '1';
+        else
+            w_update_F <= '0';
+        end if;
     end if;
 end process;
 
-trig_adc_control : process (r_dds_clk, r_run_adc_trigger, r_dds_clk_count)is
+resampler : process (w_mclk, s_resamp, r_dds_counting, r_delay_count, r_run_sampler, r_reset) is
+--variable r_delay_count : integer range 512 downto 0 := 0;
+begin
+if(r_reset = '1') then 
+    s_resamp <= IDLE;
+elsif(rising_edge(w_mclk)) then
+    case s_resamp is
+        when IDLE=>
+            r_done <= '0';
+            r_delay_count <= 0;
+            if(r_run_sampler = '1') then
+                s_resamp <= ARM;
+                o_resampler_DnBusy <= '0';
+            end if;
+        when ARM=>
+            --if(r_delay_count < 400) then
+             --   r_delay_count <= r_delay_count + 1;
+           -- else
+              --  r_delay_count <= 0;
+                s_resamp <= RUN;
+            --end if;
+        when RUN =>
+            r_delay_count <= 0;
+            if(r_dds_done_count = '1') then
+                s_resamp <= STOP;
+            end if;
+        when STOP =>
+            if(r_delay_count < 200) then
+                r_delay_count <= r_delay_count + 1;
+            else
+                r_delay_count <= 0;
+                s_resamp <= IDLE;
+                o_resampler_DnBusy <= '1';
+                r_done <= '1';
+            end if;
+    end case;
+        
+end if;
+
+end process;
+
+dds_clk_count : process (r_dds_clk, s_resamp, r_dds_clk_count)is
 begin
     if(rising_edge(r_dds_clk)) then
-        if(r_run_adc_trigger = '1') then
-            if(r_dds_clk_count < r_sample_size) then 
+        if(s_resamp = RUN) then
+            if(r_dds_clk_count < r_sample_size) then
                 r_dds_mux_enable <= '1';
                 r_dds_clk_count <= r_dds_clk_count + 1;
-                r_adc_trig_done <= '0';
+                r_dds_counting <= '1';
             else
                 r_dds_mux_enable <= '0';
                 r_dds_clk_count <= 0;
-                r_adc_trig_done <= '1';
+                r_dds_counting <= '0';
             end if;
-        else
-            r_adc_trig_done <= '0';
         end if;
     end if;
 end process;
 
-dds_clk_buf : BUFGCE
-    port map (
-        O => o_acquire_start_adc_control,   -- 1-bit output: Clock output
-        CE => r_dds_mux_enable, -- 1-bit input: Clock enable input for I0
-        I => r_dds_clk    -- 1-bit input: Primary clock
-    );
-
-arm_sampler : process (r_arm_sampler, r_pulse_500ns, r_reset,r_arm_500_ns_delay) is
+check_count_status : process (r_dds_counting, s_resamp) is
 begin
-    if(r_arm_sampler = '1') then
-        r_arm_500_ns_delay <= '1';
-        r_sampler_armed <= '1';
-    elsif(r_reset = '1') then
-        r_arm_500_ns_delay <= '0';
-    elsif(falling_edge(r_pulse_500ns)) then
-        if(r_arm_500_ns_delay = '1') then
-            r_arm_500_ns_delay <= '0';
-            r_sampler_armed <= '0';
-        end if;
+
+    if(s_resamp = STOP) then
+        r_dds_done_count <= '0';
+    elsif(falling_edge(r_dds_counting)) then
+        r_dds_done_count <= '1';
     end if;
 end process;
 
-trigger_sampler_set_flags : process (i_master_clk, r_acq, r_done, r_reset, r_sampler_armed) is
+acq_start : process (r_acq, r_done) is
 begin
-    if(rising_edge(i_master_clk)) then
-        if(r_acq = '1') then
-            r_acquire_ack <= '1';
-            r_arm_sampler <= '1';
-        elsif(r_sampler_armed = '1') then
-            r_arm_sampler <= '0';
-            r_acquire_ack <= '0';
-        elsif(r_done = '1') then
-            r_arm_sampler <= '0';
-            r_acquire_ack <= '0';
-        elsif(r_reset = '1') then
-            r_arm_sampler <= '0';
-            r_acquire_ack <= '0';
-        end if;
+    if(r_done = '1') then
+        r_run_sampler <= '0';
+    elsif(rising_edge(r_acq)) then
+        r_run_sampler <= '1';
     end if;
 end process;
+
+
+BUFGCE_inst : BUFGCE
+port map (
+   O => o_acquire_start_adc_control,   -- 1-bit output: Clock output
+   CE => r_dds_mux_enable, -- 1-bit input: Clock enable input for I0
+   I => r_dds_clk    -- 1-bit input: Primary clock
+);
+
 
 end Behavioral;

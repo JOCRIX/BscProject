@@ -3,93 +3,58 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="adc_resampler_behav.wdb" id="1">
+      <db_ref path="adc_resampler_func_synth.wdb" id="1">
          <top_modules>
             <top_module name="adc_resampler" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1,997.205 ns"></ZoomStartTime>
-      <ZoomEndTime time="7,712.206 ns"></ZoomEndTime>
-      <Cursor1Time time="6,392.205 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,700.001 ns"></ZoomEndTime>
+      <Cursor1Time time="1,700.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="299"></NameColumnWidth>
-      <ValueColumnWidth column_width="159"></ValueColumnWidth>
+      <NameColumnWidth column_width="233"></NameColumnWidth>
+      <ValueColumnWidth column_width="109"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="19" />
+   <WVObjectSize size="10" />
    <wvobject fp_name="/adc_resampler/i_master_clk" type="logic">
       <obj_property name="ElementShortName">i_master_clk</obj_property>
       <obj_property name="ObjectShortName">i_master_clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/r_dds_clk" type="logic">
-      <obj_property name="ElementShortName">r_dds_clk</obj_property>
-      <obj_property name="ObjectShortName">r_dds_clk</obj_property>
+   <wvobject fp_name="/adc_resampler/TEST_DDS_CLK" type="logic">
+      <obj_property name="ElementShortName">TEST_DDS_CLK</obj_property>
+      <obj_property name="ObjectShortName">TEST_DDS_CLK</obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/r_dds_frq_word" type="array">
-      <obj_property name="ElementShortName">r_dds_frq_word[47:0]</obj_property>
-      <obj_property name="ObjectShortName">r_dds_frq_word[47:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/i_acquire_start_int_mem_reg" type="array">
-      <obj_property name="ElementShortName">i_acquire_start_int_mem_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">i_acquire_start_int_mem_reg[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/i_sample_size_int_mem_reg" type="array">
-      <obj_property name="ElementShortName">i_sample_size_int_mem_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">i_sample_size_int_mem_reg[15:0]</obj_property>
+   <wvobject fp_name="/adc_resampler/TEST_ACQ_START" type="logic">
+      <obj_property name="ElementShortName">TEST_ACQ_START</obj_property>
+      <obj_property name="ObjectShortName">TEST_ACQ_START</obj_property>
    </wvobject>
    <wvobject fp_name="/adc_resampler/o_acquire_start_adc_control" type="logic">
       <obj_property name="ElementShortName">o_acquire_start_adc_control</obj_property>
       <obj_property name="ObjectShortName">o_acquire_start_adc_control</obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/w_adc_busy" type="logic">
-      <obj_property name="ElementShortName">w_adc_busy</obj_property>
-      <obj_property name="ObjectShortName">w_adc_busy</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/r_run_sampler" type="logic">
-      <obj_property name="ElementShortName">r_run_sampler</obj_property>
-      <obj_property name="ObjectShortName">r_run_sampler</obj_property>
-   </wvobject>
    <wvobject fp_name="/adc_resampler/r_arm_sampler" type="logic">
       <obj_property name="ElementShortName">r_arm_sampler</obj_property>
       <obj_property name="ObjectShortName">r_arm_sampler</obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/r_done" type="logic">
-      <obj_property name="ElementShortName">r_done</obj_property>
-      <obj_property name="ObjectShortName">r_done</obj_property>
+   <wvobject fp_name="/adc_resampler/s_resamp" type="array">
+      <obj_property name="ElementShortName">s_resamp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">s_resamp[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/r_acq" type="logic">
-      <obj_property name="ElementShortName">r_acq</obj_property>
-      <obj_property name="ObjectShortName">r_acq</obj_property>
+   <wvobject fp_name="/adc_resampler/o_resampler_busy" type="logic">
+      <obj_property name="ElementShortName">o_resampler_busy</obj_property>
+      <obj_property name="ObjectShortName">o_resampler_busy</obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/r_pulse_500ns_trig" type="logic">
-      <obj_property name="ElementShortName">r_pulse_500ns_trig</obj_property>
-      <obj_property name="ObjectShortName">r_pulse_500ns_trig</obj_property>
+   <wvobject fp_name="/adc_resampler/r_arm_500_ns_delay_reg_P_n_0" type="logic">
+      <obj_property name="ElementShortName">r_arm_500_ns_delay_reg_P_n_0</obj_property>
+      <obj_property name="ObjectShortName">r_arm_500_ns_delay_reg_P_n_0</obj_property>
    </wvobject>
-   <wvobject fp_name="/adc_resampler/r_pulse_500ns" type="logic">
-      <obj_property name="ElementShortName">r_pulse_500ns</obj_property>
-      <obj_property name="ObjectShortName">r_pulse_500ns</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/m_axis_data_tdata" type="array">
-      <obj_property name="ElementShortName">m_axis_data_tdata[15:0]</obj_property>
-      <obj_property name="ObjectShortName">m_axis_data_tdata[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/s_resamp" type="other">
-      <obj_property name="ElementShortName">s_resamp</obj_property>
-      <obj_property name="ObjectShortName">s_resamp</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/r_dds_clk_count" type="other">
-      <obj_property name="ElementShortName">r_dds_clk_count</obj_property>
-      <obj_property name="ObjectShortName">r_dds_clk_count</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/r_dds_mux_enable" type="logic">
-      <obj_property name="ElementShortName">r_dds_mux_enable</obj_property>
-      <obj_property name="ObjectShortName">r_dds_mux_enable</obj_property>
-   </wvobject>
-   <wvobject fp_name="/adc_resampler/r_run_adc_trigger" type="logic">
-      <obj_property name="ElementShortName">r_run_adc_trigger</obj_property>
-      <obj_property name="ObjectShortName">r_run_adc_trigger</obj_property>
+   <wvobject fp_name="/adc_resampler/r_arm_500_ns_delay_reg_LDC_n_0" type="logic">
+      <obj_property name="ElementShortName">r_arm_500_ns_delay_reg_LDC_n_0</obj_property>
+      <obj_property name="ObjectShortName">r_arm_500_ns_delay_reg_LDC_n_0</obj_property>
    </wvobject>
    <wvobject fp_name="/adc_resampler/o_resampler_busy" type="logic">
       <obj_property name="ElementShortName">o_resampler_busy</obj_property>

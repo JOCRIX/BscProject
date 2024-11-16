@@ -3,22 +3,22 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Nov 15 14:12:32 2024
-# Process ID: 38232
-# Current directory: C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/clk_wiz_0_synth_1
+# Start of session at: Fri Nov 15 22:59:56 2024
+# Process ID: 22384
+# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/clk_wiz_0_synth_1
 # Command line: vivado.exe -log clk_wiz_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clk_wiz_0.tcl
-# Log file: C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/clk_wiz_0_synth_1/clk_wiz_0.vds
-# Journal file: C:/EIT GIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/clk_wiz_0_synth_1\vivado.jou
-# Running On        :LAPTOP-EVQDCN9M
+# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/clk_wiz_0_synth_1/clk_wiz_0.vds
+# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/clk_wiz_0_synth_1\vivado.jou
+# Running On        :DESKTOP-DNC9NIR
 # Platform          :Windows Server 2016 or Windows 10
-# Operating System  :22631
-# Processor Detail  :Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
-# CPU Frequency     :2592 MHz
-# CPU Physical cores:6
-# CPU Logical cores :12
-# Host memory       :17022 MB
-# Swap memory       :11274 MB
-# Total Virtual     :28297 MB
-# Available Virtual :8014 MB
+# Operating System  :19045
+# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency     :3418 MHz
+# CPU Physical cores:16
+# CPU Logical cores :24
+# Host memory       :34112 MB
+# Swap memory       :5100 MB
+# Total Virtual     :39212 MB
+# Available Virtual :21524 MB
 #-----------------------------------------------------------
 source clk_wiz_0.tcl -notrace
