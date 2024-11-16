@@ -1,8 +1,8 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.1
-| Date         : Fri Nov 15 22:19:15 2024
-| Host         : DESKTOP-S99FO1K
-| Design       : design_1
+| Date         : Sun Nov 17 00:14:13 2024
+| Host         : DESKTOP-26ONRPF
+| Design       : checkpoint_sample_control_TOP
 | Device       : xc7a35t-cpg236-1--
 -------------------------------------
 

@@ -39,7 +39,7 @@ entity DAC_DATA_Conversion is
             i_DDS_DATA : in std_logic_vector(15 downto 0); --DDS output data, in two's compliment.
             o_DAC_DATA : out std_logic_vector (15 downto 0); --DDS data converted to unsigned, this is the Data for the DAC.
             o_UPDATE_F : out std_logic;  --Togles when a new frequency is to be set at the output.
-            i_CLK : in std_logic -- Master clock input, (200 MHz when implemented).
+            i_CLK : in std_logic -- Master clock input, (DDS_CLK).
         );
 end DAC_DATA_Conversion;
 

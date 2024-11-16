@@ -46,7 +46,8 @@ entity ADC_CONTROL_TOP is
             --
             EXT_RESET_TEST                                                              : in std_logic := '0';
             --
-            EXT_TEST_ACQUIRE_START                                                      :in std_logic := '0'
+            EXT_TEST_ACQUIRE_START                                                      :in std_logic := '0';
+            o_DATA_RDY : out std_logic := '0'
    );
 end ADC_CONTROL_TOP;
 
@@ -153,8 +154,10 @@ port
 end component;
 
 begin
+o_DATA_RDY <= i_ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER;
+
 --Simulation stuff
-i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
+--i_MASTER_CLK_TO_ADC_CONTROL <= MASTER_CLK_IN;
 --i_MASTER_CLK_SDA_TO_ADC_CONTROL <= MASTER_SDA_CLK_IN; 
 
 --test CNV
@@ -253,13 +256,13 @@ pulse_gen_4_DSC : pulse_width_gen
        
 --200MHz CLK(50% DC) and 20MHz(48.3% DC) CLK
 
---     master_of_clk : clk_wiz_0
---   port map ( 
---  -- Clock out ports  
---   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
---   -- Clock in ports
---   clk_in1 =>MASTER_CLK_IN
--- ); 
+master_of_clk : clk_wiz_0
+   port map ( 
+  -- Clock out ports  
+   clk_out1 => i_MASTER_CLK_TO_ADC_CONTROL,
+   -- Clock in ports
+   clk_in1 =>MASTER_CLK_IN
+ ); 
  
  --divide clk2
  

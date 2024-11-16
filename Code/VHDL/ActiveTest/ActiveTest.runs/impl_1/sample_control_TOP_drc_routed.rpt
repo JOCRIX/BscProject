@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Nov 15 22:19:40 2024
-| Host         : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
+| Date         : Sun Nov 17 00:14:55 2024
+| Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_drc -file sample_control_TOP_drc_routed.rpt -pb sample_control_TOP_drc_routed.pb -rpx sample_control_TOP_drc_routed.rpx
 | Design       : sample_control_TOP
 | Device       : xc7a35tcpg236-1
@@ -20,19 +20,19 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: design_1
+          Floorplan: checkpoint_sample_control_TOP
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 6
-+-------------+----------+-------------------------------------------------------------+------------+
-| Rule        | Severity | Description                                                 | Violations |
-+-------------+----------+-------------------------------------------------------------+------------+
-| CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties         | 1          |
-| PDRC-153    | Warning  | Gated clock check                                           | 2          |
-| PLCK-12     | Warning  | Clock Placer Checks                                         | 1          |
-| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 2          |
-+-------------+----------+-------------------------------------------------------------+------------+
+             Violations found: 9
++-------------+----------+-------------------------------------------------------------------+------------+
+| Rule        | Severity | Description                                                       | Violations |
++-------------+----------+-------------------------------------------------------------------+------------+
+| CFGBVS-1    | Warning  | Missing CFGBVS and CONFIG_VOLTAGE Design Properties               | 1          |
+| PDRC-153    | Warning  | Gated clock check                                                 | 3          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations       | 3          |
+| AVAL-4      | Advisory | enum_USE_DPORT_FALSE_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND | 2          |
++-------------+----------+-------------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -51,28 +51,22 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net IX_MUX1/sig_CLK_from_int_mem is a gated clock net sourced by a combinational pin IX_MUX1/sample_count2[0]_i_2/O, cell IX_MUX1/sample_count2[0]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net ADC_RESAMPLER1/sig_CLK_from_int_mem is a gated clock net sourced by a combinational pin ADC_RESAMPLER1/sample_count2[0]_i_2/O, cell ADC_RESAMPLER1/sample_count2[0]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net PSC_1/CLK_TO_MEM_DIST_OUT is a gated clock net sourced by a combinational pin PSC_1/w_init_i_1/O, cell PSC_1/w_init_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net IX_MUX1/CLK_TO_MEM_DIST_OUT is a gated clock net sourced by a combinational pin IX_MUX1/w_init_i_1/O, cell IX_MUX1/w_init_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
-PLCK-12#1 Warning
-Clock Placer Checks  
-Poor placement for routing between an IO pin and BUFG. 
-Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
- This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
-
-	i_ADC_DnB_IBUF_inst (IBUF.O) is locked to K18
-	i_ADC_DnB_IBUF_BUFG_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y6
-
+PDRC-153#3 Warning
+Gated clock check  
+Net pulse_gen_1_SPICLK/o_ADC_SCK_A_OBUF is a gated clock net sourced by a combinational pin pulse_gen_1_SPICLK/o_ADC_SCK_A_OBUF_inst_i_1/O, cell pulse_gen_1_SPICLK/o_ADC_SCK_A_OBUF_inst_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT IX_MUX1/sample_count2[0]_i_2 is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
+A LUT ADC_RESAMPLER1/sample_count2[0]_i_2 is driving clock pin of 16 cells. This could lead to large hold time violations. Involved cells are:
 IV_SAVER/sample_count2_reg[0], IV_SAVER/sample_count2_reg[10],
 IV_SAVER/sample_count2_reg[11], IV_SAVER/sample_count2_reg[12],
 IV_SAVER/sample_count2_reg[13], IV_SAVER/sample_count2_reg[14],
@@ -85,8 +79,31 @@ Related violations: <none>
 
 PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT PSC_1/w_init_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
+A LUT IX_MUX1/w_init_i_1 is driving clock pin of 1 cells. This could lead to large hold time violations. Involved cells are:
 MEM_DIST1/w_init_reg
+Related violations: <none>
+
+PLHOLDVIO-2#3 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT pulse_gen_1_SPICLK/o_ADC_SCK_A_OBUF_inst_i_1 is driving clock pin of 22 cells. This could lead to large hold time violations. Involved cells are:
+adc_ctrl1/serial_clk_count_reg[0], adc_ctrl1/serial_clk_count_reg[1],
+adc_ctrl1/serial_clk_count_reg[2], adc_ctrl1/serial_clk_count_reg[3],
+adc_ctrl1/serial_clk_count_reg[4], adc_ctrl1/serial_clk_count_reg[5],
+adc_ctrl1/serial_data_adc_1_reg[0], adc_ctrl1/serial_data_adc_1_reg[10],
+adc_ctrl1/serial_data_adc_1_reg[11], adc_ctrl1/serial_data_adc_1_reg[12],
+adc_ctrl1/serial_data_adc_1_reg[13], adc_ctrl1/serial_data_adc_1_reg[14],
+adc_ctrl1/serial_data_adc_1_reg[15], adc_ctrl1/serial_data_adc_1_reg[1],
+adc_ctrl1/serial_data_adc_1_reg[2] (the first 15 of 22 listed)
+Related violations: <none>
+
+AVAL-4#1 Advisory
+enum_USE_DPORT_FALSE_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+ADC_RESAMPLER1/sample_clk/U0/i_synth/i_dds/I_SINCOS.i_comp_eff.i_eff/MULT_PI_U/i_synth_option.i_synth_model/opt_vx7.i_uniwrap/i_primitive: DSP48E1 is not using the D port (USE_DPORT = FALSE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
+Related violations: <none>
+
+AVAL-4#2 Advisory
+enum_USE_DPORT_FALSE_enum_DREG_ADREG_0_connects_CED_CEAD_RSTD_GND  
+ADC_RESAMPLER1/sample_clk/U0/i_synth/i_dds/I_SINCOS.i_comp_eff.i_eff/S1_SIN_U/i_synth_option.i_synth_model/opt_vx7.i_uniwrap/i_primitive: DSP48E1 is not using the D port (USE_DPORT = FALSE). For improved power characteristics, set DREG and ADREG to '1', tie CED, CEAD, and RSTD to logic '0'.
 Related violations: <none>
 
 

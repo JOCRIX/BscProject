@@ -3,27 +3,27 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Sun Nov 10 20:30:04 2024
-# Process ID: 15004
-# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.runs/synth_1
+# Start of session at: Sat Nov 16 22:05:58 2024
+# Process ID: 6004
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1
 # Command line: vivado.exe -log ADC_CONTROL_TOP.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ADC_CONTROL_TOP.tcl
-# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.runs/synth_1/ADC_CONTROL_TOP.vds
-# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.runs/synth_1\vivado.jou
-# Running On        :DESKTOP-DNC9NIR
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1/ADC_CONTROL_TOP.vds
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-26ONRPF
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
-# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
-# CPU Frequency     :3418 MHz
-# CPU Physical cores:16
-# CPU Logical cores :24
-# Host memory       :34112 MB
-# Swap memory       :5100 MB
-# Total Virtual     :39212 MB
-# Available Virtual :20693 MB
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :7516 MB
+# Total Virtual     :15985 MB
+# Available Virtual :6731 MB
 #-----------------------------------------------------------
 source ADC_CONTROL_TOP.tcl -notrace
-Command: read_checkpoint -auto_incremental -incremental {F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/utils_1/imports/synth_1/ADC_CONTROL_TOP.dcp}
-INFO: [Vivado 12-5825] Read reference checkpoint from F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/utils_1/imports/synth_1/ADC_CONTROL_TOP.dcp for incremental synthesis
+Command: read_checkpoint -auto_incremental -incremental {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/utils_1/imports/synth_1/ADC_CONTROL_TOP.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/utils_1/imports/synth_1/ADC_CONTROL_TOP.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
 Command: synth_design -top ADC_CONTROL_TOP -part xc7a35tcpg236-1
 Starting synth_design
@@ -35,128 +35,126 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 10284
+INFO: [Synth 8-7075] Helper process launched with PID 9716
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1394.410 ; gain = 449.910
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1368.516 ; gain = 448.355
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'ADC_CONTROL_TOP' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:51]
-INFO: [Synth 8-3491] module 'adc_control' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd:34' bound to instance 'adc_ctrl1' of component 'adc_control' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:173]
-INFO: [Synth 8-638] synthesizing module 'adc_control' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd:66]
-INFO: [Synth 8-256] done synthesizing module 'adc_control' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd:66]
+INFO: [Synth 8-638] synthesizing module 'ADC_CONTROL_TOP' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:54]
+INFO: [Synth 8-3491] module 'adc_control' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd:34' bound to instance 'adc_ctrl1' of component 'adc_control' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:183]
+INFO: [Synth 8-638] synthesizing module 'adc_control' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd:68]
+WARNING: [Synth 8-614] signal 'w_reset' is read in the process but is not in the sensitivity list [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd:156]
+INFO: [Synth 8-256] done synthesizing module 'adc_control' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/adc_control.vhd:68]
 	Parameter NR_OF_CLKs bound to: 16 - type: integer 
 	Parameter HIGH_TIME bound to: 20 - type: integer 
 	Parameter LOW_TIME bound to: 25 - type: integer 
-INFO: [Synth 8-3491] module 'pulse_gen_width_modulator_inverted' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:35' bound to instance 'pulse_gen_1_SDACLK' of component 'pulse_gen_width_modulator_inverted' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:201]
-INFO: [Synth 8-638] synthesizing module 'pulse_gen_width_modulator_inverted' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:49]
+INFO: [Synth 8-3491] module 'pulse_gen_width_modulator_inverted' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:35' bound to instance 'pulse_gen_1_SDACLK' of component 'pulse_gen_width_modulator_inverted' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:213]
+INFO: [Synth 8-638] synthesizing module 'pulse_gen_width_modulator_inverted' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:49]
 	Parameter NR_OF_CLKs bound to: 16 - type: integer 
 	Parameter HIGH_TIME bound to: 20 - type: integer 
 	Parameter LOW_TIME bound to: 25 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'pulse_gen_width_modulator_inverted' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:49]
+INFO: [Synth 8-256] done synthesizing module 'pulse_gen_width_modulator_inverted' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/pulse_gen_width_modulator_invert.vhd:49]
 	Parameter width bound to: 35 - type: integer 
-INFO: [Synth 8-3491] module 'pulse_width_gen' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:34' bound to instance 'pulse_gen_2_CNV' of component 'pulse_width_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:214]
-INFO: [Synth 8-638] synthesizing module 'pulse_width_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
+INFO: [Synth 8-3491] module 'pulse_width_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:34' bound to instance 'pulse_gen_2_CNV' of component 'pulse_width_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:226]
+INFO: [Synth 8-638] synthesizing module 'pulse_width_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
 	Parameter width bound to: 35 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'pulse_width_gen' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
+INFO: [Synth 8-256] done synthesizing module 'pulse_width_gen' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
 	Parameter width bound to: 30 - type: integer 
-INFO: [Synth 8-3491] module 'pulse_width_gen' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:34' bound to instance 'pulse_gen_3_DCN' of component 'pulse_width_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:224]
-INFO: [Synth 8-638] synthesizing module 'pulse_width_gen__parameterized1' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
+INFO: [Synth 8-3491] module 'pulse_width_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:34' bound to instance 'pulse_gen_3_DCN' of component 'pulse_width_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:236]
+INFO: [Synth 8-638] synthesizing module 'pulse_width_gen__parameterized1' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
 	Parameter width bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'pulse_width_gen__parameterized1' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
+INFO: [Synth 8-256] done synthesizing module 'pulse_width_gen__parameterized1' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:45]
 	Parameter width bound to: 30 - type: integer 
-INFO: [Synth 8-3491] module 'pulse_width_gen' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:34' bound to instance 'pulse_gen_4_DSC' of component 'pulse_width_gen' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:234]
-INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.runs/synth_1/.Xil/Vivado-15004-DESKTOP-DNC9NIR/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'master_of_clk' of component 'clk_wiz_0' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:247]
-INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.runs/synth_1/.Xil/Vivado-15004-DESKTOP-DNC9NIR/realtime/clk_wiz_0_stub.vhdl:14]
-WARNING: [Synth 8-614] signal 'i_counter' is read in the process but is not in the sensitivity list [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:258]
-WARNING: [Synth 8-614] signal 'i_outval' is read in the process but is not in the sensitivity list [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:258]
-INFO: [Synth 8-256] done synthesizing module 'ADC_CONTROL_TOP' (0#1) [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:51]
-WARNING: [Synth 8-7129] Port EXT_TEST_ACQUIRE_START in module ADC_CONTROL_TOP is either unconnected or has no load
+INFO: [Synth 8-3491] module 'pulse_width_gen' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/PulseWidthGen/PulseWidthGen.srcs/sources_1/new/pulse_width_gen.vhd:34' bound to instance 'pulse_gen_4_DSC' of component 'pulse_width_gen' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:246]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1/.Xil/Vivado-6004-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:6' bound to instance 'master_of_clk' of component 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:259]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1/.Xil/Vivado-6004-DESKTOP-26ONRPF/realtime/clk_wiz_0_stub.vhdl:14]
+INFO: [Synth 8-256] done synthesizing module 'ADC_CONTROL_TOP' (0#1) [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:54]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1507.367 ; gain = 562.867
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1482.445 ; gain = 562.285
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1507.367 ; gain = 562.867
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1482.445 ; gain = 562.285
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1507.367 ; gain = 562.867
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1482.445 ; gain = 562.285
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1507.367 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1482.445 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [f:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'master_of_clk'
-Finished Parsing XDC File [f:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'master_of_clk'
-Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]
-Finished Parsing XDC File [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/ADC_CONTROL_TOP_propImpl.xdc].
+Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'master_of_clk'
+Finished Parsing XDC File [c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'master_of_clk'
+Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]
+WARNING: [Vivado 12-507] No nets matched 'EXT_TEST_ACQUIRE_START_IBUF'. [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc:134]
+Finished Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/ADC_CONTROL_TOP_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.srcs/constrs_1/imports/Transfer/Cmod-A7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/ADC_CONTROL_TOP_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/ADC_CONTROL_TOP_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1536.914 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1567.574 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1536.914 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1567.574 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property IO_BUFFER_TYPE = NONE for MASTER_CLK_IN. (constraint file  {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 3).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for MASTER_CLK_IN. (constraint file  {f:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
+Applied set_property IO_BUFFER_TYPE = NONE for MASTER_CLK_IN. (constraint file  {c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for MASTER_CLK_IN. (constraint file  {c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
 Applied set_property KEEP_HIERARCHY = SOFT for master_of_clk. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 's_adc_reg' in module 'adc_control'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    idle |                               00 |                               00
-                 acquire |                               01 |                               01
+                    idle |                               01 |                               00
+                 acquire |                               11 |                               01
                 get_data |                               10 |                               10
-                   latch |                               11 |                               11
+                   latch |                               00 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 's_adc_reg' using encoding 'sequential' in module 'adc_control'
-WARNING: [Synth 8-327] inferring latch for variable 'i_outval_reg' [F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.srcs/sources_1/imports/VHDL/ADCControlVpiSquared/ADCControlVpiSquared.srcs/sources_1/imports/Transfer/ADC_CONTROL_TOP.vhd:159]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   11 Bit       Adders := 1     
 	   2 Input    6 Bit       Adders := 1     
 	   2 Input    3 Bit       Adders := 3     
 +---Registers : 
 	               17 Bit    Registers := 2     
 	               16 Bit    Registers := 2     
-	               11 Bit    Registers := 1     
 	                6 Bit    Registers := 1     
 	                3 Bit    Registers := 3     
-	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 27    
 +---Muxes : 
-	   4 Input    2 Bit        Muxes := 2     
-	   2 Input    2 Bit        Muxes := 2     
-	   4 Input    1 Bit        Muxes := 4     
-	   3 Input    1 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 7     
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 1     
+	   4 Input    1 Bit        Muxes := 5     
+	   2 Input    1 Bit        Muxes := 6     
+	   3 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -174,27 +172,26 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-7129] Port EXT_EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN in module ADC_CONTROL_TOP is either unconnected or has no load
-WARNING: [Synth 8-7129] Port EXT_TEST_ACQUIRE_START in module ADC_CONTROL_TOP is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -212,37 +209,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -260,44 +257,43 @@ Report Cell Usage:
 |      |Cell           |Count |
 +------+---------------+------+
 |1     |clk_wiz_0_bbox |     1|
-|2     |CARRY4         |     8|
-|3     |LUT1           |     5|
-|4     |LUT2           |    11|
-|5     |LUT3           |    12|
-|6     |LUT4           |    24|
-|7     |LUT5           |    26|
-|8     |LUT6           |    10|
-|9     |FDCE           |    28|
-|10    |FDPE           |     1|
-|11    |FDRE           |    86|
-|12    |LD             |     1|
-|13    |IBUF           |     1|
-|14    |OBUF           |    19|
+|2     |BUFG           |     1|
+|3     |CARRY4         |     8|
+|4     |LUT1           |     3|
+|5     |LUT2           |     5|
+|6     |LUT3           |    11|
+|7     |LUT4           |    17|
+|8     |LUT5           |    26|
+|9     |LUT6           |     7|
+|10    |FDCE           |    18|
+|11    |FDPE           |     2|
+|12    |FDRE           |    82|
+|13    |IBUF           |     3|
+|14    |OBUF           |    20|
 +------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 4 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1536.914 ; gain = 562.867
-Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1536.914 ; gain = 592.414
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:39 . Memory (MB): peak = 1567.574 ; gain = 562.285
+Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1567.574 ; gain = 647.414
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1536.914 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1567.574 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1536.914 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1567.574 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 1 instances were transformed.
-  LD => LDCE: 1 instance 
+No Unisim elements were transformed.
 
-Synth Design complete | Checksum: f47c80d8
+Synth Design complete | Checksum: 75e83634
 INFO: [Common 17-83] Releasing license: Synthesis
-41 Infos, 7 Warnings, 0 Critical Warnings and 0 Errors encountered.
+41 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
 INFO: [Common 17-600] The following parameters have non-default value.
 tcl.statsThreshold
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1536.914 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.runs/synth_1/ADC_CONTROL_TOP.dcp' has been generated.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1567.574 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCControlUpdate - AlsoFinalLmaoXD/ADCControlUpdate.runs/synth_1/ADC_CONTROL_TOP.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file ADC_CONTROL_TOP_utilization_synth.rpt -pb ADC_CONTROL_TOP_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Nov 10 20:30:29 2024...
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 16 22:07:03 2024...

@@ -1,5 +1,5 @@
-sv xpm --include "../../../ADCControlUpdate.gen/sources_1/ip/clk_wiz_0" \
-"G:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+sv xpm --include "../../ipstatic" \
+"C:/Xilinx/Vivado/2024.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
 
 verilog xil_defaultlib "glbl.v"
 

@@ -12,9 +12,9 @@ echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executi
 exit
 
 if [ -z "$PATH" ]; then
-  PATH=G:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;G:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:G:/Xilinx/Vivado/2024.1/bin
+  PATH=C:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2024.1/bin
 else
-  PATH=G:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;G:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:G:/Xilinx/Vivado/2024.1/bin:$PATH
+  PATH=C:/Xilinx/Vivado/2024.1/ids_lite/ISE/bin/nt64;C:/Xilinx/Vivado/2024.1/ids_lite/ISE/lib/nt64:C:/Xilinx/Vivado/2024.1/bin:$PATH
 fi
 export PATH
 
@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1'
+HD_PWD='C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/dds_compiler_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

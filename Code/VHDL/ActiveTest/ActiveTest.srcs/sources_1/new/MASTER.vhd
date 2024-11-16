@@ -50,8 +50,9 @@ entity sample_control_TOP is
         --i_DATA_ADC_TO_IVSA : in std_logic_vector(15 downto 0);
         --i_SAMPLE_F : in std_logic_vector(15 downto 0);
 --        o_ADDR_TEST : out std_logic_vector(18 downto 0);
-        i_ADC_DnB : in std_logic;
+        --i_ADC_DnB : in std_logic;
         --i_ADC_RDY : in std_logic;
+        
         
         o_Mem_Addr_ext : out std_logic_vector(18 downto 0); --RAM chip address pins
         io_Mem_IO_ext : inout std_logic_vector(7 downto 0); --RAM chip data I/O
@@ -60,11 +61,20 @@ entity sample_control_TOP is
         o_Mem_nOE_ext : out std_logic;
         i_XCO : in std_logic;
         o_MDIST_BUSY : out std_logic;
-        o_ADC_TRIG : out std_logic;
+        o_TRIG_ADC : out std_logic;
         o_CLK_DAC : out std_logic;
-        o_DATA_DAC : out std_logic_vector(15 downto 0)
+        o_DATA_DAC : out std_logic_vector(15 downto 0);
+        o_DnB : out std_logic := '1';
+        
+        i_ADC_SDA_A : in std_logic := '0';
+        --i_ADC_SDA_B : in_std_logic := '0';
+        o_ADC_SCK_A : out std_logic := '0';
+        --o_ADC_SCK_B : out std_logic := '0';
+        o_ADC_CNV : out std_logic := '0'
   );
 end sample_control_TOP;
+
+
 
 architecture rtl of sample_control_TOP is
 
@@ -92,8 +102,12 @@ component internal_ram
         i_FSM_RESET   :in std_logic := '0';
         i_DATA_IXMUX : in std_logic_vector(15 downto 0) := (others => '0');
         o_DATA_IXMUX : out std_logic_vector(15 downto 0) := (others => '0');
+        o_REGISTER_2 : out std_logic_vector(15 downto 0);
+        o_REGISTER_3 : out std_logic_vector(15 downto 0);
         o_REGISTER_4 : out std_logic_vector(15 downto 0) := (others => '0');
         o_REGISTER_5 : out std_logic_vector(15 downto 0) := x"00FF";
+        o_REGISTER_6 : out std_logic_vector(15 downto 0);
+        o_REGISTER_7 : out std_logic_vector(15 downto 0);
         o_REGISTER_23 : out std_logic_vector(15 downto 0) := x"0064"
    );
    end component internal_ram;
@@ -220,6 +234,82 @@ component DAC_DATA_Conversion is
         );
 end component;
 
+component adc_resampler is
+  Port (
+        i_acquire_start_int_mem_reg     : in std_logic_vector(15 downto 0) := (others => '0'); --MSb controls the start
+        --o_acquire_start_read_int_mem    : in std_logic := '0';
+        i_sample_frq_high_int_mem_reg   : in std_logic_vector(15 downto 0) := (others => '0');--remove default later
+        i_sample_frq_low_int_mem_reg    : in std_logic_vector(15 downto 0) := (others => '0');--remove default later
+        i_sample_size_int_mem_reg       : in std_logic_vector(15 downto 0) := "0000000001100100";--x"4E20"; --Default sample zie = 20000. May need to remove this when int mem is connected
+        o_resampler_DnBusy              : out std_logic := '1';
+        o_acquire_start_adc_control     : out std_logic := '0';
+        i_reset_logic                   : in std_logic := '0';
+        i_dds_clk_50MHz                 : in std_logic := '0';
+        i_master_clk                    : in std_logic :='0'
+   );
+end component;
+
+component adc_control is
+    Port (  
+            --Pulse generator for 16 CLKs on SCK
+            PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT                         : out std_logic := '0';
+            PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN                              : in std_logic  := '0';
+            PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN                                     : in std_logic  := '0';
+            --Pulse generator for 35ns CNV pulse
+            PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT                       : out std_logic := '0';
+            PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN         : in std_logic  := '0'; --ACTIVE_PULSE_WIDTH_OUT in Pulse_train_gen_active_out
+            --Pulse generator for 45ns t_DCNVSCKL pulse
+            PULSE_TRIGGER_DCNVSCKL_PULSE_ADC_CONTROL_TO_PULSEGEN_3_OUT                  : out std_logic := '0';
+            PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN    : in std_logic  := '0'; --ACTIVE_PULSE_WIDTH_OUT in Pulse_train_gen_active_out
+            --Pulse generator for 20ns t_DSCKLCNVH pulse
+            PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT                 : out std_logic := '0';
+            PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN   : in std_logic  := '0'; 
+            --Connections to external ADCs
+            EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN                                         : in std_logic  := '0';
+            EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN                                         : in std_logic  := '0';   
+            EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT                                        : out std_logic := '0';
+            EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT                                        : out std_logic := '0';
+            EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT                          : out std_logic := '0';
+            --Connections to ADC Sample Counter 
+            ADC_A_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                                : out std_logic_vector(15 downto 0) := (others => '0');
+            ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                                : out std_logic_vector(15 downto 0) := (others => '0');
+            ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                    : out std_logic := '0';
+            ADC_CONTROL_BUSY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER                          : out std_logic := '0';
+            ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN                      : in std_logic  := '0';
+            --Reset signal from logic resetter to ADC control
+            RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL                                   : in std_logic := '0';
+            --Master CLK for state machine
+            MASTER_CLK_TO_ADC_CONTROL                                                   : in std_logic := '0'       
+   );
+end component;
+
+
+component pulse_width_gen is
+    Generic(
+    width : integer := 40
+    );
+  Port (
+        i_master_clk : in std_logic := '0';
+        i_trigger : in std_logic    := '0';
+        o_pulse   : out std_logic   := '0'
+   );
+end component;
+
+component pulse_gen_width_modulator_inverted is
+Generic(
+        NR_OF_CLKs : integer := 7;  
+        HIGH_TIME : integer := 25; -- in ns, multiples of 5.
+        LOW_TIME : integer := 25   -- in ns, multiples of 5.  
+);
+Port (
+        MASTER_CLK_200MEG_IN : in std_logic := '0';
+        TRIGGER   : in std_logic := '0';
+        PULSE_OUT : out std_logic := '0';
+        ACTIVE : out std_logic := '0'
+      );
+end component;
+
+
 --Internal signals
     signal TOPORT_internal : std_logic_vector(15 downto 0) := x"AAAA";
     signal TORAM_internal : std_logic_vector(15 downto 0):= x"AAAA"; 
@@ -274,6 +364,7 @@ end component;
     signal w_ADC_DATA_SIMA : std_logic_vector(15 downto 0) := x"AAAA";
     signal w_ADC_DATA_SIMB : std_logic_vector(15 downto 0) := x"BBBB";
     signal w_ADC_DnB_n : std_logic := '1';
+    signal w_ADC_DnB : std_logic := '1';
     
     signal w_FWORD_DDC_TO_DDS : std_logic_vector(31 downto 0);
     signal w_DATA_DDS_TO_DDC : std_logic_vector(15 downto 0);
@@ -291,6 +382,7 @@ end component;
     signal CMPLT : std_logic := '0';
     signal arm : std_logic := '0';
     signal w_ADC_TRIG : std_logic := '0';
+    signal w_ADC_nTRIG : std_logic := '1';
     
     --signal test_ADDR_ext_mem : std_logic_vector(18 downto 0);
     
@@ -306,9 +398,15 @@ end component;
     signal w_Test2 : std_logic_vector(15 downto 0);
     signal w_MDIST_BUSY : std_logic;
     signal w_nRnW_COMM : std_logic;
-    signal w_REGISTER_23 : std_logic_vector(15 downto 0);
-    signal w_REGISTER_5 : std_logic_vector(15 downto 0); 
+    
+    signal w_REGISTER_2 : std_logic_vector(15 downto 0);
+    signal w_REGISTER_3 : std_logic_vector(15 downto 0);
     signal w_REGISTER_4 : std_logic_vector(15 downto 0);
+    signal w_REGISTER_5 : std_logic_vector(15 downto 0); 
+    signal w_REGISTER_6 : std_logic_vector(15 downto 0);
+    signal w_REGISTER_7 : std_logic_vector(15 downto 0);
+    signal w_REGISTER_23 : std_logic_vector(15 downto 0);
+    
     signal w_CLK_DDS : std_logic := '0';
     
     signal w_DATA_A_ADC_TO_PSC : std_logic_vector(15 downto 0);
@@ -316,113 +414,40 @@ end component;
     signal w_DATA_PSC_TO_IVSA : std_logic_vector(15 downto 0);
     signal w_TRIG_PSC_TO_IVSA : std_logic;
     signal w_DAC_DDS_mValid : std_logic;
-
-begin
-
-
-
---w_LOGIC_RESET <= i_ADC_RDY;
---i_ADC_RDY <= w_LOGIC_RESET;
---o_Mem_Addr_ext <= test_ADDR_ext_mem;
---o_ADDR_TEST <= test_ADDR_ext_mem;
---o_ADDR_TEST <= "000" & w_ADDR_IVSA_TO_MDIST;
-
-
-process(w_GRANDMASTER_CLK) is
-begin
-    if(rising_edge(w_GRANDMASTER_CLK)) then
-        --SAMPLE_F_u16 <= TO_INTEGER(unsigned(i_SAMPLE_F));
-        SAMPLE_F_u16 <= TO_INTEGER(unsigned(w_REGISTER_23));
-    end if;
-end  process;
-
-
-w_ADC_DnB_n <= not arm;
-o_ADC_TRIG <= w_ADC_TRIG;
-w_nRnW_COMM <= not i_COMM_RW;
-
-process(init, w_GRANDMASTER_CLK, w_LOGIC_RESET, SAMPLE_F_u16) is
-variable v_DelCount : integer range 0 to 65536 := 0;
-variable v_TrigCount : integer range 0 to 65536 := 0;
-begin
-    if(rising_edge(w_GRANDMASTER_CLK)) then
-        --w_ADC_DATA_SIM <= std_logic_vector(to_unsigned(count, w_ADC_DATA_SIM'length));
-        if(init = '0' or w_LOGIC_RESET = '1' or CMPLT = '1') then
-            CMPLT <= '0';
-            v_DelCount := 0;
-            v_TrigCount := 0;
-            w_ADC_TRIG <= '1';
-            countA <= 0;
-            countB <= 20000;
-        else
-            if(v_TrigCount <= 20000) then
-                case s_byte is 
-                    when S1 =>
-                        w_ADC_TRIG <= '0';
-                        if(v_DelCount > SAMPLE_F_u16) then
-                            s_byte <= S2;
-                            v_DelCount := 0;
-                        else
-                            v_DelCount := v_DelCount +1;
-                        end if;
-                    when S2 =>
-                        w_ADC_TRIG <= '1';
-                        if(v_DelCount > SAMPLE_F_u16) then
-                            v_TrigCount := v_TrigCount +1;
-                            countA <= v_TrigCount;
-                            countB <= 20000-v_TrigCount;
-                            s_byte <= SEQ_CMPLT;
-                        else
-                            v_DelCount := v_DelCount+1;
-                        end if;
-                    when others =>
-                        s_byte <= S1;
-                        v_DelCount := 0;
-                end case;
-            else
-                v_TrigCount := 0;
-                v_DelCount := 0;
-                CMPLT <= '1';
-                s_byte <= S1;
-                countA <= 0;
-                CountB <= 20000;
-            end if;
-        end if;
-    end if;
-end process;
-w_ADC_DATA_SIMA <= std_logic_vector(to_unsigned(countA, w_ADC_DATA_SIMA'length));
-w_ADC_DATA_SIMB <= std_logic_vector(to_unsigned(countB, w_ADC_DATA_SIMB'length));
-
-ARM_ADC : process(i_ADC_DnB, CMPLT) is
-begin
-    if(CMPLT = '1') then
-        arm <= '0';
-    elsif(rising_edge(i_ADC_DnB)) then
-        arm <= '1';
-    end if;
-end process;
-
-SETTLE_MEM : process(w_GRANDMASTER_CLK, arm) is
-    variable v_Count : natural range 0 to 1000 := 0;
-begin
-    if(rising_edge(w_GRANDMASTER_CLK)) then
-        if(arm = '1') then
-            if(v_Count >=100) then
-                init <= '1';
-            else
-                v_Count := v_Count +1;
-            end if;
-        else
-            v_Count := 0;
-            init <= '0';
-        end if;
-    end if;            
-end process;
-
+    
+    signal w_SET_ADCCTRL_TO_PSC : std_logic := '0';
+    
+    signal w_ADC_ACQ_RSMPL_TO_ADCTRL : std_logic := '0';
+    
+    signal w_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN : std_logic := '0';
+    signal w_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT : std_logic := '0';
+    signal w_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN  :std_logic := '0';
+    
+    signal w_PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT   : std_logic := '0';
+    signal w_PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN : std_logic := '0';
+    
+    signal w_PULSE_TRIGGER_DCNVSCKL_PULSE_ADC_CONTROL_TO_PULSEGEN_3_OUT   : std_logic := '0';
+    signal w_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN : std_logic := '0';
+    
+    signal w_PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT   : std_logic := '0';
+    signal w_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN : std_logic := '0';
+    
+    signal w_ADC_A_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER : std_logic_vector (15 downto 0) := (others => '0');
+    signal w_ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER : std_logic_vector (15 downto 0) := (others => '0');
+    signal w_ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER  : std_logic := '0';
+    signal w_ADC_CONTROL_BUSY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER   : std_logic := '0';
+    signal w_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN : std_logic := '0';
+    
+    --signal i_RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL : std_logic := '0';
+    
+    signal i_MASTER_CLK_TO_ADC_CONTROL  : std_logic := '0';
+    signal i_MASTER_CLK_SDA_TO_ADC_CONTROL : std_logic := '0';
         
-         
-w_MEM_CLK <= not w_GRANDMASTER_CLK;
-w_test <= not w_IO_BUF_CTRL;
+    
+
+begin
+
+w_nRnW_COMM <= not i_COMM_RW;
 
 
 PLL_1 : clk_wiz_0
@@ -432,6 +457,50 @@ PLL_1 : clk_wiz_0
    -- Clock in ports
    clk_in1 => i_XCO
  );
+
+pulse_gen_1_SPICLK : pulse_gen_width_modulator_inverted
+Generic map(
+        NR_OF_CLKs => 16,  
+        HIGH_TIME =>20,-- 20, --20, had to "calibrate" due to actual implementation
+        LOW_TIME =>25--25    
+)
+Port map(
+        MASTER_CLK_200MEG_IN => w_GRANDMASTER_CLK,
+        TRIGGER => w_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,
+        PULSE_OUT => w_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
+        ACTIVE => w_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN
+      );
+      
+pulse_gen_2_CNV : pulse_width_gen 
+    Generic map(
+    width => 35
+    )
+    Port map (
+        i_master_clk => w_GRANDMASTER_CLK,
+        i_trigger => w_PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT,
+        o_pulse => w_PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN
+   );
+
+pulse_gen_3_DCN : pulse_width_gen 
+    Generic map(
+    width => 30
+    )
+    Port map (
+        i_master_clk => w_GRANDMASTER_CLK,
+        i_trigger => w_PULSE_TRIGGER_DCNVSCKL_PULSE_ADC_CONTROL_TO_PULSEGEN_3_OUT,
+        o_pulse => w_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN
+   );
+
+pulse_gen_4_DSC : pulse_width_gen 
+    Generic map(
+    width => 30
+    )
+    Port map (
+        i_master_clk => w_GRANDMASTER_CLK,
+        i_trigger => w_PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT,
+        o_pulse => w_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN
+   );
+
 
 PSC_1 : PARALLEL_SERIES_CONVERTER
     Port map(
@@ -445,6 +514,39 @@ PSC_1 : PARALLEL_SERIES_CONVERTER
         o_SET => w_TRIG_PSC_TO_IVSA    --Indicates that the output data is ready on a rising edge.
     );
 
+
+adc_ctrl1 : adc_control
+    port map(
+        PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT => w_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,
+        PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN => w_PULSE_CLK_SPI_PULSEGEN_1_OUT_TO_ADC_CONTROL_IN,
+        PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN => w_PULSE_BUSY_PULSEGEN_1_TO_ADC_CONTROL_IN,
+        
+        PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT => w_PULSE_TRIGGER_CNV_PULSE_ADC_CONTROL_TO_PULSEGEN_2_OUT,
+        PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN => w_PULSE_CNV_PULSE_PULSEGEN_2_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,
+        
+        PULSE_TRIGGER_DCNVSCKL_PULSE_ADC_CONTROL_TO_PULSEGEN_3_OUT => w_PULSE_TRIGGER_DCNVSCKL_PULSE_ADC_CONTROL_TO_PULSEGEN_3_OUT,
+        PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN => w_PULSE_DCNVSCKL_PULSE_PULSEGEN_3_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,
+        
+        PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT => w_PULSE_TRIGGER_DSCKLCNVH_PULSE_ADC_CONTROL_TO_PULSEGEN_4_OUT,
+        PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN => w_PULSE_DSCKLCNVH_PULSE_PULSEGEN_4_ACTIVE_PULSE_WIDTH_OUT_TO_ADC_CONTROL_IN,
+        
+        RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL => w_LOGIC_RESET,
+        
+        EXT_SDA_POS_ADC_A_TO_ADC_CONTROL_IN => i_ADC_SDA_A,
+        --EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN => i_ADC_SDA_B,
+        EXT_SCK_POS_ADC_CONTROL_TO_ADC_A_OUT => o_ADC_SCK_A,
+        --EXT_SCK_POS_ADC_CONTROL_TO_ADC_B_OUT => o_ADC_SCK_B,
+        EXT_CNV_ACQUIRE_EXT_ADC_CONTROL_TO_ADC_A_AND_B_OUT => o_ADC_CNV,
+        ADC_A_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER => w_ADC_DATA_SIMA,
+        ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER => w_ADC_DATA_SIMB,
+        ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER => w_SET_ADCCTRL_TO_PSC,
+        --ADC_CONTROL_BUSY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER => i_ADC_CONTROL_BUSY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER,
+        ADC_ACQUIRE_START_ADC_SAMPLE_COUNTER_TO_ADC_CONTROL_IN => w_ADC_TRIG,
+        MASTER_CLK_TO_ADC_CONTROL => w_GRANDMASTER_CLK 
+    );
+
+
+        
 DDS_DAC : dds_compiler_0
   PORT MAP (
     aclk => w_CLK_DDS,
@@ -517,12 +619,6 @@ ext_memRW : EXT_MEM_RW20
         o_ACTIVE => w_EMEMRW_HOLD
     );
 
---w_DATA_MDIST_TO_EMEMRW <= w_DATA_IVSA_TO_MDIST(7 downto 0);
---w_DATA_MDIST_TO_IVSA <= x"00" & w_DATA_EMEMRW_TO_MDIST;
---w_RnW_MDIST_TO_EMEMRW <= w_RnW_IVSA_TO_MDIST;
---w_ADDR_MDIST_TO_EMEMRW <= "000" & w_ADDR_IVSA_TO_MDIST;
---w_CLK_MDIST_TO_EMEMRW <= w_CLK_IVSA_TO_MDIST;
-
 
 MEM_DIST1 : ExternalMemDist20
     port map (
@@ -541,6 +637,27 @@ MEM_DIST1 : ExternalMemDist20
         i_RESET => w_LOGIC_RESET, --Reset, simply resets logic.
         o_ACTIVE => o_MDIST_BUSY
     );
+    
+    
+--w_ADC_nTRIG <= w_ADC_ACQ_RSMPL_TO_ADCTRL;
+--w_ADC_TRIG <= not w_ADC_nTRIG;
+w_ADC_TRIG <= not w_ADC_ACQ_RSMPL_TO_ADCTRL;
+o_TRIG_ADC <= w_ADC_ACQ_RSMPL_TO_ADCTRL;
+
+ADC_RESAMPLER1 : adc_resampler 
+    port map (
+            i_acquire_start_int_mem_reg => w_REGISTER_7,  
+            --o_acquire_start_read_int_mem    : in std_logic := '0';
+            i_sample_frq_high_int_mem_reg => w_REGISTER_3,
+            i_sample_frq_low_int_mem_reg => w_REGISTER_2,
+            i_sample_size_int_mem_reg => w_REGISTER_6,
+            o_resampler_DnBusy => w_ADC_DnB,
+            o_acquire_start_adc_control => w_ADC_ACQ_RSMPL_TO_ADCTRL,
+            i_reset_logic => w_LOGIC_RESET,
+            i_dds_clk_50MHz => w_CLK_DDS,
+            i_master_clk => w_GRANDMASTER_CLK
+        );
+
 
 
 IV_SAVER : IV_SAMPLE_CTRL
@@ -548,7 +665,8 @@ IV_SAVER : IV_SAMPLE_CTRL
         i_CLK_IXMUX => w_CLK_IXMUX_TO_IVSA,
         o_DATA_IXMUX => w_DATA_IVSA_TO_IXMUX,
         DATA_FROM_MEM_DIST_IN => w_DATA_MDIST_TO_IVSA, 
-        ADC_DnB => w_ADC_DnB_n,
+        --ADC_DnB => w_ADC_DnB_n,
+        ADC_DnB => w_ADC_DnB,
         --ADC_DATA_IN => w_ADC_DATA_SIM,
         ADC_DATA_IN => w_DATA_PSC_TO_IVSA,
         --ADC_DATA_RDY_IN => w_ADC_TRIG,
@@ -569,12 +687,17 @@ IMEM : Internal_ram
         i_FSM_RESET => w_LOGIC_RESET,
         i_DATA_IXMUX => w_DATA_IXMUX_TO_IMEM,
         o_DATA_IXMUX => w_DATA_IMEM_TO_IXMUX,
+        o_REGISTER_2 => w_REGISTER_2,
+        o_REGISTER_3 => w_REGISTER_3,
         o_REGISTER_4 => w_REGISTER_4,
         o_REGISTER_5 => w_REGISTER_5,
+        o_REGISTER_6 => w_REGISTER_6,
+        o_REGISTER_7 => w_REGISTER_7,
         o_REGISTER_23 => w_REGISTER_23
         
     );
-    
+   
+
 
 IX_MUX1 : IX_MUX
     port map(

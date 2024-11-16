@@ -103,7 +103,7 @@ begin
     end if;
 end process;
 
-ADDR_COUNT_sample_mode: process(i_RESET, ADC_DATA_RDY_IN, sample_count)
+ADDR_COUNT_sample_mode: process(i_RESET, ADC_DATA_RDY_IN, sample_count, ADC_DnB)
 begin
     if(i_RESET = '1' or ADC_DnB = '1') then
         sample_count <= 0;

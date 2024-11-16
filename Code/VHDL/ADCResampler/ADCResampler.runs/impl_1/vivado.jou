@@ -3,22 +3,22 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Sat Nov 16 03:10:39 2024
-# Process ID: 22492
-# Current directory: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/impl_1
-# Command line: vivado.exe -log adc_resampler.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source adc_resampler.tcl -notrace
-# Log file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/impl_1/adc_resampler.vdi
-# Journal file: F:/Git Projects/EIT/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/impl_1\vivado.jou
-# Running On        :DESKTOP-DNC9NIR
+# Start of session at: Sat Nov 16 19:02:47 2024
+# Process ID: 9176
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/impl_1
+# Command line: vivado.exe -log MASTER.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source MASTER.tcl -notrace
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/impl_1/MASTER.vdi
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ADCResampler/ADCResampler.runs/impl_1\vivado.jou
+# Running On        :DESKTOP-26ONRPF
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
-# Processor Detail  :13th Gen Intel(R) Core(TM) i7-13700K
-# CPU Frequency     :3418 MHz
-# CPU Physical cores:16
-# CPU Logical cores :24
-# Host memory       :34112 MB
-# Swap memory       :5100 MB
-# Total Virtual     :39212 MB
-# Available Virtual :16643 MB
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :8799 MB
+# Total Virtual     :17269 MB
+# Available Virtual :3523 MB
 #-----------------------------------------------------------
-source adc_resampler.tcl -notrace
+source MASTER.tcl -notrace

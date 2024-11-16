@@ -2,10 +2,10 @@
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
--- Date        : Fri Nov 15 22:05:26 2024
+-- Date        : Fri Nov 15 22:05:24 2024
 -- Host        : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/dds_compiler_0/dds_compiler_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top dds_compiler_0 -prefix
+--               dds_compiler_0_ dds_compiler_0_stub.vhdl
 -- Design      : dds_compiler_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a35tcpg236-1

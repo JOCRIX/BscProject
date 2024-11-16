@@ -2,10 +2,10 @@
 // Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-// Date        : Sun Nov 10 19:59:45 2024
+// Date        : Sun Nov 10 19:59:44 2024
 // Host        : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim {f:/Git
-//               Projects/EIT/P7---Bsc/Code/VHDL/ADCControlUpdate/ADCControlUpdate.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v}
+// Command     : write_verilog -force -mode funcsim -rename_top clk_wiz_0 -prefix
+//               clk_wiz_0_ clk_wiz_0_sim_netlist.v
 // Design      : clk_wiz_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -23,12 +23,12 @@ module clk_wiz_0
   (* IBUF_LOW_PWR *) wire clk_in1;
   wire clk_out1;
 
-  clk_wiz_0_clk_wiz inst
+  clk_wiz_0_clk_wiz_0_clk_wiz inst
        (.clk_in1(clk_in1),
         .clk_out1(clk_out1));
 endmodule
 
-module clk_wiz_0_clk_wiz
+module clk_wiz_0_clk_wiz_0_clk_wiz
    (clk_out1,
     clk_in1);
   output clk_out1;

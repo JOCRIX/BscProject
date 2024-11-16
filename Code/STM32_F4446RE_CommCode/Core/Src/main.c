@@ -27,6 +27,7 @@
 //Here the IOMode can take two constants, either READ or WRITE.
 
 #include <string.h>
+#include <stdio.h>
 
 enum IOMode{
 	READ = 0,
@@ -428,10 +429,13 @@ int main(void)
 	uint16_t testVar2 = 0;
 	uint16_t test2Var = 0;
 	uint16_t test2Var2 = 0;
+	uint16_t f_sampleSize = 0;
 	char str[16];
 	char strAddr[16];
-	float f_set = 142300;
+	char fl_buf[100];
+	float f_set = 1000000;
 	uint32_t f_word = (uint32_t)(f_set*214.748365);
+	float AVG = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -491,14 +495,27 @@ HAL_Delay(1);
 //CommPort.set.PulseCLK();
 
 for(int i = 0; i <23; i++) {
-	CommPort.WriteData(65535-i, i);
+	CommPort.WriteData(255-i, i);
 	HAL_Delay(10);
 }
+
+f_sampleSize = 10000;
+f_set = 50000;
+f_word = (uint32_t)(f_set*214.748365);
 CommPort.WriteData(40, 23);
 HAL_Delay(10);
 CommPort.WriteData((f_word & 0xFFFF), 4);
 HAL_Delay(10);
 CommPort.WriteData(((f_word >> 16)), 5);
+HAL_Delay(10);
+CommPort.WriteData((f_word & 0xFFFF), 2);
+HAL_Delay(10);
+CommPort.WriteData(((f_word >> 16)), 3);
+HAL_Delay(10);
+CommPort.WriteData(f_sampleSize, 6);
+HAL_Delay(10);
+CommPort.WriteData(0x8000, 7);
+HAL_Delay(500);
 
 for(int i = 0; i <24; i++) {
 	CommPort.FetchData(&testVar, i);
@@ -512,10 +529,11 @@ HAL_Delay(1);
 
 
   testVar2 = 0;
-	for (int i = 0; i <= 10000; i++) {
+	for (int i = 0; i < f_sampleSize; i++) {
 		CommPort.set.PulseCLK();
 		CommPort.set.GetIOValue(&testVar);
 		testVar2 = testVar - i;
+		AVG += testVar;
 		sprintf(str, "%d\r", (testVar));
 		strcpy((char*)uartBuf, str);
 		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
@@ -565,6 +583,12 @@ HAL_Delay(1);
 		ns_delay(1);
 
 	}
+	AVG = (AVG/((float)(f_sampleSize)))*0.00015274;
+	gcvt(AVG, 6, fl_buf);
+	sprintf(str, "%s\r\n", fl_buf);
+	strcpy((char*)uartBuf, str);
+	HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	ns_delay(1);
 
 //	CommPort.ResetComm();
 //	HAL_Delay(10);

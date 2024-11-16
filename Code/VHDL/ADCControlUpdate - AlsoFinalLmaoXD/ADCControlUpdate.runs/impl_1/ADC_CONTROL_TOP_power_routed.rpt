@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Sun Nov 10 20:31:07 2024
-| Host             : DESKTOP-DNC9NIR running 64-bit major release  (build 9200)
+| Date             : Sat Nov 16 22:12:09 2024
+| Host             : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command          : report_power -file ADC_CONTROL_TOP_power_routed.rpt -pb ADC_CONTROL_TOP_power_summary_routed.pb -rpx ADC_CONTROL_TOP_power_routed.rpx
 | Design           : ADC_CONTROL_TOP
 | Device           : xc7a35tcpg236-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.184        |
+| Total On-Chip Power (W)  | 0.190        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.113        |
-| Device Static (W)        | 0.071        |
+| Dynamic (W)              | 0.116        |
+| Device Static (W)        | 0.074        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 84.1         |
-| Junction Temperature (C) | 25.9         |
+| Max Ambient (C)          | 84.0         |
+| Junction Temperature (C) | 26.0         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,17 +52,18 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.002 |        5 |       --- |             --- |
-| Slice Logic    |     0.001 |      227 |       --- |             --- |
-|   LUT as Logic |     0.001 |       62 |     20800 |            0.30 |
-|   Register     |    <0.001 |      116 |     41600 |            0.28 |
+| Clocks         |     0.001 |        5 |       --- |             --- |
+| Slice Logic    |    <0.001 |      192 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       48 |     20800 |            0.23 |
+|   Register     |    <0.001 |      102 |     41600 |            0.25 |
 |   CARRY4       |    <0.001 |        8 |      8150 |            0.10 |
-|   Others       |     0.000 |       15 |       --- |             --- |
-| Signals        |     0.001 |      171 |       --- |             --- |
+|   BUFG         |    <0.001 |        1 |        32 |            3.13 |
+|   Others       |     0.000 |       12 |       --- |             --- |
+| Signals        |     0.001 |      165 |       --- |             --- |
 | MMCM           |     0.104 |        1 |         5 |           20.00 |
-| I/O            |     0.005 |       21 |       106 |           19.81 |
-| Static Power   |     0.071 |          |           |                 |
-| Total          |     0.184 |          |           |                 |
+| I/O            |     0.008 |       24 |       106 |           22.64 |
+| Static Power   |     0.074 |          |           |                 |
+| Total          |     0.190 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Vccint    |       1.000 |     0.014 |       0.004 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.071 |       0.058 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.003 |       0.002 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -140,13 +141,14 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------------+-----------+
-| Name            | Power (W) |
-+-----------------+-----------+
-| ADC_CONTROL_TOP |     0.113 |
-|   adc_ctrl1     |     0.002 |
-|   master_of_clk |     0.105 |
-|     inst        |     0.105 |
-+-----------------+-----------+
++----------------------+-----------+
+| Name                 | Power (W) |
++----------------------+-----------+
+| ADC_CONTROL_TOP      |     0.116 |
+|   adc_ctrl1          |     0.001 |
+|   master_of_clk      |     0.105 |
+|     inst             |     0.105 |
+|   pulse_gen_1_SDACLK |     0.001 |
++----------------------+-----------+
 
 
