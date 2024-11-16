@@ -164,12 +164,12 @@ begin
     -- The phase increment value here is derived from the output frequency value set in the CORE Generator GUI.
     s_axis_config_tvalid <= '1';
     s_axis_config_tdata <= (others => '0');  -- set unused TDATA bits to zero
-    s_axis_config_tdata(31 downto 0) <= "00000000000000001101000110110111";  -- phase increment
+    s_axis_config_tdata(31 downto 0) <= "00000000000000001101000110110110";  -- phase increment
     wait for CLOCK_PERIOD;
     s_axis_config_tvalid <= '0';
 
     -- Run for long enough to produce 5 periods of outputs
-    wait for CLOCK_PERIOD * 400001;
+    wait for CLOCK_PERIOD * 400009;
 
     -- Configure the core with a different configuration:
     --   set phase increment to half of its current value
@@ -180,7 +180,7 @@ begin
     s_axis_config_tvalid <= '0';
 
     -- Run for long enough to produce 5 periods of outputs
-    wait for CLOCK_PERIOD * 800002;
+    wait for CLOCK_PERIOD * 800018;
 
     -- End of test
     end_of_simulation <= true;           

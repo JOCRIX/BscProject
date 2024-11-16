@@ -1,8 +1,8 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Fri Nov 15 17:47:05 2024
-| Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
+| Date         : Fri Nov 15 22:19:24 2024
+| Host         : DESKTOP-S99FO1K running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file sample_control_TOP_control_sets_placed.rpt
 | Design       : sample_control_TOP
 | Device       : xc7a35t
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    64 |
-|    Minimum number of control sets                        |    64 |
+| Total control sets                                       |    67 |
+|    Minimum number of control sets                        |    67 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |   211 |
+| Unused register locations in slices containing registers |   114 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    64 |
+| Total control sets |    67 |
 | >= 0 to < 4        |     9 |
-| >= 4 to < 6        |     3 |
+| >= 4 to < 6        |     5 |
 | >= 6 to < 8        |     1 |
 | >= 8 to < 10       |     4 |
 | >= 10 to < 12      |     0 |
-| >= 12 to < 14      |    32 |
+| >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |    15 |
+| >= 16              |    48 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,85 +58,88 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             278 |           81 |
-| No           | No                    | Yes                    |              36 |           12 |
-| No           | Yes                   | No                     |               4 |            1 |
-| Yes          | No                    | No                     |             167 |           36 |
+| No           | No                    | No                     |             184 |           51 |
+| No           | No                    | Yes                    |              68 |           17 |
+| No           | Yes                   | No                     |               4 |            2 |
+| Yes          | No                    | No                     |             695 |          181 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             512 |          133 |
+| Yes          | Yes                   | No                     |             119 |           36 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-------------------------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
-|          Clock Signal         |                Enable Signal               |        Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
-+-------------------------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
-|  MEM_DIST1/o_SET              |                                            | logic_resetter/w_RUN0         |                1 |              1 |         1.00 |
-|  IX_MUX1/CLK_TO_MEM_DIST_OUT  |                                            | logic_resetter/w_init0        |                1 |              1 |         1.00 |
-| ~i_COMM_CLK_IBUF_BUFG         |                                            |                               |                1 |              1 |         1.00 |
-|  i_ADC_DnB_IBUF_BUFG          |                                            | CMPLT                         |                1 |              1 |         1.00 |
-|  o_CLK_IMEM_BUFG              |                                            | logic_resetter/RESET          |                1 |              1 |         1.00 |
-|  PLL_1/inst/clk_out1          | ext_memRW/o_nOE10_out                      | ext_memRW/o_nOE_i_1_n_0       |                1 |              1 |         1.00 |
-|  PLL_1/inst/clk_out1          | ext_memRW/o_nWE9_out                       | ext_memRW/o_nWE_i_1_n_0       |                1 |              1 |         1.00 |
-|  PLL_1/inst/clk_out1          | ext_memRW/o_IO_BUF_CTRL5_out               | ext_memRW/o_IO_BUF_CTRL7_out  |                1 |              1 |         1.00 |
-|  i_COMM_CLK_IBUF_BUFG         |                                            |                               |                1 |              3 |         3.00 |
-|  PLL_1/inst/clk_out1          |                                            | ext_memRW/clear               |                1 |              4 |         4.00 |
-|  PLL_1/inst/clk_out1          | ext_memRW/E[0]                             | MEM_DIST1/s_byte[3]_i_1_n_0   |                1 |              4 |         4.00 |
-|  o_CLK_IMEM_BUFG              | IMEM/r_ADDRESS[4]_i_1_n_0                  |                               |                2 |              5 |         2.50 |
-|  PLL_1/inst/clk_out1          | sel                                        | SETTLE_MEM.v_Count[6]_i_1_n_0 |                2 |              7 |         3.50 |
-|  PLL_1/inst/clk_out1          | ext_memRW/o_DATA[7]_i_1_n_0                |                               |                2 |              8 |         4.00 |
-|  PLL_1/inst/clk_out1          | ext_memRW/w_CMPLT_reg_1[0]                 |                               |                2 |              8 |         4.00 |
-|  PLL_1/inst/clk_out1          | ext_memRW/o_DATA_TO_ERAM[7]_i_1_n_0        |                               |                1 |              8 |         8.00 |
-|  PLL_1/inst/clk_out1          | MEM_DIST1/w_iLoBYTE_0                      |                               |                3 |              8 |         2.67 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[13]0                          | IMEM/RAM[13][14]_i_1_n_0      |                5 |             13 |         2.60 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[19]0                          | IMEM/RAM[19][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[3]0                           | IMEM/RAM[3][14]_i_1_n_0       |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[10]0                          | IMEM/RAM[10][14]_i_1_n_0      |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[22]0                          | IMEM/RAM[22][14]_i_1_n_0      |                5 |             13 |         2.60 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[29]0                          | IMEM/RAM[29][14]_i_1_n_0      |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[21]0                          | IMEM/RAM[21][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[24]0                          | IMEM/RAM[24][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[16]0                          | IMEM/RAM[16][14]_i_1_n_0      |                4 |             13 |         3.25 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[17]0                          | IMEM/RAM[17][14]_i_1_n_0      |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[14]0                          | IMEM/RAM[14][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[1]0                           | IMEM/RAM[1][14]_i_1_n_0       |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[25]0                          | IMEM/RAM[25][14]_i_1_n_0      |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[30]0                          | IMEM/RAM[30][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[26]0                          | IMEM/RAM[26][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[18]0                          | IMEM/RAM[18][14]_i_1_n_0      |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[31]0                          | IMEM/RAM[31][14]_i_1_n_0      |                5 |             13 |         2.60 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[5]0                           | IMEM/RAM[5][14]_i_1_n_0       |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[6]0                           | IMEM/RAM[6][14]_i_1_n_0       |                4 |             13 |         3.25 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[7]0                           | IMEM/RAM[7][14]_i_1_n_0       |                7 |             13 |         1.86 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[12]0                          | IMEM/RAM[12][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[28]0                          | IMEM/RAM[28][14]_i_1_n_0      |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[9]0                           | IMEM/RAM[9][14]_i_1_n_0       |                5 |             13 |         2.60 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[11]0                          | IMEM/RAM[11][14]_i_1_n_0      |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[8]0                           | IMEM/RAM[8][14]_i_1_n_0       |                4 |             13 |         3.25 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[27]0                          | IMEM/RAM[27][14]_i_1_n_0      |                4 |             13 |         3.25 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[20]0                          | IMEM/RAM[20][14]_i_1_n_0      |                4 |             13 |         3.25 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[23]0                          | IMEM/RAM[23][14]_i_1_n_0      |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[2]0                           | IMEM/RAM[2][14]_i_1_n_0       |                2 |             13 |         6.50 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[15]0                          | IMEM/RAM[15][14]_i_1_n_0      |                5 |             13 |         2.60 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[4]0                           | IMEM/RAM[4][14]_i_1_n_0       |                3 |             13 |         4.33 |
-|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[0]0                           | IMEM/RAM[0][14]_i_1_n_0       |                4 |             13 |         3.25 |
-|  o_CLK_IMEM_BUFG              | logic_resetter/E[0]                        | IMEM/r_ADDRESS[4]_i_1_n_0     |                6 |             16 |         2.67 |
-| ~o_ADC_TRIG_OBUF              |                                            | logic_resetter/RESET          |                4 |             16 |         4.00 |
-|  PLL_1/inst/clk_out1          | MEM_DIST1/w_LoBYTE_1                       |                               |                3 |             16 |         5.33 |
-|  PLL_1/inst/clk_out1          | MEM_DIST1/w_LoBYTE_1                       | MEM_DIST1/w_HiBYTE[7]_i_1_n_0 |                3 |             16 |         5.33 |
-|  PLL_1/inst/clk_out1          | MEM_DIST1/o_DATA[15]_i_1_n_0               |                               |                5 |             16 |         3.20 |
-| ~IX_MUX1/sig_CLK_from_int_mem |                                            | logic_resetter/RESET          |                4 |             16 |         4.00 |
-|  PLL_1/inst/clk_out1          | ext_memRW/o_ADDR_TO_ERAM[16]_i_1_n_0       |                               |                4 |             17 |         4.25 |
-|  PLL_1/inst/clk_out1          | MEM_DIST1/o_ADDR[16]_i_1_n_0               |                               |                4 |             17 |         4.25 |
-|  PLL_1/inst/clk_out1          | v_DelCount[16]_i_1_n_0                     | logic_resetter/count          |                3 |             17 |         5.67 |
-|  o_CLK_DDS_BUFG               | DAC_DATA_CONVERTER/s_axis_config_tvalid    |                               |                6 |             32 |         5.33 |
-|  o_CLK_DDS_BUFG               | DAC_DATA_CONVERTER/r_F_OUT_reg[31]_i_1_n_1 |                               |                4 |             32 |         8.00 |
-|  PLL_1/inst/clk_out1          | v_TrigCount                                | logic_resetter/count          |               10 |             33 |         3.30 |
-|  PLL_1/inst/clk_out1          |                                            |                               |               19 |             81 |         4.26 |
-|  o_CLK_IMEM_BUFG              |                                            |                               |               32 |             96 |         3.00 |
-|  o_CLK_DDS_BUFG               |                                            |                               |               28 |             98 |         3.50 |
-+-------------------------------+--------------------------------------------+-------------------------------+------------------+----------------+--------------+
++-------------------------------+----------------------------------------------+---------------------------------------+------------------+----------------+--------------+
+|          Clock Signal         |                 Enable Signal                |            Set/Reset Signal           | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------+----------------------------------------------+---------------------------------------+------------------+----------------+--------------+
+| ~i_COMM_CLK_IBUF_BUFG         |                                              |                                       |                1 |              1 |         1.00 |
+|  i_ADC_DnB_IBUF_BUFG          |                                              | CMPLT                                 |                1 |              1 |         1.00 |
+|  PSC_1/CLK_TO_MEM_DIST_OUT    |                                              | logic_resetter/w_init0                |                1 |              1 |         1.00 |
+|  MEM_DIST1/o_SET              |                                              | logic_resetter/w_RUN0                 |                1 |              1 |         1.00 |
+|  o_CLK_IMEM_BUFG              |                                              | logic_resetter/RESET                  |                1 |              1 |         1.00 |
+|  PLL_1/inst/clk_out1          | ext_memRW/o_nWE9_out                         | ext_memRW/o_nWE_i_1_n_0               |                1 |              1 |         1.00 |
+|  PLL_1/inst/clk_out1          | ext_memRW/o_IO_BUF_CTRL5_out                 | ext_memRW/o_IO_BUF_CTRL7_out          |                1 |              1 |         1.00 |
+|  PLL_1/inst/clk_out1          | ext_memRW/o_nOE10_out                        | ext_memRW/o_nOE_i_1_n_0               |                1 |              1 |         1.00 |
+|  i_COMM_CLK_IBUF_BUFG         |                                              |                                       |                1 |              3 |         3.00 |
+|  PLL_1/inst/clk_out1          |                                              | ext_memRW/clear                       |                2 |              4 |         2.00 |
+|  PLL_1/inst/clk_out1          | PSC_1/FSM_Par_to_Ser_Conv.v_Count[3]_i_1_n_0 | PSC_1/FSM_sequential_state[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  PLL_1/inst/clk_out1          | MEM_DIST1/s_byte                             | MEM_DIST1/s_byte[3]_i_1_n_0           |                1 |              4 |         4.00 |
+|  PLL_1/inst/clk_out1          | PSC_1/FSM_sequential_state[3]_i_2_n_0        | PSC_1/FSM_sequential_state[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/r_ADDRESS[4]_i_1_n_0                    |                                       |                1 |              5 |         5.00 |
+|  PLL_1/inst/clk_out1          | sel                                          | SETTLE_MEM.v_Count[6]_i_1_n_0         |                2 |              7 |         3.50 |
+|  PLL_1/inst/clk_out1          | MEM_DIST1/o_DATA_EMEM[7]_i_1_n_0             |                                       |                1 |              8 |         8.00 |
+|  PLL_1/inst/clk_out1          | MEM_DIST1/w_iLoBYTE_1                        |                                       |                1 |              8 |         8.00 |
+|  PLL_1/inst/clk_out1          | ext_memRW/o_DATA[7]_i_1_n_0                  |                                       |                2 |              8 |         4.00 |
+|  PLL_1/inst/clk_out1          | ext_memRW/o_DATA_TO_ERAM[7]_i_1_n_0          |                                       |                1 |              8 |         8.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[25]0                            |                                       |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[5]0                             |                                       |                2 |             16 |         8.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[17]0                            |                                       |                3 |             16 |         5.33 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[14]0                            |                                       |                6 |             16 |         2.67 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[9]0                             |                                       |                6 |             16 |         2.67 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[13]0                            |                                       |                6 |             16 |         2.67 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[21]0                            |                                       |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[31]0                            |                                       |                9 |             16 |         1.78 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[8]0                             |                                       |                5 |             16 |         3.20 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[2]0                             |                                       |                2 |             16 |         8.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[1]0                             |                                       |                7 |             16 |         2.29 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[16]0                            |                                       |                2 |             16 |         8.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[23]0                            |                                       |                2 |             16 |         8.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[15]0                            |                                       |                5 |             16 |         3.20 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM[3][15]_i_1_n_0                      |                                       |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[19]0                            |                                       |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[6]0                             |                                       |                2 |             16 |         8.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[29]0                            |                                       |                5 |             16 |         3.20 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[7]0                             |                                       |                8 |             16 |         2.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[30]0                            |                                       |                5 |             16 |         3.20 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[20]0                            |                                       |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | logic_resetter/E[0]                          | IMEM/r_ADDRESS[4]_i_1_n_0             |                7 |             16 |         2.29 |
+| ~IX_MUX1/sig_CLK_from_int_mem |                                              | logic_resetter/RESET                  |                4 |             16 |         4.00 |
+| ~PSC_1/w_TRIG_PSC_TO_IVSA     |                                              | logic_resetter/sample_count0          |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[0]0                             |                                       |                3 |             16 |         5.33 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[10]0                            |                                       |                6 |             16 |         2.67 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[11]0                            |                                       |                3 |             16 |         5.33 |
+|  PLL_1/inst/clk_out1          | MEM_DIST1/o_DATA[15]_i_1_n_0                 |                                       |                4 |             16 |         4.00 |
+|  PLL_1/inst/clk_out1          | MEM_DIST1/w_LoBYTE_2                         |                                       |                4 |             16 |         4.00 |
+|  PLL_1/inst/clk_out1          | MEM_DIST1/w_LoBYTE_2                         | MEM_DIST1/w_HiBYTE[7]_i_1_n_0         |                3 |             16 |         5.33 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[12]0                            |                                       |                5 |             16 |         3.20 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[22]0                            |                                       |                8 |             16 |         2.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[18]0                            |                                       |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[24]0                            |                                       |                3 |             16 |         5.33 |
+|  PLL_1/inst/clk_out1          | PSC_1/o_DATA[15]_i_1__0_n_0                  |                                       |                2 |             16 |         8.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[27]0                            |                                       |                4 |             16 |         4.00 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[4]0                             |                                       |                3 |             16 |         5.33 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[26]0                            |                                       |                6 |             16 |         2.67 |
+|  o_CLK_IMEM_BUFG              | IMEM/RAM_reg[28]0                            |                                       |                6 |             16 |         2.67 |
+|  PLL_1/inst/clk_out1          | MEM_DIST1/o_ADDR[16]_i_1_n_0                 |                                       |                4 |             17 |         4.25 |
+|  PLL_1/inst/clk_out1          | v_DelCount[16]_i_1_n_0                       | logic_resetter/SS[0]                  |                5 |             17 |         3.40 |
+|  PLL_1/inst/clk_out1          | ext_memRW/o_ADDR_TO_ERAM[16]_i_1_n_0         |                                       |                5 |             17 |         3.40 |
+|  o_CLK_DDS_BUFG               | DAC_DATA_CONVERTER/s_axis_config_tvalid      |                                       |                5 |             32 |         6.40 |
+| ~o_ADC_TRIG_OBUF_BUFG         |                                              | PSC_1/w_RUN_i_1_n_0                   |                5 |             32 |         6.40 |
+|  o_CLK_DDS_BUFG               | DAC_DATA_CONVERTER/r_F_OUT_reg[31]_i_1_n_1   |                                       |                5 |             32 |         6.40 |
+|  PLL_1/inst/clk_out1          | s_byte__1[1]                                 | logic_resetter/SS[0]                  |               13 |             48 |         3.69 |
+|  PLL_1/inst/clk_out1          |                                              |                                       |               20 |             83 |         4.15 |
+|  o_CLK_DDS_BUFG               |                                              |                                       |               29 |             98 |         3.38 |
++-------------------------------+----------------------------------------------+---------------------------------------+------------------+----------------+--------------+
 
 
