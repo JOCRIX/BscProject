@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Sun Nov 17 00:14:57 2024
+| Date         : Mon Nov 18 12:26:01 2024
 | Host         : DESKTOP-26ONRPF running 64-bit major release  (build 9200)
 | Command      : report_methodology -file sample_control_TOP_methodology_drc_routed.rpt -pb sample_control_TOP_methodology_drc_routed.pb -rpx sample_control_TOP_methodology_drc_routed.rpx
 | Design       : sample_control_TOP
@@ -20,7 +20,7 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_sample_control_TOP
+          Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
              Violations found: 1009
@@ -4905,132 +4905,132 @@ Related violations: <none>
 
 TIMING-17#975 Critical Warning
 Non-clocked sequential cell  
-The clock pin PSC_1/w_RUN_reg/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#976 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/dsc_pulse_done_reg/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[10]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#977 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_clk_count_reg[0]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[11]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#978 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_clk_count_reg[1]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[12]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#979 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_clk_count_reg[2]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[13]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#980 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_clk_count_reg[3]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[14]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#981 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_clk_count_reg[4]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[15]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#982 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_clk_count_reg[5]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#983 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[0]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#984 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[10]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#985 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[11]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#986 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[12]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#987 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[13]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#988 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[14]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#989 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[15]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[8]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#990 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[1]/C is not reached by a timing clock
+The clock pin PSC_1/r_B_REG_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#991 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[2]/C is not reached by a timing clock
+The clock pin PSC_1/w_RUN_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#992 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[3]/C is not reached by a timing clock
+The clock pin adc_ctrl1/dsc_pulse_done_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#993 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[4]/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_clk_count_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#994 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[5]/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_clk_count_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#995 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[6]/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_clk_count_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#996 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[7]/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_clk_count_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#997 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[8]/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_clk_count_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#998 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/serial_data_adc_1_reg[9]/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_clk_count_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#999 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/set_spi_clk_reg/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_data_adc_1_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#1000 Critical Warning
 Non-clocked sequential cell  
-The clock pin adc_ctrl1/spi_clk_done_reg/C is not reached by a timing clock
+The clock pin adc_ctrl1/serial_data_adc_1_reg[10]/C is not reached by a timing clock
 Related violations: <none>
 
 LUTAR-1#1 Warning
@@ -5040,14 +5040,14 @@ Related violations: <none>
 
 LUTAR-1#2 Warning
 LUT drives async reset alert  
-LUT cell PSC_1/w_RUN_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) PSC_1/r_A_REG_reg[11]/CLR, PSC_1/r_A_REG_reg[12]/CLR,
-PSC_1/r_A_REG_reg[13]/CLR, PSC_1/r_A_REG_reg[14]/CLR,
-PSC_1/r_A_REG_reg[15]/CLR, PSC_1/r_A_REG_reg[1]/CLR,
-PSC_1/r_A_REG_reg[2]/CLR, PSC_1/r_A_REG_reg[3]/CLR,
-PSC_1/r_A_REG_reg[4]/CLR, PSC_1/r_A_REG_reg[5]/CLR,
-PSC_1/r_A_REG_reg[6]/CLR, PSC_1/r_A_REG_reg[7]/CLR,
-PSC_1/r_A_REG_reg[8]/CLR, PSC_1/r_A_REG_reg[9]/CLR, PSC_1/w_RUN_reg/CLR
- (the first 15 of 17 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell PSC_1/w_RUN_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) PSC_1/r_B_REG_reg[11]/CLR, PSC_1/r_B_REG_reg[12]/CLR,
+PSC_1/r_B_REG_reg[13]/CLR, PSC_1/r_B_REG_reg[14]/CLR,
+PSC_1/r_B_REG_reg[15]/CLR, PSC_1/r_B_REG_reg[1]/CLR,
+PSC_1/r_B_REG_reg[2]/CLR, PSC_1/r_B_REG_reg[3]/CLR,
+PSC_1/r_B_REG_reg[4]/CLR, PSC_1/r_B_REG_reg[5]/CLR,
+PSC_1/r_B_REG_reg[6]/CLR, PSC_1/r_B_REG_reg[7]/CLR,
+PSC_1/r_B_REG_reg[8]/CLR, PSC_1/r_B_REG_reg[9]/CLR, PSC_1/w_RUN_reg/CLR
+ (the first 15 of 33 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 LUTAR-1#3 Warning
