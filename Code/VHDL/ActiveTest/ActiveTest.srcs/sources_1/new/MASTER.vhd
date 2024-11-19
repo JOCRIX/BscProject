@@ -514,7 +514,6 @@ PSC_1 : PARALLEL_SERIES_CONVERTER
         o_SET => w_TRIG_PSC_TO_IVSA    --Indicates that the output data is ready on a rising edge.
     );
 
-
 adc_ctrl1 : adc_control
     port map(
         PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT => w_PULSE_TRIGGER_SPI_CLK_ADC_CONTROL_TO_PULSEGEN_1_OUT,

@@ -499,7 +499,7 @@ for(int i = 0; i <23; i++) {
 	HAL_Delay(10);
 }
 
-f_sampleSize = 10000;
+f_sampleSize = 1000;
 f_set = 50000;
 f_word = (uint32_t)(f_set*214.748365);
 CommPort.WriteData(40, 23);
@@ -583,7 +583,7 @@ HAL_Delay(1);
 		ns_delay(1);
 
 	}
-	AVG = (AVG/((float)(f_sampleSize)))*0.00015274;
+	AVG = ((AVG/((float)(f_sampleSize)))*0.00015274)+0.0045;
 	gcvt(AVG, 6, fl_buf);
 	sprintf(str, "%s\r\n", fl_buf);
 	strcpy((char*)uartBuf, str);

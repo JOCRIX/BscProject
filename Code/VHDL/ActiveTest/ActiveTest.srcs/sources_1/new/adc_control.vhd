@@ -148,7 +148,9 @@ ADC_A_AND_B_DATA_READY_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER <= data_ready;
 --ADC 2 data to local
 adc_2_data <= EXT_SDA_POS_ADC_B_TO_ADC_CONTROL_IN;
 --ADC 2 latched data to output
-ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER <= adc_2_data_latched;
+--ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER <= adc_2_data_latched;
+ADC_B_DATA_ADC_CONTROL_TO_ADC_SAMPLE_COUNTER <= not adc_1_data_latched;
+
 --reset signal
 w_reset <= RESET_LOGIC_LOGIC_RESETTER_TO_ADC_CONTROL;
 
