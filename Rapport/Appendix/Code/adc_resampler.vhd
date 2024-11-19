@@ -209,6 +209,7 @@ begin
         end if;
     end if;
 end process;
+
 check_count_status : process (r_dds_counting, s_resamp) is
 begin
 
