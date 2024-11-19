@@ -1,0 +1,5 @@
+1.) Manglende intro til "problemet". Problemformuleringen er ukonkret. Hvad er det der skal gøre at vores projekt er muligt? Vi kan godt beskrive måle princippet inden problem statement. Vi skal gøre mere for at underbygge påstanden om at det er muligt at lave billigere LCR metre. Efter requirement kunne man evt. lave en mere teknisk problemformulering. Hvad ligger vi til grund for at vælge det måleprincip vi har valgt, så kan vi skrive i problemformuleringe "baseret på det her princip blablabla". 
+
+2.) "The project team discussed" behøver vi ikke at sige. Det er klart at det er OS som tager beslutninger.
+
+3.) 
