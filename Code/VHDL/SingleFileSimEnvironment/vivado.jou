@@ -3,10 +3,10 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Fri Nov 15 20:58:02 2024
-# Process ID: 2944
+# Start of session at: Wed Nov 20 22:08:53 2024
+# Process ID: 17692
 # Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17056 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\SingleFileSimEnvironment\SingleFileSimEnvironment.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17612 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\SingleFileSimEnvironment\SingleFileSimEnvironment.xpr
 # Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/vivado.log
 # Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment\vivado.jou
 # Running On        :DESKTOP-S99FO1K
@@ -19,35 +19,18 @@
 # Host memory       :34182 MB
 # Swap memory       :5100 MB
 # Total Virtual     :39282 MB
-# Available Virtual :30219 MB
+# Available Virtual :23848 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.xpr
 update_compile_order -fileset sources_1
-set_property is_enabled false [get_files  C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.srcs/sources_1/new/IVSA20.vhd]
-close [ open C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.srcs/sources_1/new/PARALLEL_SERIES_CONVERTER.vhd w ]
-add_files C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/SingleFileSimEnvironment/SingleFileSimEnvironment.srcs/sources_1/new/PARALLEL_SERIES_CONVERTER.vhd
-reset_run synth_1
-launch_runs synth_1 -jobs 12
-wait_on_run synth_1
-open_run synth_1 -name synth_1
 launch_simulation
 source PARALLEL_SERIES_CONVERTER.tcl
+restart
 add_force {/PARALLEL_SERIES_CONVERTER/i_CLK} -radix hex {0 0ns} {1 2500ps} -repeat_every 5000ps
 add_force {/PARALLEL_SERIES_CONVERTER/i_DATA_A} -radix hex {AAAA 0ns}
 add_force {/PARALLEL_SERIES_CONVERTER/i_DATA_B} -radix hex {BBBB 0ns}
-run 50 ns
 add_force {/PARALLEL_SERIES_CONVERTER/i_SET} -radix hex {1 0ns}
-run 10 ns
-run 10 ns
-run 10 ns
-add_force {/PARALLEL_SERIES_CONVERTER/i_SET} -radix hex {0 0ns}
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
 run 10 ns
 run 10 ns
 add_force {/PARALLEL_SERIES_CONVERTER/i_SET} -radix hex {0 0ns}
@@ -69,35 +52,8 @@ run 10 ns
 run 10 ns
 run 10 ns
 run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-run 10 ns
-add_force {/PARALLEL_SERIES_CONVERTER/i_DATA_A} -radix hex {CCCC 0ns}
-add_force {/PARALLEL_SERIES_CONVERTER/i_DATA_B} -radix hex {DDDD 0ns}
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-add_force {/PARALLEL_SERIES_CONVERTER/i_SET} -radix hex {1 0ns}
-run 50 ns
-add_force {/PARALLEL_SERIES_CONVERTER/i_SET} -radix hex {0 0ns}
-run 50 ns
-add_force {/PARALLEL_SERIES_CONVERTER/i_SET} -radix hex {1 0ns}
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
-run 50 ns
+run 100 ns
+run 100 ns
+run 100 ns
+run 100 ns
 close_sim
