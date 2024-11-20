@@ -75,7 +75,7 @@ CLK_TO_MEM_DIST_OUT <= sig_ADC_CLK_to_mem_dist or sig_CLK_from_int_mem;
 ADDR_TO_MEM_DIST_OUT <= sig_ADC_ADDR or sig_int_mem_ADDR;
 DATA_TO_MEM_DIST_OUT <= sig_ADC_DATA;
 RnW_TO_MEM_DIST_OUT <= sig_RnW_to_mem_dist_out or sig_RnW_to_mem_dist_out_nB;
---DATA_TO_INT_MEM_OUT <= sig_int_mem_DATA;
+
 o_DATA_IXMUX <= sig_INT_mem_DATA;
 
 
@@ -94,7 +94,7 @@ begin
         sig_ADC_DATA <= ADC_DATA_IN;
         sig_ADC_CLK_to_mem_dist <= ADC_DATA_RDY_IN;
         sig_RnW_to_mem_dist_out <= '0';
-        --sig_MEM_ADDR <= (others => '0');
+        
     else
         sig_ADC_ADDR <= (others => '0');
         sig_ADC_CLK_to_mem_dist <= '0';
