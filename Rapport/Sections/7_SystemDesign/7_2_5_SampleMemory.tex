@@ -20,14 +20,25 @@ In order to write to RAM the FPGA should have hardware that follows the write cy
     \label{fig:7_2_5_IS61_WRITE}
 \end{figure}
 
-The write sequence shown on figure \refq{fig:7_2_5_IS61_WRITE} has been implemented in hardware as a state machine as shown in the code listing list \refq{lst:7_2_5_Write_FSM}.
-\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=84-102, caption={VHDL code for the write sequence state machine}, label={lst:7_2_5_Write_FSM}]{Sections/7_SystemDesign/Code/ext_mem_read_write.vhd}
+The write cycle begins by letting OE go from '0' to '1', the time from this event to WE going low is refered to as $t_{SA}$ and should be \SIQ{0}{\nano\second} according to the datasheet. Figure \ref{fig:7_2_5_IS61_WRITE} does however indicate that the address and OE should be configured before WE goes from '1' to '0'.
 
-The state machine will go through steps 1 to 4 and transition on every rising edge of a CLK signal. As shown on figure \refq{fig:7_2_5_IS61_WRITE} the FSM will, in step 1, start by disabling the output drivers with OE = '1' and setting the address unto the address bus. In step 2 it asserts the WE signal. In step 3 it sets 1 byte of the sample data unto the data bus and it step 4 it releases WE and thus CLKs the data into RAM and returns to the initial state, ready for the next write.
+the time $t_{HZWE}$ is the time it takes for the output to be tristated after WE goes low, this takes \SIQ{2}{\nano\second} according to the datasheet. Finally there must go at least \SIQ{5}{\nano\second} from the output being tristated to WE going high again, "clocking" in the data on the data IO pins. These time constraints should be repsected for the chip to function properly. All timings are taken for the \SIQ{8}{\nano\second} write cycle chip, this depends on the supply voltage, the memory IC is supplied with \SIQ{3.3}{\volt}, resulting in a write cycle time of \SIQ{8}{\nano\second}, see the datasheet of the IC for more information on this.
 
-Note how on figure \refq{fig:7_2_5_IS61_WRITE} there is a significant amount of timings that the hardware must obey in order for the IC to function properly. It was found during testing that by making a simple FSM as shown in listing \refq{lst:7_2_5_Write_FSM}, with the 4 steps mentioned in the captions of figure \refq{fig:7_2_5_IS61_WRITE}, it was possible to get \SIQ{12}{\mega\bit}/s data rates without corruption of data. Data gets corrupted when the state machines clock input exceed \SIQ{15}{\mega\hertz}. A data rate of \SIQ{12}{\mega\bit}/s exceeds the expected data from the ADC module and is sufficient for the task, so no further work is required for the memory in this case.
+The read and write cylces for controlling the memory IC are buid around a counter. If data is to be written or read from the external memory, a counter will increment by 1 at each rising edge of a \SIQ{200}{\mega\hertz} master clock. Depending on the variable of the counter the output of the process will take different states. The advantage of using a counter to advance this state machine is that the timeing constraints can be honored. The VHDL code for the counter can be seen in listing \ref{lst:7_2_5_FSM_COUNTER}. Here it can be seen that if a rising edge on the master clock occurs and the sequence is to run, the counter will increment by 1.
 
-A read from the IS61 SRAM follows a similar procedure as shown on the read cycle timing diagram on figure \refq{fig:7_2_5_IS61_READ}.
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=88-93, caption={VHDL code for the FSM counter incrementation.}, label={lst:7_2_5_FSM_COUNTER}]{Sections/7_SystemDesign/Code/EXT_MEM_RW20.vhd}
+
+The write sequence shown on figure \refq{fig:7_2_5_IS61_WRITE} has been implemented in hardware as a state machine as shown in the code listing list \refq{lst:7_2_5_Write_SEQ}.
+
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=105-121, caption={VHDL code for the write sequence process.}, label={lst:7_2_5_Write_SEQ}]{Sections/7_SystemDesign/Code/EXT_MEM_RW20.vhd}
+
+When the "v\_Count" is less or equal to 1, this it will be at the first rising edge of the master clock, the address will be set and output enable will be set to a logical '1'. The output data is also set at this point, however the output data is not presented to the IC yet, as a control signal will enable the output buffer at a later state. 
+
+The next rising edge of the master clock will have "v\_Count" take the value 2, and output enable is set to a logical '0'. Here a time of \SIQ{5}{\nano\second} has passend since the last changes due to the period of the master clock being \SIQ{5}{\nano\second}. The time constraint from write enable going low to the data on the datalines being valid is requied to be \SIQ{5}{\nano\second}, to ensure this is honored, two clocks are required to arise before the output buffer is changed from being tristated to being enabled, hence the elsif "v\_Count = 4" statement. Hereafter write enable is set to a logical '1', clokcing in the data. on the next clock the output is once again tristated and the sequence is completed. 
+
+This sequence requires 7 master clocks to be completed and thus it takes \SIQ{35}{\nano\second} to write a single byte to the external memory. This allows for a datarate of \SIQ{228}{\mega\bit/\second}.
+
+The read cycle for the IS61 SRAM follows a similar procedure as shown on the read cycle timing diagram on figure \refq{fig:7_2_5_IS61_READ}.
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 250 0 0, width=0.8\textwidth]{Sections/7_SystemDesign/Figures/7_2_5_IS61_ReadCycle.pdf}
@@ -35,10 +46,15 @@ A read from the IS61 SRAM follows a similar procedure as shown on the read cycle
     \label{fig:7_2_5_IS61_READ}
 \end{figure}
 
-Note how on figure \refq{fig:7_2_5_IS61_READ} the WE signal is not displayed, but WE should be held high for a read cycle in order to work properly. The CE signal is, also, not being controlled in this project and is still tied to '0'. The read cycle is also being controlled by a state machine and the code listing for this can be seen on listing \refq{lst:7_2_5_READ_FSM}.
+Note how on figure \refq{fig:7_2_5_IS61_READ} the WE signal is not displayed, but WE should be held high for a read cycle in order to work properly. The CE signal is, also, not being controlled in this project and is still tied to '0'. The read cycle is also being controlled by a state machine and the code listing for this can be seen on listing \refq{lst:7_2_5_READ_SEQ}. The time $t_{AA}$ is the time the SRAM uses to fetch the data stored on whatever address is on the address line. With a \SIQ{3.3}{\volt} supply, this time is \SIQ{8}{\nano\second}, this constraint must be respected if proper functionality is to be expected.
 
-\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=130-154, caption={VHDL code for the read sequence state machine}, label={lst:7_2_5_READ_FSM}]{Sections/7_SystemDesign/Code/ext_mem_read_write.vhd} 
 
-The FSM shown in listing \refq{lst:7_2_5_READ_FSM} steps through the read cycle shown on figure \refq{fig:7_2_5_IS61_READ}. It enables read mode by setting WE = '1' and putting an address on the address bus. Next, the output drivers are enabled. In step 3 a single CLK is skipped because this was found to greatly increase the reliablity of reads during testing as the IC required more time to setup the data on the bus. Again, the amount of work being done to ensure the correct timing is minimal, but this was sufficient for \SIQ{12}{\mega\bit}/s data rates. In step 4 the data is transfered to the FPGA and the output drivers are disabled again.
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=94-105, caption={VHDL code for the read sequence state machine}, label={lst:7_2_5_READ_SEQ}]{Sections/7_SystemDesign/Code/EXT_MEM_RW20.vhd} 
 
-If the project had more time for development it would be possible to increase the data rates of this communication bus by paying greater attention to the timings of the IS61 SRAM IC.
+The FSM shown in listing \refq{lst:7_2_5_READ_SEQ}  shows that when the sequence is initialized, output enable is set to '0', and a delay of two clocks is then present before the output buffer is tristated, note that the output buffer should already be tristated, but it is forced here as a means of good practice. On the third clock the address that is to be read from is set on the address line. When 6 clocks have occured, the data on the datalines is lateched in on the output data line of the module. The sequence is also set to be complete. This sequence takes 7 clocks to complete aswell or \SIQ{35}{\nano\second}. 
+
+The whole sequence is initialized by the VHDL code shown in listing \ref{lst:7_2_5_start_SEQ}. If "w\_CMPLT" is set to "CMPLT or "i\_RESET" is set to '1', the process will set "w\_RUN" to '0', this will stop the process that Reads/Writes data to the external memory IC. If a rising edge on "i\_EN" arises "w\_RUN" will be set to RUN and the process to Read or Write to the IC will be initialized. Notice also the output "o\_ACTIVE" is "w\_RUN or w\_CMPLT", this results in "o\_ACTIVE" being '1'' for as long as the process is running. Once the process is done reading from or wrtting to the IC, "o\_ACTIVE" will be low. This can be used by other modules to see when the process is complete and new data can be sent to this module.
+
+\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=77-86, caption={VHDL code for the read sequence initialization.}, label={lst:7_2_5_start_SEQ}]{Sections/7_SystemDesign/Code/EXT_MEM_RW20.vhd} 
+
+The complete VHDL code for the Sample Memory can be seen in appendix \ref{App:EXT_MEM_RW_CODE}.
