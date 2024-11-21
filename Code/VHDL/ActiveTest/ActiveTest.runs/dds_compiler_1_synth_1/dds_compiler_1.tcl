@@ -56,8 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "dds_compiler_1_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 1
-set_param xicom.use_bs_reader 1
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
@@ -76,7 +74,7 @@ set_property ip_output_repo c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/ip/dds_compiler_1/dds_compiler_1.xci
+read_ip -quiet C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.srcs/sources_1/ip/dds_compiler_1/dds_compiler_1.xci
 set_property used_in_implementation false [get_files -all c:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.gen/sources_1/ip/dds_compiler_1/dds_compiler_1_ooc.xdc]
 
 OPTRACE "Adding files" END { }

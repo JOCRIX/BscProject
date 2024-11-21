@@ -36,7 +36,7 @@ When the "v\_Count" is less or equal to 1, this it will be at the first rising e
 
 The next rising edge of the master clock will have "v\_Count" take the value 2, and output enable is set to a logical '0'. Here a time of \SIQ{5}{\nano\second} has passend since the last changes due to the period of the master clock being \SIQ{5}{\nano\second}. The time constraint from write enable going low to the data on the datalines being valid is requied to be \SIQ{5}{\nano\second}, to ensure this is honored, two clocks are required to arise before the output buffer is changed from being tristated to being enabled, hence the elsif "v\_Count = 4" statement. Hereafter write enable is set to a logical '1', clokcing in the data. on the next clock the output is once again tristated and the sequence is completed. 
 
-This sequence requires 7 master clocks to be completed and thus it takes \SIQ{35}{\nano\second} to write a single byte to the external memory. This allows for a datarate of \SIQ{228}{\mega\bit/\second}.
+This sequence requires 7 master clocks to be completed and thus it takes \SIQ{35}{\nano\second} to write a single byte to the external memory. This allows for a data-rate of \SIQ{228}{\mega\bit/\second}.
 
 The read cycle for the IS61 SRAM follows a similar procedure as shown on the read cycle timing diagram on figure \refq{fig:7_2_5_IS61_READ}.
 \begin{figure}[H]
@@ -58,3 +58,6 @@ The whole sequence is initialized by the VHDL code shown in listing \ref{lst:7_2
 \lstinputlisting[language=C ,style = c,firstnumber=1, linerange=77-86, caption={VHDL code for the read sequence initialization.}, label={lst:7_2_5_start_SEQ}]{Sections/7_SystemDesign/Code/EXT_MEM_RW20.vhd} 
 
 The complete VHDL code for the Sample Memory can be seen in appendix \ref{App:EXT_MEM_RW_CODE}.
+
+\subsubsection{IO Port}
+The IO port used is one that can be configured both as an input and an output. A generic component from Xilinx has been used in exaclty the same way as for the FPGA and MCU communication. For more detail on this IO port see section \ref{subsec:Communication}. The signal used to enable or tristate the 8 bit IO datalines to the memory IC is the signal called "o\_IO\_BUF\_CTRL". When this signal is a logical '0' the output buffer is enabled, driving the output.

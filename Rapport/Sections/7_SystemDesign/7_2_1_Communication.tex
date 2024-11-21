@@ -3,46 +3,52 @@ The Main Processor and Sample Control modules need a communication interface in 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=0 100 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommunicationBus.pdf}
+    \includegraphics[clip, trim=0 0 0 0, width=0.6\textwidth]{Sections/7_SystemDesign/Figures/CommPort_Block.pdf}
     \caption{The communication bus connection the FPGA and microcontroller. It uses a 16 bit databus, a long with a CLK and a read/write control signal.}
     \label{fig_7_2_1_CommBus}
 \end{figure}
 
-The microcontroller is always going to be the master that has to initiate communication and the FPGA is always the slave. The microcontroller is controlling the read/write and CLK control signals necessary for the communication to work. The Read-write pin is, when  RW = '0', in write mode and in read mode when RW = '1'. Data is clocked in and out on the rising edges of the CLK. 
+The microcontroller is always going to be the master that has to initiate communication and the FPGA is always the slave. The microcontroller is controlling the read/write and CLK control signals necessary for the communication to work. The Read-write pin is, when  RW = '0', in write mode and in read mode when RW = '1'. Data is clocked in and out on the rising edges of the CLK. The IX pin is short for Internal/External and is used to tell the FPGA wheter the MCU wants to fetch data from the external sample memory or it wants to communicate with the internal registers of the FPGA. 
 
-If the MCU wants to write some value into a register it must first CLK in an address into the FPGA before it can CLK in any data, as shown on figure \refq{fig_7_2_1_CommWrite}. 
+If the MCU wants to write some value into a register it must first CLK in an address into the FPGA before it can CLK in any data, as shown on figure \refq{fig_7_2_1_CommWrite}. Note that the external sample memory is read only for the MCU. When the MCU intends to commicate with the internal registers the IX pin is set to a logical '0', a '1' indicates that the MCU desires to fetch data from the external sample memory.
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 50 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommWrite.pdf}
-    \caption{In order to write to the FPGA, the MCU must first set RW ='0' then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To write data into the address; the MCU sets 16 bit data on the bus and then generate a single clock pulse. Data is clocked into the FPGA on a rising edge.}
+    \caption{In order to write to the FPGA, the MCU must first set RW ='0' and IX = '0', (IX not shown) then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To write data into the address; the MCU sets 16 bit data on the bus and then generate a single clock pulse. Data is clocked into the FPGA on a rising edge.}
     \label{fig_7_2_1_CommWrite}
 \end{figure}
 
 Note how on figure \refq{fig_7_2_1_CommWrite} D0..D15 should have settled before the MCU tries to clock in any value. This will be ensured by design as the signals for the communication are generated sequentially in software on the MCU. They are not hardware controlled and there will be a minimum of \SIQ{35.8}{\nano\second} between D0..D15 and CLK as shown in appendix \refq{App:MicrocontrollerConsiderations} and significantly more if the MCU wants to read from the FPGA.
 
-If the MCU wants to read from the FPGA it must first CLK in an address in the same way as for a write operation, then change it's D0..D15 output pins to input pins and set RW '1'. The following CLK will cause the FPGA to set the data unto the bus pins as shown on figure \refq{fig_7_2_1_CommRead}. \todo{placeholder billede}
+If the MCU wants to read from the FPGA, there are two ways to do so, i can read the internal register and the external sample memory. To read the internal reigsters the IX pin must be set to '0'. Hereafter it will clock in an address in write mode, then change it's D0..D15 output pins to input pins and set RW '1'. The following CLK will cause the FPGA to set the data unto the bus pins as shown on figure \refq{fig_7_2_1_CommRead} (IX not shown, as it is constantly '0' for this opperation). 
 
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 50 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommRead.pdf}
-    \caption{In order to read from the FPGA, the MCU must first set RW ='0' then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To read data from the address; the MCU sets RW = '1' and changes it's DB0..DB15 outputs to input. The FPGA clocks the data out on DB0..DB15 on the next rising edge.}
+    \caption{In order to read from the FPGA sample memory, the MCU must first set RW ='0' then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To read data from the address; the MCU sets RW = '1' and changes it's DB0..DB15 outputs to input. The FPGA clocks the data out on DB0..DB15 on the next rising edge.}
     \label{fig_7_2_1_CommRead}
 \end{figure}
 
-The FPGA is using tri-state buffers to function as both inputs and outputs. The Artix 7 FPGA development board is an expensive component and it was decided to let the FPGA use open-drain outputs in order to reduce the risk of both FPGA and MCU actively driving the data bus because of a mistake during development. The logic for this hardware can be seen on listing \refq{lst:7_2_1_CommPort}. 'TOPORT' is data from the internal RAM going to the I/O port and 'TORAM' is data from the I/O going to the RAM.
-
-\lstinputlisting[language=C ,style = c,firstnumber=1, linerange=56-67, caption={VHDL code for the tri-state buffers}, label={lst:7_2_1_CommPort}]{Sections/7_SystemDesign/Code/comm_port.vhd}
-
-The assignment of 'Z' to an 'inout' pin in line 5 will cause the output to enter a high impedance state when it has to produce a logic '1'. This can also be seen on the truth table for the communication port pins as shown on figure \refq{fig_7_2_1_TruthTable}.
+Alternatively, if the MCU wishes to read the external memory, its shall fist configure D0..D15 for inputs and then set IX and RW to '1'. Each rising edge of the clock will then clock out data from external memory, starting with address 0, each clock falling edge will then increase the address by one, such that the number of rising edges corresponds to the number of address that data has been fetched from. In this way, the MCU does not have to reconfigure its inputs, drastically increasing the rate of data-transfer and the goodput equals the throughput. The protocol for this can be seen in figure \ref{fig_7_2_1_CommRead_IX}. It should be noted that when a rising edge occurs on the clock, the FPGA uses about \SIQ{80}{\nano\second} to fetch the data, see section \ref{subsec:Sample_Memory_Distribution}. This means that the MCU must wait at least \SIQ{80}{\nano\second} before it stores the data on the port.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=0 50 0 0, width=0.2\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_IOPortLogic.pdf}
-    \caption{A truth table for the input/output port of the FPGA. RW = '0' always puts the port into a high impedance state and RW = '1' lets the port pull the I/O pin to '0'.}
-    \label{fig_7_2_1_TruthTable}
+    \includegraphics[clip, trim=0 0 0 0, width=0.8\textwidth]{Sections/7_SystemDesign/Figures/MCU_IX_FETCH.pdf}
+    \caption{In order to read from the FPGA, the MCU must first configure the 16 bit bus as an input, then sets RW ='1' and IX = '1', then configures the 16 bit bus as . Each rising edge of the clock then clocks out data, starting at address 0 and counting up for each clock sent.}
+    \label{fig_7_2_1_CommRead_IX}
 \end{figure}
 
-At first glance the I/O port logic on figure \refq{fig_7_2_1_TruthTable} may seem completely useless as it can't output a logic '1'. This is because the I/O pins will require external pull-up resistors in order to produce a '1' when RW = '1'. This will reduce the chance of both FPGA and MCU driving the databus at the same time. The only possible way of damaging the FPGA with the communication bus is if the MCU sets it's output high when RW = '1' and the FPGA sets a '0' as the FPGA pins are high impedance in any other case.
+\subsubsection{IO Port}
+The FPGA is using tri-state buffers to function as both inputs and outputs. The Artix 7 FPGA development board is an expensive component and it was decided to let the FPGA use open-drain outputs in order to reduce the risk of both FPGA and MCU actively driving the data bus because of a mistake during development. Xiling offer a generic drag and drop INOUT port that can be tristated, this has been used. This IO buffer can be seen in figure \ref{fig_7_2_1_IOBUF} together with its truth table. Note that T acts inversly of what the RW pin does, T has simply been connected as not RW to fix this.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 0 0 0, width=0.7\textwidth]{Sections/7_SystemDesign/Figures/IOBUF.pdf}
+    \caption{A truth table for the input/output port of the FPGA. T = '1' always puts the port into a high impedance state and T = '0' lets the port pull the I/O pin to '0'.}
+    \label{fig_7_2_1_IOBUF}
+\end{figure}
+
+At first glance the I/O port logic on figure \refq{fig_7_2_1_IOBUF} may seem completely useless as it can't output a logic '1'. This is because the I/O pins will require external pull-up resistors in order to produce a '1' when T = '0'. This will reduce the chance of both FPGA and MCU driving the databus at the same time. The only possible way of damaging the FPGA with the communication bus is if the MCU sets it's output high when T = '0' (RW = '1'), and the FPGA sets a '0' as the FPGA pins are high impedance in any other case.
 
 \subsubsection{Communication data rate} \label{subsubsec:CommunicationDatarate}
 
@@ -84,9 +90,22 @@ Once again, the address is 'wasted' data and the goodput on the bus will be halv
 \begin{equation}\label{eq:7_2_1_Read_Goodput}
     G_{read} = \eta_{read} \cdot  = 2.213e6\cdot 0.5  = 1.106e6 
 \end{equation}
-The Sample Control module can store up to \SIQ{320}{\kilo\bit} worth of samples that the MCU will have to retrieve. With a bus goodput of \SIQ{1.1}{\mega\bit} it will take about \SIQ{290}{\milli\second} for the MCU retrieve all the samples as shown in eq \refq{eq:7_2_1_SampleReadTime}.
-\begin{equation}\label{eq:7_2_1_SampleReadTime}
-    t_{sample} = \frac{b_{samplesize}}{G_{read}} = \frac{320e3}{1.106e6} = 289.2e-3 
+To increase the data-rate when sample data is to be fetched, the IX pin was introduced, this removes the need for the MCU to reconfigure its outputs altogether. This means that the MCU needs to sent a clock, wait \SIQ{100}{\nano\second} to allow the FPGA to get the data, and then read the data on the bus. An estimate of the data-rate when reading samples can thus be made by looking at the totalt amount of register commands needed to send a clock and read the IO port. This can be seen in equation \ref{eq:7_2_1_SampleReadReg}.
+\begin{equation}\label{eq:7_2_1_SampleReadReg}
+    n_{reg-sample} = n_{clk}+n_{read} = 2+2 = 4
 \end{equation}
 
-The bus efficiency for read operations could be drastically improved to $\eta = 1.0$ if some logic was implemented in the Sample Control module that makes it possible to clock samples out of the module without first specifying an address and by also assuming that the FPGA will not require extra clock cycles to do this. I.e. start from address = 0 and keep clocking until address = 20000. This would allow the MCU to remain in read mode and retrieve a sample for every single CLK pulse. Depending on the amount of time available for this project this could be implemented to improve the bus speed.
+An estimate of how much time it takes to read a single sample data register can then be made, where the \SIQ{100}{\nano\second} time used by the FPGA is added. This is found the be \SIQ{172}{\nano\second}, see equation \ref{eq:7_2_1_SampleReadTime}.
+
+\begin{equation}\label{eq:7_2_1_SampleReadTime}
+    t_{sample} = n_{reg-sample}*17.9E-9 + 100e-9 = 4*17.9e-9+100e-9 = 171.6e-9
+\end{equation}
+
+Finally it can be estimated that the time required to fetch data from all 10000 samples (20000 registers due to current and voltage being sampled) is $20000\cdot171.6e-9 = \SIQ{3.43}{\milli\second}$ with 100\% efficiency. This is however rather optimistic, as the FPGA is not actively driving the output, but pull-up resistors are, greatly increasing the rise time. Rough measurements with internal pull-up resistors have shown a rise time of about \SIQ{800}{\nano\second}. Taking this in to the equation yields the single register read time as seen in equation \ref{eq:7_2_1_SampleReadTimeWrise}. This results in a more realistic estimate of $20000\cdot 971.6e-6 = \SIQ{19.4}{\milli\second}$. This can however be improved by the use of external pull-up resistors.
+
+\begin{equation}\label{eq:7_2_1_SampleReadTimeWrise}
+    \begin{split}
+        t_{sample} = &n_{reg-sample}*17.9E-9 + 100e-9+t_{rise} \\
+        \Rightarrow t_{sample} = &4*17.9e-9+100e-9+800e-9 = 971.6e-9
+    \end{split}
+\end{equation}
