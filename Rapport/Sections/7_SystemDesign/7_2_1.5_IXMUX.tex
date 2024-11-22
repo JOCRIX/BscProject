@@ -18,6 +18,6 @@ The external memory is configured as \textit{read only} for the MCU, and as such
 
 Functionally the IXMUX is made of 4 muxes, called XMEM\_CLK\_MUX, IMEM\_CLK\_MUX, o\_DATA\_IO\_MUX and o\_DATA\_IMEM\_MUX. These four muxes can be seen in listing \ref{lst:7_2_IXMUX}. INTERNAL is a constant that is '1' and EXTERNAL is a constant that is '0'.
 
-\lstinputlisting[language=VHDL ,style = c,firstnumber=1, linerange=63-104, caption={A piece of hardware the MCU can use to reset the memory modules state variable.}, label={lst:7_2_IXMUX}]{Sections/7_SystemDesign/Code/IXMUX.vhd}
+\lstinputlisting[language=VHDL ,style = c,firstnumber=1, linerange=63-104, caption={VHDL code for the four MUXes that the IXMUX is made from.}, label={lst:7_2_IXMUX}]{Sections/7_SystemDesign/Code/IXMUX.vhd}
 
-One thing to take notice of is that the CLK MUXes are synchronious. They will only change state on the rising edge of the \SIQ{200}{\mega\hertz} master clock. This is done to tell the syntheziser that these MUXes are time sencitive. This tells the software to place these elements close together on the chip. The data MUXes can also be made synchronious if desired, it has been tested both with and without and works well in both cases. 
+One thing to take notice of is that the CLK MUXes are synchronous. They will only change state on the rising edge of the \SIQ{200}{\mega\hertz} master clock. This is done to tell the syntheziser that these MUXes are time sensitive. This tells the software to place these elements close together on the chip. The data MUXes can also be made synchronous if desired, it has been tested both with and without and works well in both cases. 

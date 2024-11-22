@@ -8,15 +8,15 @@ The functionallity of the PSC block is such that when the adc\_control block ind
 The PSC block has been build as two finite state machines or FSMs. These can be seen in figure \ref{fig_7_2_11_PSC_FSM}.
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=0 0 0 0, width=1\textwidth]{Sections/7_SystemDesign/Figures/PSC_FSM.pdf}
+    \includegraphics[clip, trim=0 0 0 0, width=1\textwidth]{Sections/7_SystemDesign/Figures/PSC_FSM20.pdf}
     \caption{The two FSMs inside the PSC block. The small FSM initiates the large FSM, that in turn hanldes the parallel to series conversion of the input current and voltage samples from the two ADCs.}
     \label{fig_7_2_11_PSC_FSM}
 \end{figure}
-The wait for clocks is a simple counter, an example can be seen in listing \ref{lst:7_2_11_PSC_COUNTER}. Here it can be seen that in state S4, the FSM will not advance to state S5 before 10 clocks have occured, each clock takes \SIQ{5}{\nano\second} with a \SIQ{200}{\mega\hertz} master clock, resulting in a delay of \SIQ{50}{\nano\second}.
+The wait for clocks is a simple counter, an example can be seen in listing \ref{lst:7_2_11_PSC_COUNTER}. Here it can be seen that in state S4, the FSM will not advance to state S5 before 10 clocks have occurred, each clock takes \SIQ{5}{\nano\second} with a \SIQ{200}{\mega\hertz} master clock, resulting in a delay of \SIQ{50}{\nano\second}.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=94-101, caption={Example of the counter to wait for x clocks used in the PSC FSM.}, label={lst:7_2_11_PSC_COUNTER}]{Sections/7_SystemDesign/Code/PSC.vhd}
 
-The two FSMs shown in figure \ref{fig_7_2_11_PSC_FSM} shows that when a falling edge on "i\_SET" occures, indicating that the ADC data is ready, the large FSM will start running. Here the output to the IVSA module is set to the data from ADC A (current), it then waits \SIQ{10}{\nano\second} to allow the output to settle. Hereafter is sets "o\_SET" high, this tells the next module in line that the output data is ready. It then waits \SIQ{50}{\nano\second} and sets "o\_SET" low, and waits another \SIQ{50}{\nano\second}. This process is then repeated for ADC B data (voltage).
+The two FSMs shown in figure \ref{fig_7_2_11_PSC_FSM} shows that when a falling edge on "i\_SET" occures, indicating that the ADC data is ready, the large FSM will start running. Here the output to the IV Saver module is set to the data from ADC A (current), it then waits \SIQ{10}{\nano\second} to allow the output to settle. Hereafter is sets "o\_SET" high, this tells the next module in line that the output data is ready. It then waits \SIQ{50}{\nano\second} and sets "o\_SET" low, and waits another \SIQ{50}{\nano\second}. This process is then repeated for ADC B data (voltage).
 
 Simulations show that this entire process takes \SIQ{265}{\nano\second}, it also shows that the time from ADC data A is set to ADC data B is set is \SIQ{130}{\nano\second}, well above the required \SIQ{100}{\nano\second}. This allows for a more realistically approximated data rate of $\frac{\SIQ{32}{\bit}}{\SIQ{265}{\nano\second}} = \SIQ{120}{\mega\bit/\second}$. This is more than required for a sample rate of \SIQ{1}{Msps}, and optimistically allows for a sample rate of \SIQ{3.75}{Msps}.
 

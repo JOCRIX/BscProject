@@ -35,45 +35,55 @@ entity logic_reset is
   Port (
         CLK : in std_logic;
         RW : in std_logic;
-        RESET : out std_logic := '0'
+        RESET : out std_logic := '0';
+        i_IX : in std_logic := '0'
    );
 end logic_reset;
 
-architecture Behavioral of logic_reset is
+architecture rtl of logic_reset is
 
 type reset_state is (R_CLK1, R_CLK2, R_CLK3, RESET_TRIGD);
 signal s_reset : reset_state := R_CLK1;
 signal reset_trig : std_logic := '0';
+
+constant INTERNAL : std_logic := '0';
+constant EXTERNAL : std_logic := '1';
+constant WRITE : std_logic := '0';
+
 begin
 --Used to reset the state machine logic inside the internal_ram on initial boot-up.
 --3 clocks with RW = '1' will trigger the reset on the 4'th clock.
 --The reset will go low on the 4th clock falling edge.
-logic_reset_triggerFSM : process (CLK, RW, reset_trig) is 
+
+
+logic_reset_triggerFSM : process (CLK, RW, reset_trig, i_IX) is 
 begin
     if(rising_edge(CLK)) then
-        case s_reset is
-            when R_CLK1 =>
-                if(RW = '1') then
-                    s_reset <= R_CLK2;
-                else
-                    s_reset <= R_CLK1;
-                end if;
-            when R_CLK2 =>
-                 if(RW = '1') then
-                    s_reset <= R_CLK3;
-                else
-                    s_reset <= R_CLK1;
-                end if;
-            when R_CLK3 =>
-                if(RW = '1') then
-                    s_reset <= RESET_TRIGD;
-                else
-                    s_reset <= R_CLK1;
-                end if;
-            when RESET_TRIGD =>
-                    s_reset<= R_CLK1;
-                    reset_trig <= '1';
-        end case;
+        if(i_IX = INTERNAL) then
+            case s_reset is
+                when R_CLK1 =>
+                    if(RW = '1') then
+                        s_reset <= R_CLK2;
+                    else
+                        s_reset <= R_CLK1;
+                    end if;
+                when R_CLK2 =>
+                     if(RW = '1') then
+                        s_reset <= R_CLK3;
+                    else
+                        s_reset <= R_CLK1;
+                    end if;
+                when R_CLK3 =>
+                    if(RW = '1') then
+                        s_reset <= RESET_TRIGD;
+                        reset_trig <= '1';
+                    else
+                        s_reset <= R_CLK1;
+                    end if;
+                when RESET_TRIGD =>
+                        s_reset<= R_CLK1;
+            end case;
+        end if;
     end if;
     if(falling_edge(CLK)) then
         if(reset_trig ='1') then
@@ -86,4 +96,5 @@ end process;
 
 
 
-end Behavioral;
+
+end rtl;
