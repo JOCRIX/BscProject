@@ -33,38 +33,36 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity DAC_DATA_Conversion is
     port (
-            SET_F_IN_L : in std_logic_vector(15 downto 0); 
-            SET_F_IN_H : in std_logic_vector (31 downto 16); 
-            F_OUT : out std_logic_vector (31 downto 0); 
-            DDS_DATA_IN : in std_logic_vector(15 downto 0);
-            DAC_DATA_OUT : out std_logic_vector (15 downto 0); 
-            UPDATE_F : out std_logic;  
-            CLK_IN : in std_logic 
+            i_LoByte_FWORD : in std_logic_vector(15 downto 0); --bit 0 to 15 of the 32 bit wide frequency setting word.
+            i_HiByte_FWORD : in std_logic_vector (31 downto 16); --bit 16 to 31 of the 32 bit wide frequency setting word.
+            o_FWORD : out std_logic_vector (31 downto 0); --The full 32 bit wide frequency setting word.
+            i_DDS_DATA : in std_logic_vector(15 downto 0); --DDS output data, in twos compliment.
+            o_DAC_DATA : out std_logic_vector (15 downto 0); --DDS data converted to unsigned, this is the Data for the DAC.
+            o_UPDATE_F : out std_logic;  --Togles when a new frequency is to be set at the output.
+            i_CLK : in std_logic -- Master clock input, (DDS_CLK).
         );
 end DAC_DATA_Conversion;
 
 architecture Behavioral of DAC_DATA_Conversion is
 
-signal sig_f_in : std_logic_vector (31 downto 0) := (others => '0');
-signal sig_update_f : std_logic := '0';
-signal sig_f_out : std_logic_vector (31 downto 0) := (others => '0');
+signal r_F_IN : std_logic_vector (31 downto 0) := (others => '0');
+signal w_update_F : std_logic := '0';
+signal r_F_OUT : std_logic_vector (31 downto 0) := (others => '0');
 
 begin
 
-    sig_f_in <= SET_F_IN_H & SET_F_IN_L;    
-
-    UPDATE_F <= sig_update_f;
-    F_OUT <= sig_f_out;
-    DAC_DATA_OUT <= DDS_DATA_IN xor x"8000"; 
-
-    process(sig_f_out, sig_f_in, CLK_IN)
+    r_F_IN <= i_HiBYTE_FWORD & i_LoBYTE_FWORD;  
+    o_UPDATE_F <= w_update_f;
+    o_FWORD <= r_F_OUT;
+    o_DAC_DATA <= i_DDS_DATA xor x"8000"; -- Alternatively DAC_DATA_OUT(15) <= not DAC_DATA_OUT(15) would also work.
+    process(r_F_OUT, r_F_IN, i_CLK)
     begin
-        if(rising_edge(CLK_IN)) then        
-            if(sig_f_out /= sig_f_in) then 
-                sig_f_out <= sig_f_in;      
-                sig_update_f <= '1';
+        if(rising_edge(i_CLK)) then        -- When a rising edge on the master clock occurs, check if the current frequency setting is the same as before.
+            if(r_F_OUT /= r_F_IN) then  --if it is not the same, then set the phase word to the DDS to the new value and togle the
+                r_F_OUT <= r_F_IN;      --frequency update pin.
+                w_update_F <= '1';
             else
-                sig_update_f <= '0';
+                w_update_F <= '0';
             end if;
         end if;
     end process;

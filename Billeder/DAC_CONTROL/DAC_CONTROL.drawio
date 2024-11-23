@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.7.17">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.9">
   <diagram name="Side-1" id="XtFJjXzvq0NRr4Yo0cDv">
-    <mxGraphModel dx="1876" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2876" dy="1114" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -59,7 +59,7 @@
         <mxCell id="aL1VktPpydI1bxQLMjUp-31" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;12 MHz&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
           <mxGeometry x="-660" y="240.00000000000006" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="aL1VktPpydI1bxQLMjUp-33" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;100 MHz&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
+        <mxCell id="aL1VktPpydI1bxQLMjUp-33" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;200 MHz&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
           <mxGeometry x="-500" y="385" width="110" height="30" as="geometry" />
         </mxCell>
         <mxCell id="97Y6rwjhbU-M4xpt1NCJ-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="p8yOOz6nTck4P_ZLcdFX-3" target="aL1VktPpydI1bxQLMjUp-1" edge="1">
@@ -70,7 +70,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="rLV-epz7dNSVhPTOiO-N-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="p8yOOz6nTck4P_ZLcdFX-3" target="aL1VktPpydI1bxQLMjUp-1">
+        <mxCell id="rLV-epz7dNSVhPTOiO-N-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="p8yOOz6nTck4P_ZLcdFX-3" target="aL1VktPpydI1bxQLMjUp-1" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="p8yOOz6nTck4P_ZLcdFX-3" value="&lt;span style=&quot;font-size: 28px;&quot;&gt;DAC DATA&lt;br&gt;Conversion&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -82,10 +82,10 @@
         <mxCell id="p8yOOz6nTck4P_ZLcdFX-7" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;Bit 15-0 Frequency Setting Word&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
           <mxGeometry x="350" y="410" width="194.81" height="46.2" as="geometry" />
         </mxCell>
-        <mxCell id="p8yOOz6nTck4P_ZLcdFX-13" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;50 MHz&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
+        <mxCell id="p8yOOz6nTck4P_ZLcdFX-13" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;20 MHz&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
           <mxGeometry x="-280" y="500" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="p8yOOz6nTck4P_ZLcdFX-23" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;50 MHz&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
+        <mxCell id="p8yOOz6nTck4P_ZLcdFX-23" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;20 MHz&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
           <mxGeometry x="-100" y="385.00000000000006" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="p8yOOz6nTck4P_ZLcdFX-26" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;Bit 31-0 Frequency Setting Word&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
@@ -145,7 +145,7 @@
         <mxCell id="97Y6rwjhbU-M4xpt1NCJ-38" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;16&lt;/span&gt;" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=0;" parent="1" vertex="1">
           <mxGeometry x="210" y="294" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="rLV-epz7dNSVhPTOiO-N-5" value="Update Freuquency" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" vertex="1" parent="1">
+        <mxCell id="rLV-epz7dNSVhPTOiO-N-5" value="Update Freuquency" style="text;strokeColor=none;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-30;fontSize=22;" parent="1" vertex="1">
           <mxGeometry x="-90" y="626.3399999999999" width="129.38" height="47.33" as="geometry" />
         </mxCell>
       </root>

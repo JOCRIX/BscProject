@@ -1,0 +1,45 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Nov 22 13:00:07 2024
+# Process ID: 13172
+# Current directory: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11832 C:\Users\jakob\Desktop\P7---Bsc\Code\VHDL\ActiveTest\ActiveTest.xpr
+# Log file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/vivado.log
+# Journal file: C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest\vivado.jou
+# Running On        :DESKTOP-26ONRPF
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz
+# CPU Frequency     :2496 MHz
+# CPU Physical cores:4
+# CPU Logical cores :4
+# Host memory       :8469 MB
+# Swap memory       :7516 MB
+# Total Virtual     :15985 MB
+# Available Virtual :9513 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.xpr
+update_compile_order -fileset sources_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+create_hw_cfgmem -hw_device [get_hw_devices xc7a35t_0] -mem_dev [lindex [get_cfgmem_parts {mx25l3273f-spi-x1_x2_x4}] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/jakob/Desktop/P7---Bsc/Code/VHDL/ActiveTest/ActiveTest.runs/impl_1/sample_control_TOP.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]

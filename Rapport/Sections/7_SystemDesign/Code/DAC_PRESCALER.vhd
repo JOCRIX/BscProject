@@ -33,25 +33,31 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity DAC_PRESCALER is
     Port ( 
-           CLK_IN : in STD_LOGIC; 
-           CLK_TO_DDS : out STD_LOGIC; 
-           CLK_TO_DAC : out STD_LOGIC 
+           i_CLK : in STD_LOGIC; --200 Mhz input clock.
+           o_CLK_DDS : out STD_LOGIC; -- The diveded down clock for the DDS.
+           o_CLK_DAC : out STD_LOGIC -- The clock for the DAC, a delayed version of the DDS clock.
            );
 end DAC_PRESCALER;
 
-
 architecture Behavioral of DAC_PRESCALER is
 
-signal sig_CLK_TO_DDS : std_logic := '0';    
-
+signal w_CLK_TO_DDS : std_logic := '0';    
 begin
-    process(CLK_IN, sig_CLK_TO_DDS)
-    begin 
-        if (rising_edge(CLK_IN)) then 
-            sig_CLK_TO_DDS <= not sig_CLK_TO_DDS;
+
+o_CLK_DDS <= w_CLK_TO_DDS;
+o_CLK_DAC <= not w_CLK_TO_DDS;
+
+DDS_DAC_PRESCALER : process(i_CLK, w_CLK_TO_DDS) is
+variable v_Count : natural range 0 to 1023 := 0;
+begin
+    if(rising_edge(i_CLK)) then
+        if(v_Count < 4) then  --Configured for 20 MHz here.
+            v_Count := v_Count +1;
+        else
+            v_Count := 0;
+            w_CLK_TO_DDS <= not w_CLK_TO_DDS;
         end if;
-    end process;
-    CLK_TO_DDS <= sig_CLK_TO_DDS;   
-    CLK_TO_DAC <= (not CLK_IN) and sig_CLK_TO_DDS;  
-    
+    end if;
+end process;
+
 end Behavioral;

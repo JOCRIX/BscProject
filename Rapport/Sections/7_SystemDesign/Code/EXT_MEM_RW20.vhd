@@ -96,7 +96,7 @@ begin
                 if(v_Count =2) then
                     o_IO_BUF_CTRL <= '1';
                 elsif(v_Count = 3) then
-                    --w_oADDR <= i_ADDR;
+                    
                     o_ADDR_TO_ERAM <= i_ADDR;
                 elsif(v_Count = 6) then
                     o_DATA <= i_DATA_FR_ERAM;
@@ -104,7 +104,7 @@ begin
                 end if;
             else
                 if(v_Count <= 1) then
-                    --w_oADDR <= i_ADDR;
+                    
                     o_ADDR_TO_ERAM <= i_ADDR;
                     o_nOE <= '1';
                     o_DATA_TO_ERAM <= i_DATA;

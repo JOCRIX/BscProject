@@ -5,18 +5,19 @@ This section will define the interface between the Sample Control module and all
     \begin{tabular}{|m{3.5em}|m{12.5em}|m{5em}|m{12.5em}|}
     \hline
       \textbf{Pins} &   \textbf{Type} & \textbf{Level} & \textbf{Description}  \\ \hline
-      0-15 & Parallel data bus IO, 0 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Data and address bus for MCU and FPGA. \nl FPGA $\leftarrow \rightarrow$ MCU. \\ \hline
-      16 & Parallel data bus R/W & \SIQ{3.3}{\volt} \nl LVTTL & Read or write data to/from the FPGA. \nl FPGA $\leftarrow$ MCU. \\ \hline
-      17 & Parallel data bus CLK & \SIQ{3.3}{\volt} \nl LVTTL & Clock for the data bus. \nl FPGA $\leftarrow$ MCU. \\ \hline
-      18-19 & ADC CLK & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 CLK input. \nl ANFE $\leftarrow$ FPGA. \\ \hline
-      20-21 & ADC DATA & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 DATA output. \nl ANFE $\rightarrow$ FPGA. \\ \hline 
-      22 & ADC CNV & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 Trigger. \nl ANFE $\leftarrow$ FPGA. \\
+      0-15 & Parallel data bus IO, 0 is lsb & \SIQ{3.3}{\volt} \nl LVCMOS & Data and address bus for MCU and FPGA. \nl FPGA $\leftarrow \rightarrow$ MCU. \\ \hline
+      16 & Parallel data bus R/W & \SIQ{3.3}{\volt} \nl LVCMOS & Read or write data to/from the FPGA. \nl FPGA $\leftarrow$ MCU. \\ \hline
+      17 & Parallel data bus CLK & \SIQ{3.3}{\volt} \nl LVCMOS & Clock for the data bus. \nl FPGA $\leftarrow$ MCU. \\ \hline
+      18 & Parallel data bus IX & \SIQ{3.3}{\volt} \nl LVCMOS & Internal External \nl memory controll pin. \nl FPGA $\leftarrow$ MCU. \\ \hline
+      19-20 & ADC CLK & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 CLK input. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+      21-22 & ADC DATA & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 DATA output. \nl ANFE $\rightarrow$ FPGA. \\ \hline 
+      23 & ADC CNV & \SIQ{2.5}{\volt} \nl LVCMOS & ADC1, ADC2 Trigger. \nl ANFE $\leftarrow$ FPGA. \\
       \hline
-      23-25 & PGA1 gain, 23 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Setting for voltage PGA. \nl ANFE $\leftarrow$ FPGA. \\ \hline
-      26-28 & PGA2 gain, 8 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Setting for current PGA. \nl ANFE $\leftarrow$ FPGA. \\ \hline
-      29-31 & Range, 11 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Range setting. \nl ANFE $\leftarrow$ FPGA. \\ \hline
-      32-47 & DAC Data , 14 is lsb& \SIQ{3.3}{\volt} \nl LVTTL & Data for DAC. \nl ANFE $\leftarrow$ FPGA.\\ \hline
-      48 & DAC CLK & \SIQ{3.3}{\volt} \nl LVTTL & CLK for DAC. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+      24-26 & PGA1 gain, 23 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Setting for voltage PGA. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+      27-29 & PGA2 gain, 8 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Setting for current PGA. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+      30-32 & Range, 11 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Range setting. \nl ANFE $\leftarrow$ FPGA. \\ \hline
+      33-48 & DAC Data , 14 is lsb& \SIQ{3.3}{\volt} \nl LVTTL & Data for DAC. \nl ANFE $\leftarrow$ FPGA.\\ \hline
+      49 & DAC CLK & \SIQ{3.3}{\volt} \nl LVTTL & CLK for DAC. \nl ANFE $\leftarrow$ FPGA. \\ \hline
     \end{tabular}
     \caption{Table to test captions and labels.}
     \label{tab:6_3_2FPGAInterface}

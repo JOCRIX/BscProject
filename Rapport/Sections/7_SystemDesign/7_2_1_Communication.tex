@@ -1,10 +1,10 @@
 \subsection{Communication} \label{subsec:Communication}
-The Main Processor and Sample Control modules need a communication interface in order to set control settings for the ADCs, DAC in the FPGA's internal registers and to retrieve stored ADC samples.The ADCs and DAC \todo{Vi mangler at redegøre for det her valg.} both have 16 bits of resolution and a 16 bit wide parallel bus between the FPGA and MCU will be used to transfer the data as shown on figure \refq{fig_7_2_1_CommBus}.
+The Main Processor and Sample Control modules need a communication interface in order to set control settings for the ADCs, DAC in the FPGA's internal registers and to retrieve stored ADC samples. The ADCs and DAC \todo{Vi mangler at redegøre for det her valg.} both have 16 bits of resolution and a 16 bit wide parallel bus between the FPGA and MCU will be used to transfer the data as shown on figure \refq{fig_7_2_1_CommBus}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 0 0 0, width=0.6\textwidth]{Sections/7_SystemDesign/Figures/CommPort_Block.pdf}
-    \caption{The communication bus connection the FPGA and microcontroller. It uses a 16 bit databus, a long with a CLK and a read/write control signal.}
+    \caption{The communication bus connecting the FPGA and microcontroller. It uses a 16 bit databus, along with a CLK, a read/write control signal and Internal/External signal.}
     \label{fig_7_2_1_CommBus}
 \end{figure}
 
@@ -13,7 +13,7 @@ The microcontroller is always going to be the master that has to initiate commun
 If the MCU wants to write some value into a register it must first CLK in an address into the FPGA before it can CLK in any data, as shown on figure \refq{fig_7_2_1_CommWrite}. Note that the external sample memory is read only for the MCU. When the MCU intends to commicate with the internal registers the IX pin is set to a logical '0', a '1' indicates that the MCU desires to fetch data from the external sample memory.
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=0 50 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommWrite.pdf}
+    \includegraphics[clip, trim=0 45 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommWrite.pdf}
     \caption{In order to write to the FPGA, the MCU must first set RW ='0' and IX = '0', (IX not shown) then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To write data into the address; the MCU sets 16 bit data on the bus and then generate a single clock pulse. Data is clocked into the FPGA on a rising edge.}
     \label{fig_7_2_1_CommWrite}
 \end{figure}
@@ -25,16 +25,16 @@ If the MCU wants to read from the FPGA, there are two ways to do so, i can read 
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 50 0 0, width=0.5\textwidth]{Sections/7_SystemDesign/Figures/7_2_1_CommRead.pdf}
-    \caption{In order to read from the FPGA sample memory, the MCU must first set RW ='0' then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To read data from the address; the MCU sets RW = '1' and changes it's DB0..DB15 outputs to input. The FPGA clocks the data out on DB0..DB15 on the next rising edge.}
+    \caption{In order to read from the FPGA sample memory, the MCU must first set RW ='0' then set the 16 bit bus to the desired address and generate a single CLK pulse. The address is clocked into the FPGA on a rising edge. To read data from the address; the MCU sets RW = '1' and changes it's DB0..DB15 outputs to inputs. The FPGA clocks the data out on DB0..DB15 on the next rising edge.}
     \label{fig_7_2_1_CommRead}
 \end{figure}
 
-Alternatively, if the MCU wishes to read the external memory, its shall fist configure D0..D15 for inputs and then set IX and RW to '1'. Each rising edge of the clock will then clock out data from external memory, starting with address 0, each clock falling edge will then increase the address by one, such that the number of rising edges corresponds to the number of address that data has been fetched from. In this way, the MCU does not have to reconfigure its inputs, drastically increasing the rate of data-transfer and the goodput equals the throughput. The protocol for this can be seen in figure \ref{fig_7_2_1_CommRead_IX}. It should be noted that when a rising edge occurs on the clock, the FPGA uses about \SIQ{80}{\nano\second} to fetch the data, see section \ref{subsec:Sample_Memory_Distribution}. This means that the MCU must wait at least \SIQ{80}{\nano\second} before it stores the data on the port.
+Alternatively, if the MCU wishes to read from the external memory, its shall fist configure D0..D15 for inputs and then set IX and RW to '1'. Each rising edge of the clock will then clock out data from external memory, starting with address 0, each clock falling edge will then increase the address by one, such that the number of rising edges corresponds to the number of address that data has been fetched from. In this way, the MCU does not have to reconfigure its inputs, drastically increasing the rate of data-transfer and the goodput equals the throughput. The protocol for this can be seen in figure \ref{fig_7_2_1_CommRead_IX}. It should be noted that when a rising edge occurs on the clock, the FPGA uses about \SIQ{80}{\nano\second} to fetch the data, see section \ref{subsec:Sample_Memory_Distribution}. This means that the MCU must wait at least \SIQ{80}{\nano\second} before it stores the data on the port.
 
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 0 0 0, width=0.8\textwidth]{Sections/7_SystemDesign/Figures/MCU_IX_FETCH.pdf}
-    \caption{In order to read from the FPGA, the MCU must first configure the 16 bit bus as an input, then sets RW ='1' and IX = '1', then configures the 16 bit bus as . Each rising edge of the clock then clocks out data, starting at address 0 and counting up for each clock sent.}
+    \caption{In order to read from the FPGAs external memory, the MCU must first configure the 16 bit bus as inputs, then set RW ='1' and IX = '1'. Each hereafter rising edge of the clock then clocks out data, starting at address 0 and counting up for each clock sent.}
     \label{fig_7_2_1_CommRead_IX}
 \end{figure}
 
@@ -50,7 +50,7 @@ The FPGA is using tri-state buffers to function as both inputs and outputs. The 
 
 At first glance the I/O port logic on figure \refq{fig_7_2_1_IOBUF} may seem completely useless as it can't output a logic '1'. This is because the I/O pins will require external pull-up resistors in order to produce a '1' when T = '0'. This will reduce the chance of both FPGA and MCU driving the data bus at the same time. The only possible way of damaging the FPGA with the communication bus is if the MCU sets it's output high when T = '0' (RW = '1'), and the FPGA sets a '0' as the FPGA pins are high impedance in any other case.
 
-\subsubsection{Communication data rate} \label{subsubsec:CommunicationDatarate}
+\subsubsection{Communication data-rate} \label{subsubsec:CommunicationDatarate}
 
 An estimate of the data-rate from this data bus can be made based on the findings in appendix \refq{App:MicrocontrollerConsiderations}. For consecutive read operations where the RW signal remains in 'write' mode, the data-rate will be limited by the execution time of setting the register in the STM32F446RE. This is also described in appendix \refq{App:MicrocontrollerConsiderations}. From the appendix it takes $t_{clk} = 35.8$ns to toggle the pin by setting and clearing a register and a write to a single register will take $t_{rs} = 17.9$ns. This is useful for calculating the communication throughput.
 
