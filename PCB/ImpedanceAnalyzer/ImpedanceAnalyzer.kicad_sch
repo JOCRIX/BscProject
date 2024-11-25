@@ -1,0 +1,51 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "08568624-f051-402a-adf3-1b03c2a769ee")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 76.835 43.815)
+		(size 20.955 19.685)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "7040a4f2-9510-49f8-bf95-e9f218eebebf")
+		(property "Sheetname" "Analog Front End"
+			(at 76.835 43.1034 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ANFE.kicad_sch"
+			(at 76.835 64.0846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

@@ -1,0 +1,29 @@
+* C:\EIT GIT\P7---Bsc\PCB\Simulering af universal opamp.asc
+V1 0 -5 5
+V2 +5 0 +5
+XU1 N005 N003 +5 -5 N004 level3a Avol=1.259Meg GBW=38Meg Slew=22Meg Ilimit=25m Rail=0 Vos=0 Phimargin=56 En=0 Enk=0 In=0 Ink=0 Rin=1Meg
+R1 NC_01 N004 1k
+V3 N005 N003 AC 1
+XU2 N008 N001 +5 0 N006 level3a Avol=1.259Meg GBW=38Meg Slew=22Meg Ilimit=25m Rail=0 Vos=0 Phimargin=56 En=0 Enk=0 In=0 Ink=0 Rin=1Meg
+R2 N002 N006 1k
+R3 N008 N009 10k
+R4 N008 N007 10k
+XU3 N011 N009 +5 0 N009 level3a Avol=1.259Meg GBW=38Meg Slew=22Meg Ilimit=25m Rail=0 Vos=0 Phimargin=56 En=0 Enk=0 In=0 Ink=0 Rin=1Meg
+V4 N011 0 2.5
+V5 N007 0 AC 1
+R5 N002 0 5Meg
+C1 N002 0 1.5p
+R7 N002 N001 1k
+R8 N001 0 1k
+C2 N008 0 2p2
+R6 N010 N012 10k
+R9 N012 N013 10k
+C3 N012 0 2p2
+V7 N010 0 AC 1
+R10 N013 0 1k
+C4 N012 0 2.5p
+C5 N008 0 2p5
+.ac dec 1000 1 100Meg
+.lib UniversalOpAmp3a.lib
+.backanno
+.end
