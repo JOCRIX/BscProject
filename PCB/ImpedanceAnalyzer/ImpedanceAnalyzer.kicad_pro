@@ -601,15 +601,11 @@
   "sheets": [
     [
       "08568624-f051-402a-adf3-1b03c2a769ee",
-      "Roden"
+      "Root"
     ],
     [
       "7040a4f2-9510-49f8-bf95-e9f218eebebf",
       "Analog Front End"
-    ],
-    [
-      "57040fd5-6b9d-493c-9134-f55d3f80bd5a",
-      "DAC_FILTER"
     ]
   ],
   "text_variables": {}

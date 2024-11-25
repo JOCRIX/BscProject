@@ -1,0 +1,32 @@
+* C:\EIT GIT\P7---Bsc\PCB\ADC\Simulering af summation med LT1819.asc
+V1 0 -5 5
+V2 +5 0 +5
+XU1 N006 N003 +5 -5 N004 level3a Avol=1.259Meg GBW=38Meg Slew=22Meg Ilimit=25m Rail=0 Vos=0 Phimargin=56 En=0 Enk=0 In=0 Ink=0 Rin=1Meg
+R1 NC_01 N004 1k
+V3 N006 N003 AC 1
+XU2 N010 N001 +5 0 N008 level3a Avol=2371 GBW=360Meg Slew=2250Meg Ilimit=70m Rail=0 Vos=0 Phimargin=35 En=0 Enk=0 In=0 Ink=0 Rin=1Meg
+R3 N010 N011 10k
+R4 N010 N009 10k
+XU3 N013 N011 +5 0 N011 level3a Avol=1.259Meg GBW=38Meg Slew=22Meg Ilimit=25m Rail=0 Vos=0 Phimargin=56 En=0 Enk=0 In=0 Ink=0 Rin=1Meg
+V4 N013 0 2.5
+V5 N009 0 AC 1
+R5 N002 0 5Meg
+C1 N002 0 1.5p
+R7 N002 N001 1k
+R8 N001 0 1k
+C2 NC_02 0 2p2
+R6 N012 N014 10k
+R9 N014 N015 10k
+C3 N014 0 2p2
+V7 N012 0 AC 1
+R10 N015 0 1k
+C4 N014 0 2.5p
+C5 NC_03 0 2p5
+XU4 N007 0 +5 -5 N005 level3a Avol=2371 GBW=360Meg Slew=2250Meg Ilimit=70m Rail=0 Vos=0 Phimargin=35 En=0 Enk=0 In=0 Ink=0 Rin=1Meg
+V6 0 N007 AC 1
+R11 NC_04 N005 20
+R2 N002 N008 20
+.ac dec 1000 1 100Meg
+.lib UniversalOpAmp3a.lib
+.backanno
+.end
