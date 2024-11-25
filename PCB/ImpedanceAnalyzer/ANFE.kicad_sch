@@ -2841,6 +2841,12 @@
 		(uuid "81ba4a89-7884-45c0-a821-60efa62d9381")
 	)
 	(junction
+		(at 137.16 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "891c5782-4110-47df-9e64-d57fb35fe04c")
+	)
+	(junction
 		(at 297.18 115.57)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3334,6 +3340,16 @@
 	)
 	(wire
 		(pts
+			(xy 137.16 74.93) (xy 137.16 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "18d911c5-033d-4e9b-a19b-d4e8a35d4fec")
+	)
+	(wire
+		(pts
 			(xy 172.72 33.02) (xy 172.72 41.91)
 		)
 		(stroke
@@ -3341,6 +3357,16 @@
 			(type default)
 		)
 		(uuid "1aefd32a-6f31-4446-82e0-3e65c1c86ac8")
+	)
+	(wire
+		(pts
+			(xy 115.57 74.93) (xy 137.16 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b0e1603-8668-4bdc-9d35-4560f1455036")
 	)
 	(wire
 		(pts
@@ -5274,6 +5300,16 @@
 	)
 	(wire
 		(pts
+			(xy 115.57 78.74) (xy 115.57 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc8f56c4-c49a-4e2e-9f53-601c4c5a2488")
+	)
+	(wire
+		(pts
 			(xy 205.74 52.07) (xy 205.74 49.53)
 		)
 		(stroke
@@ -5764,7 +5800,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 44.45) (xy 137.16 85.09)
+			(xy 137.16 44.45) (xy 137.16 74.93)
 		)
 		(stroke
 			(width 0)
@@ -11602,6 +11638,76 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/7040a4f2-9510-49f8-bf95-e9f218eebebf"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 115.57 81.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e034b79a-9af6-4223-99f0-4898c58a4cee")
+		(property "Reference" "R15"
+			(at 118.11 80.0099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "R_Small"
+			(at 118.11 82.5499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 115.57 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 115.57 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 115.57 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "932df884-8d03-4b44-b69a-186aa9c7caaf")
+		)
+		(pin "1"
+			(uuid "241dc7c7-7b16-49b8-ae3f-ec7a7c274d6e")
+		)
+		(instances
+			(project ""
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/7040a4f2-9510-49f8-bf95-e9f218eebebf"
+					(reference "R15")
 					(unit 1)
 				)
 			)
