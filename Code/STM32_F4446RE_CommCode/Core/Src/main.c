@@ -501,7 +501,7 @@ HAL_Delay(1);
 //}
 
 f_sampleSize = 1000;
-f_set = 100000;
+f_set = 1000000;
 
 f_word = (uint32_t)(f_set*214.748365);
 CommPort.WriteData(40, 23);
