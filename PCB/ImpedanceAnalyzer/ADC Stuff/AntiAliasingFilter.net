@@ -1,0 +1,31 @@
+* F:\Git Projects\EIT\P7---Bsc\PCB\ImpedanceAnalyzer\ADC Stuff\AntiAliasingFilter.asc
+V1 N003 0 AC 1
+R1 N004 N003 1k
+R2 N005 N004 1k
+C2 N005 0 3.06E-11
+C1 N001 N004 2.08E-10
+XU1 N005 N001 +5 -5 N001 level1 Avol=100Meg GBW=1000Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+V2 0 -5 5
+V3 +5 0 5
+R3 N006 N001 1k
+R4 N007 N006 1k
+C3 N007 0 7.36E-11
+C4 N002 N006 8.61E-11
+XU2 N007 N002 +5 -5 N002 level1 Avol=100Meg GBW=1000Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+V4 N010 0 AC 1
+R5 N011 N010 1k
+R6 N012 N011 1k
+C5 N012 0 3.06E-11
+C6 N008 N011 2.08E-10
+R7 N013 N008 1k
+R8 N014 N013 1k
+C7 N014 0 7.36E-11
+C8 N009 N013 8.61E-11
+XU3 N012 N008 +5 -5 N008 level3a Avol=0.01Meg GBW=110Meg Slew=560Meg Ilimit=25m Rail=0 Vos=0 Phimargin=45 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+XU4 N014 N009 +5 -5 N009 level3a Avol=0.01Meg GBW=110Meg Slew=560Meg Ilimit=25m Rail=0 Vos=0 Phimargin=45 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+.ac dec 1000 0.1 100Meg
+* OPA4830
+.lib UniversalOpAmp1.lib
+.lib UniversalOpAmp3a.lib
+.backanno
+.end

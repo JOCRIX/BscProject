@@ -1,0 +1,12 @@
+* F:\Git Projects\EIT\P7---Bsc\PCB\ImpedanceAnalyzer\ADC Stuff\Draft1.asc
+V1 N001 0 AC 1
+L1 N001 N002 9.85µ
+C1 N002 0 9.41n
+L2 N002 N003 9.85µ
+C2 N003 0 9.41n
+L3 N003 N004 1.35m
+C3 N004 0 5.42n
+R1 N004 0 5
+.ac dec 1000 0.1 1Meg
+.backanno
+.end

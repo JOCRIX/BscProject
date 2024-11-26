@@ -1,41 +1,46 @@
-% Parameters
-n = 3;                 % Filter order
-rp = 1;                % Passband ripple (in dB)
-wc = 0.5;              % Normalized cutoff frequency (0.5 corresponds to Nyquist frequency)
+% Specifications
+Fs = 1000; % Sampling frequency (chosen to be sufficiently high)
+Fdip = 50; % Frequency where the first dip (zero) should occur
+Rp = 3;    % Stopband ripple in dB
+Rs = 60;   % Stopband attenuation in dB
 
-% Design the Chebyshev Type I lowpass filter
-% Use cheby1 to create a lowpass filter prototype (normalized)
-[b, a] = cheby1(n, rp, wc);
+% Normalize the dip frequency (where the first singularity occurs)
+Ws = 2 * Fdip / Fs;  % Normalized stopband edge frequency
 
-% Frequency response of the inverse filter
-% To get the inverse of the lowpass filter, we take the reciprocal of the frequency response
+% Design the Inverse Chebyshev lowpass filter
+% Adjust Rs to ensure the first dip aligns at Ws
+[n, Wn] = cheb2ord(Ws + 0.01, Ws, Rp, Rs); % Slightly adjust transition region
+[b, a] = cheby2(n, Rs, Wn, 'low');         % Design the filter
 
-% Frequency vector for plotting
-f = logspace(-1, 1, 1000);   % Logarithmic frequency scale for better resolution
-[H, w] = freqz(b, a, f, 'whole');   % Get frequency response
+% Frequency response
+[H, f] = freqz(b, a, 1024, Fs);
 
-% Plot magnitude response
+% Magnitude plot
 figure;
-subplot(3,1,1);
-semilogx(f, 20*log10(abs(H)));
-title('Magnitude Response of Inverse Chebyshev Lowpass Filter');
+subplot(3, 1, 1);
+plot(f, 20*log10(abs(H)), 'LineWidth', 1.5);
+grid on;
+title('Magnitude Response');
 xlabel('Frequency (Hz)');
 ylabel('Magnitude (dB)');
-grid on;
+xlim([0 500]);
+ylim([-120 10]);
 
-% Plot phase response
-subplot(3,1,2);
-semilogx(f, angle(H));
-title('Phase Response of Inverse Chebyshev Lowpass Filter');
+% Phase plot
+subplot(3, 1, 2);
+plot(f, angle(H), 'LineWidth', 1.5);
+grid on;
+title('Phase Response');
 xlabel('Frequency (Hz)');
 ylabel('Phase (radians)');
-grid on;
+xlim([0 500]);
 
-% Plot group delay response
-subplot(3,1,3);
-gd = -diff(angle(H))./diff(w);  % Group delay calculation
-semilogx(f(2:end), gd);
-title('Group Delay of Inverse Chebyshev Lowpass Filter');
+% Group delay
+[gd, f_gd] = grpdelay(b, a, 1024, Fs);
+subplot(3, 1, 3);
+plot(f_gd, gd, 'LineWidth', 1.5);
+grid on;
+title('Group Delay');
 xlabel('Frequency (Hz)');
 ylabel('Group Delay (samples)');
-grid on;
+xlim([0 500]);
