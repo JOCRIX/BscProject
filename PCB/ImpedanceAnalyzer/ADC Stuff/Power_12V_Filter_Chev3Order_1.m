@@ -1,31 +1,106 @@
-% MATLAB Code for Inverse Chebyshev Lowpass Filter with n = 3
 
-% Sampling frequency (arbitrary, since we use normalized frequencies)
-Fs = 10; % Sampling frequency in Hz (for normalization)
+%` Specifications"
+order = 5;             % Filterorder
+cutoff_frequency = 2e6;% -3 dB cutoff frequency 
+sampling_frequency = 10e6; % Sampling frequency
+ripple_pass = 1;          %` Passband ripple for Chebyshev and Elliptic filters in dB
+ripple_stop = 40; % Stopband ripple for Inverse Chebyshev and Elliptic 
 
-% Specifications
-Ap = 10; % Passband attenuation in dB
-As = 40; % Stopband attenuation in dB
-Fp = 1;  % Passband edge frequency in Hz
-Fs_edge = 2; % Stopband edge frequency in Hz
-n = 3;   % Filter order
-
-% Normalize frequencies
-Wp = Fp / (Fs / 2);      % Normalize passband edge frequency
-Ws = Fs_edge / (Fs / 2); % Normalize stopband edge frequency
-
-% Design the filter
-[b, a] = cheby2(n, As, Wp, 'low');  % Design the Inverse Chebyshev filter
-
-% Frequency response
-omega = linspace(0, 3, 1000); % Define the frequency range (normalized)
-[H, w] = freqz(b, a, 1000, Fs); % Compute frequency response with normalized frequencies
-
-% Magnitude plot
+% Normalized cutoff frequency*(in the range [0, 1], where 1 is the Nyquist frequency)
+Wn =cutoff_frequency / (sampling_frequency / 2); 
+% Design filters 
+[b_butter, a_butter] = butter(order, Wn, 'low');  
+[b_cheby2, a_cheby2] = cheby2(order, ripple_stop, Wn,'low');
+[b_ellip, a_ellip] = ellip(order, ripple_pass, ripple_stop, Wn, 'low');
+[b_cheby1, a_cheby1] = cheby1(order, ripple_pass, Wn, 'low');
+[b_bessel, a_bessel] = besself(order, Wn * pi);  
+[b_bessel, a_bessel] = bilinear(b_bessel, a_bessel,sampling_frequency);
+%response and group delay for all filters
+[H_butter, f] =freqz(b_butter, a_butter, 1024, sampling_frequency);  
+[H_cheby2, ~] = freqz(b_cheby2, a_cheby2, 1024, sampling_frequency);
+[H_ellip, ~] = freqz(b_ellip, a_ellip, 1024, sampling_frequency);
+[H_cheby1, ~] = freqz(b_cheby1, a_cheby1, 1024, sampling_frequency);
+[H_bessel, ~] = freqz(b_bessel, a_bessel, 1024, sampling_frequency);
+%Group delay calculations
+[gd_butter, ~] = grpdelay(b_butter, a_butter, 1024, sampling_frequency);
+[gd_cheby2, ~] = grpdelay(b_cheby2, a_cheby2, 1024, sampling_frequency);  
+[gd_ellip, ~] = grpdelay(b_ellip, a_ellip, 1024, sampling_frequency);
+[gd_cheby1, ~] = grpdelay(b_cheby1, a_cheby1, 1024, sampling_frequency);
+[gd_bessel, ~] = grpdelay(b_bessel, a_bessel, 1024, sampling_frequency);
+% PHASE,MAGNITUDE, and GROUP DELAY PLOT
 figure;
-plot(w, 20*log10(abs(H)), 'LineWidth', 1.5); % w / 1.1547 for at flytte singulariteten til 1 rad/s.
+%Magnitude response
+subplot(3, 1, 1);  semilogx(f, 20*log10(abs(H_butte)), 'b', 'LineWidth', 1.5);
+% Butterworth in blue
+hold on;
+semilogx(f, 20*log10(abs(H_cheby2)), 'r--', 'LineWidth',1.5);
+% Inverse Chebyshev in red dashed
+semilogx(f,20*log10(abs(H_ellip)), 'g-*', 'LineWidth', 1.5);
+% Elliptic in green dash-dot
+semilogx(f, 20*log10(abs(H_cheby1)), 'm:', 'LineWidth', 1.5);
+% Chebyshev Type I in magenta dotted
+semilogx(f, 20*log10(abs(H_bessel)), 'c-','LineWidth', 1.5);
+% Bessel in cyan solid
+hold off;  
+title('Magnitude Response');
+xlabel('Frequency*(Hz)');  
+ylabel('Magnitude*(dB)');
+legend('Butterworth', 'Inverse Chebyshev', 'Elliptic', 'Chebyshev Type I', 'Bessel');
 grid on;
-xlabel('\omega (Hz)');
-ylabel('Magnitude (dB)');
-title('Magnitude Response of Inverse Chebyshev Lowpass Filter (n = 3)');
-axis([0 3 -80 5]); % Adjust y-axis for better visualization
+axis([1e5, sampling_frequency/2, -80, 5]); % Adjust for log scale
+Phase response  subplot(3, 1, 2);  
+
+   semilogx(f, unwrap(angle(H_butter)), 'b', 'LineWidth', 1.5); 
+
+   `%` Butterworth in blue  hold on;  semilogx(f, unwrap(angle(H\
+
+  _cheby2)), 'r--', 'LineWidth', 1.5); `%` Inverse Chebyshev in 
+
+   red dashed  semilogx(f, unwrap(angle(H_ellip)), 'g-*', 
+
+   'LineWidth', 1.5); `%` Elliptic in green dash-dot  
+
+   semilogx(f, unwrap(angle(H_cheby1)), 'm:', 'LineWidth', 
+
+   1.5); `%` Chebyshev Type I in magenta dotted  semilogx(f, 
+
+   unwrap(angle(H_bessel)), 'c-', 'LineWidth', 1.5); `%` Bessel 
+
+   in cyan solid  hold off;  title('Phase Response');  
+
+   xlabel('Frequency*(Hz)');  ylabel('Phase*(radians)');  
+
+   legend('Butterworth', 'Inverse Chebyshev', 'Elliptic', 
+
+   'Chebyshev Type I', 'Bessel');  grid on;    `%` Group delay 
+
+   response  subplot(3, 1, 3);  semilogx(f, gd_butter, 'b', 
+
+   'LineWidth', 1.5); `%` Butterworth in blue  hold on;  
+
+   semilogx(f, gd_cheby2, 'r--', 'LineWidth', 1.5); `%` Inverse 
+
+   Chebyshev in red dashed  semilogx(f, gd_ellip, 'g-*', 
+
+   'LineWidth', 1.5); `%` Elliptic in green dash-dot  
+
+   semilogx(f, gd_cheby1, 'm:', 'LineWidth', 1.5); `%` 
+
+   Chebyshev Type I in magenta dotted  semilogx(f, gd_bessel, 
+
+   'c-', 'LineWidth', 1.5); `%` Bessel in cyan solid  hold off; 
+
+    title('Group Delay');  xlabel('Frequency*(Hz)');  
+
+   ylabel('Group Delay*(samples)');  legend('Butterworth', 
+
+   'Inverse Chebyshev', 'Elliptic', 'Chebyshev Type I', 
+
+   'Bessel');  grid on;  axis([1e5, sampling_frequency/2, 0, 
+
+   max([gd_butter; gd_cheby2; gd_ellip; gd_cheby1; gd_bessel])])\
+
+  ; `%` Set axis limits  "
+
+
+NULL;
