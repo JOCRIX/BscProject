@@ -1,0 +1,43 @@
+\chapter{Power Consumption} \label{App:PowerConsumption}
+
+The following table \refq{tab:A_current_draw_power} is an estimate of the current draw and power consumption of the major components in the impedance analyzer.
+The estimate is based off of the typical queiscent current draws listed in the component datasheets. The external circuitry is not considered and so, the real current draw will be higher than what is listed here.
+
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{@{}lcp{1.5cm}p{1.8cm}p{2cm}@{}}
+            \toprule
+            \textbf{Component}       & \textbf{Amount} & \textbf{Supply Rail} & \textbf{Current Draw (mA)} & \textbf{Power Consumption (mW)} \\ \midrule
+            LTC2311 ADC              & 2               & +5V                  & 24                         & 240                              \\
+            LTC1668 DAC              & 1               & +5V                  & 5                          & 25                               \\
+            LTC1668 DAC              & 1               & -5V                  & -40                        & 200                              \\
+            LT1819                   & 4               & +6V                  & 56                         & 1344                             \\
+            LT1819                   & 4               & -1V                  & 56                         & 224                              \\
+            OPA4830                  & 6               & +5V                  & 51                         & 1530                             \\
+            OPA4830                  & 6               & -5V                  & 51                         & 1530                             \\
+            PGA855                   & 2               & +12V                 & 5.5                        & 132                              \\
+            PGA855                   & 2               & -12V                 & 5.5                        & 132                              \\
+            Artix 7                  & 1               & +5V                   & 70                         & 350                               \\
+            STM32F446RE                    & 1               & +5V                  & 300                        & 1500                             \\
+            Nextion Touchscreen       & 1               & +5V                  & 1000                       & 5000                             \\ \bottomrule
+            \end{tabular}
+            \caption{Current Draw and Power Requirements for System Components}
+            \label{tab:A_current_draw_power}
+            \end{table}
+Table \refq{tab:total_power_current} is an estimate of the load on each of the supply rails.
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{@{}lcc@{}}
+                \toprule
+                \textbf{Supply Rail} & \textbf{Total Current Draw (mA)} & \textbf{Total Power Consumption (mW)} \\ \midrule
+                +5V                  & 1480                            & 7400                                  \\
+                -5V                  & 346                             & 1730                                  \\
+                +6V                  & 224                             & 1344                                  \\
+                -1V                  & 224                             & 224                                   \\
+                +12V                 & 11                              & 132                                   \\
+                -12V                 & 11                              & 132                                   \\ \bottomrule
+                \end{tabular}
+                \caption{Summary of Total Current and Power Consumption for Each Supply Rail}
+                \label{tab:total_power_current}
+                \end{table}
+                

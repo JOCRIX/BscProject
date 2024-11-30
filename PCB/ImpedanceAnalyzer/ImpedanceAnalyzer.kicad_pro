@@ -606,6 +606,10 @@
     [
       "7040a4f2-9510-49f8-bf95-e9f218eebebf",
       "Analog Front End"
+    ],
+    [
+      "bbce87d8-2d6b-4ada-9e87-44e06d8f0f46",
+      "Supply"
     ]
   ],
   "text_variables": {}

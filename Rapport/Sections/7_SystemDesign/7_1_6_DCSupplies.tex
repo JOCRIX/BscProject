@@ -9,10 +9,11 @@ Several DC supplies are required to power the impedance analyzer, so an overview
 \textbf{Analog circuits} &                                                                                                 \\
 \quad +6V                & For ADC Buffers                                                                                \\
 \quad -1V                & For ADC Buffers                                                                                \\
-\quad +5V                & For ADC and DAC                                                                                \\
+\quad +5V                & For ADC and DAC, Anti-Aliasing Filters, DAC Reconstruction Filters                                                                                  \\
+\quad -5V                & DAC, Anti-Aliasing Filters, DAC Reconstruction Filters  \\
 \quad +2.5V              & For ADC digital interface                                                                      \\
-\quad $\pm$12V           & For Anti-Aliasing Filters, Programmable Amplifiers, DAC Reconstruction Filters,                \\
-                         & DAC Output Power Amplifier, Range Relays                                                       \\ \midrule
+\quad $\pm$12V           & Programmable Amplifiers, DAC Output Power Amplifier, Range Relays               \\
+                         &                                                        \\ \midrule
 \textbf{Digital circuits} &                                                                                                 \\
 \quad +5V                & For Artix 7 Development Board, STM32 Nucleo Development Board,                                 \\
                          & and Nextion Touchscreen                                                                        \\ \bottomrule
@@ -21,7 +22,7 @@ Several DC supplies are required to power the impedance analyzer, so an overview
 \label{tab:7_1_6_Supply_Voltages}
 \end{table}
 
-An estimate of the expected load is required in order to make the supply rails from table \refq{tab:7_1_6_Supply_Voltages}. This estimate has been made and can be seen in appendix xyz.
+An estimate of the expected load is required in order to make the supply rails from table \refq{tab:7_1_6_Supply_Voltages} and this estimate has been made and can be seen in appendix \refq{App:PowerConsumption}. A Mean Well RT65C\cite{RT65C} power supply will be used to power the impedance analyzer, it will supply a $\pm 15V$ rail a long with a $+5V$ rail. The $+5V$ rail will be used to power the digital circuits directly, while the $\pm 15V$ will be used to power the analog front end. The analog supplies will be kept separate from the digital supplies to reduce noise in the analog circuits. The diagram for the supply can be seen on figure xyz
 
 
 
