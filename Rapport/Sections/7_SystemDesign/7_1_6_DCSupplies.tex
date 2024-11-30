@@ -1,0 +1,28 @@
+\subsection{DC Supplies} \label{subsec:DCSupples}
+
+Several DC supplies are required to power the impedance analyzer, so an overview has been made to visualize this in table \refq{tab:7_1_6_Supply_Voltages}.
+\begin{table}[ht]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Category}       & \textbf{Details}                                                                                 \\ \midrule
+\textbf{Analog circuits} &                                                                                                 \\
+\quad +6V                & For ADC Buffers                                                                                \\
+\quad -1V                & For ADC Buffers                                                                                \\
+\quad +5V                & For ADC and DAC                                                                                \\
+\quad +2.5V              & For ADC digital interface                                                                      \\
+\quad $\pm$12V           & For Anti-Aliasing Filters, Programmable Amplifiers, DAC Reconstruction Filters,                \\
+                         & DAC Output Power Amplifier, Range Relays                                                       \\ \midrule
+\textbf{Digital circuits} &                                                                                                 \\
+\quad +5V                & For Artix 7 Development Board, STM32 Nucleo Development Board,                                 \\
+                         & and Nextion Touchscreen                                                                        \\ \bottomrule
+\end{tabular}
+\caption{Overview of Supply Voltages in the System}
+\label{tab:7_1_6_Supply_Voltages}
+\end{table}
+
+An estimate of the expected load is required in order to make the supply rails from table \refq{tab:7_1_6_Supply_Voltages}. This estimate has been made and can be seen in appendix xyz.
+
+
+
+
