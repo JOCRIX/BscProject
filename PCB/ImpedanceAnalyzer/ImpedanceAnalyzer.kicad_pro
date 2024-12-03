@@ -605,11 +605,31 @@
     ],
     [
       "7040a4f2-9510-49f8-bf95-e9f218eebebf",
-      "Analog Front End"
+      "ADC"
     ],
     [
       "bbce87d8-2d6b-4ada-9e87-44e06d8f0f46",
       "Supply"
+    ],
+    [
+      "806fe518-678b-4982-8944-471d69d79ae2",
+      "DAC"
+    ],
+    [
+      "6fdeb058-ac84-4e42-b92e-ed66cd3c1009",
+      "Digital"
+    ],
+    [
+      "b614fb1c-3214-4a4e-a380-64a761fa3e59",
+      "ADC Range"
+    ],
+    [
+      "83ca792e-0114-4481-9083-ddb809f73b86",
+      "Range Select"
+    ],
+    [
+      "83c1ae7f-3377-4252-9b67-57b618474469",
+      "DAC Power Amp"
     ]
   ],
   "text_variables": {}
