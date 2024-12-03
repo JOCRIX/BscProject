@@ -528,7 +528,7 @@
 				)
 			)
 		)
-		(symbol "JRIX Connector:6.3-Spade-Con"
+		(symbol "JRIX FASTON Connector:63849-1"
 			(pin_names
 				(offset 1.016)
 			)
@@ -536,40 +536,34 @@
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "J"
-				(at -2.54 -3.81 0)
+				(at -5.08 5.842 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left bottom)
 				)
 			)
-			(property "Value" "6.3-Spade-Con"
-				(at -2.54 2.54 0)
+			(property "Value" "63849-1"
+				(at -5.08 -5.08 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left bottom)
 				)
 			)
-			(property "Footprint" ""
-				(at -13.97 6.35 0)
+			(property "Footprint" "63849-1:TE_63849-1"
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify bottom)
 					(hide yes)
 				)
 			)
 			(property "Datasheet" ""
-				(at -13.97 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -578,53 +572,246 @@
 					(hide yes)
 				)
 			)
-			(symbol "6.3-Spade-Con_0_1"
+			(property "Description" "0.250 (6.35mm) Quick Connect Male - Solder Connector Non-Insulated"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Comment" "63849-1"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MF" "TE Connectivity"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PACKAGE" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PRICE" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=eda"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=snap"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "63849-1"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "EU_RoHS_Compliance" "Compliant"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "\n                        \n                            0.250 (6.35mm) Quick Connect Male Solder Connector Non-Insulated\n                        \n"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "AVAILABILITY" "In Stock"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PURCHASE-URL" "https://pricing.snapeda.com/search/part/63849-1/?ref=eda"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "63849-1_0_0"
+				(rectangle
+					(start -5.08 -2.54)
+					(end 5.08 5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -4.445 -0.3175)
+					(end -2.8575 0.3175)
+					(stroke
+						(width 0.1)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(rectangle
+					(start -4.445 2.2225)
+					(end -2.8575 2.8575)
+					(stroke
+						(width 0.1)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 -2.54)
+						(xy -5.08 0) (xy -3.175 0)
 					)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-			)
-			(symbol "6.3-Spade-Con_1_1"
-				(pin bidirectional line
-					(at -5.08 0 0)
+				(polyline
+					(pts
+						(xy -5.08 2.54) (xy -3.175 2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -10.16 2.54 0)
 					(length 5.08)
-					(name "~"
+					(name "1_1"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
-					(number "1"
+					(number "1_1"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
-				(pin bidirectional line
-					(at -5.08 -2.54 0)
+				(pin passive line
+					(at -10.16 0 0)
 					(length 5.08)
-					(name "~"
+					(name "1_2"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
-					(number "2"
+					(number "1_2"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
@@ -639,10 +826,16 @@
 		(uuid "0b522440-9513-477a-b90d-c38ade6b4437")
 	)
 	(junction
-		(at 254 68.58)
+		(at 265.43 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "17965128-275b-43ce-b16b-296ef27af099")
+		(uuid "11379ed6-e386-4d00-9319-494937a760d3")
+	)
+	(junction
+		(at 254 83.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1eabd350-262f-437b-87f5-00f73a02b8ed")
 	)
 	(junction
 		(at 17.78 48.26)
@@ -699,16 +892,10 @@
 		(uuid "80182521-2bb0-4c6b-a172-644dade59f89")
 	)
 	(junction
-		(at 264.16 68.58)
+		(at 265.43 72.39)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "81504f41-e641-44d0-ad90-a6fb4195833a")
-	)
-	(junction
-		(at 264.16 62.23)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9e026baa-abe2-4f3a-9cbe-9c19231e66ed")
+		(uuid "a350b230-0309-4cd1-8760-b3b96a4eb366")
 	)
 	(junction
 		(at 120.65 148.59)
@@ -721,12 +908,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b03ae9dc-447e-4021-861d-cd44ce701dc5")
-	)
-	(junction
-		(at 264.16 55.88)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b6296daa-5a4d-4b4d-8494-97a04bd8cb5f")
 	)
 	(junction
 		(at 123.19 81.28)
@@ -757,6 +938,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d06ac709-ec96-4c06-bbab-5580163ee9ac")
+	)
+	(junction
+		(at 265.43 83.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f0c9addc-e31c-47b4-a7a1-f2e5421f5b3f")
 	)
 	(junction
 		(at 85.09 26.67)
@@ -1072,16 +1259,6 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 62.23) (xy 264.16 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0be0d017-537e-46a8-b331-948888b3345e")
-	)
-	(wire
-		(pts
 			(xy 137.16 59.69) (xy 137.16 21.59)
 		)
 		(stroke
@@ -1202,7 +1379,7 @@
 	)
 	(wire
 		(pts
-			(xy 254 96.52) (xy 254 68.58)
+			(xy 254 68.58) (xy 254 83.82)
 		)
 		(stroke
 			(width 0)
@@ -1250,6 +1427,16 @@
 		)
 		(uuid "1956900b-c796-4424-b2a6-2bef7aca9b91")
 	)
+	(wire
+		(pts
+			(xy 246.38 64.77) (xy 260.35 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19c0ba5c-db64-49bc-8ece-47d38e2e2740")
+	)
 	(bus
 		(pts
 			(xy 181.61 113.03) (xy 181.61 115.57)
@@ -1292,16 +1479,6 @@
 	)
 	(wire
 		(pts
-			(xy 251.46 55.88) (xy 264.16 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1e66e1dd-6214-4f70-99a0-4765c5fc5bd4")
-	)
-	(wire
-		(pts
 			(xy 90.17 125.73) (xy 93.98 125.73)
 		)
 		(stroke
@@ -1332,13 +1509,13 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 54.61) (xy 265.43 54.61)
+			(xy 265.43 83.82) (xy 265.43 85.09)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "237e4aa9-3e33-4a9f-91ba-2827dff8a056")
+		(uuid "232c5a5c-c337-4b9b-b7ac-ffe770c02f5a")
 	)
 	(wire
 		(pts
@@ -1379,16 +1556,6 @@
 			(type default)
 		)
 		(uuid "255d5ff5-36ec-457b-98c5-196f062f1564")
-	)
-	(wire
-		(pts
-			(xy 264.16 68.58) (xy 264.16 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "280f0428-7165-4740-8655-f070aacdd81f")
 	)
 	(wire
 		(pts
@@ -1462,6 +1629,16 @@
 	)
 	(wire
 		(pts
+			(xy 265.43 60.96) (xy 265.43 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "33eb003f-a736-41cd-ac70-3103355277cf")
+	)
+	(wire
+		(pts
 			(xy 176.53 50.8) (xy 199.39 50.8)
 		)
 		(stroke
@@ -1499,6 +1676,16 @@
 			(type default)
 		)
 		(uuid "37b0c97a-9b40-43e4-8df9-8b17b3ab8dbc")
+	)
+	(wire
+		(pts
+			(xy 265.43 71.12) (xy 265.43 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a143f53-b58c-4fd2-aa11-5fccd6d340e6")
 	)
 	(wire
 		(pts
@@ -1822,6 +2009,16 @@
 	)
 	(wire
 		(pts
+			(xy 260.35 72.39) (xy 265.43 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51a236df-ea06-462c-8bfd-b3760e70975d")
+	)
+	(wire
+		(pts
 			(xy 90.17 120.65) (xy 93.98 120.65)
 		)
 		(stroke
@@ -2082,13 +2279,23 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 68.58) (xy 254 68.58)
+			(xy 254 83.82) (xy 265.43 83.82)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "6ce28709-12e4-46c9-b69b-e0e10ae4091e")
+	)
+	(wire
+		(pts
+			(xy 265.43 62.23) (xy 265.43 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6db5e4db-d7bf-4620-b5b1-601a0830d52c")
 	)
 	(bus
 		(pts
@@ -2149,16 +2356,6 @@
 			(type default)
 		)
 		(uuid "71ae1f6a-3d42-414f-a117-891f2fc6189e")
-	)
-	(wire
-		(pts
-			(xy 264.16 60.96) (xy 265.43 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "72335d7d-759a-4e17-95e4-2520d4289383")
 	)
 	(bus
 		(pts
@@ -2239,26 +2436,6 @@
 			(type default)
 		)
 		(uuid "7ca901c1-fbfd-4e40-9c83-c00e487ea3f8")
-	)
-	(wire
-		(pts
-			(xy 264.16 55.88) (xy 264.16 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7cb1f966-5b06-4c99-892d-8e1c9633ee3f")
-	)
-	(wire
-		(pts
-			(xy 264.16 69.85) (xy 264.16 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7da9bb92-46c6-47c9-b367-f5aa41c17fcf")
 	)
 	(bus
 		(pts
@@ -2362,16 +2539,6 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 57.15) (xy 264.16 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "88c3939c-6375-487f-b5b7-e233a6d8d885")
-	)
-	(wire
-		(pts
 			(xy 142.24 54.61) (xy 139.7 54.61)
 		)
 		(stroke
@@ -2462,16 +2629,6 @@
 	)
 	(wire
 		(pts
-			(xy 251.46 55.88) (xy 251.46 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8f841913-7c6c-42ec-92bb-7ae3e113c292")
-	)
-	(wire
-		(pts
 			(xy 55.88 90.17) (xy 55.88 77.47)
 		)
 		(stroke
@@ -2519,6 +2676,16 @@
 			(type default)
 		)
 		(uuid "93d7e511-ccb3-4a48-bf64-6e884a5fb712")
+	)
+	(wire
+		(pts
+			(xy 265.43 83.82) (xy 265.43 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93f2523a-b7e1-4d84-a801-1c4943de069e")
 	)
 	(wire
 		(pts
@@ -2632,16 +2799,6 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 57.15) (xy 264.16 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a25b2bff-2d7b-477a-af78-2ad180f7a8cf")
-	)
-	(wire
-		(pts
 			(xy 142.24 57.15) (xy 138.43 57.15)
 		)
 		(stroke
@@ -2689,6 +2846,16 @@
 			(type default)
 		)
 		(uuid "a472faff-5664-47b7-9e45-c4f5f3de63dd")
+	)
+	(wire
+		(pts
+			(xy 251.46 60.96) (xy 265.43 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4d52060-1dce-42ec-bdca-d55189750154")
 	)
 	(wire
 		(pts
@@ -2822,13 +2989,13 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 62.23) (xy 264.16 62.23)
+			(xy 260.35 64.77) (xy 260.35 72.39)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bbbbf5e3-f31c-4d8b-83c9-d26057ef0471")
+		(uuid "bbb9e180-b478-4748-942a-5a2a98e02294")
 	)
 	(wire
 		(pts
@@ -2972,16 +3139,6 @@
 	)
 	(wire
 		(pts
-			(xy 264.16 63.5) (xy 264.16 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ca217b7a-6888-4532-9ec1-1882f0a0e3ea")
-	)
-	(wire
-		(pts
 			(xy 127.635 34.29) (xy 185.42 34.29)
 		)
 		(stroke
@@ -2989,16 +3146,6 @@
 			(type default)
 		)
 		(uuid "ca9d9db0-edbd-419d-9c4e-53d7d3f98b17")
-	)
-	(wire
-		(pts
-			(xy 265.43 69.85) (xy 264.16 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "caed18f4-9708-435d-9008-e7f31bbf6683")
 	)
 	(wire
 		(pts
@@ -3089,16 +3236,6 @@
 			(type default)
 		)
 		(uuid "d4cdefdc-69fb-4f30-ae9c-c660b0d7f202")
-	)
-	(wire
-		(pts
-			(xy 264.16 67.31) (xy 265.43 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d646c074-3c5b-4876-840e-3c64b1c625a2")
 	)
 	(wire
 		(pts
@@ -3212,6 +3349,16 @@
 	)
 	(wire
 		(pts
+			(xy 254 83.82) (xy 254 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e21c48fa-5169-4703-980f-6ad5157347ed")
+	)
+	(wire
+		(pts
 			(xy 179.07 115.57) (xy 175.26 115.57)
 		)
 		(stroke
@@ -3242,17 +3389,17 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 63.5) (xy 264.16 63.5)
+			(xy 251.46 60.96) (xy 251.46 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e859a11f-26a2-4c4e-ba59-fb38713a50de")
+		(uuid "e934b39d-1de8-489c-95af-b612256e96bd")
 	)
 	(wire
 		(pts
-			(xy 246.38 55.88) (xy 246.38 62.23)
+			(xy 246.38 55.88) (xy 246.38 64.77)
 		)
 		(stroke
 			(width 0)
@@ -3432,6 +3579,16 @@
 	)
 	(wire
 		(pts
+			(xy 265.43 72.39) (xy 265.43 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faab3d86-a8ee-47f8-b3b7-0abbc914ded4")
+	)
+	(wire
+		(pts
 			(xy 74.93 30.48) (xy 71.12 30.48)
 		)
 		(stroke
@@ -3494,7 +3651,7 @@
 	)
 	(rectangle
 		(start 262.89 40.64)
-		(end 283.21 74.295)
+		(end 283.21 89.535)
 		(stroke
 			(width 0)
 			(type default)
@@ -3505,7 +3662,7 @@
 		(uuid 34e74631-4c13-4597-9cd6-18d1f1d2ae27)
 	)
 	(rectangle
-		(start 257.81 83.312)
+		(start 257.81 90.805)
 		(end 283.21 107.442)
 		(stroke
 			(width 0)
@@ -3528,16 +3685,6 @@
 		)
 		(uuid cdc553b5-66e7-43d9-9bc2-59a84c59eba1)
 	)
-	(text "4x 6.3-Spade-Con"
-		(exclude_from_sim no)
-		(at 273.558 73.152 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "1d167179-f970-411b-85d8-9acb3725fab4")
-	)
 	(text "KELVIN BRIDGE"
 		(exclude_from_sim no)
 		(at 23.368 17.526 0)
@@ -3547,6 +3694,16 @@
 			)
 		)
 		(uuid "2271bb67-eb05-46fd-97fa-62a1ddc03905")
+	)
+	(text "CON_+15V\n"
+		(exclude_from_sim no)
+		(at 275.59 44.958 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "41d6ca3e-0e30-425e-8c42-b7cec54eea79")
 	)
 	(text "MEAN WELL RT65C\n"
 		(exclude_from_sim no)
@@ -3558,15 +3715,45 @@
 		)
 		(uuid "63f7fb39-9e9d-499b-b264-9f8424e69c9f")
 	)
+	(text "CON_GND\n"
+		(exclude_from_sim no)
+		(at 275.59 55.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "a9fc07b3-5299-4c05-9321-fe805393f3e7")
+	)
 	(text "Nextion Display\n"
 		(exclude_from_sim no)
-		(at 273.05 85.09 0)
+		(at 272.542 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 		(uuid "c91c67bf-7704-4395-a31c-8d4f2f97a6d5")
+	)
+	(text "CON_+5V\n"
+		(exclude_from_sim no)
+		(at 275.336 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d2fcae34-cade-4cab-9609-517df50b3a81")
+	)
+	(text "CON_-15V"
+		(exclude_from_sim no)
+		(at 275.336 67.056 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "da653fbc-9d95-4992-b763-3d4300c8a2a2")
 	)
 	(text "ANALOG/DIGITAL GROUND LINK\n\n"
 		(exclude_from_sim no)
@@ -3655,6 +3842,17 @@
 		)
 		(uuid "480747bf-f96e-4e0e-83ac-921bb377d153")
 	)
+	(label "+5V_MW"
+		(at 256.54 83.82 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "48c65ed5-203e-413e-8b10-85601daf4207")
+	)
 	(label "DRE"
 		(at 92.71 106.68 0)
 		(fields_autoplaced yes)
@@ -3676,6 +3874,17 @@
 			(justify left bottom)
 		)
 		(uuid "5822c405-d05a-48c0-bf2e-f75e4969fa2e")
+	)
+	(label "GND_MW"
+		(at 256.54 60.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "716f9211-2670-46ba-a594-9602fdca0436")
 	)
 	(label "RB3"
 		(at 91.44 120.65 0)
@@ -3709,6 +3918,17 @@
 			(justify left bottom)
 		)
 		(uuid "8ee71bcd-1bff-4ded-ab2e-1060ce0e7127")
+	)
+	(label "+15V_MW"
+		(at 254 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "913afb21-cd01-43bf-ba4f-a8af1b74acdc")
 	)
 	(label "DRA1"
 		(at 92.71 104.14 0)
@@ -3809,6 +4029,17 @@
 		)
 		(uuid "db4b5a11-bc42-41a1-a91f-57c16cfd3984")
 	)
+	(label "-15V_MW"
+		(at 255.27 64.77 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e82f27ba-52ab-4013-a969-4ff5b1fa315d")
+	)
 	(label "RB0"
 		(at 91.44 128.27 0)
 		(fields_autoplaced yes)
@@ -3819,76 +4050,6 @@
 			(justify left bottom)
 		)
 		(uuid "ea173ab4-2712-459e-842f-c998d9550f3d")
-	)
-	(symbol
-		(lib_id "JRIX Connector:6.3-Spade-Con")
-		(at 270.51 60.96 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "099c9758-f614-402c-8821-f47cd4d8153e")
-		(property "Reference" "J3"
-			(at 271.78 60.9599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "CON_-15V"
-			(at 271.78 63.4999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 256.54 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 256.54 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 270.51 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "de4fb82d-a846-4fe2-aea1-86f4fe8bb9b0")
-		)
-		(pin "2"
-			(uuid "d2860dbb-4a1c-4f8f-bf56-8ace0e347ab5")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee"
-					(reference "J3")
-					(unit 1)
-				)
-			)
-		)
 	)
 	(symbol
 		(lib_id "Connector:Conn_Coaxial_Small")
@@ -3916,7 +4077,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Coaxial:BNC_TEConnectivity_1478204_Vertical"
 			(at 22.86 119.38 0)
 			(effects
 				(font
@@ -3984,7 +4145,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Coaxial:BNC_TEConnectivity_1478204_Vertical"
 			(at 24.13 48.26 0)
 			(effects
 				(font
@@ -4054,7 +4215,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical"
 			(at 271.78 99.06 0)
 			(effects
 				(font
@@ -4128,7 +4289,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Coaxial:BNC_TEConnectivity_1478204_Vertical"
 			(at 22.86 109.22 0)
 			(effects
 				(font
@@ -4171,6 +4332,642 @@
 		)
 	)
 	(symbol
+		(lib_id "JRIX FASTON Connector:63849-1")
+		(at 275.59 62.23 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "64267d01-ddec-41ad-b7f0-378d439e9563")
+		(property "Reference" "J1"
+			(at 281.94 59.6899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "63849-1"
+			(at 281.94 62.2299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "JRIX FASTON Connectors Footprints:TE_63849-1"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "0.250 (6.35mm) Quick Connect Male - Solder Connector Non-Insulated"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Comment" "63849-1"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MF" "TE Connectivity"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PACKAGE" "None"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PRICE" "None"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=eda"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=snap"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "63849-1"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "EU_RoHS_Compliance" "Compliant"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "\n                        \n                            0.250 (6.35mm) Quick Connect Male Solder Connector Non-Insulated\n                        \n"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "AVAILABILITY" "In Stock"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PURCHASE-URL" "https://pricing.snapeda.com/search/part/63849-1/?ref=eda"
+			(at 275.59 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1_2"
+			(uuid "80e8a971-4de4-41a6-8347-d68e02010825")
+		)
+		(pin "1_1"
+			(uuid "146509ba-02aa-4675-9582-edcecbb395f7")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "JRIX FASTON Connector:63849-1")
+		(at 275.59 50.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "68076234-5311-4ecd-be4a-e4108fa2d672")
+		(property "Reference" "J10"
+			(at 281.94 48.2599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "63849-1"
+			(at 281.94 50.7999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "JRIX FASTON Connectors Footprints:TE_63849-1"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "0.250 (6.35mm) Quick Connect Male - Solder Connector Non-Insulated"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Comment" "63849-1"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MF" "TE Connectivity"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PACKAGE" "None"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PRICE" "None"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=eda"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=snap"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "63849-1"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "EU_RoHS_Compliance" "Compliant"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "\n                        \n                            0.250 (6.35mm) Quick Connect Male Solder Connector Non-Insulated\n                        \n"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "AVAILABILITY" "In Stock"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PURCHASE-URL" "https://pricing.snapeda.com/search/part/63849-1/?ref=eda"
+			(at 275.59 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1_2"
+			(uuid "3915cf9a-fbd1-4fd1-b570-6fe39697bf5f")
+		)
+		(pin "1_1"
+			(uuid "f0131b12-75e9-4bc6-9a64-e68d1b9b541a")
+		)
+		(instances
+			(project ""
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee"
+					(reference "J10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "JRIX FASTON Connector:63849-1")
+		(at 275.59 85.09 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "77b812ac-1eff-49ec-862c-645d30ba539e")
+		(property "Reference" "J3"
+			(at 281.94 82.5499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "63849-1"
+			(at 281.94 85.0899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "JRIX FASTON Connectors Footprints:TE_63849-1"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "0.250 (6.35mm) Quick Connect Male - Solder Connector Non-Insulated"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Comment" "63849-1"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MF" "TE Connectivity"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PACKAGE" "None"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PRICE" "None"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=eda"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=snap"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "63849-1"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "EU_RoHS_Compliance" "Compliant"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "\n                        \n                            0.250 (6.35mm) Quick Connect Male Solder Connector Non-Insulated\n                        \n"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "AVAILABILITY" "In Stock"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PURCHASE-URL" "https://pricing.snapeda.com/search/part/63849-1/?ref=eda"
+			(at 275.59 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1_2"
+			(uuid "c7d0be31-cef4-462a-a714-6c739ab5014f")
+		)
+		(pin "1_1"
+			(uuid "121b1a52-5cf8-4a8d-8700-dad039e27121")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_US")
 		(at 129.54 148.59 90)
 		(unit 1)
@@ -4195,7 +4992,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "JRIX Resistor SMD:Resistor SMD - 2818"
 			(at 129.794 147.574 90)
 			(effects
 				(font
@@ -4263,7 +5060,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Coaxial:BNC_TEConnectivity_1478204_Vertical"
 			(at 24.13 38.1 0)
 			(effects
 				(font
@@ -4306,157 +5103,17 @@
 		)
 	)
 	(symbol
-		(lib_id "JRIX Connector:6.3-Spade-Con")
-		(at 270.51 67.31 0)
+		(lib_id "JRIX FASTON Connector:63849-1")
+		(at 275.59 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "e733ca3d-6f91-4542-9ba7-d982c01443a3")
-		(property "Reference" "J4"
-			(at 271.78 67.3099 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "CON_+5V"
-			(at 271.78 69.8499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 256.54 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 256.54 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 270.51 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fd4712cc-13a9-4446-a16c-c0fa259e16e3")
-		)
-		(pin "2"
-			(uuid "03d7abb1-bea3-4067-a0f2-a6c9cdb8db30")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee"
-					(reference "J4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "JRIX Connector:6.3-Spade-Con")
-		(at 270.51 48.26 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ecda7610-ad87-4668-8dd3-330518bab352")
-		(property "Reference" "J1"
-			(at 271.78 48.2599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "CON_+15V"
-			(at 271.78 50.7999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 256.54 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 256.54 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 270.51 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "44145d86-5e68-4384-8405-3fc0b12be14c")
-		)
-		(pin "2"
-			(uuid "30e47959-95a8-41d2-a558-65b6310807b1")
-		)
-		(instances
-			(project ""
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee"
-					(reference "J1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "JRIX Connector:6.3-Spade-Con")
-		(at 270.51 54.61 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f9ef6370-6165-4319-b5f3-2675e58461a8")
+		(uuid "e492e9fe-a25f-4425-b0bf-8274e1e55696")
 		(property "Reference" "J2"
-			(at 271.78 54.6099 0)
+			(at 281.94 71.1199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4464,8 +5121,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CON_GND"
-			(at 271.78 57.1499 0)
+		(property "Value" "63849-1"
+			(at 281.94 73.6599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4473,17 +5130,18 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 256.54 48.26 0)
+		(property "Footprint" "JRIX FASTON Connectors Footprints:TE_63849-1"
+			(at 275.59 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
 		(property "Datasheet" ""
-			(at 256.54 48.26 0)
+			(at 275.59 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4491,20 +5149,161 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 270.51 54.61 0)
+		(property "Description" "0.250 (6.35mm) Quick Connect Male - Solder Connector Non-Insulated"
+			(at 275.59 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify bottom)
 				(hide yes)
 			)
 		)
-		(pin "1"
-			(uuid "27292c85-c4ae-41dc-8bea-8451410fa820")
+		(property "Comment" "63849-1"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
 		)
-		(pin "2"
-			(uuid "290cbc1a-19fb-44ef-b848-c8e6f1ba3cd8")
+		(property "MF" "TE Connectivity"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PACKAGE" "None"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PRICE" "None"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=eda"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/63849-1/TE+Connectivity+AMP+Connectors/view-part/?ref=snap"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "63849-1"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "EU_RoHS_Compliance" "Compliant"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "\n                        \n                            0.250 (6.35mm) Quick Connect Male Solder Connector Non-Insulated\n                        \n"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "AVAILABILITY" "In Stock"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PURCHASE-URL" "https://pricing.snapeda.com/search/part/63849-1/?ref=eda"
+			(at 275.59 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1_2"
+			(uuid "323191de-6fde-4fa3-90fa-cd167ca1af68")
+		)
+		(pin "1_1"
+			(uuid "3305be47-be03-400c-af51-c85ed4e4657b")
 		)
 		(instances
 			(project "ImpedanceAnalyzer"

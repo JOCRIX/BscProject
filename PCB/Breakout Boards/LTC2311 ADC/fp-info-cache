@@ -1,4 +1,4 @@
-23813683566947024
+23814375237883828
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -63441,13 +63441,6 @@ MCP2515_CANBUS_Mod
 9
 9
 JRIX Connector Footprints
-D-SUB9_Female_Horizontal_MountingHoles_MHDist 25mm_HouseDim_31x12.5mm
-
-
-0
-11
-10
-JRIX Connector Footprints
 Molex_MicroFit3.0_2P_Header_Footprint
 
 
@@ -63510,13 +63503,6 @@ CMOD A7 Module
 0
 48
 48
-JRIX FPGA Footprints
-CMOD A7 Module With PMOD
-
-
-0
-60
-60
 JRIX Fuse Footprints
 SF-2410 (6125 Metric)
 

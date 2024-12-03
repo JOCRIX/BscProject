@@ -3100,7 +3100,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 101.6 120.65 0)
 			(effects
 				(font
@@ -3170,7 +3170,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 114.3 27.94 0)
 			(effects
 				(font
@@ -3240,7 +3240,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 179.07 100.33 0)
 			(effects
 				(font
@@ -3474,7 +3474,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 83.82 66.04 0)
 			(effects
 				(font
@@ -3608,7 +3608,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
 			(at 71.12 124.46 0)
 			(effects
 				(font
@@ -3770,7 +3770,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 118.11 125.73 0)
 			(effects
 				(font
@@ -3840,7 +3840,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 116.84 78.74 0)
 			(effects
 				(font
@@ -3910,7 +3910,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 158.75 100.33 0)
 			(effects
 				(font
@@ -3980,7 +3980,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 149.86 100.33 0)
 			(effects
 				(font
@@ -4048,7 +4048,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
 			(at 71.12 45.72 0)
 			(effects
 				(font
@@ -4076,28 +4076,28 @@
 			)
 		)
 		(pin "4"
-			(uuid "b15746d1-264a-4bed-9487-06802be41881")
+			(uuid "b15746d1-264a-4bed-9487-06802be41882")
 		)
 		(pin "5"
-			(uuid "c9be0b38-2a81-4a7e-b876-fe41023668fd")
+			(uuid "c9be0b38-2a81-4a7e-b876-fe41023668fe")
 		)
 		(pin "1"
-			(uuid "9531e84c-182d-4be5-b67f-e3f94e754a19")
+			(uuid "9531e84c-182d-4be5-b67f-e3f94e754a1a")
 		)
 		(pin "6"
-			(uuid "e06a719b-005d-4af9-a5b7-735c17cbe234")
+			(uuid "e06a719b-005d-4af9-a5b7-735c17cbe235")
 		)
 		(pin "3"
-			(uuid "5fb747ba-e42d-4d0d-bfba-4d85210eb434")
+			(uuid "5fb747ba-e42d-4d0d-bfba-4d85210eb435")
 		)
 		(pin "7"
-			(uuid "dd986188-032e-4566-9e66-d060efee86d0")
+			(uuid "dd986188-032e-4566-9e66-d060efee86d1")
 		)
 		(pin "8"
-			(uuid "443fa75c-b1be-4e70-b9e4-80f9f254cc54")
+			(uuid "443fa75c-b1be-4e70-b9e4-80f9f254cc55")
 		)
 		(pin "2"
-			(uuid "19de0eac-a0c6-4e26-bee2-26b35cbcbfde")
+			(uuid "19de0eac-a0c6-4e26-bee2-26b35cbcbfdf")
 		)
 		(instances
 			(project ""
@@ -4202,7 +4202,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 101.6 130.81 0)
 			(effects
 				(font
@@ -4272,7 +4272,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 125.73 78.74 0)
 			(effects
 				(font
@@ -4408,7 +4408,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 101.6 41.91 0)
 			(effects
 				(font
@@ -4478,7 +4478,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 191.77 100.33 0)
 			(effects
 				(font
@@ -4548,7 +4548,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 125.73 158.75 0)
 			(effects
 				(font
@@ -4618,7 +4618,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 83.82 27.94 0)
 			(effects
 				(font
@@ -4762,7 +4762,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
 			(at 168.91 97.79 0)
 			(effects
 				(font
@@ -4790,28 +4790,28 @@
 			)
 		)
 		(pin "4"
-			(uuid "b15746d1-264a-4bed-9487-06802be41881")
+			(uuid "b15746d1-264a-4bed-9487-06802be41883")
 		)
 		(pin "5"
-			(uuid "c9be0b38-2a81-4a7e-b876-fe41023668fd")
+			(uuid "c9be0b38-2a81-4a7e-b876-fe41023668ff")
 		)
 		(pin "1"
-			(uuid "9531e84c-182d-4be5-b67f-e3f94e754a19")
+			(uuid "9531e84c-182d-4be5-b67f-e3f94e754a1b")
 		)
 		(pin "6"
-			(uuid "e06a719b-005d-4af9-a5b7-735c17cbe234")
+			(uuid "e06a719b-005d-4af9-a5b7-735c17cbe236")
 		)
 		(pin "3"
-			(uuid "5fb747ba-e42d-4d0d-bfba-4d85210eb434")
+			(uuid "5fb747ba-e42d-4d0d-bfba-4d85210eb436")
 		)
 		(pin "7"
-			(uuid "dd986188-032e-4566-9e66-d060efee86d0")
+			(uuid "dd986188-032e-4566-9e66-d060efee86d2")
 		)
 		(pin "8"
-			(uuid "443fa75c-b1be-4e70-b9e4-80f9f254cc54")
+			(uuid "443fa75c-b1be-4e70-b9e4-80f9f254cc56")
 		)
 		(pin "2"
-			(uuid "19de0eac-a0c6-4e26-bee2-26b35cbcbfde")
+			(uuid "19de0eac-a0c6-4e26-bee2-26b35cbcbfe0")
 		)
 		(instances
 			(project ""
@@ -4850,7 +4850,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 83.82 106.68 0)
 			(effects
 				(font
@@ -5074,7 +5074,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 116.84 158.75 0)
 			(effects
 				(font
@@ -5144,7 +5144,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 123.19 27.94 0)
 			(effects
 				(font
@@ -5214,7 +5214,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 83.82 144.78 0)
 			(effects
 				(font
@@ -5282,7 +5282,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 118.11 46.99 0)
 			(effects
 				(font
@@ -5352,7 +5352,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 101.6 52.07 0)
 			(effects
 				(font
@@ -5510,7 +5510,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 123.19 106.68 0)
 			(effects
 				(font
@@ -5580,7 +5580,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 114.3 106.68 0)
 			(effects
 				(font

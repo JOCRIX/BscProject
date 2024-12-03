@@ -4233,6 +4233,16 @@
 		)
 		(uuid b567c111-6ad0-44d4-85d3-aadd88142452)
 	)
+	(text "LEDs are L424IDT"
+		(exclude_from_sim no)
+		(at 120.904 51.816 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "12914bb5-3aa8-4900-9710-84588d44810a")
+	)
 	(text "ANALOG/MEAN WELL GROUND LINK"
 		(exclude_from_sim no)
 		(at 43.18 14.732 0)
@@ -4388,77 +4398,6 @@
 		(uuid "f7a0d064-47d6-4da4-a993-e6de68b9ac2f")
 	)
 	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 86.36 166.37 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "00e6b84e-4b36-4774-bcb5-1e75cf4eafae")
-		(property "Reference" "C160"
-			(at 83.82 165.646 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "220uF"
-			(at 83.82 168.186 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 86.36 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 86.36 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 86.36 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b36846bd-7b86-4f78-9652-6b8ef20887a6")
-		)
-		(pin "2"
-			(uuid "5124bcf9-5f3b-4b19-82cf-cd72877690b4")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "C160")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_Small")
 		(at 109.22 39.37 0)
 		(unit 1)
@@ -4486,7 +4425,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 109.22 39.37 0)
 			(effects
 				(font
@@ -4557,7 +4496,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 95.25 68.58 0)
 			(effects
 				(font
@@ -4758,7 +4697,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 118.11 125.73 0)
 			(effects
 				(font
@@ -4827,7 +4766,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 58.42 39.37 0)
 			(effects
 				(font
@@ -4896,7 +4835,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 62.23 99.06 0)
 			(effects
 				(font
@@ -4966,7 +4905,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop"
 			(at 66.04 160.02 90)
 			(effects
 				(font
@@ -5034,7 +4973,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "JRIX Inductor THT Footprints:INDRD1000W100D1800H2550 - AIUR-15-102K"
 			(at 195.58 25.4 0)
 			(effects
 				(font
@@ -5105,7 +5044,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 95.25 99.06 0)
 			(effects
 				(font
@@ -5307,7 +5246,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 175.26 30.48 0)
 			(effects
 				(font
@@ -5443,7 +5382,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 167.64 115.57 0)
 			(effects
 				(font
@@ -5514,7 +5453,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 95.25 135.89 0)
 			(effects
 				(font
@@ -5650,7 +5589,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 175.26 38.1 0)
 			(effects
 				(font
@@ -5792,7 +5731,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop"
 			(at 58.42 46.99 90)
 			(effects
 				(font
@@ -5862,7 +5801,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop"
 			(at 35.56 143.51 90)
 			(effects
 				(font
@@ -5905,6 +5844,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 144.78 31.75 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "395159c4-5dd9-4d51-ba65-296bfaff7335")
+		(property "Reference" "C147"
+			(at 147.32 30.4862 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 147.32 33.0262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 144.78 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 144.78 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "36a55887-e74a-4506-870d-8f04245bac85")
+		)
+		(pin "1"
+			(uuid "a7f4f9e1-7e75-478d-85f2-ab15bb130c00")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "C147")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 35.56 135.89 0)
 		(unit 1)
@@ -5931,7 +5940,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 35.56 135.89 0)
 			(effects
 				(font
@@ -6067,7 +6076,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 187.96 30.48 0)
 			(effects
 				(font
@@ -6273,7 +6282,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "JRIX Resistor SMD:Resistor SMD - 2818"
 			(at 44.704 20.574 90)
 			(effects
 				(font
@@ -6341,7 +6350,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
 			(at 85.09 88.9 0)
 			(effects
 				(font
@@ -6388,77 +6397,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 148.59 115.57 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "50ad5315-168e-4ad1-9197-e9e255c69c0c")
-		(property "Reference" "C155"
-			(at 146.05 114.846 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "220uF"
-			(at 146.05 117.386 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 148.59 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 148.59 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 148.59 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7a25e56f-521c-4bb7-abaa-f2f7f87a9b6e")
-		)
-		(pin "2"
-			(uuid "d516aca7-294e-47b8-b456-5a5b0f2e9c93")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "C155")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED_Small")
 		(at 62.23 76.2 90)
 		(unit 1)
@@ -6486,7 +6424,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop"
 			(at 62.23 76.2 90)
 			(effects
 				(font
@@ -6555,7 +6493,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 156.21 115.57 0)
 			(effects
 				(font
@@ -6691,7 +6629,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 173.99 123.19 0)
 			(effects
 				(font
@@ -6728,77 +6666,6 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "R33")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 74.93 135.89 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6c9bc19f-770d-4a53-a359-ecd1e332d597")
-		(property "Reference" "C158"
-			(at 72.39 135.166 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "220uF"
-			(at 72.39 137.706 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 74.93 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 74.93 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 74.93 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "a5e75afa-20b8-4b5b-9da1-b86a3a8fd039")
-		)
-		(pin "2"
-			(uuid "0df0af79-c120-4860-81d1-ab0cf7e052cf")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "C158")
 					(unit 1)
 				)
 			)
@@ -6904,7 +6771,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 186.69 115.57 0)
 			(effects
 				(font
@@ -7113,7 +6980,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 121.92 115.57 0)
 			(effects
 				(font
@@ -7248,7 +7115,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 62.23 68.58 0)
 			(effects
 				(font
@@ -7357,6 +7224,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 71.12 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8ba144bf-c248-40f2-b003-2dfa71df965e")
+		(property "Reference" "C154"
+			(at 73.66 99.0662 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 73.66 101.6062 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 71.12 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 71.12 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 71.12 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2fe4678e-c522-4345-8b03-bc2eb9623f67")
+		)
+		(pin "1"
+			(uuid "7887c363-069a-4300-91ca-902f53dbd89e")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "C154")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Polarized_Small")
 		(at 157.48 30.48 0)
 		(unit 1)
@@ -7383,7 +7320,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 157.48 30.48 0)
 			(effects
 				(font
@@ -7492,6 +7429,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 148.59 115.57 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9b537819-ecb6-4711-b38c-a49a6f879e13")
+		(property "Reference" "C155"
+			(at 151.13 114.3062 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 151.13 116.8462 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 148.59 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 148.59 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 148.59 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "887a565a-7933-4926-bc7c-31882bb75ae5")
+		)
+		(pin "1"
+			(uuid "40450b35-0801-4743-8dea-bc07ae6c9571")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "C155")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Polarized_Small")
 		(at 163.83 30.48 0)
 		(unit 1)
@@ -7518,7 +7525,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 163.83 30.48 0)
 			(effects
 				(font
@@ -7653,7 +7660,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 162.56 115.57 0)
 			(effects
 				(font
@@ -7789,7 +7796,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 181.61 30.48 0)
 			(effects
 				(font
@@ -7892,77 +7899,6 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "#PWR022")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 144.78 31.75 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b70b4bd9-9405-4135-999b-01734469bcea")
-		(property "Reference" "C147"
-			(at 147.32 29.9338 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "220uF"
-			(at 147.32 32.4738 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 144.78 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 144.78 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 144.78 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "51749445-e03c-4712-8a78-0a3eeab6e261")
-		)
-		(pin "2"
-			(uuid "e18d2909-a786-4d51-b64f-258fa47d5708")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "C147")
 					(unit 1)
 				)
 			)
@@ -8134,7 +8070,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 180.34 115.57 0)
 			(effects
 				(font
@@ -8243,36 +8179,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 71.12 100.33 0)
-		(mirror y)
+		(lib_id "Device:C_Small")
+		(at 86.36 166.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "c57685f0-5b47-4130-9ce0-f98e24def898")
-		(property "Reference" "C154"
-			(at 73.66 98.5138 0)
+		(uuid "c3037383-1d6e-435a-a6df-e1e7380744cc")
+		(property "Reference" "C160"
+			(at 88.9 165.1062 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Value" "220uF"
-			(at 73.66 101.0538 0)
+		(property "Value" "1uF"
+			(at 88.9 167.6462 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 71.12 100.33 0)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 86.36 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8281,7 +8216,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 71.12 100.33 0)
+			(at 86.36 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8289,25 +8224,95 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 71.12 100.33 0)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 86.36 166.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
-		)
-		(pin "1"
-			(uuid "6c981f77-69dc-4f16-a080-d4406fdb0304")
 		)
 		(pin "2"
-			(uuid "3b724b88-8457-49a4-8f8c-6cde463112cc")
+			(uuid "b680ffec-f141-4af3-8433-bbab5455da4d")
+		)
+		(pin "1"
+			(uuid "5486fd3d-03e0-465e-a0ef-47a8ae5ec7d7")
 		)
 		(instances
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "C154")
+					(reference "C160")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 74.93 135.89 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c688d479-2dcb-4f99-93a3-bbc4aff49eff")
+		(property "Reference" "C158"
+			(at 77.47 134.6262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 77.47 137.1662 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 74.93 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 74.93 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 74.93 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "09f91c6f-2bb6-4a3a-9eca-6fe8f15faf51")
+		)
+		(pin "1"
+			(uuid "acfec1de-9a9e-472d-8f7b-9a4768ee5159")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "C158")
 					(unit 1)
 				)
 			)
@@ -8342,7 +8347,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 105.41 166.37 0)
 			(effects
 				(font
@@ -8412,7 +8417,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 168.91 30.48 0)
 			(effects
 				(font
@@ -8482,7 +8487,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop"
 			(at 118.11 133.35 90)
 			(effects
 				(font
@@ -8619,7 +8624,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 114.3 31.75 0)
 			(effects
 				(font
@@ -8689,7 +8694,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop"
 			(at 62.23 106.68 90)
 			(effects
 				(font
@@ -8758,7 +8763,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 66.04 152.4 0)
 			(effects
 				(font
@@ -8825,7 +8830,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "JRIX Inductor THT Footprints:INDRD1000W100D1800H2550 - AIUR-15-102K"
 			(at 194.31 110.49 0)
 			(effects
 				(font
@@ -8895,7 +8900,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
 			(at 173.99 115.57 0)
 			(effects
 				(font
@@ -8938,77 +8943,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 71.12 69.85 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d9e1b9e9-8721-4496-864c-bdca273b3a4c")
-		(property "Reference" "C152"
-			(at 73.66 68.0338 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "220uF"
-			(at 73.66 70.5738 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 71.12 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 71.12 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 71.12 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "deae91fa-f9dd-4078-adbc-60a45ef00617")
-		)
-		(pin "2"
-			(uuid "7ca1426a-14ff-4e9c-a09d-df19b81fa53b")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "C152")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED_Small")
 		(at 109.22 45.72 90)
 		(unit 1)
@@ -9036,7 +8970,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop"
 			(at 109.22 45.72 90)
 			(effects
 				(font
@@ -9146,6 +9080,146 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
+		(at 71.12 69.85 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ec9cf591-daa6-4caf-a83d-4957c6c3198a")
+		(property "Reference" "C152"
+			(at 73.66 68.5862 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 73.66 71.1262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 71.12 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 71.12 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 71.12 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c0416c01-1823-4dee-8fe5-10c1117fc541")
+		)
+		(pin "1"
+			(uuid "1df1aeee-3263-43b6-88c7-a2967c8b7e53")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "C152")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 71.12 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ed9f40ae-9bf6-4267-9089-882c4c9b8255")
+		(property "Reference" "C150"
+			(at 73.66 39.3762 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 73.66 41.9162 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 71.12 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 71.12 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 71.12 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c42a0b8a-963a-4df0-b78a-2a8aa169e09d")
+		)
+		(pin "1"
+			(uuid "76101a3c-d6dc-4bac-a6d4-9eb86bd46795")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "C150")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
 		(at 95.25 39.37 0)
 		(mirror y)
 		(unit 1)
@@ -9173,7 +9247,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 95.25 39.37 0)
 			(effects
 				(font
@@ -9210,77 +9284,6 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "C149")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 71.12 40.64 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fb09f20d-2d48-485d-888f-d5a421560adf")
-		(property "Reference" "C150"
-			(at 73.66 38.8238 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "220uF"
-			(at 73.66 41.3638 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 71.12 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 71.12 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 71.12 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7476b630-671b-4611-9989-8a8caaba75dc")
-		)
-		(pin "2"
-			(uuid "8f01139a-6df1-4d1a-a0da-7ca6c1f506d7")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "C150")
 					(unit 1)
 				)
 			)
