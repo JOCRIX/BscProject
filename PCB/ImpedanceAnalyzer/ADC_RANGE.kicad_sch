@@ -7367,7 +7367,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "b152e842-d6b4-4739-aa02-0174c751351f")
 		(property "Reference" "#PWR087"
 			(at 167.64 91.44 0)
@@ -7379,7 +7378,7 @@
 			)
 		)
 		(property "Value" "GNDA"
-			(at 167.64 90.17 0)
+			(at 170.434 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)

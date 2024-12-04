@@ -5030,16 +5030,6 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 87.63) (xy 52.07 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "37889e27-ba92-4011-9094-b6b0a836b082")
-	)
-	(wire
-		(pts
 			(xy 74.93 80.01) (xy 100.33 80.01)
 		)
 		(stroke
@@ -5137,16 +5127,6 @@
 			(type default)
 		)
 		(uuid "3bf798c4-5538-42da-ae66-259d0b84f624")
-	)
-	(wire
-		(pts
-			(xy 48.26 82.55) (xy 52.07 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3c1ccf8b-ddca-4ffe-857d-29e43567f0b9")
 	)
 	(wire
 		(pts
@@ -5420,16 +5400,6 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 85.09) (xy 52.07 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6345a432-8e15-41a3-a899-04a7b96e1ca0")
-	)
-	(wire
-		(pts
 			(xy 29.21 35.56) (xy 44.45 35.56)
 		)
 		(stroke
@@ -5590,7 +5560,17 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 26.67) (xy 101.6 26.67)
+			(xy 48.26 82.55) (xy 52.07 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71c71130-942a-4c92-a2b2-5a68134676c2")
+	)
+	(wire
+		(pts
+			(xy 92.71 26.67) (xy 105.41 26.67)
 		)
 		(stroke
 			(width 0)
@@ -5620,7 +5600,7 @@
 	)
 	(wire
 		(pts
-			(xy 101.6 26.67) (xy 101.6 27.94)
+			(xy 105.41 26.67) (xy 105.41 27.94)
 		)
 		(stroke
 			(width 0)
@@ -6067,6 +6047,16 @@
 			(type default)
 		)
 		(uuid "b85988c4-a6c8-43d0-8d56-1b209713e5b4")
+	)
+	(wire
+		(pts
+			(xy 48.26 85.09) (xy 52.07 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b89b0221-2a0f-4b80-8751-1e44de6f05f8")
 	)
 	(wire
 		(pts
@@ -6620,6 +6610,16 @@
 	)
 	(wire
 		(pts
+			(xy 48.26 87.63) (xy 52.07 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fee9016c-ced1-40bc-aaab-a5943af750e6")
+	)
+	(wire
+		(pts
 			(xy 233.68 96.52) (xy 233.68 95.25)
 		)
 		(stroke
@@ -6822,17 +6822,6 @@
 		)
 		(uuid "3b7657fe-1e16-4b2e-9050-251d5b9d2134")
 	)
-	(label "+5V"
-		(at 78.74 187.96 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "41ba24bd-53e1-41b9-888e-947234cf3b9e")
-	)
 	(label "DB15"
 		(at 215.9 199.39 180)
 		(fields_autoplaced yes)
@@ -6898,6 +6887,17 @@
 			(justify left bottom)
 		)
 		(uuid "64ba7df8-b4f2-4777-b54b-1550a82058ac")
+	)
+	(label "+3V3"
+		(at 78.74 187.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "70ac910a-59b1-40a8-bed5-0a20763b4b4f")
 	)
 	(label "DB3"
 		(at 168.91 224.79 0)
@@ -7423,7 +7423,7 @@
 	)
 	(hierarchical_label "ADCCNV"
 		(shape output)
-		(at 48.26 87.63 180)
+		(at 48.26 82.55 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7615,7 +7615,7 @@
 	)
 	(hierarchical_label "ADC2MISO"
 		(shape input)
-		(at 48.26 85.09 180)
+		(at 48.26 87.63 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7675,7 +7675,7 @@
 	)
 	(hierarchical_label "ADC2SCK"
 		(shape output)
-		(at 48.26 82.55 180)
+		(at 48.26 85.09 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7747,7 +7747,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDD")
-		(at 101.6 27.94 0)
+		(at 105.41 27.94 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7756,7 +7756,7 @@
 		(fields_autoplaced yes)
 		(uuid "004531cd-99e5-49b2-9f0d-f00147037e4b")
 		(property "Reference" "#PWR050"
-			(at 101.6 34.29 0)
+			(at 105.41 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7765,7 +7765,7 @@
 			)
 		)
 		(property "Value" "GNDD"
-			(at 101.6 31.75 0)
+			(at 105.41 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7773,7 +7773,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 101.6 27.94 0)
+			(at 105.41 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7782,7 +7782,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 101.6 27.94 0)
+			(at 105.41 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7791,7 +7791,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 101.6 27.94 0)
+			(at 105.41 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8980,10 +8980,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "47ed4da3-9eb7-4fe2-ab2f-fd9f02549f02")
 		(property "Reference" "C142"
-			(at 41.91 31.7438 0)
+			(at 51.562 30.988 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8992,7 +8991,7 @@
 			)
 		)
 		(property "Value" "100pF"
-			(at 41.91 29.2038 0)
+			(at 51.562 28.448 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11773,10 +11772,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "b755e65d-cd05-469d-80a4-7ac7b75977c1")
 		(property "Reference" "C141"
-			(at 52.07 31.7438 0)
+			(at 61.722 30.988 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11785,7 +11783,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 52.07 29.2038 0)
+			(at 61.722 28.448 0)
 			(effects
 				(font
 					(size 1.27 1.27)

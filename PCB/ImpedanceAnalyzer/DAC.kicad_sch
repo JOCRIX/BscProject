@@ -4832,6 +4832,16 @@
 	)
 	(wire
 		(pts
+			(xy 359.41 139.7) (xy 367.03 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f37b81e-9693-4e6a-b3d0-b65ef860876c")
+	)
+	(wire
+		(pts
 			(xy 350.52 40.64) (xy 351.79 40.64)
 		)
 		(stroke
@@ -5842,6 +5852,16 @@
 	)
 	(wire
 		(pts
+			(xy 359.41 142.24) (xy 367.03 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d84cb13a-913f-443e-b4fa-ab11706a76fa")
+	)
+	(wire
+		(pts
 			(xy 257.81 93.98) (xy 259.08 93.98)
 		)
 		(stroke
@@ -6271,6 +6291,17 @@
 		)
 		(uuid "4c60a767-d76b-4074-9dc0-32714c4dab09")
 	)
+	(label "-5V"
+		(at 359.41 142.24 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "77f814c3-e3a5-48d7-bca8-4f68efc8a0ea")
+	)
 	(label "VOUT+"
 		(at 143.51 146.05 0)
 		(fields_autoplaced yes)
@@ -6336,6 +6367,17 @@
 			(justify left bottom)
 		)
 		(uuid "b87c840f-e002-4919-abe4-8dec30493610")
+	)
+	(label "+5V"
+		(at 359.41 139.7 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d8c1f467-2071-4053-b31f-d547ced5b23d")
 	)
 	(label "VOUT-"
 		(at 144.78 152.4 0)
@@ -6575,6 +6617,30 @@
 			(justify right)
 		)
 		(uuid "bc6ba0f6-bd3f-4254-ba1e-e160a5cced6c")
+	)
+	(hierarchical_label "-5V_REG"
+		(shape input)
+		(at 367.03 142.24 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c143aa1e-6653-41c6-a6c0-5bff4936b849")
+	)
+	(hierarchical_label "+5V_REG"
+		(shape input)
+		(at 367.03 139.7 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d646ba84-745a-40ef-9675-9d75cb5cb3da")
 	)
 	(hierarchical_label "GNDA"
 		(shape bidirectional)
