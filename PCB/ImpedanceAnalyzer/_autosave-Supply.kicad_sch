@@ -6563,6 +6563,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 228.6 104.14 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2f6feb1d-556c-460c-a314-8a7cfac20c53")
+		(property "Reference" "ESR1"
+			(at 231.14 102.8699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1R1"
+			(at 231.14 105.4099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+			(at 228.6 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 228.6 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 228.6 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "690c41fd-e9cd-430b-8fc8-672e0d4b0522")
+		)
+		(pin "1"
+			(uuid "8927d2d1-cbeb-4d95-8c0e-8e2d8ab27faa")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "ESR1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED_Small")
 		(at 35.56 160.02 270)
 		(unit 1)
@@ -6899,6 +6969,75 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "#PWR067")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized_Small")
+		(at 228.6 96.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "488a863c-5900-4001-a843-4445f47244cb")
+		(property "Reference" "C213"
+			(at 230.378 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2m55"
+			(at 230.378 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
+			(at 228.6 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 228.6 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Polarized capacitor, small symbol"
+			(at 228.6 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "28c4d00c-8d9c-4941-9084-5fb51b4522da")
+		)
+		(pin "2"
+			(uuid "4fc35e1a-0503-4de8-975d-9e5183dff169")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
+					(reference "C213")
 					(unit 1)
 				)
 			)
@@ -8141,76 +8280,6 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "#PWR063")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 228.6 104.14 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7f78ba35-93f8-47d9-ac3e-700357c1a44e")
-		(property "Reference" "R35"
-			(at 231.14 102.8699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-		(property "Value" "RD"
-			(at 231.14 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 228.6 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 228.6 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 228.6 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b65701d4-e923-4cfd-bfe0-3a49ff3b1abd")
-		)
-		(pin "1"
-			(uuid "db722b97-e290-479a-8040-af6d86ae5956")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "R35")
 					(unit 1)
 				)
 			)
@@ -10406,76 +10475,6 @@
 			(project ""
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 228.6 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e7d1e330-43f4-4e0d-853e-e7d82254653a")
-		(property "Reference" "CX"
-			(at 230.886 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "CX"
-			(at 230.886 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6761fcdc-0196-4a8d-ac9b-643e587605da")
-		)
-		(pin "2"
-			(uuid "0da5d12d-4a14-43b4-a004-2012b5c7c30f")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "CX")
 					(unit 1)
 				)
 			)
