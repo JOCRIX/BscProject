@@ -5455,6 +5455,12 @@
 		(uuid "2f08688a-ce6a-4541-8c18-57e4f0852c65")
 	)
 	(junction
+		(at 308.61 22.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "338c30e1-a84d-4013-be99-5404e50aaa02")
+	)
+	(junction
 		(at 123.19 252.73)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6524,7 +6530,7 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 21.59) (xy 308.61 24.13)
+			(xy 308.61 21.59) (xy 308.61 22.86)
 		)
 		(stroke
 			(width 0)
@@ -7174,6 +7180,16 @@
 	)
 	(wire
 		(pts
+			(xy 295.91 22.86) (xy 295.91 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89bc163c-7a9d-4269-986c-ed489b64bbd5")
+	)
+	(wire
+		(pts
 			(xy 137.16 177.8) (xy 68.58 177.8)
 		)
 		(stroke
@@ -7181,6 +7197,16 @@
 			(type default)
 		)
 		(uuid "8c02e5c1-dad0-42a6-88db-14c42ed57f2a")
+	)
+	(wire
+		(pts
+			(xy 304.8 22.86) (xy 308.61 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c531d54-a25d-4339-931f-214d88fe6c6c")
 	)
 	(wire
 		(pts
@@ -7514,6 +7540,16 @@
 	)
 	(wire
 		(pts
+			(xy 299.72 22.86) (xy 295.91 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a8e89e73-0194-4b6a-97a7-f3077bd57aec")
+	)
+	(wire
+		(pts
 			(xy 168.91 157.48) (xy 168.91 160.02)
 		)
 		(stroke
@@ -7571,6 +7607,16 @@
 			(type default)
 		)
 		(uuid "ab482fbe-11e2-4a23-b4a0-c1612b8e35ab")
+	)
+	(wire
+		(pts
+			(xy 308.61 22.86) (xy 308.61 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ab8fbd65-5bcd-457c-8f83-c748057f341e")
 	)
 	(wire
 		(pts
@@ -9495,6 +9541,71 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/83ca792e-0114-4481-9083-ddb809f73b86"
 					(reference "#PWR0117")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDA")
+		(at 295.91 25.4 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1a9b0175-bd34-46cc-8e42-f088ac3cf937")
+		(property "Reference" "#PWR0134"
+			(at 295.91 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GNDA"
+			(at 298.958 28.702 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 295.91 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 295.91 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+			(at 295.91 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4129c067-d853-4b4e-b934-aed33f540c3d")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/83ca792e-0114-4481-9083-ddb809f73b86"
+					(reference "#PWR0134")
 					(unit 1)
 				)
 			)
@@ -11608,6 +11719,73 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/83ca792e-0114-4481-9083-ddb809f73b86"
 					(reference "R112")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 302.26 22.86 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "67a4ed85-1483-4971-838e-4b9c9872f012")
+		(property "Reference" "C59"
+			(at 300.99 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(at 303.53 17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 302.26 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 302.26 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 302.26 22.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "6fe63636-9466-460c-982e-de0f535be6de")
+		)
+		(pin "1"
+			(uuid "559eb430-0e62-4bd4-b546-d9606083cbd9")
+		)
+		(instances
+			(project "ImpedanceAnalyzer"
+				(path "/08568624-f051-402a-adf3-1b03c2a769ee/83ca792e-0114-4481-9083-ddb809f73b86"
+					(reference "C59")
 					(unit 1)
 				)
 			)

@@ -7241,18 +7241,6 @@
 		)
 		(uuid "03755fc9-7b36-4121-97b4-e8da66a6e59e")
 	)
-	(hierarchical_label "ADC1SCK"
-		(shape output)
-		(at 48.26 77.47 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "044d3720-f8ad-4b78-8852-c3c2846fa904")
-	)
 	(hierarchical_label "DACB2"
 		(shape output)
 		(at 49.53 105.41 180)
@@ -7277,6 +7265,42 @@
 		)
 		(uuid "2029bffe-9f57-40c6-b882-4616d6a6e6fe")
 	)
+	(hierarchical_label "ADC2MISO"
+		(shape input)
+		(at 48.26 80.01 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "21d7307f-c43c-4d16-b05b-7589a182aef5")
+	)
+	(hierarchical_label "DACB12"
+		(shape output)
+		(at 77.47 125.73 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "262ab76c-cc6c-41d1-9100-a2ecf6030665")
+	)
+	(hierarchical_label "ADC2SCK"
+		(shape output)
+		(at 48.26 77.47 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2f05f608-2b50-4d60-9e53-d7373a6f8de5")
+	)
 	(hierarchical_label "DACB11"
 		(shape output)
 		(at 49.53 133.35 180)
@@ -7300,18 +7324,6 @@
 			(justify right)
 		)
 		(uuid "37244868-08ff-4019-b14a-9bdc7dbe8bef")
-	)
-	(hierarchical_label "DACB15"
-		(shape output)
-		(at 77.47 125.73 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "413ac95f-2681-4fb8-87ed-f6b9ce58bf2f")
 	)
 	(hierarchical_label "DAC_RANGE_A1"
 		(shape output)
@@ -7469,6 +7481,18 @@
 		)
 		(uuid "8982100d-9589-4d1f-9a13-bf73ad4bff19")
 	)
+	(hierarchical_label "ADC1MISO"
+		(shape input)
+		(at 48.26 87.63 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "930d673a-0370-4bca-b16b-0e76b347b49e")
+	)
 	(hierarchical_label "DACCLK"
 		(shape output)
 		(at 49.53 97.79 180)
@@ -7529,7 +7553,7 @@
 		)
 		(uuid "b50ade7f-37fb-42f3-9cb1-e63950831a15")
 	)
-	(hierarchical_label "DACB14"
+	(hierarchical_label "DACB13"
 		(shape output)
 		(at 77.47 128.27 0)
 		(fields_autoplaced yes)
@@ -7539,7 +7563,7 @@
 			)
 			(justify left)
 		)
-		(uuid "beb5041a-58d9-4f10-98b7-c4ec9a1755bf")
+		(uuid "bc76b52a-083f-4c63-b326-df940030e5e0")
 	)
 	(hierarchical_label "DACB6"
 		(shape output)
@@ -7589,18 +7613,6 @@
 		)
 		(uuid "c24d7fd7-9600-492c-a99c-0c10a638bc22")
 	)
-	(hierarchical_label "ADC1MISO"
-		(shape input)
-		(at 48.26 80.01 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "c7f2aed2-5bc8-4c6b-940d-39577ef8b5d1")
-	)
 	(hierarchical_label "RANGEB0"
 		(shape output)
 		(at 50.8 180.34 180)
@@ -7613,18 +7625,6 @@
 		)
 		(uuid "cc71cdcb-cd2d-4de4-a435-d85dbe0ac9cd")
 	)
-	(hierarchical_label "ADC2MISO"
-		(shape input)
-		(at 48.26 87.63 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d16731f8-5291-4c70-8a26-6a301e6f6bdd")
-	)
 	(hierarchical_label "DACB8"
 		(shape output)
 		(at 49.53 125.73 180)
@@ -7636,6 +7636,18 @@
 			(justify right)
 		)
 		(uuid "d182149a-094e-4d5d-9d8a-76fa48d3c8d1")
+	)
+	(hierarchical_label "DACB14"
+		(shape output)
+		(at 77.47 133.35 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d7fa3ae7-5a6d-474e-8abd-5e9004e6d9f5")
 	)
 	(hierarchical_label "DACB4"
 		(shape output)
@@ -7673,30 +7685,6 @@
 		)
 		(uuid "e3517446-71c7-438e-8a69-6ea51fd6dd38")
 	)
-	(hierarchical_label "ADC2SCK"
-		(shape output)
-		(at 48.26 85.09 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "e6eaf726-9293-43a0-872c-9c35dd38a6e4")
-	)
-	(hierarchical_label "DACB13"
-		(shape output)
-		(at 77.47 130.81 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e8b9a36a-a14a-45ae-985f-0fda7c2cb8fb")
-	)
 	(hierarchical_label "+3V3_REG"
 		(shape input)
 		(at 29.21 35.56 180)
@@ -7709,6 +7697,30 @@
 		)
 		(uuid "eae79b5d-beda-464d-b1d5-328e73fb431f")
 	)
+	(hierarchical_label "DACB15"
+		(shape output)
+		(at 77.47 130.81 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ee54a981-6d19-4de7-8ebc-578131f9bac4")
+	)
+	(hierarchical_label "ADC1SCK"
+		(shape output)
+		(at 48.26 85.09 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f4928893-4478-449f-bdba-7402b727a951")
+	)
 	(hierarchical_label "RANGEB4"
 		(shape output)
 		(at 50.8 190.5 180)
@@ -7720,18 +7732,6 @@
 			(justify right)
 		)
 		(uuid "f89346ea-d4c1-40d4-aa78-12bfb60a0d2f")
-	)
-	(hierarchical_label "DACB12"
-		(shape output)
-		(at 77.47 133.35 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "fbf141f9-9d8f-4c64-a771-ca7519598bf3")
 	)
 	(hierarchical_label "V_PGA_A1"
 		(shape output)

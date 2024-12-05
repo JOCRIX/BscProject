@@ -2444,6 +2444,12 @@
 		(uuid "83b85b67-38f1-49de-b71f-0dcf34994230")
 	)
 	(junction
+		(at 48.26 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8c10694c-34d4-4096-87c5-87f9e40648fe")
+	)
+	(junction
 		(at 62.23 64.77)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2502,6 +2508,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c4d20305-7ddf-498a-bfe7-94c3d89f34cc")
+	)
+	(junction
+		(at 115.57 104.14)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d6cc5cad-af48-48dd-b0cd-a6ae84c1d711")
 	)
 	(junction
 		(at 71.12 64.77)
@@ -3113,7 +3125,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 35.56) (xy 48.26 160.02)
+			(xy 48.26 35.56) (xy 48.26 93.98)
 		)
 		(stroke
 			(width 0)
@@ -4023,6 +4035,16 @@
 	)
 	(wire
 		(pts
+			(xy 48.26 93.98) (xy 48.26 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "beb7b533-42b1-4196-a5d4-f9e9278444ad")
+	)
+	(wire
+		(pts
 			(xy 66.04 179.07) (xy 66.04 180.34)
 		)
 		(stroke
@@ -4233,6 +4255,16 @@
 	)
 	(wire
 		(pts
+			(xy 115.57 104.14) (xy 115.57 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d42a428c-d644-407f-864d-5bd9676d9594")
+	)
+	(wire
+		(pts
 			(xy 66.04 171.45) (xy 66.04 173.99)
 		)
 		(stroke
@@ -4280,6 +4312,16 @@
 			(type default)
 		)
 		(uuid "df4b3d66-7ab2-419b-b1b0-ce7008392ba4")
+	)
+	(wire
+		(pts
+			(xy 115.57 93.98) (xy 48.26 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dfa8b3c6-30fa-4517-8cd0-b1f1cee56549")
 	)
 	(wire
 		(pts
@@ -5903,7 +5945,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 217.17 130.81 0)
+		(at 217.17 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5911,7 +5953,7 @@
 		(dnp no)
 		(uuid "28289e09-4237-4066-aab4-5aaa7616beb2")
 		(property "Reference" "C32"
-			(at 218.948 129.54 0)
+			(at 215.392 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5920,7 +5962,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 218.948 132.08 0)
+			(at 215.392 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7219,7 +7261,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 198.12 130.81 0)
+		(at 198.12 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7227,7 +7269,7 @@
 		(dnp no)
 		(uuid "5f4fb815-149b-463d-899e-37cd8d53f302")
 		(property "Reference" "C16"
-			(at 199.898 129.54 0)
+			(at 196.342 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7236,7 +7278,7 @@
 			)
 		)
 		(property "Value" "22uF"
-			(at 199.898 132.08 0)
+			(at 196.342 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7562,7 +7604,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 250.19 130.81 0)
+		(at 250.19 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7571,21 +7613,21 @@
 		(fields_autoplaced yes)
 		(uuid "71802c18-3ef2-4800-ac26-55766b4ff312")
 		(property "Reference" "C47"
-			(at 252.73 128.9938 0)
+			(at 252.73 130.086 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Value" "510uF"
-			(at 252.73 131.5338 0)
+			(at 252.73 132.626 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
@@ -8319,7 +8361,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 186.69 130.81 0)
+		(at 186.69 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8327,7 +8369,7 @@
 		(dnp no)
 		(uuid "9b537819-ecb6-4711-b38c-a49a6f879e13")
 		(property "Reference" "C155"
-			(at 189.23 129.5462 0)
+			(at 184.15 132.0738 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8336,7 +8378,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 188.976 132.08 0)
+			(at 184.404 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8523,7 +8565,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 207.01 130.81 0)
+		(at 207.01 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8531,7 +8573,7 @@
 		(dnp no)
 		(uuid "a737a62f-9552-4fef-8364-7a5c7797e14a")
 		(property "Reference" "C20"
-			(at 208.788 129.794 0)
+			(at 205.232 131.826 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8540,7 +8582,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 208.788 132.334 0)
+			(at 205.232 129.286 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8931,7 +8973,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 238.76 130.81 0)
+		(at 238.76 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8939,7 +8981,7 @@
 		(dnp no)
 		(uuid "c23ee314-2508-49ab-8fa8-36bc1c1f2cd7")
 		(property "Reference" "C45"
-			(at 241.3 128.9938 0)
+			(at 236.22 132.6262 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8948,7 +8990,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 241.3 131.5338 0)
+			(at 236.22 130.0862 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9759,7 +9801,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 227.33 130.81 0)
+		(at 227.33 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9767,7 +9809,7 @@
 		(dnp no)
 		(uuid "d7551dea-16e0-40f2-95bf-157f675b939c")
 		(property "Reference" "C43"
-			(at 229.616 129.54 0)
+			(at 225.044 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9776,7 +9818,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 229.616 132.08 0)
+			(at 225.044 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
