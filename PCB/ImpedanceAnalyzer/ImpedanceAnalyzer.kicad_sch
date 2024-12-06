@@ -928,6 +928,12 @@
 		(uuid "a4d19998-ff99-40e4-b862-0317dc83b312")
 	)
 	(junction
+		(at 187.96 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "acf50812-5286-48a5-9a0c-cf5b99f6a72f")
+	)
+	(junction
 		(at 124.46 62.23)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -986,12 +992,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f0c9addc-e31c-47b4-a7a1-f2e5421f5b3f")
-	)
-	(junction
-		(at 251.46 78.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fe344f10-f74f-4a3b-b9ec-362cbec5edea")
 	)
 	(bus_entry
 		(at 179.07 118.11)
@@ -1585,6 +1585,16 @@
 	)
 	(wire
 		(pts
+			(xy 187.96 99.06) (xy 266.7 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f046134-c135-4383-9543-58c989df5872")
+	)
+	(wire
+		(pts
 			(xy 134.62 64.77) (xy 134.62 22.86)
 		)
 		(stroke
@@ -1812,16 +1822,6 @@
 			(type default)
 		)
 		(uuid "3cea64c1-af90-4f23-a762-49bfb96002dc")
-	)
-	(wire
-		(pts
-			(xy 251.46 78.74) (xy 251.46 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3d63aa81-6346-4b19-bd26-c1f5f2cd2e21")
 	)
 	(wire
 		(pts
@@ -2182,16 +2182,6 @@
 			(type default)
 		)
 		(uuid "57cf21c5-c228-4343-a790-11cb9ad8d6be")
-	)
-	(wire
-		(pts
-			(xy 266.7 99.06) (xy 251.46 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "59371992-33e3-42fd-8c0a-9b9cc2e9e436")
 	)
 	(wire
 		(pts
@@ -2862,6 +2852,16 @@
 			(type default)
 		)
 		(uuid "9e76e352-a3a0-4f53-9079-d410104f1ba0")
+	)
+	(wire
+		(pts
+			(xy 187.96 99.06) (xy 187.96 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9fa14f94-8659-439b-8b39-c9aab8a23023")
 	)
 	(wire
 		(pts
@@ -3565,7 +3565,7 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 132.08) (xy 187.96 74.93)
+			(xy 187.96 132.08) (xy 187.96 99.06)
 		)
 		(stroke
 			(width 0)
@@ -4149,13 +4149,13 @@
 		(uuid "a5d9d1e0-30b9-44cd-9012-09965334b767")
 	)
 	(label "RX"
-		(at 262.8907 101.6 0)
+		(at 262.8907 101.6 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "adc6e387-c713-4abc-b8ca-b5cbcb1f570f")
 	)
