@@ -2444,10 +2444,10 @@
 		(uuid "83b85b67-38f1-49de-b71f-0dcf34994230")
 	)
 	(junction
-		(at 228.6 91.44)
+		(at 115.57 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "8c5c55a0-71cd-4c19-8e8e-601cdaf5b4f9")
+		(uuid "8f62c690-273e-4c9e-b10f-fbbafc59141f")
 	)
 	(junction
 		(at 62.23 64.77)
@@ -2460,6 +2460,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "97a7e5ad-f669-4818-95b9-2305791ed746")
+	)
+	(junction
+		(at 48.26 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "99cab231-b328-4243-94a4-8dc5e3cb21e6")
 	)
 	(junction
 		(at 85.09 44.45)
@@ -2686,16 +2692,6 @@
 			(type default)
 		)
 		(uuid "0e26f235-50a4-4548-b28c-433f58124b4e")
-	)
-	(wire
-		(pts
-			(xy 228.6 91.44) (xy 237.49 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "100135c3-5bad-49a5-ae4d-003cdfbdaa68")
 	)
 	(wire
 		(pts
@@ -3019,16 +3015,6 @@
 	)
 	(wire
 		(pts
-			(xy 242.57 91.44) (xy 247.65 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "343e2b60-b4c8-449e-884d-7263a19d8613")
-	)
-	(wire
-		(pts
 			(xy 171.45 33.02) (xy 171.45 34.29)
 		)
 		(stroke
@@ -3109,16 +3095,6 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 91.44) (xy 217.17 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "400ef484-f99b-4cd5-ac3f-501ac0c55f1e")
-	)
-	(wire
-		(pts
 			(xy 186.69 133.35) (xy 186.69 135.89)
 		)
 		(stroke
@@ -3149,7 +3125,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 35.56) (xy 48.26 160.02)
+			(xy 48.26 35.56) (xy 48.26 95.25)
 		)
 		(stroke
 			(width 0)
@@ -3319,6 +3295,16 @@
 	)
 	(wire
 		(pts
+			(xy 115.57 104.14) (xy 115.57 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53e2450f-9423-4c37-bc9e-a324018e3f97")
+	)
+	(wire
+		(pts
 			(xy 38.1 21.59) (xy 40.64 21.59)
 		)
 		(stroke
@@ -3406,16 +3392,6 @@
 			(type default)
 		)
 		(uuid "5d2f0a5f-e413-4e06-a63e-167483feb2f3")
-	)
-	(wire
-		(pts
-			(xy 217.17 91.44) (xy 228.6 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5d52117d-61f4-4587-a8b3-0db66114514a")
 	)
 	(wire
 		(pts
@@ -3639,6 +3615,16 @@
 	)
 	(wire
 		(pts
+			(xy 48.26 95.25) (xy 115.57 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e029476-ec3a-43d6-b59a-5f0b8b064810")
+	)
+	(wire
+		(pts
 			(xy 238.76 134.62) (xy 250.19 134.62)
 		)
 		(stroke
@@ -3666,16 +3652,6 @@
 			(type default)
 		)
 		(uuid "815f7806-e0ec-406c-a227-4cba42257513")
-	)
-	(wire
-		(pts
-			(xy 217.17 99.06) (xy 217.17 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "81cef75c-7641-405e-b96d-8e51071c0478")
 	)
 	(wire
 		(pts
@@ -3716,16 +3692,6 @@
 			(type default)
 		)
 		(uuid "856d606c-05be-4ed2-85bc-470f9c38e57d")
-	)
-	(wire
-		(pts
-			(xy 228.6 99.06) (xy 228.6 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "86e1e85a-5830-40cc-8f7a-dc19133aa9c6")
 	)
 	(wire
 		(pts
@@ -3969,16 +3935,6 @@
 	)
 	(wire
 		(pts
-			(xy 228.6 91.44) (xy 228.6 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aa58cd01-1b08-48d9-89b2-f273c87d7a5d")
-	)
-	(wire
-		(pts
 			(xy 180.34 25.4) (xy 180.34 27.94)
 		)
 		(stroke
@@ -4036,16 +3992,6 @@
 			(type default)
 		)
 		(uuid "afa43e53-59fe-458b-8fdf-7648ea2bed7e")
-	)
-	(wire
-		(pts
-			(xy 228.6 106.68) (xy 228.6 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b27cdbf5-462a-4dd8-a903-df3f84048c42")
 	)
 	(wire
 		(pts
@@ -4519,6 +4465,16 @@
 	)
 	(wire
 		(pts
+			(xy 48.26 95.25) (xy 48.26 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f0fc5fe2-068d-4751-b1f1-522d81699c67")
+	)
+	(wire
+		(pts
 			(xy 180.34 33.02) (xy 180.34 34.29)
 		)
 		(stroke
@@ -4546,16 +4502,6 @@
 			(type default)
 		)
 		(uuid "f4124e23-6dea-4734-83e4-6dcc6b4acd29")
-	)
-	(wire
-		(pts
-			(xy 252.73 91.44) (xy 256.54 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f47bdbc0-b246-4ec5-be48-3970409c51e8")
 	)
 	(wire
 		(pts
@@ -4812,18 +4758,6 @@
 			(justify left)
 		)
 		(uuid "5c1ca8a5-1c02-4656-a45b-247b09db6113")
-	)
-	(hierarchical_label "-15V_MW"
-		(shape input)
-		(at 256.54 91.44 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "627678d5-8016-4f68-abb2-9407b6e3c7d3")
 	)
 	(hierarchical_label "-12V_FILTERED"
 		(shape output)
@@ -6011,7 +5945,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 217.17 130.81 0)
+		(at 217.17 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6019,7 +5953,7 @@
 		(dnp no)
 		(uuid "28289e09-4237-4066-aab4-5aaa7616beb2")
 		(property "Reference" "C32"
-			(at 218.948 129.54 0)
+			(at 215.392 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6028,7 +5962,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 218.948 132.08 0)
+			(at 215.392 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6497,72 +6431,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GNDA")
-		(at 228.6 107.95 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2e7700dd-be17-4616-8d4e-1825e6340c0a")
-		(property "Reference" "#PWR0135"
-			(at 228.6 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GNDA"
-			(at 228.6 113.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 228.6 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 228.6 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 228.6 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "01567b96-27b0-4278-80ac-16e67cafb12f")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "#PWR0135")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED_Small")
 		(at 35.56 160.02 270)
 		(unit 1)
@@ -6766,73 +6634,6 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "R85")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:L_Small")
-		(at 250.19 91.44 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3f5b5707-8826-47d5-9e90-15122376768d")
-		(property "Reference" "L8"
-			(at 250.19 86.36 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1mH"
-			(at 250.19 88.9 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "JRIX Inductor THT Footprints:INDRD1000W100D1800H2550 - AIUR-15-102K"
-			(at 250.19 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 250.19 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Inductor, small symbol"
-			(at 250.19 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "404e9363-8289-4380-bc8b-435a75f3c095")
-		)
-		(pin "2"
-			(uuid "f7cbb756-6819-41fa-ab09-765fdce23f04")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "L8")
 					(unit 1)
 				)
 			)
@@ -7460,7 +7261,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 198.12 130.81 0)
+		(at 198.12 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7468,7 +7269,7 @@
 		(dnp no)
 		(uuid "5f4fb815-149b-463d-899e-37cd8d53f302")
 		(property "Reference" "C16"
-			(at 199.898 129.54 0)
+			(at 196.342 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7477,7 +7278,7 @@
 			)
 		)
 		(property "Value" "22uF"
-			(at 199.898 132.08 0)
+			(at 196.342 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7803,7 +7604,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 250.19 130.81 0)
+		(at 250.19 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7812,21 +7613,21 @@
 		(fields_autoplaced yes)
 		(uuid "71802c18-3ef2-4800-ac26-55766b4ff312")
 		(property "Reference" "C47"
-			(at 252.73 128.9938 0)
+			(at 252.73 130.086 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Value" "510uF"
-			(at 252.73 131.5338 0)
+			(at 252.73 132.626 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
@@ -8148,76 +7949,6 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 228.6 104.14 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7f78ba35-93f8-47d9-ac3e-700357c1a44e")
-		(property "Reference" "R35"
-			(at 231.14 102.8699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-		(property "Value" "RD"
-			(at 231.14 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 228.6 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 228.6 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 228.6 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b65701d4-e923-4cfd-bfe0-3a49ff3b1abd")
-		)
-		(pin "1"
-			(uuid "db722b97-e290-479a-8040-af6d86ae5956")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "R35")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
 		(at 62.23 68.58 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8494,76 +8225,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 217.17 96.52 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "903b4af7-1e52-49de-ae19-2964479b1f46")
-		(property "Reference" "Rl"
-			(at 219.71 95.2499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "60R"
-			(at 219.71 97.7899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 217.17 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 217.17 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 217.17 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "93066b64-d41c-43f8-b08a-e8119cf1e15d")
-		)
-		(pin "1"
-			(uuid "1402df32-a83e-4908-8888-2d1a64eb62f6")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "Rl")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Polarized_Small")
 		(at 157.48 30.48 0)
 		(unit 1)
@@ -8627,74 +8288,6 @@
 			(project "ImpedanceAnalyzer"
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "C15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 240.03 91.44 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9327f9fc-6020-42eb-81ff-7635e1666735")
-		(property "Reference" "ESR"
-			(at 240.03 86.36 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0R7"
-			(at 240.03 88.9 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 240.03 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 240.03 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 240.03 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "e2bf6435-054a-411a-8d67-db17a74b779c")
-		)
-		(pin "1"
-			(uuid "28d09d45-80ae-4fe6-9d16-18b48aa8cd9f")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "ESR")
 					(unit 1)
 				)
 			)
@@ -8768,7 +8361,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 186.69 130.81 0)
+		(at 186.69 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8776,7 +8369,7 @@
 		(dnp no)
 		(uuid "9b537819-ecb6-4711-b38c-a49a6f879e13")
 		(property "Reference" "C155"
-			(at 189.23 129.5462 0)
+			(at 184.15 132.0738 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8785,7 +8378,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 188.976 132.08 0)
+			(at 184.404 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8971,74 +8564,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GNDA")
-		(at 217.17 101.6 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a2d5e8ce-333d-4b8e-af33-944779eb9fe4")
-		(property "Reference" "#PWR0136"
-			(at 217.17 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GNDA"
-			(at 217.17 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 217.17 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 217.17 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 217.17 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "591bc0c3-7288-4be8-81a3-82d092cb6a39")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "#PWR0136")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 207.01 130.81 0)
+		(at 207.01 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9046,7 +8573,7 @@
 		(dnp no)
 		(uuid "a737a62f-9552-4fef-8364-7a5c7797e14a")
 		(property "Reference" "C20"
-			(at 208.788 129.794 0)
+			(at 205.232 131.826 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9055,7 +8582,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 208.788 132.334 0)
+			(at 205.232 129.286 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9446,7 +8973,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 238.76 130.81 0)
+		(at 238.76 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9454,7 +8981,7 @@
 		(dnp no)
 		(uuid "c23ee314-2508-49ab-8fa8-36bc1c1f2cd7")
 		(property "Reference" "C45"
-			(at 241.3 128.9938 0)
+			(at 236.22 132.6262 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9463,7 +8990,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 241.3 131.5338 0)
+			(at 236.22 130.0862 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10274,7 +9801,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized_Small")
-		(at 227.33 130.81 0)
+		(at 227.33 130.81 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10282,7 +9809,7 @@
 		(dnp no)
 		(uuid "d7551dea-16e0-40f2-95bf-157f675b939c")
 		(property "Reference" "C43"
-			(at 229.616 129.54 0)
+			(at 225.044 132.08 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10291,7 +9818,7 @@
 			)
 		)
 		(property "Value" "510uF"
-			(at 229.616 132.08 0)
+			(at 225.044 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10406,76 +9933,6 @@
 			(project ""
 				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
 					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized_Small")
-		(at 228.6 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e7d1e330-43f4-4e0d-853e-e7d82254653a")
-		(property "Reference" "CX"
-			(at 230.886 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "CX"
-			(at 230.886 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm"
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small symbol"
-			(at 228.6 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6761fcdc-0196-4a8d-ac9b-643e587605da")
-		)
-		(pin "2"
-			(uuid "0da5d12d-4a14-43b4-a004-2012b5c7c30f")
-		)
-		(instances
-			(project "ImpedanceAnalyzer"
-				(path "/08568624-f051-402a-adf3-1b03c2a769ee/bbce87d8-2d6b-4ada-9e87-44e06d8f0f46"
-					(reference "CX")
 					(unit 1)
 				)
 			)
