@@ -39,7 +39,7 @@ Alternatively, if the MCU wishes to read from the external memory, its shall fis
 \end{figure}
 
 \subsubsection{IO Port}
-The FPGA is using tri-state buffers to function as both inputs and outputs. The Artix 7 FPGA development board is an expensive component and it was decided to let the FPGA use open-drain outputs in order to reduce the risk of both FPGA and MCU actively driving the data bus because of a mistake during development. Xiling offer a generic drag and drop INOUT port that can be tristated, this has been used. This IO buffer can be seen in figure \ref{fig_7_2_1_IOBUF} together with its truth table. Note that T acts inversly of what the RW pin does, T has simply been connected as not RW to fix this.
+The FPGA is using tri-state buffers to function as both inputs and outputs. The Artix 7 FPGA development board is an expensive component and it was decided to let the FPGA use open-drain outputs in order to reduce the risk of both FPGA and MCU actively driving the data bus because of a mistake during development. Xilinx offer a generic drag and drop INOUT port that can be tristated, this has been used. This IO buffer can be seen in figure \ref{fig_7_2_1_IOBUF} together with its truth table. Note that T acts inversly of what the RW pin does, T has simply been connected as not RW to fix this.
 
 \begin{figure}[H]
     \centering
