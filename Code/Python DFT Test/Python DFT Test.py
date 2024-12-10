@@ -63,11 +63,13 @@ for k in range(int(float(N)/2)):
 # DFT_phase2[k] = np.arctan(np.imag(X2)/np.real(X2))*360/(2*pi)
 
 
-print("Impedance: ", (DFT_data[k])/DFT_data2[k])
-print("Phase: ", DFT_phase[k]-DFT_phase2[k])
+# print("Impedance: ", (DFT_data[k])/DFT_data2[k])
+# print("Phase: ", DFT_phase[k]-DFT_phase2[k])
+
+plt.plot(t, sample_data2)
 
 # plt.plot(t,sample_data, t,sample_data2)
 # plt.plot(DFT_data)
-plt.plot(DFT_phase2)
+# plt.plot(DFT_phase2)
 plt.grid()
 plt.show()
