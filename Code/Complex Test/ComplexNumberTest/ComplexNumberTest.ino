@@ -14,8 +14,9 @@ complex z;
 
 void setup() {
   Serial.begin(115200);
-  z.imag = -1;
-  z.real = 1;
+  //z.imag = -1;
+  //z.real = 1;
+  z = (struct complex){1.0, 1.0};
   cmplxmath.argz = argz;
   cmplxmath.argzDeg = argzDeg;
   cmplxmath.magz = magz;
