@@ -171,10 +171,15 @@ double magzr(complexr z)
 complexr CalFourierCoeff(uint16_t inputSample){
 	struct DiscFourTf *DFT = DFTSet.selfAddr;
 	complexr fouriercoeff = (complexr){0,0};
-	fouriercoeff = (complexr){
-		inputSample * ( cos((2.0*M_PI * (double)DFT->k * (double)DFT->nSampleIndex )/(double)DFT->NSampleSize)),
-		inputSample * (1)
-	};
+	if(DFT->NSampleSize != 0){
+		double angle = (2.0*M_PI * (double)DFT->k * (double)DFT->nSampleIndex )/(double)DFT->NSampleSize;
+		fouriercoeff = (complexr){
+			inputSample * cos(angle),
+			inputSample * (-1* sin(angle))
+		};
+	}else{
+		fouriercoeff = (complexr){NAN,NAN}; /*Division by zero, return undefined*/
+	}
 	return fouriercoeff;
 }
 
