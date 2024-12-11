@@ -28,6 +28,7 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
 
 enum IOMode{
 	READ = 0,
@@ -42,6 +43,15 @@ enum IXMode{
 	EXTERNAL
 };
 
+typedef struct complexr {
+	double real;
+	double imag;
+}complexr;
+typedef struct complexpolar{
+  double arg;
+  double mod;
+}complexp;
+
 int8_t SetGPIOMode(enum IOMode mode);
 int8_t SetIOValue(uint16_t IOvalue);
 int8_t GetIOValue(uint16_t *result);
@@ -52,6 +62,9 @@ int8_t ResetComm(void);
 int8_t WriteData(uint16_t data, uint16_t addr);
 int8_t FetchData(uint16_t *result, uint16_t addr);
 int8_t SetIXMode(enum IXMode);
+double argzr(complexr z);
+double argzDegr(complexr z);
+double magzr(complexr z);
 
 void ns_delay(uint16_t);
 //int8_t SetupCLK_RnW(void);
@@ -81,6 +94,29 @@ struct CommunicationPort{
 	int8_t (*FetchData)(uint16_t*, uint16_t);
 
 }CommPort;
+
+
+
+struct complexMath{
+  struct rectangular{
+    double  (*argz)(complexr);
+    double  (*argzDeg)(complexr);
+    double  (*magz)(complexr);
+  }rec;
+  struct polar{ //dont need.
+
+  }pol;
+}cmplxmath;
+struct DiscFourTf{
+	struct DiscFourTf *selfAddr;
+	uint16_t NSampleSize;
+	uint16_t k;
+	uint16_t nSampleIndex;
+	double DFTres;
+}DFTSet;
+
+
+//complexr z;
 
 
 
@@ -118,6 +154,30 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+double argzr(complexr z)
+{
+  return atan2(z.imag, z.real); //atan2() tager højde for og korrigerer tangens fejl.
+}
+double argzDegr(complexr z)
+{
+  return atan2(z.imag, z.real) * (180/M_PI); //atan2() tager højde for og korrigerer tangens fejl.
+}
+double magzr(complexr z)
+{
+  return sqrt(z.real*z.real + z.imag*z.imag);
+}
+
+complexr CalFourierCoeff(uint16_t inputSample){
+	struct DiscFourTf *DFT = DFTSet.selfAddr;
+	complexr fouriercoeff = (complexr){0,0};
+	fouriercoeff = (complexr){
+		inputSample * ( cos((2.0*M_PI * (double)DFT->k * (double)DFT->nSampleIndex )/(double)DFT->NSampleSize)),
+		inputSample * (1)
+	};
+	return fouriercoeff;
+}
+
 uint8_t test = 0;
 
 /*SetGPIOMode() - Sets all LowBytePort, HighBytePort pins to Input or Output*/
@@ -388,6 +448,13 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 
+	//DFT
+	cmplxmath.rec.argz = argzr;
+	cmplxmath.rec.argzDeg = argzDegr;
+	cmplxmath.rec.magz = magzr;
+	DFTSet.selfAddr = &DFTSet;
+	//
+
 	CommPort.set.SetIOMode = SetGPIOMode;
 	CommPort.set.SetIOValue = SetIOValue;
 	CommPort.set.GetIOValue = GetIOValue;
@@ -426,17 +493,17 @@ int main(void)
 
 	uint8_t uartBuf[16];
 	uint16_t testVar = 0;
-	uint16_t testVar2 = 0;
-	uint16_t test2Var = 0;
-	uint16_t test2Var2 = 0;
+	//uint16_t testVar2 = 0;
+	//uint16_t test2Var = 0;
+	//uint16_t test2Var2 = 0;
 	uint16_t f_sampleSize = 0;
 	int16_t val = 0;
 	char str[16];
-	char strAddr[16];
-	char fl_buf[100];
+	//char strAddr[16];
+	//char fl_buf[100];
 	float f_set = 1000000;
 	uint32_t f_word = (uint32_t)(f_set*214.748365);
-	float AVG = 0;
+	//float AVG = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -598,7 +665,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 2000000;
+  huart2.Init.BaudRate = 115200;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
