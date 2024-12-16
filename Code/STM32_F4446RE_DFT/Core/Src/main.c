@@ -30,6 +30,13 @@
 #include <stdio.h>
 #include <math.h>
 
+#define DAC_FRQ_WORD_LSB_REG 4
+#define DAC_FRQ_WORD_MSB_REG 5
+#define ADC_FRQ_WORD_LSB_REG 2
+#define ADC_FRQ_WORD_MSB_REG 3
+#define ADC_SAMPLE_SIZE_REG 6
+#define ADC_RESAMPLER_START_REG 7
+
 enum IOMode{
 	READ = 0,
 	WRITE = 1
@@ -71,10 +78,16 @@ double magzr(complexr z);
 complexr AddComplexr(complexr a, complexr b);
 complexr CalSingleSampleFourierContribution(uint16_t inputSample);
 complexrSet *CalVIFourierCoeff();
-uint16_t GetSampleContinous();
-uint16_t SignedBinaryToBinary(int16_t signedBinary);
-
+uint16_t GetSingleSampleContinous();
+uint16_t SignedToUnsignedBinary(int16_t signedBinary);
+uint32_t CalDACFrequencyWord(uint32_t frequency);
+void SetDACFrequency(uint32_t frq);
+uint32_t CalADCFrequencyWord(uint32_t frequency);
+void SetSampleSize(uint16_t sampleSize);
+void StartSampling();
 void ns_delay(uint16_t);
+uint16_t GetkFrequencyIndex(uint32_t DACFrequency, double DFTResolution);
+double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate);
 struct CommunicationPort{
 	struct Control{
 		struct CommunicationPort *selfAddr;
@@ -116,13 +129,44 @@ struct complexMath{
   }pol;
 }cmplxmath;
 struct DiscFourTf{
-	struct DiscFourTf *selfAddr;
-	uint16_t CalcDFTPercent;
-	uint16_t NSampleSize;
-	uint16_t kFrequencyIndex; //Frequency index
-	uint16_t nSampleIndex; //Time index, eller sample points i tidsdomænet,
-	double DFTres;         //En "n" værdi svarer til et specifikt punkt i tid, hvor signalet er samplet.
-}DFTSet;                   //Hvis der samples hvert 10 sekund, så går "n" fra 0(første sekund) til 9 (10ende sekund)
+	struct control{
+		struct DiscFourTf *selfAddr;
+	}ctrl;
+	struct DFTsetting{
+		uint16_t NSampleSize;
+		uint16_t kFrequencyIndex; //Frequency index
+		uint16_t nSampleIndex; //Time index, eller sample points i tidsdomænet,
+		double DFTres;         //En "n" værdi svarer til et specifikt punkt i tid, hvor signalet er samplet.
+							   //Hvis der samples hvert 10 sekund, så går "n" fra 0(første sekund) til 9 (10ende sekund)
+	}set;
+	struct DFTgetting{
+		uint16_t CalcDFTPercent;
+		complexrSet*(*CalVIFourierCoeff)(void);
+		complexr(*CalSingleSampleFourierContribution)(uint16_t);
+		uint16_t (*GetkFrequencyIndex)(uint32_t, double);
+		double (*CalDFTResolution)(uint16_t, uint32_t);
+	}get;
+}DFTSet;
+struct FPGASampleControl{
+	struct ADCSettings{
+		float ADCResolution;
+		uint32_t (*CalADCFrequencyWord)(uint32_t);
+		void (*SetADCSampleFrequency)(uint32_t);
+		void (*SetSampleSize)(uint16_t);
+		void (*StartSampling)(void);
+	}adcSet;
+	struct DACSettings{
+		float DACResolution;
+		uint32_t DACFrqWord;
+		uint32_t(*CalDACFrequencyWord)(uint32_t);
+		void(*SetDACFrequency)(uint32_t);
+
+	}dacSet;
+	struct SampleControlGetting{
+		uint32_t ADCResamplerFrqWord;
+		uint16_t(*GetSingleSampleContinous)(void);
+	}get;
+}SC;
 
 
 //complexr z;
@@ -164,6 +208,61 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate){
+	return (double)(((double)sampleRate)/((double)sampleSize));
+}
+
+uint16_t GetkFrequencyIndex(uint32_t DACFrequency, double DFTResolution){
+	return  (uint16_t)(DACFrequency /((uint16_t) DFTResolution));
+}
+
+void StartSampling(){
+	CommPort.set.SetIXMode(INTERNAL); //Set to internal
+	HAL_Delay(1);
+	CommPort.ResetComm(); //Reset internal counter registers
+	CommPort.WriteData(0x8000, ADC_RESAMPLER_START_REG); //Set MSB in register 7. ADC Resampler will be triggered.
+}
+
+uint32_t CalADCFrequencyWord(uint32_t frequency){
+	uint32_t frqWord = frequency * (uint32_t)(SC.adcSet.ADCResolution);
+	return frqWord;
+}
+
+void SetSampleSize(uint16_t sampleSize){
+	CommPort.set.SetIXMode(INTERNAL); //Set to internal
+	HAL_Delay(1);
+	CommPort.WriteData(sampleSize, ADC_SAMPLE_SIZE_REG);      //Set sample size to FPGA.
+}
+
+void SetADCSampleFrequency(uint32_t frq){
+	//Reset comm
+	CommPort.set.SetIXMode(INTERNAL); //Set to internal
+	HAL_Delay(1);
+	CommPort.ResetComm(); //Reset FPGA modules. Only works in internal mode
+	CommPort.set.SetIXMode(INTERNAL); //We set internal again after reset.
+	HAL_Delay(1);
+	uint32_t f_word = SC.adcSet.CalADCFrequencyWord(frq);
+	CommPort.WriteData((f_word & 0xFFFF), ADC_FRQ_WORD_LSB_REG); //Write 16 LSBs of frq word to ADC register.
+	CommPort.WriteData(((f_word >> 16)), ADC_FRQ_WORD_MSB_REG);  //Write 16 MSBs of frq word to ADC register.
+}
+
+uint32_t CalDACFrequencyWord(uint32_t frequency){
+	uint32_t frqWord = frequency * (uint32_t)(SC.dacSet.DACResolution);
+	return frqWord;
+}
+
+void SetDACFrequency(uint32_t frq){
+	//Reset comm
+	CommPort.set.SetIXMode(INTERNAL); //Set to internal
+	HAL_Delay(1);
+	CommPort.ResetComm(); //Reset FPGA modules. Only works in internal mode
+	CommPort.set.SetIXMode(INTERNAL); //We set internal again after reset.
+	HAL_Delay(1);
+	uint32_t f_word = SC.dacSet.CalDACFrequencyWord(frq);
+	CommPort.WriteData((f_word & 0xFFFF), DAC_FRQ_WORD_LSB_REG); //Write 16 LSBs of frq word to DAC register.
+	CommPort.WriteData(((f_word >> 16)), DAC_FRQ_WORD_MSB_REG);  //Write 16 MSBs of frq word to DAC register.
+}
+
 double Argzr(complexr z)
 {
   return atan2(z.imag, z.real); //atan2() tager højde for og korrigerer tangens fejl.
@@ -183,17 +282,17 @@ complexr Addzr(complexr a, complexr b){
 /*
  * Computes the fourier coefficient at the "k" frequency index in the DFT*/
 complexrSet *CalVIFourierCoeff(){
-	struct DiscFourTf *DFT = DFTSet.selfAddr;
+	struct DiscFourTf *DFT = DFTSet.ctrl.selfAddr;
 	complexr fourierCoeffV = (complexr){0,0};
 	complexr fourierCoeffI = (complexr){0,0};
 	static complexrSet fourierVI =(complexrSet){{0,0},{0,0}};
-	DFT->nSampleIndex = 0;
+	DFT->set.nSampleIndex = 0;
 	uint16_t nextSample = 0;
-	for(uint16_t i = 0; i < DFT->NSampleSize; i++){
+	for(uint16_t i = 0; i < DFT->set.NSampleSize; i++){
 		//Get next sample from external memory, could be voltage or current. Even i = voltage, Odd i = current
-		nextSample = GetSampleContinous();
+		nextSample = SC.get.GetSingleSampleContinous();
 		//Calculate fourier contribution at nextSample to the DFT.
-		complexr nextSampleFourierContribution = CalSingleSampleFourierContribution(nextSample);
+		complexr nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample);
 		//Check for even of odd i.
 		if((i % 2) == 0){ //Even i, current
 			if(isnan(nextSampleFourierContribution.imag) || isnan(nextSampleFourierContribution.real)){
@@ -202,7 +301,7 @@ complexrSet *CalVIFourierCoeff(){
 			}else{
 				fourierCoeffI = cmplxmath.rec.Addz(fourierCoeffI, nextSampleFourierContribution);
 			//Increment time index to next sample.
-				DFT->nSampleIndex++;
+				DFT->set.nSampleIndex++;
 			}
 		}else{ // Odd i, voltage
 			if(isnan(nextSampleFourierContribution.imag) || isnan(nextSampleFourierContribution.real)){
@@ -211,7 +310,7 @@ complexrSet *CalVIFourierCoeff(){
 			}else{
 				fourierCoeffV = cmplxmath.rec.Addz(fourierCoeffV, nextSampleFourierContribution);
 			//Increment time index to next sample.
-				DFT->nSampleIndex++;
+				DFT->set.nSampleIndex++;
 			}
 		}
 	}
@@ -238,13 +337,13 @@ I DFT bruges "n" når vi summerer over alle samples af input signalet til at ber
  Twiddle faktoren er det som konverterer en samplet værdi i tidsdomænet x[n] til en værdi i frekvensdomænet X[k]
  */
 complexr CalSingleSampleFourierContribution(uint16_t inputSample){
-	struct DiscFourTf *DFT = DFTSet.selfAddr;
+	struct DiscFourTf *DFT = DFTSet.ctrl.selfAddr;
 	static complexr fourierPartCoeff = (complexr){0,0};
-	if(DFT->NSampleSize != 0){ /*Calculate part of the fourier coefficient*/
-		double angle = (2.0*M_PI * (double)DFT->kFrequencyIndex * (double)DFT->nSampleIndex )/(double)DFT->NSampleSize;
+	if(DFT->set.NSampleSize != 0){ /*Calculate part of the fourier coefficient*/
+		double angle = (2.0*M_PI * (double)DFT->set.kFrequencyIndex * (double)DFT->set.nSampleIndex )/(double)DFT->set.NSampleSize;
 		fourierPartCoeff = (complexr){
 			(double)inputSample * cos(angle),
-			(double)inputSample * (-1* sin(angle))
+			(double)inputSample * ((-1)* sin(angle))
 		};
 	}else{ /*Division by zero, return undefined*/
 		fourierPartCoeff = (complexr){NAN,NAN};
@@ -253,7 +352,7 @@ complexr CalSingleSampleFourierContribution(uint16_t inputSample){
 }
 
 /*Converts a 16bit value in 2's complement to ordinary binary.*/
-uint16_t SignedBinaryToBinary(int16_t signedBinary){
+uint16_t SignedToUnsignedBinary(int16_t signedBinary){
 	uint16_t binary = 0;
 	if((signedBinary) & (1<<16)) {
 		binary = (signedBinary ^ 1<<16)*(-1);
@@ -264,11 +363,17 @@ uint16_t SignedBinaryToBinary(int16_t signedBinary){
 	return binary;
 }
 
-uint16_t GetSampleContinous(){
+uint16_t GetSingleSampleContinous(){
 	uint16_t sample;
-
-
-
+	CommPort.set.SetIOMode(READ); //Set MCU to READ mode
+	CommPort.set.SetRnW(READ);    //Set RW pin to READ
+	CommPort.set.SetIXMode(EXTERNAL); //Set internal/external switch-over MUX to External memory mode
+	/*
+	* CLK 1 -> Address 0 from external memory. (ADC0 DATA)
+	* CLK 2 -> Address 1 from external memory. (ADC1 DATA)
+	* */
+	CommPort.set.PulseCLK(); //ADC "n" data
+	CommPort.set.GetIOValue(&sample); //Read IO port value
 	return sample;
 }
 
@@ -539,7 +644,19 @@ int main(void)
 	cmplxmath.rec.ArgzDeg = ArgzDegr;
 	cmplxmath.rec.Magz = Magzr;
 	cmplxmath.rec.Addz = Addzr;
-	DFTSet.selfAddr = &DFTSet;
+	DFTSet.ctrl.selfAddr = &DFTSet;
+	DFTSet.get.GetkFrequencyIndex = GetkFrequencyIndex;
+	DFTSet.get.CalDFTResolution = CalDFTResolution;
+	DFTSet.get.CalVIFourierCoeff = CalVIFourierCoeff;
+	DFTSet.get.CalSingleSampleFourierContribution = CalSingleSampleFourierContribution;
+	SC.get.GetSingleSampleContinous = GetSingleSampleContinous;
+	SC.dacSet.DACResolution = 214.748365;
+	SC.dacSet.CalDACFrequencyWord = CalDACFrequencyWord;
+	SC.adcSet.ADCResolution = 214.748365;
+	SC.adcSet.CalADCFrequencyWord = CalADCFrequencyWord;
+	SC.adcSet.SetADCSampleFrequency = SetADCSampleFrequency;
+	SC.adcSet.SetSampleSize = SetSampleSize;
+	SC.adcSet.StartSampling = StartSampling;
 	//
 
 	CommPort.set.SetIOMode = SetGPIOMode;
@@ -579,18 +696,18 @@ int main(void)
 	CommPort.ctrl.HighBytePins[7] = DB15_Pin;
 
 	uint8_t uartBuf[16];
-	uint16_t testVar = 0;
-	//uint16_t testVar2 = 0;
-	//uint16_t test2Var = 0;
-	//uint16_t test2Var2 = 0;
-	uint16_t f_sampleSize = 0;
+	//uint16_t testVar = 0;
+	//uint16_t f_sampleSize = 0;
 	int16_t val = 0;
 	char str[16];
-	//char strAddr[16];
-	//char fl_buf[100];
-	float f_set = 1000000;
-	uint32_t f_word = (uint32_t)(f_set*214.748365);
-	//float AVG = 0;
+	//float f_set = 1000000;
+	//uint32_t f_word = (uint32_t)(f_set*214.748365);
+	complexrSet VIFourCoeffs = (complexrSet){{0,0},{0,0}};
+	complexrSet *ptrVIFourcoeffs = &VIFourCoeffs;
+	complexr IFourCoeff = (complexr){0,0};
+	complexr VFourCoeff = (complexr){0,0};
+	double IFourCoeffMag = 0.0;
+	double VFourCoeffMag = 0.0;IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -619,7 +736,15 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-
+  //TEST
+  SC.adcSet.SetSampleSize(10000);
+  SC.adcSet.SetADCSampleFrequency(12000);
+  SC.dacSet.SetDACFrequency(1000);
+  //
+  DFTSet.set.NSampleSize = 10000;
+  DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(10000, 12000); //Lav gets til disse
+  DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(1000, DFTSet.set.DFTres);
+/*
 CommPort.set.SetIXMode(INTERNAL); //Set to internal
 HAL_Delay(10);
 CommPort.ResetComm(); //Reset FPGA modules. Only works in internal mode
@@ -645,42 +770,52 @@ CommPort.WriteData(((f_word >> 16)), 3);  //Write 16 MSBs of frq word to ADC reg
 HAL_Delay(10);
 CommPort.WriteData(f_sampleSize, 6);      //Set sample size to FPGA.
 HAL_Delay(10);
-
+*/
   while (1)
   {
-	CommPort.ResetComm(); //Reset internal counter registers
-	CommPort.WriteData(0x8000, 7); //Set MSB in register 7. ADC Resampler will be triggered.
-	HAL_Delay(500);
+
+	//CommPort.ResetComm(); //Reset internal counter registers
+	//CommPort.WriteData(0x8000, 7); //Set MSB in register 7. ADC Resampler will be triggered.
+	//HAL_Delay(500);
 	//Setup micro and FPGA for continous CLKing data out of external memory.
-	CommPort.set.SetIOMode(READ); //Set MCU to READ mode
-	CommPort.set.SetRnW(READ);    //Set RW pin to READ
-	CommPort.set.SetIXMode(EXTERNAL); //Set internal/external switch-over MUX to External memory mode
-	HAL_Delay(5);
-		for(int i = 0; i< f_sampleSize; i++) {
+	//CommPort.set.SetIOMode(READ); //Set MCU to READ mode
+	//CommPort.set.SetRnW(READ);    //Set RW pin to READ
+	//CommPort.set.SetIXMode(EXTERNAL); //Set internal/external switch-over MUX to External memory mode
+	//HAL_Delay(5);
+	//	for(int i = 0; i< f_sampleSize; i++) {
 		/*
 		 * CLK 1 -> Address 0 from external memory. (ADC0 DATA)
 		 * CLK 2 -> Address 1 from external memory. (ADC1 DATA)
 		 * */
-		CommPort.set.PulseCLK(); //ADC 0 data
-		CommPort.set.GetIOValue(&testVar); //Read IO port value
-		CommPort.set.PulseCLK();//ADC 1 data
+	//	CommPort.set.PulseCLK(); //ADC 0 data
+	//	CommPort.set.GetIOValue(&testVar); //Read IO port value
+	//	CommPort.set.PulseCLK();//ADC 1 data
 		//CommPort.set.GetIOValue(&testVar); //read ADC1 DATA
 
 		//Convert 2's complement (signed binary) to binary
-		if((testVar) & (1<<16)) {
-			val = (testVar ^ 1<<16)*(-1);
-		}
-		else{
-			val = testVar;
-		}
+	//	if((testVar) & (1<<16)) {
+	//		val = (testVar ^ 1<<16)*(-1);
+	//	}
+	//	else{
+	//		val = testVar;
+	//	}
+
+
+	  SC.adcSet.StartSampling();
+	  //ptrVIFourcoeffs = DFTSet.get.CalVIFourierCoeff;
+	  VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff();
+	  IFourCoeff = VIFourCoeffs.current;
+	  VFourCoeff = VIFourCoeffs.voltage;
+	  IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
+	  VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
 
 		//Random string functions
-		sprintf(str, "%d\r\n", (val));
+		sprintf(str, "%.2f\r\n", (VFourCoeffMag));
 		strcpy((char*)uartBuf, str);
 		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 		HAL_Delay(10);
 
-	}
+	//}
 	HAL_Delay(1000);
 
 
