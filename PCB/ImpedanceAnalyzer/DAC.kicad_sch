@@ -10078,7 +10078,7 @@
 				)
 			)
 		)
-		(property "Value" "18k7"
+		(property "Value" "15k8"
 			(at 345.44 36.83 90)
 			(effects
 				(font
@@ -10790,15 +10790,15 @@
 		(fields_autoplaced yes)
 		(uuid "81c8a530-c271-462c-ac99-e7f29312206e")
 		(property "Reference" "R72"
-			(at 345.44 101.6 90)
+			(at 345.44 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "18k7"
-			(at 345.44 99.06 90)
+		(property "Value" "15k8"
+			(at 345.44 91.44 90)
 			(effects
 				(font
 					(size 1.27 1.27)

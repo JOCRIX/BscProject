@@ -219,10 +219,10 @@ int8_t SetRnW(enum IOMode mode) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		if (mode == READ) {
-			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, FALSE);
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, TRUE);
 		}
 		else if (mode == WRITE) {
-			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, TRUE);
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, FALSE);
 		}
 		return(status);
 	}
@@ -430,12 +430,15 @@ int main(void)
 	uint16_t test2Var = 0;
 	uint16_t test2Var2 = 0;
 	uint16_t f_sampleSize = 0;
-	int16_t val = 0;
+	int16_t VMeas = 0;
+	uint16_t IMeas = 0;
 	char str[16];
 	char strAddr[16];
 	char fl_buf[100];
 	float f_set = 1000000;
+	float smpl_set = 100000;
 	uint32_t f_word = (uint32_t)(f_set*214.748365);
+	uint32_t smpl_word = (uint32_t)(f_set*214.748365);
 	float AVG = 0;
   /* USER CODE END 1 */
 
@@ -474,23 +477,60 @@ HAL_Delay(10);
 
 CommPort.set.SetIXMode(INTERNAL);
 HAL_Delay(1);
+CommPort.set.SetRnW(WRITE);
+CommPort.set.SetIOMode(WRITE);
 
 
-f_sampleSize = 10000;
-f_set = 1333;
+HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0);
+HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
+HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0);
+
+HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, 1);
+HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, 1);
+HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, 1);
+
+HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, 1);
+HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, 0);
+HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, 0);
+
+
+
+
+f_sampleSize = 1000;
+f_set = 50000;
+smpl_set =1000000;
 
 f_word = (uint32_t)(f_set*214.748365);
+smpl_word = (uint32_t)(smpl_set*214.748365);
 HAL_Delay(10);
 CommPort.WriteData((f_word & 0xFFFF), 4);
 HAL_Delay(10);
 CommPort.WriteData(((f_word >> 16)), 5);
 HAL_Delay(10);
-CommPort.WriteData((f_word & 0xFFFF), 2);
+CommPort.WriteData((smpl_word & 0xFFFF), 2);
 HAL_Delay(10);
-CommPort.WriteData(((f_word >> 16)), 3);
+CommPort.WriteData(((smpl_word >> 16)), 3);
 HAL_Delay(10);
 CommPort.WriteData(f_sampleSize, 6);
 HAL_Delay(10);
+
+HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+for(int i = 0; i < 8; i++) {
+	if(i == 5) {
+		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 1);
+	}
+	else {
+		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 0);
+	}
+	HAL_Delay(1);
+	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 1);
+	HAL_Delay(1);
+	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 0);
+	HAL_Delay(1);
+}
+HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 1);
+HAL_Delay(1);
+HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
 
   while (1)
   {
@@ -505,21 +545,57 @@ HAL_Delay(10);
 
 		CommPort.set.PulseCLK();
 		CommPort.set.GetIOValue(&testVar);
-		CommPort.set.PulseCLK();//skip "current" samples
-
+		//CommPort.set.PulseCLK();
+//
 		if((testVar) & (1<<16)) {
-			val = (testVar ^ 1<<16)*(-1);
+			VMeas = (testVar ^ 1<<16)*(-1);
 		}
 		else{
-			val = testVar;
+			VMeas = testVar;
 		}
-		sprintf(str, "%d\r\n", (val));
+		VMeas*=-1;
+		HAL_Delay(1);
+		sprintf(str, "Voltage:");
 		strcpy((char*)uartBuf, str);
 		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-		HAL_Delay(10);
+		sprintf(str, "%d", (VMeas));
+		strcpy((char*)uartBuf, str);
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+		sprintf(str, ",");
+		strcpy((char*)uartBuf, str);
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+		CommPort.set.PulseCLK();
+		CommPort.set.GetIOValue(&testVar);
+		//CommPort.set.PulseCLK();
+//
+		if((testVar) & (1<<16)) {
+			VMeas = (testVar ^ 1<<16)*(-1);
+		}
+		else{
+			VMeas = testVar;
+		}
+		HAL_Delay(1);
+		sprintf(str, "Current:");
+		strcpy((char*)uartBuf, str);
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+		sprintf(str, "%d\r\n", (VMeas));
+		strcpy((char*)uartBuf, str);
+		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+		HAL_Delay(15);
 
 	}
-	HAL_Delay(1000);
+
+//	for(int i = 1; i < 1000; i++) {
+//		f_set = i*1000;
+//
+//		f_word = (uint32_t)(f_set*214.748365);
+//		CommPort.WriteData((f_word & 0xFFFF), 4);
+//		CommPort.WriteData(((f_word >> 16)), 5);
+//		HAL_Delay(4);
+//	}
+	HAL_Delay(250);
 
 
     /* USER CODE END WHILE */
@@ -638,12 +714,17 @@ static void MX_GPIO_Init(void)
                           |DB_CLK_Pin|TimerPin_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, DB_RESET_Pin|LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, DB_RESET_Pin|V_PGA_A0_Pin|RANGE_SER_DATA_Pin|LD2_Pin
+                          |RANGE_SER_CLK_Pin|RANGE_SER_LATCH_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, DB0_Pin|DB1_Pin|DB2_Pin|DB3_Pin
-                          |DB4_Pin|DB5_Pin|DB6_Pin|DB7_Pin
-                          |DB_RW_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, DB0_Pin|DB1_Pin|DB2_Pin|V_PGA_A1_Pin
+                          |V_PGA_A2_Pin|I_PGA_A0_Pin|I_PGA_A1_Pin|I_PGA_A2_Pin
+                          |DB3_Pin|DB4_Pin|DB5_Pin|DB6_Pin
+                          |DB7_Pin|DB_RW_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin|DAC_RANGE_A1_Pin|DAC_RANGE_EN_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -662,8 +743,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB_RESET_Pin LD2_Pin */
-  GPIO_InitStruct.Pin = DB_RESET_Pin|LD2_Pin;
+  /*Configure GPIO pins : DB_RESET_Pin V_PGA_A0_Pin RANGE_SER_DATA_Pin LD2_Pin
+                           RANGE_SER_CLK_Pin RANGE_SER_LATCH_Pin DAC_RANGE_A0_Pin DAC_RANGE_A1_Pin
+                           DAC_RANGE_EN_Pin */
+  GPIO_InitStruct.Pin = DB_RESET_Pin|V_PGA_A0_Pin|RANGE_SER_DATA_Pin|LD2_Pin
+                          |RANGE_SER_CLK_Pin|RANGE_SER_LATCH_Pin|DAC_RANGE_A0_Pin|DAC_RANGE_A1_Pin
+                          |DAC_RANGE_EN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -676,10 +761,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(DB0_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB1_Pin DB2_Pin DB3_Pin DB4_Pin
-                           DB5_Pin DB6_Pin DB7_Pin DB_RW_Pin */
-  GPIO_InitStruct.Pin = DB1_Pin|DB2_Pin|DB3_Pin|DB4_Pin
-                          |DB5_Pin|DB6_Pin|DB7_Pin|DB_RW_Pin;
+  /*Configure GPIO pins : DB1_Pin DB2_Pin V_PGA_A1_Pin V_PGA_A2_Pin
+                           I_PGA_A0_Pin I_PGA_A1_Pin I_PGA_A2_Pin DB3_Pin
+                           DB4_Pin DB5_Pin DB6_Pin DB7_Pin
+                           DB_RW_Pin */
+  GPIO_InitStruct.Pin = DB1_Pin|DB2_Pin|V_PGA_A1_Pin|V_PGA_A2_Pin
+                          |I_PGA_A0_Pin|I_PGA_A1_Pin|I_PGA_A2_Pin|DB3_Pin
+                          |DB4_Pin|DB5_Pin|DB6_Pin|DB7_Pin
+                          |DB_RW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

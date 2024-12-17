@@ -5,7 +5,7 @@ The amplifier is designed as a class AB amplifier output stage and a high speed 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[clip, trim=150 320 440 40, width=0.9\textwidth]{Sections/7_SystemDesign/Figures/7_1_1_5_DAC Power Amp.pdf}
+    \includegraphics[clip, trim=150 320 415 40, width=0.9\textwidth]{Sections/7_SystemDesign/Figures/7_1_1_5_DAC Power Amp.pdf}
     \caption{DAC power amplifier circuit, positive side of the differential output.}
     \label{fig_7_1_1_5_DAC_POWER_AMP}
 \end{figure}
@@ -15,6 +15,27 @@ About \SIQ{15}{\milli\ampere} of bias current for the output stage has been chos
 To increase the input impedance and reduce output distortion of the amplifier, an op-amp is used with the output class AB stage in its feedback loop. The used op-amp is an \SIQ{80}{\mega\hertz} GBW op-amp, AD8032 \cite{AD8032_datasheet}. 
 
 \subsubsection{Stability}
-Driving reactive, especially capacitive loads as they ideally add \SIQ{-90}{\degree} phase shift, can pose a challenge to any feedback system, such as op-amps. The typical phase-margin of an op-amp is in the range of \SIQ{45}{\degree}. This will result in an unstable feedback system if the phase drops more than the phase margin of the used op-amp. This leads to the conclusion that most feedback systems will be unstable when driving any ideal capacitor.
+Driving reactive, especially capacitive loads can pose a challenge to any feedback system with a phase margin less than \SIQ{90}{\degree}. The typical phase-margin of an op-amp is in the range of \SIQ{45}{\degree}, leading to potential instability when driving capacitive loads.
 
-A way to reduce the risk of instability, a zero can be introduced in the transfer function of the feedback path. This zero can remove the introduced \SIQ{-90}{\degree} phase of the capacitor. This can be realized simply be placing a resistor in series with the output of feedback system. This resistor should be placed outside of the feedback loop. The value of this resistor will depend upon the load capacitor.
+A way to counteract the risk of instability, is to introduce a zero in the transfer function of the feedback path by inserting a series resistance with the output of the feedback system, this is also known as an isolation resistor. This resistor should be placed outside of the feedback loop, the value of this resistor will depend upon the load capacitor. This indicates that a stability analysis of the DAC power amp should be conducted, as it is very likely that a user would load the system with a capacitive load. This analysis is based on the block diagram of the differential DAC output, depicted as a block diagram in figure \ref{fig_7_1_1_5_DAC_POWER_AMP_BLOCK}. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 0 0 0, width=0.9\textwidth]{Sections/7_SystemDesign/Figures/DAC_POWER_BLOCK.pdf}
+    \caption{Block diagram of the differential DAC power amp output stage.}
+    \label{fig_7_1_1_5_DAC_POWER_AMP_BLOCK}
+\end{figure}
+
+The stability analysis is simplified by only looking at the positive side of the differential output seen in figure \ref{fig_7_1_1_5_DAC_POWER_AMP_BLOCK}. Here $R_o$ is then replaced by $2\cdot R_o$. One thing to take note of here, is that the range resistors can be used both as current shunts and isolation resistors. The stability analysis aims to ensure that when the output is capacitively loaded, the appropriate range resistor will establish stability.
+
+To analyze the output stage, the op-amp is modelled as a two pole \SIQ{80}{\mega\hertz} GBW, \SIQ{30}{\degree} phase margin op-amp with \SIQ{80}{\decibel} open-loop DC gain, based on the datasheet information of the used AD8032 \cite{AD8032_datasheet}. The class AB output stage is modelled as a small signal emitter follower. Using a small signal model might seem somewhat unsuitable for the output stage, as it does not operate with small signals. The small signal model has however proved to produce approximately accurate bandwidth information, even for large signals.
+
+The small signal model for the 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=50 20 100 100, width=0.9\textwidth]{Sections/7_SystemDesign/Figures/DAC_POWER_ss.pdf}
+    \caption{Small signal model of the differential output power stage.}
+    \label{fig_7_1_1_5_DAC_POWER_AMP_ss}
+\end{figure}
