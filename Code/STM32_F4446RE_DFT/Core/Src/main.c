@@ -49,6 +49,34 @@ enum IXMode{
 	INTERNAL,
 	EXTERNAL
 };
+enum IOINVERT{
+	HIGH = 0,
+	LOW = 1
+};
+enum PGAn{
+	PGA_V,
+	PGA_I
+};
+enum PGAGain{
+	GAIN_0125,
+	GAIN_025,
+	GAIN_05,
+	GAIN_1,
+	GAIN_2,
+	GAIN_4,
+	GAIN_8,
+	GAIN_16
+};
+enum RANGE_SET{
+	RANGE_1R= 6,
+	RANGE_10R = 5,
+	RANGE_100R = 4,
+	RANGE_1K = 3,
+	RANGE_10K = 2,
+	RANGE_100K = 0,
+	RANGE_1M = 1
+};
+
 
 typedef struct complexr {
 	double real;
@@ -88,6 +116,9 @@ void StartSampling();
 void ns_delay(uint16_t);
 uint16_t GetkFrequencyIndex(uint32_t DACFrequency, double DFTResolution);
 double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate);
+void SetDACRange(uint8_t range, enum IOINVERT enable);
+void SetPGAGain(enum PGAn PGAx, enum PGAGain gain);
+void SET_RANGE(enum RANGE_SET RANGE);
 struct CommunicationPort{
 	struct Control{
 		struct CommunicationPort *selfAddr;
@@ -154,13 +185,14 @@ struct FPGASampleControl{
 		void (*SetADCSampleFrequency)(uint32_t);
 		void (*SetSampleSize)(uint16_t);
 		void (*StartSampling)(void);
+		void (*SetPGAGain)(enum PGAn, enum PGAGain);
 	}adcSet;
 	struct DACSettings{
 		float DACResolution;
 		uint32_t DACFrqWord;
 		uint32_t(*CalDACFrequencyWord)(uint32_t);
 		void(*SetDACFrequency)(uint32_t);
-
+		void(*Range)(uint8_t, enum IOINVERT);
 	}dacSet;
 	struct SampleControlGetting{
 		uint32_t ADCResamplerFrqWord;
@@ -207,6 +239,143 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+void SET_RANGE(enum RANGE_SET RANGE) {
+	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+	for(int i = 0; i < 8; i++) {
+		if(i == RANGE) {
+			HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 1);
+		}
+		else {
+			HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 0);
+		}
+			HAL_Delay(1);
+			HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 1);
+			HAL_Delay(1);
+			HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 0);
+			HAL_Delay(1);
+	}
+	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 1);
+	HAL_Delay(1);
+	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+}
+
+void SetPGAGain(enum PGAn PGAx, enum PGAGain gain){
+	if(PGAx == PGA_V){
+		switch(gain){
+		case GAIN_0125:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_025:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_05:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_1:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_2:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+		break;
+		case GAIN_4:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+		break;
+		case GAIN_8:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+		break;
+		case GAIN_16:
+			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+		break;
+		}
+	}else if(PGAx == PGA_I){
+		switch(gain){
+		case GAIN_0125:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_025:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_05:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_1:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+		break;
+		case GAIN_2:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+		break;
+		case GAIN_4:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+		break;
+		case GAIN_8:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+		break;
+		case GAIN_16:
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
+			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+		break;
+		}
+	}
+}
+
+void SetDACRange(uint8_t range, enum IOINVERT enable){
+	if(enable == HIGH){
+		HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0); /*Output is inverted*/
+	}else{
+		HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 1);
+	}
+
+	switch(range){
+	case 0:
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0); //Inverted from actual PCB
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
+	break;
+	case 1:
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0); //Inverted from actual PCB
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 1);
+	break;
+	case 2:
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 1); //Inverted from actual PCB
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
+	break;
+	case 3:
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 1); //Inverted from actual PCB
+		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 1);
+	break;
+	}
+}
 
 double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate){
 	return (double)(((double)sampleRate)/((double)sampleSize));
@@ -478,10 +647,10 @@ int8_t SetRnW(enum IOMode mode) {
 	int8_t status = 1;
 	if (cp != NULL) {
 		if (mode == READ) {
-			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, FALSE);
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, TRUE);
 		}
 		else if (mode == WRITE) {
-			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, TRUE);
+			HAL_GPIO_WritePin(cp->ctrl.RWport, cp->ctrl.RWPin, FALSE);
 		}
 		return(status);
 	}
@@ -657,6 +826,8 @@ int main(void)
 	SC.adcSet.SetADCSampleFrequency = SetADCSampleFrequency;
 	SC.adcSet.SetSampleSize = SetSampleSize;
 	SC.adcSet.StartSampling = StartSampling;
+	SC.dacSet.Range = SetDACRange;
+	SC.adcSet.SetPGAGain = SetPGAGain;
 	//
 
 	CommPort.set.SetIOMode = SetGPIOMode;
@@ -737,13 +908,50 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   //TEST
-  SC.adcSet.SetSampleSize(10000);
-  SC.adcSet.SetADCSampleFrequency(12000);
-  SC.dacSet.SetDACFrequency(1000);
+ // SC.adcSet.SetSampleSize(10000);
+ // SC.adcSet.SetADCSampleFrequency(12000);
+ // SC.dacSet.SetDACFrequency(1000);
   //
-  DFTSet.set.NSampleSize = 10000;
-  DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(10000, 12000); //Lav gets til disse
-  DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(1000, DFTSet.set.DFTres);
+ // DFTSet.set.NSampleSize = 10000;
+ // DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(10000, 12000); //Lav gets til disse
+ // DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(1000, DFTSet.set.DFTres);
+
+//
+//  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0); //Inverted from actual PCB
+//  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
+//  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0);
+//
+//  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, 1);
+//  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, 1);
+//  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, 1);
+//
+//  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, 1);
+//  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, 0);
+//  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, 0);
+//
+//  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+//  for(int i = 0; i < 8; i++) {
+//  	if(i == 5) {
+//  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 1);
+//  	}
+//  	else {
+//  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 0);
+//  	}
+//  	HAL_Delay(1);
+//  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 1);
+//  	HAL_Delay(1);
+//  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 0);
+//  	HAL_Delay(1);
+//  }
+//  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 1);
+//  HAL_Delay(1);
+//  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+
+
+  //SC.dacSet.Range(1, HIGH);
+
+  SET_RANGE(RANGE_10R);
+
 /*
 CommPort.set.SetIXMode(INTERNAL); //Set to internal
 HAL_Delay(10);
@@ -801,19 +1009,19 @@ HAL_Delay(10);
 	//	}
 
 
-	  SC.adcSet.StartSampling();
+	  //SC.adcSet.StartSampling();
 	  //ptrVIFourcoeffs = DFTSet.get.CalVIFourierCoeff;
-	  VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff();
-	  IFourCoeff = VIFourCoeffs.current;
-	  VFourCoeff = VIFourCoeffs.voltage;
-	  IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
-	  VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
+	  //VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff();
+	  //IFourCoeff = VIFourCoeffs.current;
+	  //VFourCoeff = VIFourCoeffs.voltage;
+	  //IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
+	  //VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
 
 		//Random string functions
-		sprintf(str, "%.2f\r\n", (VFourCoeffMag));
-		strcpy((char*)uartBuf, str);
-		HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-		HAL_Delay(10);
+		//sprintf(str, "%.2f\r\n", (VFourCoeffMag));
+		//strcpy((char*)uartBuf, str);
+		//HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+		//HAL_Delay(10);
 
 	//}
 	HAL_Delay(1000);
@@ -895,7 +1103,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 2000000;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -928,6 +1136,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, DB8_Pin|DB9_Pin|DB10_Pin|DB11_Pin
@@ -935,12 +1144,15 @@ static void MX_GPIO_Init(void)
                           |DB_CLK_Pin|TimerPin_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, DB_RESET_Pin|LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, DB_RESET_Pin|V_PGA_A0_Pin|RANGE_SER_DATA_Pin|LD2_Pin
+                          |RANGE_SER_CLK_Pin|RANGE_SER_LATCH_Pin|DAC_RANGE_A0_Pin|DAC_RANGE_A1_Pin
+                          |DAC_RANGE_EN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, DB0_Pin|DB1_Pin|DB2_Pin|DB3_Pin
-                          |DB4_Pin|DB5_Pin|DB6_Pin|DB7_Pin
-                          |DB_RW_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, DB0_Pin|DB1_Pin|DB2_Pin|V_PGA_A1_Pin
+                          |V_PGA_A2_Pin|I_PGA_A0_Pin|I_PGA_A1_Pin|I_PGA_A2_Pin
+                          |DB3_Pin|DB4_Pin|DB5_Pin|DB6_Pin
+                          |DB7_Pin|DB_RW_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -959,8 +1171,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB_RESET_Pin LD2_Pin */
-  GPIO_InitStruct.Pin = DB_RESET_Pin|LD2_Pin;
+  /*Configure GPIO pins : DB_RESET_Pin V_PGA_A0_Pin RANGE_SER_DATA_Pin LD2_Pin
+                           RANGE_SER_CLK_Pin RANGE_SER_LATCH_Pin DAC_RANGE_A0_Pin DAC_RANGE_A1_Pin
+                           DAC_RANGE_EN_Pin */
+  GPIO_InitStruct.Pin = DB_RESET_Pin|V_PGA_A0_Pin|RANGE_SER_DATA_Pin|LD2_Pin
+                          |RANGE_SER_CLK_Pin|RANGE_SER_LATCH_Pin|DAC_RANGE_A0_Pin|DAC_RANGE_A1_Pin
+                          |DAC_RANGE_EN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -973,10 +1189,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(DB0_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DB1_Pin DB2_Pin DB3_Pin DB4_Pin
-                           DB5_Pin DB6_Pin DB7_Pin DB_RW_Pin */
-  GPIO_InitStruct.Pin = DB1_Pin|DB2_Pin|DB3_Pin|DB4_Pin
-                          |DB5_Pin|DB6_Pin|DB7_Pin|DB_RW_Pin;
+  /*Configure GPIO pins : DB1_Pin DB2_Pin V_PGA_A1_Pin V_PGA_A2_Pin
+                           I_PGA_A0_Pin I_PGA_A1_Pin I_PGA_A2_Pin DB3_Pin
+                           DB4_Pin DB5_Pin DB6_Pin DB7_Pin
+                           DB_RW_Pin */
+  GPIO_InitStruct.Pin = DB1_Pin|DB2_Pin|V_PGA_A1_Pin|V_PGA_A2_Pin
+                          |I_PGA_A0_Pin|I_PGA_A1_Pin|I_PGA_A2_Pin|DB3_Pin
+                          |DB4_Pin|DB5_Pin|DB6_Pin|DB7_Pin
+                          |DB_RW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -993,6 +1213,22 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(Test_Input_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : UART5_TX_DISPLAY_Pin */
+  GPIO_InitStruct.Pin = UART5_TX_DISPLAY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
+  HAL_GPIO_Init(UART5_TX_DISPLAY_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : UART5_RX_DISPLAY_Pin */
+  GPIO_InitStruct.Pin = UART5_RX_DISPLAY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
+  HAL_GPIO_Init(UART5_RX_DISPLAY_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
