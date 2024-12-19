@@ -89,6 +89,10 @@ typedef struct complexpolar{
   double arg;
   double mod;
 }complexp;
+typedef struct impedance{
+	double mag;
+	double phaseDeg;
+}impedance;
 
 int8_t SetGPIOMode(enum IOMode mode);
 int8_t SetIOValue(uint16_t IOvalue);
@@ -119,6 +123,8 @@ double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate);
 void SetDACTestLevel(uint8_t range, enum IOINVERT enable);
 void SetPGAGain(enum PGAn PGAx, enum PGAGain gain);
 void SetRangeResistor(enum RANGE_SET RANGE);
+complexr ComplexDivideRectangularForm(complexr v, complexr i);
+impedance CalImpedance(complexr vFourier, complexr iFourier);
 
 struct CommunicationPort{
 	struct Control{
@@ -154,9 +160,10 @@ struct complexMath{
     double  (*Argz)(complexr);
     double  (*ArgzDeg)(complexr);
     double  (*Magz)(complexr);
+    complexr(*Dividez)(complexr, complexr);
     complexr (*Addz)(complexr a, complexr b);
   }rec;
-  struct polar{ //dont need.
+  struct polar{ //Unused for now.
 
   }pol;
 }cmplxmath;
@@ -189,6 +196,8 @@ struct FPGASampleControl{
 		void (*SetSampleSize)(uint16_t);
 		void (*StartSampling)(void);
 		void (*SetPGAGain)(enum PGAn, enum PGAGain);
+		double VoltagePGAGain;
+		double CurrentPGAGain;
 	}adcSet;
 	struct DACSettings{
 		float DACResolution;
@@ -197,13 +206,19 @@ struct FPGASampleControl{
 		void(*SetDACFrequency)(uint32_t);
 		void(*TestLevel)(uint8_t, enum IOINVERT);
 		void(*SetRangeResistor)(enum RANGE_SET);
+		double CurrentRangeResistor;
 	}dacSet;
 	struct SampleControlGetting{
 		uint32_t ADCResamplerFrqWord;
 		uint16_t(*GetSingleSampleContinous)(void);
 	}get;
 }SC;
-
+struct ComponentAnalysis{
+	impedance z;
+	struct cal{
+		impedance (*GetImpedance)(complexr vFourier, complexr iFourier);
+	}cal;
+}DUT;
 
 //complexr z;
 
@@ -244,9 +259,31 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+impedance CalImpedance(complexr vFourier, complexr iFourier){
+	double VFourMag = cmplxmath.rec.Magz(vFourier);
+	double IFourMag = cmplxmath.rec.Magz(iFourier);
+	double VFourArg = cmplxmath.rec.ArgzDeg(vFourier);
+	double IFourArg = cmplxmath.rec.ArgzDeg(iFourier);
+
+	double MagZ = (VFourMag/SC.adcSet.VoltagePGAGain)/
+			(IFourMag/(SC.adcSet.CurrentPGAGain * SC.dacSet.CurrentRangeResistor));
+	double ArgZ = VFourArg - IFourArg;
+	if(ArgZ > 150){
+		ArgZ -= 360;
+	}
+	return (impedance){MagZ, ArgZ};
+}
+
+complexr ComplexDivideRectangularForm(complexr v, complexr i){
+	complexr z = (complexr)
+	{(v.real*i.real + v.imag*i.imag)/((i.imag*i.imag) +(i.real*i.real)),
+	((v.imag * i.real) - (v.real*i.imag))/((i.imag * i.imag) + (i.real * i.real))};
+	return z;
+}
+
 void SetRangeResistor(enum RANGE_SET RANGE) {
 	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
-	for(int i = 0; i < 8; i++) {
+	for(int i = 7; i >= 0; i--) {
 		if(i == RANGE) {
 			HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 1);
 		}
@@ -262,6 +299,29 @@ void SetRangeResistor(enum RANGE_SET RANGE) {
 	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 1);
 	HAL_Delay(1);
 	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+	switch(RANGE){
+	case(RANGE_1R):
+			SC.dacSet.CurrentRangeResistor = 1.0;
+			break;
+	case(RANGE_10R):
+		SC.dacSet.CurrentRangeResistor = 10.0;
+			break;
+	case(RANGE_100R):
+		SC.dacSet.CurrentRangeResistor = 100.0;
+			break;
+	case(RANGE_1K):
+		SC.dacSet.CurrentRangeResistor = 1000.0;
+			break;
+	case(RANGE_10K):
+		SC.dacSet.CurrentRangeResistor = 10000.0;
+			break;
+	case(RANGE_100K):
+		SC.dacSet.CurrentRangeResistor = 100000.0;
+			break;
+	case(RANGE_1M):
+		SC.dacSet.CurrentRangeResistor = 1000000.0;
+			break;
+	}
 }
 
 void SetPGAGain(enum PGAn PGAx, enum PGAGain gain){
@@ -271,41 +331,49 @@ void SetPGAGain(enum PGAn PGAx, enum PGAGain gain){
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+			  SC.adcSet.VoltagePGAGain = 0.125;
 		break;
 		case GAIN_025:
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+			  SC.adcSet.VoltagePGAGain = 0.25;
 		break;
 		case GAIN_05:
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+			  SC.adcSet.VoltagePGAGain = 0.5;
 		break;
 		case GAIN_1:
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, LOW);
+			  SC.adcSet.VoltagePGAGain = 1.0;
 		break;
 		case GAIN_2:
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+			  SC.adcSet.VoltagePGAGain = 2.0;
 		break;
 		case GAIN_4:
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+			  SC.adcSet.VoltagePGAGain = 4.0;
 		break;
 		case GAIN_8:
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+			  SC.adcSet.VoltagePGAGain = 8.0;
 		break;
 		case GAIN_16:
 			  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, HIGH);
+			  SC.adcSet.VoltagePGAGain = 16.0;
 		break;
 		}
 	}else if(PGAx == PGA_I){
@@ -314,41 +382,49 @@ void SetPGAGain(enum PGAn PGAx, enum PGAGain gain){
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+			  SC.adcSet.CurrentPGAGain = 0.125;
 		break;
 		case GAIN_025:
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+			  SC.adcSet.CurrentPGAGain = 0.25;
 		break;
 		case GAIN_05:
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+			  SC.adcSet.CurrentPGAGain = 0.5;
 		break;
 		case GAIN_1:
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, LOW);
+			  SC.adcSet.CurrentPGAGain = 1.0;
 		break;
 		case GAIN_2:
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+			  SC.adcSet.CurrentPGAGain = 2.0;
 		break;
 		case GAIN_4:
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+			  SC.adcSet.CurrentPGAGain = 4.0;
 		break;
 		case GAIN_8:
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, LOW);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+			  SC.adcSet.CurrentPGAGain = 8.0;
 		break;
 		case GAIN_16:
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, HIGH);
 			  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, HIGH);
+			  SC.adcSet.CurrentPGAGain = 16.0;
 		break;
 		}
 	}
@@ -442,9 +518,7 @@ double Argzr(complexr z)
 }
 double ArgzDegr(complexr z)
 {
-  return (atan2(z.imag, z.real) * (180/M_PI)); //atan2() tager højde for og korrigerer tangens fejl.
-//return atan(z.imag/z.real) * (180/M_PI);
-
+	return (atan2(z.imag, z.real) * (180/M_PI)); //atan2() tager højde for og korrigerer tangens fejl.
 }
 double Magzr(complexr z)
 {
@@ -480,8 +554,8 @@ complexrSet *CalVIFourierCoeff(uint8_t reset){
 		//complexr nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample);
 
 		//Check for even of odd i.
-		if((i % 2) == 0){ //Even i, current
-			nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample, DFT->set.nVoltageSampleIndex);
+		if((i % 2) == 0){ //Even i, voltage. Voltage sample multiplied by (-1) because of inversion in hardware
+			nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution((-1)*nextSample, DFT->set.nVoltageSampleIndex);
 			if(isnan(nextSampleFourierContribution.imag) || isnan(nextSampleFourierContribution.real)){
 				fourierCoeffV = (complexr){-1,-1};
 				break;
@@ -490,7 +564,7 @@ complexrSet *CalVIFourierCoeff(uint8_t reset){
 			//Increment time index to next sample.
 				DFT->set.nVoltageSampleIndex++;
 			}
-		}else{ // Odd i, voltage
+		}else{ // Odd i, current
 			nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample, DFT->set.nCurrentSampleIndex);
 			if(isnan(nextSampleFourierContribution.imag) || isnan(nextSampleFourierContribution.real)){
 				fourierCoeffI = (complexr){-1,-1};
@@ -830,11 +904,15 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 
-	//DFT
+	//Complex Math Functions
 	cmplxmath.rec.Argz = Argzr;
 	cmplxmath.rec.ArgzDeg = ArgzDegr;
 	cmplxmath.rec.Magz = Magzr;
 	cmplxmath.rec.Addz = Addzr;
+	cmplxmath.rec.Dividez = ComplexDivideRectangularForm;
+	//DUT Functions
+	DUT.cal.GetImpedance = CalImpedance;
+	//DFT Functions
 	DFTSet.ctrl.selfAddr = &DFTSet;
 	DFTSet.set.nCurrentSampleIndex = 0;
 	DFTSet.set.nVoltageSampleIndex = 0;
@@ -843,6 +921,7 @@ int main(void)
 	DFTSet.get.CalDFTResolution = CalDFTResolution;
 	DFTSet.get.CalVIFourierCoeff = CalVIFourierCoeff;
 	DFTSet.get.CalSingleSampleFourierContribution = CalSingleSampleFourierContribution;
+	//Sample Control Functions
 	SC.get.GetSingleSampleContinous = GetSingleSampleContinous;
 	SC.dacSet.DACResolution = 214.748365;
 	SC.dacSet.CalDACFrequencyWord = CalDACFrequencyWord;
@@ -855,8 +934,8 @@ int main(void)
 	SC.adcSet.SetPGAGain = SetPGAGain;
 	SC.dacSet.SetRangeResistor = SetRangeResistor;
 	SC.dacSet.SetDACFrequency = SetDACFrequency;
-	//
 
+	//FPGA <-> MCU Communication Functions
 	CommPort.set.SetIOMode = SetGPIOMode;
 	CommPort.set.SetIOValue = SetIOValue;
 	CommPort.set.GetIOValue = GetIOValue;
@@ -906,6 +985,7 @@ int main(void)
 	double VFourCoeffAng = 0.0;
 	double ZFourCoeffMag = 0.0;
 	double ZFourCoeffAng = 0.0;
+	impedance z;
 	IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
 	//TEMP
 	uint16_t testVar = 0;
@@ -1038,12 +1118,6 @@ HAL_Delay(10);
   CommPort.set.SetIOMode(WRITE);
 
 
-  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0);
-  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
-  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0);
-
-  SC.adcSet.SetPGAGain(PGA_V, GAIN_2);
-  SC.adcSet.SetPGAGain(PGA_I, GAIN_8);
 
 
 
@@ -1083,39 +1157,17 @@ HAL_Delay(10);
   HAL_Delay(1);
   HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
 
+  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0);
+  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
+  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0);
+
+  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
+  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
+  SC.dacSet.SetRangeResistor(RANGE_1R);
 
   while (1)
   {
 
-	//CommPort.ResetComm(); //Reset internal counter registers
-	//CommPort.WriteData(0x8000, 7); //Set MSB in register 7. ADC Resampler will be triggered.
-	//HAL_Delay(500);
-	//Setup micro and FPGA for continous CLKing data out of external memory.
-	//CommPort.set.SetIOMode(READ); //Set MCU to READ mode
-	//CommPort.set.SetRnW(READ);    //Set RW pin to READ
-	//CommPort.set.SetIXMode(EXTERNAL); //Set internal/external switch-over MUX to External memory mode
-	//HAL_Delay(5);
-	//	for(int i = 0; i< f_sampleSize; i++) {
-		/*
-		 * CLK 1 -> Address 0 from external memory. (ADC0 DATA)
-		 * CLK 2 -> Address 1 from external memory. (ADC1 DATA)
-		 * */
-	//	CommPort.set.PulseCLK(); //ADC 0 data
-	//	CommPort.set.GetIOValue(&testVar); //Read IO port value
-	//	CommPort.set.PulseCLK();//ADC 1 data
-		//CommPort.set.GetIOValue(&testVar); //read ADC1 DATA
-
-		//Convert 2's complement (signed binary) to binary
-	//	if((testVar) & (1<<16)) {
-	//		val = (testVar ^ 1<<16)*(-1);
-	//	}
-	//	else{
-	//		val = testVar;
-	//	}
-
-
-	  //SC.adcSet.StartSampling();
-	  //ptrVIFourcoeffs = DFTSet.get.CalVIFourierCoeff;
 	  //Calculate fourier coefficient at 10kHz
 	  SC.adcSet.StartSampling();
 	  HAL_Delay(500);
@@ -1125,86 +1177,74 @@ HAL_Delay(10);
 
 	  IFourCoeff = VIFourCoeffs.current;
 	  VFourCoeff = VIFourCoeffs.voltage;
-
-//	  sprintf(str, "V = ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f", (VFourCoeff.real));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "+ j");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f\n", (VFourCoeff.imag));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//	  sprintf(str, "I = ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f", (IFourCoeff.real));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "+ j");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f\n", (IFourCoeff.imag));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-
-
 	  IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
 	  VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
 	  IFourCoeffAng = cmplxmath.rec.ArgzDeg(IFourCoeff);
 	  VFourCoeffAng = cmplxmath.rec.ArgzDeg(VFourCoeff);
-	  ZFourCoeffMag = (VFourCoeffMag/2.0) / ((IFourCoeffMag/(8.0*100)));
-	  ZFourCoeffAng=  VFourCoeffAng - IFourCoeffAng - 180;
-//
-//	  sprintf(str, "DFT V X[10kHz] MAG : ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f ", (VFourCoeffMag));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//	  sprintf(str, "PHI : ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f\n", (VFourCoeffAng));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//
-//	  sprintf(str, "DFT I X[10kHz] MAG : ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f", (IFourCoeffMag));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//
-//	  sprintf(str, "PHI : ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.2f\n", (IFourCoeffAng));
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  DUT.z = DUT.cal.GetImpedance(VFourCoeff, IFourCoeff);
+//	  ZFourCoeffMag = (VFourCoeffMag/2.0) / ((IFourCoeffMag/(8.0*100)));
+//	  ZFourCoeffAng=  VFourCoeffAng - IFourCoeffAng;
 
-//
-	  sprintf(str, "Impedance MAG : ");
+	  sprintf(str, "DFT V X[10kHz] MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.2f", (ZFourCoeffMag));
+	  sprintf(str, "%.2f ", (VFourCoeffMag));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
+	  sprintf(str, "PHI : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.2f\n", (VFourCoeffAng));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+
+	  sprintf(str, "DFT I X[10kHz] MAG : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.2f ", (IFourCoeffMag));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
 
 	  sprintf(str, "PHI : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.2f\n", (ZFourCoeffAng));
+	  sprintf(str, "%.2f\n", (IFourCoeffAng));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+////
+//	  sprintf(str, "Impedance MAG : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f", (ZFourCoeffMag));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//
+//
+//	  sprintf(str, "PHI : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f\n", (ZFourCoeffAng));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+	  sprintf(str, "Impedance MAG : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.5f", (DUT.z.mag));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+
+
+	  sprintf(str, " PHI : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.5f\n", (DUT.z.phaseDeg));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
