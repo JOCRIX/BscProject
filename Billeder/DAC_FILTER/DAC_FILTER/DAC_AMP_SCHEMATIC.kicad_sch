@@ -2620,7 +2620,7 @@
 		(lib_id "Graphic:SYM_Arrow_Large")
 		(at 133.35 77.47 0)
 		(unit 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom no)
 		(on_board no)
 		(dnp no)
@@ -2663,15 +2663,6 @@
 			)
 		)
 		(property "Description" "Filled arrow, 300mil"
-			(at 133.35 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Enable" "0"
 			(at 133.35 77.47 0)
 			(effects
 				(font

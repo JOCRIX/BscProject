@@ -713,6 +713,44 @@
 		)
 	)
 	(sheet
+		(at 123.825 26.67)
+		(size 40.64 17.78)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "3ad8663b-8658-4c4b-af58-6c85d2ed01b7")
+		(property "Sheetname" "DAC_SIM_MODEL"
+			(at 123.825 25.9584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "DAC_SIM_MODEL.kicad_sch"
+			(at 123.825 45.0346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "DAC_FILTER"
+				(path "/5ea4bdd8-845d-49bd-9427-a30bfd0e620f"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 27.94 26.67)
 		(size 40.64 17.78)
 		(fields_autoplaced yes)
@@ -746,6 +784,44 @@
 			(project "DAC_FILTER"
 				(path "/5ea4bdd8-845d-49bd-9427-a30bfd0e620f"
 					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 174.625 26.67)
+		(size 33.02 17.78)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "b81d1699-6837-4e16-b045-af8fdd78bc85")
+		(property "Sheetname" "DAC_PZ"
+			(at 174.625 25.9584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "DAC_PZ.kicad_sch"
+			(at 174.625 45.0346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "DAC_FILTER"
+				(path "/5ea4bdd8-845d-49bd-9427-a30bfd0e620f"
+					(page "5")
 				)
 			)
 		)

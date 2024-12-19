@@ -385,7 +385,7 @@
   "sheets": [
     [
       "5ea4bdd8-845d-49bd-9427-a30bfd0e620f",
-      "Roden"
+      "Root"
     ],
     [
       "b47965d8-8b4c-4fa9-b5e8-757b8b504f1a",
@@ -394,6 +394,14 @@
     [
       "fa74962d-622b-4456-9c8c-727b512d3a91",
       "DAC_AMP_SCHEMATIC"
+    ],
+    [
+      "3ad8663b-8658-4c4b-af58-6c85d2ed01b7",
+      "DAC_SIM_MODEL"
+    ],
+    [
+      "b81d1699-6837-4e16-b045-af8fdd78bc85",
+      "DAC_PZ"
     ]
   ],
   "text_variables": {}
