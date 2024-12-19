@@ -76,7 +76,16 @@ enum RANGE_SET{
 	RANGE_100K = 0,
 	RANGE_1M = 1
 };
-
+enum DUT_TYPE{
+	RESISTOR,
+	INDUCTOR,
+	CAPACITOR,
+	UNDEFINED
+};
+enum IMPEDANCEMODEL{
+	SERIES,
+	PARALLEL
+};
 
 typedef struct complexr {
 	double real;
@@ -86,13 +95,14 @@ typedef struct complexrSet{
 	complexr voltage, current;
 }complexrSet;
 typedef struct complexpolar{
-  double arg;
   double mod;
+  double argDeg;
 }complexp;
-typedef struct impedance{
-	double mag;
-	double phaseDeg;
-}impedance;
+
+//typedef struct impedance{ //Unused for now, using complexp instead
+//	double mag;
+//	double phaseDeg;
+//}impedance;
 
 int8_t SetGPIOMode(enum IOMode mode);
 int8_t SetIOValue(uint16_t IOvalue);
@@ -123,8 +133,19 @@ double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate);
 void SetDACTestLevel(uint8_t range, enum IOINVERT enable);
 void SetPGAGain(enum PGAn PGAx, enum PGAGain gain);
 void SetRangeResistor(enum RANGE_SET RANGE);
-complexr ComplexDivideRectangularForm(complexr v, complexr i);
-impedance CalImpedance(complexr vFourier, complexr iFourier);
+complexr Dividezr(complexr v, complexr i);
+complexp CalImpedance(complexr vFourier, complexr iFourier);
+enum DUT_TYPE IdentifyComponentType(complexp impedance);
+double DegToRadians(double angle);
+complexr Reciprocalzr(complexr a);
+complexp Reciprocalzp(complexp z);
+complexr PolarToRectangular(complexp z);
+complexr ConvertImpedanceModel(enum IMPEDANCEMODEL ToModel, complexp impedance);
+double CalLossTangent(complexr z);
+double CalQualityFactor(complexr z);
+double GetModelResistance(complexr z);
+double CalInductanceMag(uint32_t wFrq, complexr z);
+double CalCapacitanceMag(uint32_t wFrq, complexr z);
 
 struct CommunicationPort{
 	struct Control{
@@ -162,9 +183,11 @@ struct complexMath{
     double  (*Magz)(complexr);
     complexr(*Dividez)(complexr, complexr);
     complexr (*Addz)(complexr a, complexr b);
+    complexr(*Reciprocalzr)(complexr);
   }rec;
-  struct polar{ //Unused for now.
-
+  struct polar{
+	complexp (*Reciprocalzp)(complexp);
+	complexr (*PolarToRectangular)(complexp);
   }pol;
 }cmplxmath;
 struct DiscFourTf{
@@ -214,9 +237,19 @@ struct FPGASampleControl{
 	}get;
 }SC;
 struct ComponentAnalysis{
-	impedance z;
-	struct cal{
-		impedance (*GetImpedance)(complexr vFourier, complexr iFourier);
+	struct parameters{
+		complexp z;
+		complexr y;
+	}param;
+	struct calculate{
+		complexp (*GetImpedance)(complexr vFourier, complexr iFourier);
+		enum DUT_TYPE (*IdentifyComponentType)(complexp);
+		complexr (*ToImpedanceModel)(enum IMPEDANCEMODEL ToModel, complexp impedance);
+		double (*LossTangent)(complexr z);
+		double (*QualityFactor)(complexr z);
+		double (*ModelResistance)(complexr z);
+		double (*InductanceMagnitude)(uint32_t wFrq, complexr z);
+		double (*CapacitanceMagnitude)(uint32_t wFrq, complexr z);
 	}cal;
 }DUT;
 
@@ -259,7 +292,68 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-impedance CalImpedance(complexr vFourier, complexr iFourier){
+/*Calculate magnitude of capacitance*/
+double CalCapacitanceMag(uint32_t wFrq, complexr z){
+	double capacitiveReactance = z.imag;
+	return 1/(capacitiveReactance*wFrq);
+}
+/*Calculate magnitude of inductance*/
+double CalInductanceMag(uint32_t wFrq, complexr z){
+	double inductiveReactance = z.imag;
+	return inductiveReactance / ((double)wFrq);
+}
+/*Gets the real resistance from the circuit model*/
+double GetModelResistance(complexr z){
+	return z.real;
+}
+/*Calculates the loss tangent in the model*/
+double CalLossTangent(complexr z){
+	double lossTangent = z.real/z.imag;
+	return lossTangent;
+}
+/*Calculates the quality factor of the model*/
+double CalQualityFactor(complexr z){
+	double qualityFactor = z.imag/z.real;
+	return qualityFactor;
+}
+
+complexr ConvertImpedanceModel(enum IMPEDANCEMODEL ToModel, complexp impedance){
+	complexr modeledImpedance = (complexr){0,0};
+	//Convert argument to radians
+	double argRadians = DegToRadians(impedance.argDeg);
+	//Convert impedance to admittance
+	complexp yPolar = cmplxmath.pol.Reciprocalzp(impedance);
+	//Convert admittance to rectangular form
+	complexr yRect = cmplxmath.pol.PolarToRectangular(yPolar);
+
+	switch (ToModel){
+	case(SERIES): //Model as series circuit. Literally no change. Chapter 4.1
+			modeledImpedance = (complexr){
+		 impedance.mod * cos(argRadians),
+		 impedance.mod * sin(argRadians)
+	};
+			break;
+	case(PARALLEL)://Model as parallel circuit. Chapter 4.1
+		modeledImpedance = (complexr){
+				 yRect.real/(yRect.real*yRect.real + yRect.imag*yRect.imag),
+				 (-1)*(yRect.imag/(yRect.real*yRect.real + yRect.imag*yRect.imag))
+			};
+	break;
+	}
+	return modeledImpedance;
+}
+
+enum DUT_TYPE IdentifyComponentType(complexp impedance){
+	enum DUT_TYPE DUT = UNDEFINED;
+	if(signbit(impedance.argDeg) == 0){ //signbit() return 0 on positive floating point number, return 1 if negative.
+		DUT = INDUCTOR;
+	}else if(signbit(impedance.argDeg) == 1) {
+		DUT = CAPACITOR;
+	}
+	return DUT;
+}
+
+complexp CalImpedance(complexr vFourier, complexr iFourier){
 	double VFourMag = cmplxmath.rec.Magz(vFourier);
 	double IFourMag = cmplxmath.rec.Magz(iFourier);
 	double VFourArg = cmplxmath.rec.ArgzDeg(vFourier);
@@ -271,14 +365,7 @@ impedance CalImpedance(complexr vFourier, complexr iFourier){
 	if(ArgZ > 150){
 		ArgZ -= 360;
 	}
-	return (impedance){MagZ, ArgZ};
-}
-
-complexr ComplexDivideRectangularForm(complexr v, complexr i){
-	complexr z = (complexr)
-	{(v.real*i.real + v.imag*i.imag)/((i.imag*i.imag) +(i.real*i.real)),
-	((v.imag * i.real) - (v.real*i.imag))/((i.imag * i.imag) + (i.real * i.real))};
-	return z;
+	return (complexp){MagZ, ArgZ};
 }
 
 void SetRangeResistor(enum RANGE_SET RANGE) {
@@ -527,6 +614,33 @@ double Magzr(complexr z)
 complexr Addzr(complexr a, complexr b){
 	return (complexr){a.real + b.real, a.imag + b.imag};
 }
+complexr Dividezr(complexr v, complexr i){
+	complexr z = (complexr)
+	{(v.real*i.real + v.imag*i.imag)/((i.imag*i.imag) +(i.real*i.real)),
+	((v.imag * i.real) - (v.real*i.imag))/((i.imag * i.imag) + (i.real * i.real))};
+	return z;
+}
+complexr Reciprocalzr(complexr a){
+	return (complexr){
+		a.real/(a.real*a.real + a.imag*a.imag),
+		(-1)*(a.imag/(a.real*a.real + a.imag*a.imag))
+	};
+}
+complexp Reciprocalzp(complexp z){
+	return (complexp){1/z.mod,-1*z.argDeg};
+}
+complexr PolarToRectangular(complexp z){
+	return (complexr){
+		z.mod * cos(DegToRadians(z.argDeg)),
+		z.mod * sin(DegToRadians(z.argDeg))
+	};
+}
+
+double DegToRadians(double angle){
+	return angle * (M_PI/180.0);
+}
+
+
 
 /*
  * Computes the fourier coefficient at the "k" frequency index in the DFT*/
@@ -544,9 +658,6 @@ complexrSet *CalVIFourierCoeff(uint8_t reset){
 		fourierVI =(complexrSet){{0,0},{0,0}};
 	}
 
-	//test variabler
-	char str[20];
-	uint8_t uartBuf[16];
 	for(uint16_t i = 0; i < DFT->set.NSampleSize*2; i++){
 		//Get next sample from external memory, could be voltage or current. Even i = voltage, Odd i = current
 		nextSample = SC.get.GetSingleSampleContinous();
@@ -774,8 +885,6 @@ int8_t SetIXMode(enum IXMode mode) {
 	}
 }
 
-
-
 int8_t SetCLK(enum bool state) {
 	struct CommunicationPort *cp = CommPort.ctrl.selfAddr;
 	int8_t status = 1;
@@ -881,7 +990,6 @@ int8_t FetchData(uint16_t *result, uint16_t addr) {
 	}
 }
 
-
 /*Creates delay of approx 285 ns + del_time ns delay, 75 ns resolution*/
 void ns_delay(uint16_t del_time) {
 	if (del_time != 0) {
@@ -909,9 +1017,19 @@ int main(void)
 	cmplxmath.rec.ArgzDeg = ArgzDegr;
 	cmplxmath.rec.Magz = Magzr;
 	cmplxmath.rec.Addz = Addzr;
-	cmplxmath.rec.Dividez = ComplexDivideRectangularForm;
+	cmplxmath.rec.Dividez = Dividezr;
+	cmplxmath.rec.Reciprocalzr = Reciprocalzr;
+	cmplxmath.pol.Reciprocalzp = Reciprocalzp;
+	cmplxmath.pol.PolarToRectangular = PolarToRectangular;
 	//DUT Functions
 	DUT.cal.GetImpedance = CalImpedance;
+	DUT.cal.IdentifyComponentType = IdentifyComponentType;
+	DUT.cal.ToImpedanceModel = ConvertImpedanceModel;
+	DUT.cal.LossTangent = CalLossTangent;
+	DUT.cal.QualityFactor = CalQualityFactor;
+	DUT.cal.ModelResistance = GetModelResistance;
+	DUT.cal.InductanceMagnitude = CalInductanceMag;
+	DUT.cal.CapacitanceMagnitude = CalCapacitanceMag;
 	//DFT Functions
 	DFTSet.ctrl.selfAddr = &DFTSet;
 	DFTSet.set.nCurrentSampleIndex = 0;
@@ -985,7 +1103,7 @@ int main(void)
 	double VFourCoeffAng = 0.0;
 	double ZFourCoeffMag = 0.0;
 	double ZFourCoeffAng = 0.0;
-	impedance z;
+	complexp z;
 	IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
 	//TEMP
 	uint16_t testVar = 0;
@@ -1181,7 +1299,7 @@ HAL_Delay(10);
 	  VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
 	  IFourCoeffAng = cmplxmath.rec.ArgzDeg(IFourCoeff);
 	  VFourCoeffAng = cmplxmath.rec.ArgzDeg(VFourCoeff);
-	  DUT.z = DUT.cal.GetImpedance(VFourCoeff, IFourCoeff);
+	  DUT.param.z = DUT.cal.GetImpedance(VFourCoeff, IFourCoeff);
 //	  ZFourCoeffMag = (VFourCoeffMag/2.0) / ((IFourCoeffMag/(8.0*100)));
 //	  ZFourCoeffAng=  VFourCoeffAng - IFourCoeffAng;
 
@@ -1235,7 +1353,7 @@ HAL_Delay(10);
 	  sprintf(str, "Impedance MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.5f", (DUT.z.mag));
+	  sprintf(str, "%.5f", (DUT.param.z.mod));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
@@ -1244,7 +1362,7 @@ HAL_Delay(10);
 	  sprintf(str, " PHI : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.5f\n", (DUT.z.phaseDeg));
+	  sprintf(str, "%.5f\n", (DUT.param.z.argDeg));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
