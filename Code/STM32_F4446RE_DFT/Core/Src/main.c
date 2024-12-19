@@ -104,10 +104,10 @@ double argzr(complexr z);
 double argzDegr(complexr z);
 double magzr(complexr z);
 complexr AddComplexr(complexr a, complexr b);
-complexr CalSingleSampleFourierContribution(uint16_t inputSample);
-complexrSet *CalVIFourierCoeff();
-uint16_t GetSingleSampleContinous();
-uint16_t SignedToUnsignedBinary(int16_t signedBinary);
+complexr CalSingleSampleFourierContribution(int16_t inputSample, uint16_t nTimeIndex);
+complexrSet *CalVIFourierCoeff(uint8_t reset);
+int16_t GetSingleSampleContinous();
+int16_t SignedToUnsignedBinary(uint16_t signedBinary);
 uint32_t CalDACFrequencyWord(uint32_t frequency);
 void SetDACFrequency(uint32_t frq);
 uint32_t CalADCFrequencyWord(uint32_t frequency);
@@ -116,9 +116,10 @@ void StartSampling();
 void ns_delay(uint16_t);
 uint16_t GetkFrequencyIndex(uint32_t DACFrequency, double DFTResolution);
 double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate);
-void SetDACRange(uint8_t range, enum IOINVERT enable);
+void SetDACTestLevel(uint8_t range, enum IOINVERT enable);
 void SetPGAGain(enum PGAn PGAx, enum PGAGain gain);
-void SET_RANGE(enum RANGE_SET RANGE);
+void SetRangeResistor(enum RANGE_SET RANGE);
+
 struct CommunicationPort{
 	struct Control{
 		struct CommunicationPort *selfAddr;
@@ -166,14 +167,16 @@ struct DiscFourTf{
 	struct DFTsetting{
 		uint16_t NSampleSize;
 		uint16_t kFrequencyIndex; //Frequency index
-		uint16_t nSampleIndex; //Time index, eller sample points i tidsdomænet,
+		uint16_t nSampleIndex;
+		uint16_t nVoltageSampleIndex;
+		uint16_t nCurrentSampleIndex; //Time index, eller sample points i tidsdomænet,
 		double DFTres;         //En "n" værdi svarer til et specifikt punkt i tid, hvor signalet er samplet.
 							   //Hvis der samples hvert 10 sekund, så går "n" fra 0(første sekund) til 9 (10ende sekund)
 	}set;
 	struct DFTgetting{
 		uint16_t CalcDFTPercent;
-		complexrSet*(*CalVIFourierCoeff)(void);
-		complexr(*CalSingleSampleFourierContribution)(uint16_t);
+		complexrSet*(*CalVIFourierCoeff)(uint8_t);
+		complexr(*CalSingleSampleFourierContribution)(uint16_t,uint16_t);
 		uint16_t (*GetkFrequencyIndex)(uint32_t, double);
 		double (*CalDFTResolution)(uint16_t, uint32_t);
 	}get;
@@ -192,7 +195,8 @@ struct FPGASampleControl{
 		uint32_t DACFrqWord;
 		uint32_t(*CalDACFrequencyWord)(uint32_t);
 		void(*SetDACFrequency)(uint32_t);
-		void(*Range)(uint8_t, enum IOINVERT);
+		void(*TestLevel)(uint8_t, enum IOINVERT);
+		void(*SetRangeResistor)(enum RANGE_SET);
 	}dacSet;
 	struct SampleControlGetting{
 		uint32_t ADCResamplerFrqWord;
@@ -240,7 +244,7 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void SET_RANGE(enum RANGE_SET RANGE) {
+void SetRangeResistor(enum RANGE_SET RANGE) {
 	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
 	for(int i = 0; i < 8; i++) {
 		if(i == RANGE) {
@@ -350,7 +354,7 @@ void SetPGAGain(enum PGAn PGAx, enum PGAGain gain){
 	}
 }
 
-void SetDACRange(uint8_t range, enum IOINVERT enable){
+void SetDACTestLevel(uint8_t range, enum IOINVERT enable){
 	if(enable == HIGH){
 		HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0); /*Output is inverted*/
 	}else{
@@ -400,7 +404,7 @@ uint32_t CalADCFrequencyWord(uint32_t frequency){
 void SetSampleSize(uint16_t sampleSize){
 	CommPort.set.SetIXMode(INTERNAL); //Set to internal
 	HAL_Delay(1);
-	CommPort.WriteData(sampleSize, ADC_SAMPLE_SIZE_REG);      //Set sample size to FPGA.
+	CommPort.WriteData(sampleSize, ADC_SAMPLE_SIZE_REG);//Set sample size to FPGA.
 }
 
 void SetADCSampleFrequency(uint32_t frq){
@@ -438,7 +442,9 @@ double Argzr(complexr z)
 }
 double ArgzDegr(complexr z)
 {
-  return atan2(z.imag, z.real) * (180/M_PI); //atan2() tager højde for og korrigerer tangens fejl.
+  return (atan2(z.imag, z.real) * (180/M_PI)); //atan2() tager højde for og korrigerer tangens fejl.
+//return atan(z.imag/z.real) * (180/M_PI);
+
 }
 double Magzr(complexr z)
 {
@@ -450,36 +456,49 @@ complexr Addzr(complexr a, complexr b){
 
 /*
  * Computes the fourier coefficient at the "k" frequency index in the DFT*/
-complexrSet *CalVIFourierCoeff(){
+complexrSet *CalVIFourierCoeff(uint8_t reset){
+
 	struct DiscFourTf *DFT = DFTSet.ctrl.selfAddr;
 	complexr fourierCoeffV = (complexr){0,0};
 	complexr fourierCoeffI = (complexr){0,0};
 	static complexrSet fourierVI =(complexrSet){{0,0},{0,0}};
-	DFT->set.nSampleIndex = 0;
-	uint16_t nextSample = 0;
-	for(uint16_t i = 0; i < DFT->set.NSampleSize; i++){
+	DFT->set.nCurrentSampleIndex = 0;
+	DFT->set.nVoltageSampleIndex = 0;
+	complexr nextSampleFourierContribution = (complexr){0,0};
+	int16_t nextSample = 0;
+	if(reset == 1){
+		fourierVI =(complexrSet){{0,0},{0,0}};
+	}
+
+	//test variabler
+	char str[20];
+	uint8_t uartBuf[16];
+	for(uint16_t i = 0; i < DFT->set.NSampleSize*2; i++){
 		//Get next sample from external memory, could be voltage or current. Even i = voltage, Odd i = current
 		nextSample = SC.get.GetSingleSampleContinous();
 		//Calculate fourier contribution at nextSample to the DFT.
-		complexr nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample);
+		//complexr nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample);
+
 		//Check for even of odd i.
 		if((i % 2) == 0){ //Even i, current
-			if(isnan(nextSampleFourierContribution.imag) || isnan(nextSampleFourierContribution.real)){
-				fourierCoeffI = (complexr){-1,-1};
-				break;
-			}else{
-				fourierCoeffI = cmplxmath.rec.Addz(fourierCoeffI, nextSampleFourierContribution);
-			//Increment time index to next sample.
-				DFT->set.nSampleIndex++;
-			}
-		}else{ // Odd i, voltage
+			nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample, DFT->set.nVoltageSampleIndex);
 			if(isnan(nextSampleFourierContribution.imag) || isnan(nextSampleFourierContribution.real)){
 				fourierCoeffV = (complexr){-1,-1};
 				break;
 			}else{
 				fourierCoeffV = cmplxmath.rec.Addz(fourierCoeffV, nextSampleFourierContribution);
 			//Increment time index to next sample.
-				DFT->set.nSampleIndex++;
+				DFT->set.nVoltageSampleIndex++;
+			}
+		}else{ // Odd i, voltage
+			nextSampleFourierContribution = DFT->get.CalSingleSampleFourierContribution(nextSample, DFT->set.nCurrentSampleIndex);
+			if(isnan(nextSampleFourierContribution.imag) || isnan(nextSampleFourierContribution.real)){
+				fourierCoeffI = (complexr){-1,-1};
+				break;
+			}else{
+				fourierCoeffI = cmplxmath.rec.Addz(fourierCoeffI, nextSampleFourierContribution);
+			//Increment time index to next sample.
+				DFT->set.nCurrentSampleIndex++;
 			}
 		}
 	}
@@ -505,11 +524,11 @@ I DFT bruges "n" når vi summerer over alle samples af input signalet til at ber
 
  Twiddle faktoren er det som konverterer en samplet værdi i tidsdomænet x[n] til en værdi i frekvensdomænet X[k]
  */
-complexr CalSingleSampleFourierContribution(uint16_t inputSample){
+complexr CalSingleSampleFourierContribution(int16_t inputSample, uint16_t nTimeIndex){
 	struct DiscFourTf *DFT = DFTSet.ctrl.selfAddr;
 	static complexr fourierPartCoeff = (complexr){0,0};
 	if(DFT->set.NSampleSize != 0){ /*Calculate part of the fourier coefficient*/
-		double angle = (2.0*M_PI * (double)DFT->set.kFrequencyIndex * (double)DFT->set.nSampleIndex )/(double)DFT->set.NSampleSize;
+		double angle = (2.0*M_PI * (double)DFT->set.kFrequencyIndex * (double)nTimeIndex)/(double)DFT->set.NSampleSize;
 		fourierPartCoeff = (complexr){
 			(double)inputSample * cos(angle),
 			(double)inputSample * ((-1)* sin(angle))
@@ -517,12 +536,13 @@ complexr CalSingleSampleFourierContribution(uint16_t inputSample){
 	}else{ /*Division by zero, return undefined*/
 		fourierPartCoeff = (complexr){NAN,NAN};
 	}
+
 	return fourierPartCoeff;
 }
 
 /*Converts a 16bit value in 2's complement to ordinary binary.*/
-uint16_t SignedToUnsignedBinary(int16_t signedBinary){
-	uint16_t binary = 0;
+int16_t SignedToUnsignedBinary(uint16_t signedBinary){
+	int16_t binary = 0;
 	if((signedBinary) & (1<<16)) {
 		binary = (signedBinary ^ 1<<16)*(-1);
 	}
@@ -532,8 +552,8 @@ uint16_t SignedToUnsignedBinary(int16_t signedBinary){
 	return binary;
 }
 
-uint16_t GetSingleSampleContinous(){
-	uint16_t sample;
+int16_t GetSingleSampleContinous(){
+	int16_t sample;
 	CommPort.set.SetIOMode(READ); //Set MCU to READ mode
 	CommPort.set.SetRnW(READ);    //Set RW pin to READ
 	CommPort.set.SetIXMode(EXTERNAL); //Set internal/external switch-over MUX to External memory mode
@@ -543,6 +563,8 @@ uint16_t GetSingleSampleContinous(){
 	* */
 	CommPort.set.PulseCLK(); //ADC "n" data
 	CommPort.set.GetIOValue(&sample); //Read IO port value
+	sample = SignedToUnsignedBinary(sample);
+
 	return sample;
 }
 
@@ -814,6 +836,9 @@ int main(void)
 	cmplxmath.rec.Magz = Magzr;
 	cmplxmath.rec.Addz = Addzr;
 	DFTSet.ctrl.selfAddr = &DFTSet;
+	DFTSet.set.nCurrentSampleIndex = 0;
+	DFTSet.set.nVoltageSampleIndex = 0;
+	DFTSet.set.nSampleIndex = 0;
 	DFTSet.get.GetkFrequencyIndex = GetkFrequencyIndex;
 	DFTSet.get.CalDFTResolution = CalDFTResolution;
 	DFTSet.get.CalVIFourierCoeff = CalVIFourierCoeff;
@@ -826,8 +851,10 @@ int main(void)
 	SC.adcSet.SetADCSampleFrequency = SetADCSampleFrequency;
 	SC.adcSet.SetSampleSize = SetSampleSize;
 	SC.adcSet.StartSampling = StartSampling;
-	SC.dacSet.Range = SetDACRange;
+	SC.dacSet.TestLevel = SetDACTestLevel;
 	SC.adcSet.SetPGAGain = SetPGAGain;
+	SC.dacSet.SetRangeResistor = SetRangeResistor;
+	SC.dacSet.SetDACFrequency = SetDACFrequency;
 	//
 
 	CommPort.set.SetIOMode = SetGPIOMode;
@@ -866,19 +893,34 @@ int main(void)
 	CommPort.ctrl.HighBytePins[6] = DB14_Pin;
 	CommPort.ctrl.HighBytePins[7] = DB15_Pin;
 
-	uint8_t uartBuf[16];
-	//uint16_t testVar = 0;
-	//uint16_t f_sampleSize = 0;
-	int16_t val = 0;
-	char str[16];
-	//float f_set = 1000000;
-	//uint32_t f_word = (uint32_t)(f_set*214.748365);
+	uint8_t uartBuf[21];
+
+
 	complexrSet VIFourCoeffs = (complexrSet){{0,0},{0,0}};
 	complexrSet *ptrVIFourcoeffs = &VIFourCoeffs;
 	complexr IFourCoeff = (complexr){0,0};
 	complexr VFourCoeff = (complexr){0,0};
 	double IFourCoeffMag = 0.0;
-	double VFourCoeffMag = 0.0;IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
+	double VFourCoeffMag = 0.0;
+	double IFourCoeffAng = 0.0;
+	double VFourCoeffAng = 0.0;
+	double ZFourCoeffMag = 0.0;
+	double ZFourCoeffAng = 0.0;
+	IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
+	//TEMP
+	uint16_t testVar = 0;
+	uint16_t f_sampleSize = 0;
+	float f_set = 1000000;
+	int16_t val = 0;
+	char str[25];
+	uint32_t f_word = (uint32_t)(f_set*214.748365);
+	int16_t VMeas = 0;
+	int16_t IMeas = 0;
+	uint32_t smpl_word = (uint32_t)(f_set*214.748365);
+	float smpl_set = 100000;
+
+
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -908,13 +950,16 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   //TEST
- // SC.adcSet.SetSampleSize(10000);
- // SC.adcSet.SetADCSampleFrequency(12000);
- // SC.dacSet.SetDACFrequency(1000);
+  CommPort.ResetComm();
+  SC.adcSet.SetSampleSize(1000);
+  SC.adcSet.SetADCSampleFrequency(1000000);
+  SC.dacSet.SetDACFrequency(10000);
+  SC.adcSet.StartSampling();
+  HAL_Delay(500);
   //
- // DFTSet.set.NSampleSize = 10000;
- // DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(10000, 12000); //Lav gets til disse
- // DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(1000, DFTSet.set.DFTres);
+  DFTSet.set.NSampleSize = 1000;
+  DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(1000, 1000000); //Lav gets til disse
+  DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(10000, DFTSet.set.DFTres);
 
 //
 //  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0); //Inverted from actual PCB
@@ -950,7 +995,7 @@ int main(void)
 
   //SC.dacSet.Range(1, HIGH);
 
-  SET_RANGE(RANGE_10R);
+ // SET_RANGE(RANGE_10R);
 
 /*
 CommPort.set.SetIXMode(INTERNAL); //Set to internal
@@ -979,6 +1024,66 @@ HAL_Delay(10);
 CommPort.WriteData(f_sampleSize, 6);      //Set sample size to FPGA.
 HAL_Delay(10);
 */
+
+  //MORE TEST xd
+  CommPort.set.SetIXMode(INTERNAL);
+  HAL_Delay(10);
+  CommPort.ResetComm();
+
+  HAL_Delay(10);
+
+  CommPort.set.SetIXMode(INTERNAL);
+  HAL_Delay(1);
+  CommPort.set.SetRnW(WRITE);
+  CommPort.set.SetIOMode(WRITE);
+
+
+  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0);
+  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
+  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0);
+
+  SC.adcSet.SetPGAGain(PGA_V, GAIN_2);
+  SC.adcSet.SetPGAGain(PGA_I, GAIN_8);
+
+
+
+  f_sampleSize = 1000;
+  f_set = 10000;
+  smpl_set =1000000;
+
+  f_word = (uint32_t)(f_set*214.748365);
+  smpl_word = (uint32_t)(smpl_set*214.748365);
+  HAL_Delay(10);
+  CommPort.WriteData((f_word & 0xFFFF), 4);
+  HAL_Delay(10);
+  CommPort.WriteData(((f_word >> 16)), 5);
+  HAL_Delay(10);
+  CommPort.WriteData((smpl_word & 0xFFFF), 2);
+  HAL_Delay(10);
+  CommPort.WriteData(((smpl_word >> 16)), 3);
+  HAL_Delay(10);
+  //CommPort.WriteData(f_sampleSize, 6);
+  HAL_Delay(10);
+
+  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+  for(int i = 0; i < 8; i++) {
+  	if(i == 3) {
+  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 1);
+  	}
+  	else {
+  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 0);
+  	}
+  	HAL_Delay(1);
+  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 1);
+  	HAL_Delay(1);
+  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 0);
+  	HAL_Delay(1);
+  }
+  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 1);
+  HAL_Delay(1);
+  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
+
+
   while (1)
   {
 
@@ -1011,11 +1116,99 @@ HAL_Delay(10);
 
 	  //SC.adcSet.StartSampling();
 	  //ptrVIFourcoeffs = DFTSet.get.CalVIFourierCoeff;
-	  //VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff();
-	  //IFourCoeff = VIFourCoeffs.current;
-	  //VFourCoeff = VIFourCoeffs.voltage;
-	  //IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
-	  //VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
+	  //Calculate fourier coefficient at 10kHz
+	  SC.adcSet.StartSampling();
+	  HAL_Delay(500);
+	  CommPort.ResetComm();
+	  HAL_Delay(10);
+	  VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff(1);
+
+	  IFourCoeff = VIFourCoeffs.current;
+	  VFourCoeff = VIFourCoeffs.voltage;
+
+//	  sprintf(str, "V = ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f", (VFourCoeff.real));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "+ j");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f\n", (VFourCoeff.imag));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//	  sprintf(str, "I = ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f", (IFourCoeff.real));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "+ j");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f\n", (IFourCoeff.imag));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+
+
+	  IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
+	  VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
+	  IFourCoeffAng = cmplxmath.rec.ArgzDeg(IFourCoeff);
+	  VFourCoeffAng = cmplxmath.rec.ArgzDeg(VFourCoeff);
+	  ZFourCoeffMag = (VFourCoeffMag/2.0) / ((IFourCoeffMag/(8.0*100)));
+	  ZFourCoeffAng=  VFourCoeffAng - IFourCoeffAng - 180;
+//
+//	  sprintf(str, "DFT V X[10kHz] MAG : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f ", (VFourCoeffMag));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//	  sprintf(str, "PHI : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f\n", (VFourCoeffAng));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//
+//	  sprintf(str, "DFT I X[10kHz] MAG : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f", (IFourCoeffMag));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//
+//	  sprintf(str, "PHI : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.2f\n", (IFourCoeffAng));
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+//
+	  sprintf(str, "Impedance MAG : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.2f", (ZFourCoeffMag));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+
+
+	  sprintf(str, "PHI : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.2f\n", (ZFourCoeffAng));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+	  HAL_Delay(3000);
 
 		//Random string functions
 		//sprintf(str, "%.2f\r\n", (VFourCoeffMag));
@@ -1024,9 +1217,58 @@ HAL_Delay(10);
 		//HAL_Delay(10);
 
 	//}
-	HAL_Delay(1000);
-
-
+//	HAL_Delay(1000);
+//	CommPort.ResetComm();
+//		CommPort.WriteData(0x8000, 7);
+//		HAL_Delay(500);
+//		CommPort.set.SetIOMode(READ);
+//		CommPort.set.SetRnW(READ);
+//		CommPort.set.SetIXMode(EXTERNAL);
+//		HAL_Delay(5);
+//			for(int i = 0; i< f_sampleSize; i++) {
+//
+//			CommPort.set.PulseCLK();
+//			CommPort.set.GetIOValue(&testVar);
+//			//CommPort.set.PulseCLK();
+//	//
+//			if((testVar) & (1<<16)) {
+//				VMeas = (testVar ^ 1<<16)*(-1);
+//			}
+//			else{
+//				VMeas = testVar;
+//			}
+//			VMeas*=-1;
+//			HAL_Delay(1);
+//			sprintf(str, "Voltage:");
+//			strcpy((char*)uartBuf, str);
+//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//			sprintf(str, "%d", (VMeas));
+//			strcpy((char*)uartBuf, str);
+//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//			sprintf(str, ",");
+//			strcpy((char*)uartBuf, str);
+//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//			CommPort.set.PulseCLK();
+//			CommPort.set.GetIOValue(&testVar);
+//			//CommPort.set.PulseCLK();
+//	//
+//			if((testVar) & (1<<16)) {
+//				VMeas = (testVar ^ 1<<16)*(-1);
+//			}
+//			else{
+//				VMeas = testVar;
+//			}
+//			HAL_Delay(1);
+//			sprintf(str, "Current:");
+//			strcpy((char*)uartBuf, str);
+//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//			sprintf(str, "%d\r\n", (VMeas));
+//			strcpy((char*)uartBuf, str);
+//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//			HAL_Delay(15);
+//			}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
