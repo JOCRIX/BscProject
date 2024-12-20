@@ -87,6 +87,13 @@ enum IMPEDANCEMODEL{
 	PARALLEL
 };
 
+enum TestLevel{
+	LVL_4V3 = 0,
+	LVL_1V2 = 1,
+	LVL_2V3 = 2,
+	LVL_0V6 = 3
+};
+
 typedef struct complexr {
 	double real;
 	double imag;
@@ -130,7 +137,7 @@ void StartSampling();
 void ns_delay(uint16_t);
 uint16_t GetkFrequencyIndex(uint32_t DACFrequency, double DFTResolution);
 double CalDFTResolution(uint16_t sampleSize, uint32_t sampleRate);
-void SetDACTestLevel(uint8_t range, enum IOINVERT enable);
+void SetDACTestLevel(enum TestLevel range, enum IOINVERT enable);
 void SetPGAGain(enum PGAn PGAx, enum PGAGain gain);
 void SetRangeResistor(enum RANGE_SET RANGE);
 complexr Dividezr(complexr v, complexr i);
@@ -146,6 +153,8 @@ double CalQualityFactor(complexr z);
 double GetModelResistance(complexr z);
 double CalInductanceMag(uint32_t wFrq, complexr z);
 double CalCapacitanceMag(uint32_t wFrq, complexr z);
+void tempPrint(uint16_t f_sampleSize, uint16_t testVar);
+
 
 struct CommunicationPort{
 	struct Control{
@@ -227,7 +236,7 @@ struct FPGASampleControl{
 		uint32_t DACFrqWord;
 		uint32_t(*CalDACFrequencyWord)(uint32_t);
 		void(*SetDACFrequency)(uint32_t);
-		void(*TestLevel)(uint8_t, enum IOINVERT);
+		void(*TestLevel)(enum TestLevel, enum IOINVERT);
 		void(*SetRangeResistor)(enum RANGE_SET);
 		double CurrentRangeResistor;
 	}dacSet;
@@ -252,6 +261,19 @@ struct ComponentAnalysis{
 		double (*CapacitanceMagnitude)(uint32_t wFrq, complexr z);
 	}cal;
 }DUT;
+
+
+typedef struct TestParameters{
+	uint32_t testFrequency;
+	uint32_t sampleFrequency;
+	uint16_t sampleSize;
+	uint16_t run;
+}TestParameters;
+
+struct Calibration{
+	float r_Relay[7];
+}calPar;
+
 
 //complexr z;
 
@@ -388,25 +410,25 @@ void SetRangeResistor(enum RANGE_SET RANGE) {
 	HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
 	switch(RANGE){
 	case(RANGE_1R):
-			SC.dacSet.CurrentRangeResistor = 1.0;
+			SC.dacSet.CurrentRangeResistor = 1.0+calPar.r_Relay[0];
 			break;
 	case(RANGE_10R):
-		SC.dacSet.CurrentRangeResistor = 10.0;
+		SC.dacSet.CurrentRangeResistor = 10.0+calPar.r_Relay[1];
 			break;
 	case(RANGE_100R):
-		SC.dacSet.CurrentRangeResistor = 100.0;
+		SC.dacSet.CurrentRangeResistor = 100.0+calPar.r_Relay[2];
 			break;
 	case(RANGE_1K):
-		SC.dacSet.CurrentRangeResistor = 1000.0;
+		SC.dacSet.CurrentRangeResistor = 1000.0+calPar.r_Relay[3];
 			break;
 	case(RANGE_10K):
-		SC.dacSet.CurrentRangeResistor = 10000.0;
+		SC.dacSet.CurrentRangeResistor = 10000.0+calPar.r_Relay[4];
 			break;
 	case(RANGE_100K):
-		SC.dacSet.CurrentRangeResistor = 100000.0;
+		SC.dacSet.CurrentRangeResistor = 100000.0+calPar.r_Relay[5];
 			break;
 	case(RANGE_1M):
-		SC.dacSet.CurrentRangeResistor = 1000000.0;
+		SC.dacSet.CurrentRangeResistor = 1000000.0+calPar.r_Relay[6];
 			break;
 	}
 }
@@ -517,7 +539,7 @@ void SetPGAGain(enum PGAn PGAx, enum PGAGain gain){
 	}
 }
 
-void SetDACTestLevel(uint8_t range, enum IOINVERT enable){
+void SetDACTestLevel(enum TestLevel range, enum IOINVERT enable){
 	if(enable == HIGH){
 		HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0); /*Output is inverted*/
 	}else{
@@ -525,19 +547,19 @@ void SetDACTestLevel(uint8_t range, enum IOINVERT enable){
 	}
 
 	switch(range){
-	case 0:
+	case LVL_4V3:
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0); //Inverted from actual PCB
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
 	break;
-	case 1:
+	case LVL_1V2:
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0); //Inverted from actual PCB
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 1);
 	break;
-	case 2:
+	case LVL_2V3:
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 1); //Inverted from actual PCB
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
 	break;
-	case 3:
+	case LVL_0V6:
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 1); //Inverted from actual PCB
 		 HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 1);
 	break;
@@ -1001,6 +1023,70 @@ void ns_delay(uint16_t del_time) {
 }
 
 
+//TEMP
+
+void tempPrint(uint16_t f_sampleSize, uint16_t testVar) {
+	int16_t VMeas = 0;
+	int16_t IMeas = 0;
+	char str[25];
+	uint8_t uartBuf[21];
+	HAL_Delay(1000);
+	CommPort.ResetComm();
+		CommPort.WriteData(0x8000, 7);
+		HAL_Delay(500);
+		CommPort.set.SetIOMode(READ);
+		CommPort.set.SetRnW(READ);
+		CommPort.set.SetIXMode(EXTERNAL);
+		HAL_Delay(5);
+			for(int i = 0; i< f_sampleSize; i++) {
+
+			CommPort.set.PulseCLK();
+			CommPort.set.GetIOValue(&testVar);
+			//CommPort.set.PulseCLK();
+	//
+			if((testVar) & (1<<16)) {
+				VMeas = (testVar ^ 1<<16)*(-1);
+			}
+			else{
+				VMeas = testVar;
+			}
+			VMeas*=-1;
+			HAL_Delay(1);
+			sprintf(str, "Voltage:");
+			strcpy((char*)uartBuf, str);
+			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			float meas = VMeas*(5.0/32768.0);
+			sprintf(str, "%f", (meas));
+			strcpy((char*)uartBuf, str);
+			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+			sprintf(str, ",");
+			strcpy((char*)uartBuf, str);
+			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			CommPort.set.PulseCLK();
+			CommPort.set.GetIOValue(&testVar);
+			//CommPort.set.PulseCLK();
+	//
+			if((testVar) & (1<<16)) {
+				VMeas = (testVar ^ 1<<16)*(-1);
+			}
+			else{
+				VMeas = testVar;
+			}
+			HAL_Delay(1);
+			sprintf(str, "Current:");
+			strcpy((char*)uartBuf, str);
+			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			meas = VMeas*(5.0/32768.0);
+			sprintf(str, "%f\r\n", (meas));
+			strcpy((char*)uartBuf, str);
+			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+			HAL_Delay(15);
+			}
+}
+
+
 /* USER CODE END 0 */
 
 /**
@@ -1148,140 +1234,31 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 
   //TEST
+
+  uint16_t sampleSize = 32000;
+  uint16_t sampleF = 1000000;
+  uint16_t testF = 100000;
+
+  TestParameters testPar = (TestParameters){100000, 1000000, 20000, 1};
+  for(int i=0; i < 7; i++) {
+	  calPar.r_Relay[i] = 0.06;
+  }
+
   CommPort.ResetComm();
-  SC.adcSet.SetSampleSize(1000);
-  SC.adcSet.SetADCSampleFrequency(1000000);
-  SC.dacSet.SetDACFrequency(10000);
+  SC.adcSet.SetSampleSize(testPar.sampleSize);
+  SC.adcSet.SetADCSampleFrequency(testPar.sampleFrequency);
+  SC.dacSet.SetDACFrequency(testPar.testFrequency);
   SC.adcSet.StartSampling();
   HAL_Delay(500);
   //
-  DFTSet.set.NSampleSize = 1000;
-  DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(1000, 1000000); //Lav gets til disse
-  DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(10000, DFTSet.set.DFTres);
+  DFTSet.set.NSampleSize = testPar.sampleSize;
+  DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(testPar.sampleSize, testPar.sampleFrequency); //Lav gets til disse
+  DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(testPar.testFrequency, DFTSet.set.DFTres);
 
-//
-//  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0); //Inverted from actual PCB
-//  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
-//  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0);
-//
-//  HAL_GPIO_WritePin(GPIOA, V_PGA_A0_Pin, 1);
-//  HAL_GPIO_WritePin(GPIOB, V_PGA_A1_Pin, 1);
-//  HAL_GPIO_WritePin(GPIOB, V_PGA_A2_Pin, 1);
-//
-//  HAL_GPIO_WritePin(GPIOB, I_PGA_A0_Pin, 1);
-//  HAL_GPIO_WritePin(GPIOB, I_PGA_A1_Pin, 0);
-//  HAL_GPIO_WritePin(GPIOB, I_PGA_A2_Pin, 0);
-//
-//  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
-//  for(int i = 0; i < 8; i++) {
-//  	if(i == 5) {
-//  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 1);
-//  	}
-//  	else {
-//  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 0);
-//  	}
-//  	HAL_Delay(1);
-//  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 1);
-//  	HAL_Delay(1);
-//  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 0);
-//  	HAL_Delay(1);
-//  }
-//  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 1);
-//  HAL_Delay(1);
-//  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
-
-
-  //SC.dacSet.Range(1, HIGH);
-
- // SET_RANGE(RANGE_10R);
-
-/*
-CommPort.set.SetIXMode(INTERNAL); //Set to internal
-HAL_Delay(10);
-CommPort.ResetComm(); //Reset FPGA modules. Only works in internal mode
-
-HAL_Delay(10);
-
-CommPort.set.SetIXMode(INTERNAL); //We set internal again after reset.
-HAL_Delay(1);
-
-
-f_sampleSize = 10000;
-f_set = 1333;
-
-f_word = (uint32_t)(f_set*214.748365); //Calculate DAC resolution
-HAL_Delay(10);
-CommPort.WriteData((f_word & 0xFFFF), 4); //Write 16 LSBs of frq word to DAC register.
-HAL_Delay(10);
-CommPort.WriteData(((f_word >> 16)), 5);  //Write 16 MSBs of frq word to DAC register.
-HAL_Delay(10);
-CommPort.WriteData((f_word & 0xFFFF), 2); //Write 16 LSBs of frq word to ADC register.
-HAL_Delay(10);
-CommPort.WriteData(((f_word >> 16)), 3);  //Write 16 MSBs of frq word to ADC register.
-HAL_Delay(10);
-CommPort.WriteData(f_sampleSize, 6);      //Set sample size to FPGA.
-HAL_Delay(10);
-*/
-
-  //MORE TEST xd
-  CommPort.set.SetIXMode(INTERNAL);
-  HAL_Delay(10);
-  CommPort.ResetComm();
-
-  HAL_Delay(10);
-
-  CommPort.set.SetIXMode(INTERNAL);
-  HAL_Delay(1);
-  CommPort.set.SetRnW(WRITE);
-  CommPort.set.SetIOMode(WRITE);
-
-
-
-
-
-  f_sampleSize = 1000;
-  f_set = 10000;
-  smpl_set =1000000;
-
-  f_word = (uint32_t)(f_set*214.748365);
-  smpl_word = (uint32_t)(smpl_set*214.748365);
-  HAL_Delay(10);
-  CommPort.WriteData((f_word & 0xFFFF), 4);
-  HAL_Delay(10);
-  CommPort.WriteData(((f_word >> 16)), 5);
-  HAL_Delay(10);
-  CommPort.WriteData((smpl_word & 0xFFFF), 2);
-  HAL_Delay(10);
-  CommPort.WriteData(((smpl_word >> 16)), 3);
-  HAL_Delay(10);
-  //CommPort.WriteData(f_sampleSize, 6);
-  HAL_Delay(10);
-
-  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
-  for(int i = 0; i < 8; i++) {
-  	if(i == 3) {
-  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 1);
-  	}
-  	else {
-  		HAL_GPIO_WritePin(GPIOA, RANGE_SER_DATA_Pin, 0);
-  	}
-  	HAL_Delay(1);
-  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 1);
-  	HAL_Delay(1);
-  	HAL_GPIO_WritePin(GPIOA, RANGE_SER_CLK_Pin, 0);
-  	HAL_Delay(1);
-  }
-  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 1);
-  HAL_Delay(1);
-  HAL_GPIO_WritePin(GPIOA, RANGE_SER_LATCH_Pin, 0);
-
-  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A0_Pin, 0);
-  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_A1_Pin, 0);
-  HAL_GPIO_WritePin(GPIOA, DAC_RANGE_EN_Pin, 0);
-
-  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
+  SC.adcSet.SetPGAGain(PGA_V, GAIN_4);
   SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
-  SC.dacSet.SetRangeResistor(RANGE_1R);
+  SC.dacSet.SetRangeResistor(RANGE_10R);
+  SC.dacSet.TestLevel(LVL_2V3, HIGH);
 
   while (1)
   {
@@ -1366,7 +1343,7 @@ HAL_Delay(10);
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
-	  HAL_Delay(3000);
+	  HAL_Delay(1000);
 
 		//Random string functions
 		//sprintf(str, "%.2f\r\n", (VFourCoeffMag));
@@ -1375,61 +1352,11 @@ HAL_Delay(10);
 		//HAL_Delay(10);
 
 	//}
-//	HAL_Delay(1000);
-//	CommPort.ResetComm();
-//		CommPort.WriteData(0x8000, 7);
-//		HAL_Delay(500);
-//		CommPort.set.SetIOMode(READ);
-//		CommPort.set.SetRnW(READ);
-//		CommPort.set.SetIXMode(EXTERNAL);
-//		HAL_Delay(5);
-//			for(int i = 0; i< f_sampleSize; i++) {
-//
-//			CommPort.set.PulseCLK();
-//			CommPort.set.GetIOValue(&testVar);
-//			//CommPort.set.PulseCLK();
-//	//
-//			if((testVar) & (1<<16)) {
-//				VMeas = (testVar ^ 1<<16)*(-1);
-//			}
-//			else{
-//				VMeas = testVar;
-//			}
-//			VMeas*=-1;
-//			HAL_Delay(1);
-//			sprintf(str, "Voltage:");
-//			strcpy((char*)uartBuf, str);
-//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//			sprintf(str, "%d", (VMeas));
-//			strcpy((char*)uartBuf, str);
-//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//			sprintf(str, ",");
-//			strcpy((char*)uartBuf, str);
-//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//			CommPort.set.PulseCLK();
-//			CommPort.set.GetIOValue(&testVar);
-//			//CommPort.set.PulseCLK();
-//	//
-//			if((testVar) & (1<<16)) {
-//				VMeas = (testVar ^ 1<<16)*(-1);
-//			}
-//			else{
-//				VMeas = testVar;
-//			}
-//			HAL_Delay(1);
-//			sprintf(str, "Current:");
-//			strcpy((char*)uartBuf, str);
-//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//			sprintf(str, "%d\r\n", (VMeas));
-//			strcpy((char*)uartBuf, str);
-//			HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//			HAL_Delay(15);
-//			}
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  tempPrint(200, testVar);
   }
   /* USER CODE END 3 */
 }
