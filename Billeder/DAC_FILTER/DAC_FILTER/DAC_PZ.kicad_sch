@@ -401,6 +401,16 @@
 	)
 	(wire
 		(pts
+			(xy 110.49 85.09) (xy 114.3 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04c08663-0de9-4321-9ae9-c97e086dd104")
+	)
+	(wire
+		(pts
 			(xy 149.86 85.09) (xy 157.48 85.09)
 		)
 		(stroke
@@ -421,6 +431,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.92 85.09) (xy 127 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "74f748da-2e78-45d0-ab6b-3c0d620a05f1")
+	)
+	(wire
+		(pts
 			(xy 157.48 85.09) (xy 168.91 85.09)
 		)
 		(stroke
@@ -431,7 +451,7 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 85.09) (xy 142.24 85.09)
+			(xy 134.62 85.09) (xy 142.24 85.09)
 		)
 		(stroke
 			(width 0)
@@ -461,23 +481,13 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 85.09) (xy 105.41 85.09)
+			(xy 99.06 85.09) (xy 102.87 85.09)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "cea77e3b-a367-421f-aa0a-20f22eb79eae")
-	)
-	(wire
-		(pts
-			(xy 113.03 85.09) (xy 121.92 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dda5a800-cd9b-44e7-8647-c1bd93d4287d")
 	)
 	(wire
 		(pts
@@ -491,7 +501,7 @@
 	)
 	(text "Z_π = 0\nat High Frequencies"
 		(exclude_from_sim no)
-		(at 120.904 90.17 0)
+		(at 124.46 90.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -524,7 +534,7 @@
 	)
 	(global_label "Vi"
 		(shape input)
-		(at 102.87 85.09 180)
+		(at 99.06 85.09 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -534,7 +544,7 @@
 		)
 		(uuid "8c1e826b-e3ad-4c52-be76-3f4d08806d8f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 98.1914 85.09 0)
+			(at 94.3814 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -686,7 +696,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 125.73 85.09 90)
+		(at 130.81 85.09 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -695,7 +705,7 @@
 		(fields_autoplaced yes)
 		(uuid "35295da1-7f83-490b-9e6d-91eb036e1b32")
 		(property "Reference" "Z_π/2"
-			(at 125.73 80.01 90)
+			(at 130.81 80.01 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -703,7 +713,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 125.73 82.55 90)
+			(at 130.81 82.55 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -711,7 +721,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 125.73 86.868 90)
+			(at 130.81 86.868 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -720,7 +730,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 125.73 85.09 0)
+			(at 130.81 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -729,7 +739,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 125.73 85.09 0)
+			(at 130.81 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -892,24 +902,24 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 109.22 85.09 90)
+		(at 118.11 85.09 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "f98fbadb-8e75-4049-94c1-ebcf62325042")
-		(property "Reference" "Rd/2"
-			(at 109.22 78.74 90)
+		(uuid "d91481a0-de26-40b1-9183-8916f70568ab")
+		(property "Reference" "Rx/2"
+			(at 118.11 78.74 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "2"
-			(at 109.22 81.28 90)
+		(property "Value" "51"
+			(at 118.11 81.28 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -917,7 +927,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 109.474 84.074 90)
+			(at 118.364 84.074 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -926,7 +936,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 109.22 85.09 0)
+			(at 118.11 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -935,7 +945,75 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
-			(at 109.22 85.09 0)
+			(at 118.11 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "726458a7-42af-4508-b86d-9e07b2ba9104")
+		)
+		(pin "2"
+			(uuid "e616601c-68dd-4c32-b00f-d4a2e26dd8fe")
+		)
+		(instances
+			(project "DAC_FILTER"
+				(path "/5ea4bdd8-845d-49bd-9427-a30bfd0e620f/b81d1699-6837-4e16-b045-af8fdd78bc85"
+					(reference "Rx/2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 106.68 85.09 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f98fbadb-8e75-4049-94c1-ebcf62325042")
+		(property "Reference" "Rd/2"
+			(at 106.68 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2"
+			(at 106.68 81.28 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 106.934 84.074 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 106.68 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 106.68 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)

@@ -2133,7 +2133,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1024"
+		(property "Value" "256"
 			(at 158.75 77.4699 0)
 			(effects
 				(font
@@ -2542,7 +2542,7 @@
 				)
 			)
 		)
-		(property "Value" "256"
+		(property "Value" "51"
 			(at 133.35 63.5 90)
 			(effects
 				(font
