@@ -1,0 +1,20 @@
+\section{Main Processor} \label{sec:MCU}
+This section will describe the behaviour of main processor or MCU. The MCU is tasked with the signal processing of the the sampled voltage and current waveforms, as well as loading the specific test data to the Sample Control Module such as sample size, sample frequency, test frequency etc. Whilst the original design goal was to let the Sample Control Module handle elements such as auto-ranging, setting PGA gain and test-signal level, all these features have been implemented in the MCU due to time constrains. Generally, non-time critical elements are easier and much faster to implement in C than in HDL.
+
+The process used to calculate the impedance of a DUT can be described as in list \refq{lst_7_3}.
+\begin{itemize}
+\label{lst_7_3}
+    \item Set a small sample-size (2-3 full waveforms of the test frequency) to the Sample Control Module.
+    \item Initiate sampling.
+    \item Wait for sampling to complete. 
+    \item See if the sampled signal is clipping or not using enough of the ADCs range.
+    \item Set range resistor and PGAs accordingly.
+    \item Set the full sample size to the Sample Control Module.
+    \item Initiate sampling.
+    \item Wait for sampling to complete. 
+    \item Perform DFT on voltage and current, only at the twidle-factor of interrest. 
+    \item Calculate the impedance using the Frequency-domain signals for voltage and current. 
+    \item Perform necessary corrections on the calculated impedance. 
+    \item Show the impedance to the user via the UI.
+\end{itemize}
+
