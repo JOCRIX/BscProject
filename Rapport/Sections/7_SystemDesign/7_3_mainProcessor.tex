@@ -1,5 +1,5 @@
 \section{Main Processor} \label{sec:MCU}
-This section will describe the behaviour of main processor or MCU. The MCU is tasked with the signal processing of the the sampled voltage and current waveforms, as well as loading the specific test data to the Sample Control Module such as sample size, sample frequency, test frequency etc. Whilst the original design goal was to let the Sample Control Module handle elements such as auto-ranging, setting PGA gain and test-signal level, all these features have been implemented in the MCU due to time constrains. Generally, non-time critical elements are easier and much faster to implement in C than in HDL.
+This section will describe the behaviour of main processor or MCU. The MCU is tasked with the signal processing of the sampled voltage and current waveforms, as well as loading the specific test data to the Sample Control Module such as sample size, sample frequency, test frequency etc. Whilst the original design goal was to let the Sample Control Module handle elements such as auto-ranging, setting PGA gain and test-signal level, all these features have been implemented in the MCU due to time constrains. Generally, non-time critical elements are easier and much faster to implement in C than in HDL.
 
 The process used to calculate the impedance of a DUT can be described as in list \refq{lst_7_3}.
 \begin{itemize}
@@ -7,14 +7,16 @@ The process used to calculate the impedance of a DUT can be described as in list
     \item Set a small sample-size (2-3 full waveforms of the test frequency) to the Sample Control Module.
     \item Initiate sampling.
     \item Wait for sampling to complete. 
-    \item See if the sampled signal is clipping or not using enough of the ADCs range.
+    \item See if the sampled signal is saturated, or not using enough of the ADCs range.
     \item Set range resistor and PGAs accordingly.
-    \item Set the full sample size to the Sample Control Module.
+    \item Set the sample size to the Sample Control Module.
     \item Initiate sampling.
     \item Wait for sampling to complete. 
-    \item Perform DFT on voltage and current, only at the twidle-factor of interrest. 
+    \item Retrieve the samples from the Sample Control module, perform DFT on the samples.
     \item Calculate the impedance using the Frequency-domain signals for voltage and current. 
     \item Perform necessary corrections on the calculated impedance. 
     \item Show the impedance to the user via the UI.
 \end{itemize}
+
+All but the final element in listing \refq{lst_7_3}, regarding a user interface, was completed at the time of submitting this report and will be documented in this section.
 
