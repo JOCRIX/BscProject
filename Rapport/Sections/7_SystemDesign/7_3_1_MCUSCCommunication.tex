@@ -1,3 +1,46 @@
 \subsection{MCU and Sample Control communication} \label{subsec:MCUSCCommunication} 
+This section will focus on how the main processing unit implements and handles the communication protocol with the sample control module. 
+The protocol designed for communication between the main processing unit and the Sample Control Unit has previously been described in section \refq{subsec:Communication}.
+
+C is not a strictly object oriented language, the principle of objects is however the focal point of the implement communication code. This is implemented through the struct CommPort of the designated data-type CommunicationPort. This data-type holds 3 main elements, control, set and get, respectivly refered to as ctrl, set and get. This can be seen in listing \refq{lst:7_3_1_StructCommPort}.
+
+\lstinputlisting[language=c ,style = c,firstnumber=1, linerange=175-202, caption={The CommPort struct of the CommunicationPort data-type used to control the communication port with the Sample Control Module.}, label={lst:7_3_1_StructCommPort}]{Appendix/Code/main_2612.tex}
+
+These 3 elements are used to control the pins, ports etc. that the port is physically connected to. This can be used to set up the hardware. Set is used to set the port, such as setting an output value on the port, configuring it as inputs etc. Get is the general struct that will be used, as it utilizes call-back functions using the struct Set and Control. In this way, the hardware must be set up once, hereafter the port can be completly controlled by the Get struct call-back functions. 
+
+Pointers and call-back functions have been extensively used in the CommPort struct. This has been a point of focus, as it makes it very intuitive and easy for the programmer to set up a register on the Sample Control Module. For example, if one wishes to set up the Sample Control Module for a total sample size of 10000, one would simply have to first set the IX-pin for internal, and then send the value 10000 to register 6. This can be done by using the CommPort struct as:
+
+\begin{itemize}
+    \item CommPort.set.SetIXMode(INTERNAL);
+    \item CommPort.WriteData(10000, 6);
+\end{itemize}
+
+The struct then calls the required functions for setting up the IX pin for internal registers, setting the port to an output, sending the address first and then the data for the address. Note that INTERNAL here belongs to an enum with, INTERNAL = 0 and EXTERNAL = 1. In this way one does not have to keep track of the ones and zeros, but rather the functionality instead.
+
+To fully describe the system, the handling of the protocol will be described in more detail specifically for the Control part, Set part and Get part. Not all functions will be described here, only those that are key for the opperation, as many are very similar.
+
+\subsubsection{Control}
+In order for the call-back functions to function, alle the hardware must be specified to the CommPort struct. This is done through the Control data-type in listing \refq{lst:7_3_1_StructCommPort}. The specific pins can be found in appendix \refq{App:PinMap_MCU_FPGA}, the setup of these pins can be seen in listing \refq{lst:7_3_1_CommPort_PinSetup}, note that line 1 indicates that it points to its own address, allowing the struct to access data inside the struct itself.
+
+\lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1619-1643, caption={Pin setup for the CommPort struct.}, label={lst:7_3_1_CommPort_PinSetup}]{Appendix/Code/main_2612.tex}
+
+This way of setting up the port makes it very easy to change pins or swap processor if needed. Here the used pins need only be reconfigured in the setup of the struct. This also comes in handy when opperating with an ARM processor such as the STM32F446RE. When writing to or reading from a pin, once must both specify the pin and the specific port of that pin. The task of keeping track of the port of each pin quickly becomes a dreary one, this is simply avoided by the given implementation.
+
+\subsubsection{Set}
+The Set struct of the CommunicationPort data-type is a collecion of call-back functions specifically used for setting up the port. The different options within this struct are as in line 14 to 20 in listing \refq{lst:7_3_1_CommPort_PinSetup}:
+
+\begin{itemize}
+    \item SetIOMode - Configures the port to either an input or output.
+    \item SetIOValue - Sets a 16 bit value on the port, given it is configured as an output.
+    \item GetIOValue - Returns a pointer to the address where the current port data is stored.
+    \item SetRnW - Sets the Read Not Write pin for either read or write mode.
+    \item SetCLK - Set the state of the clock pin.
+    \item PulseCLK - Pulses the clock a single time from low to high to low.
+    \item SetIXMode - Set the Internal/External pin.
+\end{itemize}
+
+Notice that many of these call-back functions takes in enumerators as inputs, these simply act as a way for the human programmer to keep track of the ones and zeros. The IXMode enum can take either the value INTERNAL = 0 or EXTENRAL = 1. It is however much easier to keep track of the functionality than it is to keep track of a zero and one. Thus if it is desired to set the IX pin to internal, one would simply call the function as $CommPort.Set.SetIOMode(INTERNAL)$, the compiler will then take care of inserting a 0 instead of the text INTERNAL.
+
+
 
 %Comm port code etc
