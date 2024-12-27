@@ -5,7 +5,7 @@
      \tikz[remember picture,overlay]
      \node[opacity=1,inner sep=0pt]
      at (current page.center)
-     {\includegraphics[width=\paperwidth,height=\paperheight]{aaugraphics/aau_waves.pdf}};
+     {};%\includegraphics[width=\paperwidth,height=\paperheight]{aaugraphics/aau_waves.pdf}};
  %background waves end 
 
   \fboxsep0pt\colorbox{aaublue}
@@ -16,7 +16,7 @@
     {\colorbox{aaublue}{\begin{tabular}{@{}p{\textwidth}@{}}% Adding box
     \color{white}
      \begin{center}
-     \Huge{\textbf{Characterizing passive components}}
+     \Huge{\textbf{Designing an Impedance Analyzer}}
      \end{center}
      \vspace{0.2cm}
     \begin{center}
@@ -33,6 +33,15 @@
    \end{tabular}}}
  
    \vfill %spacing
+   %\begin{center} %add circle logo
+   % \includegraphics[width=1\paperwidth]{Sections/1_Introduction/figures/Frontpage.pdf}
+  %\end{center}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 0 0 0, width=1\textwidth]{Sections/1_Introduction/figures/Frontpage.pdf}
+\end{figure}
+
    \begin{center} %add circle logo
      \includegraphics[width=0.2\paperwidth]{aaugraphics/aau_logo_circle_en.pdf}
    \end{center}
