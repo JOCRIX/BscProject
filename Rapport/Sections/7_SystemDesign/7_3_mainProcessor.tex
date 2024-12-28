@@ -4,11 +4,11 @@ This section outlines the behavior of the main processor, or MCU. The MCU proces
 
 The process for determining the impedance of a Device Under Test (DUT) involves several steps:
 
-Initially, a small sample size, capturing just a few full waveforms of the test frequency, is set for the Sample Control Module. Sampling begins, and after completion, the MCU checks if the sampled signal is either saturated or not fully utilizing the ADC's full dynamic range. Based on this check, adjustments are made to the range resistors and PGA settings. 
+Initially, a small sample size, capturing just a few full waveforms of the test frequency, is set for the Sample Control Module. Sampling begins, and after completion, the MCU checks if the sampled signal is either saturated, or not fully utilizing the ADC's full dynamic range. Based on this check, adjustments are made to the range resistors and PGA settings. 
 
 Next, the sample size is adjusted in the Sample Control Module, and sampling is reinitiated. Once the new sampling is done, the MCU retrieves these samples, applies a Discrete Fourier Transform (DFT) to analyze them, and then calculates the impedance using the frequency-domain representations of voltage and current. After calculation, necessary corrections are applied to the impedance values. The final step, which was not completed by the time of this report, involves displaying this impedance through a user interface.
 
-The key segments of the C code executed on the STM32F446RE microcontroller are detailed in this section. The full C code can be found in appendix \refq{App:MCUCode}.
+The key segments of the C code executed on the STM32F446RE microcontroller are detailed in this section. The full C code can be found in appendix \refq{App:MCUCode}. The C code for the project makes use of ST's HAL (Hardware Abstraction Layer) drivers \cite{STHAL}, to access GPIO functions, UARTs and timers. These HAL drivers are generic callback functions and are common to the entire STM32 platform, which makes it possible to easily swap the STM32F446RE to a different microcontroller if, for whatever reason, more memory, more GPIO pins, more UARTs, timers or other hardware modules are required. 
 
 The code is organized into data structures that group related functions and variables, giving greater modularity and readability. An example can be seen in code listing \refq{lst:CACODE} where all functions and variables related to analyzing an impedance can be seen.
 
@@ -28,3 +28,6 @@ The intent with this approach is to bring a small degree of \textit{object orien
 \end{figure}
 
 When writing the main program loop these data structures can be used to quickly identify which functions and variables are associated with a module and it gives a better overview of the C code in the project. There are several more of these data structures in this project. There are also structures that encapsulate complex number math functions, MCU to FPGA communication functions, spectral analysis functions, calibration functions and so on. All of this can be seen in appendix \refq{App:MCUCode}.
+
+
+
