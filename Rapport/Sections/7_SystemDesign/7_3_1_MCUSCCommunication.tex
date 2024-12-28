@@ -2,11 +2,11 @@
 This section will focus on how the main processing unit implements and handles the communication protocol with the sample control module. 
 The protocol designed for communication between the main processing unit and the Sample Control Unit has previously been described in section \refq{subsec:Communication}.
 
-C is not a strictly object oriented language, the principle of objects is however the focal point of the implement communication code. This is implemented through the struct CommPort of the designated data-type CommunicationPort. This data-type holds 3 main elements, control, set and get, respectivly refered to as ctrl, set and get. This can be seen in listing \refq{lst:7_3_1_StructCommPort}.
+C is not an object oriented language, the principle of objects is however the focal point of the implementation of the communication code. This is implemented through the struct CommPort of the designated data-type CommunicationPort. This data-type holds 3 main elements, control, set and get, respectivly refered to as ctrl, set and get. This can be seen in listing \refq{lst:7_3_1_StructCommPort}.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=175-202, caption={The CommPort struct of the CommunicationPort data-type used to control the communication port with the Sample Control Module.}, label={lst:7_3_1_StructCommPort}]{Appendix/Code/main_2612.tex}
 
-These 3 elements are used to control the pins, ports etc. that the port is physically connected to. This can be used to set up the hardware. Set is used to set the port, such as setting an output value on the port, configuring it as inputs etc. Get is the general struct that will be used, as it utilizes call-back functions using the struct Set and Control. In this way, the hardware must be set up once, hereafter the port can be completly controlled by the Get struct call-back functions. 
+These 3 elements are used to control the pins, ports etc. that the port is physically connected to. This can be used to set up the hardware. Set is used to set the port, such as setting an output value on the port, configuring it as inputs etc. Get is the general struct that will be used, as it utilizes call-back functions using the struct Set and Control. In this way, the hardware must be set up once, hereafter the port can be completely controlled by the Get struct call-back functions. 
 
 Pointers and call-back functions have been extensively used in the CommPort struct. This has been a point of focus, as it makes it very intuitive and easy for the programmer to set up a register on the Sample Control Module. For example, if one wishes to set up the Sample Control Module for a total sample size of 10000, one would simply have to first set the IX-pin for internal, and then send the value 10000 to register 6. This can be done by using the CommPort struct as:
 
@@ -15,12 +15,12 @@ Pointers and call-back functions have been extensively used in the CommPort stru
     \item CommPort.WriteData(10000, 6);
 \end{itemize}
 
-The struct then calls the required functions for setting up the IX pin for internal registers, setting the port to an output, sending the address first and then the data for the address. Note that INTERNAL here belongs to an enum with, INTERNAL = 0 and EXTERNAL = 1. In this way one does not have to keep track of the ones and zeros, but rather the functionality instead.
+SetIXMode() callback then calls the other, required, callbacks inside the struct for setting up the IX pin for internal registers, setting the port to an output, sending the address first and then the data for the address. Note that INTERNAL here belongs to an enum with, INTERNAL = 0 and EXTERNAL = 1. In this way one does not have to keep track of the ones and zeros, but rather the functionality instead.
 
 To fully describe the system, the handling of the protocol will be described in more detail specifically for the Control part, Set part and Get part. Not all functions will be described here, only those that are key for the opperation, as many are very similar.
 
 \subsubsection{Control}
-In order for the call-back functions to function, alle the hardware must be specified to the CommPort struct. This is done through the Control data-type in listing \refq{lst:7_3_1_StructCommPort}. The specific pins can be found in appendix \refq{App:PinMap_MCU_FPGA}, the setup of these pins can be seen in listing \refq{lst:7_3_1_CommPort_PinSetup}, note that line 1 indicates that it points to its own address, allowing the struct to access data inside the struct itself.
+In order for the call-back functions to function, all the hardware must be specified to the CommPort struct. This is done through the Control data-type in listing \refq{lst:7_3_1_StructCommPort}. The specific pins can be found in appendix \refq{App:PinMap_MCU_FPGA}, the setup of these pins can be seen in listing \refq{lst:7_3_1_CommPort_PinSetup}, note that line 1 indicates that it points to its own address, allowing the struct to access data inside the struct itself.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1619-1643, caption={Pin setup for the CommPort struct.}, label={lst:7_3_1_CommPort_PinSetup}]{Appendix/Code/main_2612.tex}
 
