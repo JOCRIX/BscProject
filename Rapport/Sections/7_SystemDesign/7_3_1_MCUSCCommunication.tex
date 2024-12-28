@@ -2,7 +2,7 @@
 This section will focus on how the main processing unit implements and handles the communication protocol with the sample control module. 
 The protocol designed for communication between the main processing unit and the Sample Control Unit has previously been described in section \refq{subsec:Communication}.
 
-C is not a strictly object oriented language, the principle of objects is however the focal point of the implement communication code. This is implemented through the struct CommPort of the designated data-type CommunicationPort. This data-type holds 3 main data-types, \textbf{Control}, \textbf{Set} and \textbf{Get}, respectivly wtih the names \textbf{ctrl}, \textbf{set} and \textbf{get}. This can be seen in listing \refq{lst:7_3_1_StructCommPort}.
+C is not an object oriented language, the principle of objects is however the focal point of the implement communication code. This is implemented through the struct CommPort of the designated data-type CommunicationPort. This data-type holds 3 main data-types, \textbf{Control}, \textbf{Set} and \textbf{Get}, respectivly wtih the names \textbf{ctrl}, \textbf{set} and \textbf{get}. This can be seen in listing \refq{lst:7_3_1_StructCommPort}.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=175-202, caption={The CommPort struct of the CommunicationPort data-type used to control the communication port with the Sample Control Module.}, label={lst:7_3_1_StructCommPort}]{Appendix/Code/main_2612.tex}
 
@@ -26,6 +26,7 @@ In order for the call-back functions to function, all the hardware must be speci
 
 This way of setting up the port makes it very easy to change pins or swap processor if needed. Here the used pins need only be reconfigured in the setup of the struct. This also comes in handy when opperating with an ARM processor such as the STM32F446RE. When writing to or reading from a pin, one must both specify the pin and the specific port of that pin. The task of keeping track of the port of each pin quickly becomes a dreary one, this is simply avoided by the given implementation.
 
+
 \subsubsection*{Set data-type}
 The \textbf{Set} struct of the CommunicationPort data-type is a collecion of call-back functions specifically used for setting up the port. The different options within this struct are as in line 14 to 20 in listing \refq{lst:7_3_1_CommPort_PinSetup}. Here only \textbf{SetIOMode}, \textbf{SetIOValue} and \textbf{GetIOValue} will be fully described. The other functions are fairly simple.
 
@@ -40,7 +41,7 @@ All functions in the \textbf{set} struct are call-back functions, the specifc fu
 The \textbf{SetGPIOMode} function can be seen in listing \refq{lst:7_3_1_SetIOMode}. This function configures the port for either an input or output. The port consists of 16 pins, pins 0-7 on port B and pins 0-7 on port C of the STM32F446RE. Port B pins 0-7 is bit 0-7 of the communication port and port, port C pins 0-7 is bit 8-15 of the communication port.
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1234-1282, caption={Code for the SetGPIOMode function used to the 16 bit wide port to either and input or ourput.}, label={lst:7_3_1_SetIOMode}]{Appendix/Code/main_2612.tex}
 
-The enumerator \textbf{enum IOMode} used for input of the function can either take the value READ or WRITE. The \textbf{static GPIO\_InitTypeDef} in line 4 and 5 is an stm32 struct used to set up the hardware of a pin/port. It configures the port mode, speed and if pullup or pulldown resistors should be used.
+The enumerator \textbf{enum IOMode} is used for input of the function can either take the value READ or WRITE. The \textbf{static GPIO\_InitTypeDef} in line 4 and 5 is an STM32 struct used to set up the hardware of a pin/port. It configures the port mode, speed and if pullup or pulldown resistors should be used.
 
 The function essentially works by loading in the configured hardware from the \textbf{ctrl} struct, line 3, if the function is then called to configure the port for READ mode i.e. an input, it then loads in the specific hardware pins to the HighByte and LowByte struct by a loop, line 10 to 14. With all the pins loaded in to the STM32 struct, GPIO\_InitTypeDef, for the high and low byte, the port is simply configured for an input, line 18 and 19, for pull-up resistors, line 20 and 21, and the current mode variable in the ctrl struct is updated to indicate that the port is in READ mode, line 22. The port is confiugred in exactly the same way for a WRITE mode, except that here the mode is set for an open drain output.
 
