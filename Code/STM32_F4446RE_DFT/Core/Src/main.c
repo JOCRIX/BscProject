@@ -703,14 +703,14 @@ void smpl_Y(void) {
 complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 //	complexr rec_Z = cmplxmath.pol.PolarToRectangular(Z_DUT);
 	complexp Z_DUT;
+	complexr Z_M;
 	complexr OS_Y;
-
-//	OS_Y = calPar.range_Cal_Open[5];
-//	OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
-//	OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-//	Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-//			-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[5].imag))*57.2958;
-//	Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+	complexr SS_Z;
+	SS_Z.real =0.0;
+	SS_Z.imag = 0.0;
+	Z_M = cmplxmath.rec.Reciprocalzr(Y_MEAS);
+	Y_MEAS = cmplxmath.rec.Subz(Z_M, SS_Z);
+	Y_MEAS = cmplxmath.rec.Reciprocalzr(Y_MEAS);
 
 	switch (Range) {
 	case 1:
@@ -771,6 +771,7 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 		break;
 
 	}
+
 	return(Z_DUT);
 }
 
@@ -1693,7 +1694,7 @@ int main(void)
   uint16_t testF = 100000;
   double testZ = 0;
 
-  TestParameters testPar = (TestParameters){50000, 1000000, 25000, 1};
+  TestParameters testPar = (TestParameters){10000, 320000, 32000, 1};
 //  for(int i=0; i < 7; i++) {
 //	  calPar.r_Relay[i] = 0.06;
 //  }
@@ -1771,6 +1772,10 @@ int main(void)
 //  strcpy((char*)uartBuf, str);
 //  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 //  HAL_Delay(2000);
+
+//  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
+//  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
+//  SC.dacSet.SetRangeResistor(RANGE_100R);
 
   CommPort.ResetComm();
   SC.adcSet.SetSampleSize(testPar.sampleSize);
@@ -1850,12 +1855,12 @@ int main(void)
 //
 	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
 	  complexr device = cmplxmath.pol.PolarToRectangular(DUT.param.z);
-	  double Cap = DUT.cal.CapacitanceMagnitude(testPar.sampleFrequency, device);
+//	  double Cap = DUT.cal.CapacitanceMagnitude(testPar.sampleFrequency, device);
 
 	  sprintf(str, "Impedance MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.12f", Cap);
+	  sprintf(str, "%.5f", DUT.param.z.mod);
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
@@ -1867,6 +1872,21 @@ int main(void)
 	  sprintf(str, "%.5f\n", DUT.param.z.argDeg);
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+
+
+	  sprintf(str, "Capacitance : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.12f", (device.imag/(2*M_PI*testPar.testFrequency))*1.0E6);
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+	  sprintf(str, " uH : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+
 
 	  HAL_Delay(2000);
 
