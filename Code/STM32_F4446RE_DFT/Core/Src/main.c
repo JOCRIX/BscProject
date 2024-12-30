@@ -684,7 +684,7 @@ void smpl_Y(void) {
 
 	complexr y;
 	SC.adcSet.StartSampling();
-	HAL_Delay(500);
+	HAL_Delay(200);
 	CommPort.ResetComm();
 	HAL_Delay(10);
 
@@ -706,8 +706,12 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 	complexr Z_M;
 	complexr OS_Y;
 	complexr SS_Z;
-	SS_Z.real =0.0;
-	SS_Z.imag = 0.0;
+	complexr OS_Z;
+	complexr workWar;
+	SS_Z.real =0.0363;
+	SS_Z.imag = 0.229; //About 151 nH
+	double calDeg = 0;
+	double RP = 0;
 	Z_M = cmplxmath.rec.Reciprocalzr(Y_MEAS);
 	Y_MEAS = cmplxmath.rec.Subz(Z_M, SS_Z);
 	Y_MEAS = cmplxmath.rec.Reciprocalzr(Y_MEAS);
@@ -715,60 +719,94 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 	switch (Range) {
 	case 1:
 		OS_Y = calPar.range_Cal_Open[0];
+		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
+		RP = 1.0/OS_Y.real;
+		RP = RP*SC.dacSet.CurrentRangeResistor/
+				(RP+SC.dacSet.CurrentRangeResistor);
+		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-				-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[0].imag))*57.2958;
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+		break;
 		break;
 	case 10:
 		OS_Y = calPar.range_Cal_Open[1];
+		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
+		RP = 1.0/OS_Y.real;
+		RP = RP*SC.dacSet.CurrentRangeResistor/
+				(RP+SC.dacSet.CurrentRangeResistor);
+		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-				-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[1].imag))*57.2958;
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+		break;
 		break;
 	case 100:
 		OS_Y = calPar.range_Cal_Open[2];
+		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
+		RP = 1.0/OS_Y.real;
+		RP = RP*SC.dacSet.CurrentRangeResistor/
+				(RP+SC.dacSet.CurrentRangeResistor);
+		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-				-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[2].imag))*57.2958;
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+		break;
 		break;
 	case 1000:
 		OS_Y = calPar.range_Cal_Open[3];
+		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
+		RP = 1.0/OS_Y.real;
+		RP = RP*SC.dacSet.CurrentRangeResistor/
+				(RP+SC.dacSet.CurrentRangeResistor);
+		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-				-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[3].imag))*57.2958;
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+		break;
 		break;
 	case 10000:
 		OS_Y = calPar.range_Cal_Open[4];
+		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
+		RP = 1.0/OS_Y.real;
+		RP = RP*SC.dacSet.CurrentRangeResistor/
+				(RP+SC.dacSet.CurrentRangeResistor);
+		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-				-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[4].imag))*57.2958;
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+		break;
 		break;
 	case 100000:
 		OS_Y = calPar.range_Cal_Open[5];
+		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
+		RP = 1.0/OS_Y.real;
+		RP = RP*SC.dacSet.CurrentRangeResistor/
+				(RP+SC.dacSet.CurrentRangeResistor);
+		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-				-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[5].imag))*57.2958;
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
 		break;
 	case 1000000:
 		OS_Y = calPar.range_Cal_Open[6];
+		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
+		RP = 1.0/OS_Y.real;
+		RP = RP*SC.dacSet.CurrentRangeResistor/
+				(RP+SC.dacSet.CurrentRangeResistor);
+		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)
-				-atan2(SC.dacSet.CurrentRangeResistor, (1/calPar.range_Cal_Open[6].imag))*57.2958;
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
 		break;
+
 
 	}
 
@@ -838,7 +876,7 @@ void OS_Cal(uint32_t smpl_f, uint32_t test_f, uint32_t sampleSize) {
 }
 
 uint32_t CalADCFrequencyWord(uint32_t frequency){
-	uint32_t frqWord = frequency * (uint32_t)(SC.adcSet.ADCResolution);
+	uint32_t frqWord = (uint32_t)((float)frequency * (SC.adcSet.ADCResolution));
 	return frqWord;
 }
 
@@ -861,7 +899,7 @@ void SetADCSampleFrequency(uint32_t frq){
 }
 
 uint32_t CalDACFrequencyWord(uint32_t frequency){
-	uint32_t frqWord = frequency * (uint32_t)(SC.dacSet.DACResolution);
+	uint32_t frqWord =	(uint32_t)((float)frequency * (SC.dacSet.DACResolution));
 	return frqWord;
 }
 
@@ -957,7 +995,7 @@ void AutoRangeSMPL(uint32_t smpl_size) {
 	  SC.adcSet.SetSampleSize(smpl_size);
 	  HAL_Delay(1);
 	  SC.adcSet.StartSampling();
-	  HAL_Delay(100);
+	  HAL_Delay(500);
 	  for(int i = 0; i < (smpl_size); i++) {
 		  Vint = SC.get.GetSingleSampleContinous();
 		  Iint = SC.get.GetSingleSampleContinous();
@@ -993,7 +1031,7 @@ void AutoRange(uint32_t smpl_f, uint32_t test_f) {
 	  HAL_Delay(50);
 	  uint32_t range_SampleSize = 3*(smpl_f/test_f);
 	  float R_Range = 1;
-	  double IMaxGain = (1/((float)test_f))*(300000000.0);
+	  double IMaxGain = (1/((float)test_f))*(30000000.0);
 	  //double IMaxGain = 2000000;
 	  SC.adcSet.SetSampleSize(range_SampleSize);
 	  HAL_Delay(1);
@@ -1465,7 +1503,7 @@ void tempPrint(uint16_t f_sampleSize, uint16_t testVar) {
 	HAL_Delay(10);
 	CommPort.ResetComm();
 		CommPort.WriteData(0x8000, 7);
-		HAL_Delay(500);
+		HAL_Delay(50);
 		CommPort.set.SetIOMode(READ);
 		CommPort.set.SetRnW(READ);
 		CommPort.set.SetIXMode(EXTERNAL);
@@ -1629,6 +1667,7 @@ int main(void)
 	calPar.r_Relay[3] = -1.7634;
 	calPar.r_Relay[4] = -27.766;
 	calPar.r_Relay[5] = -344.7;
+//	calPar.r_Relay[5] = 0;
 	calPar.r_Relay[6] = 0;
 
 	uint8_t uartBuf[21];
@@ -1694,7 +1733,7 @@ int main(void)
   uint16_t testF = 100000;
   double testZ = 0;
 
-  TestParameters testPar = (TestParameters){10000, 320000, 32000, 1};
+  TestParameters testPar = (TestParameters){250000, 1000000, 10000, 1};
 //  for(int i=0; i < 7; i++) {
 //	  calPar.r_Relay[i] = 0.06;
 //  }
@@ -1712,7 +1751,7 @@ int main(void)
   SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
   SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
   SC.dacSet.SetRangeResistor(RANGE_100R);
-  SC.dacSet.TestLevel(LVL_3, HIGH);
+  SC.dacSet.TestLevel(LVL_1, HIGH);
 //  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 
   calPar.OS_Cal(testPar.sampleFrequency, testPar.testFrequency, testPar.sampleSize);
@@ -1773,22 +1812,24 @@ int main(void)
 //  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 //  HAL_Delay(2000);
 
-//  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
-//  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
-//  SC.dacSet.SetRangeResistor(RANGE_100R);
+  SC.adcSet.SetPGAGain(PGA_V, GAIN_4);
+  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
+  SC.dacSet.SetRangeResistor(RANGE_10R);
 
   CommPort.ResetComm();
   SC.adcSet.SetSampleSize(testPar.sampleSize);
-
+  complexp avg;
   while (1)
   {
-	  if(SC.dacSet.AutoRangeCheck(testPar.sampleFrequency, testPar.testFrequency) == 1) {
-		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
-	  }
+//	  if(SC.dacSet.AutoRangeCheck(testPar.sampleFrequency, testPar.testFrequency) == 1) {
+//		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
+//	  }
+
+	  for (int i = 0; i < 3; i++) {
 	  SC.adcSet.SetSampleSize(testPar.sampleSize);
 //	  Calculate fourier coefficient at 10kHz
 	  SC.adcSet.StartSampling();
-	  HAL_Delay(1200);
+	  HAL_Delay(200);
 	  CommPort.ResetComm();
 	  HAL_Delay(10);
 	  VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff(1);
@@ -1803,7 +1844,10 @@ int main(void)
 	  DUT.param.y = DUT.cal.GetAdmittance(VFourCoeff, IFourCoeff);
 //	  ZFourCoeffMag = (VFourCoeffMag/2.0) / ((IFourCoeffMag/(8.0*100)));
 //	  ZFourCoeffAng=  VFourCoeffAng - IFourCoeffAng;
-
+	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
+	  avg.mod += DUT.param.z.mod;
+	  avg.argDeg += DUT.param.z.argDeg;
+	  }
 	  sprintf(str, "DFT V X[10kHz] MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
@@ -1853,14 +1897,14 @@ int main(void)
 
 
 //
-	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
-	  complexr device = cmplxmath.pol.PolarToRectangular(DUT.param.z);
+//	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
+//	  complexr device = cmplxmath.pol.PolarToRectangular(DUT.param.z);
 //	  double Cap = DUT.cal.CapacitanceMagnitude(testPar.sampleFrequency, device);
-
+	  tempPrint(200, testVar);
 	  sprintf(str, "Impedance MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.5f", DUT.param.z.mod);
+	  sprintf(str, "%.5f", avg.mod/3.0);
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
@@ -1869,26 +1913,27 @@ int main(void)
 	  sprintf(str, " PHI : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.5f\n", DUT.param.z.argDeg);
+	  sprintf(str, "%.5f\n", avg.argDeg/3.0);
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
+	  avg.mod = 0;
+	  avg.argDeg = 0;
+
+//	  sprintf(str, "Capacitance : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//	  sprintf(str, "%.12f", (device.imag/(2*M_PI*testPar.testFrequency))*1.0E6);
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+//
+//	  sprintf(str, " uH : ");
+//	  strcpy((char*)uartBuf, str);
+//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
 
-	  sprintf(str, "Capacitance : ");
-	  strcpy((char*)uartBuf, str);
-	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.12f", (device.imag/(2*M_PI*testPar.testFrequency))*1.0E6);
-	  strcpy((char*)uartBuf, str);
-	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
-	  sprintf(str, " uH : ");
-	  strcpy((char*)uartBuf, str);
-	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-
-
-
-	  HAL_Delay(2000);
+	  HAL_Delay(200);
 
 		//Random string functions
 		//sprintf(str, "%.2f\r\n", (VFourCoeffMag));
@@ -1901,7 +1946,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  tempPrint(200, testVar);
+
   }
   /* USER CODE END 3 */
 }
