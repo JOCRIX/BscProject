@@ -56,7 +56,7 @@ The $R_{100MEG} = \SIQ{96.5}{\mega\ohm}$ and $R_{10MIL} =\SIQ{15.195}{\milli\ohm
 
     The \SIQ{10}{\milli\ohm} range is passed, while the \SIQ{100}{\mega\ohm} range is failed as per for the requirement.  
 
-    \subsection{§4, §5 Modulus and Phase Accuracy Verification} \label{subsec:ModulusAccuracyTest} 
+    \subsection{§4, §5 Modulus and Phase Accuracy Verification on Mixed Impedance Types} \label{subsec:ModulusAccuracyTest} 
 
     The accuracy of the impedance has been measured at various test frequencies. The DUTs for this test will be \SIQ{10}{\ohm}, \SIQ{10}{\kilo\ohm} and \SIQ{100}{\kilo\ohm}. Capacitors were also tested, their values are \SIQ{27}{\pico\farad},\SIQ{150}{\nano\farad} and \SIQ{1}{\micro\farad}. An inductor was also tested it has the value \SIQ{100}{\micro\henry}.
     
@@ -128,3 +128,50 @@ The $R_{100MEG} = \SIQ{96.5}{\mega\ohm}$ and $R_{10MIL} =\SIQ{15.195}{\milli\ohm
                 \end{table}
 
                 The inductor measurement at $f_{test} = 1kHz$ will be disregarded as the ESR of the inductor is substantial and cannot be ignored at this frequency.
+
+\subsection{§4, §5 Modulus and Phase Accuracy Verification on Resistive Impedance Types} \label{subsec:ModulusAccuracyTest_res} 
+Section \refq{subsec:ModulusAccuracyTest} tests the instrument at idearly purely capacitive, resistive and inductive elements. One limitation here is however that both capacitors and inductors are not know to better than \SIQ{1}{\%} at most. Furthermore the assumption of perfect Q does not hold in reality. While the used capacitors are high quality PP capacitors from the Vishay MKP1839 series, they will at some frequencies have a large loss, especially the \SIQ{1}{\micro\farad}.
+
+The used resistors are \SIQ{0.1}{\%} thin film resistors from Vishay with a temperature coeffecient of less than \SIQ{15}{ppm}. These are assumed to be much more stable with frequency than both the capacitors and inductors. It is also assumed that they are AC-DC stable. This is very much not the case in reality, but no metrology grade references where available at the time.
+
+The \SIQ{1}{\ohm} resistor is a \SIQ{0.5}{\%} \SIQ{100}{ppm} temperature coeffecient film resistor from Vishay/Dale. All used resistors are film type resistors, as they offer excelent AC performance. A \SIQ{15}{\milli\ohm} (idearly \SIQ{10}{\milli\ohm}) resistor is also used. This resistor has been verified using two HP/Keysight 34401 DMMs at DC. It is assumed to have a good AC-DC stability, see above section for verification.
+
+Based on these assumptions a purely resistive test has been conducted. One that measures a wide range of resistors at \SIQ{1}{\kilo\hertz}, and one that measures a \SIQ{1}{\kilo\ohm} resistor at different frequencies. The maximum test frequency is \SIQ{300}{\kilo\hertz} as the system is not yet developed to utilize the full \SIQ{1}{\mega\hertz} analog front end Bandwidth.
+
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{Resistor} & \textbf{Tol.} & \textbf{Meas. Z Value} & \textbf{Dev. M} & \textbf{Dev. Arg} & \textbf{Freq} \\ \hline
+    \SIQ{0.0152}{\ohm} & 0.134\% & $0.0148 \angle 0.1501\degree$  & -2.632\% & $0.0148\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\ohm} & 0.5\% & $1.0015 \angle -0.0296\degree$  & 0.150\% & $-0.0296\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{10}{\ohm} & 0.1\% & $9.9957 \angle -0.0085\degree$ & -0.043\% & $-0.0086\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{100}{\ohm} & 0.1\% & $100.04 \angle -0.0073\degree$ &  0.040\% & $-0.0073\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\kilo\ohm} & 0.1\% & $1.0001E3 \angle -0.0054\degree$ &  0.010\% & $-0.0054\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{10}{\kilo\ohm} & 0.1\% & $10.002E3 \angle -0.0044\degree$ &  0.020\% & $-0.0044\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{100}{\kilo\ohm} & 0.1\% & $99.959E3 \angle -0.0093\degree$ & -0.041\% & $-0.0093\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\mega\ohm} & 0.1\% & $1.0009E6 \angle -0.0160\degree$ & 0.090\% & $-0.0160\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \end{tabular}
+    \caption{Various resistor measurements at \SIQ{1}{\kilo\hertz}. The tolerance is the tolerance that the manufacturer has listed for the component, except for the \SIQ{15}{\milli\ohm}, this is verified in section \refq{subsec:ZRangeVerify}.}
+    \label{tab:A_Z_ImpedanceMeasurementWIthResistor_Res_1KHZ}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{Resistor} & \textbf{Tol.} & \textbf{Meas. Z Value} & \textbf{Dev. M} & \textbf{Dev. Arg} & \textbf{Freq} \\ \hline
+    \SIQ{1}{\kilo\ohm} & 0.1\% & $1.0000E3 \angle -0.0012\degree$ &  0.000\% & $-0.0012\degree$ & \SIQ{0.1}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\kilo\ohm} & 0.1\% & $1.0001E3 \angle -0.0054\degree$ &  0.010\% & $-0.0054\degree$ & \SIQ{1}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\kilo\ohm} & 0.1\% & $1.0002E3 \angle -0.0692\degree$ &  0.020\% & $-0.0692\degree$ & \SIQ{10}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\kilo\ohm} & 0.1\% & $0.9992E3 \angle -0.4027\degree$ &  -0.080\% & $-0.4027\degree$ & \SIQ{100}{\kilo\hertz} \\ \hline
+    \SIQ{1}{\kilo\ohm} & 0.1\% & $1.0006E3 \angle -1.2391\degree$ &  0.060\% & $-1.2391\degree$ & \SIQ{300}{\kilo\hertz} \\ \hline
+    \end{tabular}
+    \caption{\SIQ{1}{\kilo\ohm} at various frequencies. The tolerance is the tolerance that the manufacturer has listed for the component.}
+    \label{tab:A_Z_ImpedanceMeasurementWIthResistor_FRQ_1KOHM}
+\end{table}
