@@ -708,8 +708,8 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 	complexr SS_Z;
 	complexr OS_Z;
 	complexr workWar;
-	SS_Z.real =0.0363;
-	SS_Z.imag = 0.229; //About 151 nH
+	SS_Z.real =0.011;
+	SS_Z.imag = 0.33; //About 175 nH
 	double calDeg = 0;
 	double RP = 0;
 	Z_M = cmplxmath.rec.Reciprocalzr(Y_MEAS);
@@ -1662,6 +1662,7 @@ int main(void)
 
 	//Calibration Constants:
 	calPar.vmeas = 1.000605;	//Voltage Calibration Constant
+	calPar.r_Relay[0] = 0.0494;
 	calPar.r_Relay[1] = 0.0113;
 	calPar.r_Relay[2] = -0.24945;
 	calPar.r_Relay[3] = -1.7634;
@@ -1733,7 +1734,7 @@ int main(void)
   uint16_t testF = 100000;
   double testZ = 0;
 
-  TestParameters testPar = (TestParameters){250000, 1000000, 10000, 1};
+  TestParameters testPar = (TestParameters){300000, 1000000, 25000, 1};
 //  for(int i=0; i < 7; i++) {
 //	  calPar.r_Relay[i] = 0.06;
 //  }
@@ -1751,7 +1752,7 @@ int main(void)
   SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
   SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
   SC.dacSet.SetRangeResistor(RANGE_100R);
-  SC.dacSet.TestLevel(LVL_1, HIGH);
+  SC.dacSet.TestLevel(LVL_2, HIGH);
 //  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 
   calPar.OS_Cal(testPar.sampleFrequency, testPar.testFrequency, testPar.sampleSize);
@@ -1813,8 +1814,8 @@ int main(void)
 //  HAL_Delay(2000);
 
   SC.adcSet.SetPGAGain(PGA_V, GAIN_4);
-  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
-  SC.dacSet.SetRangeResistor(RANGE_10R);
+  SC.adcSet.SetPGAGain(PGA_I, GAIN_4);
+  SC.dacSet.SetRangeResistor(RANGE_100R);
 
   CommPort.ResetComm();
   SC.adcSet.SetSampleSize(testPar.sampleSize);
