@@ -1,0 +1,30 @@
+\section{Requirement Review} \label{subsec:8_1_ReqReview}
+
+All of the requirements from table \refq{tab:5_SystemRequirements} have been reviewed in order to see if the product meets the specifications.
+
+Requirement §1 states that the test frequency should have a bandwidth of $50 < f_{test} [Hz] < 1E6$ with a \SIQ{1}{\hertz} resolution. This is ensured by design. The DAC output and ADC sample rate exceed both ends of the interval and have a resolution of \SIQ{4.66}{\milli\hertz} as was shown in the Sample Control design section \refq{sec:SampleControl}.
+
+Requirement §2 states that the instrument should be able to model the measured impedance as either a series or parallel impedance. This functionality was shown in section \refq{sec:MCU}.
+
+Requirement §3 states that the instrument should be able to measure an impedance in the interval $10m\Omega < |Z| < 100M \Omega$. This has been tested and the results can be seen in appendix \refq{App:AccuracyBWTest}. The test results are very promising, but ultimately inconlusive. The proper test equipment was not available to perform this test.
+
+Requirement §4 and §5 regarding the instruments accuracy was tested, these tests can be seen in appendix \refq{App:AccuracyBWTest}. This test will also be reviewed in section \refq{subsec:8_1_AccTest}.
+
+Requirement §6 sets the test signal voltage rage. The instrument can select 5 different signal voltage ranges by MUXing a voltage divider. This does not provide 10mV resolution, so the requirement is not met.
+
+Requirement §7 states that the maximum test current should be $100mApp$ this requirement is not met.
+
+Requirement §8 states that the instrument should have an adjustable DC bias voltage for the DUT. This was not implemented due to time constraints.
+
+Requirement §9 states that the instrument should be able to calculate the DUT parameters such as L,C,R,D,Q and so on. The instrument can do this and display them to the user.
+
+Requirement §10, §11, §12, and §13 says that the instrument should have a sweep capability. The instrument can set the test frequencies from software, but the functionality to let it sweep this parameter has not been implemented due to time constraints.
+
+Requirement §14, §15 and §16 was not implemented due to time constraints.
+
+Requirement §17 states that the insturment should have a 7" touch screen. It does have a touchscreen, but the software for this is not fully developed.
+
+Requirement §18 states that the instrument should have a 4-wire kelvin interface with the DUT. This is ensured by design.
+
+Requirement §19 stateas that the instrument should be able to export data over UART. It can do this, as has been demonstrated.
+

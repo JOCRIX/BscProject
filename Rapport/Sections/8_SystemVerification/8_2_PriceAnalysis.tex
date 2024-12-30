@@ -1,0 +1,53 @@
+\section{Price Analysis} \label{subsec:8_3_Cost}
+A major consideration in this project was \textit{price}. The instrument is indended as an instrument that could bridge the gap in technology between the very expensive, and very capable, instruments from the leading manufacturers and the cheaper LCR meters that ordinary people could afford. In order to do this, the cost of the instrument must be kept down. To get an idea of the cost, the price of all the components that went into the project has been compiled into table \refq{tab:ComponentTypeAndPrice}. All the similar components are grouped together. The listed prices do not include VAT.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Component Type} & \textbf{Price (DKK)} & \textbf{Price (€)} \\ \hline
+    Nextion Touchscreen Devboard & 822 & 110.27 \\ \hline
+    Artix 7 FPGA Devboard & 730 & 97.99 \\ \hline
+    STM32 Devboard & 105 & 14.09 \\ \hline
+    DAC & 231 & 31.02 \\ \hline
+    ADCs & 362 & 48.59 \\ \hline
+    Other ICs & 1246 & 167.28 \\ \hline
+    Connectors & 60 & 8.05 \\ \hline
+    Passives & 615 & 82.55 \\ \hline
+    Chassis & 700 & 93.96 \\ \hline
+    Raw PCB & 130 & 17.45 \\ \hline
+    \textbf{Total} & \textbf{4991} & \textbf{670.25} \\ \hline
+    \end{tabular}
+    \caption{Component prices are in DKK and €}
+    \label{tab:ComponentTypeAndPrice}
+\end{table}
+
+The total cost for developing the project was about 5000DKK as shown in table \refq{tab:ComponentTypeAndPrice}. A large part of this cost is in development boards, and because all the components were bought in very small quantities. If the project was continued and it was assumed that no components were made redundant, if all the development boards were embedded on the PCB and components were bought in a larger quantity, a more realistic unit cost would be as in table 7. Note however, that the PCB must be assembled at a factory now in order to solder the BGA pads under the FPGA. Assembly costs in Asia can be as low as 57EUR for a board of the size that was made for this project. A rough estimate of unit price taking all this into account can be seen in table \refq{tab:ComponentTypeAndPrice2}.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Component Type} & \textbf{Price (DKK)} & \textbf{Price (€)} \\ \hline
+    Nextion Touchscreen & 822 & 110.34 \\ \hline
+    Artix 7 FPGA + Additional circuit & 400 & 53.69 \\ \hline
+    STM32 + Additional circuit & 50 & 1.07 \\ \hline
+    DAC & 231 & 31.01 \\ \hline
+    Dual version LTC2311 ADC & 210 & 28.19 \\ \hline
+    Other ICs & 765 & 102.68 \\ \hline
+    Connectors & 60 & 8.05 \\ \hline
+    Passives & 300 & 40.27 \\ \hline
+    Chassis & 700 & 93.96 \\ \hline
+    Raw PCB & 45 & 6.04 \\ \hline
+    PCB Assembly & 425 & 57.05 \\ \hline
+    \textbf{Total} & \textbf{4008} & \textbf{537.37} \\ \hline
+    \end{tabular}
+    \caption{Reducing the cost of development boards and buying components in larger quantity helped slash about 20\% off the total cost. Component prices are in DKK and €.}
+    \label{tab:ComponentTypeAndPrice2}
+\end{table}
+
+Disregarding any, and all, of the other costs associated with running a business, and considering only the component cost of, very roughly, 536€ for a single unit. This would put the price of the instrument far below the most similar instrument, namely the R\&S LCX200, which was shown in section \refq{ch:ProblemAnalysis} and more in league with the Keysight U1733C pricewise, while being significantly more capable than the U1733C when it has finished development.
