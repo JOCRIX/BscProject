@@ -1,10 +1,16 @@
 \subsection{PCB Design} \label{subsec:PCBDesign}
 
-The designed analog front end has been implemented via a designed PCB. This PCB can be seen in figure \refq{fig_PCB}. One key element to take note of here is the seperation of digital and analog ground. The only place the digital and analog ground meet is directly under the two ADCs and the DAC. This ensures a start-ground scheme. 5 opto-coupler ICs have been used to interface varies components on the analog section, this ensures that no noisy digital signals will be routed through the sensitive analog section. 
+The designed analog front end has been implemented via a designed PCB. This PCB can be seen in figure \refq{fig_PCB}. One key element to take note of here is the seperation of digital and analog ground. The only place the digital and analog ground meet is directly under the two ADCs and the DAC. This ensures a start-ground scheme. 5 opto-coupler ICs have been used to interface varies components on the analog section, this ensures that no noisy digital signals will be routed through the sensitive analog section, as well as reducing the chance of any ground-loops. 
 
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[clip, trim=0 0 0 0, width=0.9\textwidth]{Sections/7_SystemDesign/Figures/PCB_GND.jpg}
-%    \caption{The designed PCB for the impedance analyser. The red lines indicated shows how the analog and digital grounds are seperated. They meet in the middle under the two ADCs and the DAC, to form a start-ground.}
-%    \label{fig_PCB}
-%\end{figure}
+\begin{figure}[H]
+   \centering
+   \includegraphics[clip, trim=0 0 0 0, width=0.9\textwidth]{Sections/7_SystemDesign/Figures/PCB_GND.jpg}
+   \caption{The designed PCB for the impedance analyser. The red lines indicated shows how the analog and digital grounds are seperated. They meet in the middle under the two ADCs and the DAC, to form a start-ground.}
+   \label{fig_PCB}
+\end{figure}
+
+In the buttom left corner on figure \refq{fig_PCB} the voltage regulaters are placed, these dissipate a fair amount of heat, and are therefor placed far away from the sensitive voltage reference and ADCs. The Voltage reference is placed in the top right corner and ADCs in the center. 
+
+The PCB is designed as a 4 layer PCB with GND and power planes as the two midlle planes. Signals are then routed on the top and buttom layer, in this way signal layers have a GND layer betweem them, shielding them from one another.
+
+To ensure good thermal matching for the anti-alisating filters for both ADCs, resistors used here are in a resistor network, in this way they have a higher thermal coupling. All differential signal paths for the ADCs have been matched in length, to try and ensure that both voltage and current is present at the same time for both ADCs, or more precisely to ensure that the same propagation delay is present for both voltag and current.
