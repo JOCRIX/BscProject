@@ -24,10 +24,12 @@ print(Z[0])
 
 # x = [100, 1000, 10000, 100000, 300000]
 # y = [0.00, 0.01, 0.02, 0.08, 0.06]
+# y_ref = [0, 0, 0, 0, 0]
 # y_er = [0.1, 0.1, 0.1, 0.1, 0.1]
 
 # x2 = [0.015, 1, 10, 100, 1000, 10000, 100000, 1000000]
 # y2 = [2.632, 0.030, 0.009, 0.007, 0.005, 0.004, 0.009, 0.016]
+# y2_ref = [0, 0, 0, 0, 0, 0 ,0 ,0]
 # y_er2 = [0.15, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 
 # fig, axes = plt.subplots(nrows = 1, ncols =2, figsize = (10,6))
@@ -37,7 +39,8 @@ print(Z[0])
 
 # plt.semilogx(f,A)
 # plt.scatter([100, 1000, 10000, 100000, 300000], [0.105, 0.105, 0.105, 0.18, 0.33])
-# plt.errorbar(x,y,y_er, fmt = 'o', color = "red")
+# plt.errorbar(x,y_ref,y_er, fmt = 'none', color = "orange", capsize= 5)
+# plt.scatter(x, y, label = "Measured", color = "red", marker = "x")
 # plt.grid(True,which= "major", axis = "both")
 # # plt.grid(True,which= "minor", axis = "both")
 # plt.ylabel("Accuracy in %")
@@ -47,9 +50,9 @@ print(Z[0])
 
 # plt.subplot(1,2,2)
 # plt.semilogx(Z,AZ, label = "Specification")
-# plt.scatter([0.015, 1, 10, 100, 1000, 10000, 100000, 1000000], [7.964, 0.48, 0.12, 0.107, 0.105, 0.106, 0.113, 0.405], label = "LCX-200")
-# plt.errorbar(x2,y2,y_er2, fmt = 'o', color = "red", label = "Measured")
-
+# plt.scatter([0.015, 1, 10, 100, 1000, 10000, 100000, 1000000], [7.964, 0.48, 0.12, 0.107, 0.105, 0.106, 0.113, 0.405], label = "LCX-200 specification")
+# plt.errorbar(x2,y2_ref,y_er2, fmt = "none", color = "orange", label = "Reference", capsize = 5)
+# plt.scatter(x2, y2, label = "Measured", color = "red", marker = "x")
 
 # plt.grid(True,which= "major", axis = "both")
 # # plt.grid(True,which= "minor", axis = "both")
@@ -76,7 +79,7 @@ plt.subplot(1,2,1)
 
 plt.semilogx(f,P)
 plt.scatter([100, 1000, 10000, 100000, 300000], [0.06, 0.06, 0.06, 0.104, 0.190])
-plt.scatter(x,y, color = "red")
+plt.scatter(x,y, color = "red", marker = "x")
 plt.grid(True,which= "major", axis = "both")
 # plt.grid(True,which= "minor", axis = "both")
 plt.ylabel("Accuracy in degrees")
@@ -86,8 +89,8 @@ plt.title("Phase Accuracy vs. Frequency at 1 kOhm")
 
 plt.subplot(1,2,2)
 plt.semilogx(Z,PZ, label = "Specification")
-plt.scatter([0.015, 1, 10, 100, 1000, 10000, 100000, 1000000], [4.563, 0.275, 0.069, 0.061, 0.060, 0.061, 0.064, 0.232], label = "LCX-200")
-plt.scatter(x2,y2, color = "red", label = "Measured")
+plt.scatter([0.015, 1, 10, 100, 1000, 10000, 100000, 1000000], [4.563, 0.275, 0.069, 0.061, 0.060, 0.061, 0.064, 0.232], label = "LCX-200 specification")
+plt.scatter(x2,y2, color = "red", label = "Measured", marker = "x")
 plt.grid(True,which= "major", axis = "both")
 # plt.grid(True,which= "minor", axis = "both")
 plt.ylabel("Accuracy in degrees")
