@@ -708,13 +708,17 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 	complexr SS_Z;
 	complexr OS_Z;
 	complexr workWar;
-	SS_Z.real =0.011;
-	SS_Z.imag = 0.33; //About 175 nH
+//	SS_Z.real =0.012;
+//	SS_Z.imag = 0.0473; //About 175 nH
+	SS_Z.real =0.006;
+	SS_Z.imag = 0.001; //About 175 nH
 	double calDeg = 0;
 	double RP = 0;
 	Z_M = cmplxmath.rec.Reciprocalzr(Y_MEAS);
 	Y_MEAS = cmplxmath.rec.Subz(Z_M, SS_Z);
 	Y_MEAS = cmplxmath.rec.Reciprocalzr(Y_MEAS);
+	complexr top;
+	complexr div;
 
 	switch (Range) {
 	case 1:
@@ -746,14 +750,39 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 	case 100:
 		OS_Y = calPar.range_Cal_Open[2];
 		OS_Z = cmplxmath.rec.Reciprocalzr(OS_Y);
-		RP = 1.0/OS_Y.real;
-		RP = RP*SC.dacSet.CurrentRangeResistor/
-				(RP+SC.dacSet.CurrentRangeResistor);
-		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
-		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
-		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
-		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+//		RP = 1.0/OS_Y.real;
+//		RP = RP*SC.dacSet.CurrentRangeResistor/
+//				(RP+SC.dacSet.CurrentRangeResistor);
+//		calDeg = 90+atan2(OS_Z.imag, RP)*57.2958;
+//		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
+//		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
+//		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
+//		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+//		OS_Z.imag = -35257.0;
+//		OS_Z.real = 1083.0;
+		top = OS_Z;
+		top.imag = top.imag*(SC.dacSet.CurrentRangeResistor/2.0);
+		top.real = top.real*(SC.dacSet.CurrentRangeResistor/2.0);
+		div.imag = (OS_Z.imag/2.0);
+		div.real = (OS_Z.real/2.0) +SC.dacSet.CurrentRangeResistor/2.0;
+		top = cmplxmath.rec.Dividez(top,div);
+		calDeg = -atan2(top.imag, top.real)*57.2958;
+
+		Z_DUT.mod = cmplxmath.rec.Magz(Z_M);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(Z_M)+1.25*calDeg;
+		Z_M = cmplxmath.pol.PolarToRectangular(Z_DUT);
+
+
+		top = cmplxmath.rec.Subz(Z_M, SS_Z);
+		top = cmplxmath.rec.Prodzr(top, OS_Z);
+		div = cmplxmath.rec.Subz(Z_M, OS_Z);
+		div = cmplxmath.rec.Subz(div, SS_Z);
+		top = cmplxmath.rec.Dividez(top, div);
+		top.real = top.real*(-1.0);
+		top.imag = top.imag*(-1.0);
+		Z_DUT.mod = cmplxmath.rec.Magz(top);
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(top);
+
 		break;
 		break;
 	case 1000:
@@ -766,7 +795,7 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range) {
 		OS_Y = cmplxmath.rec.Subz(Y_MEAS, OS_Y);
 		OS_Y = cmplxmath.rec.Reciprocalzr(OS_Y);
 		Z_DUT.mod = cmplxmath.rec.Magz(OS_Y);
-		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y)-calDeg;
+		Z_DUT.argDeg = cmplxmath.rec.ArgzDeg(OS_Y);
 		break;
 		break;
 	case 10000:
@@ -1734,7 +1763,7 @@ int main(void)
   uint16_t testF = 100000;
   double testZ = 0;
 
-  TestParameters testPar = (TestParameters){300000, 1000000, 25000, 1};
+  TestParameters testPar = (TestParameters){1000, 100000, 10000, 1};
 //  for(int i=0; i < 7; i++) {
 //	  calPar.r_Relay[i] = 0.06;
 //  }
@@ -1751,9 +1780,9 @@ int main(void)
 
   SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
   SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
-  SC.dacSet.SetRangeResistor(RANGE_100R);
+//  SC.dacSet.SetRangeResistor(RANGE_100R);
   SC.dacSet.TestLevel(LVL_2, HIGH);
-//  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
+  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 
   calPar.OS_Cal(testPar.sampleFrequency, testPar.testFrequency, testPar.sampleSize);
 //  sprintf(str, "Range0 Z: ");
@@ -1814,7 +1843,7 @@ int main(void)
 //  HAL_Delay(2000);
 
   SC.adcSet.SetPGAGain(PGA_V, GAIN_4);
-  SC.adcSet.SetPGAGain(PGA_I, GAIN_4);
+  SC.adcSet.SetPGAGain(PGA_I, GAIN_2);
   SC.dacSet.SetRangeResistor(RANGE_100R);
 
   CommPort.ResetComm();
@@ -1849,6 +1878,8 @@ int main(void)
 	  avg.mod += DUT.param.z.mod;
 	  avg.argDeg += DUT.param.z.argDeg;
 	  }
+	  avg.mod /= 3.0;
+	  avg.argDeg /= 3.0;
 	  sprintf(str, "DFT V X[10kHz] MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
@@ -1905,7 +1936,7 @@ int main(void)
 	  sprintf(str, "Impedance MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.5f", avg.mod/3.0);
+	  sprintf(str, "%.5f", avg.mod);
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
@@ -1914,7 +1945,7 @@ int main(void)
 	  sprintf(str, " PHI : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.5f\n", avg.argDeg/3.0);
+	  sprintf(str, "%.5f\n", avg.argDeg);
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
