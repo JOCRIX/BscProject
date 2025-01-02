@@ -1,0 +1,124 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.3">
+  <diagram name="Page-1" id="An0uupN5QBFsmldM7Rd0">
+    <mxGraphModel dx="1430" dy="763" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="155" y="120" width="220" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="155" y="100" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-9" value="struct FPGASampleControl{" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="145" y="70" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-10" value="}SampleControl;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="105" y="510" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-11" value="struct ADC Settings {" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="155" y="100" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-12" value="};" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="135" y="290" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-13" value="float ADCResolution;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="120" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-14" value="CalculateADCFrequencyWord()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="235" y="250" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-15" value="SetADCSampleFrequency()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="185" y="210" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-16" value="SetSampleSize()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="195" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-17" value="StartSampling()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="185" y="270" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-18" value="SetPGAGain()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="187.5" y="230" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-20" value="double VoltagePGAGain;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="140" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-24" value="double CurrentPGAGain;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="160" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-26" value="struct DAC Settings {" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="157.5" y="320" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-27" value="};" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="135" y="480" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-28" value="float DACResolution;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="340" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-30" value="double CurrentRangeResistor;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="175" y="360" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-31" value="SetDACFrequency()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="205" y="390" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-32" value="AutoRange()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="185" y="460" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-34" value="....." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="165" y="430" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-35" value="SetRangeResistor()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="205" y="410" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-36" value="ADC related variables" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="140" width="75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-38" value="DAC related variables" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="350" width="75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-39" value="ADC related callback functions" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="240" width="115" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-40" value="DAC related callback functions" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="420" width="115" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-67" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="120" width="220" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-68" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="100" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-69" value="struct complexMath{" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="420" y="70" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-70" value="}SampleControl;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="520" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-71" value="struct rectangular form {" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="430" y="100" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-72" value="};" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="290" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-81" value="struct polar form {" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="432.5" y="320" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-82" value="};" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="410" y="480" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-93" value="CalculateArgument()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="650" y="130" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-94" value="CalculateMagnitude()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="150" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-95" value="Divide()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="690" y="170" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i7IYoA3OHUPNoQIKO8qy-97" value="Product()" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="690" y="210" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
