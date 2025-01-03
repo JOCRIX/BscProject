@@ -1,6 +1,6 @@
 1.) Titlen "Design af spektral analyser". Vi skal have det klart hvad titlen betyder. Behold eller fjern "spektral" - WE KEEP GTFO
 
-2.) Abstract. I stedet for PCB. Skriv vi har realiseret et stykke hardware for vores design. Brug et mere generelt begreb. Skriv vi kan måle noget mere konkret end important characteristics. - JAKOB
+2.) Abstract. I stedet for PCB. Skriv vi har realiseret et stykke hardware for vores design. Brug et mere generelt begreb. Skriv vi kan måle noget mere konkret end important characteristics. - JAKOB 
 
 3.) Abstract side tal. - Inden aflevering
 
