@@ -1,12 +1,12 @@
 1.) Titlen "Design af spektral analyser". Vi skal have det klart hvad titlen betyder. Behold eller fjern "spektral" - WE KEEP GTFO
 
-2.) Abstract. I stedet for PCB. Skriv vi har realiseret et stykke hardware for vores design. Brug et mere generelt begreb. Skriv vi kan måle noget mere konkret end important characteristics. - JAKOB 
+2.) Abstract. I stedet for PCB. Skriv vi har realiseret et stykke hardware for vores design. Brug et mere generelt begreb. Skriv vi kan måle noget mere konkret end important characteristics. - JAKOB - DONE!
 
 3.) Abstract side tal. - Inden aflevering
 
 4.) Indholdsfortegnelse. Kapitel 6 = system design. Kapitel 7 = Modul design. Bryd kapitel 7 op i flere kapitler, et for hvert modul. - Vi omdøber System Design Til Modul Design.
 
-5.) Analog Front End module. Afsnittet med PCB design. Giver det mening? Vi har vist en realisering, ikke et PCB design. Lav et kapitel med implementering, hvor det endelige produkt beskrives. - Nyt kapitel til Implementering
+5.) Analog Front End module. Afsnittet med PCB design. Giver det mening? Vi har vist en realisering, ikke et PCB design. Lav et kapitel med implementering, hvor det endelige produkt beskrives. - Nyt kapitel til Implementering - DONE!
 
 6.) "Cost" / "Price" ikke samme betydning. Ensret. 
 
@@ -14,15 +14,15 @@
 
 8.) Summary. "Varies". Stavefejl.
 
-9.) System Arkitektur. Tabel 6.1. Vi har en masse "TBD" der skal fikses. "Accuracy must be less than" - JAKOB
+9.) System Arkitektur. Tabel 6.1. Vi har en masse "TBD" der skal fikses. "Accuracy must be less than" - JAKOB - DONE!
 
 10.) Over figur 7.2 - "Overdriven" på refout. Brug et andet term ? Eller forklar præcist hvad der menes. - Tilføj kommentar vedr. betydning af "overdriven".
 
-11.) Figur 7.4 - mangler en cite på billedet der kommer fra et datasheet. -JAKOB
+11.) Figur 7.4 - mangler en cite på billedet der kommer fra et datasheet. -JAKOB - DONE!
 
 12.) Figur 7.11 - uklart, hvor målupunktet er. Kan vi vise det på grafen. - JRIX
 
-13.) Figur 7.12 - mangler en cite på billedet. -JAKOB
+13.) Figur 7.12 - mangler en cite på billedet. -JAKOB - DONE!
 
 14.) Side 142. Main Processor afsnit. Lav en figur eller noget som viser, hvad det er programmet skal gøre og som relaterer sig til teksten. -JRIX
 

@@ -15,10 +15,10 @@ This section will define the interface between the Analog Front End and all othe
     11-13 & Range, 11 is lsb & \SIQ{3.3}{\volt} \nl LVTTL & Range setting. \nl ANFE $\leftarrow$ FPGA. \\ \hline
     14-29 & DAC Data , 14 is lsb& \SIQ{3.3}{\volt} \nl LVTTL & Data for DAC. \nl ANFE $\leftarrow$ FPGA.\\ \hline
     30 & DAC CLK & \SIQ{3.3}{\volt} \nl LVTTL & CLK for DAC. \nl ANFE $\leftarrow$ FPGA. \\ \hline
-    31 & $H_{Cur}$ of kelvin connection & TBD & Current output to KC. \nl ANFE $\rightarrow$ KC. \\ \hline
-    32 & $H_{Pot}$ of kelvin connection & TBD & Postive sence wire. \nl ANFE $\leftarrow$ KC. \\ \hline
-    33 & $L_{POT}$ of kelvin connection & TBD & Negative sence wire. \nl ANFE $\leftarrow$ KC. \\ \hline
-    34 & $L_{Cur}$ of kelvin connection & TBD & Current return from KC. \nl ANFE $\leftarrow$ KC. \\ \hline
+    31 & $H_{Cur}$ of kelvin connection & BNC & Current output to KC. \nl ANFE $\rightarrow$ KC. \\ \hline
+    32 & $H_{Pot}$ of kelvin connection & BNC & Postive sence wire. \nl ANFE $\leftarrow$ KC. \\ \hline
+    33 & $L_{POT}$ of kelvin connection & BNC & Negative sence wire. \nl ANFE $\leftarrow$ KC. \\ \hline
+    34 & $L_{Cur}$ of kelvin connection & BNC & Current return from KC. \nl ANFE $\leftarrow$ KC. \\ \hline
     35 & DC Bias level & \SIQ{0}{\volt} - \SIQ{20}{\volt} & DC voltage for bias. \nl ANFE $\leftarrow$ MCU. \\ \hline
     \end{tabular}
     \caption{Table of the connections to and from the Analog Front End.}
