@@ -1,4 +1,9 @@
-\chapter{Pin Map: Sample Controller - MCU} \label{App:PinMap_MCU_FPGA}
+\chapter{Pin Maps. MCU To FPGA. FPGA to DAC} \label{App:PinMaps}
+
+This appendix lists the connections between the Main Processor module and Sample Control module and between the Sample Control Module and DAC in the Analog Front End module.
+
+\subsection{Pin Map: Sample Controller - MCU} \label{App:PinMap_MCU_FPGA}
+
 The specific connections between the MCU (STM32 Nucleo F446RE) and Sample Controller (CMOD A7 Artix-7 35T FPGA) can be seen in this appendix. A block diagram with the specific
 connections can also be found. Table \ref{tab:App_MCU_FPGA_PinMap} shows all connections between the MCU and Sample Controller. MCU I.Pin refers to MCU Interface Pin, this is the
 pin-number assinged to the connection in the Interface of the MCU, see section \ref{subsec:MainProcessorInterface}. The same is true for FPGA I.Pin, refering to FPGA Interface Pin,
@@ -45,3 +50,34 @@ see section \ref{subsec:SampleControlInterface}. A diagram of the connections ca
     \label{fig_App_MCU_FPGA_PinMap}
 \end{figure}
 
+
+\subsection{Pin Map: Sample Controller - DAC} \label{App:PinMap_FPGA_DAC}
+The specific connections between the Sample Controller (CMOD A7 Artix-7 35T FPGA) and the DAC (LTC1668) can be seen in this appendix. Table \ref{tab:App_FPGA_DAC_PinMap} shows all connections between the DAC and Sample Controller. FPGA I.Pin refers to FPGA Interface Pin, this is the
+pin-number assigned to the connection in the Interface of the FPGA, see section \ref{subsec:MainProcessorInterface}. 
+
+\begin{table}[H]
+    \begin{tabular}{|m{5.2em}|m{8em}|m{8em}|m{8em}|}
+    \hline
+    \textbf{FPGA I.Pin} &   \textbf{LTC1668 Pin} & \textbf{Artix 7 Pin} & \textbf{Reference}  \\ \hline
+    33 & 14 / DB0 (LSB) & GPIO1 / M3 & DAC Data bit 0 \\ \hline
+    34 & 13 / DB1 & GPIO2 / L3 & DAC Data bit 1 \\ \hline
+    35 & 12 / DB2 & GPIO3 / A16 & DAC Data bit 2 \\ \hline
+    36 & 11 / DB3 & GPIO4 / K3 & DAC Data bit 3 \\\hline
+    37 & 10 / DB4 & GPIO5 / C15 & DAC Data bit 4 \\ \hline
+    38 & 9 / DB5 & GPIO6 / H1 & DAC Data bit 5 \\ \hline
+    39 & 8 / DB6 & GPIO7 / A15 & DAC Data bit 6 \\ \hline
+    40 & 7 / DB7 & GPIO8 / B15 & DAC Data bit 7 \\ \hline
+    41 & 6 / DB8 & GPIO9 / A14 & DAC Data bit 8 \\ \hline
+    42 & 5 / DB9 & GPIO10 / J3 & DAC Data bit 9 \\ \hline
+    43 & 4 / DB10 & GPIO11 / J1 & DAC Data bit 10 \\ \hline
+    44 & 3 / DB11 & GPIO12 / K2 & DAC Data bit 11 \\ \hline
+    45 & 2 / DB12 & GPIO13 / L1 & DAC Data bit 12 \\ \hline
+    46 & 1 / DB13 & GPIO14 / L2 & DAC Data bit 13 \\ \hline
+    47 & 28 / DB14 & GPIO15 / G2 & DAC Data bit 14 \\ \hline
+    48 & 27 / DB15 (MSB) & GPIO16 / J2 & DAC Data 15 \\ \hline
+    49 & 26 / CLK & GPIO17 / M1 & DAC CLK \\ \hline
+ 
+    \end{tabular}
+    \caption{Pin map of the interconnections between the DAC and the Sample Controller (FPGA).}
+    \label{tab:App_FPGA_DAC_PinMap}
+  \end{table}

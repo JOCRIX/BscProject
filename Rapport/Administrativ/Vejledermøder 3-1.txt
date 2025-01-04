@@ -10,7 +10,7 @@
 
 6.) "Cost" / "Price" ikke samme betydning. Ensret. 
 
-7.) Afnist 3.1.5 - Forvirrende. Hvordan relateret G/B til tegningerne? Gør det mere tydeligt, hvad "X" referer til. - JRIX
+7.) Afnist 3.1.5 - Forvirrende. Hvordan relateret G/B til tegningerne? Gør det mere tydeligt, hvad "X" referer til. - JRIX (WORK IN PROGRESS)
 
 8.) Summary. "Varies". Stavefejl.
 
@@ -38,7 +38,7 @@
 
 20.) System verification. Requirement review og accuracy test er en laaang text sektion. Kan det laves om til tabel, eller på anden måde opdele det. F.eks requirement §1 lav tabel som siger krav | konklusion - JAKOB
 
-21.) Price analysis. Malplaceret i System Verification. Evt smid det her i appendix. - JRIX
+21.) Price analysis. Malplaceret i System Verification. Evt smid det her i appendix. - JRIX - DONE. Skal ref'es i discussion og snakkes om der.
 
 22.) System verification conclusion. Evt. flet det her sammen med discussion. Der er meget gentagelse i "conclusions" - FÆLLES
 
@@ -48,4 +48,4 @@
 
 24.) Appendix B. Der mangler noget som kobler polernes placering sammen med komponent værdierne som er fundet. Det virker omvendt? Komponent værdierne er fundet før polerne? Der skal nok forklaring til. Mangler cite på komponentværdi tabellen. -JAKOB
 
-25.) Appendix N. Skal evt slettes? 
+25.) Appendix N. Skal evt slettes? NOPE
