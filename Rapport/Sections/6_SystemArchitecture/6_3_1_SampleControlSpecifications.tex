@@ -5,20 +5,19 @@ This section will define the requirements given for the Sample Control module (F
     \hline
       \textbf{ID} &   \textbf{Description}   \\ \hline
       §6.3.1 & Must have at least \SIQ{320}{\kilo\bit} sample memory\\ \hline
-      §6.3.2 & Must have TBD GPIO connections \\ \hline
-      §6.3.3 & Must be capable of fetching and storing ADC data, from both ADC's, at TBD frequency, at a package size of 2 bytes from each ADC. \\ \hline
+      §6.3.2 & Must have 60 GPIO connections \\ \hline
+      §6.3.3 & Must be capable of fetching and storing ADC data, from both ADC's, at a minum rate of $32\:Mb/s$. \\ \hline
       §6.3.4 & Must be capable if triggering both ADC's at exactly the same time. \\ \hline
       §6.3.5 & Must be capable of updating the DAC at a rate of least \SIQ{10}{\mega\hertz}, at a package size of 2 bytes. \\ \hline
-      §6.3.6 & The ADC trigger signals and DAC update signal must have less than TBD picoSeconds$_{RMS}$ jitter. \\ \hline
-      §6.3.7 & Must interface the MCU via a sample control data bus. The sample control data bus must have a 16 data bit wide data bus, with 16 addressing bits. The data-bits and address bits may be shared, depending on the used protocol. \\ \hline
-      §6.3.8 & Must allow access to the sample memory via the sample control data bus. \\ \hline
-      §6.3.9 & DAC amplitude level must be configurable through a 16 bit programmable register. \\ \hline 
-      §6.3.10 & Must be possible to set the range resistors and the input gains of the ADC's. \\ \hline
-      §6.3.11 & The ADC sample rate must be configurable through a \nl programmable 32 bit resister (may be 2 shared 16 bit registers). \\ \hline
-      §6.3.12 & The amount of samples acquired must be configurable through a programmable 16 bit register. \\ \hline
-      §6.3.13 & The DAC output frequency must be configurable through a programmable 32 bit register (may be 2 shared 16 bit registers). \\ \hline
-      §6.3.14 & A 16 bit general purpose register shall trigger the n-sample sequence of the ADC's at the defined sample rate. \\ \hline
-      §6.3.15 & When the defined n-samples have been acquired, a bit shall
+      §6.3.6 & Must interface the MCU via a sample control data bus. The sample control data bus must have a 16 data bit wide data bus, with 16 addressing bits. The data-bits and address bits may be shared, depending on the used protocol. \\ \hline
+      §6.3.7 & Must allow access to the sample memory via the sample control data bus. \\ \hline
+      §6.3.8 & DAC amplitude level must be configurable through a 16 bit programmable register. \\ \hline 
+      §6.3.9 & Must be possible to set the range resistors and the input gains of the ADC's. \\ \hline
+      §6.3.10 & The ADC sample rate must be configurable through a \nl programmable 32 bit resister (may be 2 shared 16 bit registers). \\ \hline
+      §6.3.11 & The amount of samples acquired must be configurable through a programmable 16 bit register. \\ \hline
+      §6.3.12 & The DAC output frequency must be configurable through a programmable 32 bit register (may be 2 shared 16 bit registers). \\ \hline
+      §6.3.13 & A 16 bit general purpose register shall trigger the n-sample sequence of the ADC's at the defined sample rate. \\ \hline
+      §6.3.14 & When the defined n-samples have been acquired, a bit shall
       be set in a register that is accessible through the sample control data bus. \\ \hline
 
     \end{tabular}
