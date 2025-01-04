@@ -1,6 +1,6 @@
-1.) Titlen "Design af spektral analyser". Vi skal have det klart hvad titlen betyder. Behold eller fjern "spektral" - WE KEEP GTFO
+1.) Titlen "Design af spektral analyser". Vi skal have det klart hvad titlen betyder. Behold eller fjern "spektral" - WE KEEP GTFO - DONE
 
-2.) Abstract. I stedet for PCB. Skriv vi har realiseret et stykke hardware for vores design. Brug et mere generelt begreb. Skriv vi kan måle noget mere konkret end important characteristics. - JAKOB - DONE!
+2.) Abstract. I stedet for PCB. Skriv vi har realiseret et stykke hardware for vores design. Brug et mere generelt begreb. Skriv vi kan måle noget mere konkret end important characteristics. - JAKOB, LAV linjeskift hvis muligt.
 
 3.) Abstract side tal. - Inden aflevering
 
@@ -38,7 +38,7 @@
 
 20.) System verification. Requirement review og accuracy test er en laaang text sektion. Kan det laves om til tabel, eller på anden måde opdele det. F.eks requirement §1 lav tabel som siger krav | konklusion - JAKOB
 
-21.) Price analysis. Malplaceret i System Verification. Evt smid det her i appendix. - JRIX - DONE. Skal ref'es i discussion og snakkes om der.
+21.) Price analysis. Malplaceret i System Verification. Evt smid det her i appendix. - JRIX - DONE. Skal ref'es i discussion og snakkes om der. - DONE
 
 22.) System verification conclusion. Evt. flet det her sammen med discussion. Der er meget gentagelse i "conclusions" - FÆLLES
 
@@ -47,5 +47,3 @@
 24.) Appendix. Lav korte introer til alle appendix, så de alle starter med en kort tekst der fortæller hvad et appendix går ud på. -FÆLLES
 
 24.) Appendix B. Der mangler noget som kobler polernes placering sammen med komponent værdierne som er fundet. Det virker omvendt? Komponent værdierne er fundet før polerne? Der skal nok forklaring til. Mangler cite på komponentværdi tabellen. -JAKOB
-
-25.) Appendix N. Skal evt slettes? NOPE

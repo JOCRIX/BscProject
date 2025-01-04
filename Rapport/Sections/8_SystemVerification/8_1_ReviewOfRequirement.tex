@@ -3,15 +3,15 @@
 All of the requirements from table \refq{tab:5_SystemRequirements} have been reviewed in order to see if the product meets the specifications.
 
 
-\subsubsection*{Requirement §2: Frequency range}
+\subsubsection*{Requirement §1: Frequency range}
 The system must be capable of generating sine waves from \SIQ{50}{\hertz} to \SIQ{1}{\mega\hertz} with a resolution of \SIQ{1}{\hertz}.
 
-\textbf{Status:} The DAC is controlled by a DDS block in the Sample Control Module, at a sample rate of \SIQ{20}{\mega\hertz}. The DDS block has a resolution of \SIQ{4.657}{\milli\hertz}, essentially allowing the DAC to generate frequencies down to \SIQ{4.657}{\milli\hertz}. The reconstruction filter however is AC coupled with a simulated lower cut-off of less than \SIQ{10}{\hertz}. The upper cut-off frequency for the reconstruction filter is simulated to more than \SIQ{1.5}{\mega\hertz}. This requirement is deemed ensured by desgin, but has not been tested explicitly. The output have been observed to generate a pure sine wave at \SIQ{1}{\mega\hertz} with an oscilloscope.
+\textbf{Status:} The DAC is controlled by a DDS block in the Sample Control Module, at a sample rate of \SIQ{20}{\mega\hertz}. The DDS block has a resolution of \SIQ{4.657}{\milli\hertz}, essentially allowing the DAC to generate frequencies down to \SIQ{4.657}{\milli\hertz}. The reconstruction filter however is AC coupled with a simulated lower cut-off of less than \SIQ{10}{\hertz}. The upper cut-off frequency for the reconstruction filter is simulated to more than \SIQ{1.5}{\mega\hertz}. The actual pass-band of the system has been tested to be \SIQ{10}{\hertz} to \SIQ{1.23}{\mega\hertz}, see appendix \ref{subsec:BW_Test}. The resolution has been tested to be at least \SIQ{1}{\hertz}. This requirement is met.
 \nl
 \nl
 
 \subsubsection*{Requirement §2: Impedance Fit}
-Impedance fit to eiter series model or parallel model.
+Impedance fit to either series model or parallel model.
 
 \textbf{Status:} This is implemented in software, the functionality is shown in section \refq{sec:MCU}.
 \nl
@@ -24,40 +24,118 @@ The instrument should be able to measure an impedance in the interval $10m\Omega
 \nl
 \nl
 
-\subsubsection*{Requirement 4 and 5: Modulus and Argument accuracy}
+\subsubsection*{Requirement §4 and §5: Modulus and Argument accuracy}
 The specific requirement can be seen in section \refq{sec:ModulusArgumentAccuracy}.
 
 \textbf{Status:} The instrument accuracy has been tested at varies impedances and frequencies, no higher than \SIQ{300}{\kilo\hertz}, these tests can be seen in appendix \refq{App:AccuracyBWTest}. A review of this can be seen in section \refq{subsec:8_1_AccTest}. These requirements are not met.
 \nl
 \nl
 
-\subsubsection*{Requirement 6: Test voltage Range}
+\subsubsection*{Requirement §6: Test voltage Range}
 It must be possible to set the test voltage in the range of \SIQ{10}{\milli\volt}$_{pp}$ to \SIQ{10}{\milli\volt}$_{pp}$ with a resolution of \SIQ{10}{\milli\volt}.
 
 \textbf{Status:} It is only possible to set the test voltage at 4 fixed levels, \SIQ{0.6}{\volt}$_{pp}$, \SIQ{1.2}{\volt}$_{pp}$, \SIQ{2.3}{\volt}$_{pp}$ and \SIQ{4.3}{\volt}$_{pp}$. This requirement is not met.
 \nl
 \nl
 
-\subsubsection*{Requirement 7: Maximum Test Current}
-The system must be capable of generating a minimum \SIQ{100}{\milli\ampere}$_{pp}$.
+\subsubsection*{Requirement §7: Maximum Test Current}
+The system must be capable of generating a minimum current of \SIQ{100}{\milli\ampere}$_{pp}$.
 
-\textbf{Status:} It is only possible to set the at 4 fixed levels, \SIQ{0.6}{\volt}$_{pp}$, \SIQ{1.2}{\volt}$_{pp}$, \SIQ{2.3}{\volt}$_{pp}$ and \SIQ{4.3}{\volt}$_{pp}$. This requirement is not met.
+\textbf{Status:} The system has been found capable of delivering more than \SIQ{105}{\milli\ampere}$_{pp}$, see appendix \ref{subsec:MaxCurrent}. The designed system meets this requirement.
 \nl
 \nl
 
-Requirement §7 states that the maximum test current should be $100mApp$ this requirement is not met.
+\subsubsection*{Requirement §8: DC Bias Voltage Range}
+The system should be capable of biasing the DUT to a voltage in the range of \SIQ{0}{\volt} to \SIQ{20}{\volt}.
 
-Requirement §8 states that the instrument should have an adjustable DC bias voltage for the DUT. This was not implemented due to time constraints.
+\textbf{Status:} No biasing system has been designed and as such the system cannot generate any DC bias voltage. This requirement is not met.
+\nl
+\nl
 
-Requirement §9 states that the instrument should be able to calculate the DUT parameters such as L,C,R,D,Q and so on. The instrument can do this and display them to the user.
+\subsubsection*{Requirement 9: Parameters of DUT}
+The system should be able to indicate the following DUT parameters:
+\begin{itemize}
+    \item $L$
+    \item $C$
+    \item $R$
+    \item $Q$
+    \item $D$
+    \item $R_s$
+    \item $R_p$
+    \item $Z$ and $\phi$
+\end{itemize}
 
-Requirement §10, §11, §12, and §13 says that the instrument should have a sweep capability. The instrument can set the test frequencies from software, but the functionality to let it sweep this parameter has not been implemented due to time constraints.
+\textbf{Status:} All these parameters can be calculated from the complex impedance. This requirement is met.
+\nl
+\nl
 
-Requirement §14, §15 and §16 was not implemented due to time constraints.
+\subsubsection*{Requirement §10: Parameter Sweep}
+The system should be capable of performing frequency and DC bias voltage sweeps.
 
-Requirement §17 states that the insturment should have a 7" touch screen. It does have a touchscreen, but the software for this is not fully developed.
+\textbf{Status:} The system can perform frequency sweeps but the functionality has not been implemented. No biasing circuit has been implemented so no bias sweeps can be performed. This requirement is not met.
+\nl
+\nl
 
-Requirement §18 states that the instrument should have a 4-wire kelvin interface with the DUT. This is ensured by design.
+\subsubsection*{Requirement §11: Frequency Sweep Range}
+The frequency sweep range of the system should be \SIQ{50}{\hertz} to \SIQ{1}{\mega\hertz}.
 
-Requirement §19 stateas that the instrument should be able to export data over UART. It can do this, as has been demonstrated.
+\textbf{Status:} The system can perform frequency sweeps and generate frequencies within the given range, but the functionality has not been implemented. This requirement is not met.
+\nl
+\nl
+
+\subsubsection*{Requirement §12: Maximum Frequency Sweep Points}
+The system should be able to store 10000 points in a single frequency sweep.
+
+\textbf{Status:} No sweep functionality has been implemented, this requirement is not met.
+\nl
+\nl
+
+\subsubsection*{Requirement §13: Maximum Frequency Sweep Points}
+The system should be able to store 100 points in a single bias voltage sweep.
+
+\textbf{Status:} No sweep functionality has been implemented, this requirement is not met.
+\nl
+\nl
+
+\subsubsection*{Requirement §14: Binning}
+The system should be capable component binning as explained in section \ref{sec:5_1_Binning}.
+
+\textbf{Status:} No binning functionality has been implemented, this requirement is not met.
+\nl
+\nl
+
+\subsubsection*{Requirement §15: Histogram}
+The system should be able to generate and plot a histogram of measured values.
+
+\textbf{Status:} No histogram function has been implemented, this requirement is not met.
+\nl
+\nl
+
+\subsubsection*{Requirement §16: Plots}
+The system should be capable of plotting the measured parameters vs. frequency and bias voltage.
+
+\textbf{Status:} No sweep functionality has been implemented, this requirement is not met.
+\nl
+\nl
+
+\subsubsection*{Requirement §17: Interface}
+The system must have a 7" touch screen.
+
+\textbf{Status:} The system has a 7" touch screen, this requirement is met.
+\nl
+\nl
+
+\subsubsection*{Requirement §18: DUT Connection}
+The system should use a 4-wire kelvin connection to connect to the DUT.
+
+\textbf{Status:} The system uses a shielded 4-wire kelvin connection, this requirement is met.
+\nl
+\nl
+
+\subsubsection*{Requirement §19: Data Export}
+The system should be able to export data to a CSV file via UART.
+
+\textbf{Status:} The system can export data via UART, this requirement is met.
+\nl
+\nl
 

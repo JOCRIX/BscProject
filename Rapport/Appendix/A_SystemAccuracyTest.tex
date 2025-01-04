@@ -1,5 +1,5 @@
-\chapter{Accuracy and Bandwidth Verification} \label{App:AccuracyBWTest}
-This appendix documents the test setups and test results for requirements §3, §4, §5 from the requirements in table \refq{tab:5_SystemRequirements} in chapter\refq{ch:SystemRequirements}.
+\chapter{Accuracy, Bandwidth and maximum current Verification} \label{App:AccuracyBWTest}
+This appendix documents the test setups and test results for requirements §3, §4, §5 and §7 from the requirements in table \refq{tab:5_SystemRequirements} in chapter\refq{ch:SystemRequirements}.
 
 \subsection{§3 Impedance Range Verification} \label{subsec:ZRangeVerify} 
 The requirements states that instrument should be able to measure an impedance in the interval $10m\Omega < |Z| < 100M \Omega$. To test this requirement, the instrument is tested in both extremes of this range. An impedance reference, or precision calibrator, is not available for the project to use so a \SIQ{100}{\mega\ohm} resistor and a \SIQ{10}{\milli\ohm} resistor was made by placing multiple resistors in series/parallel.
@@ -175,3 +175,55 @@ Based on these assumptions a purely resistive test has been conducted. One that 
     \caption{\SIQ{1}{\kilo\ohm} at various frequencies. The tolerance is the tolerance that the manufacturer has listed for the component.}
     \label{tab:A_Z_ImpedanceMeasurementWIthResistor_FRQ_1KOHM}
 \end{table}
+
+
+\subsection{§7 Maximum Test Current} \label{subsec:MaxCurrent}
+This section describes how the developed system is tested, to see if it can deliver more than the required \SIQ{100}{\milli\ampere}$_{pp}$ required.
+
+A \SIQ{1}{\ohm} resistor is connected as in figure \ref{fig:App_MaxCurrent}. The used resistor has a tolerance of \SIQ{0.5}{\%}. The Impedance Analyzer is configured for \SIQ{2.3}{\volt}$_{pp}$ \SIQ{1}{\kilo\hertz} test signal. The voltage across the resistor is then measured using a HP34401A multimeter.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 0 0 0, width=0.75\textwidth]{Appendix/Figures/CurrentTest.pdf}
+    \caption{The used setup to test of the system can deliver the required amount of current.}
+    \label{fig:App_MaxCurrent}
+\end{figure}
+
+\subsubsection*{Result}
+The voltage across the resistor was measured to \SIQ{37.172}{\milli\volt}$_{rms}$ or \SIQ{105.14}{\milli\volt}$_{pp}$. This indicates that more than the required test current can be delivered by the Impedance Analyzer, i.e. using a \SIQ{1}{\ohm} resistor the current is \SIQ{105.14}{\milli\ampere}$_{pp}$.
+
+
+
+\subsection{§1 Frequency Range} \label{subsec:BW_Test}
+This section describes how the frequency range of the developed system is tested.
+
+The Impedance Analyzer has a differential output. An oscilloscope with two or more channels and a bandwidth of more than \SIQ{50}{\mega\hertz} is used to measure both channels. Channel 1 is connected to $H_{CUR}$ and channel 2 is connected to $L_{CUR}$, these connections should be done using a BNC cable. The oscilloscope is configured for AC inputs, and to display the sum of channel 1 and channel two. The amplitude of the signal is then measured. The test setup can be seen on figure \ref{fig:App_BW_Test}.
+
+The Impedance analyzer is configured to generate \SIQ{2.3}{\volt}$_{pp}$ at \SIQ{50}{\hertz}, \SIQ{1}{\kilo\hertz} and \SIQ{1}{\mega\hertz}. The amplitude at \SIQ{50}{\hertz} and \SIQ{1}{\mega\hertz} should not have decreased by more than \SIQ{-3}{\decibel} compared to the amplitude at \SIQ{1}{\kilo\hertz}.
+
+The system shall then be set for \SIQ{1}{\kilo\hertz} output where the actual output frequency is measured. It shall then be set for \SIQ{1.001}{\kilo\hertz} output and have the output frequency measured.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[clip, trim=0 0 0 0, width=0.75\textwidth]{Appendix/Figures/BW_Test.pdf}
+    \caption{The used setup to test the frequency range of the Impedance Analyzer.}
+    \label{fig:App_BW_Test}
+\end{figure}
+
+\subsubsection*{Result}
+\begin{itemize}
+    \item \SIQ{1}{\kilo\hertz} amplitude: \SIQ{2.15}{\volt}$_{pp}$
+    \item \SIQ{50}{\hertz} amplitude: \SIQ{2.12}{\volt}$_{pp}$ = \SIQ{-0.12}{\decibel}
+    \item \SIQ{1}{\mega\hertz} amplitude: \SIQ{2.16}{\volt}$_{pp}$ = \SIQ{0.04}{\decibel}
+    \item \SIQ{1.23}{\mega\hertz} amplitude: \SIQ{1.52}{\volt}$_{pp}$ = \SIQ{-3.01}{\decibel}
+    \item \SIQ{10}{\hertz} amplitude : \SIQ{1.52}{\volt}$_{pp}$ = \SIQ{-3.01}{\decibel}
+    \item --
+    \item \SIQ{1.000}{\kilo\hertz} accuracy : \SIQ{1.00001}{\kilo\hertz}
+    \item \SIQ{1.001}{\kilo\hertz} accuracy : \SIQ{1.00101}{\kilo\hertz} 
+\end{itemize}
+
+
+
+The system has a an actual pass-band of \SIQ{10}{\hertz} to \SIQ{1.23}{\mega\hertz}. 
+
+The system can accurately produce a \SIQ{1.000}{\kilo\hertz} sine and a \SIQ{1.001}{\kilo\hertz} sine. This indicates that the resolution is less than \SIQ{1}{\hertz}.

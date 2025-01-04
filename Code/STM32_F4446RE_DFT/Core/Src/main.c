@@ -1846,7 +1846,7 @@ int main(void)
   uint16_t testF = 100000;
   double testZ = 0;
 
-  TestParameters testPar = (TestParameters){1000, 100000, 10000, 1};
+  TestParameters testPar = (TestParameters){1001, 100000, 10000, 1};
 //  for(int i=0; i < 7; i++) {
 //	  calPar.r_Relay[i] = 0.06;
 //  }
@@ -1861,13 +1861,12 @@ int main(void)
   DFTSet.set.DFTres = DFTSet.get.CalDFTResolution(testPar.sampleSize, testPar.sampleFrequency); //Lav gets til disse
   DFTSet.set.kFrequencyIndex = DFTSet.get.GetkFrequencyIndex(testPar.testFrequency, DFTSet.set.DFTres);
 
-  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
-  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
-//  SC.dacSet.SetRangeResistor(RANGE_100R);
+  SC.adcSet.SetPGAGain(PGA_V, GAIN_16);
+  SC.adcSet.SetPGAGain(PGA_I, GAIN_8);
   SC.dacSet.TestLevel(LVL_2, HIGH);
   SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 
-  calPar.OS_Cal(testPar.sampleFrequency, testPar.testFrequency, testPar.sampleSize);
+//  calPar.OS_Cal(testPar.sampleFrequency, testPar.testFrequency, testPar.sampleSize);
 
 //  SC.adcSet.SetPGAGain(PGA_V, GAIN_16);
 //  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
@@ -1875,12 +1874,13 @@ int main(void)
 
   CommPort.ResetComm();
   SC.adcSet.SetSampleSize(testPar.sampleSize);
+  SC.dacSet.SetRangeResistor(RANGE_1R);
   complexp avg;
   while (1)
   {
-	  if(SC.dacSet.AutoRangeCheck(testPar.sampleFrequency, testPar.testFrequency) == 1) {
-		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
-	  }
+//	  if(SC.dacSet.AutoRangeCheck(testPar.sampleFrequency, testPar.testFrequency) == 1) {
+//		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
+//	  }
 
 	  for (int i = 0; i < 3; i++) {
 	  SC.adcSet.SetSampleSize(testPar.sampleSize);
@@ -1897,11 +1897,11 @@ int main(void)
 	  VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
 	  IFourCoeffAng = cmplxmath.rec.ArgzDeg(IFourCoeff);
 	  VFourCoeffAng = cmplxmath.rec.ArgzDeg(VFourCoeff);
-//	  DUT.param.z = DUT.cal.GetImpedance(VFourCoeff, IFourCoeff);
-	  DUT.param.y = DUT.cal.GetAdmittance(VFourCoeff, IFourCoeff);
+	  DUT.param.z = DUT.cal.GetImpedance(VFourCoeff, IFourCoeff);
+//	  DUT.param.y = DUT.cal.GetAdmittance(VFourCoeff, IFourCoeff);
 //	  ZFourCoeffMag = (VFourCoeffMag/2.0) / ((IFourCoeffMag/(8.0*100)));
 //	  ZFourCoeffAng=  VFourCoeffAng - IFourCoeffAng;
-	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
+//	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
 	  avg.mod += DUT.param.z.mod;
 	  avg.argDeg += DUT.param.z.argDeg;
 	  }

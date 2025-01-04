@@ -1,0 +1,11 @@
+* C:\Users\jakob\Desktop\P7---Bsc\SIM\Draft1.asc
+R1 N002 0 10
+C1 N002 0 1µ
+R2 N001 N002 0.0001
+R3 N001 N003 0.0001
+R4 N003 N004 9.96
+C2 N004 0 254µ
+V1 N001 0 AC 1
+.ac dec 1000 1 10E6
+.backanno
+.end
