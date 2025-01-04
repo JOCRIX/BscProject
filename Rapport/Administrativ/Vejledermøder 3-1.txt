@@ -10,7 +10,7 @@
 
 6.) "Cost" / "Price" ikke samme betydning. Ensret. 
 
-7.) Afnist 3.1.5 - Forvirrende. Hvordan relateret G/B til tegningerne? Gør det mere tydeligt, hvad "X" referer til. - JRIX (WORK IN PROGRESS)
+7.) Afnist 3.1.5 - Forvirrende. Hvordan relateret G/B til tegningerne? Gør det mere tydeligt, hvad "X" referer til. - JRIX - DONE
 
 8.) Summary. "Varies". Stavefejl.
 
@@ -30,7 +30,7 @@
 
 16.) Side 162. Bryd teksten op så det ikke er en lang smøre. -JAKOB
 
-17.) Spektral analyse side 165. Vi skal være skarp på hvad "reference cosine" betyder. Termen "reference" skal være i figur teksten. Vi skal forklare hvad reference cosine er. -JRIX
+17.) Spektral analyse side 165. Vi skal være skarp på hvad "reference cosine" betyder. Termen "reference" skal være i figur teksten. Vi skal forklare hvad reference cosine er. -JRIX - DONE
 
 18.) Afsnit 7.3.5 - Forvirrende overskrift. Evt fjern afsnittet, eller slå sammen med konklusion. Vi kan også lave en ny overskrift, "MCU summary?". Tag det her afsnit og flet det sammen med discussion. - FÆLLES
 

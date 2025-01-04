@@ -47,6 +47,8 @@ The fourier coefficient shown on figure \refq{fig:7_3_2_DFTU1} contains both cos
 
 Performing DFT on the voltage and currents will provide both amplitude and phase information about the sampled signals, as shown in figure \refq{fig:7_3_2_DFTU2} and the discussion above, and the fourier coefficients can be used to calculate the DUTs impedance.
 
+Note how both the voltage and current waveform phases are calculated as shown on figures \refq{fig:7_3_2_DFTU2} and \refq{fig:7_3_2_DFTU1}. The reason these phases can be used to calculated the phase of the impedance, is because both the voltage and current waveform is sampled simultaneusly and is thus phased relative to the same reference cosine.
+
 The DFT in eq \refq{eq:4_7_2_SA2} has been implemented as two separate functions in C. The product inside the sum of eq \refq{eq:4_7_2_SA2} is computed in one function, while another function does the summing. The function that computes the product of the input sample, x[n], and exponential term can be seen in listing \refq{lst:DFT_PART_SUM}.
 
 \lstinputlisting[language=C ,style = c,firstnumber=1, linerange=1189-1202, caption={The C function that computes a part-sum of the DFT}, label={lst:DFT_PART_SUM}]{Appendix/Code/main_2612.tex}. 
