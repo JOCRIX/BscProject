@@ -34,30 +34,5 @@ These exact values where not available, the used values are as in equation \ref{
     \end{split}
     \end{equation}
 
-To analyze the behaviour of the Butterworth filter, the poles of the filter have also been found. The poles of a Butterworth filter can be found as in equation \ref{eq:app_DAC_3}.
 
-\begin{equation}
-\label{eq:app_DAC_3}
-\begin{split}
-    p_k &= \e^{j\left(\frac{2k\pi-\pi}{2n}+\frac{\pi}{2}\right)} \\
-    p_1 &= -0.3827+j0.9239 \\
-    p_2 &= -0.9239+j0.3827 \\
-    p_3 &= -0.9239-j0.3827 \\
-    p_4 &= -0.3827-j0.9239 \\
-    k &= 1, \:2,\:3\:4 \\
-    n &= 4
-\end{split}
-\end{equation}
-
-These poles can then be scaled by the frequency scalign factor and combined with their complex conjugate counter part. This can be seen in equation \ref{eq:app_DAC_4}. The transfer function of this Butterworth filter can also be seen.
-
-\begin{equation}
-\label{eq:app_DAC_4}
-\begin{split}
-    p_a &= (s-p_1 k_f)(s-p_4 k_f) = s^2 +7.2134e6 \:s+8.8826e13 \\
-    p_b &= (s-p_2 k_f)(s-p_3 k_f) = s^2 +1.7415e7 \:s+8.8826e13 \\
-    \\
-    H(s) &= \frac{{k_f}^4}{p_a p_b} \Rightarrow \frac{7.8901e27}{(s^2 +7.2134e6 \:s+8.8826e13)(s^2 +1.7415e7 \:s+8.8826e13)}
-\end{split}
-\end{equation}
 

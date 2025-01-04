@@ -1,4 +1,4 @@
-\subsection{DAC Control} \label{subsec:DAC_CONTROL} 
+\section{DAC Control} \label{subsec:DAC_CONTROL} 
 Section \refq{ch:SysArchitecture} shows that the the Sample Controller is responsible for controlling the DAC such that a stable sine wave is generated. The logic responsible for this will be described in this section. The specific section of the Sample Controller that handles the DAC logic is referred to as the DAC Control. A block diagram of the DAC Control can be seen on figure \refq{fig:7_2_3_DAC_CONTROL}.
 
 \begin{figure}[H]
@@ -25,7 +25,7 @@ All other blocks than the DDS shown in figure \refq{fig:7_2_3_DAC_CONTROL} are e
 
 The 16 bit wide output data of the DDS contains an approximated full-scale sine wave in two's compliment. The DAC however requires unsigned values as an input, and thus the DDS output data must be converted to a 16 bit wide unsigned bus. Furthermore the memory holds data in 16 bit registers, meaning that the 32 bit frequency setting word must be two registers that are concatenated. The DAC DATA Conversion block handles this concatenation and conversion from two's compliment to unsigned.
 
-\subsubsection{DDS and DAC Prescaler}
+\subsection*{DDS and DAC Prescaler}
 The clock for the DDS and DAC are both derived from the \SIQ{200}{\mega\hertz} master clock. This clock is divided down to a \SIQ{20}{\mega\hertz} clock by the use of a counter and a D flip flop. This can be seen in listing \ref{lst:7_2_3_DAC_Prescaler}. 
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=34-63, caption={Code for DDS and DAC prescaler}, label={lst:7_2_3_DAC_Prescaler}]{Sections/7_SystemDesign/Code/DAC_PRESCALER.vhd}
@@ -49,7 +49,7 @@ The DAC and DDS must be updated not exactly at the same time. This is crucial, a
     \label{fig:7_2_3_DAC_PRESCALER}
 \end{figure}
 
-\subsubsection{DAC DATA Conversion}
+\subsection*{DAC DATA Conversion}
 The DAC DATA Conversion block ensures that the DAC is fed appropriate data and that the DDS block receives the proper 32 bit wide frequency setting word, as well as indicating to the DDS that new data is available for the frequency setting. The VHDL code for the DAC DATA Conversion can be seen in listing \refq{lst:7_2_3_DAC_DATA_Conversion}.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=34-70, caption={Code for DAC DATA Conversion}, label={lst:7_2_3_DAC_DATA_Conversion}]{Sections/7_SystemDesign/Code/DAC_DATA_Conversion.vhd}

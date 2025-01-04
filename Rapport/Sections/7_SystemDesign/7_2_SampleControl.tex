@@ -1,4 +1,4 @@
-\section{Sample Control Module} \label{sec:SampleControl}
+\chapter{Sample Control Module} \label{sec:SampleControl}
 The Sample Control module is the module responsible for generating the necessary inputs for a DAC that will generate the DUT input test signals and for controlling the ADCs that are sampling the resulting DUT voltage and current waveforms simultaneously. The module will take the samples from the ADCs and store them in external memory. The external memory can be accessed by the Main Processor module in order to retrieve and analyze the samples. The Sample Control module will accept test parameters from the Main Processor and store them in internal registers, these internal registers are connected to the internal sample control logic and can be used to adjust the sampling parameters. The block diagram for the Sample Control module can be seen on figure \refq{fig:7_SampleControlBlock}.
 \begin{figure}[H]
     \centering

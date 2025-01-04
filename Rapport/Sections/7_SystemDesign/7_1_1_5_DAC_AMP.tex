@@ -1,4 +1,4 @@
-\subsection{DAC Power Amp} \label{subsec:DAC_Filter}
+\section{DAC Power Amp} \label{subsec:DAC_Filter}
 The system is to test impedance over a broad range of \SIQ{100}{\milli\ohm} to \SIQ{100}{\mega\ohm}, according to requirement §3 from section \ref{ch:SystemRequirements}. In order to excite impedances, especially in the range of \SIQ{10}{\ohm} and lower, a power amplifier is required. This amplifier must be capable of driving both reactive and passive devices. This is achieved by the use of controlled output impedance and the utilized range resistors used to measure the DUT current. 
 
 The amplifier is designed as a class AB amplifier output stage and a high speed op-amp. The circuit used can be seen in figure \ref{fig_7_1_1_5_DAC_POWER_AMP}.
@@ -14,7 +14,7 @@ About \SIQ{15}{\milli\ampere} of bias current for the output stage has been chos
 
 To increase the input impedance and reduce output distortion of the amplifier, an op-amp is used with the output class AB stage in its feedback loop. The used op-amp is an \SIQ{80}{\mega\hertz} GBW op-amp, AD8032 \cite{AD8032_datasheet}. 
 
-\subsubsection{Stability}
+\subsection*{Stability}
 Driving reactive, especially capacitive loads can pose a challenge to any feedback system with a phase margin less than \SIQ{90}{\degree}. The typical phase-margin of an op-amp is in the range of \SIQ{45}{\degree}, leading to potential instability when driving capacitive loads.
 
 A way to counteract the risk of instability, is to introduce a zero in the transfer function of the feedback path by inserting a series resistance with the output of the feedback system, this is also known as an isolation resistor. This resistor should be placed outside of the feedback loop, the value of this resistor will depend upon the load capacitor. This indicates that a stability analysis of the DAC power amp should be conducted, as it is very likely that a user would load the system with a capacitive load. This analysis is based on the block diagram of the differential DAC output, depicted in figure \ref{fig_7_1_1_5_DAC_POWER_AMP_BLOCK}. 

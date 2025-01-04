@@ -1,4 +1,4 @@
-\section{Main Processor} \label{sec:MCU}
+\chapter{Main Processor Module} \label{sec:MCU}
 
 This section outlines the behavior of the main processor, or MCU. The MCU processes sampled voltage and current waveforms and configures the Sample Control Module with parameters like sample size, sample frequency, and test frequency. Although the original plan was for the Sample Control Module to manage tasks such as auto-ranging, adjusting PGA gain, and setting the test-signal level, these have been incorporated into the MCU's responsibilities due to time constraints. Implementing such non-time-critical functions in C rather than HDL proved to be both easier and quicker.
 

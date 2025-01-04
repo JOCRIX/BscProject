@@ -1,4 +1,4 @@
-\subsection{Communication} \label{subsec:Communication}
+\section{Communication} \label{subsec:Communication}
 The Main Processor and Sample Control modules need a communication interface in order to set control settings for the ADCs, DAC in the FPGA's internal registers and to retrieve stored ADC samples. The ADCs and DAC \todo{Vi mangler at redegøre for det her valg.} both have 16 bits of resolution and a 16 bit wide parallel bus between the FPGA and MCU will be used to transfer the data as shown on figure \refq{fig_7_2_1_CommBus}.
 
 \begin{figure}[H]
@@ -38,7 +38,7 @@ Alternatively, if the MCU wishes to read from the external memory, its shall fis
     \label{fig_7_2_1_CommRead_IX}
 \end{figure}
 
-\subsubsection{IO Port}
+\subsection*{IO Port}
 The FPGA is using tri-state buffers to function as both inputs and outputs. The Artix 7 FPGA development board is an expensive component and it was decided to let the FPGA use open-drain outputs in order to reduce the risk of both FPGA and MCU actively driving the data bus because of a mistake during development. Xilinx offer a generic drag and drop INOUT port that can be tristated, this has been used. This IO buffer can be seen in figure \ref{fig_7_2_1_IOBUF} together with its truth table. Note that T acts inversly of what the RW pin does, T has simply been connected as not RW to fix this.
 
 \begin{figure}[H]
@@ -50,7 +50,7 @@ The FPGA is using tri-state buffers to function as both inputs and outputs. The 
 
 At first glance the I/O port logic on figure \refq{fig_7_2_1_IOBUF} may seem completely useless as it can't output a logic '1'. This is because the I/O pins will require external pull-up resistors in order to produce a '1' when T = '0'. This will reduce the chance of both FPGA and MCU driving the data bus at the same time. The only possible way of damaging the FPGA with the communication bus is if the MCU sets it's output high when T = '0' (RW = '1'), and the FPGA sets a '0' as the FPGA pins are high impedance in any other case.
 
-\subsubsection{Communication data-rate} \label{subsubsec:CommunicationDatarate}
+\subsection*{Communication data-rate} \label{subsubsec:CommunicationDatarate}
 
 An estimate of the data-rate from this data bus can be made based on the findings in appendix \refq{App:MicrocontrollerConsiderations}. For consecutive read operations where the RW signal remains in 'write' mode, the data-rate will be limited by the execution time of setting the register in the STM32F446RE. This is also described in appendix \refq{App:MicrocontrollerConsiderations}. From the appendix it takes $t_{clk} = 35.8$ns to toggle the pin by setting and clearing a register and a write to a single register will take $t_{rs} = 17.9$ns. This is useful for calculating the communication throughput.
 
@@ -63,13 +63,13 @@ It takes a total of 8 register writes to perform a single write operation to the
 \begin{equation}\label{eq:7_2_1_Write_ThroughPutTotalTime}
     t_{write} = t_{rs} \cdot n_{reg} = 17.9e-9 \cdot 8 =  143.2e-9
 \end{equation}
-It takes \SIQ{143.2}{\nano\second} for the MCU to perform a write operation. The total throughput on the bus in write mode will be about \SIQ{7}{\mega\bit}/s as shown in equation \refq{eq:7_2_1_Write_ThroughPut}.
+It takes \SIQ{143.2}{\nano\second} for the MCU to perform a write operation. The total throughput on the bus in write mode will be about \SIQ{7}{\mega\bit}/s as shown in equation \refq{eq:7_2_1_Write_ThroughPut3}.
 
-\begin{equation}\label{eq:7_2_1_Write_ThroughPut}
+\begin{equation}\label{eq:7_2_1_Write_ThroughPut3}
     R_{write} = \frac{1}{t_{write}} = 6.949e6 
 \end{equation}
-The throughput on the bus is about \SIQ{7}{\mega\bit}/s in write mode. A significant amount of the throughput is used on protocol overhead as half the transmissions are addresses. The protocol efficiency is thus $\eta_{write} = 0.5$. The goodput will be as in eq \refq{eq:7_2_1_Write_ThroughPut2}.
-\begin{equation}\label{eq:7_2_1_Write_ThroughPut2}
+The throughput on the bus is about \SIQ{7}{\mega\bit}/s in write mode. A significant amount of the throughput is used on protocol overhead as half the transmissions are addresses. The protocol efficiency is thus $\eta_{write} = 0.5$. The goodput will be as in eq \refq{eq:7_2_1_Write_GoodPut}.
+\begin{equation}\label{eq:7_2_1_Write_GoodPut}
     G_{write} = R_{write}\cdot \eta_{write} = 6.949e6 \cdot 0.5 = 3.475e6 
 \end{equation}
 The goodput of the bus in write mode is \SIQ{3.475}{\mega\bit}/s for consecutive writes. The situation is different for consecutive MCU read operations as it will have to toggle it's GPIO modes from output to input in each read operation. It takes $t_{mode} = 181.2$ns to toggle between GPIO input and output modes as found in appendix \refq{App:MicrocontrollerConsiderations}. For a consecutive read operation when the MCU reads internal registers, the MCU will have to perform two of these transitions. The MCU will also need to toggle the RW pin along with, those are two register operations and it will have to set an address on the GPIO pins. The total amount of transitions is shown in eq \refq{eq:7_2_1_Read_Register1}.

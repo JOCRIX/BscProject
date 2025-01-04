@@ -1,4 +1,4 @@
-\subsection{ADC Control} \label{subsec:ADC_CONTROL} 
+\section{ADC Control} \label{subsec:ADC_CONTROL} 
 
 The ADC control block is the controlling hardware for the two external LTC2311\cite{ADC_LTC2311} ADCs that are being used to sample the DUT voltage and current waveforms. The module should, when it sees a rising edge from another HDL block, start a sampling process through the ADCs, clock the data out of the ADCs, latch the data and set a data\_ready flag for the IV saver block to read the sampled data as shown on figure \refq{fig:7_2_8_ADCControlProcess}. This section will only concern itself with the timing of the ADC and the communication between the ADC and FPGA. The complete code for the ADC control module is quite long and can be seen in appendix \refq{App:ADCControlCode}. The code will be explained with diagrams as much as possible. 
 

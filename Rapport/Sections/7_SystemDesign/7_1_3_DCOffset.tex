@@ -1,4 +1,4 @@
-\subsection{ADC DC Offset} \label{subsec:ADCDCOffset}
+\section{ADC DC Offset} \label{subsec:ADCDCOffset}
 The LTC2311 ADCs can sample signals in the range $GNDA < V_{IN} < V_{REF}$. The input signals are sinusoidal and is expected to swing below GNDA, so a \SIQ{2.5}{\volt} DC offset is added to the inputs so the signals stay in the specified range. The \SIQ{2.5}{\volt} offset is created by a voltage divider that is being tapped off from the \SIQ{5}{\volt} ADC reference as shown on figure \refq{fig_7_1_3_ADC2.5VOFFSET}.
 
 \begin{figure}[H]

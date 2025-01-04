@@ -1,4 +1,4 @@
-\subsection{Sample Memory} \label{subsec:Sample_Memory} 
+\section{Sample Memory} \label{subsec:Sample_Memory} 
 The Sample Control module will have to store \SIQ{320}{\kilo\bit} of sample data from the ADC before the MCU starts reading them, as mentioned in section \refq{subsubsec:CommunicationDatarate}. The Artix 7 FPGA development\cite{CMOD_A7_AT35T} board being used comes with \SIQ{4}{\mega\bit} of external asynchronous SRAM from ISSI\cite{ISSISRAM} that will be used to store the sampled data. The memory is organized as an array of 512K x 8 bit values, and because the ADC data are 16 bit values the Sample Control module should have hardware to store each sample in two distinct memory addresses in the external memory.
 
 The IS61 SRAM has the functional block diagram shown on figure \refq{fig:7_2_5_IS61Block}.
@@ -59,5 +59,5 @@ The whole sequence is initialized by the VHDL code shown in listing \ref{lst:7_2
 
 The complete VHDL code for the Sample Memory can be seen in appendix \ref{App:EXT_MEM_RW_CODE}.
 
-\subsubsection{IO Port}
+\subsection*{IO Port}
 The IO port used is one that can be configured both as an input and an output. A generic component from Xilinx has been used in exaclty the same way as for the FPGA and MCU communication. For more detail on this IO port see section \ref{subsec:Communication}. The signal used to enable or tristate the 8 bit IO datalines to the memory IC is the signal called "o\_IO\_BUF\_CTRL". When this signal is a logical '0' the output buffer is enabled, driving the output.

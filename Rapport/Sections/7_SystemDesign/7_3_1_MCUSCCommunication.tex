@@ -1,4 +1,4 @@
-\subsection{MCU and Sample Control communication} \label{subsec:MCUSCCommunication} 
+\section{MCU and Sample Control communication} \label{subsec:MCUSCCommunication} 
 This section will focus on how the main processing unit implements and handles the communication protocol with the sample control module. 
 The protocol designed for communication between the main processing unit and the Sample Control Unit has previously been described in section \refq{subsec:Communication}.
 
@@ -19,7 +19,7 @@ Note that INTERNAL here belongs to an enum with, INTERNAL = 0 and EXTERNAL = 1. 
 
 To fully describe the system, the handling of the protocol will be described in more detail specifically for the Control part, Set part and Get part. Not all functions will be described here, only those that are key for the opperation, as many are very similar.
 
-\subsubsection*{Control data-type}
+\subsection*{Control data-type}
 In order for the call-back functions to function, all the hardware must be specified to the CommPort struct. This is done through the \textbf{Control} data-type in listing \refq{lst:7_3_1_StructCommPort}. The specific pins can be found in appendix \refq{App:PinMap_MCU_FPGA}, the setup of these pins can be seen in listing \refq{lst:7_3_1_CommPort_PinSetup}, note that line 1 indicates that it points to its own address, allowing the struct to access data inside the struct itself.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1619-1643, caption={Pin setup for the CommPort struct.}, label={lst:7_3_1_CommPort_PinSetup}]{Appendix/Code/main_2612.tex}
@@ -27,7 +27,7 @@ In order for the call-back functions to function, all the hardware must be speci
 This way of setting up the port makes it very easy to change pins or swap processor if needed. Here the used pins need only be reconfigured in the setup of the struct. This also comes in handy when opperating with an ARM processor such as the STM32F446RE. When writing to or reading from a pin, one must both specify the pin and the specific port of that pin. The task of keeping track of the port of each pin quickly becomes a dreary one, this is simply avoided by the given implementation.
 
 
-\subsubsection*{Set data-type}
+\subsection*{Set data-type}
 The \textbf{Set} struct of the CommunicationPort data-type is a collecion of call-back functions specifically used for setting up the port. The different options within this struct are as in line 14 to 20 in listing \refq{lst:7_3_1_CommPort_PinSetup}. Here only \textbf{SetIOMode}, \textbf{SetIOValue} and \textbf{GetIOValue} will be fully described. The other functions are fairly simple.
 
 Many of these call-back functions takes in enumerators as inputs, these simply act as a way for the human programmer to keep track of the ones and zeros. The \textbf{IXMode} enum can take either the value INTERNAL = 0 or EXTENRAL = 1. It is however much easier to keep track of the functionality than it is to keep track of a zero and one. Thus if it is desired to set the IX pin to internal, one would simply call the function as \textit{CommPort.Set.SetIOMode(INTERNAL)}, the compiler will then take care of inserting a 0 instead of the text INTERNAL. 
@@ -37,7 +37,7 @@ All these functions return an 8 bit signed integer, this is a status variable, i
 All functions in the \textbf{set} struct are call-back functions, the specifc functions that these point to can be seen in listing \refq{lst:7_3_1_CommPort_setPointers}.
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1609-1615, caption={Directing the call-back functions to the specific funtion that they should carry out when called upon.}, label={lst:7_3_1_CommPort_setPointers}]{Appendix/Code/main_2612.tex}
 
-\subsubsection*{SetGPIOMode}
+\subsection*{SetGPIOMode}
 The \textbf{SetGPIOMode} function can be seen in listing \refq{lst:7_3_1_SetIOMode}. This function configures the port for either an input or output. The port consists of 16 pins, pins 0-7 on port B and pins 0-7 on port C of the STM32F446RE. Port B pins 0-7 is bit 0-7 of the communication port and port, port C pins 0-7 is bit 8-15 of the communication port.
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1234-1282, caption={Code for the SetGPIOMode function used to the 16 bit wide port to either and input or ourput.}, label={lst:7_3_1_SetIOMode}]{Appendix/Code/main_2612.tex}
 
@@ -49,7 +49,7 @@ The choise of using open drain outputs has been used in development to reduce th
 
 The physcical port is then updated in line 43 and 44 by the function \textbf{HAL\_GPIO\_Init}. This is once again an STM32 specific function that updates the specific microcontroller registers in order to configure the microcontroller for the specified port settings.
 
-\subsubsection*{SetIOValue}
+\subsection*{SetIOValue}
 As the 16 bit wide communication port is a concatenation of two ports, namely pins 0-7 on port B and pins 0-7 on port C the data written to the communication port must first be manipulated in such a way that the 8 least significant bits are set on pins 0-7 of port B, and the 8 most significant bits are set on pins 0-7 on port C.
 
 This function directly manipulates the registers of the STM32F446RE, and as such care is taken not to change any data on the pins of port B and C that are not used for the communication port. All used 8 bits of a port are set at the same time, and as such it must be ensured that non of the unused bits are changed. I.e. only pins 0-7 of port B are used for the communication port, when writing data to these pins, no changes should be made to the data on pins 8-15 on port B, the same can be said for port C.
@@ -88,7 +88,7 @@ Resulting in 1011 1000 1001 0110. Here the resulting bits 0-7 are updated to the
 
 Once the variables lowByte and highByte have been found, a sanity check on the ctrl struct is done, the lowBytePort is checked to be port B and highBytePort to be port C. If the sanity check is passed, port B is updated in line 16 and port C in line 17. ODR is the output register of the STM32F446RE, this dirrectly sets the value at the given output port.
 
-\subsubsection*{GetIOValue}
+\subsection*{GetIOValue}
 The function \textbf{GetIOValue} fetches the data present on the communication port and stores it at an allocated address by the use of a pointer. The function can be seen in listing \refq{lst:7_3_1_GetIOValue}.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1309-1326, caption={Code for the GetIOValue function used to get the value on the 16 bit wide port connection the MCU and Sample Control Module together.}, label={lst:7_3_1_GetIOValue}]{Appendix/Code/main_2612.tex}
@@ -97,7 +97,7 @@ The function takes in the pointer \textbf{*result}, whatever address this pointe
 
 line 8 reads the 8 least significant bits of port B in exaclty the same way port C is read, these bits are however not bitshifted. The value found at port C is then logically ored with the value found at port B. Line 9 then stores the complete value of the communication port at the designated address from the input pointer \textbf{*result}.
 
-\subsubsection*{Get}
+\subsection*{Get}
 The functions available in the \textbf{Get} struct are those that are generally used to either read data from the communication port or write data to the communication port. The code for the functions will not be described in depth, the functionality of these functions will instead be explained. 
 
 The \textbf{RestComm(void)} function is used to reset the Sample Control Module, see section \refq{subsec:Memory}. This is done in the following way:

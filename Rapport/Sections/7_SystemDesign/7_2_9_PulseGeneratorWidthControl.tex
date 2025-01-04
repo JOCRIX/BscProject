@@ -1,4 +1,4 @@
-\subsection{Pulse width modulated pulse generator} \label{subsec:PWMGen} 
+\section{Pulse width modulated pulse generator} \label{subsec:PWMGen} 
 
 This pulse generator is a more advanced version of the generator in section \refq{subsec:Pulse_Generator}. The generator will produce \textit{N} amount of pulses and provides control over the widths of the high and low time of each pulse. The SPI CLK signal used to interface the FPGA to the LTC2311 ADC and described in section \refq{subsec:ADC_CONTROL} requires that the CLK signal is logic high whenever it is not active, so this has also been done with this generator.
 The full code for this pulse generator can be seen in appendix \refq{App:PWMGenCode}, but the heart of the generator is two state machines that will be explained in this section.
