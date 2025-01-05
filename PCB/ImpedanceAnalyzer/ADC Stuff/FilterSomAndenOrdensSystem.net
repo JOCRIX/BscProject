@@ -1,0 +1,10 @@
+* C:\EIT GIT\P7---Bsc\PCB\ImpedanceAnalyzer\ADC Stuff\FilterSomAndenOrdensSystem.asc
+V1 N001 0 AC 1
+R1 P001 N001 0.7
+L1 P001 N002 1m
+C1 N002 N003 2m489
+R2 N003 0 1.0795
+R3 N002 0 60
+.ac dec 1000 0.1 1000
+.backanno
+.end
