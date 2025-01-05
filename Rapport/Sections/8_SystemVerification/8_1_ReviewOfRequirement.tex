@@ -6,7 +6,9 @@ All of the requirements from table \refq{tab:5_SystemRequirements} have been rev
 \subsubsection*{Requirement §1: Frequency range}
 The system must be capable of generating sine waves from \SIQ{50}{\hertz} to \SIQ{1}{\mega\hertz} with a resolution of \SIQ{1}{\hertz}.
 
-\textbf{Status:} The DAC is controlled by a DDS block in the Sample Control Module, at a sample rate of \SIQ{20}{\mega\hertz}. The DDS block has a resolution of \SIQ{4.657}{\milli\hertz}, essentially allowing the DAC to generate frequencies down to \SIQ{4.657}{\milli\hertz}. The reconstruction filter however is AC coupled with a simulated lower cut-off of less than \SIQ{10}{\hertz}. The upper cut-off frequency for the reconstruction filter is simulated to more than \SIQ{1.5}{\mega\hertz}. The actual pass-band of the system has been tested to be \SIQ{10}{\hertz} to \SIQ{1.23}{\mega\hertz}, see appendix \ref{subsec:BW_Test}. The resolution has been tested to be at least \SIQ{1}{\hertz}. This requirement is met.
+\textbf{Status:} The DAC is controlled by a DDS block in the Sample Control Module, at a sample rate of \SIQ{20}{\mega\hertz}. The DDS block has a resolution of \SIQ{4.657}{\milli\hertz}, essentially allowing the DAC to generate frequencies down to \SIQ{4.657}{\milli\hertz}. The reconstruction filter however is AC coupled with a simulated lower cut-off of less than \SIQ{10}{\hertz}. The upper cut-off frequency for the reconstruction filter is simulated to more than \SIQ{1.5}{\mega\hertz}.
+
+The actual pass-band of the system has been tested to be \SIQ{10}{\hertz} to \SIQ{1.23}{\mega\hertz}, see appendix \ref{subsec:BW_Test}. The resolution has been tested to be at least \SIQ{1}{\hertz}. This requirement is met.
 \nl
 \nl
 
@@ -20,7 +22,8 @@ Impedance fit to either series model or parallel model.
 \subsubsection*{Requirement §3: Impedance Range}
 The instrument should be able to measure an impedance in the interval $10m\Omega < |Z| < 100M \Omega$. 
 
-\textbf{Status:} This has been tested and the results can be seen in appendix \refq{App:AccuracyBWTest}. The test results are very promising, but ultimately inconlusive. The proper test equipment was not available to perform this test.
+\textbf{Status:} This has been tested and the results can be seen in appendix \refq{App:AccuracyBWTest}. 
+The test results are very promising, but ultimately inconlusive. The proper test equipment was not available to perform this test.
 \nl
 \nl
 
@@ -32,7 +35,7 @@ The specific requirement can be seen in section \refq{sec:ModulusArgumentAccurac
 \nl
 
 \subsubsection*{Requirement §6: Test voltage Range}
-It must be possible to set the test voltage in the range of \SIQ{10}{\milli\volt}$_{pp}$ to \SIQ{10}{\milli\volt}$_{pp}$ with a resolution of \SIQ{10}{\milli\volt}.
+It must be possible to set the test voltage in the range of \SIQ{5}{\volt}$_{pp}$ to \SIQ{10}{\milli\volt}$_{pp}$ with a resolution of \SIQ{10}{\milli\volt}.
 
 \textbf{Status:} It is only possible to set the test voltage at 4 fixed levels, \SIQ{0.6}{\volt}$_{pp}$, \SIQ{1.2}{\volt}$_{pp}$, \SIQ{2.3}{\volt}$_{pp}$ and \SIQ{4.3}{\volt}$_{pp}$. This requirement is not met.
 \nl
@@ -62,7 +65,7 @@ The system should be able to indicate the following DUT parameters:
     \item $D$
     \item $R_s$
     \item $R_p$
-    \item $Z$ and $\phi$
+    \item $Z$ and $\theta$
 \end{itemize}
 
 \textbf{Status:} All these parameters can be calculated from the complex impedance. This requirement is met.
