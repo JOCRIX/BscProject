@@ -24,7 +24,7 @@ The $t_{DCNVSCKL}$ period, marked in red on figure \refq{fig:7_2_8_LTC2311_TIMIN
 
 Assuming $t_{CNV} = 35 ns$, $t_{DCN} = 10 ns$, $t_{DSC} = 20ns$ the SPI clock frequency can be found for a minimum sample rate of $1 MS/s$. The 'protocol' overhead is $t_p = 65 ns$ shown in \refq{eq:7_2_8_ProtocolOverhead}.
 \begin{equation}\label{eq:7_2_8_ProtocolOverhead}
-        t_{p} = t_{CNV} + t_{DCN} + t_{DSC} = 35e-9 + 10 e-9 + 20 e-9 = 65 e-9
+        t_{p} = t_{CNV} + t_{DCN} + t_{DSC} = 35E-9 + 10 E-9 + 20 E-9 = 65 E-9
 \end{equation}
 To get $f_{sample} = 1 MS/s$ with a sample period of $t_{sample} = 1e-6$ and a data packet size of 16 bits equation \refq{eq:7_2_8_SampleFrq} must be true.
 \begin{equation}\label{eq:7_2_8_SampleFrq}
@@ -32,7 +32,7 @@ To get $f_{sample} = 1 MS/s$ with a sample period of $t_{sample} = 1e-6$ and a d
 \end{equation}
 Using equation \refq{eq:7_2_8_SampleFrq} the sample frequency should, at minimum, be \SIQ{17.11}{\mega\hertz} as shown in equation \refq{eq:7_2_8_SampleFrq2}.
 \begin{equation}\label{eq:7_2_8_SampleFrq2}
-    f_{SPICLK} = -\frac{16}{t_{p} - t_{sample}} = -\frac{16}{65e-9 - 1e-6} = 17.11e6
+    f_{SPICLK} = -\frac{16}{t_{p} - t_{sample}} = -\frac{16}{65E-9 - 1E-6} = 17.11E6
  \end{equation}
 
 The minimum SPI clock frequency should be \SIQ{17.11}{\mega\hertz}. This is not a multiple of \SIQ{5}{\nano\second} that the main clock of \SIQ{200}{\mega\hertz} works at. The SPI clock frequency will be set to $f_{SPICLK} = 20 MHz$ as this has a period of $t_{SPICLK} = 1/f_{SPICLK} = 50 ns$ and is a multiple of \SIQ{5}{\nano\second}.

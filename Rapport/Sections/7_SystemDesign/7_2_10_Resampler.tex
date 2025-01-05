@@ -1,5 +1,5 @@
-\section{ADC resampler} \label{subsec:ADCResampler}
-The ADC resampler block is generating the 'acquire start' (trigger) inputs for the ADC control block. When 'acquire start' for the ADC control module is asserted, the ADC control will start a single conversion. The ADC resampler will generate $N$ amount of trigger pulses for the ADC control block, with $M$ frequency. The full code listing for this module can be found in appendix \refq{App:ResamplerCode}.
+\section{ADC Resampler} \label{subsec:ADCResampler}
+The ADC Resampler block is generating the 'acquire start' (trigger) inputs for the ADC control block. When 'acquire start' for the ADC control module is asserted, the ADC control will start a single conversion. The ADC resampler will generate $N$ amount of trigger pulses for the ADC control block, with $M$ frequency. The full code listing for this module can be found in appendix \refq{App:ResamplerCode}.
 
 The amount of pulses generated, i.e. the sample size $N$, and the sample frequency $M$ along with a 'start' signal is set by a number registers in the internal memory that was described in section \refq{subsec:Memory}. The signals going into, or out of, the ADC resampler can be seen on figure \refq{fig:7_2_10_RESAMPLE_IO}.
 
@@ -17,7 +17,7 @@ The module uses a Xilinx Direct Digital Synthesis (DDS) IP\cite{XILINXDDS} to ge
 The two signals, i\_sample\_frq\_low\_int\_mem\_reg and i\_sample\_frq\_high\_int\_mem\_reg, in lines 4 and 5 are concatenated with 0x0000 in order to form a 48 bit frequency control word for the DDS block. The DDS is using a \SIQ{50}{\mega\hertz} clock signal and this gives the DDS output a resolution of \SIQ{17.8}{\micro\hertz} as shown in equation \ref{eq:7_2_10_Fres}.
 
 \begin{equation}\label{eq:7_2_10_Fres}
-    f_{res} = \frac{f_{DDSCLK}}{2^N} = \frac{50e6}{2^{48}} = 1.776e-7
+    f_{res} = \frac{f_{DDSCLK}}{2^N} = \frac{50e6}{2^{48}} = 1.776E-7
 \end{equation}
 This means the sample frequency of the ADC control block has a resolution of \SIQ{17.8}{\micro\hertz} as well.
 
