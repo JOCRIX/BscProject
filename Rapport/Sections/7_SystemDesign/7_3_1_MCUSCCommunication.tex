@@ -2,7 +2,7 @@
 This section will focus on how the main processing unit implements and handles the communication protocol with the sample control module. 
 The protocol designed for communication between the main processing unit and the Sample Control Unit has previously been described in section \refq{subsec:Communication}.
 
-C is not an object oriented language, the principle of objects is however the focal point of the implement communication code. This is implemented through the struct CommPort of the designated data-type CommunicationPort. This data-type holds 3 main data-types, \textbf{Control}, \textbf{Set} and \textbf{Get}, respectivly wtih the names \textbf{ctrl}, \textbf{set} and \textbf{get}. This can be seen in listing \refq{lst:7_3_1_StructCommPort}.
+C is not an object oriented language, the principle of objects is however the focal point of the implementation of the communication code. This is implemented through the struct CommPort of the designated data-type CommunicationPort. This data-type holds 3 main data-types, \textbf{Control}, \textbf{Set} and \textbf{Get}, respectivly wtih the names \textbf{ctrl}, \textbf{set} and \textbf{get}. This can be seen in listing \refq{lst:7_3_1_StructCommPort}.
 
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=175-202, caption={The CommPort struct of the CommunicationPort data-type used to control the communication port with the Sample Control Module.}, label={lst:7_3_1_StructCommPort}]{Appendix/Code/main_2612.tex}
 
@@ -28,11 +28,11 @@ This way of setting up the port makes it very easy to change pins or swap proces
 
 
 \subsection*{Set data-type}
-The \textbf{Set} struct of the CommunicationPort data-type is a collecion of call-back functions specifically used for setting up the port. The different options within this struct are as in line 14 to 20 in listing \refq{lst:7_3_1_CommPort_PinSetup}. Here only \textbf{SetIOMode}, \textbf{SetIOValue} and \textbf{GetIOValue} will be fully described. The other functions are fairly simple.
+The \textbf{Set} struct of the CommunicationPort data-type is a collection of call-back functions specifically used for setting up the port. The different options within this struct are as in line 14 to 20 in listing \refq{lst:7_3_1_CommPort_PinSetup}. Here only \textbf{SetIOMode}, \textbf{SetIOValue} and \textbf{GetIOValue} will be fully described. The other functions are fairly simple.
 
 Many of these call-back functions takes in enumerators as inputs, these simply act as a way for the human programmer to keep track of the ones and zeros. The \textbf{IXMode} enum can take either the value INTERNAL = 0 or EXTENRAL = 1. It is however much easier to keep track of the functionality than it is to keep track of a zero and one. Thus if it is desired to set the IX pin to internal, one would simply call the function as \textit{CommPort.Set.SetIOMode(INTERNAL)}, the compiler will then take care of inserting a 0 instead of the text INTERNAL. 
 
-All these functions return an 8 bit signed integer, this is a status variable, if the function is executed as expected the return value will be a 1, if the hardware in the \textbf{ctrl} struct have not been set-up such that the CommPort.ctrl.selfAddr is a null pointer, all functions will return a -1. This is done, as opperating on a null pointer will have the system crash, so the pointer is first sanity checked. If it is a null pointer, the function is not executed and an error flag is returned.
+All these functions return an 8 bit signed integer, this is a status variable, if the function is executed as expected the return value will be a 1, if the hardware in the \textbf{ctrl} struct have not been set-up such that the CommPort.ctrl.selfAddr is a null pointer, all functions will return a -1. This is done, as operating on a null pointer will have the system crash, so the pointer is first sanity checked. If it is a null pointer, the function is not executed and an error flag is returned.
 
 All functions in the \textbf{set} struct are call-back functions, the specifc functions that these point to can be seen in listing \refq{lst:7_3_1_CommPort_setPointers}.
 \lstinputlisting[language=c ,style = c,firstnumber=1, linerange=1609-1615, caption={Directing the call-back functions to the specific funtion that they should carry out when called upon.}, label={lst:7_3_1_CommPort_setPointers}]{Appendix/Code/main_2612.tex}
@@ -45,7 +45,7 @@ The enumerator \textbf{enum IOMode} is used for input of the function can either
 
 The function essentially works by loading in the configured hardware from the \textbf{ctrl} struct, line 3, if the function is then called to configure the port for READ mode i.e. an input, it then loads in the specific hardware pins to the HighByte and LowByte struct by a loop, line 10 to 14. With all the pins loaded in to the STM32 struct, GPIO\_InitTypeDef, for the high and low byte, the port is simply configured for an input, line 18 and 19, for pull-up resistors, line 20 and 21, and the current mode variable in the ctrl struct is updated to indicate that the port is in READ mode, line 22. The port is confiugred in exactly the same way for a WRITE mode, except that here the mode is set for an open drain output.
 
-The choise of using open drain outputs has been used in development to reduce the risk of two outputs driving the same line, as the data-lines are driven by both the FPGA and the MCU. The line is instead driven high by a pullup resistor. This reduces the speed of the communication as a much larger rise-time is present, but it protects the rather expensive FPGA from damage.
+The choice of using open drain outputs has been made during development to reduce the risk of two outputs driving the same line, as the data-lines are driven by both the FPGA and the MCU. The line is instead driven high by a pull-up resistor. This reduces the speed of the communication as a much larger rise-time is present, but it protects the rather expensive FPGA from damage.
 
 The physcical port is then updated in line 43 and 44 by the function \textbf{HAL\_GPIO\_Init}. This is once again an STM32 specific function that updates the specific microcontroller registers in order to configure the microcontroller for the specified port settings.
 
@@ -62,7 +62,7 @@ the variable lowByte is set to take the 8 least significant bits from the input 
 
 To fully describe this, line 13 is seperated into the different steps within the line. The opperation \textbf{(cp->ctrl.LowBytePort -> ODR) \& 0xFF00} is a bitwise opperation. The complete value present on the port, in this case port B is logically anded with the HEX vale FF00, or 652800, in binary this is 1111 1111 0000 0000. The result is that only the value present on bits 8-15 of port B will be left. 
 
-The opperation \textbf{(IOValue\&0xFF)} ands the input value with the binary value 0000 0000 1111 1111, resulting in only the 8 least significant bits of the input value being left. The previously loaded value of the unchanged 8 most significant bits already on the port from \textbf{(cp->ctrl.LowBytePort -> ODR) \& 0xFF00}, is then logically ored with the 8 least significant bits of the input value from \textbf{(IOValue\&0xFF)}. This results in only the 8 least significant bits of port B being updated, ensuring that the data on bits 8-15 of port B are not changed.
+The operation \textbf{(IOValue\&0xFF)} ANDs the input value with the binary value 0000 0000 1111 1111, resulting in only the 8 least significant bits of the input value being left. The previously loaded value of the unchanged 8 most significant bits already on the port from \textbf{(cp->ctrl.LowBytePort -> ODR) \& 0xFF00}, is then logically ORed with the 8 least significant bits of the input value from \textbf{(IOValue\&0xFF)}. This results in only the 8 least significant bits of port B being updated, ensuring that the data on bits 8-15 of port B are not changed.
 
 If for example the value 1011 1000 1100 0011 is currently on port B, and the communication port should be updated to 1001 0110 1001 0110, the opperation would be as follows:
 
@@ -80,11 +80,11 @@ The next step is then:
 
 Resulting in 0000 0000 1001 0110. 
 
-These two results are then ored together as:
+These two results are then ORed together as:
 
 (1011 1000 0000 0000) | (0000 0000 1001 0110) 
 
-Resulting in 1011 1000 1001 0110. Here the resulting bits 0-7 are updated to the 8 least significant bits of the value that is to be on the communication port, and bits 8-15 of port B are unchanged, as desired. Practically the same opperation is done to set the most significant bits of the communication port on port C. The only change here is that the input value to be set on the port is bitshifted left by 8.
+Resulting in 1011 1000 1001 0110. Here the resulting bits 0-7 are updated to the 8 least significant bits of the value that is to be on the communication port, and bits 8-15 of port B are unchanged, as desired. Practically the same operation is done to set the most significant bits of the communication port on port C. The only change here is that the input value to be set on the port is bitshifted left by 8.
 
 Once the variables lowByte and highByte have been found, a sanity check on the ctrl struct is done, the lowBytePort is checked to be port B and highBytePort to be port C. If the sanity check is passed, port B is updated in line 16 and port C in line 17. ODR is the output register of the STM32F446RE, this dirrectly sets the value at the given output port.
 
@@ -113,7 +113,7 @@ essentially a single pulse on the clock pin is sent in WRITE mode to ensure that
 
 The \textbf{WriteData(uint16\_t data, uint16\_t addr)} function is used to write data to a specific register of the Sample Control Module. This function configures the communication port as an output, it then uses the \textbf{CommPort.set.setIOValue(uint16\_t IOValue)} function to write the designated address to the communication port. Once the address is set, a clock pulse is sent and the \textbf{CommPort.set.setIOValue(uint16\_t IOValue)} function is then used to set the desired data to the data-lines, followed by a clock. 
 
-The \textbf{FetchData(uint16\_t *result, uint16\_t addr)} function is used to read an internal register of the Sample Control Module, i.e. it is used to read the data at an address. This function cannot be used to read sample data, as this is clocked out sequenctially once the port is in EXTERNAL mode. In much the same way as the WriteData function, the communication port is first configured as an output and the address of the desired register is sent, followed by a clock pulse. The communication port is then configured as an input using the \textbf{CommPort.set.SetIOMode(enum IO mode)} and \textbf{CommPort.set.SetRnW(enum IO mode)} functions. A clock pulse is then sent and the \textbf{CommPort.set.GetIOValue(uint16\_t *result)} function is then used to fetch the data on the bus. This is then stored at the address of the given input pointer. 
+The \textbf{FetchData(uint16\_t *result, uint16\_t addr)} function is used to read an internal register of the Sample Control Module, i.e. it is used to read the data at an address. This function cannot be used to read sample data, as this is clocked out sequentially once the port is in EXTERNAL mode. In much the same way as the WriteData function, the communication port is first configured as an output and the address of the desired register is sent, followed by a clock pulse. The communication port is then configured as an input using the \textbf{CommPort.set.SetIOMode(enum IO mode)} and \textbf{CommPort.set.SetRnW(enum IO mode)} functions. A clock pulse is then sent and the \textbf{CommPort.set.GetIOValue(uint16\_t *result)} function is then used to fetch the data on the bus. This is then stored at the address of the given input pointer. 
 
 The core functions and general structure of the CommunicationPort data-type has been introduced in this section, the full set of C code for this can be seen in appendix \refq{App:MCUCode}.
 
