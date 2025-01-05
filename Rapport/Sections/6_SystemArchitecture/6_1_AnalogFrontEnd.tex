@@ -1,6 +1,6 @@
 \section{Analog Front End} \label{sec:AnalogFrontEnd}
 
-The analog front is a critical part of the impedance analyzer. The module is internally split into two major sections; a test signal generator and a sampling circuit. The module will generate test signals for the DUT with a digital-to-analog converter (DAC) and then acquire and sample the resulting DUT current and voltage waveforms with an analog-to-digital converter (ADC). A simplifeid diagram of the Analog Front End can be seen of figure \refq{fig_6_1_AnalogFrontEnd}. 
+The analog front is a critical part of the impedance analyzer. The module is internally split into two major sections; a test signal generator and a sampling circuit. The module will generate test signals for the DUT with a digital-to-analog converter (DAC) and then acquire and sample the resulting DUT current and voltage waveforms with an analog-to-digital converter (ADC). A simplified diagram of the Analog Front End can be seen of figure \refq{fig_6_1_AnalogFrontEnd}. 
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 0 0 0,width=1\textwidth]{Sections/6_SystemArchitecture/Figures/AnalogFrontEndDetailedBlock.pdf}
@@ -8,13 +8,11 @@ The analog front is a critical part of the impedance analyzer. The module is int
     \label{fig_6_1_AnalogFrontEnd}
 \end{figure}
 
-A differential DAC will generate the test signals for the DUT and two differential ADC's will sample the resulting current and voltage waveforms. The choise of using differential signal is very deliberately done to reduce common mode noise. The control signals for the DAC and the ADC's will come from the Sample Control Module. The DAC will drive the DUT through a programmable gain amplifier, allowing for different test voltages. This also has the benefit of allowign the DAC to run at a constant full-scale output, improving the signal to noise ratio. 
+A differential DAC will generate the test signals for the DUT and two differential ADC's will sample the resulting current and voltage waveforms. The choise of using differential signal is very deliberately done to reduce common mode noise. The control signals for the DAC and the ADC's will come from the Sample Control Module. The DAC will drive the DUT through a programmable gain amplifier, allowing for different test voltages. This also has the benefit of allowing the DAC to run at a constant full-scale output, improving the signal to noise ratio. 
 
 In much the same way, a Programable Gain Amplifier, PGA, is placed in front of each ADC, such that smaller voltages can be amplified, improving the signal to noise ratio of the analog to digital conversion. This also alows the design to better use the full dynamic range of both ADC's. The DAC \textit{side} of the analog front end will have a system to DC bias to the DUT as well, this means the DUT will see a sum of the test signal and DC bias voltage. The DC bias function is supplied by the Microprocessor module and will be described in section \refq{sec:MainProcessor}.
 
 There are two ADC's in the module. ADC2 will acquire, and sample, the DUT current through a MUX'ed set of range resistors. A \textit{low} value of range resistor may be chosen if the DUT's impedance is low, and vice versa. The choice of range resistor will be decided by the sample control module, which will be described in section \refq{sec:Sample Control}. The sample control module will be controlling the choice of range resistor and the gain settings for the DAC's programmable amplifier. ADC1 will acquire, and sample, the voltage across the DUT. Both ADC1 and ADC2 will sample the current and voltage waveforms at the same time. The timing of this will be critical and is controlled by the sample control module.
 
-The DAC and ADC's will have reconstruction and anti-aliasing filters. These are not shown on the block diagram but are assumed to be there.
-
-The analog front end must interface with the Kelvin Connection, Sample Control and Main Processor modules, so their interfaces must be well defined. This will be shown in this section along with the modules specifications.
+The analog front end must interface with the DUT through a Kelvin connection and the Sample Control and Main Processor modules, so their interfaces must be well defined. This will be shown in this section along with the modules specifications.
 

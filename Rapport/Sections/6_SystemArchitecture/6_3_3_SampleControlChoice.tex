@@ -1,6 +1,6 @@
 \subsection{Choosing an FPGA} \label{subsec:ChoosingAnFPGA}
 
-Based on the jitter issues with the STM32F446 microprocessor mentionen in subsection \refq{subsec:MainProcessorChoice} and appendix \refq{App:MicrocontrollerConsiderations} it was decided to let an FPGA control all the sampling and timing of the ADC's and DACs in the analog front end. FPGA's are typically used for this exact purpose in other instruments. The only consideration for the choice of FPGA in this project is that it should have sufficient GPIO pins, it should produce \textit{low} jitter output signals and it should have sufficient memory to store the samples.
+Based on the jitter issues with the STM32F446 microprocessor mentioned in subsection \refq{subsec:MainProcessorChoice} and appendix \refq{App:MicrocontrollerConsiderations} it was decided to let an FPGA control all the sampling and timing of the ADC's and DACs in the analog front end. FPGA's are typically used for this exact purpose in other instruments. The only consideration for the choice of FPGA in this project is that it should have sufficient GPIO pins, it should produce \textit{low} jitter output signals and it should have sufficient memory to store the samples.
 
 It can be seen in the interface specification \refq{subsec:SampleControlInterface} that the FPGA should have 46 GPIO pins to connect with the Main Processor module and Analog Front End module. The FPGA (module) should have \SIQ{320}{\kilo\bit} memory for storing the 10000 16 bit values of current and voltage samples.
 

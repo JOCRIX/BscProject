@@ -15,7 +15,7 @@ About \SIQ{15}{\milli\ampere} of bias current for the output stage has been chos
 To increase the input impedance and reduce output distortion of the amplifier, an op-amp is used with the output class AB stage in its feedback loop. The used op-amp is an \SIQ{80}{\mega\hertz} GBW op-amp, AD8032 \cite{AD8032_datasheet}. 
 
 \subsection*{Stability}
-Driving reactive, especially capacitive loads can pose a challenge to any feedback system with a phase margin less than \SIQ{90}{\degree}. The typical phase-margin of an op-amp is in the range of \SIQ{45}{\degree}, leading to potential instability when driving capacitive loads.
+Driving reactive, especially capacitive reactive loads can pose a challenge to any feedback system with a phase margin less than \SIQ{90}{\degree}. The typical phase-margin of an op-amp is in the range of \SIQ{45}{\degree}, leading to potential instability when driving capacitive loads.
 
 A way to counteract the risk of instability, is to introduce a zero in the transfer function of the feedback path by inserting a series resistance with the output of the feedback system, this is also known as an isolation resistor. This resistor should be placed outside of the feedback loop, the value of this resistor will depend upon the load capacitor. This indicates that a stability analysis of the DAC power amp should be conducted, as it is very likely that a user would load the system with a capacitive load. This analysis is based on the block diagram of the differential DAC output, depicted in figure \ref{fig_7_1_1_5_DAC_POWER_AMP_BLOCK}. 
 
@@ -40,7 +40,7 @@ The simplified small signal model is derived from the diagram shown in figure \r
     \label{fig_7_1_1_5_DAC_POWER_AMP_ss}
 \end{figure}
 
-Simulation has been used for the stability analysis. LTspice from Analog Devices is capable of directly simulating the circuit shown in figure \refq{fig_7_1_1_5_DAC_POWER_AMP_ss}, as well as simulating the behaviour of a two pole op-amp. The simulated model can be seen in figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM}, here UniversalOpAmp3 is a programable op-amp that has been set to an open-loop DC gain of \SIQ{80}{\decibel}, GBW of \SIQ{80}{\mega\hertz} and a phase margin of \SIQ{30}{\degree}. The specific transistor parameters, $r_x, r_\pi, c_\pi$ and $c_\mu$ have been derived from the datasheet of a BC557B and experiance with the specific transistor. The PNP and NPN transistors of the push-pull output have been estimated as being only PNP transistors, as PNP semiconductors are of worse performance than their NPN counterparts. 
+Simulation has been used for the stability analysis. LTSpice from Analog Devices is capable of directly simulating the circuit shown in figure \refq{fig_7_1_1_5_DAC_POWER_AMP_ss}, as well as simulating the behaviour of a two pole op-amp. The simulated model can be seen in figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM}, here UniversalOpAmp3 is a programable op-amp that has been set to an open-loop DC gain of \SIQ{80}{\decibel}, GBW of \SIQ{80}{\mega\hertz} and a phase margin of \SIQ{30}{\degree}. The specific transistor parameters, $r_x, r_\pi, c_\pi$ and $c_\mu$ have been derived from the datasheet of a BC557B and experience with the specific transistor. The PNP and NPN transistors of the push-pull output have been estimated as being only PNP transistors, as PNP semiconductors are of worse performance than their NPN counterparts. 
 
 \begin{figure}[H]
     \centering
@@ -53,11 +53,11 @@ The typical small signal gain of a BC557B can be approximated as the DC current 
 
 The transconductance gm is calculated by the use of the thermal voltage, and DC collector current. The thermal voltage is estimated to be \SIQ{25.6}{\milli\volt} at \SIQ{24}{\degreeCelsius}, the DC collector current is \SIQ{15}{\milli\ampere}, $gm = \frac{I_C}{V_T} = \frac{0.015}{0.0256} = 0.5859$. $r_\pi$ is estimated by the use of the current gain and transconductance as $r_\pi = \frac{h_{fe}}{gm} = \frac{300}{0.5859} = \SIQ{512}{\ohm}$. 
 
-In order to find $r_x$, the black-box parameter $h[ie]$ is required. This parameter is not know, however experiance indicates that $r_x$ can be estimated as \SIQ{20}{\%} the value of $r_\pi$, and $r_x$ has been estimated as $r_x = \SIQ{102}{\ohm}$.
+In order to find $r_x$, the black-box parameter $h_{ie}$ is required. This parameter is not known, however experiance indicates that $r_x$ can be estimated as \SIQ{20}{\%} the value of $r_\pi$, and $r_x$ has thus been estimated as $r_x = \SIQ{102}{\ohm}$.
 
-$C_\pi$ is estimated from the current gain bandwidth product of the transistor, found to be $f_t = \SIQ{245}{\mega\hertz}$ at a collector current of \SIQ{15}{\milli\ampere}. $C_\pi$ is then estimated as $C_\pi +C_\mu = \frac{gm}{2\cdot\pi\cdot f_t}$. This expression estimates the sum of $C_\pi$ and $C_\mu$, $C_\mu$ is however know and can simply be subtracted. $C_\pi = \frac{0.5859}{2\cdot\pi\cdot 245 MHz} -4 pF = 377 pF$. The small signal diode resistance $r_d$ is calculated as $r_d = \frac{V_T}{I_D}$, with an estimated temperature of \SIQ{24}{\degreeCelsius} and a diode DC current of \SIQ{12}{\milli\ampere}, the resistance is $r_d = \frac{0.0256}{0.012} \approx \SIQ{2}{\ohm}$. 
+$C_\pi$ is estimated from the current gain bandwidth product of the transistor, found to be $f_t = \SIQ{245}{\mega\hertz}$ at a collector current of \SIQ{15}{\milli\ampere}. $C_\pi$ is then estimated as $C_\pi +C_\mu = \frac{gm}{2\cdot\pi\cdot f_t}$. This expression estimates the sum of $C_\pi$ and $C_\mu$, $C_\mu$ is however known and can simply be subtracted. $C_\pi = \frac{0.5859}{2\cdot\pi\cdot 245 MHz} -4 pF = 377 pF$. The small signal diode resistance $r_d$ is calculated as $r_d = \frac{V_T}{I_D}$, with an estimated temperature of \SIQ{24}{\degreeCelsius} and a diode DC current of \SIQ{12}{\milli\ampere}, the resistance is $r_d = \frac{0.0256}{0.012} \approx \SIQ{2}{\ohm}$. 
 
-Note however that these are the estimated values for a single transistor in the push-pull output. The power amplifier has however been simplified in such a way that all these resistors and capacitors are in parallel, resulting in the capacitors doubling in value and resistors halfing. 
+Note however that these are the estimated values for a single transistor in the push-pull output. The power amplifier has, however, been simplified in such a way that all these resistors and capacitors are in parallel, resulting in the capacitors doubling in value and resistors being halved. 
 
 
 To analyze the system with no load, an open-circuit can be simulated by setting $Z_{DUT}$ to \SIQ{1}{\femto\farad}, the range resistor is also set to its minimum value of \SIQ{1}{\ohm}. The simulated open-loop response can be seen in figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM_NL}. It can also be seen that the system should be stable with a phase margin of about \SIQ{22}{\degree}. 
@@ -78,7 +78,7 @@ Adding a \SIQ{150}{\pico\farad} capacitor as $Z_{DUT}$ cleacly shows that the sy
     \label{fig_7_1_1_5_DAC_POWER_AMP_SIM_150PF}
 \end{figure}
 
-This near instability can be explained from the output stage. It is assumed that the output impedance of the push-pull output is \SIQ{0}{\ohm}. Furthermore the frequencies of instability are very high, roughly \SIQ{30}{\mega\hertz}, from figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM_150PF}, this will result in the capacitance $C_\pi$ being very close to a short circuit. For simplicity $C_\pi$ is assumed a short circuit based on the frequncies of interrest, this also results in gm being of no interrest. This allows the AB stage to be simplified as in figure \refq{fig_7_1_1_5_DAC_PWR_AMP_PZ} for high frequencies. 
+This near instability can be explained from the output stage. It is assumed that the output impedance of the push-pull output is \SIQ{0}{\ohm}. Furthermore the frequencies of instability are very high, roughly \SIQ{30}{\mega\hertz}, from figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM_150PF}, this will result in the capacitance $C_\pi$ being very close to a short circuit. For simplicity $C_\pi$ is assumed a short circuit based on the frequencies of interest, this also results in gm being of no interest. This allows the AB stage to be simplified as in figure \refq{fig_7_1_1_5_DAC_PWR_AMP_PZ} for high frequencies. 
 
 \begin{figure}[H]
     \centering
@@ -88,7 +88,7 @@ This near instability can be explained from the output stage. It is assumed that
 \end{figure}
 
 One thing to take note of from figure \refq{fig_7_1_1_5_DAC_PWR_AMP_PZ} is that $v_o$ can be explained by a simple voltage divider. 
-Assuming $Z_\pi$ to be 0 the transferfunction is as in equation \refq{eq_DAC_PWR_1}. Note that the biasing resistors $R_b$ have been assumed insignificant.
+Assuming $Z_\pi$ to be 0 the transfer function is as in equation \refq{eq_DAC_PWR_1}. Note that the biasing resistors $R_b$ have been assumed insignificant.
 
 \begin{equation}
 \label{eq_DAC_PWR_1}
@@ -102,7 +102,7 @@ Assuming $Z_\pi$ to be 0 the transferfunction is as in equation \refq{eq_DAC_PWR
 \end{split}
 \end{equation}
 
-equation \refq{eq_DAC_PWR_1} indicates that a capacitive load introduces a zero at $1/(20+R_{range})C$ and a pole at $1/(78+R_{Range})C$. Following on the example from earlier with a load of \SIQ{150}{\pico\farad} and range resistor of \SIQ{1}{\ohm}, a zero will be introduced at $s=3.175e8$ and a pole at $s=8.439e7$. At \SIQ{30}{\mega\hertz} this indicates that a phase of \SIQ{-35.2}{\degree} would be added to the open-loop phase, see equation \refq{eq_DAC_PWR_2}. Figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM_NL} shows that the simulated open-loop phase at \SIQ{30}{\mega\hertz} and no load should be roughly \SIQ{-150}{\degree}, implying that the phase at \SIQ{30}{\mega\hertz} with a \SIQ{150}{\pico\farad} load would be \SIQ{-185.2}{\degree}.
+equation \refq{eq_DAC_PWR_1} indicates that a capacitive load introduces a zero at $1/(20+R_{range})C$ and a pole at $1/(78+R_{Range})C$. Following on the example from earlier with a load of \SIQ{150}{\pico\farad} and range resistor of \SIQ{1}{\ohm}, a zero will be introduced at $s=3.175E8$ and a pole at $s=8.439E7$. At \SIQ{30}{\mega\hertz} this indicates that a phase of \SIQ{-35.2}{\degree} would be added to the open-loop phase, see equation \refq{eq_DAC_PWR_2}. Figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM_NL} shows that the simulated open-loop phase at \SIQ{30}{\mega\hertz} and no load should be roughly \SIQ{-150}{\degree}, implying that the phase at \SIQ{30}{\mega\hertz} with a \SIQ{150}{\pico\farad} load would be \SIQ{-185.2}{\degree}.
 
 \begin{equation}
 \label{eq_DAC_PWR_2}
@@ -116,7 +116,7 @@ equation \refq{eq_DAC_PWR_1} indicates that a capacitive load introduces a zero 
 
 Comparing this to the simulated open-loop phase of roughly \SIQ{-165}{\degree} with a \SIQ{150}{\pico\farad} load from figure \refq{fig_7_1_1_5_DAC_POWER_AMP_SIM_150PF} the simplified model overpredicts the phase, but has been deemed acceptable as a model. The over-prediction is due to $c_\pi$ not being completly shorted, the fact the this results in less added phase only serves to further ensure stability.
 
-One interesting thing to note from equation \refq{eq_DAC_PWR_1} is that the pole and zero will change depending on the choise of range resistor. Simulations show that the system is most sensitive to instability at loads around \SIQ{150}{\pico\farad}. The larger the range resistor, the less impact the other resistors will have on the pole-zero placement. At a range resistor value of \SIQ{1}{\kilo\ohm} the pole and zero practically cancles. This indicates that the system will always be stable when range resistors at and above \SIQ{1}{\kilo\ohm} are used. 
+One interesting thing to note from equation \refq{eq_DAC_PWR_1} is that the pole and zero will change depending on the choice of range resistor. Simulations show that the system is most sensitive to instability at loads around \SIQ{150}{\pico\farad}. The larger the range resistor, the less impact the other resistors will have on the pole-zero placement. At a range resistor value of \SIQ{1}{\kilo\ohm} the pole and zero practically cancels. This indicates that the system will always be stable when range resistors at and above \SIQ{1}{\kilo\ohm} are used. 
 
 The system is designed to measure at frequencies up to \SIQ{1}{\mega\hertz}, from earlier it is known that the system tends towards instability at low range-resistor values at capacitive loads around \SIQ{150}{\pico\farad}. Such a capacitor will have its lowest impedance at the highest measureable frequency, indicating that the lowest range resistor for measuring \SIQ{150}{\pico\farad} would be used at \SIQ{1}{\mega\hertz}. At \SIQ{1}{\mega\hertz} a \SIQ{150}{\pico\farad} capacitor would have an impedance \SIQ{1061}{\ohm}. Typically the used range resistor will range from $1/10$ the magnitude of the measured impedance to the same magnitude of the impedance, thus the appropriate range resistors would be \SIQ{100}{\ohm} and \SIQ{1}{\kilo\ohm}. The \SIQ{1}{\kilo\ohm} range is stable as previously explained. 
 

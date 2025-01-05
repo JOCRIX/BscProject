@@ -1,6 +1,6 @@
 \section{Input Supply Filter} \label{subsec:SupplyFilter}
 
-The $\pm 15V$ supply on figure \refq{fig_7_1_6_DCSUPPLY} is coming from a Mean Well RT65C switching converter. To reduce switching noise in the input for the analog supply, a small filter has been added to the input, as can be seen on the right side of figure \refq{fig_7_1_6_DCSUPPLY}. The filter is designed as a second order system with a damping resistor and with a pre-chosen inductor of $L = 1e-3$ as shown on the schematic on figure \refq{fig_7_1_5_SupplyFilterSch}.
+The $\pm 15V$ supply on figure \refq{fig_7_1_6_DCSUPPLY} is coming from a Mean Well RT65C switching converter. To reduce switching noise in the input for the analog supply, a small filter has been added to the input, as can be seen on the right side of figure \refq{fig_7_1_6_DCSUPPLY}. The filter is designed as a second order system with a damping resistor and with a pre-chosen inductor of $L = 1E-3$H as shown on the schematic on figure \refq{fig_7_1_5_SupplyFilterSch}.
 
 \begin{figure}[H]
     \centering
@@ -9,18 +9,18 @@ The $\pm 15V$ supply on figure \refq{fig_7_1_6_DCSUPPLY} is coming from a Mean W
     \label{fig_7_1_5_SupplyFilterSch}
 \end{figure}
 
-The output is across the load marked $R_L$ and the transferfunction for this circuit can be found as a simple voltage divider as shown in equation \refq{eq:7_1_5_FILTF}.
+The output is across the load impedance marked as $R_L$ and the transfer function for this circuit can be found as a simple voltage divider as shown in equation \refq{eq:7_1_5_FILTF}.
 
 \begin{equation}\label{eq:7_1_5_FILTF}
     A_V = \frac{    \frac{     (\frac{1}{sC} + R_{DC})R_L     }{  \frac{1}{sC} + R_L + R_{DC}  }      }{ \frac{     (\frac{1}{sC} + R_{DC})R_L     }{  \frac{1}{sC} + R_L + R_{DC}  }   + sL + R_{DL}}
 \end{equation}
 
-The transferfunction \refq{eq:7_1_5_FILTF} can, after a bit of work, be re-written to the form in eq \refq{eq:7_1_5_FILTF2}.
+The transferfunction \refq{eq:7_1_5_FILTF} can, after a bit of work, be re-written to the form in eq \refq{eq:7_1_5_FILTF2}. It is evident that this is an ordinary second-order system.
 \begin{equation}\label{eq:7_1_5_FILTF2}
     A_V = \frac{   \frac{(R_{DC}Cs + 1)R_L}{CL(R_L+R_{DC})}}{s^2 + \frac{(((R_{DC}+R_{DL})R_L + R_{DC}R_{DL})C+L)}{CL(R_L + R_{DC})}s + \frac{R_L}{CL(R_L + R_{DC})} + \frac{R_{DL}}{CL(R_L + R_{DC})}} 
 \end{equation}
 
-A general second-order system is of the form shown in equation \refq{eq:7_1_5_GENTF}.
+A general second-order system is of the form shown in equation \refq{eq:7_1_5_GENTF}. 
 
 \begin{equation}\label{eq:7_1_5_GENTF}
     A_V = \frac{\omega_n^2}{s^2 + 2\zeta\omega_ns+\omega_n^2}
@@ -45,12 +45,12 @@ The damping factor, $\zeta$ is, after a bit of work, shown in equation \refq{eq:
 
 The MW RT65C is switching at \SIQ{60}{\kilo\hertz}, so the natural frequency of the system will be set to a significantly lower value than this. $\omega_n = 200\pi$, or \SIQ{100}{\hertz}, has been arbitrarily chosen. To imitate a low-pass response the damping factor will be chosen to produce an overdamped response, so, $\zeta$ > 1. Several values were tested, this will not be shown, and $\zeta = \sqrt{2}$ will produce the desired low-pass response. Reducing the value of $R_D$ will give damping factor values of $\zeta < 1$ and cause the system to give an underdamped response with gain peaking near the natural frequency, this is undesirable for a low pass filter.
 
-Using $\omega_n = 200\pi$ annd equation \refq{eq:7_1_5_NATFRQ} an expression for the capacitor can be found. The inductor was pre-chosen and has the values $L = 1e-3$ with series resistance $R_L = 710e-3$. Using appendix \refq{App:PowerConsumption} for the power consumption on the 12V rail, the expected load is about $R_L = 60 \Omega$. The result can be seen in eq \refq{eq:7_1_5_COMP1}.
+Using $\omega_n = 200\pi$ and equation \refq{eq:7_1_5_NATFRQ} an expression for the capacitor can be found. The inductor was pre-chosen and has the values $L = 1E-3$H with series resistance $R_L = 710E-3\Omega$. Using appendix \refq{App:PowerConsumption} for the power consumption on the 12V rail, the expected load is about $R_L = 60 \Omega$. The result can be seen in eq \refq{eq:7_1_5_COMP1}.
 
 \begin{equation}\label{eq:7_1_5_COMP1} 
     \begin{aligned}
         \omega_n = \sqrt{\frac{R_L}{CL(R_L + R_{DC})} + \frac{R_{DL}}{CL(R_L+R_{DC})}}\\
-        200\pi = \sqrt{\frac{60}{C\cdot 1e-3 \cdot(60 + R_{DC})} + \frac{0.7}{C\cdot 1e-3 \cdot (60 + R_{DC})}}\\
+        200\pi = \sqrt{\frac{60}{C\cdot 1E-3 \cdot(60 + R_{DC})} + \frac{0.7}{C\cdot 1E-3 \cdot (60 + R_{DC})}}\\
         C = \frac{0.1538}{60 + R_{DC}}
     \end{aligned}
 \end{equation}

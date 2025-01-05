@@ -3,7 +3,7 @@ The System requirements specify that the best case scenario accuracy of impedanc
 
 To ensure that the ADCs are accurate it has been chosen to use two 16 bit ADCs, more specifically two LTC2311 \cite{ADC_LTC2311}. These are 16 bit analog to digital converters with a maximum sample rate of 5 Msps. These offer a guaranteed integral non-linearity (INL) of less than 8 lsb, i.e. less than \SIQ{0.0122}{\%}, resulting in a guaranteed maximum ADC error $E_{ADC}$ of less than \SIQ{0.0244}{\%}.
 
-This error assumes that \SIQ{100}{\%} of the ADCs range is utilized, this is of course not always the case. To find the minimum range the ADCs can be used within, the 8 LSB non-linearity can be considered as the maximum allowed \SIQ{0.05}{\%} error. This can be seen in equation \ref{eq:6_1_3_ADC_range_error}. Here it is also shown that the ADCs can be used down to only \SIQ{24.4}{\%} of their range. This ensures that even if the ADCs full range is not used, the non-linearity at least should not add more error than tolerated.
+This error assumes that \SIQ{100}{\%} of the ADCs range is utilized, this is of course not always the case. To find the minimum range the ADCs can be used within, the 8 LSb non-linearity can be considered as the maximum allowed \SIQ{0.05}{\%} error. This can be seen in equation \ref{eq:6_1_3_ADC_range_error}. Here it is also shown that the ADCs can be used down to only \SIQ{24.4}{\%} of their range. This ensures that even if the ADCs full range is not used, the non-linearity at least should not add more error than tolerated.
 
 \begin{equation}
 \begin{split}

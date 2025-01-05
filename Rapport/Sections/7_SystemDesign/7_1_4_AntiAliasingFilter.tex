@@ -11,11 +11,11 @@ Based on the findings in appendix \refq{App:AntiAliasingFilterConsideration}, th
     \label{fig_7_1_4_SALLENKEY}
 \end{figure}
 
-To make the filter we first find the poles with eq \refq{eq:7_1_4_LPPoles}\cite{ANALOGFILTERS}.
+To make the filter, the poles must first be found and this is done with eq \refq{eq:7_1_4_LPPoles}\cite{ANALOGFILTERS}.
 \begin{equation}\label{eq:7_1_4_LPPoles}
     P_k = e^{j(\frac{2k-1}{2n}\pi + \frac{\pi}{2}  )} 
 \end{equation}
-Where $n = 4$ is the order of the filker and $k = 1..n$. This will give two complex conjugated pair of poles as seen in equation xyz
+Where $n = 4$ is the order of the filter and $k = 1..n$. This will give two complex conjugated pair of poles as seen in equation \refq{eq:7_1_4_LPPoles1}.
 
 \begin{equation}\label{eq:7_1_4_LPPoles1} 
     \begin{aligned}
@@ -26,7 +26,7 @@ Where $n = 4$ is the order of the filker and $k = 1..n$. This will give two comp
     \end{aligned}
 \end{equation}
 
-The poles will be used to form two second order systems, so the conjugated pole pairs are grouped up. $P_1$ and $P_4$ is a conjugated pair and so is $P_2$ and $P_3$. The poles are frequency scaled to produce the desired response. As the design goal is to have $f_{-3db} = 2e6$ then this will be used as the frequency scaling factor as shown in eq \ref{eq:7_1_4_LPKF}
+The poles will be used to form two second order systems, so the conjugated pole pairs are grouped up. $P_1$ and $P_4$ is a conjugated pair and so is $P_2$ and $P_3$. The poles are frequency scaled to produce the desired response. As the design goal is to have $f_{-3db} = 2E6$ Hz this will be used as the frequency scaling factor as shown in eq \ref{eq:7_1_4_LPKF}
 
 \begin{equation}\label{eq:7_1_4_LPKF}
     k_f = \omega_{f3db} = 2\pi 2E6 = 1.2567E7
@@ -48,7 +48,7 @@ The frequency scaling factor has been multiplied 4 times in the denominator and 
 \end{aligned}
 \end{equation}
 
-The transfer function for the low-pass filter is plotted to see the magnitude response, the results can be seen on figure \refq{fig_7_1_4_MAGRESP}.
+The transfer function for the low-pass filter is plotted to see the magnitude response and the results can be seen on figure \refq{fig_7_1_4_MAGRESP}.
 \begin{figure}[H]
     \centering
     \includegraphics[clip, trim=0 150 0 0, width=1\textwidth]{Sections/7_SystemDesign/Figures/7_2_4_AAFILT_HS.pdf}
@@ -56,7 +56,7 @@ The transfer function for the low-pass filter is plotted to see the magnitude re
     \label{fig_7_1_4_MAGRESP}
 \end{figure}
 
-The filter will be made by cascading two Sallen-Key second-order biquads to form a 4th order filter. The network function for a Sallen-Key biquad can be seen in equatio \refq{eq:7_1_4_SallenKeyTF} \cite{ANALOGFILTERS}.
+The filter will be made by cascading two Sallen-Key second-order biquads to form a 4th order filter. The network function for a Sallen-Key biquad can be seen in equation \refq{eq:7_1_4_SallenKeyTF} \cite{ANALOGFILTERS}.
 
 \begin{equation}\label{eq:7_1_4_SallenKeyTF}
     V_{SK} = \frac{  \frac{\mu}{R_1R_2C_1C_2}}{s^2 + (\frac{1}{R_1C_1} + \frac{1}{R_2C_1} + \frac{1 - \mu}{R_2C_2})s + \frac{1}{R_1R_2C_1C_2}}
@@ -77,7 +77,7 @@ By comparing eq \refq{eq:7_1_4_SecondOrderSystem} and eq \refq{eq:7_1_4_SecondOr
     \omega_0 = \frac{1}{\sqrt{R_1 R_2 C_1 C_2}}
  \end{equation}
 
- The anti-aliasing filter should have unity gain, so, $\mu = 1$. Unity gain in a Sallen-Key topology will also give the least sensitive design as the gain of the circuit is not dependant on any external resistors. For this design the resistors will be equal, so $R_1 = R_2 = R$. $R$ is arbitrarily chosen to be $R = 1e3$ and the quality factor and natural frequency will reduce to equation \ref{eq:7_1_4_SecondOrderSystemQ2}.
+ The anti-aliasing filter should have unity gain, so, $\mu = 1$. Unity gain in a Sallen-Key topology will also give the least sensitive design as the gain of the circuit is not dependant on any external resistors. For this design the resistors will be equal, so $R_1 = R_2 = R$. $R$ is arbitrarily chosen to be $R = 1E3 \Omega$ and the quality factor and natural frequency will reduce to equation \ref{eq:7_1_4_SecondOrderSystemQ2}.
  \begin{equation}\label{eq:7_1_4_SecondOrderSystemQ2}
     \begin{aligned}
         Q = \frac{ \frac{1}{\sqrt{C_1C_2}} }{ \frac{2}{C_1} + \frac{1-\mu}{C_2}}\\
