@@ -1,7 +1,5 @@
 
 
-2.) Abstract. I stedet for PCB. Skriv vi har realiseret et stykke hardware for vores design. Brug et mere generelt begreb. Skriv vi kan måle noget mere konkret end important characteristics. - JAKOB, LAV linjeskift hvis muligt.
-
 3.) Abstract side tal. - Inden aflevering
 
 
@@ -10,11 +8,3 @@
 
 8.) Summary. "Varies". Stavefejl.
 
-12.) Figur 7.11 - uklart, hvor målupunktet er. Kan vi vise det på grafen. - JRIX
-
-
-14.) Side 142. Main Processor afsnit. Lav en figur eller noget som viser, hvad det er programmet skal gøre og som relaterer sig til teksten. -JRIX
-
-
-
-24.) Appendix. Lav korte introer til alle appendix, så de alle starter med en kort tekst der fortæller hvad et appendix går ud på. -FÆLLES

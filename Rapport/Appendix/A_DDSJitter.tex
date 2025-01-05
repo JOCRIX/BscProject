@@ -1,4 +1,6 @@
 \chapter{Direct Digital Synthesis Jiter} \label{App:DDSJitter}
+In this appendix the performed DDS jitter measurements are shown.
+
 The DDS IP was tested in order to see how different settings affect output jitter. The only difference in these tests is the length of the frequency control word. The input clock signal is a \SIQ{50}{\mega\hertz} clock signal.
 
 The system is expected to take 10000 samples and with a sample frequency of \SIQ{1}{\mega\hertz} this means the last sample will be taken \SIQ{10}{\milli\second} after the initial acquisition. All the measurements are taken with a \SIQ{20}{\milli\second} delay in order to see an absolute worst case in the sample jitter, note how this is twice the expected sample size. The output of the DDS module for a 32 bit frequency control word can be seen on figure \refq{fig:A_DDS_JITTER_32BIT}.
