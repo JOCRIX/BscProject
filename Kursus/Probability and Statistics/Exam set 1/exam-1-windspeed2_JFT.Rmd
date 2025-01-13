@@ -277,7 +277,7 @@ hist1 <- gf_dhistogram( ~ x_bar, bins = 25)
 hist2 <- gf_dhistogram( ~ x_bar, bins = 25)
 hist3 <- gf_dhistogram( ~ x_bar, bins = 25)
 hist4 <- gf_dhistogram( ~ x_bar, bins = 25)
-grid.arrange(hist1, hist2, hist3, hist4, ncol = 2)
+# grid.arrange(hist1, hist2, hist3, hist4, ncol = 2)
 ```
 Here we have 4 instances, and we see that the mean will tend to be around the expected 4.3, and that each instance approximates normal dist. 
 
