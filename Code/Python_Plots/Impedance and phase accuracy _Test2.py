@@ -27,10 +27,10 @@ print(Z[0])
 # y_ref = [0, 0, 0, 0, 0]
 # y_er = [0.1, 0.1, 0.1, 0.1, 0.1]
 
-# x2 = [0.015, 1, 10, 100, 1000, 10000, 100000, 1000000]
-# y2 = [2.632, 0.030, 0.009, 0.007, 0.005, 0.004, 0.009, 0.016]
-# y2_ref = [0, 0, 0, 0, 0, 0 ,0 ,0]
-# y_er2 = [0.15, 0.5, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+# x2 = [1, 10, 100, 1000, 10000, 100000, 1000000]
+# y2 = [0.02, 0.05, 0.027, 0.029, 0.047, 0.098, 0.109]
+# y2_ref = [0, 0, 0, 0, 0, 0, 0]
+# y_er2 = [0.5, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 
 # fig, axes = plt.subplots(nrows = 1, ncols =2, figsize = (10,6))
 # fig.tight_layout()
@@ -46,11 +46,12 @@ print(Z[0])
 # plt.ylabel("Accuracy in %")
 # plt.xlabel("Frequency in Hz")
 # plt.title("Accuracy vs. Frequency at 1 kOhm")
-# # plt.show()
+# plt.show()
 
 # plt.subplot(1,2,2)
+# plt.plot()
 # plt.semilogx(Z,AZ, label = "Specification")
-# plt.scatter([0.015, 1, 10, 100, 1000, 10000, 100000, 1000000], [7.964, 0.48, 0.12, 0.107, 0.105, 0.106, 0.113, 0.405], label = "LCX-200 specification")
+# plt.scatter([1, 10, 100, 1000, 10000, 100000, 1000000], [0.93, 0.345, 0.107, 0.105, 0.106, 0.113, 0.405], label = "LCX-200 specification")
 # plt.errorbar(x2,y2_ref,y_er2, fmt = "none", color = "orange", label = "Reference", capsize = 5)
 # plt.scatter(x2, y2, label = "Measured", color = "red", marker = "x")
 
@@ -58,7 +59,7 @@ print(Z[0])
 # # plt.grid(True,which= "minor", axis = "both")
 # plt.ylabel("Accuracy in %")
 # plt.xlabel("Impedance in Ohm")
-# plt.title("Accuracy vs. Impedance at 1 kHz")
+# plt.title("Accuracy vs. Impedance at 100 Hz")
 # plt.legend()
 # plt.show()
 
@@ -90,7 +91,7 @@ y2 = [ 0.001, 0.000, 0.001, 0.001, 0.002, 0.020, 0.091]
 # plt.subplot(1,2,2)
 plt.plot()
 plt.semilogx(Z,PZ, label = "Specification")
-plt.scatter([1, 10, 100, 1000, 10000, 100000, 1000000], [0.275, 0.198, 0.061, 0.060, 0.061, 0.064, 0.232], label = "LCX-200 specification")
+plt.scatter([1, 10, 100, 1000, 10000, 100000, 1000000], [0.533, 0.198, 0.061, 0.06, 0.061, 0.064, 0.232], label = "LCX-200 specification")
 plt.scatter(x2,y2, color = "red", label = "Measured", marker = "x")
 plt.grid(True,which= "major", axis = "both")
 # plt.grid(True,which= "minor", axis = "both")
