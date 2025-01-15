@@ -1043,10 +1043,10 @@ void AutoRangeSMPL(uint32_t smpl_size) {
 
 void AutoRange(uint32_t smpl_f, uint32_t test_f) {
 	  CommPort.ResetComm();
-	  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
-	  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
-	  SC.dacSet.SetRangeResistor(RANGE_1R);
+
 	  uint32_t MAX_R = 0;
+	  uint16_t PGA_SET = 0;
+	  uint16_t R_SET = 0;
 	  if (test_f > 300000) {
 		  MAX_R = 100;
 	  }  else if (test_f > 100000) {
@@ -1061,75 +1061,93 @@ void AutoRange(uint32_t smpl_f, uint32_t test_f) {
 	  uint32_t range_SampleSize = 3*(smpl_f/test_f);
 	  SC.adcSet.SetSampleSize(range_SampleSize);
 	  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-	  uint32_t IDiff = SC.dacSet.AR_IMax-SC.dacSet.AR_IMin;
-	  uint32_t VDiff = SC.dacSet.AR_VMax-SC.dacSet.AR_VMin;
-	  double Ipp = (double)(IDiff);
-	  double Vpp = (double)(VDiff);
-	  double Z = Vpp / Ipp;
-	  if(Ipp < 3400) {
-		  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
-		  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-		  Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
-		  Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
-		  if (Ipp < 2000) {
-			  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
-			  SC.dacSet.SetRangeResistor(RANGE_1K);
-			  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-			  Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
-			  Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
-			  Z = (Vpp / Ipp)*1000.0;
+	  double Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
+	  double Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
+	  if((Ipp < 30000)|( Vpp < 30000)) {
+		  PGA_SET = 1;
+	  }
+	  if((Ipp > 60000)|( Vpp > 60000)) {
+		  PGA_SET = 1;
+	  }
+	  double Z = (Vpp / Ipp)*(double)SC.dacSet.CurrentRangeIndicator;
+
+	  if(PGA_SET == 1) {
+		  if (Z > SC.dacSet.CurrentRangeIndicator) {
+			  R_SET = 0;
 		  }
-	  }
-	  else {
-		  Z = (Vpp/Ipp)*16.0;
-	  }
-	  if (Z > ((double)(MAX_R))) {
-			switch(MAX_R){
-				case(100):
-						SC.dacSet.SetRangeResistor(RANGE_100R);
-					break;
-				case(1000):
-						SC.dacSet.SetRangeResistor(RANGE_1K);
-					break;
-				case(10000):
-						SC.dacSet.SetRangeResistor(RANGE_10K);
-					break;
-				case(100000):
-						SC.dacSet.SetRangeResistor(RANGE_100K);
-					break;
-				case(1000000):
-						SC.dacSet.SetRangeResistor(RANGE_1M);
-					break;
-				default:
+		  if(R_SET == 1) {
+			  SC.dacSet.AutoRangeSMPL(range_SampleSize);
+			  double Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
+			  double Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
+			  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
+			  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
+			  SC.dacSet.SetRangeResistor(RANGE_1R);
+			  if(Ipp < 3400) {
+				  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
+				  SC.dacSet.AutoRangeSMPL(range_SampleSize);
+				  Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
+				  Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
+				  if (Ipp < 2000) {
+					  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
+					  SC.dacSet.SetRangeResistor(RANGE_1K);
+					  SC.dacSet.AutoRangeSMPL(range_SampleSize);
+					  Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
+					  Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
+					  Z = (Vpp / Ipp)*1000.0;
+				  }
+			  }
+			  else {
+				  Z = (Vpp/Ipp)*16.0;
+			  }
+			  if (Z > ((double)(MAX_R))) {
+					switch(MAX_R){
+						case(100):
+								SC.dacSet.SetRangeResistor(RANGE_100R);
+							break;
+						case(1000):
+								SC.dacSet.SetRangeResistor(RANGE_1K);
+							break;
+						case(10000):
+								SC.dacSet.SetRangeResistor(RANGE_10K);
+							break;
+						case(100000):
+								SC.dacSet.SetRangeResistor(RANGE_100K);
+							break;
+						case(1000000):
+								SC.dacSet.SetRangeResistor(RANGE_1M);
+							break;
+						default:
+							SC.dacSet.SetRangeResistor(RANGE_100R);
+							break;
+					}
+			}	else {
+				if (Z < 3) {
+					SC.dacSet.SetRangeResistor(RANGE_1R);
+				}	else if((Z > 3)&(Z<=30)) {
+					SC.dacSet.SetRangeResistor(RANGE_10R);
+				}	else if((Z > 30)&(Z<=300)) {
 					SC.dacSet.SetRangeResistor(RANGE_100R);
-					break;
+				}	else if((Z > 300)&(Z<=3000)) {
+					SC.dacSet.SetRangeResistor(RANGE_1K);
+				}	else if((Z > 3000)&(Z<=30000)) {
+					SC.dacSet.SetRangeResistor(RANGE_10K);
+				}	else if((Z > 30000)&(Z<=300000)) {
+					SC.dacSet.SetRangeResistor(RANGE_100K);
+				}	else {
+					SC.dacSet.SetRangeResistor(RANGE_1M);
+				}
 			}
-	}	else {
-		if (Z < 3) {
-			SC.dacSet.SetRangeResistor(RANGE_1R);
-		}	else if((Z > 3)&(Z<=30)) {
-			SC.dacSet.SetRangeResistor(RANGE_10R);
-		}	else if((Z > 30)&(Z<=300)) {
-			SC.dacSet.SetRangeResistor(RANGE_100R);
-		}	else if((Z > 300)&(Z<=3000)) {
-			SC.dacSet.SetRangeResistor(RANGE_1K);
-		}	else if((Z > 3000)&(Z<=30000)) {
-			SC.dacSet.SetRangeResistor(RANGE_10K);
-		}	else if((Z > 30000)&(Z<=300000)) {
-			SC.dacSet.SetRangeResistor(RANGE_100K);
-		}	else {
-			SC.dacSet.SetRangeResistor(RANGE_1M);
-		}
-	}
-	  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
-	  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
-	  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-	  SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
-	  SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
-	  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-	  SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
-	  SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
-//
+			  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
+			  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
+		  }
+		  SC.dacSet.AutoRangeSMPL(range_SampleSize);
+		  SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
+		  SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
+		  SC.dacSet.AutoRangeSMPL(range_SampleSize);
+		  SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
+		  SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
+	  }
+	//
 //	  float R_Range = 1;
 //	  double IMaxGain = (1/((float)test_f))*(300000000.0);
 //	  //double IMaxGain = 2000000;
@@ -1976,11 +1994,11 @@ int main(void)
   while (1)
   {
 	  tempPrint(200, testVar);
-	  if(SC.dacSet.AutoRangeCheck(testPar.sampleFrequency, testPar.testFrequency) == 1) {
-		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
-		  phaseCorrection = calPar.PhiCal.CorrectPhi(0, (double)testPar.testFrequency, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
-	  }
-//	  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
+//	  if(SC.dacSet.AutoRangeCheck(testPar.sampleFrequency, testPar.testFrequency) == 1) {
+//		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
+//		  phaseCorrection = calPar.PhiCal.CorrectPhi(0, (double)testPar.testFrequency, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
+//	  }
+	  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 //	  for (int i = 0; i < 5; i++) {
 	  SC.adcSet.SetSampleSize(testPar.sampleSize);
 ////	  Calculate fourier coefficient at 10kHz
@@ -2049,6 +2067,7 @@ int main(void)
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 	  sprintf(str, "%.4f", (avg.mod));
+//	  sprintf(str, "%.4f\n", (3.0));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 ////
@@ -2058,6 +2077,7 @@ int main(void)
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 	  sprintf(str, "%.4f\n", (avg.argDeg));
+//	  sprintf(str, "%.4f\n", (3.0));
 //	  sprintf(str, "%.4f\n", (phaseCorrection));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
@@ -2067,6 +2087,7 @@ int main(void)
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 	  sprintf(str, "%.4f\n", (SC.dacSet.CurrentRangeResistor));
+//	  sprintf(str, "%.4f\n", (3.0));
 //	  sprintf(str, "%.4f\n", (phaseCorrection));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
