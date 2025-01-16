@@ -148,7 +148,6 @@ void SetDACTestLevel(enum TestLevel range, enum IOINVERT enable);
 void SetPGAGain(enum PGAn PGAx, enum PGAGain gain);
 void SetRangeResistor(enum RANGE_SET RANGE);
 void AutoRangeV(int16_t VMax, int16_t VMin);
-float AutoRangeI(int16_t IMax, int16_t IMin, float R_Range, float IMaxGain);
 void AutoRangeI_PGA(int16_t IMax, int16_t IMin);
 void AutoRangeSMPL(uint32_t smplt_size);
 void AutoRange(uint32_t smpl_f, uint32_t test_f);
@@ -174,6 +173,8 @@ void smpl_Y(void);
 void OS_Cal(uint32_t smpl_f, uint32_t test_f, uint32_t sampleSize, double phaseCorrection);
 complexp CorrectDUT(complexr Y_MEAS, uint32_t Range, uint32_t frq);
 double PhaseCorrection(double phi, double frq, enum PGAGain vGain, enum PGAGain iGain);
+uint32_t smplTime(uint32_t smpl_f, uint32_t smpl_size);
+void get_Z(void);
 
 struct CommunicationPort{
 	struct Control{
@@ -249,6 +250,7 @@ struct FPGASampleControl{
 		void (*SetSampleSize)(uint16_t);
 		void (*StartSampling)(void);
 		void (*SetPGAGain)(enum PGAn, enum PGAGain);
+		uint32_t (*smplTime)(uint32_t, uint32_t);
 		double VoltagePGAGain;
 		double CurrentPGAGain;
 		enum PGAGain CurrentPGA_V;
@@ -262,7 +264,6 @@ struct FPGASampleControl{
 		void(*TestLevel)(enum TestLevel, enum IOINVERT);
 		void(*SetRangeResistor)(enum RANGE_SET);
 		void (*AutoRangeV)(int16_t, int16_t);
-		float (*AutoRangeI)(int16_t, int16_t, float, float);
 		void (*AutoRangeI_PGA)(int16_t, int16_t);
 		void (*AutoRangeSMPL)(uint32_t);
 		void (*AutoRange)(uint32_t, uint32_t);
@@ -295,6 +296,7 @@ struct ComponentAnalysis{
 		double (*ModelResistance)(complexr z);
 		double (*InductanceMagnitude)(uint32_t wFrq, complexr z);
 		double (*CapacitanceMagnitude)(uint32_t wFrq, complexr z);
+		void (*get_Z)(void);
 	}cal;
 }DUT;
 
@@ -676,6 +678,29 @@ void StartSampling(){
 	CommPort.WriteData(0x8000, ADC_RESAMPLER_START_REG); //Set MSB in register 7. ADC Resampler will be triggered.
 }
 
+void get_Z(void) {
+	complexrSet VIFourCoeffs = (complexrSet){{0,0},{0,0}};
+	complexrSet *ptrVIFourcoeffs = &VIFourCoeffs;
+	complexr IFourCoeff = (complexr){0,0};
+	complexr VFourCoeff = (complexr){0,0};
+	double IFourCoeffMag = 0.0;
+	double VFourCoeffMag = 0.0;
+	double IFourCoeffAng = 0.0;
+	double VFourCoeffAng = 0.0;
+	double ZFourCoeffMag = 0.0;
+	double ZFourCoeffAng = 0.0;
+	complexp z;
+	CommPort.ResetComm();
+	VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff(1);
+	IFourCoeff = VIFourCoeffs.current;
+	VFourCoeff = VIFourCoeffs.voltage;
+	IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
+	VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
+	IFourCoeffAng = cmplxmath.rec.ArgzDeg(IFourCoeff);
+	VFourCoeffAng = cmplxmath.rec.ArgzDeg(VFourCoeff);
+	DUT.param.z = DUT.cal.GetImpedance(VFourCoeff, IFourCoeff);
+}
+
 void smpl_Z(void) {
 	complexrSet VIFourCoeffs = (complexrSet){{0,0},{0,0}};
 	complexrSet *ptrVIFourcoeffs = &VIFourCoeffs;
@@ -687,14 +712,11 @@ void smpl_Z(void) {
 	double VFourCoeffAng = 0.0;
 	double ZFourCoeffMag = 0.0;
 	double ZFourCoeffAng = 0.0;
-
 	complexp z;
 	SC.adcSet.StartSampling();
-	HAL_Delay(20);
+	HAL_Delay(35);
 	CommPort.ResetComm();
-	HAL_Delay(10);
 	VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff(1);
-
 	IFourCoeff = VIFourCoeffs.current;
 	VFourCoeff = VIFourCoeffs.voltage;
 	IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
@@ -715,16 +737,11 @@ void smpl_Y(void) {
 	double VFourCoeffAng = 0.0;
 	double ZFourCoeffMag = 0.0;
 	double ZFourCoeffAng = 0.0;
-
 	complexr y;
 	SC.adcSet.StartSampling();
-	HAL_Delay(200);
+	HAL_Delay(35);
 	CommPort.ResetComm();
-	HAL_Delay(10);
-
-
 	VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff(1);
-
 	IFourCoeff = VIFourCoeffs.current;
 	VFourCoeff = VIFourCoeffs.voltage;
 	IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
@@ -822,74 +839,81 @@ complexp CorrectDUT(complexr Y_MEAS, uint32_t Range, uint32_t frq) {
 
 void OS_Cal(uint32_t smpl_f, uint32_t test_f, uint32_t sampleSize, double phaseCorrect) {
 	CommPort.ResetComm();
-	HAL_Delay(10);
+	uint32_t smpl_time = SC.adcSet.smplTime(smpl_f, sampleSize);
 	SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
 	SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
 	SC.dacSet.SetRangeResistor(RANGE_1R);
-	HAL_Delay(20);
+	HAL_Delay(10);
 	uint32_t range_SampleSize = 3*(smpl_f/test_f);
+	uint32_t r_smpl_time = ((range_SampleSize*1000)/smpl_f)+5;
+	if(r_smpl_time <= 1) {
+		r_smpl_time = 5;
+	}
 	//double IMaxGain = 2000000;
 	SC.adcSet.SetSampleSize(range_SampleSize);
 	SC.dacSet.AutoRangeSMPL(range_SampleSize);
-	HAL_Delay(20);
+	HAL_Delay(r_smpl_time);
 	SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
 	SC.adcSet.SetSampleSize(sampleSize);
 	phaseCorrect = calPar.PhiCal.CorrectPhi(0, (double)test_f, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
-	calPar.smpl_Z();
+	SC.adcSet.StartSampling();
+	HAL_Delay(smpl_time);
+	DUT.cal.get_Z();
 	DUT.param.z.argDeg-=phaseCorrect;
 	calPar.range_Cal_Open[0] = (cmplxmath.pol.PolarToRectangular(DUT.param.z));
 
 	SC.dacSet.SetRangeResistor(RANGE_10R);
-	HAL_Delay(20);
-	calPar.smpl_Z();
+	HAL_Delay(10);
+	SC.adcSet.StartSampling();
+	HAL_Delay(smpl_time);
+	DUT.cal.get_Z();
 	DUT.param.z.argDeg-=phaseCorrect;
 	calPar.range_Cal_Open[1] = (cmplxmath.pol.PolarToRectangular(DUT.param.z));
+
 	SC.dacSet.SetRangeResistor(RANGE_100R);
-	HAL_Delay(20);
-	SC.adcSet.SetPGAGain(PGA_V, GAIN_2);
-	SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
-	calPar.smpl_Z();
+	HAL_Delay(10);
+	SC.adcSet.StartSampling();
+	HAL_Delay(smpl_time);
+	DUT.cal.get_Z();
 	phaseCorrect = calPar.PhiCal.CorrectPhi(0, (double)test_f, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
 	DUT.param.z.argDeg-=phaseCorrect;
 	calPar.range_Cal_Open[2] = (cmplxmath.pol.PolarToRectangular(DUT.param.z));
 
 	SC.dacSet.SetRangeResistor(RANGE_1K);
-	HAL_Delay(20);
-	calPar.smpl_Z();
-	HAL_Delay(20);
+	HAL_Delay(10);
+	SC.adcSet.StartSampling();
+	HAL_Delay(smpl_time);
+	DUT.cal.get_Z();
 	DUT.param.z.argDeg-=phaseCorrect;
 	calPar.range_Cal_Open[3] = (cmplxmath.pol.PolarToRectangular(DUT.param.z));
 
 	SC.dacSet.SetRangeResistor(RANGE_10K);
-	HAL_Delay(20);
-	calPar.smpl_Z();
-	SC.adcSet.SetPGAGain(PGA_V, GAIN_2);
-	SC.adcSet.SetPGAGain(PGA_I, GAIN_4);
-	calPar.smpl_Z();
+	HAL_Delay(10);
+	SC.adcSet.StartSampling();
+	HAL_Delay(smpl_time);
+	DUT.cal.get_Z();
 	phaseCorrect = calPar.PhiCal.CorrectPhi(0, (double)test_f, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
 	DUT.param.z.argDeg-=phaseCorrect;
 	calPar.range_Cal_Open[4] = (cmplxmath.pol.PolarToRectangular(DUT.param.z));
 
 
 	SC.dacSet.SetRangeResistor(RANGE_100K);
-	HAL_Delay(20);
-	calPar.smpl_Z();
-	SC.adcSet.SetPGAGain(PGA_V, GAIN_2);
-	SC.adcSet.SetPGAGain(PGA_I, GAIN_4);
-	calPar.smpl_Z();
+	HAL_Delay(10);
+	SC.adcSet.StartSampling();
+	HAL_Delay(smpl_time);
+	DUT.cal.get_Z();
 	phaseCorrect = calPar.PhiCal.CorrectPhi(0, (double)test_f, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
 	DUT.param.z.argDeg-=phaseCorrect;
 	calPar.range_Cal_Open[5] = (cmplxmath.pol.PolarToRectangular(DUT.param.z));
 
 
 	SC.dacSet.SetRangeResistor(RANGE_1M);
-	HAL_Delay(20);
-	calPar.smpl_Z();
+	HAL_Delay(10);
+	SC.adcSet.StartSampling();
+	HAL_Delay(smpl_time);
+	DUT.cal.get_Z();
 	DUT.param.z.argDeg-=phaseCorrect;
 	calPar.range_Cal_Open[6] = (cmplxmath.pol.PolarToRectangular(DUT.param.z));
-
-
-
 }
 
 uint32_t CalADCFrequencyWord(uint32_t frequency){
@@ -933,16 +957,17 @@ void SetDACFrequency(uint32_t frq){
 }
 
 void AutoRangeV(int16_t VMax, int16_t VMin) {
-
-	  float VGain = (60000.0/((float)(VMax-VMin)));
-	  if((VGain >= 2)&(VGain < 4)) {
-		  SC.adcSet.SetPGAGain(PGA_V, GAIN_2);
-	  } else if ((VGain >= 4)&(VGain < 8)) {
-		  SC.adcSet.SetPGAGain(PGA_V, GAIN_4);
-	  } else if ((VGain >= 8)&(VGain < 16)) {
-		  SC.adcSet.SetPGAGain(PGA_V, GAIN_8);
-	  } else if (VGain >= 16) {
+	  uint32_t Vpp = VMax - VMin;
+	  if(Vpp <= 4000) {
 		  SC.adcSet.SetPGAGain(PGA_V, GAIN_16);
+	  } else if ((Vpp > 4000)&(Vpp <= 7500)) {
+		  SC.adcSet.SetPGAGain(PGA_V, GAIN_8);
+	  } else if ((Vpp > 7500)&(Vpp <= 15000)) {
+		  SC.adcSet.SetPGAGain(PGA_V, GAIN_4);
+	  } else if ((Vpp > 15000)&(Vpp <= 30000)) {
+		  SC.adcSet.SetPGAGain(PGA_V, GAIN_2);
+	  } else {
+		  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
 	  }
 }
 //////////////////////////////////////////////////////////////////////////////////
@@ -950,55 +975,18 @@ void AutoRangeV(int16_t VMax, int16_t VMin) {
 //////////////////////////////////////////////////////////////////////////////////
 
 void AutoRangeI_PGA(int16_t IMax, int16_t IMin){
-	float IGain = (60000.0/((float)(IMax-IMin)));
-	  if((IGain >= 2)&(IGain < 4)) {
-		  SC.adcSet.SetPGAGain(PGA_I, GAIN_2);
-	  } else if ((IGain >= 4)&(IGain < 8)) {
-		  SC.adcSet.SetPGAGain(PGA_I, GAIN_4);
-	  } else if ((IGain >= 8)&(IGain < 16)) {
-		  SC.adcSet.SetPGAGain(PGA_I, GAIN_8);
-	  } else if (IGain >= 16) {
+	  uint32_t Ipp = IMax - IMin;
+	  if(Ipp <= 4000) {
 		  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
+	  } else if ((Ipp > 4000)&(Ipp <= 7500)) {
+		  SC.adcSet.SetPGAGain(PGA_I, GAIN_8);
+	  } else if ((Ipp > 7500)&(Ipp <= 15000)) {
+		  SC.adcSet.SetPGAGain(PGA_I, GAIN_4);
+	  } else if ((Ipp > 15000)&(Ipp <= 30000)) {
+		  SC.adcSet.SetPGAGain(PGA_I, GAIN_2);
+	  } else {
+		  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
 	  }
-}
-
-float AutoRangeI(int16_t IMax, int16_t IMin, float R_Range, float IMaxGain) {
-	float scale = R_Range;
-
-	float IGain = (60000.0/((float)(IMax-IMin)))*scale;
-
-
-
-//	if(IGain >= IMaxGain) {
-//	  IGain = IMaxGain;
-//	  SC.dacSet.I_Lim = 1;
-//	}
-//	else {
-//		SC.dacSet.I_Lim = 0;
-//	}
-//
-//
-//	  if((IGain >= 10.0)&(IGain < 200.0)) {
-//		  SC.dacSet.SetRangeResistor(RANGE_10R);
-//		  return(10.0);
-//	  } else if ((IGain >= 200.0)&(IGain < 1000.0)) {
-//		  SC.dacSet.SetRangeResistor(RANGE_100R);
-//		  return(100.0);
-//	  } else if ((IGain >= 1000.0)&(IGain < 10000.0)) {
-//		  SC.dacSet.SetRangeResistor(RANGE_1K);
-//		  return(1000.0);
-//	  } else if ((IGain >= 10000.0)&(IGain < 100000.0)) {
-//		  SC.dacSet.SetRangeResistor(RANGE_10K);
-//		  return(10000.0);
-//	  } else if ((IGain >= 100000.0)&(IGain < 1000000.0)) {
-//		  SC.dacSet.SetRangeResistor(RANGE_100K);
-//		  return(100000.0);
-//	  } else if ((IGain >= 1000000.0)&(IGain < 10000000.0)) {
-//		  SC.dacSet.SetRangeResistor(RANGE_1M);
-//		  return(1000000.0);
-//	  }
-
-
 }
 
 void AutoRangeSMPL(uint32_t smpl_size) {
@@ -1013,32 +1001,26 @@ void AutoRangeSMPL(uint32_t smpl_size) {
 	  SC.adcSet.SetSampleSize(smpl_size);
 	  HAL_Delay(1);
 	  SC.adcSet.StartSampling();
-	  HAL_Delay(100);
+	  HAL_Delay(35);
 	  for(int i = 0; i < (smpl_size); i++) {
 		  Vint = SC.get.GetSingleSampleContinous();
 		  Iint = SC.get.GetSingleSampleContinous();
 		  if(i > 5) {
 			  if(Vint > VMax) {
 				  VMax = Vint;
-			  }
-			  else if(Vint < VMin) {
+			  } else if(Vint < VMin) {
 				  VMin = Vint;
-			  }
-			  if(Iint > IMax) {
+			  } if(Iint > IMax) {
 				  IMax = Iint;
-			  }
-			  else if(Iint < IMin) {
+			  } else if(Iint < IMin) {
 				  IMin = Iint;
 			  }
 		  }
-
 	  }
 	  SC.dacSet.AR_VMax = VMax;
 	  SC.dacSet.AR_VMin = VMin;
 	  SC.dacSet.AR_IMax = IMax;
 	  SC.dacSet.AR_IMin = IMin;
-
-
 }
 
 void AutoRange(uint32_t smpl_f, uint32_t test_f) {
@@ -1047,6 +1029,8 @@ void AutoRange(uint32_t smpl_f, uint32_t test_f) {
 	  uint32_t MAX_R = 0;
 	  uint16_t PGA_SET = 0;
 	  uint16_t R_SET = 0;
+	  double CR = (double)SC.dacSet.CurrentRangeIndicator;
+	  double Z = 0;
 	  if (test_f > 300000) {
 		  MAX_R = 100;
 	  }  else if (test_f > 100000) {
@@ -1063,25 +1047,34 @@ void AutoRange(uint32_t smpl_f, uint32_t test_f) {
 	  SC.dacSet.AutoRangeSMPL(range_SampleSize);
 	  double Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
 	  double Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
-	  if((Ipp < 30000)|( Vpp < 30000)) {
-		  PGA_SET = 1;
+	  Z = (Vpp / Ipp)*(CR*SC.adcSet.CurrentPGAGain/SC.adcSet.VoltagePGAGain);
+	  if((Ipp > 62000)|( Vpp > 62000)) {
+		  R_SET = 1;
 	  }
-	  if((Ipp > 60000)|( Vpp > 60000)) {
-		  PGA_SET = 1;
-	  }
-	  double Z = (Vpp / Ipp)*(double)SC.dacSet.CurrentRangeIndicator;
-
-	  if(PGA_SET == 1) {
-		  if (Z > SC.dacSet.CurrentRangeIndicator) {
+	  else {
+		  if ((Z< (0.28*CR))|(Z>(3.2*CR))) {
+			  R_SET = 1;
+			  if(((CR >= (double)MAX_R)&(Z > 3.2*CR))|((CR <= 3.2)&(Z <0.28*CR))) {
+				  R_SET = 0;
+				  PGA_SET = 1;
+			  }
+		  } else {
 			  R_SET = 0;
+//			  if((Ipp < 20000)|(Vpp <20000)) {
+//				  PGA_SET = 1;
+//			  }
 		  }
+
+	  }
+
 		  if(R_SET == 1) {
-			  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-			  double Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
-			  double Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
 			  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
 			  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
 			  SC.dacSet.SetRangeResistor(RANGE_1R);
+			  SC.dacSet.AutoRangeSMPL(range_SampleSize);
+			  double Ipp = (double)(SC.dacSet.AR_IMax - SC.dacSet.AR_IMin);
+			  double Vpp = (double)(SC.dacSet.AR_VMax - SC.dacSet.AR_VMin);
+			  Z = (Vpp/Ipp);
 			  if(Ipp < 3400) {
 				  SC.adcSet.SetPGAGain(PGA_I, GAIN_16);
 				  SC.dacSet.AutoRangeSMPL(range_SampleSize);
@@ -1137,35 +1130,19 @@ void AutoRange(uint32_t smpl_f, uint32_t test_f) {
 					SC.dacSet.SetRangeResistor(RANGE_1M);
 				}
 			}
-			  SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
-			  SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
+			PGA_SET = 1;
 		  }
-		  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-		  SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
-		  SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
-		  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-		  SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
-		  SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
+		if(PGA_SET == 1) {
+	    SC.adcSet.SetPGAGain(PGA_V, GAIN_1);
+	    SC.adcSet.SetPGAGain(PGA_I, GAIN_1);
+		SC.dacSet.AutoRangeSMPL(range_SampleSize);
+		SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
+		SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
+//		SC.dacSet.AutoRangeSMPL(range_SampleSize);
+//		SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
+//		SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
+
 	  }
-	//
-//	  float R_Range = 1;
-//	  double IMaxGain = (1/((float)test_f))*(300000000.0);
-//	  //double IMaxGain = 2000000;
-//	  SC.adcSet.SetSampleSize(range_SampleSize);
-//	  HAL_Delay(1);
-//
-//	  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-//	  HAL_Delay(200);
-//	  R_Range = SC.dacSet.AutoRangeI(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin, R_Range, IMaxGain);
-//	  HAL_Delay(50);
-//	  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-//	  HAL_Delay(200);
-//	  R_Range = SC.dacSet.AutoRangeI(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin, R_Range, IMaxGain);
-//	  HAL_Delay(50);
-//	  SC.dacSet.AutoRangeSMPL(range_SampleSize);
-//	  HAL_Delay(200);
-//	  SC.dacSet.AutoRangeV(SC.dacSet.AR_VMax, SC.dacSet.AR_VMin);
-//	  SC.dacSet.AutoRangeI_PGA(SC.dacSet.AR_IMax, SC.dacSet.AR_IMin);
 }
 
 uint8_t AutoRangeCheck(uint32_t smpl_f, uint32_t test_f) {
@@ -1517,7 +1494,7 @@ int8_t PulseCLK(void) {
 	if (cp != NULL) {
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, TRUE);
-		ns_delay(500);
+//		ns_delay(50);
 		HAL_GPIO_WritePin(cp->ctrl.CLKport, cp->ctrl.CLKPin, FALSE);
 		return(status);
 	}
@@ -1557,11 +1534,11 @@ int8_t WriteData(uint16_t data, uint16_t addr) {
 //		}
 		CommPort.set.SetIOMode(WRITE);
 		CommPort.set.SetIOValue(addr);
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.PulseCLK();
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.SetIOValue(data);
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.PulseCLK();
 		return(status);
 	}
@@ -1578,16 +1555,16 @@ int8_t FetchData(uint16_t *result, uint16_t addr) {
 		uint16_t readVal = 0;
 		CommPort.set.SetIOMode(WRITE);
 		CommPort.set.SetRnW(WRITE);
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.SetIOValue(addr);
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.PulseCLK();
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.SetRnW(READ);
 		CommPort.set.SetIOMode(READ);
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.PulseCLK();
-		ns_delay(500);
+//		ns_delay(50);
 		CommPort.set.GetIOValue(&readVal);
 		*result = readVal;
 		return(status);
@@ -1676,6 +1653,13 @@ double PhaseCorrection(double phi, double frq, enum PGAGain vGain, enum PGAGain 
 	return(phi);
 }
 
+uint32_t smplTime(uint32_t smpl_f, uint32_t smpl_size) {
+	uint32_t ms_time = ((smpl_size*1000)/smpl_f)+5;;
+	if(ms_time <= 0) {
+		ms_time = 5;
+	}
+	return(ms_time);
+}
 
 
 //TEMP
@@ -1796,6 +1780,7 @@ int main(void)
 	DUT.cal.ModelResistance = GetModelResistance;
 	DUT.cal.InductanceMagnitude = CalInductanceMag;
 	DUT.cal.CapacitanceMagnitude = CalCapacitanceMag;
+	DUT.cal.get_Z = get_Z;
 	//DFT Functions
 	DFTSet.ctrl.selfAddr = &DFTSet;
 	DFTSet.set.nCurrentSampleIndex = 0;
@@ -1816,10 +1801,10 @@ int main(void)
 	SC.adcSet.StartSampling = StartSampling;
 	SC.dacSet.TestLevel = SetDACTestLevel;
 	SC.adcSet.SetPGAGain = SetPGAGain;
+	SC.adcSet.smplTime = smplTime;
 	SC.dacSet.SetRangeResistor = SetRangeResistor;
 	SC.dacSet.SetDACFrequency = SetDACFrequency;
 	SC.dacSet.AutoRangeV = AutoRangeV;
-	SC.dacSet.AutoRangeI = AutoRangeI;
 	SC.dacSet.AutoRangeI_PGA = AutoRangeI_PGA;
 	SC.dacSet.AutoRangeSMPL = AutoRangeSMPL;
 	SC.dacSet.AutoRange = AutoRange;
@@ -1961,7 +1946,7 @@ int main(void)
   uint16_t testF = 100000;
   double testZ = 0;
 
-  TestParameters testPar = (TestParameters){10000, 1000000, 10000, 1};
+  TestParameters testPar = (TestParameters){10000, 1000000, 500, 1};
 //  for(int i=0; i < 7; i++) {
 //	  calPar.r_Relay[i] = 0.06;
 //  }
@@ -1981,7 +1966,7 @@ int main(void)
 
 //  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 
-  calPar.OS_Cal(testPar.sampleFrequency, testPar.testFrequency, testPar.sampleSize, 0.0);
+  calPar.OS_Cal(testPar.sampleFrequency, testPar.testFrequency, (uint32_t)testPar.sampleSize, 0.0);
 
   CommPort.ResetComm();
   SC.adcSet.SetSampleSize(testPar.sampleSize);
@@ -1993,45 +1978,26 @@ int main(void)
   complexp avg;
   while (1)
   {
-	  tempPrint(200, testVar);
+//	  tempPrint(200, testVar);
 //	  if(SC.dacSet.AutoRangeCheck(testPar.sampleFrequency, testPar.testFrequency) == 1) {
 //		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 //		  phaseCorrection = calPar.PhiCal.CorrectPhi(0, (double)testPar.testFrequency, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
 //	  }
+//	  for(int i = 0; i < 3; i++) {
 	  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
-//	  for (int i = 0; i < 5; i++) {
 	  SC.adcSet.SetSampleSize(testPar.sampleSize);
-////	  Calculate fourier coefficient at 10kHz
 	  SC.adcSet.StartSampling();
-	  HAL_Delay(500);
-	  CommPort.ResetComm();
-	  HAL_Delay(10);
-//
-	  VIFourCoeffs = *DFTSet.get.CalVIFourierCoeff(1);
-////
-	  IFourCoeff = VIFourCoeffs.current;
-	  VFourCoeff = VIFourCoeffs.voltage;
-	  IFourCoeffMag = cmplxmath.rec.Magz(IFourCoeff);
-	  VFourCoeffMag = cmplxmath.rec.Magz(VFourCoeff);
-	  IFourCoeffAng = cmplxmath.rec.ArgzDeg(IFourCoeff);
-	  VFourCoeffAng = cmplxmath.rec.ArgzDeg(VFourCoeff);
-	  DUT.param.z = DUT.cal.GetImpedance(VFourCoeff, IFourCoeff);
+	  HAL_Delay(SC.adcSet.smplTime(testPar.sampleFrequency, (uint32_t)testPar.sampleSize));
+	  DUT.cal.get_Z();
 	  DUT.param.z.argDeg-= phaseCorrection;
-
 	  DUT.param.y = cmplxmath.pol.PolarToRectangular(DUT.param.z);
 	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator, testPar.testFrequency);
-
-
-	  //	  DUT.param.y = DUT.cal.GetAdmittance(VFourCoeff, IFourCoeff);
-//////	  ZFourCoeffMag = (VFourCoeffMag/2.0) / ((IFourCoeffMag/(8.0*100)));
-//////	  ZFourCoeffAng=  VFourCoeffAng - IFourCoeffAng;
-//////	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
 	  avg.mod += DUT.param.z.mod;
 	  avg.argDeg += DUT.param.z.argDeg;
 	  HAL_Delay(1);
 //	  }
-//	  avg.mod /= 5.0;
-//	  avg.argDeg /= 5.0;
+//	  avg.mod /= 3.0;
+//	  avg.argDeg /= 3.0;
 	  sprintf(str, "DFT V X[10kHz] MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
@@ -2063,20 +2029,83 @@ int main(void)
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 //
 ////
+
 	  sprintf(str, "Impedance MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.4f", (avg.mod));
+	  switch(SC.dacSet.CurrentRangeIndicator) {
+		  case(1):
+			  sprintf(str, "%.4f", (avg.mod));
+		  	  strcpy((char*)uartBuf, str);
+		  	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			  sprintf(str, " Ohm ");
+			  strcpy((char*)uartBuf, str);
+			  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			  break;
+	  	  case(10):
+			  sprintf(str, "%.3f", (avg.mod));
+		  	  strcpy((char*)uartBuf, str);
+		  	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			  sprintf(str, " Ohm ");
+			  strcpy((char*)uartBuf, str);
+			  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			  break;
+	  	  case(100):
+			  sprintf(str, "%.2f", (avg.mod));
+		  	  strcpy((char*)uartBuf, str);
+		  	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			  sprintf(str, " Ohm ");
+			  strcpy((char*)uartBuf, str);
+			  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+			  break;
+	  	  case(1000):
+			  avg.mod/=1000.0;
+	  	  	  sprintf(str, "%.4f", (avg.mod));
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  		  sprintf(str, " kOhm ");
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  	  	  break;
+	  	  case(10000):
+			  avg.mod/=1000.0;
+	  	  	  sprintf(str, "%.3f", (avg.mod));
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  		  sprintf(str, " kOhm ");
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  	  	  break;
+	  	  case(100000):
+			  avg.mod/=1000.0;
+	  	  	  sprintf(str, "%.2f", (avg.mod));
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  		  sprintf(str, " kOhm ");
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  	  	  break;
+	  	  case(1000000):
+			  avg.mod/=1000000.0;
+	  	  	  sprintf(str, "%.1f", (avg.mod));
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  		  sprintf(str, " MOhm ");
+	  		  strcpy((char*)uartBuf, str);
+	  		  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  	  	  break;
+	  }
+
+
 //	  sprintf(str, "%.4f\n", (3.0));
-	  strcpy((char*)uartBuf, str);
-	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
 ////
 ////
 ////
 	  sprintf(str, "PHI : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-	  sprintf(str, "%.4f\n", (avg.argDeg));
+	  sprintf(str, "%.3f\n", (avg.argDeg));
 //	  sprintf(str, "%.4f\n", (3.0));
 //	  sprintf(str, "%.4f\n", (phaseCorrection));
 	  strcpy((char*)uartBuf, str);
@@ -2088,37 +2117,31 @@ int main(void)
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 	  sprintf(str, "%.4f\n", (SC.dacSet.CurrentRangeResistor));
 //	  sprintf(str, "%.4f\n", (3.0));
-//	  sprintf(str, "%.4f\n", (phaseCorrection));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+
+	  sprintf(str, "PGA_V : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.2f\n", (SC.adcSet.VoltagePGAGain));
+//	  sprintf(str, "%.4f\n", (3.0));
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
 
+	  sprintf(str, "PGA_I : ");
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
+	  sprintf(str, "%.2f\n", (SC.adcSet.CurrentPGAGain));
+//	  sprintf(str, "%.4f\n", (3.0));
+	  strcpy((char*)uartBuf, str);
+	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
 
-//
-//	  DUT.param.z = calPar.CorrectDUT(DUT.param.y, SC.dacSet.CurrentRangeIndicator);
-//	  complexr device = cmplxmath.pol.PolarToRectangular(DUT.param.z);
-//	  double Cap = DUT.cal.CapacitanceMagnitude(testPar.sampleFrequency, device);
 
-//	  sprintf(str, "Impedance MAG : ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.4f", avg.mod);
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
-//
-//
-//	  sprintf(str, " PHI : ");
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//	  sprintf(str, "%.4f\n", avg.argDeg);
-//	  strcpy((char*)uartBuf, str);
-//	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
-//
 	  avg.mod = 0;
 	  avg.argDeg = 0;
 
-	  HAL_Delay(2000);
+	  HAL_Delay(10);
 
 
 	//}
