@@ -1946,7 +1946,7 @@ int main(void)
   uint16_t testF = 100000;
   double testZ = 0;
 
-  TestParameters testPar = (TestParameters){10000, 1000000, 500, 1};
+  TestParameters testPar = (TestParameters){1000, 100000, 500, 1};
 //  for(int i=0; i < 7; i++) {
 //	  calPar.r_Relay[i] = 0.06;
 //  }
@@ -1983,7 +1983,7 @@ int main(void)
 //		  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 //		  phaseCorrection = calPar.PhiCal.CorrectPhi(0, (double)testPar.testFrequency, SC.adcSet.CurrentPGA_V, SC.adcSet.CurrentPGA_C);
 //	  }
-//	  for(int i = 0; i < 3; i++) {
+	  for(int i = 0; i < 5; i++) {
 	  SC.dacSet.AutoRange(testPar.sampleFrequency, testPar.testFrequency);
 	  SC.adcSet.SetSampleSize(testPar.sampleSize);
 	  SC.adcSet.StartSampling();
@@ -1995,9 +1995,9 @@ int main(void)
 	  avg.mod += DUT.param.z.mod;
 	  avg.argDeg += DUT.param.z.argDeg;
 	  HAL_Delay(1);
-//	  }
-//	  avg.mod /= 3.0;
-//	  avg.argDeg /= 3.0;
+	  }
+	  avg.mod /= 5.0;
+	  avg.argDeg /= 5.0;
 	  sprintf(str, "DFT V X[10kHz] MAG : ");
 	  strcpy((char*)uartBuf, str);
 	  HAL_UART_Transmit(&huart2, uartBuf, strlen((char*)uartBuf), HAL_MAX_DELAY);
